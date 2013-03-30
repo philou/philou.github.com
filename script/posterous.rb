@@ -8,8 +8,6 @@ require 'uri'
 require "json"
 require 'mini_magick'
 
-# ruby -r './lib/jekyll/migrators/posterous.rb' -e 'Jekyll::Posterous.process(email, pass, api_key, blog)'
-
 module Jekyll
   module Posterous
     def self.fetch(uri_str, limit = 10)
@@ -78,7 +76,7 @@ module Jekyll
         end
       end
 
-      FileUtils.mkdir_p "source/" + directory
+      FileUtils.mkdir_p directory
       urls = Array.new
       imgs.each do |img|
         fullurl = img["full"]["url"]
@@ -167,6 +165,23 @@ module Jekyll
             tags.push(tag["name"])
           end
 
+          # convert [code] sections to ```
+          content = content.gsub(/^\[code\]$/, "```")
+          content = content.gsub(/^\[code lang='([^']*)'\]$/, "```\\1")
+          content = content.gsub(/^\[\/code\]$/, "```")
+
+          content = content.gsub(/\[code\]$/, "\n```")
+          content = content.gsub(/\[code lang='([^']*)'\]$/, "\n```\\1")
+          content = content.gsub(/\[\/code\]$/, "\n```")
+
+          content = content.gsub(/^\[code\]/, "```\n")
+          content = content.gsub(/^\[code lang='([^']*)'\]/, "```\\1\n")
+          content = content.gsub(/^\[\/code\]/, "```\n")
+
+          content = content.gsub(/\[code\]/, "\n```\n")
+          content = content.gsub(/\[code lang='([^']*)'\]/, "\n```\1\n")
+          content = content.gsub(/\[\/code\]/, "\n```\n")
+
           # Get the relevant fields as a hash, delete empty fields and convert
           # to YAML for the header
           data = {
@@ -180,7 +195,7 @@ module Jekyll
            }.delete_if { |k,v| v.nil? || v == ''}.to_yaml
 
           # Write out the data and content to file
-          File.open("source/_posts/#{name.gsub(".html", ".markdown")}", "w") do |f|
+          File.open("_posts/#{name.gsub(".html", ".markdown")}", "w") do |f|
             puts name
             f.puts data
             f.puts "---"
