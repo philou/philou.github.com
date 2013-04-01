@@ -11,6 +11,7 @@ categories:
 - XP
 posterous_url: http://philippe.bourgau.net/scaling-agile
 posterous_slug: scaling-agile
+comments: true
 ---
 <p>I have worked in small agile teams, and it does indeed work a lot better than the classical waterfall &amp; hierarchic environment. When speaking with other people who have been through the same experience,&nbsp;we started to wonder how could this be scaled to a big organization ?</p>
 <p>I read two good books on the subject from Craig Larman and Bas Vodde:</p>

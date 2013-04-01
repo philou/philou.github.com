@@ -8,6 +8,7 @@ categories:
 - ruby
 posterous_url: http://philippe.bourgau.net/rspec-messes-up-stubs-and-expectations
 posterous_slug: rspec-messes-up-stubs-and-expectations
+comments: true
 ---
 <p>Here is an example showing the issue :<p />
 ```ruby

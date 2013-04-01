@@ -9,6 +9,7 @@ categories:
 - testing
 posterous_url: http://philippe.bourgau.net/the-poor-mans-memory-profiling
 posterous_slug: the-poor-mans-memory-profiling
+comments: true
 ---
 <p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
 <p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>

@@ -7,6 +7,7 @@ categories:
 - css
 posterous_url: http://philippe.bourgau.net/there-can-be-only-one-css-stylesheet-per-medi
 posterous_slug: there-can-be-only-one-css-stylesheet-per-medi
+comments: true
 ---
 <p>I thought it was a good idea to specify a media in my stylesheet link : <br />
 ```html

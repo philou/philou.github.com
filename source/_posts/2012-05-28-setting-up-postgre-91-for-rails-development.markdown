@@ -9,6 +9,7 @@ categories:
 - ruby
 posterous_url: http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development
 posterous_slug: setting-up-postgre-91-for-rails-development
+comments: true
 ---
 <p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
 <p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>

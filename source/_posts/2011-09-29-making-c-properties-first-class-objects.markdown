@@ -9,6 +9,7 @@ categories:
 - UI
 posterous_url: http://philippe.bourgau.net/making-c-properties-first-class-objects
 posterous_slug: making-c-properties-first-class-objects
+comments: true
 ---
 <p>Functions and methods have a better status in the .Net world than they had in the Java world ... They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It's a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
 <p>

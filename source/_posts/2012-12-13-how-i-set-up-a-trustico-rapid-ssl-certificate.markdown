@@ -9,6 +9,7 @@ categories:
 - SSL
 posterous_url: http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate
 posterous_slug: how-i-set-up-a-trustico-rapid-ssl-certificate
+comments: true
 ---
 <p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
 <ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application

@@ -8,6 +8,7 @@ categories:
 - mocking
 posterous_url: http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with
 posterous_slug: how-to-mock-an-out-of-process-com-server-with
+comments: true
 ---
 <p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
 <p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>

@@ -6,6 +6,7 @@ date: 2012-08-22
 categories: []
 posterous_url: http://philippe.bourgau.net/rails-autoload-good-practices
 posterous_slug: rails-autoload-good-practices
+comments: true
 ---
 <p>I started using rails autoload to load files in my lib folder of <a href="http://www.mes-courses.fr">http://www.mes-courses.fr</a>. Before that, I had been using hand written require statements, and later hand written autoload statements. Rails autoload are by far the best approach for this. It has a few pitfalls though. Here are the best practices I discovered so far.</p>
 

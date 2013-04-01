@@ -7,6 +7,7 @@ categories:
 - Lean
 posterous_url: http://philippe.bourgau.net/motivation-game-53790
 posterous_slug: motivation-game-53790
+comments: true
 ---
 <p>At MegaCorp where I am currently working, there is a small team that is dedicated to find solutions to software bugs that regularly happen in production. The software system is very old and buggy, so it can get quite stressfull at times ...</p>
 <p>One thing users want is to get a daily email summarizing all the issues currently being looked after by this team, so that they can be sure that someone is looking into their problems. The trick is it is not always easy to take the time to write a nice and polished email when one feels completly overwhelmed by urgent stuff to do.</p>

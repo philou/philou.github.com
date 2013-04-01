@@ -6,6 +6,7 @@ date: 2012-04-26
 categories: []
 posterous_url: http://philippe.bourgau.net/ruby-thirdparties-best-practices
 posterous_slug: ruby-thirdparties-best-practices
+comments: true
 ---
 <p>I am just finishing migrating <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> from rails 2 to rails 3, and I can assure that I learnt these lessons the hard way ...<br />
 <ul>

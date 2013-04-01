@@ -6,6 +6,7 @@ date: 2013-02-22
 categories: []
 posterous_url: http://philippe.bourgau.net/1-rule-for-monitoring-emails
 posterous_slug: 1-rule-for-monitoring-emails
+comments: true
 ---
 <p>I just spent a few hours debugging my rails app on heroku to understand why the hell I did not systematicaly receive the monitoring emails that my app was sending ...</p>
 <p>My app was actually rendering the email template.</p>

@@ -8,6 +8,7 @@ categories:
 - ruby
 posterous_url: http://philippe.bourgau.net/order-of-execution-of-before-blocks-in-rspec
 posterous_slug: order-of-execution-of-before-blocks-in-rspec
+comments: true
 ---
 <p>I discovered that before blocks in RSpec's examples are executed in the order they are declared. There is no great deal about it, but it can be useful when using shared examples.<br />In rspec 1.3.8, it is possible to simulate shared examples with parameters by using instance variables instead. This is were it gets useful to know the order of evaluation of before blocks. As an example :<p />
 ```ruby

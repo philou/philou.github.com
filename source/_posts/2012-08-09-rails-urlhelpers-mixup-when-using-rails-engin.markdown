@@ -6,6 +6,7 @@ date: 2012-08-09
 categories: []
 posterous_url: http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin
 posterous_slug: rails-urlhelpers-mixup-when-using-rails-engin
+comments: true
 ---
 <p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
 <ul>

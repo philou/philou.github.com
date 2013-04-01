@@ -8,6 +8,7 @@ categories:
 - ruby
 posterous_url: http://philippe.bourgau.net/including-railsapplicationroutesurlhelpers-fr
 posterous_slug: including-railsapplicationroutesurlhelpers-fr
+comments: true
 ---
 <p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
 <p>

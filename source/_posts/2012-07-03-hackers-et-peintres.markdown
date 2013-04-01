@@ -6,6 +6,7 @@ date: 2012-07-03
 categories: []
 posterous_url: http://philippe.bourgau.net/hackers-et-peintres
 posterous_slug: hackers-et-peintres
+comments: true
 ---
 <div style="margin: 8px;">
 <p>This is a french translation of the famous <a href="http://www.paulgraham.com/hp.html">Hackers and painters</a>&nbsp;essay&nbsp;written by&nbsp;<a href="http://www.paulgraham.com">Paul Graham</a>.</p>

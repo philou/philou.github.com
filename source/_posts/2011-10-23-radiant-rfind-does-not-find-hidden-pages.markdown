@@ -7,6 +7,7 @@ categories:
 - radiant-tags-extension
 posterous_url: http://philippe.bourgau.net/radiant-rfind-does-not-find-hidden-pages
 posterous_slug: radiant-rfind-does-not-find-hidden-pages
+comments: true
 ---
 <p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
 ```

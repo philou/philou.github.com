@@ -10,6 +10,7 @@ categories:
 - ruby
 posterous_url: http://philippe.bourgau.net/using-gems-instead-of-rails-plugins-on-heroku
 posterous_slug: using-gems-instead-of-rails-plugins-on-heroku
+comments: true
 ---
 <p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you've got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules ... You are left with 2 choices :</p>
 <ul>

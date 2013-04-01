@@ -8,6 +8,7 @@ categories:
 - testing
 posterous_url: http://philippe.bourgau.net/how-to-test-a-class-using-an-implementation-h
 posterous_slug: how-to-test-a-class-using-an-implementation-h
+comments: true
 ---
 <p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation ...<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
 ```c#

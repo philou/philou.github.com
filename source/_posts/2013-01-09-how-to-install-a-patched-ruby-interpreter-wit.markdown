@@ -6,6 +6,7 @@ date: 2013-01-09
 categories: []
 posterous_url: http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit
 posterous_slug: how-to-install-a-patched-ruby-interpreter-wit
+comments: true
 ---
 <p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a>&nbsp;seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
 <p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
