@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: heroku | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/heroku/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-04-01T08:25:43+02:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How I set up a trustico rapid ssl certificate on heroku ssl endpoint]]></title>
+    <link href="http://yoursite.com/blog/2012/12/13/how-i-set-up-a-trustico-rapid-ssl-certificate/"/>
+    <updated>2012-12-13T00:00:00+01:00</updated>
+    <id>http://yoursite.com/blog/2012/12/13/how-i-set-up-a-trustico-rapid-ssl-certificate</id>
+    <content type="html"><![CDATA[<p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
+
+
+<ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application
+```sh
+heroku addons:add ssl:endpoint
+```
+</li><li>Upload your certificate
+```sh
+heroku certs:add server.crt private.key
+```
+</li><li>Run the following and verify that you have an ssl endpoint with an explicit trusted &quot;True&quot; value
+```sh
+heroku certs
+```
+</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li> <li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li><li>Wait until dns are updated to check that it is working.</li></ol>
+
+
+<div> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Don't forget the heroku stack]]></title>
+    <link href="http://yoursite.com/blog/2011/11/10/dont-forget-the-heroku-stack/"/>
+    <updated>2011-11-10T00:00:00+01:00</updated>
+    <id>http://yoursite.com/blog/2011/11/10/dont-forget-the-heroku-stack</id>
+    <content type="html"><![CDATA[<p>Don&#39;t waste your time as I did !<p />If ever you get a dependency gem version error when deploying to a new heroku test app, before starting to mess up your Gemfile configuration, check that the heroku stack of your new app is what you are expecting ...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Using gems instead of rails plugins on heroku]]></title>
+    <link href="http://yoursite.com/blog/2011/09/22/using-gems-instead-of-rails-plugins-on-heroku/"/>
+    <updated>2011-09-22T00:00:00+02:00</updated>
+    <id>http://yoursite.com/blog/2011/09/22/using-gems-instead-of-rails-plugins-on-heroku</id>
+    <content type="html"><![CDATA[<p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you've got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules ... You are left with 2 choices :</p>
+
+
+<ul>
+<li>Expand the submodule as classical files in your main git repository</li>
+<li>Use the extension or plugin as a gem (if possible)</li>
+</ul>
+
+
+<p>When I can, I'll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
+```sh
+rake radiant:extensions:tags:install
+```
+<p />I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
+<p>in &lt;railsapproot&gt;/lib/tasks/gems.rake<br />
+```ruby
+Dir["#Gem.searcher.find('radiant-tags-extension').full_gem_path}/lib/tasks/*.rake"].each { |ext| load ext }
+```
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

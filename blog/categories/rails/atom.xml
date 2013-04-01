@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: rails | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-04-01T08:25:43+02:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up Postgre 9.1 for rails development]]></title>
+    <link href="http://yoursite.com/blog/2012/05/28/setting-up-postgre-91-for-rails-development/"/>
+    <updated>2012-05-28T00:00:00+02:00</updated>
+    <id>http://yoursite.com/blog/2012/05/28/setting-up-postgre-91-for-rails-development</id>
+    <content type="html"><![CDATA[<p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
+
+
+<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
+
+
+<p>
+```sh
+#!/bin/sh
+
+## packages dependencies
+ sudo apt-get install libxml2-dev libxslt1-dev postgresql libpq-dev sqlite3 libsqlite3-dev
+
+## installing gems
+ bundle install   rbenv rehash
+
+## creating dbs
+ sudo -u postgres createuser --superuser mes_courses
+ sudo -u postgres psql --command="alter user mes_courses with encrypted password 'secret'"
+ sudo sed -i 's/\(local *all *all *\)peer/\1md5/' /etc/postgresql/9.1/main/pg_hba.conf
+ bundle exec rake db:create:all
+
+## initializing dbs
+ bundle exec rake db:migrate
+ RAILS_ENV=test bundle exec rake db:migrate
+ RAILS_ENV=production bundle exec rake db:migrate
+```
+</p>
+
+
+<p>Here is the corresponding config/database.yml</p>
+
+
+<p>
+```yaml
+development:
+ adapter: postgresql
+ database: mes_courses_development
+ encoding: utf8
+ pool: 5
+ timeout: 5000
+ username: mes_courses
+ password: secret
+ host: localhost
+ port: 5433
+
+test:
+ adapter: postgresql
+ database: mes_courses_test
+ encoding: utf8
+ pool: 5
+ timeout: 5000
+ username: mes_courses
+ password: secret
+ host: localhost
+ port: 5433
+
+production:
+ adapter: postgresql
+ database: mes_courses_production
+ encoding: utf8
+ pool: 5
+ timeout: 5000
+ username: mes_courses
+ password: secret
+ host: localhost
+ port: 5433
+
+```
+</p>
+
+
+<p>Hope this helps !</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ Including Rails.application.routes.url_helpers from a module]]></title>
+    <link href="http://yoursite.com/blog/2012/04/16/including-railsapplicationroutesurlhelpers-fr/"/>
+    <updated>2012-04-16T00:00:00+02:00</updated>
+    <id>http://yoursite.com/blog/2012/04/16/including-railsapplicationroutesurlhelpers-fr</id>
+    <content type="html"><![CDATA[<p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
+
+
+<p>
+```ruby
+undefined 'default_url_options'
+```
+</p>
+
+
+<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
+
+
+<p>
+```ruby
+module PathBarHelper
+
+  include Rails.application.routes.url_helpers
+  ...
+
+end
+```
+</p>
+
+
+<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
+
+
+<p>
+```ruby
+module PathBarHelper
+
+  def self.included(base)
+   base.send :include Rails.application.routes.url_helpers
+  end
+  ...
+
+end
+```
+</p>
+
+
+<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devise, SSL requirements and post data]]></title>
+    <link href="http://yoursite.com/blog/2012/01/25/devise-ssl-requirements-and-post-data/"/>
+    <updated>2012-01-25T00:00:00+01:00</updated>
+    <id>http://yoursite.com/blog/2012/01/25/devise-ssl-requirements-and-post-data</id>
+    <content type="html"><![CDATA[<p>I am using rails 2.3.8, devise 1.0.11 and ssl_requirements 0.1.0. I am having strange behaviour when mixing devise with ssl_requirements. When a form posts to an action that is required to be ssl, the post is redirected to ssl as a get, and looses its post data !</p>
+
+
+<p>To workaround the problem, I had to require ssl for the form itself aswell.</p>
+
+
+<p>I hope the situation will be better once I migrate to rails 3 and to newer versions of devise and ssl_requirements.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[external gem rails generator not found]]></title>
+    <link href="http://yoursite.com/blog/2011/11/24/external-gem-rails-generator-not-found/"/>
+    <updated>2011-11-24T00:00:00+01:00</updated>
+    <id>http://yoursite.com/blog/2011/11/24/external-gem-rails-generator-not-found</id>
+    <content type="html"><![CDATA[<p>When trying to use devise 1.0.11 with rails 2.3.8 and bundler 1.0.10, I got the error &quot;could not find generator ...&quot; when running bundle exec script/generate devise_install ... After reading <a href="http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8" target="_blank">http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8</a> I ended up copying the file manually !<p /> I hope this is fixed in rails 3, I am looking forward to migrate.</p>
+]]></content>
+  </entry>
+  
+</feed>

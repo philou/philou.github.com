@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mocking | My Octopress Blog]]></title>
+  <link href="http://yoursite.com/blog/categories/mocking/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2013-04-01T08:25:43+02:00</updated>
+  <id>http://yoursite.com/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[stub_model and mock_model]]></title>
+    <link href="http://yoursite.com/blog/2012/04/16/stubmodel-and-mockmodel/"/>
+    <updated>2012-04-16T00:00:00+02:00</updated>
+    <id>http://yoursite.com/blog/2012/04/16/stubmodel-and-mockmodel</id>
+    <content type="html"><![CDATA[<p>I decided to stop using stub_model and mock_model. I do not use them enough to get fluent with them. Everytime I have to deal with them, something breaks in an unexpected way. I just decided to stand with good old stubs.</p>
+
+
+<p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to mock an out of process COM server with C#]]></title>
+    <link href="http://yoursite.com/blog/2012/02/14/how-to-mock-an-out-of-process-com-server-with/"/>
+    <updated>2012-02-14T00:00:00+01:00</updated>
+    <id>http://yoursite.com/blog/2012/02/14/how-to-mock-an-out-of-process-com-server-with</id>
+    <content type="html"><![CDATA[<p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
+
+
+<p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
+
+
+<p>After searching the web, I tried ServicedComponent but I did not manage to make it work ... I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
+
+
+<p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
+
+
+<p>
+```c#
+   // CSSimpleObject.cs
+   internal class CSSimpleObjectClassFactory : IClassFactory
+   {
+      public int CreateInstance(IntPtr pUnkOuter, ref Guid riid, out IntPtr ppvObject)
+      {
+         ...
+         if (riid == new Guid(CSSimpleObject.ClassId) ||
+            riid == new Guid(COMNative.IID_IDispatch) ||
+            riid == new Guid(COMNative.IID_IUnknown))
+         {
+            // Create the instance of the .NET object
+            var simpleObject = new Mock&lt;CSSimpleObject&gt; {CallBase = true};
+            simpleObject.SetupGet(x =&gt; x.FloatProperty).Returns(666);
+            simpleObject.Setup(x =&gt; x.HelloWorld()).Returns("Hello, you got pwned !!!");
+
+            ppvObject = Marshal.GetComInterfaceForObject(
+               simpleObject.Object, typeof(ICSSimpleObject));
+            }
+            ...
+```
+</p>
+
+
+<p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
+
+
+<p>So here is how I eventually integrated this in our test harness :</p>
+
+
+<ul>
+<li>I ran tlbimp.exe on the real COM server I wanted to mock</li>
+<li>In CSSimpleObject.cs, I returned a Mock on the interface of the COM component I wanted to mock</li>
+<li>In&nbsp;CSSimpleObject.cs, I removed SimpleObjectsXXX types</li>
+<li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
+<li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
+</ul>
+
+
+<p>Edit:</p>
+
+
+<p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
+
+]]></content>
+  </entry>
+  
+</feed>
