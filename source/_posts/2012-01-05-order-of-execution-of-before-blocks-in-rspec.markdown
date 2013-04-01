@@ -9,39 +9,28 @@ categories:
 posterous_url: http://philippe.bourgau.net/order-of-execution-of-before-blocks-in-rspec
 posterous_slug: order-of-execution-of-before-blocks-in-rspec
 ---
-<p>I discovered that before blocks in RSpec's examples are executed in the order they are declared. There is no great deal about it, but it can be useful when using shared examples.<br />In rspec 1.3.8, it is possible to simulate shared examples with parameters by using instance variables instead. This is were it gets useful to know the order of evaluation of before blocks. As an example :<p /> 
-```
-
-
-
-
+<p>I discovered that before blocks in RSpec's examples are executed in the order they are declared. There is no great deal about it, but it can be useful when using shared examples.<br />In rspec 1.3.8, it is possible to simulate shared examples with parameters by using instance variables instead. This is were it gets useful to know the order of evaluation of before blocks. As an example :<p />
+```ruby
 shared_example_for "anything" do
-&nbsp; before :each do
-&nbsp;&nbsp;&nbsp; @thing.should_not be_nil
-&nbsp; end
+  before :each do
+    @thing.should_not be_nil
+  end
 end
 
 describe "A monkey wrench" do
-&nbsp; it_should_behave_like "anything"
- &nbsp; before :each do
-&nbsp;&nbsp;&nbsp; @thing = MonkeyWrench.new
-&nbsp; end
+  it_should_behave_like "anything"
+   before :each do
+    @thing = MonkeyWrench.new
+  end
 end
-
-
 ```
-<p />The previous example will fail, whereas the next one will succeed.<p /> 
-```
-
-
-
+<p />The previous example will fail, whereas the next one will succeed.<p />
+```ruby
 describe "A monkey wrench" do
- &nbsp; before :each do
- &nbsp;&nbsp;&nbsp; @thing = MonkeyWrench.new
- &nbsp; end
- &nbsp; it_should_behave_like "anything"
- end
-
-
+  before :each do
+    @thing = MonkeyWrench.new
+  end
+  it_should_behave_like "anything"
+end
 ```
 <p />That is the before blocks nested in shared examples still evaluate in the order of declaration.</p>

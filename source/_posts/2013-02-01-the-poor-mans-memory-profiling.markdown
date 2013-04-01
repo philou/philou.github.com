@@ -32,4 +32,3 @@ posterous_slug: the-poor-mans-memory-profiling
 <script src="https://gist.github.com/4696311.js"></script>
 </p>
 <p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it's actually enough for our purpose.</p>
-<p>&nbsp;</p>

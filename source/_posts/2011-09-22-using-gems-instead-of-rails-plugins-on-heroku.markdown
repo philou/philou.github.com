@@ -16,13 +16,13 @@ posterous_slug: using-gems-instead-of-rails-plugins-on-heroku
 <li>Expand the submodule as classical files in your main git repository</li>
 <li>Use the extension or plugin as a gem (if possible)</li>
 </ul>
-<p>When I can, I'll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p /> 
-```
+<p>When I can, I'll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
+```sh
 rake radiant:extensions:tags:install
 ```
 <p />I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
 <p>in &lt;railsapproot&gt;/lib/tasks/gems.rake<br />
-```
+```ruby
 Dir["#Gem.searcher.find('radiant-tags-extension').full_gem_path}/lib/tasks/*.rake"].each { |ext| load ext }
 ```
 </p>

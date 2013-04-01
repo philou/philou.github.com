@@ -11,7 +11,7 @@ posterous_slug: using-stock-ruby-with-rbenv
 ---
 <p>While migrating to ruby 1.9, I started using rbenv. I was wondering how it would handle my stock ubuntu ruby 1.8. It works out of the box with the rbenv "system" version. I just have to run</p>
 <p>
-```
+```sh
 rbenv global system
 ```
 </p>

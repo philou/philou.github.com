@@ -13,72 +13,29 @@ posterous_slug: how-to-mock-an-out-of-process-com-server-with
 <p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
 <p>After searching the web, I tried ServicedComponent but I did not manage to make it work ... I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
 <p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
-<p>&nbsp;</p>
 <p>
-```
+```c#
+   // CSSimpleObject.cs
+   internal class CSSimpleObjectClassFactory : IClassFactory
+   {
+      public int CreateInstance(IntPtr pUnkOuter, ref Guid riid, out IntPtr ppvObject)
+      {
+         ...
+         if (riid == new Guid(CSSimpleObject.ClassId) ||
+            riid == new Guid(COMNative.IID_IDispatch) ||
+            riid == new Guid(COMNative.IID_IUnknown))
+         {
+            // Create the instance of the .NET object
+            var simpleObject = new Mock&lt;CSSimpleObject&gt; {CallBase = true};
+            simpleObject.SetupGet(x =&gt; x.FloatProperty).Returns(666);
+            simpleObject.Setup(x =&gt; x.HelloWorld()).Returns("Hello, you got pwned !!!");
 
-
-
-&nbsp; &nbsp;// CSSimpleObject.cs
-
-
-&nbsp; &nbsp;internal class CSSimpleObjectClassFactory : IClassFactory
-
-
-&nbsp; &nbsp;{
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;public int CreateInstance(IntPtr pUnkOuter, ref Guid riid,&nbsp;out IntPtr ppvObject)
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;{
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;...
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;if (riid == new Guid(CSSimpleObject.ClassId) ||
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;riid == new Guid(COMNative.IID_IDispatch) ||
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;riid == new Guid(COMNative.IID_IUnknown))
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;{
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;// Create the instance of the .NET object
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;var simpleObject = new Mock&lt;CSSimpleObject&gt; {CallBase = true};
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;simpleObject.SetupGet(x =&gt; x.FloatProperty).Returns(666);
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;simpleObject.Setup(x =&gt; x.HelloWorld()).Returns("Hello, you got pwned !!!");
-
-
-&nbsp;
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;ppvObject = Marshal.GetComInterfaceForObject(
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;simpleObject.Object, typeof(ICSSimpleObject));
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;}
-
-
-&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;...
-
-
+            ppvObject = Marshal.GetComInterfaceForObject(
+               simpleObject.Object, typeof(ICSSimpleObject));
+            }
+            ...
 ```
 </p>
-<p>&nbsp;</p>
 <p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
 <p>So here is how I eventually integrated this in our test harness :</p>
 <ul>
@@ -88,8 +45,5 @@ posterous_slug: how-to-mock-an-out-of-process-com-server-with
 <li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
 <li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
 </ul>
-<p>&nbsp;</p>
 <p>Edit:</p>
 <p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>

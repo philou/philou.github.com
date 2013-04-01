@@ -10,195 +10,191 @@ posterous_url: http://philippe.bourgau.net/how-to-test-a-class-using-an-implemen
 posterous_slug: how-to-test-a-class-using-an-implementation-h
 ---
 <p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation ...<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
-```
-
-public class ListBuilder&lt;T&gt;
+```c#
+public class ListBuilder<T>
 {
-&nbsp; private readonly List&lt;T&gt; _internalList = new List&lt;T&gt;();
-&nbsp; private List&lt;T&gt; _listSnapshot = new List&lt;T&gt;();
-&nbsp; private readonly object _locker = new object();
+  private readonly List<T> _internalList = new List<T>();
+  private List<T> _listSnapshot = new List<T>();
+  private readonly object _locker = new object();
 
-&nbsp; public List&lt;T&gt; ListSnapshot()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; lock (_locker)
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (_listSnapshot.Count != _internalList.Count)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _listSnapshot = new List&lt;T&gt;(_internalList);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-&nbsp;&nbsp;&nbsp; }
+  public List<T> ListSnapshot()
+  {
+    lock (_locker)
+    {
+      if (_listSnapshot.Count != _internalList.Count)
+      {
+        _listSnapshot = new List<T>(_internalList);
+      }
+    }
 
-&nbsp;&nbsp;&nbsp; return _listSnapshot;
-&nbsp; }
+    return _listSnapshot;
+  }
 
-&nbsp; public void Add(T newItem)
-&nbsp; {
-&nbsp;&nbsp;&nbsp; lock (_locker)
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _internalList.Add(newItem);
-&nbsp;&nbsp;&nbsp; }
-&nbsp; }
+  public void Add(T newItem)
+  {
+    lock (_locker)
+    {
+      _internalList.Add(newItem);
+    }
+  }
 }
 
 ```
 <p />Here is the tests for ListBuilder class itself<p />
 ```
-
-public abstract class ListBuilderContractTest&lt;T&gt;
+public abstract class ListBuilderContractTest<T>
 {
-&nbsp; protected abstract void AddAnItem();
-&nbsp; protected abstract void VerifyAddedItem(T addedItem);
-&nbsp; protected abstract List&lt;T&gt; ListCopy();
+  protected abstract void AddAnItem();
+  protected abstract void VerifyAddedItem(T addedItem);
+  protected abstract List<T> ListCopy();
 
-&nbsp; [Test]
-&nbsp; public void TheDefaultListShouldBeEmpty()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(0, ListCopy().Count);
-&nbsp; }
+  [Test]
+  public void TheDefaultListShouldBeEmpty()
+  {
+    Assert.AreEqual(0, ListCopy().Count);
+  }
 
-&nbsp; [Test]
-&nbsp; public void AddShouldAddItemInList()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; AddAnItem();
-&nbsp;&nbsp;&nbsp; VerifyItemWasAdded();
-&nbsp; }
+  [Test]
+  public void AddShouldAddItemInList()
+  {
+    AddAnItem();
+    VerifyItemWasAdded();
+  }
 
-&nbsp; protected void VerifyItemWasAdded()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; var copy = ListCopy();
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(1, copy.Count);
-&nbsp;&nbsp;&nbsp; VerifyAddedItem(copy[0]);
-&nbsp; }
+  protected void VerifyItemWasAdded()
+  {
+    var copy = ListCopy();
+    Assert.AreEqual(1, copy.Count);
+    VerifyAddedItem(copy[0]);
+  }
 
-&nbsp; [Test]
-&nbsp; public void WhenOfSameSizeNewListCopyShoulReturnSameList()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; AddAnItem();
-&nbsp;&nbsp;&nbsp; Assert.AreSame(ListCopy(), ListCopy());
-&nbsp; }
+  [Test]
+  public void WhenOfSameSizeNewListCopyShoulReturnSameList()
+  {
+    AddAnItem();
+    Assert.AreSame(ListCopy(), ListCopy());
+  }
 
-&nbsp; [Test]
-&nbsp; public void CopiesShouldBeSnapshots()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; var copy = ListCopy();
+  [Test]
+  public void CopiesShouldBeSnapshots()
+  {
+    var copy = ListCopy();
 
-&nbsp;&nbsp;&nbsp; AssertExecution.Of(AddAnItem)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; .ShouldNotChange(() =&gt; copy.Count);
-&nbsp; }
+    AssertExecution.Of(AddAnItem)
+      .ShouldNotChange(() => copy.Count);
+  }
 }
 
 [TestFixture]
-public class ListBuilderTest : ListBuilderContractTest&lt;string&gt;
+public class ListBuilderTest : ListBuilderContractTest<string>
 {
-&nbsp; private const string ADDED_ITEM = "toto";
+  private const string ADDED_ITEM = "toto";
 
-&nbsp; private ListBuilder&lt;string&gt; _appender;
+  private ListBuilder<string> _appender;
 
-&nbsp; [SetUp]
-&nbsp; public void SetUp()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _appender = new ListBuilder&lt;string&gt;();
-&nbsp; }
+  [SetUp]
+  public void SetUp()
+  {
+    _appender = new ListBuilder<string>();
+  }
 
-&nbsp; protected override void AddAnItem()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _appender.Add(ADDED_ITEM);
-&nbsp; }
-&nbsp; protected override void VerifyAddedItem(string addedItem)
-&nbsp; {
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(ADDED_ITEM, addedItem);
-&nbsp; }
+  protected override void AddAnItem()
+  {
+    _appender.Add(ADDED_ITEM);
+  }
+  protected override void VerifyAddedItem(string addedItem)
+  {
+    Assert.AreEqual(ADDED_ITEM, addedItem);
+  }
 
-&nbsp; protected override List&lt;string&gt; ListCopy()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; return _appender.ListSnapshot();
-&nbsp; }
+  protected override List<string> ListCopy()
+  {
+    return _appender.ListSnapshot();
+  }
 }
 
 ```
 <p />And here are tests for other class using it. First a simple one :<p />
-```
-
+```c#
 [TestFixture]
-public class OrderPresenterAsExecListBuilderTest : ListBuilderContractTest&lt;IExecRowPresenter&gt;
+public class OrderPresenterAsExecListBuilderTest : ListBuilderContractTest<IExecRowPresenter>
 {
-&nbsp; private OrderPresenter _presenter;
-&nbsp; private Mock&lt;IExec&gt; _exec;
+  private OrderPresenter _presenter;
+  private Mock<IExec> _exec;
 
-&nbsp; [SetUp]
-&nbsp; public void SetUp()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _exec = new Mock&lt;IExec&gt;();
-&nbsp;&nbsp;&nbsp; _exec.Setup(x =&gt; x.Id).Returns("an exec");
-&nbsp;&nbsp;&nbsp; _exec.Setup(x =&gt; x.Price).Returns(123.456);
-&nbsp;&nbsp;&nbsp; _exec.Setup(x =&gt; x.Quantity).Returns(36);
+  [SetUp]
+  public void SetUp()
+  {
+    _exec = new Mock<IExec>();
+    _exec.Setup(x => x.Id).Returns("an exec");
+    _exec.Setup(x => x.Price).Returns(123.456);
+    _exec.Setup(x => x.Quantity).Returns(36);
 
-&nbsp;&nbsp;&nbsp; _presenter = new OrderPresenter();
-&nbsp; }
+    _presenter = new OrderPresenter();
+  }
 
-&nbsp; protected override void AddAnItem()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _presenter.AddExec(_exec.Object);
-&nbsp; }
+  protected override void AddAnItem()
+  {
+    _presenter.AddExec(_exec.Object);
+  }
 
-&nbsp; protected override void VerifyAddedItem(IExecRowPresenter addedItem)
-&nbsp; {
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(_exec.Object.Id, addedItem.Id);
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(_exec.Object.Price, addedItem.Price);
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(_exec.Object.Quantity, addedItem.Quantity);
-&nbsp; }
+  protected override void VerifyAddedItem(IExecRowPresenter addedItem)
+  {
+    Assert.AreEqual(_exec.Object.Id, addedItem.Id);
+    Assert.AreEqual(_exec.Object.Price, addedItem.Price);
+    Assert.AreEqual(_exec.Object.Quantity, addedItem.Quantity);
+  }
 
-&nbsp; protected override List&lt;IExecRowPresenter&gt; ListSnapshot()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; return _presenter.GraphicalExecs;
-&nbsp; }
+  protected override List<IExecRowPresenter> ListSnapshot()
+  {
+    return _presenter.GraphicalExecs;
+  }
 }
 
 ```
 <p />Then a more complex one :<p />
-```
-
+```c#
 [TestFixture]
-public class StrategyPresenterAsOrderPresenterListBuilderTest : ListBuilderContractTest&lt;IOrderPresenter&gt;
+public class StrategyPresenterAsOrderPresenterListBuilderTest : ListBuilderContractTest<IOrderPresenter>
 {
-&nbsp; private StrategyPresenter _presenter;
-&nbsp; private Mock&lt;IStrategy&gt; _strategy;
-&nbsp; private Mock&lt;IOrder&gt; _order;
+  private StrategyPresenter _presenter;
+  private Mock<IStrategy> _strategy;
+  private Mock<IOrder> _order;
 
-&nbsp; [SetUp]
-&nbsp; public void SetUp()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _strategy= new Mock&lt;IStrategy&gt; { DefaultValue = DefaultValue.Mock };
+  [SetUp]
+  public void SetUp()
+  {
+    _strategy= new Mock<IStrategy> { DefaultValue = DefaultValue.Mock };
 
-&nbsp;&nbsp;&nbsp; _order = new Mock&lt;IOrder&gt;();
-&nbsp;&nbsp;&nbsp; _order.Setup(x =&gt; x.Id).Returns(123);
-&nbsp; &nbsp;
-&nbsp;&nbsp;&nbsp; _presenter = new StrategyPresenter(_strategy.Object);
-&nbsp; }
+    _order = new Mock<IOrder>();
+    _order.Setup(x => x.Id).Returns(123);
 
-&nbsp; protected override void AddAnItem()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _strategy.Raise(x =&gt; x.SentQuantityChanged += null, new SentQuantityChangedEventArgs {Origin = _order.Object});
-&nbsp; }
+    _presenter = new StrategyPresenter(_strategy.Object);
+  }
 
-&nbsp; protected override void VerifyAddedItem(IOrderPresenter addedItem)
-&nbsp; {
-&nbsp;&nbsp;&nbsp; Assert.AreEqual(_order.Object.Id, addedItem.Id);
-&nbsp; }
+  protected override void AddAnItem()
+  {
+    _strategy.Raise(x => x.SentQuantityChanged += null, new SentQuantityChangedEventArgs {Origin = _order.Object});
+  }
 
-&nbsp; protected override List&lt;IOrderPresenter&gt; ListSnapshot()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; return _presenter.GraphicalOrderList;
-&nbsp; }
+  protected override void VerifyAddedItem(IOrderPresenter addedItem)
+  {
+    Assert.AreEqual(_order.Object.Id, addedItem.Id);
+  }
+
+  protected override List<IOrderPresenter> ListSnapshot()
+  {
+    return _presenter.GraphicalOrderList;
+  }
 
 
-&nbsp; [Test]
-&nbsp; public void ExecutedQuantityChangedShouldAddAnItem()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; _strategy.Raise(x =&gt; x.ExecutedQuantityChanged += null, new ExecutedQuantityChangedEventArgs {Origin = _order.Object});
+  [Test]
+  public void ExecutedQuantityChangedShouldAddAnItem()
+  {
+    _strategy.Raise(x => x.ExecutedQuantityChanged += null, new ExecutedQuantityChangedEventArgs {Origin = _order.Object});
 
-&nbsp;&nbsp;&nbsp; VerifyItemWasAdded();
-&nbsp; }
+    VerifyItemWasAdded();
+  }
 }
 ```
 <p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p>

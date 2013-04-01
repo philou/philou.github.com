@@ -17,106 +17,96 @@ posterous_slug: '75417332'
 </ol>
 <p>This works fine ... until you end up with an unexpected failing test [long debugging session]&nbsp;that is in fact the result of a test not restoring a singleton it had overriden. You can try hard not to forget, or you can use some kind of auto restore test class. Here is how it could look like in C#</p>
 <p>
-```
-
-
-
+```c#
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace Calyon.GED.NextStep.Test.Utils
+namespace Test.Utils
 {
-&nbsp; public class CleanOverridesTest
-&nbsp; {
-&nbsp;&nbsp;&nbsp; private class StaticOverrider&lt;T&gt; : IDisposable
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private readonly T _initialValue;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; private readonly Action&lt;T&gt; _setter;
+  public class CleanOverridesTest
+  {
+    private class StaticOverrider&lt;T&gt; : IDisposable
+    {
+      private readonly T _initialValue;
+      private readonly Action&lt;T&gt; _setter;
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public StaticOverrider(T initialValue, Action&lt;T&gt; setter, T newValue)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _initialValue = initialValue;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _setter = setter;
+      public StaticOverrider(T initialValue, Action&lt;T&gt; setter, T newValue)
+      {
+        _initialValue = initialValue;
+        _setter = setter;
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _setter(newValue);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
+        _setter(newValue);
+      }
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; public void Dispose()
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _setter(_initialValue);
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-&nbsp;&nbsp;&nbsp; }
+      public void Dispose()
+      {
+        _setter(_initialValue);
+      }
+    }
 
-&nbsp;&nbsp;&nbsp; private List&lt;IDisposable&gt; _toDisposeAfterEachTest;
-&nbsp;&nbsp;&nbsp; private List&lt;IDisposable&gt; ToDisposeAfterEachTest
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // NUnit enforces a single SetUp method, so we have to make sure the base SetUp method was called by subclasses
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Assert.IsTrue(BaseSetUpCalled, "Override SetUp and TearDown, and call base implementation.");
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return _toDisposeAfterEachTest;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-&nbsp;&nbsp;&nbsp; }
+    private List&lt;IDisposable&gt; _toDisposeAfterEachTest;
+    private List&lt;IDisposable&gt; ToDisposeAfterEachTest
+    {
+      get
+      {
+        // NUnit enforces a single SetUp method, so we have to make sure the base SetUp method was called by subclasses
+        Assert.IsTrue(BaseSetUpCalled, "Override SetUp and TearDown, and call base implementation.");
+        return _toDisposeAfterEachTest;
+      }
+    }
 
 
-&nbsp;&nbsp;&nbsp; [SetUp]
-&nbsp;&nbsp;&nbsp; public virtual void SetUp()
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; _toDisposeAfterEachTest = new List&lt;IDisposable&gt;();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-&nbsp;&nbsp;&nbsp; }
-&nbsp;&nbsp;&nbsp; private bool BaseSetUpCalled
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; get { return _toDisposeAfterEachTest != null; }
-&nbsp;&nbsp;&nbsp; }
+    [SetUp]
+    public virtual void SetUp()
+    {
+      _toDisposeAfterEachTest = new List&lt;IDisposable&gt;();
+    }
+    private bool BaseSetUpCalled
+    {
+      get { return _toDisposeAfterEachTest != null; }
+    }
 
-&nbsp;&nbsp;&nbsp; [TearDown]
-&nbsp;&nbsp;&nbsp; public virtual void TearDown()
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Overides and restores should be done in reverse order
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ToDisposeAfterEachTest.Reverse();
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; foreach(var disposable in ToDisposeAfterEachTest)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disposable.Dispose();
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; catch (Exception)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; { }
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ToDisposeAfterEachTest.Clear();
-&nbsp;&nbsp;&nbsp; }
+    [TearDown]
+    public virtual void TearDown()
+    {
+      // Overides and restores should be done in reverse order
+      ToDisposeAfterEachTest.Reverse();
+      foreach(var disposable in ToDisposeAfterEachTest)
+      {
+        try
+        {
+          disposable.Dispose();
+        }
+        catch (Exception)
+        { }
 
-&nbsp;&nbsp;&nbsp; protected void OverrideStatic&lt;T&gt;(T initialValue, Action&lt;T&gt; setter, T newValue)
-&nbsp;&nbsp;&nbsp; {
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ToDisposeAfterEachTest.Add(new StaticOverrider&lt;T&gt;(initialValue, setter, newValue));
-&nbsp;&nbsp;&nbsp; }
-&nbsp; }
+      }
+      ToDisposeAfterEachTest.Clear();
+    }
+
+    protected void OverrideStatic&lt;T&gt;(T initialValue, Action&lt;T&gt; setter, T newValue)
+    {
+      ToDisposeAfterEachTest.Add(new StaticOverrider&lt;T&gt;(initialValue, setter, newValue));
+    }
+  }
 }
-
-
 ```
 </p>
 <p>Later in an actual test :</p>
 <p>
-```
-
-
-
+```c#
 [TestFixture]
 public class LegacyTest : CleanOverridesTest
 {
-&nbsp; [Test]
-&nbsp; public void LegacyShouldWorkWhenZingAndZang()
-&nbsp; {
-&nbsp;&nbsp;&nbsp; OverrideStatic(BigManager.Instance, BigManager.TestOnlySetInstance, new BigInstanceMock());
+  [Test]
+  public void LegacyShouldWorkWhenZingAndZang()
+  {
+    OverrideStatic(BigManager.Instance, BigManager.TestOnlySetInstance, new BigInstanceMock());
 
-&nbsp;&nbsp;&nbsp; ...
-&nbsp; }
+    ...
+  }
 }
-
-
 ```
 </p>
 <p>The singleton is automaticaly restored in the TearDown method of the base class. In C#, we are luky enough to have delegates so that we can pass the injection setter directly. In language without this feature, you could use reflection or anonymous class.</p>
