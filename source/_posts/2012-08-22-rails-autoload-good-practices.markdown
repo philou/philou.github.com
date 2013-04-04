@@ -36,8 +36,10 @@ module MyApp
 end
 ```
 </li>
+
 <li>Doing "include MyApp::Utils" to include the have access to Utils members (ie "using namespace" in C++) will not work as well as with explicit requires. So if it does not work well, prefer to use "FileHelper = MyApp::Utils::FileHelper"</li>
 <li>Whenever you are using a base class, I found out that autoload does not always manage to load the base class correctly, in this case, explicitly requiring the base class fixes the issue.</li>
+
 <li>If ever you try to monkey patch one of your class directly (in a test for example), the real class might not get autoloaded since it is already declared in the monkey path :
 ```ruby
 class MyApp::Engine
@@ -51,7 +53,7 @@ describe MyApp::Engine do
    ...
 end
 ```
-This might trigger an error like "wrong number of arguments for MyApp::Engine.new". Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this</div>
+This might trigger an error like "wrong number of arguments for MyApp::Engine.new". Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this
 ```ruby
 module MyApp::EngineExtras
   ...
@@ -60,6 +62,8 @@ MyApp::Engine.send(:include, MyApp::EngineExtras)
 ...
 ```
 </li>
+
+
 </ul>
 <p>This works as expected.</p>
 <p>At the moment, I still have an issue I did not manage to fix neatly : how can we include namespaces in spec and cucumber step files without polluting the global namespace ?</p>
