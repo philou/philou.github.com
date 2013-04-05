@@ -18,17 +18,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philou.github.com">
+  <link rel="canonical" href="http://philou.github.com/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 
   
   <script type="text/javascript">
@@ -46,16 +45,16 @@
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
   <h1><a href="/">Philippe Bourgau's blog</a></h1>
-  
-    <h2>A blog about software</h2>
-  
 </hgroup>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
@@ -70,13 +69,16 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="https://www.mes-courses.fr">Mes-courses.fr</a></li>
 </ul>
 
 </nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div class="blog-index">
   
   
   
@@ -588,7 +590,7 @@
 <p>Here is what it looks like :</p>
 
 
-<p><img src="imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
+<p><img src="/imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
 
 
 <p />
@@ -672,8 +674,10 @@ If ever this file is autoloaded first, you will get an error like &#8220;undefin
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 </li>
+
 <li>Doing &#8220;include MyApp::Utils&#8221; to include the have access to Utils members (ie &#8220;using namespace&#8221; in C++) will not work as well as with explicit requires. So if it does not work well, prefer to use &#8220;FileHelper = MyApp::Utils::FileHelper&#8221;</li>
 <li>Whenever you are using a base class, I found out that autoload does not always manage to load the base class correctly, in this case, explicitly requiring the base class fixes the issue.</li>
+
 <li>If ever you try to monkey patch one of your class directly (in a test for example), the real class might not get autoloaded since it is already declared in the monkey path :
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -696,7 +700,7 @@ If ever this file is autoloaded first, you will get an error like &#8220;undefin
 </span><span class='line'>   <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
-This might trigger an error like &#8220;wrong number of arguments for MyApp::Engine.new&#8221;. Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this</div>
+This might trigger an error like &#8220;wrong number of arguments for MyApp::Engine.new&#8221;. Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -709,6 +713,8 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 </span><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </span></code></pre></td></tr></table></div></figure>
 </li>
+
+
 </ul>
 
 
@@ -770,7 +776,7 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <a href="https://github.com/philou">@philou</a> on GitHub
   
   <script type="text/javascript">
-    $(document).ready(function(){
+    $.domReady(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -797,15 +803,15 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   
 </aside>
 
+      </div>
     </div>
-  </div>
-  <footer role="contentinfo"><p>
+    <footer role="contentinfo"><p>
   Copyright &copy; 2013 - Philippe Bourgau -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
 </p>
 
 </footer>
-  
+    
 
 <script type="text/javascript">
       var disqus_shortname = 'philippe-bourgau';
@@ -826,7 +832,7 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
+  js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
@@ -857,5 +863,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
 
 
+  </div>
 </body>
 </html>

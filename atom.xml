@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philou.github.com/atom.xml" rel="self"/>
   <link href="http://philou.github.com/"/>
-  <updated>2013-04-03T06:56:46+02:00</updated>
+  <updated>2013-04-05T15:11:23+02:00</updated>
   <id>http://philou.github.com/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -283,7 +283,7 @@
 <p>Here is what it looks like :</p>
 
 
-<p><img src="imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
+<p><img src="http://philou.github.com/imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
 
 
 <p />
@@ -340,8 +340,10 @@ If ever this file is autoloaded first, you will get an error like &#8220;undefin
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 </li>
+
 <li>Doing &#8220;include MyApp::Utils&#8221; to include the have access to Utils members (ie &#8220;using namespace&#8221; in C++) will not work as well as with explicit requires. So if it does not work well, prefer to use &#8220;FileHelper = MyApp::Utils::FileHelper&#8221;</li>
 <li>Whenever you are using a base class, I found out that autoload does not always manage to load the base class correctly, in this case, explicitly requiring the base class fixes the issue.</li>
+
 <li>If ever you try to monkey patch one of your class directly (in a test for example), the real class might not get autoloaded since it is already declared in the monkey path :
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -364,7 +366,7 @@ If ever this file is autoloaded first, you will get an error like &#8220;undefin
 </span><span class='line'>   <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
-This might trigger an error like &#8220;wrong number of arguments for MyApp::Engine.new&#8221;. Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this</div>
+This might trigger an error like &#8220;wrong number of arguments for MyApp::Engine.new&#8221;. Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -377,6 +379,8 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 </span><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </span></code></pre></td></tr></table></div></figure>
 </li>
+
+
 </ul>
 
 
