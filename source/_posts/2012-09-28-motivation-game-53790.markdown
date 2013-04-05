@@ -27,7 +27,7 @@ comments: true
 <li>If no one sent the email, then cover up the current frame with post-its again</li>
 </ul>
 <p>Here is what it looks like :</p>
-<p><img src="imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
+<p><img src="/imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
 <p />
 <p>PS : We also set up a&nbsp;Kanban board with WIP limits in order to avoid the issues beforehand.</p>
 <ul>
