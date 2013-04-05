@@ -1,12 +1,6 @@
-body > nav {
-  position: relative;
-  background-color: $nav-bg;
-  @include background($nav-bg-front, $nav-bg-back);
-  border: {
-    top: 1px solid $nav-border-top;
-    bottom: 1px solid $nav-border-bottom; }
-  padding-top: .35em;
-  padding-bottom: .35em;
+nav {
+  display: table-cell;
+  vertical-align: middle;
   form {
     @include background-clip(padding-box);
     margin: 0; padding: 0;
@@ -17,8 +11,6 @@ body > nav {
       line-height: 1.1em;
       width: 95%;
       @include border-radius(.5em);
-      @include background-clip(padding-box);
-      @include box-shadow(lighten($nav-bg, 2) 0 1px);
       background-color: lighten($nav-bg, 15);
       border: 1px solid $nav-border;
       color: #888;
@@ -40,7 +32,7 @@ body > nav {
     font-size: .9em;
     ul {
       @include horizontal-list(0);
-      float: left;
+      float: right;
       display: block;
       padding-top: .15em;
     }
@@ -55,7 +47,6 @@ body > nav {
     a {
       @include link-colors($nav-color, $nav-color-hover, $visited: $nav-color);
       font-family: $sans;
-      text-shadow: lighten($nav-bg, 12) 0 1px;
       float: left;
       text-decoration: none;
       font-size: 1.1em;
@@ -98,7 +89,7 @@ body > nav {
   }
 }
 .no-placeholder {
-  body > nav .search {
+  nav .search {
     background: lighten($nav-bg, 15) image-url('search.png') .3em .25em no-repeat;
     text-indent: 1.3em;
   }
@@ -118,7 +109,7 @@ body > nav {
   &:hover:after { background-color: lighten($nav-color, 20); }
 }
 .maskImage {
-  body > nav {
+  nav {
     @media only screen and (min-width: 550px) {
       ul[data-subscription$=email] + form {
         width: $sidebar-width-medium - $pad-medium*2 - $sidebar-pad-medium - 32px;
@@ -134,4 +125,3 @@ body > nav {
   a[rel=subscribe-rss]{ @include mask-subscription-nav('rss.png'); }
   a[rel=subscribe-email]{ @include mask-subscription-nav('email.png'); }
 }
-
