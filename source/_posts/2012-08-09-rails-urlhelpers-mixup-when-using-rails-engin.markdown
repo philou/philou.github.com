@@ -3,7 +3,10 @@ layout: post
 title: Rails url_helpers mixup when using rails engines
 published: true
 date: 2012-08-09
-categories: []
+categories:
+- ruby
+- rails
+- gem
 posterous_url: http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin
 posterous_slug: rails-urlhelpers-mixup-when-using-rails-engin
 comments: true

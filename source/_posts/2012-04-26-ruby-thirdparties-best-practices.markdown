@@ -3,7 +3,10 @@ layout: post
 title: Ruby thirdparties best practices
 published: true
 date: 2012-04-26
-categories: []
+categories:
+- gem
+- ruby
+- Best Practices
 posterous_url: http://philippe.bourgau.net/ruby-thirdparties-best-practices
 posterous_slug: ruby-thirdparties-best-practices
 comments: true

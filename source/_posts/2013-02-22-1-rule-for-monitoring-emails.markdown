@@ -3,7 +3,9 @@ layout: post
 title: ! '#1 rule for monitoring emails'
 published: true
 date: 2013-02-22
-categories: []
+categories:
+- web
+- exploitation
 posterous_url: http://philippe.bourgau.net/1-rule-for-monitoring-emails
 posterous_slug: 1-rule-for-monitoring-emails
 comments: true

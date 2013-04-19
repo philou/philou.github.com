@@ -3,7 +3,9 @@ layout: post
 title: How to copy a database from an heroku app to another
 published: true
 date: 2013-01-11
-categories: []
+categories:
+- heroku
+- postgre
 posterous_url: http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to
 posterous_slug: how-to-copy-a-database-from-an-heroku-app-to
 comments: true

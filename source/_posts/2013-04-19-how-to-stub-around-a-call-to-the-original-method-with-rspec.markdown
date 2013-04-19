@@ -7,7 +7,7 @@ published: true
 categories:
 - ruby
 - rspec
-- mocking
+- testing
 ---
 Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?
 

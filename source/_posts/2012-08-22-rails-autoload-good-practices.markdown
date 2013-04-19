@@ -3,7 +3,9 @@ layout: post
 title: Rails autoload good practices
 published: true
 date: 2012-08-22
-categories: []
+categories:
+- ruby
+- rails
 posterous_url: http://philippe.bourgau.net/rails-autoload-good-practices
 posterous_slug: rails-autoload-good-practices
 comments: true

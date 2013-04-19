@@ -3,7 +3,8 @@ layout: post
 title: Hackers et peintres
 published: true
 date: 2012-07-03
-categories: []
+categories:
+- Hacking
 posterous_url: http://philippe.bourgau.net/hackers-et-peintres
 posterous_slug: hackers-et-peintres
 comments: true

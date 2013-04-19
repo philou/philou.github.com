@@ -3,7 +3,8 @@ layout: post
 title: How to install a patched ruby interpreter with rbenv and ruby-build
 published: true
 date: 2013-01-09
-categories: []
+categories:
+- ruby
 posterous_url: http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit
 posterous_slug: how-to-install-a-patched-ruby-interpreter-wit
 comments: true
