@@ -4,7 +4,7 @@
   <title><![CDATA[Category: heroku | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-19T07:22:06+02:00</updated>
+  <updated>2013-04-19T15:10:17+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to copy a database from an heroku app to another]]></title>
+    <link href="http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to/"/>
+    <updated>2013-01-11T00:00:00+01:00</updated>
+    <id>http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to</id>
+    <content type="html"><![CDATA[<p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as "integration" app, where I can do late verifications before deploying to my production app. If you don't already do this, I recommend you to start now !</p>
+
+
+<p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
+
+
+<p><code>sh
+heroku pgbackups:restore DATABASE `heroku pgbackups:url --app my-app-prod` --app my-app-integ --confirm my-app-integ
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I set up a trustico rapid ssl certificate on heroku ssl endpoint]]></title>

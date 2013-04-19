@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mocking | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/mocking/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-19T07:22:06+02:00</updated>
+  <updated>2013-04-19T15:10:17+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,29 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[How to stub around a call to the original method with rspec ?]]></title>
-    <link href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/"/>
-    <updated>2013-04-19T07:05:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec</id>
-    <content type="html"><![CDATA[<p>Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?</p>
-
-<p>For the sake of the subject, let's take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You'd like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
-
-<p><code>ruby
-i = 0
-original_get = Net::HTTP.method(:get)
-Net::HTTP.stub(:get) do |*args, &amp;block|
-  i = i+1
-  raise RuntimeError.new("network down") if i%3 == 0
-  original_get.call(*args, &amp;block)
-end
-</code></p>
-
-<p>Note the block is taken into account, in this example, it does not matter so much, but forgetting it can bring up really strange issues.</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[stub_model and mock_model]]></title>

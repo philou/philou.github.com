@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gem | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-19T07:22:06+02:00</updated>
+  <updated>2013-04-19T15:10:17+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails url_helpers mixup when using rails engines]]></title>
+    <link href="http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/"/>
+    <updated>2012-08-09T00:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin</id>
+    <content type="html"><![CDATA[<p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
+
+
+<ul>
+<li>I had to use special (javascript heavy) google analytics code through all cross app links, and that sometimes failed (somewhere in the combinaison of&nbsp;heroku, rails, and analytics)</li>
+<li>It was difficult to share the theme between the apps : on one side, templates, partials and css, on the other, rows in a database</li>
+<li>It was difficult to share session state between the two apps (login for example)</li>
+</ul>
+
+
+<p>As my blog is very basic, and as I am the only one editing the styles, I decided to embed a blog engine inside my app. I selected and tried a few&nbsp;engines : <a href="https://github.com/jipiboily/monologue">Monologue</a>, <a href="https://github.com/KatanaCode/blogit">Blogit</a>, <a href="http://refinerycms.com/">RefineryCMS</a> and to roll my own. Refinery looks way too complex to integrate regarding my basic needs. Monologue is not&nbsp;design to integrate with <a href="https://github.com/plataformatec/devise/">devise</a> users (which I already use) and I would prefer to contribute to an existing gem rather than to write the nth rails blog engine ...</p>
+
+
+<p>After a few experiments, I settled on blogit. Unfortunately, I had really strange issues with links within blogit pages : all links were prefixed with "/blog" and blogit&nbsp;links where like "/blog/blogit?controller=posts&amp;action=new". Hacking around in the rails console showed me that doing consecultively :</p>
+
+
+<p>
+```ruby
+include Blogit::Engine.routes.url_helpers
+include Rails.application.routes.url_helpers
+```
+</p>
+
+
+<p>resulted in the same behaviour. After a long debugging session, I eventually discovered that I had a helper in my application which explicitly required&nbsp;Rails.application.routes.url_helpers. This was causing the conflict. I changed my code to avoid this inclusion, and that fixed the links ...</p>
+
+
+<p>... nearly. Now rendering the application template for a blog page failed with a "message not understood" for the main app's xxx_path methods. Hopefully, I had&nbsp;found <a href="http://www.candland.net/2012/04/17/rails-routes-used-in-an-isolated-engine/">a fix</a> for this error earlier on the web. Now everything was working like a charm.</p>
+
+
+<p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby thirdparties best practices]]></title>
+    <link href="http://philippe.bourgau.net/ruby-thirdparties-best-practices/"/>
+    <updated>2012-04-26T00:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/ruby-thirdparties-best-practices</id>
+    <content type="html"><![CDATA[<p>I am just finishing migrating <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> from rails 2 to rails 3, and I can assure that I learnt these lessons the hard way ...<br />
+<ul>
+<li>use Bundler <a href="http://gembundler.com">http://gembundler.com</a></li><li>keep your Gemfile simple : just the top level dependencies, and no version constraints</li><li>try to stick to popular gems : you'll find a lot more answers to your questions from the web. It's often simpler to write and maintain a little extra code than to depend on a crappy thirdparty that is supposed to meet your need</li><li>stick with the most recent versions of your dependencies. With a good test suite and with Bundler, it should be rather easy to upgrade, so do it often to avoid both the upgrade tunnel effect and struggling with bugs and incompatibility of unmaintained old versions of gems.</li></ul>
+<p>Edit: I discovered <a href="http://www.ruby-toolbox.com">the ruby toolbox</a>&nbsp;that categorizes and sorts gems based on their popularity !</p>
+<p>Edit 2: I discovered it is sometimes necessary to add constraints to get the latest versions of gems that would otherwise conflict (directly or not) with others.</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using gems instead of rails plugins on heroku]]></title>

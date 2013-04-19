@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-19T07:22:06+02:00</updated>
+  <updated>2013-04-19T15:10:17+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -91,6 +91,35 @@ end
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[How to install a patched ruby interpreter with rbenv and ruby-build]]></title>
+    <link href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit/"/>
+    <updated>2013-01-09T00:00:00+01:00</updated>
+    <id>http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit</id>
+    <content type="html"><![CDATA[<p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a>&nbsp;seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
+
+
+<p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
+
+
+<ul>
+<li>download the ruby sources</li>
+<li>patch them</li>
+<li>create a ruby-build package definition with them</li>
+<li>install with rbenv</li>
+</ul>
+
+
+<p>Here is a script that does this for ruby 1.9.2-p125 and gcdata patch.</p>
+
+
+<p>
+<script src="https://gist.github.com/4492543.js"></script>
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Cloning an rbenv version]]></title>
     <link href="http://philippe.bourgau.net/cloning-an-rbenv-version/"/>
     <updated>2012-11-08T00:00:00+01:00</updated>
@@ -103,88 +132,6 @@ cd ~/.rbenv/versionscp -R original-version new-version
 </code></p>
 
 <p>That's it !</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting up Postgre 9.1 for rails development]]></title>
-    <link href="http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development/"/>
-    <updated>2012-05-28T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development</id>
-    <content type="html"><![CDATA[<p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
-
-
-<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
-
-
-<p>
-```sh
-#!/bin/sh
-
-## packages dependencies
- sudo apt-get install libxml2-dev libxslt1-dev postgresql libpq-dev sqlite3 libsqlite3-dev
-
-## installing gems
- bundle install   rbenv rehash
-
-## creating dbs
- sudo -u postgres createuser --superuser mes_courses
- sudo -u postgres psql --command="alter user mes_courses with encrypted password 'secret'"
- sudo sed -i 's/\(local *all *all *\)peer/\1md5/' /etc/postgresql/9.1/main/pg_hba.conf
- bundle exec rake db:create:all
-
-## initializing dbs
- bundle exec rake db:migrate
- RAILS_ENV=test bundle exec rake db:migrate
- RAILS_ENV=production bundle exec rake db:migrate
-```
-</p>
-
-
-<p>Here is the corresponding config/database.yml</p>
-
-
-<p>
-```yaml
-development:
- adapter: postgresql
- database: mes_courses_development
- encoding: utf8
- pool: 5
- timeout: 5000
- username: mes_courses
- password: secret
- host: localhost
- port: 5433
-
-test:
- adapter: postgresql
- database: mes_courses_test
- encoding: utf8
- pool: 5
- timeout: 5000
- username: mes_courses
- password: secret
- host: localhost
- port: 5433
-
-production:
- adapter: postgresql
- database: mes_courses_production
- encoding: utf8
- pool: 5
- timeout: 5000
- username: mes_courses
- password: secret
- host: localhost
- port: 5433
-
-```
-</p>
-
-
-<p>Hope this helps !</p>
 
 ]]></content>
   </entry>

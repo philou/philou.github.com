@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-19T07:22:06+02:00</updated>
+  <updated>2013-04-19T15:10:17+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,121 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rails autoload good practices]]></title>
+    <link href="http://philippe.bourgau.net/rails-autoload-good-practices/"/>
+    <updated>2012-08-22T00:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rails-autoload-good-practices</id>
+    <content type="html"><![CDATA[<p>I started using rails autoload to load files in my lib folder of <a href="http://www.mes-courses.fr">http://www.mes-courses.fr</a>. Before that, I had been using hand written require statements, and later hand written autoload statements. Rails autoload are by far the best approach for this. It has a few pitfalls though. Here are the best practices I discovered so far.</p>
+
+
+
+
+<ul>
+<li>Use autoload to load files in your lib folder. In config/application.rb
+```ruby
+config.autoload_paths += %W(#{config.root}/lib)
+```
+</li>
+<li>Inside the lib folder, organize your files with directories and use corresponding modules to create logic namespaces</li>
+<li>Don't declare the namespaces in a single line like this :
+```ruby
+module MyApp::Utils
+ class FileHelper
+ ...
+ end
+end
+```
+If ever this file is autoloaded first, you will get an error like "undefined constant MyApp", it gets more likely with deeper namespace structure. Prefer the following nested declaration :
+```ruby
+module MyApp
+ module Utils
+   class FileHelper
+     ...
+   end
+  end
+end
+```
+</li>
+
+<li>Doing "include MyApp::Utils" to include the have access to Utils members (ie "using namespace" in C++) will not work as well as with explicit requires. So if it does not work well, prefer to use "FileHelper = MyApp::Utils::FileHelper"</li>
+<li>Whenever you are using a base class, I found out that autoload does not always manage to load the base class correctly, in this case, explicitly requiring the base class fixes the issue.</li>
+
+<li>If ever you try to monkey patch one of your class directly (in a test for example), the real class might not get autoloaded since it is already declared in the monkey path :
+```ruby
+class MyApp::Engine
+  ...
+end
+describe MyApp::Engine do
+  before :each do
+    @engine = MyApp::Engine.new("name")
+    ...
+   end
+   ...
+end
+```
+This might trigger an error like "wrong number of arguments for MyApp::Engine.new". Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this
+```ruby
+module MyApp::EngineExtras
+  ...
+end
+MyApp::Engine.send(:include, MyApp::EngineExtras)
+...
+```
+</li>
+
+
+</ul>
+
+
+<p>This works as expected.</p>
+
+
+<p>At the moment, I still have an issue I did not manage to fix neatly : how can we include namespaces in spec and cucumber step files without polluting the global namespace ?</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails url_helpers mixup when using rails engines]]></title>
+    <link href="http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/"/>
+    <updated>2012-08-09T00:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin</id>
+    <content type="html"><![CDATA[<p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
+
+
+<ul>
+<li>I had to use special (javascript heavy) google analytics code through all cross app links, and that sometimes failed (somewhere in the combinaison of&nbsp;heroku, rails, and analytics)</li>
+<li>It was difficult to share the theme between the apps : on one side, templates, partials and css, on the other, rows in a database</li>
+<li>It was difficult to share session state between the two apps (login for example)</li>
+</ul>
+
+
+<p>As my blog is very basic, and as I am the only one editing the styles, I decided to embed a blog engine inside my app. I selected and tried a few&nbsp;engines : <a href="https://github.com/jipiboily/monologue">Monologue</a>, <a href="https://github.com/KatanaCode/blogit">Blogit</a>, <a href="http://refinerycms.com/">RefineryCMS</a> and to roll my own. Refinery looks way too complex to integrate regarding my basic needs. Monologue is not&nbsp;design to integrate with <a href="https://github.com/plataformatec/devise/">devise</a> users (which I already use) and I would prefer to contribute to an existing gem rather than to write the nth rails blog engine ...</p>
+
+
+<p>After a few experiments, I settled on blogit. Unfortunately, I had really strange issues with links within blogit pages : all links were prefixed with "/blog" and blogit&nbsp;links where like "/blog/blogit?controller=posts&amp;action=new". Hacking around in the rails console showed me that doing consecultively :</p>
+
+
+<p>
+```ruby
+include Blogit::Engine.routes.url_helpers
+include Rails.application.routes.url_helpers
+```
+</p>
+
+
+<p>resulted in the same behaviour. After a long debugging session, I eventually discovered that I had a helper in my application which explicitly required&nbsp;Rails.application.routes.url_helpers. This was causing the conflict. I changed my code to avoid this inclusion, and that fixed the links ...</p>
+
+
+<p>... nearly. Now rendering the application template for a blog page failed with a "message not understood" for the main app's xxx_path methods. Hopefully, I had&nbsp;found <a href="http://www.candland.net/2012/04/17/rails-routes-used-in-an-isolated-engine/">a fix</a> for this error earlier on the web. Now everything was working like a charm.</p>
+
+
+<p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Setting up Postgre 9.1 for rails development]]></title>
@@ -160,15 +275,6 @@ end
 
 <p>I hope the situation will be better once I migrate to rails 3 and to newer versions of devise and ssl_requirements.</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[external gem rails generator not found]]></title>
-    <link href="http://philippe.bourgau.net/external-gem-rails-generator-not-found/"/>
-    <updated>2011-11-24T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/external-gem-rails-generator-not-found</id>
-    <content type="html"><![CDATA[<p>When trying to use devise 1.0.11 with rails 2.3.8 and bundler 1.0.10, I got the error &quot;could not find generator ...&quot; when running bundle exec script/generate devise_install ... After reading <a href="http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8" target="_blank">http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8</a> I ended up copying the file manually !<p /> I hope this is fixed in rails 3, I am looking forward to migrate.</p>
 ]]></content>
   </entry>
   
