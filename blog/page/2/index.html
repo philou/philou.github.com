@@ -9,7 +9,7 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="I started using rails autoload to load files in my lib folder of http://www.mes-courses.fr. Before that, I had been using hand written require &hellip;">
+  <meta name="description" content="In Growing object-oriented software guided by tests&nbsp;they use a java library called Window Licker&nbsp;to pilot a gui running in&nbsp;test thread &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,169 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/windows-licker-like-with-c/">Windows Licker Like With C#</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-07T00:00:00+01:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a>&nbsp;they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a>&nbsp;to pilot a gui running in&nbsp;test thread. Next time I started a new project, I&nbsp;wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
+
+
+<p>Here is the user test code I wanted to be able to write (inside a <a href="http://www.specflow.org">SpecFlow</a> step) :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;TheUserEntersHisEmail&quot;&quot;(.*)&quot;&quot;&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenTheUserEntersHisEmail</span><span class="p">(</span><span class="kt">string</span> <span class="n">email</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">User</span><span class="p">.</span><span class="n">Enters</span><span class="p">(</span><span class="n">ScenarioContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">UserForm</span><span class="p">().</span><span class="n">EmailTextBox</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>Here UserForm is an extension method I added to the ScenarioContext that is responsible for returning the current user form.</p>
+
+
+<p>As you have noticed, the various gui components must be&nbsp;exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
+
+
+<p>Eventually, I had to write the User class, and it turned out to be really simple :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">static</span> <span class="k">class</span> <span class="nc">User</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">internal</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Enters</span><span class="p">(</span><span class="n">TextBox</span> <span class="n">textBox</span><span class="p">,</span> <span class="kt">string</span> <span class="n">text</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="n">textBox</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="k">new</span> <span class="n">MethodInvoker</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">textBox</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">text</span><span class="p">));</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>That&#8217;s it, all that was needed was to ask the thread of the control to update the text !</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/motivation-game-53790/">Motivation Game</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-28T00:00:00+02:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At MegaCorp where I am currently working, there is a small team that is dedicated to find solutions to software bugs that regularly happen in production. The software system is very old and buggy, so it can get quite stressfull at times &#8230;</p>
+
+
+<p>One thing users want is to get a daily email summarizing all the issues currently being looked after by this team, so that they can be sure that someone is looking into their problems. The trick is it is not always easy to take the time to write a nice and polished email when one feels completly overwhelmed by urgent stuff to do.</p>
+
+
+<p>After trying many ways such as :</p>
+
+
+<ul>
+<li>good will</li>
+<li>every day checklist</li>
+<li>ploting KPIs</li>
+<li>physical threat (just kidding)</li>
+</ul>
+
+
+<p>Nothing had worked &#8230; until entered the &#8220;Motivation game&#8221;. Here is the idea :</p>
+
+
+<ul>
+<li>On A3 sheet of paper, print a funny comic (<a href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;ved=0CCUQFjAA&amp;url=http%3A%2F%2Fdilbert.com%2F&amp;ei=3D5kUK-BG-PJ0QX7wYAQ&amp;usg=AFQjCNEzqbruFsiWErjKY19Ktc80J-tx3Q">Dilbert</a> and <a href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;ved=0CCUQFjAA&amp;url=http%3A%2F%2Fxkcd.com%2F&amp;ei=6T5kUOjMN4iw0AXKxYHgBA&amp;usg=AFQjCNFDXrX3H2MQFcuC7XN2wLJDnI9lBw">xkcd</a>&nbsp;are my favourites)</li>
+<li>Hide it behind <a href="http://www.post-it.com">post-its</a></li>
+<li>Stick it on the wall, next to your whiteboard</li>
+<li>Every day, during your stand up meeting, remove a post-it if someone sent the email the previous day</li>
+<li>If no one sent the email, then cover up the current frame with post-its again</li>
+</ul>
+
+
+<p>Here is what it looks like :</p>
+
+
+<p><img src="/imgs/2012-09-28-motivation-game-53790/motivation-game.jpg"></p>
+
+
+<p />
+<p>PS : We also set up a&nbsp;Kanban board with WIP limits in order to avoid the issues beforehand.</p>
+<ul>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -862,96 +1025,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/using-stock-ruby-with-rbenv/">Using Stock Ruby With Rbenv</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T00:00:00+01:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While migrating to ruby 1.9, I started using rbenv. I was wondering how it would handle my stock ubuntu ruby 1.8. It works out of the box with the rbenv &#8220;system&#8221; version. I just have to run</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rbenv global system
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<div>to come back to my stock ruby. Great !</div>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/devise-ssl-requirements-and-post-data/">Devise, SSL Requirements and Post Data</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-25T00:00:00+01:00" pubdate data-updated="true">Jan 25<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am using rails 2.3.8, devise 1.0.11 and ssl_requirements 0.1.0. I am having strange behaviour when mixing devise with ssl_requirements. When a form posts to an action that is required to be ssl, the post is redirected to ssl as a get, and looses its post data !</p>
-
-
-<p>To workaround the problem, I had to require ssl for the form itself aswell.</p>
-
-
-<p>I hope the situation will be better once I migrate to rails 3 and to newer versions of devise and ssl_requirements.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -978,6 +1051,14 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/rubular-a-really-usefull-ruby-regex-tool/">Rubular: a really usefull ruby regex tool</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-evaluate-an-xpath-in-chrome/">How to evaluate an xpath in chrome ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">How to stub around a call to the original method with rspec ?</a>
       </li>
     
@@ -987,14 +1068,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/the-poor-mans-memory-profiling/">The poor man&#8217;s memory profiling</a>
-      </li>
-    
-      <li class="post">
-        <a href="/toomanyredirects-when-changing-ssl-requiremen/">TOO_MANY_REDIRECTS when changing ssl requirements</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-copy-a-database-from-an-heroku-app-to/">How to copy a database from an heroku app to another</a>
       </li>
     
   </ul>
