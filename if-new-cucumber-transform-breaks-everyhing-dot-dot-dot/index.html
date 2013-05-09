@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Cloning an rbenv version - Philippe Bourgau's blog</title>
+  <title>If new cucumber transform breaks everyhing ... - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="There is no doc about this, but it turns out to be very simple, just copy the version directory : 1
-cd ~/.rbenv/versionscp -R original-version new- &hellip;">
+  <meta name="description" content="After reading The cucumber book I decided to add clever cucumber transforms but steps started to fail all over the place &#8230; Even completly &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/cloning-an-rbenv-version/">
+  <link rel="canonical" href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -84,7 +83,7 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Cloning an Rbenv Version</h1>
+      <h1 class="entry-title">If New Cucumber Transform Breaks Everyhing ...</h1>
     
     
       <p class="meta">
@@ -100,23 +99,39 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
   
 
 
-<time datetime="2012-11-08T00:00:00+01:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
+<time datetime="2013-05-08T08:36:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>There is no doc about this, but it turns out to be very simple, just copy the version directory :</p>
+<div class="entry-content"><p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &#8230; Even completly unrelated scenarios were failing &#8230;</p>
 
+<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &#8220;Transforms wisdom&#8221; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+
+<p>For example</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> ~/.rbenv/versionscp -R original-version new-version
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CAPTURE_NUMBER</span> <span class="o">=</span> <span class="no">Transform</span> <span class="sr">/^.*$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">digits</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">Float</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span> <span class="sr">/^I withdraw (</span><span class="si">#{</span><span class="no">CAPTURE_NUMBER</span><span class="si">}</span><span class="sr">) from &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">bank_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">bank</span> <span class="o">=</span> <span class="no">Bank</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">bank_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>That&#8217;s it !</p>
-
+<p>will match the bank name with CAPTURE_NUMBER, and you&#8217;ll get an &#8220;invalid value for Float&#8221; error.</p>
 </div>
 
 
@@ -139,12 +154,12 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
   
 
 
-<time datetime="2012-11-08T00:00:00+01:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
+<time datetime="2013-05-08T08:36:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
   
 </span>
 
@@ -153,7 +168,7 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/cloning-an-rbenv-version/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/cloning-an-rbenv-version/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -166,10 +181,10 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/windows-licker-like-with-c/" title="Previous Post: Windows licker like with C#">&laquo; Windows licker like with C#</a>
+        <a class="basic-alignment left" href="/rubular-a-really-usefull-ruby-regex-tool/" title="Previous Post: Rubular: a really usefull ruby regex tool">&laquo; Rubular: a really usefull ruby regex tool</a>
       
       
-        <a class="basic-alignment right" href="/how-i-set-up-a-trustico-rapid-ssl-certificate/" title="Next Post: How I set up a trustico rapid ssl certificate on heroku ssl endpoint">How I set up a trustico rapid ssl certificate on heroku ssl endpoint &raquo;</a>
+        <a class="basic-alignment right" href="/dont-repeat-names-in-cucumber-scenarios/" title="Next Post: Don't repeat names in cucumber scenarios">Don't repeat names in cucumber scenarios &raquo;</a>
       
     </p>
   </footer>
@@ -282,8 +297,8 @@ cd ~/.rbenv/versionscp -R original-version new- &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/cloning-an-rbenv-version/';
-        var disqus_url = 'http://philippe.bourgau.net/cloning-an-rbenv-version/';
+        var disqus_identifier = 'http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/';
+        var disqus_url = 'http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/';
         var disqus_script = 'embed.js';
       
     (function () {

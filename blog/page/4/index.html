@@ -9,7 +9,13 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="When working with legacy code, writing tests requires to exploit seams to -hack- inject custom behaviour. In his book Michael Feathers explains that &hellip;">
+  <meta name="description" content="Suppose you have a hidden newsletter folder in the file following file structure inside radiant:
+1
+2
+3
+4
+5
+home /newsletters /june-2011 /july-2011 / &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +86,133 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/radiant-rfind-does-not-find-hidden-pages/">Radiant R:find Does Not Find Hidden Pages</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-23T00:00:00+02:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>home
+</span><span class='line'>  /newsletters
+</span><span class='line'>  /june-2011
+</span><span class='line'>  /july-2011
+</span><span class='line'>  /rss</span></code></pre></td></tr></table></div></figure>
+<p />and that you want to use the following tag in your rss file<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;r:find</span> <span class="na">url=</span><span class="s">&quot;/newsletters/&quot;</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/r:find&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+<p />r:find won&#8217;t find newsletters because it is hidden, it has to be published to be found.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/rspec-messes-up-stubs-and-expectations/">Rspec Messes Up Stubs and Expectations</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-20T00:00:00+02:00" pubdate data-updated="true">Oct 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here is an example showing the issue :<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p />This example should obviously fail, but it passes ! Here is a working (failing) version :<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p /> I am using rspec 1.3.0. Did you fall into the same issues ? Is this fixed in rspec 2 ?</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -654,6 +787,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t repeat names in cucumber scenarios</a>
+      </li>
+    
+      <li class="post">
+        <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If new cucumber transform breaks everyhing &#8230;</a>
+      </li>
+    
+      <li class="post">
         <a href="/rubular-a-really-usefull-ruby-regex-tool/">Rubular: a really usefull ruby regex tool</a>
       </li>
     
@@ -663,14 +804,6 @@
     
       <li class="post">
         <a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">How to stub around a call to the original method with rspec ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/1-rule-for-monitoring-emails/">#1 rule for monitoring emails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/the-poor-mans-memory-profiling/">The poor man&#8217;s memory profiling</a>
       </li>
     
   </ul>

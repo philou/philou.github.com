@@ -9,7 +9,7 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="While migrating to ruby 1.9, I started using rbenv. I was wondering how it would handle my stock ubuntu ruby 1.8. It works out of the box with the &hellip;">
+  <meta name="description" content="When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +80,207 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/including-railsapplicationroutesurlhelpers-fr/">Including Rails.application.routes.url_helpers From a Module</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T00:00:00+02:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">undefined</span> <span class="s1">&#39;default_url_options&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+</span><span class='line'>   <span class="n">base</span><span class="o">.</span><span class="n">send</span> <span class="ss">:include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-mock-an-out-of-process-com-server-with/">How to Mock an Out of Process COM Server With C#</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-14T00:00:00+01:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
+
+
+<p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
+
+
+<p>After searching the web, I tried ServicedComponent but I did not manage to make it work &#8230; I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
+
+
+<p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'>   <span class="c1">// CSSimpleObject.cs</span>
+</span><span class='line'>   <span class="k">internal</span> <span class="k">class</span> <span class="nc">CSSimpleObjectClassFactory</span> <span class="p">:</span> <span class="n">IClassFactory</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="k">public</span> <span class="kt">int</span> <span class="nf">CreateInstance</span><span class="p">(</span><span class="n">IntPtr</span> <span class="n">pUnkOuter</span><span class="p">,</span> <span class="k">ref</span> <span class="n">Guid</span> <span class="n">riid</span><span class="p">,</span> <span class="k">out</span> <span class="n">IntPtr</span> <span class="n">ppvObject</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>         <span class="p">...</span>
+</span><span class='line'>         <span class="k">if</span> <span class="p">(</span><span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">CSSimpleObject</span><span class="p">.</span><span class="n">ClassId</span><span class="p">)</span> <span class="p">||</span>
+</span><span class='line'>            <span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">COMNative</span><span class="p">.</span><span class="n">IID_IDispatch</span><span class="p">)</span> <span class="p">||</span>
+</span><span class='line'>            <span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">COMNative</span><span class="p">.</span><span class="n">IID_IUnknown</span><span class="p">))</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="c1">// Create the instance of the .NET object</span>
+</span><span class='line'>            <span class="kt">var</span> <span class="n">simpleObject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">CSSimpleObject</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">{</span><span class="n">CallBase</span> <span class="p">=</span> <span class="k">true</span><span class="p">};</span>
+</span><span class='line'>            <span class="n">simpleObject</span><span class="p">.</span><span class="n">SetupGet</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="n">FloatProperty</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">666</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">simpleObject</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="n">HelloWorld</span><span class="p">()).</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;Hello, you got pwned !!!&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">ppvObject</span> <span class="p">=</span> <span class="n">Marshal</span><span class="p">.</span><span class="n">GetComInterfaceForObject</span><span class="p">(</span>
+</span><span class='line'>               <span class="n">simpleObject</span><span class="p">.</span><span class="n">Object</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ICSSimpleObject</span><span class="p">));</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
+
+
+<p>So here is how I eventually integrated this in our test harness :</p>
+
+
+<ul>
+<li>I ran tlbimp.exe on the real COM server I wanted to mock</li>
+<li>In CSSimpleObject.cs, I returned a Mock on the interface of the COM component I wanted to mock</li>
+<li>In&nbsp;CSSimpleObject.cs, I removed SimpleObjectsXXX types</li>
+<li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
+<li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
+</ul>
+
+
+<p>Edit:</p>
+
+
+<p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -829,133 +1030,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/radiant-rfind-does-not-find-hidden-pages/">Radiant R:find Does Not Find Hidden Pages</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-23T00:00:00+02:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>home
-</span><span class='line'>  /newsletters
-</span><span class='line'>  /june-2011
-</span><span class='line'>  /july-2011
-</span><span class='line'>  /rss</span></code></pre></td></tr></table></div></figure>
-<p />and that you want to use the following tag in your rss file<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;r:find</span> <span class="na">url=</span><span class="s">&quot;/newsletters/&quot;</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/r:find&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-<p />r:find won&#8217;t find newsletters because it is hidden, it has to be published to be found.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rspec-messes-up-stubs-and-expectations/">Rspec Messes Up Stubs and Expectations</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-20T00:00:00+02:00" pubdate data-updated="true">Oct 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Here is an example showing the issue :<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-<p />This example should obviously fail, but it passes ! Here is a working (failing) version :<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
-</span><span class='line'> <span class="k">end</span>
-</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-<p /> I am using rspec 1.3.0. Did you fall into the same issues ? Is this fixed in rspec 2 ?</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -982,6 +1056,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t repeat names in cucumber scenarios</a>
+      </li>
+    
+      <li class="post">
+        <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If new cucumber transform breaks everyhing &#8230;</a>
+      </li>
+    
+      <li class="post">
         <a href="/rubular-a-really-usefull-ruby-regex-tool/">Rubular: a really usefull ruby regex tool</a>
       </li>
     
@@ -991,14 +1073,6 @@
     
       <li class="post">
         <a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">How to stub around a call to the original method with rspec ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/1-rule-for-monitoring-emails/">#1 rule for monitoring emails</a>
-      </li>
-    
-      <li class="post">
-        <a href="/the-poor-mans-memory-profiling/">The poor man&#8217;s memory profiling</a>
       </li>
     
   </ul>

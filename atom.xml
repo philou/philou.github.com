@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-24T06:46:01+02:00</updated>
+  <updated>2013-05-09T08:17:12+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
+    <link href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/"/>
+    <updated>2013-05-09T08:15:00+02:00</updated>
+    <id>http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[If new cucumber transform breaks everyhing ...]]></title>
+    <link href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/"/>
+    <updated>2013-05-08T08:36:00+02:00</updated>
+    <id>http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &#8230; Even completly unrelated scenarios were failing &#8230;</p>
+
+<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &#8220;Transforms wisdom&#8221; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+
+<p>For example</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CAPTURE_NUMBER</span> <span class="o">=</span> <span class="no">Transform</span> <span class="sr">/^.*$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">digits</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">Float</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span> <span class="sr">/^I withdraw (</span><span class="si">#{</span><span class="no">CAPTURE_NUMBER</span><span class="si">}</span><span class="sr">) from &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">bank_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">bank</span> <span class="o">=</span> <span class="no">Bank</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">bank_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will match the bank name with CAPTURE_NUMBER, and you&#8217;ll get an &#8220;invalid value for Float&#8221; error.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rubular: a really usefull ruby regex tool]]></title>
@@ -762,153 +805,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
 
 <p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ Including Rails.application.routes.url_helpers from a module]]></title>
-    <link href="http://philippe.bourgau.net/including-railsapplicationroutesurlhelpers-fr/"/>
-    <updated>2012-04-16T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/including-railsapplicationroutesurlhelpers-fr</id>
-    <content type="html"><![CDATA[<p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">undefined</span> <span class="s1">&#39;default_url_options&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</span><span class='line'>   <span class="n">base</span><span class="o">.</span><span class="n">send</span> <span class="ss">:include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to mock an out of process COM server with C#]]></title>
-    <link href="http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with/"/>
-    <updated>2012-02-14T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with</id>
-    <content type="html"><![CDATA[<p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
-
-
-<p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
-
-
-<p>After searching the web, I tried ServicedComponent but I did not manage to make it work &#8230; I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
-
-
-<p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'>   <span class="c1">// CSSimpleObject.cs</span>
-</span><span class='line'>   <span class="k">internal</span> <span class="k">class</span> <span class="nc">CSSimpleObjectClassFactory</span> <span class="p">:</span> <span class="n">IClassFactory</span>
-</span><span class='line'>   <span class="p">{</span>
-</span><span class='line'>      <span class="k">public</span> <span class="kt">int</span> <span class="nf">CreateInstance</span><span class="p">(</span><span class="n">IntPtr</span> <span class="n">pUnkOuter</span><span class="p">,</span> <span class="k">ref</span> <span class="n">Guid</span> <span class="n">riid</span><span class="p">,</span> <span class="k">out</span> <span class="n">IntPtr</span> <span class="n">ppvObject</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">{</span>
-</span><span class='line'>         <span class="p">...</span>
-</span><span class='line'>         <span class="k">if</span> <span class="p">(</span><span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">CSSimpleObject</span><span class="p">.</span><span class="n">ClassId</span><span class="p">)</span> <span class="p">||</span>
-</span><span class='line'>            <span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">COMNative</span><span class="p">.</span><span class="n">IID_IDispatch</span><span class="p">)</span> <span class="p">||</span>
-</span><span class='line'>            <span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">COMNative</span><span class="p">.</span><span class="n">IID_IUnknown</span><span class="p">))</span>
-</span><span class='line'>         <span class="p">{</span>
-</span><span class='line'>            <span class="c1">// Create the instance of the .NET object</span>
-</span><span class='line'>            <span class="kt">var</span> <span class="n">simpleObject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">CSSimpleObject</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">{</span><span class="n">CallBase</span> <span class="p">=</span> <span class="k">true</span><span class="p">};</span>
-</span><span class='line'>            <span class="n">simpleObject</span><span class="p">.</span><span class="n">SetupGet</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="n">FloatProperty</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">666</span><span class="p">);</span>
-</span><span class='line'>            <span class="n">simpleObject</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="n">HelloWorld</span><span class="p">()).</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;Hello, you got pwned !!!&quot;</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="n">ppvObject</span> <span class="p">=</span> <span class="n">Marshal</span><span class="p">.</span><span class="n">GetComInterfaceForObject</span><span class="p">(</span>
-</span><span class='line'>               <span class="n">simpleObject</span><span class="p">.</span><span class="n">Object</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ICSSimpleObject</span><span class="p">));</span>
-</span><span class='line'>            <span class="p">}</span>
-</span><span class='line'>            <span class="p">...</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
-
-
-<p>So here is how I eventually integrated this in our test harness :</p>
-
-
-<ul>
-<li>I ran tlbimp.exe on the real COM server I wanted to mock</li>
-<li>In CSSimpleObject.cs, I returned a Mock on the interface of the COM component I wanted to mock</li>
-<li>In&nbsp;CSSimpleObject.cs, I removed SimpleObjectsXXX types</li>
-<li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
-<li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
-</ul>
-
-
-<p>Edit:</p>
-
-
-<p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
 
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-04-24T06:46:01+02:00</updated>
+  <updated>2013-05-09T08:17:40+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[If new cucumber transform breaks everyhing ...]]></title>
+    <link href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/"/>
+    <updated>2013-05-08T08:36:00+02:00</updated>
+    <id>http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place ... Even completly unrelated scenarios were failing ...</p>
+
+<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the "Transforms wisdom" section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+
+<p>For example</p>
+
+<p>```ruby
+CAPTURE_NUMBER = Transform /<sup>.*$/</sup> do |digits|
+  Float(digits)
+end</p>
+
+<p>When /<sup>I</sup> withdraw (#{CAPTURE_NUMBER}) from "([<sup>"]+)"$/</sup> do |amount, bank_name|
+  bank = Bank.find_by_name(bank_name)
+  bank.withdraw(amount)
+end
+```</p>
+
+<p>will match the bank name with CAPTURE_NUMBER, and you'll get an "invalid value for Float" error.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rubular: a really usefull ruby regex tool]]></title>
@@ -96,35 +122,6 @@ end
     <updated>2013-01-28T00:00:00+01:00</updated>
     <id>http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen</id>
     <content type="html"><![CDATA[<p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error ... The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to install a patched ruby interpreter with rbenv and ruby-build]]></title>
-    <link href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit/"/>
-    <updated>2013-01-09T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit</id>
-    <content type="html"><![CDATA[<p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a>&nbsp;seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
-
-
-<p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
-
-
-<ul>
-<li>download the ruby sources</li>
-<li>patch them</li>
-<li>create a ruby-build package definition with them</li>
-<li>install with rbenv</li>
-</ul>
-
-
-<p>Here is a script that does this for ruby 1.9.2-p125 and gcdata patch.</p>
-
-
-<p>
-<script src="https://gist.github.com/4492543.js"></script>
-</p>
-
 ]]></content>
   </entry>
   
