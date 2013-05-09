@@ -9,7 +9,7 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I &hellip;">
+  <meta name="description" content="I am currently working to replace a legacy command line front end on a COM out of process server. This server is written in C++ and communicates with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,97 +80,6 @@
       <div id="content">
 	<div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/including-railsapplicationroutesurlhelpers-fr/">Including Rails.application.routes.url_helpers From a Module</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-16T00:00:00+02:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">undefined</span> <span class="s1">&#39;default_url_options&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</span><span class='line'>   <span class="n">base</span><span class="o">.</span><span class="n">send</span> <span class="ss">:include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1030,6 +939,58 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/radiant-rfind-does-not-find-hidden-pages/">Radiant R:find Does Not Find Hidden Pages</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-23T00:00:00+02:00" pubdate data-updated="true">Oct 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>home
+</span><span class='line'>  /newsletters
+</span><span class='line'>  /june-2011
+</span><span class='line'>  /july-2011
+</span><span class='line'>  /rss</span></code></pre></td></tr></table></div></figure>
+<p />and that you want to use the following tag in your rss file<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;r:find</span> <span class="na">url=</span><span class="s">&quot;/newsletters/&quot;</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/r:find&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+<p />r:find won&#8217;t find newsletters because it is hidden, it has to be published to be found.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1056,10 +1017,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t repeat names in cucumber scenarios</a>
-      </li>
-    
-      <li class="post">
         <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If new cucumber transform breaks everyhing &#8230;</a>
       </li>
     
@@ -1073,6 +1030,10 @@
     
       <li class="post">
         <a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">How to stub around a call to the original method with rspec ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/1-rule-for-monitoring-emails/">#1 rule for monitoring emails</a>
       </li>
     
   </ul>
