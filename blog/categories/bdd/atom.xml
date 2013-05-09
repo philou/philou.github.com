@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
-  <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
+  <title><![CDATA[Category: BDD | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/bdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
   <updated>2013-05-09T10:38:13+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
@@ -103,83 +103,6 @@ end
 ```</p>
 
 <p>will match the bank name with CAPTURE_NUMBER, and you'll get an "invalid value for Float" error.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rubular: a really usefull ruby regex tool]]></title>
-    <link href="http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool/"/>
-    <updated>2013-04-24T06:42:00+02:00</updated>
-    <id>http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool</id>
-    <content type="html"><![CDATA[<p>Working with regular expressions is always a try and fail and retry ... experience. It really helps to have an interactive tool with which to tune up your expression. This is exactly what <a href="http://rubular.com">Rubular</a> is made for. Give it a try next time you need to work with ruby regular expressions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to stub around a call to the original method with rspec ?]]></title>
-    <link href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/"/>
-    <updated>2013-04-19T07:05:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec</id>
-    <content type="html"><![CDATA[<p>Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?</p>
-
-<p>For the sake of the subject, let's take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You'd like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
-
-<p><code>ruby
-i = 0
-original_get = Net::HTTP.method(:get)
-Net::HTTP.stub(:get) do |*args, &amp;block|
-  i = i+1
-  raise RuntimeError.new("network down") if i%3 == 0
-  original_get.call(*args, &amp;block)
-end
-</code></p>
-
-<p>Note the block is taken into account, in this example, it does not matter so much, but forgetting it can bring up really strange issues.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The poor man's memory profiling]]></title>
-    <link href="http://philippe.bourgau.net/the-poor-mans-memory-profiling/"/>
-    <updated>2013-02-01T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/the-poor-mans-memory-profiling</id>
-    <content type="html"><![CDATA[<p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
-
-
-<p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
-
-
-<ul>
-<li>write a unit test for this</li>
-<li>run the task once to warm up the memory</li>
-<li>run the task once for some small sample input and note the peak memory usage</li>
-<li>run the task once for some large sample input and note the peak memory usage</li>
-<li>check that the memory usages are very close, whatever the size of the inputs</li>
-</ul>
-
-
-<p>Everything there is quite straightforward, appart from "note the peak memory usage". Here is what I came up with</p>
-
-
-<ul>
-<li>note the initial memory usage</li>
-<li>start a thread that garbage collects and notes the memory usage every 10 ms</li>
-<li>process the data</li>
-<li>tell the thread to stop</li>
-<li>memory usage is the difference between the maximum and initial memory usages</li>
-</ul>
-
-
-<p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
-
-
-<p>
-<script src="https://gist.github.com/4696311.js"></script>
-</p>
-
-
-<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it's actually enough for our purpose.</p>
-
 ]]></content>
   </entry>
   

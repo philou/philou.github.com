@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-05-09T08:31:23+02:00</updated>
+  <updated>2013-05-09T10:38:13+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,109 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
+    <link href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/"/>
+    <updated>2013-05-09T08:35:00+02:00</updated>
+    <id>http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios</id>
+    <content type="html"><![CDATA[<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
+</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
+</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the deposit account</span>
+</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the deposit account</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It would be better if we could write it like that</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
+</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
+</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the account</span>
+</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the account</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
+
+<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span>
+</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="s2">&quot;credit&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span><span class="o">=</span><span class="p">(</span><span class="n">account_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="n">account_name</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">CAPTURE_ACCOUNT_NAME</span> <span class="o">=</span> <span class="no">Tranform</span><span class="p">(</span><span class="sr">/^(a|an|the) *(.*) account$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">_prefix</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">account_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>    <span class="n">main_account_name</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">account_name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When creating the account, I added some code to set the main_account_name</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^(</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">) with (\d+)€$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">account_name</span><span class="p">,</span> <span class="n">amount</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">main_account_name</span><span class="o">=</span> <span class="n">account_name</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is then possible to write steps like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I withdraw (\d+)€ from (</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that will match both &#8220;the deposit account&#8221; and &#8220;the account&#8221; depending on context.</p>
+
+<p>It would be really nice to be able to write things like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but because of the <a href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[If new cucumber transform breaks everyhing ...]]></title>
@@ -796,70 +899,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
 
 <p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ Including Rails.application.routes.url_helpers from a module]]></title>
-    <link href="http://philippe.bourgau.net/including-railsapplicationroutesurlhelpers-fr/"/>
-    <updated>2012-04-16T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/including-railsapplicationroutesurlhelpers-fr</id>
-    <content type="html"><![CDATA[<p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">undefined</span> <span class="s1">&#39;default_url_options&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">PathBarHelper</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">included</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
-</span><span class='line'>   <span class="n">base</span><span class="o">.</span><span class="n">send</span> <span class="ss">:include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
 
 ]]></content>
   </entry>

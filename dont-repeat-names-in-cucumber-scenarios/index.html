@@ -5,11 +5,15 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>If new cucumber transform breaks everyhing ... - Philippe Bourgau's blog</title>
+  <title>Don't repeat names in cucumber scenarios - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="After reading The cucumber book I decided to add clever cucumber transforms but steps started to fail all over the place &#8230; Even completly &hellip;">
+  <meta name="description" content="When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read. 1
+2
+3
+4
+Scenario: Withdrawing some cash Given &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">
+  <link rel="canonical" href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">If New Cucumber Transform Breaks Everyhing ...</h1>
+      <h1 class="entry-title">Don't Repeat Names in Cucumber Scenarios</h1>
     
     
       <p class="meta">
@@ -99,18 +103,42 @@
   
 
 
-<time datetime="2013-05-08T08:36:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+<time datetime="2013-05-09T08:35:00+02:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &#8230; Even completly unrelated scenarios were failing &#8230;</p>
+<div class="entry-content"><p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.</p>
 
-<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &#8220;Transforms wisdom&#8221; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
+</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
+</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the deposit account</span>
+</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the deposit account</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>For example</p>
+
+<p>It would be better if we could write it like that</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
+</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
+</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the account</span>
+</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the account</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
+
+<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -120,18 +148,63 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CAPTURE_NUMBER</span> <span class="o">=</span> <span class="no">Transform</span> <span class="sr">/^.*$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">digits</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">Float</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span>
+</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="s2">&quot;credit&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span><span class="o">=</span><span class="p">(</span><span class="n">account_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="n">account_name</span>
 </span><span class='line'><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="no">When</span> <span class="sr">/^I withdraw (</span><span class="si">#{</span><span class="no">CAPTURE_NUMBER</span><span class="si">}</span><span class="sr">) from &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">bank_name</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">bank</span> <span class="o">=</span> <span class="no">Bank</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">bank_name</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+</span><span class='line'><span class="no">CAPTURE_ACCOUNT_NAME</span> <span class="o">=</span> <span class="no">Tranform</span><span class="p">(</span><span class="sr">/^(a|an|the) *(.*) account$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">_prefix</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">account_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>    <span class="n">main_account_name</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">account_name</span>
+</span><span class='line'>  <span class="k">end</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>will match the bank name with CAPTURE_NUMBER, and you&#8217;ll get an &#8220;invalid value for Float&#8221; error.</p>
+<p>When creating the account, I added some code to set the main_account_name</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^(</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">) with (\d+)€$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">account_name</span><span class="p">,</span> <span class="n">amount</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">main_account_name</span><span class="o">=</span> <span class="n">account_name</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is then possible to write steps like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I withdraw (\d+)€ from (</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that will match both &#8220;the deposit account&#8221; and &#8220;the account&#8221; depending on context.</p>
+
+<p>It would be really nice to be able to write things like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but because of the <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
 </div>
 
 
@@ -154,7 +227,7 @@
   
 
 
-<time datetime="2013-05-08T08:36:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+<time datetime="2013-05-09T08:35:00+02:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -168,7 +241,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -181,10 +254,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/rubular-a-really-usefull-ruby-regex-tool/" title="Previous Post: Rubular: a really usefull ruby regex tool">&laquo; Rubular: a really usefull ruby regex tool</a>
+        <a class="basic-alignment left" href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/" title="Previous Post: If new cucumber transform breaks everyhing ...">&laquo; If new cucumber transform breaks everyhing ...</a>
       
-      
-        <a class="basic-alignment right" href="/dont-repeat-names-in-cucumber-scenarios/" title="Next Post: Don't repeat names in cucumber scenarios">Don't repeat names in cucumber scenarios &raquo;</a>
       
     </p>
   </footer>
@@ -297,8 +368,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/';
-        var disqus_url = 'http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/';
+        var disqus_identifier = 'http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/';
+        var disqus_url = 'http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/';
         var disqus_script = 'embed.js';
       
     (function () {

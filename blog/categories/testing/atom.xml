@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-05-09T08:31:52+02:00</updated>
+  <updated>2013-05-09T10:38:13+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
+    <link href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/"/>
+    <updated>2013-05-09T08:35:00+02:00</updated>
+    <id>http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios</id>
+    <content type="html"><![CDATA[<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.
+<code>gherkin
+Scenario: Withdrawing some cash
+  Given a deposit account with 1000€
+  When I withdraw 100€ from the deposit account
+  Then there should be 900€ on the deposit account
+</code>
+It would be better if we could write it like that
+<code>gherkin
+Scenario: Withdrawing some cash
+  Given a deposit account with 1000€
+  When I withdraw 100€ from the account
+  Then there should be 900€ on the account
+</code>
+Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
+
+<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.
+```ruby
+def main_account_name
+  @main_account_name ||= "credit"
+end
+def main_account_name=(account_name)
+  @main_account_name ||= account_name
+end</p>
+
+<p>CAPTURE_ACCOUNT_NAME = Tranform(/<sup>(a|an|the)</sup> <em>(.</em>) account$/) do |_prefix, account_name|
+  if account_name == ""</p>
+
+<pre><code>main_account_name
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>account_name
+</code></pre>
+
+<p>  end
+end
+<code>
+When creating the account, I added some code to set the main_account_name
+</code>ruby
+Given(/<sup>(#{CAPTURE_ACCOUNT_NAME})</sup> with (\d+)€$/) do |account_name, amount|
+  ...
+  self.main_account_name= account_name
+end
+<code>
+It is then possible to write steps like
+</code>
+When(/<sup>I</sup> withdraw (\d+)€ from (#{CAPTURE_ACCOUNT_NAME})$/) do |amount, account_name|
+  ...
+end
+```
+that will match both "the deposit account" and "the account" depending on context.</p>
+
+<p>It would be really nice to be able to write things like
+<code>gherkin
+  Then there should be 900€ on it
+</code>
+but because of the <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[If new cucumber transform breaks everyhing ...]]></title>
@@ -154,19 +221,6 @@ static class User
 <p>That's it, all that was needed was to ask the thread of the control to update the text !</p>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[stub_model and mock_model]]></title>
-    <link href="http://philippe.bourgau.net/stubmodel-and-mockmodel/"/>
-    <updated>2012-04-16T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/stubmodel-and-mockmodel</id>
-    <content type="html"><![CDATA[<p>I decided to stop using stub_model and mock_model. I do not use them enough to get fluent with them. Everytime I have to deal with them, something breaks in an unexpected way. I just decided to stand with good old stubs.</p>
-
-
-<p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
 
 ]]></content>
   </entry>
