@@ -7,6 +7,7 @@ categories:
 - ruby
 - cucumber
 - testing
+- BDD
 ---
 After reading [The cucumber book](http://pragprog.com/book/hwcuc/the-cucumber-book) I decided to add clever cucumber transforms but steps started to fail all over the place ... Even completly unrelated scenarios were failing ...
 
