@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-05-09T10:38:13+02:00</updated>
+  <updated>2013-06-07T07:10:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
+    <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
+    <updated>2013-06-07T06:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
+    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it's a great testing framework.</p>
+
+<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
+
+<p><code>ruby
+DEFAULT_BACKTRACE_PATTERNS = [
+  /\/lib\d*\/ruby\//,
+  /org\/jruby\//,
+  /bin\//,
+  %r|/gems/|,
+  /spec\/spec_helper\.rb/,
+  /lib\/rspec\/(core|expectations|matchers|mocks)/
+]
+</code></p>
+
+<p>Most of the time, that's great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as "method called with unexpected number of arguments" that does not refer to the code in the backtrace, but to some other library code ...</p>
+
+<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
+
+<p>```ruby
+RSpec.configure do |config|</p>
+
+<p>  # RSpec automatically cleans stuff out of backtraces;
+  # sometimes this is annoying when trying to debug something e.g. a gem
+  if ENV['FULLBACKTRACES'] == 'true'</p>
+
+<pre><code>config.backtrace_clean_patterns = []
+</code></pre>
+
+<p>  end</p>
+
+<p>  # some other configuration here</p>
+
+<p>end
+```</p>
+
+<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
+
+<p><code>
+FULLBACKTRACES=true bundle exec rspec spec
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
@@ -170,57 +219,6 @@ end
 
 
 <p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it's actually enough for our purpose.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Windows licker like with C#]]></title>
-    <link href="http://philippe.bourgau.net/windows-licker-like-with-c/"/>
-    <updated>2012-11-07T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/windows-licker-like-with-c</id>
-    <content type="html"><![CDATA[<p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a>&nbsp;they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a>&nbsp;to pilot a gui running in&nbsp;test thread. Next time I started a new project, I&nbsp;wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
-
-
-<p>Here is the user test code I wanted to be able to write (inside a <a href="http://www.specflow.org">SpecFlow</a> step) :</p>
-
-
-<p>
-```c#
-[Given(@"TheUserEntersHisEmail""(.*)""")]
-public void GivenTheUserEntersHisEmail(string email)
-{
-  User.Enters(ScenarioContext.Current.UserForm().EmailTextBox, email);
-}
-```
-</p>
-
-
-<p>Here UserForm is an extension method I added to the ScenarioContext that is responsible for returning the current user form.</p>
-
-
-<p>As you have noticed, the various gui components must be&nbsp;exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
-
-
-<p>Eventually, I had to write the User class, and it turned out to be really simple :</p>
-
-
-<p>
-```c#
-static class User
-{
-  internal static void Enters(TextBox textBox, string text)
-  {
-    textBox.Invoke(new MethodInvoker(() => textBox.Text = text));
-  }
-}
-```
-</p>
-
-
-<p>That's it, all that was needed was to ask the thread of the control to update the text !</p>
-
-
 
 ]]></content>
   </entry>

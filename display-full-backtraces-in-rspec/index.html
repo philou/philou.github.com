@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: chrome - Philippe Bourgau's blog</title>
+  <title>Display full backtraces in rspec - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Category: chrome">
+  <meta name="description" content="I use rspec a lot. I thinks it&#8217;s a great testing framework. In order to get shorter error output, rspec cleans backtraces from outside code. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.netblog/categories/chrome/">
+  <link rel="canonical" href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -79,36 +79,152 @@
     <div id="main">
       <div id="content">
 	<div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Chrome</h1>
+    
+      <h1 class="entry-title">Display Full Backtraces in Rspec</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-07T06:51:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&#8217;s a great testing framework.</p>
 
-  
-  <h2>2013</h2>
+<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
 
-<article>
-  
-<h1><a href="/how-to-evaluate-an-xpath-in-chrome/">How to evaluate an xpath in chrome ?</a></h1>
-<time datetime="2013-04-24T06:34:00+02:00" pubdate><span class='month'>Apr</span> <span class='day'>24</span> <span class='year'>2013</span></time>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">DEFAULT_BACKTRACE_PATTERNS</span> <span class="o">=</span> <span class="o">[</span>
+</span><span class='line'>  <span class="sr">/\/lib\d*\/ruby\//</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/org\/jruby\//</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/bin\//</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">%r|/gems/|</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/spec\/spec_helper\.rb/</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/lib\/rspec\/(core|expectations|matchers|mocks)/</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/chrome/'>chrome</a>, <a class='category' href='/blog/categories/html/'>html</a>, <a class='category' href='/blog/categories/web/'>web</a></span>
-</footer>
+
+<p>Most of the time, that&#8217;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &#8220;method called with unexpected number of arguments&#8221; that does not refer to the code in the backtrace, but to some other library code &#8230;</p>
+
+<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># RSpec automatically cleans stuff out of backtraces;</span>
+</span><span class='line'>  <span class="c1"># sometimes this is annoying when trying to debug something e.g. a gem</span>
+</span><span class='line'>  <span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FULLBACKTRACES&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">backtrace_clean_patterns</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># some other configuration here</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FULLBACKTRACES</span><span class="o">=</span><span class="kp">true</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rspec</span> <span class="n">spec</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-07T06:51:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/display-full-backtraces-in-rspec/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/display-full-backtraces-in-rspec/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/dont-repeat-names-in-cucumber-scenarios/" title="Previous Post: Don't repeat names in cucumber scenarios">&laquo; Don't repeat names in cucumber scenarios</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -210,7 +326,10 @@
       var disqus_shortname = 'philippe-bourgau';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/display-full-backtraces-in-rspec/';
+        var disqus_url = 'http://philippe.bourgau.net/display-full-backtraces-in-rspec/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rspec | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rspec/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-05-09T10:38:13+02:00</updated>
+  <updated>2013-06-07T07:10:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
+    <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
+    <updated>2013-06-07T06:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
+    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it's a great testing framework.</p>
+
+<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
+
+<p><code>ruby
+DEFAULT_BACKTRACE_PATTERNS = [
+  /\/lib\d*\/ruby\//,
+  /org\/jruby\//,
+  /bin\//,
+  %r|/gems/|,
+  /spec\/spec_helper\.rb/,
+  /lib\/rspec\/(core|expectations|matchers|mocks)/
+]
+</code></p>
+
+<p>Most of the time, that's great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as "method called with unexpected number of arguments" that does not refer to the code in the backtrace, but to some other library code ...</p>
+
+<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
+
+<p>```ruby
+RSpec.configure do |config|</p>
+
+<p>  # RSpec automatically cleans stuff out of backtraces;
+  # sometimes this is annoying when trying to debug something e.g. a gem
+  if ENV['FULLBACKTRACES'] == 'true'</p>
+
+<pre><code>config.backtrace_clean_patterns = []
+</code></pre>
+
+<p>  end</p>
+
+<p>  # some other configuration here</p>
+
+<p>end
+```</p>
+
+<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
+
+<p><code>
+FULLBACKTRACES=true bundle exec rspec spec
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to stub around a call to the original method with rspec ?]]></title>

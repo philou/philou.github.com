@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-05-09T10:38:13+02:00</updated>
+  <updated>2013-06-07T07:10:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
+    <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
+    <updated>2013-06-07T06:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
+    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&#8217;s a great testing framework.</p>
+
+<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">DEFAULT_BACKTRACE_PATTERNS</span> <span class="o">=</span> <span class="o">[</span>
+</span><span class='line'>  <span class="sr">/\/lib\d*\/ruby\//</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/org\/jruby\//</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/bin\//</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">%r|/gems/|</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/spec\/spec_helper\.rb/</span><span class="p">,</span>
+</span><span class='line'>  <span class="sr">/lib\/rspec\/(core|expectations|matchers|mocks)/</span>
+</span><span class='line'><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Most of the time, that&#8217;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &#8220;method called with unexpected number of arguments&#8221; that does not refer to the code in the backtrace, but to some other library code &#8230;</p>
+
+<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># RSpec automatically cleans stuff out of backtraces;</span>
+</span><span class='line'>  <span class="c1"># sometimes this is annoying when trying to debug something e.g. a gem</span>
+</span><span class='line'>  <span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FULLBACKTRACES&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">backtrace_clean_patterns</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># some other configuration here</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FULLBACKTRACES</span><span class="o">=</span><span class="kp">true</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rspec</span> <span class="n">spec</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
@@ -886,19 +952,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 <li>use Bundler <a href="http://gembundler.com">http://gembundler.com</a></li><li>keep your Gemfile simple : just the top level dependencies, and no version constraints</li><li>try to stick to popular gems : you&#8217;ll find a lot more answers to your questions from the web. It&#8217;s often simpler to write and maintain a little extra code than to depend on a crappy thirdparty that is supposed to meet your need</li><li>stick with the most recent versions of your dependencies. With a good test suite and with Bundler, it should be rather easy to upgrade, so do it often to avoid both the upgrade tunnel effect and struggling with bugs and incompatibility of unmaintained old versions of gems.</li></ul>
 <p>Edit: I discovered <a href="http://www.ruby-toolbox.com">the ruby toolbox</a>&nbsp;that categorizes and sorts gems based on their popularity !</p>
 <p>Edit 2: I discovered it is sometimes necessary to add constraints to get the latest versions of gems that would otherwise conflict (directly or not) with others.</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[stub_model and mock_model]]></title>
-    <link href="http://philippe.bourgau.net/stubmodel-and-mockmodel/"/>
-    <updated>2012-04-16T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/stubmodel-and-mockmodel</id>
-    <content type="html"><![CDATA[<p>I decided to stop using stub_model and mock_model. I do not use them enough to get fluent with them. Everytime I have to deal with them, something breaks in an unexpected way. I just decided to stand with good old stubs.</p>
-
-
-<p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
 
 ]]></content>
   </entry>
