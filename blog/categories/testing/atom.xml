@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-06-07T07:10:23+02:00</updated>
+  <updated>2013-06-30T09:15:31+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,68 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Hitting the middle ground between classicist and mockist TDD]]></title>
+    <link href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/"/>
+    <updated>2013-06-18T08:55:00+02:00</updated>
+    <id>http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd</id>
+    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler's point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
+
+<ul>
+<li>test failures often pinpoint the falsy code</li>
+<li>easier test organisation mimicking that of the code</li>
+<li>faster tests</li>
+<li>simpler test initialization</li>
+</ul>
+
+
+<p>Mocks also have their own problems, but mostly :</p>
+
+<ul>
+<li>especialy with dynamicaly typed languages, a mock for class A might not implement the same methods than the real class A, but the test might be passing though ! This ampers refactoring with a longer feedback loop and mock setup rewriting</li>
+</ul>
+
+
+<p>That's what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
+
+<ul>
+<li>extensive use of factories (with <a href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>) to simplify setup</li>
+<li>use of an <a href="http://www.sqlite.org/inmemorydb.html">in memory sqlite database</a> to get a fast full working db</li>
+<li>implement fully functional fakes for some parts of the system</li>
+<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown's thoughts on mocks</a>
+
+<ul>
+<li>when a test is too slow</li>
+<li>to cut off a dependency to a subsystem that is not available in a unit test</li>
+<li>to simplify overly long test data setup</li>
+</ul>
+</li>
+<li>use of test proxies (as in <a href="https://github.com/rr/rr">rr</a>) to inject specific behaviour or to perform specific checks without modifying the rest of the program.</li>
+</ul>
+
+
+<p>Here is how I implemented this with rspec :</p>
+
+<script src="https://gist.github.com/philou/5894144.js"></script>
+
+
+<p>With all this in place, it is most of the time possible to write straightforward tests. For example here, only real objects are used. @order gets its value when Order.create! is called.</p>
+
+<p>```ruby
+it "should create an order with the cart" do
+  capture_result_from(Order, :create!, into: :order)</p>
+
+<p>  check_in_cart</p>
+
+<p>  @order.should_not be_nil
+  @order.cart.should == @cart
+end
+```</p>
+
+<p>Maybe I should swith to rr ...</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
@@ -175,51 +237,6 @@ end
 </code></p>
 
 <p>Note the block is taken into account, in this example, it does not matter so much, but forgetting it can bring up really strange issues.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The poor man's memory profiling]]></title>
-    <link href="http://philippe.bourgau.net/the-poor-mans-memory-profiling/"/>
-    <updated>2013-02-01T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/the-poor-mans-memory-profiling</id>
-    <content type="html"><![CDATA[<p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
-
-
-<p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
-
-
-<ul>
-<li>write a unit test for this</li>
-<li>run the task once to warm up the memory</li>
-<li>run the task once for some small sample input and note the peak memory usage</li>
-<li>run the task once for some large sample input and note the peak memory usage</li>
-<li>check that the memory usages are very close, whatever the size of the inputs</li>
-</ul>
-
-
-<p>Everything there is quite straightforward, appart from "note the peak memory usage". Here is what I came up with</p>
-
-
-<ul>
-<li>note the initial memory usage</li>
-<li>start a thread that garbage collects and notes the memory usage every 10 ms</li>
-<li>process the data</li>
-<li>tell the thread to stop</li>
-<li>memory usage is the difference between the maximum and initial memory usages</li>
-</ul>
-
-
-<p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
-
-
-<p>
-<script src="https://gist.github.com/4696311.js"></script>
-</p>
-
-
-<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it's actually enough for our purpose.</p>
-
 ]]></content>
   </entry>
   
