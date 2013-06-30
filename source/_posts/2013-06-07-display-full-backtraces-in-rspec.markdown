@@ -8,7 +8,6 @@ categories:
 - ruby
 - rspec
 - testing
-comments: true
 ---
 I use [rspec](http://rspec.info/) a lot. I thinks it's a great testing framework.
 
