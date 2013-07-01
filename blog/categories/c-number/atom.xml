@@ -4,7 +4,7 @@
   <title><![CDATA[Category: c# | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/c-number/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-07-01T20:32:15+02:00</updated>
+  <updated>2013-07-01T20:49:07+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -134,196 +134,254 @@ static class User
     <link href="http://philippe.bourgau.net/how-to-test-a-class-using-an-implementation-h/"/>
     <updated>2011-12-14T00:00:00+01:00</updated>
     <id>http://philippe.bourgau.net/how-to-test-a-class-using-an-implementation-h</id>
-    <content type="html"><![CDATA[<p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation ...<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
+    <content type="html"><![CDATA[<p><p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation &hellip;<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
 ```c#
 public class ListBuilder<T>
 {
-  private readonly List<T> _internalList = new List<T>();
-  private List<T> _listSnapshot = new List<T>();
-  private readonly object _locker = new object();
+  private readonly List<T> <em>internalList = new List<T>();
+  private List<T> </em>listSnapshot = new List<T>();
+  private readonly object _locker = new object();</p>
 
-  public List<T> ListSnapshot()
+<p>  public List<T> ListSnapshot()
+  {</p>
+
+<pre><code>lock (_locker)
+{
+  if (_listSnapshot.Count != _internalList.Count)
   {
-    lock (_locker)
-    {
-      if (_listSnapshot.Count != _internalList.Count)
-      {
-        _listSnapshot = new List<T>(_internalList);
-      }
-    }
-
-    return _listSnapshot;
-  }
-
-  public void Add(T newItem)
-  {
-    lock (_locker)
-    {
-      _internalList.Add(newItem);
-    }
+    _listSnapshot = new List&lt;T&gt;(_internalList);
   }
 }
 
-```
-<p />Here is the tests for ListBuilder class itself<p />
-```
+return _listSnapshot;
+</code></pre>
+
+<p>  }</p>
+
+<p>  public void Add(T newItem)
+  {</p>
+
+<pre><code>lock (_locker)
+{
+  _internalList.Add(newItem);
+}
+</code></pre>
+
+<p>  }
+}</p>
+
+<p><code>
+&lt;p /&gt;Here is the tests for ListBuilder class itself&lt;p /&gt;
+</code>
 public abstract class ListBuilderContractTest<T>
 {
   protected abstract void AddAnItem();
   protected abstract void VerifyAddedItem(T addedItem);
-  protected abstract List<T> ListCopy();
+  protected abstract List<T> ListCopy();</p>
 
-  [Test]
+<p>  [Test]
   public void TheDefaultListShouldBeEmpty()
-  {
-    Assert.AreEqual(0, ListCopy().Count);
-  }
+  {</p>
 
-  [Test]
+<pre><code>Assert.AreEqual(0, ListCopy().Count);
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
   public void AddShouldAddItemInList()
-  {
-    AddAnItem();
-    VerifyItemWasAdded();
-  }
+  {</p>
 
-  protected void VerifyItemWasAdded()
-  {
-    var copy = ListCopy();
-    Assert.AreEqual(1, copy.Count);
-    VerifyAddedItem(copy[0]);
-  }
+<pre><code>AddAnItem();
+VerifyItemWasAdded();
+</code></pre>
 
-  [Test]
+<p>  }</p>
+
+<p>  protected void VerifyItemWasAdded()
+  {</p>
+
+<pre><code>var copy = ListCopy();
+Assert.AreEqual(1, copy.Count);
+VerifyAddedItem(copy[0]);
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
   public void WhenOfSameSizeNewListCopyShoulReturnSameList()
-  {
-    AddAnItem();
-    Assert.AreSame(ListCopy(), ListCopy());
-  }
+  {</p>
 
-  [Test]
+<pre><code>AddAnItem();
+Assert.AreSame(ListCopy(), ListCopy());
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
   public void CopiesShouldBeSnapshots()
-  {
-    var copy = ListCopy();
+  {</p>
 
-    AssertExecution.Of(AddAnItem)
-      .ShouldNotChange(() => copy.Count);
-  }
-}
+<pre><code>var copy = ListCopy();
 
-[TestFixture]
+AssertExecution.Of(AddAnItem)
+  .ShouldNotChange(() =&gt; copy.Count);
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>[TestFixture]
 public class ListBuilderTest : ListBuilderContractTest<string>
 {
-  private const string ADDED_ITEM = "toto";
+  private const string ADDED_ITEM = &ldquo;toto&rdquo;;</p>
 
-  private ListBuilder<string> _appender;
+<p>  private ListBuilder<string> _appender;</p>
 
-  [SetUp]
+<p>  [SetUp]
   public void SetUp()
-  {
-    _appender = new ListBuilder<string>();
-  }
+  {</p>
 
-  protected override void AddAnItem()
-  {
-    _appender.Add(ADDED_ITEM);
-  }
+<pre><code>_appender = new ListBuilder&lt;string&gt;();
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void AddAnItem()
+  {</p>
+
+<pre><code>_appender.Add(ADDED_ITEM);
+</code></pre>
+
+<p>  }
   protected override void VerifyAddedItem(string addedItem)
-  {
-    Assert.AreEqual(ADDED_ITEM, addedItem);
-  }
+  {</p>
 
-  protected override List<string> ListCopy()
-  {
-    return _appender.ListSnapshot();
-  }
-}
+<pre><code>Assert.AreEqual(ADDED_ITEM, addedItem);
+</code></pre>
 
-```
-<p />And here are tests for other class using it. First a simple one :<p />
-```c#
+<p>  }</p>
+
+<p>  protected override List<string> ListCopy()
+  {</p>
+
+<pre><code>return _appender.ListSnapshot();
+</code></pre>
+
+<p>  }
+}</p>
+
+<p><code>
+&lt;p /&gt;And here are tests for other class using it. First a simple one :&lt;p /&gt;
+</code>c#
 [TestFixture]
 public class OrderPresenterAsExecListBuilderTest : ListBuilderContractTest<IExecRowPresenter>
 {
-  private OrderPresenter _presenter;
-  private Mock<IExec> _exec;
+  private OrderPresenter <em>presenter;
+  private Mock<IExec> </em>exec;</p>
 
-  [SetUp]
+<p>  [SetUp]
   public void SetUp()
-  {
-    _exec = new Mock<IExec>();
-    _exec.Setup(x => x.Id).Returns("an exec");
-    _exec.Setup(x => x.Price).Returns(123.456);
-    _exec.Setup(x => x.Quantity).Returns(36);
+  {</p>
 
-    _presenter = new OrderPresenter();
-  }
+<pre><code>_exec = new Mock&lt;IExec&gt;();
+_exec.Setup(x =&gt; x.Id).Returns("an exec");
+_exec.Setup(x =&gt; x.Price).Returns(123.456);
+_exec.Setup(x =&gt; x.Quantity).Returns(36);
 
-  protected override void AddAnItem()
-  {
-    _presenter.AddExec(_exec.Object);
-  }
+_presenter = new OrderPresenter();
+</code></pre>
 
-  protected override void VerifyAddedItem(IExecRowPresenter addedItem)
-  {
-    Assert.AreEqual(_exec.Object.Id, addedItem.Id);
-    Assert.AreEqual(_exec.Object.Price, addedItem.Price);
-    Assert.AreEqual(_exec.Object.Quantity, addedItem.Quantity);
-  }
+<p>  }</p>
 
-  protected override List<IExecRowPresenter> ListSnapshot()
-  {
-    return _presenter.GraphicalExecs;
-  }
-}
+<p>  protected override void AddAnItem()
+  {</p>
 
-```
-<p />Then a more complex one :<p />
-```c#
+<pre><code>_presenter.AddExec(_exec.Object);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void VerifyAddedItem(IExecRowPresenter addedItem)
+  {</p>
+
+<pre><code>Assert.AreEqual(_exec.Object.Id, addedItem.Id);
+Assert.AreEqual(_exec.Object.Price, addedItem.Price);
+Assert.AreEqual(_exec.Object.Quantity, addedItem.Quantity);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override List<IExecRowPresenter> ListSnapshot()
+  {</p>
+
+<pre><code>return _presenter.GraphicalExecs;
+</code></pre>
+
+<p>  }
+}</p>
+
+<p><code>
+&lt;p /&gt;Then a more complex one :&lt;p /&gt;
+</code>c#
 [TestFixture]
 public class StrategyPresenterAsOrderPresenterListBuilderTest : ListBuilderContractTest<IOrderPresenter>
 {
-  private StrategyPresenter _presenter;
-  private Mock<IStrategy> _strategy;
-  private Mock<IOrder> _order;
+  private StrategyPresenter <em>presenter;
+  private Mock<IStrategy> </em>strategy;
+  private Mock<IOrder> _order;</p>
 
-  [SetUp]
+<p>  [SetUp]
   public void SetUp()
-  {
-    _strategy= new Mock<IStrategy> { DefaultValue = DefaultValue.Mock };
+  {</p>
 
-    _order = new Mock<IOrder>();
-    _order.Setup(x => x.Id).Returns(123);
+<pre><code>_strategy= new Mock&lt;IStrategy&gt; { DefaultValue = DefaultValue.Mock };
 
-    _presenter = new StrategyPresenter(_strategy.Object);
-  }
+_order = new Mock&lt;IOrder&gt;();
+_order.Setup(x =&gt; x.Id).Returns(123);
 
-  protected override void AddAnItem()
-  {
-    _strategy.Raise(x => x.SentQuantityChanged += null, new SentQuantityChangedEventArgs {Origin = _order.Object});
-  }
+_presenter = new StrategyPresenter(_strategy.Object);
+</code></pre>
 
-  protected override void VerifyAddedItem(IOrderPresenter addedItem)
-  {
-    Assert.AreEqual(_order.Object.Id, addedItem.Id);
-  }
+<p>  }</p>
 
-  protected override List<IOrderPresenter> ListSnapshot()
-  {
-    return _presenter.GraphicalOrderList;
-  }
+<p>  protected override void AddAnItem()
+  {</p>
 
+<pre><code>_strategy.Raise(x =&gt; x.SentQuantityChanged += null, new SentQuantityChangedEventArgs {Origin = _order.Object});
+</code></pre>
 
-  [Test]
+<p>  }</p>
+
+<p>  protected override void VerifyAddedItem(IOrderPresenter addedItem)
+  {</p>
+
+<pre><code>Assert.AreEqual(_order.Object.Id, addedItem.Id);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override List<IOrderPresenter> ListSnapshot()
+  {</p>
+
+<pre><code>return _presenter.GraphicalOrderList;
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
   public void ExecutedQuantityChangedShouldAddAnItem()
-  {
-    _strategy.Raise(x => x.ExecutedQuantityChanged += null, new ExecutedQuantityChangedEventArgs {Origin = _order.Object});
+  {</p>
 
-    VerifyItemWasAdded();
-  }
+<pre><code>_strategy.Raise(x =&gt; x.ExecutedQuantityChanged += null, new ExecutedQuantityChangedEventArgs {Origin = _order.Object});
+
+VerifyItemWasAdded();
+</code></pre>
+
+<p>  }
 }
 ```
-<p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p>
-
+<p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p></p>
 ]]></content>
   </entry>
   
@@ -457,7 +515,7 @@ public class LegacyTest : CleanOverridesTest
     <link href="http://philippe.bourgau.net/making-c-properties-first-class-objects/"/>
     <updated>2011-09-29T00:00:00+02:00</updated>
     <id>http://philippe.bourgau.net/making-c-properties-first-class-objects</id>
-    <content type="html"><![CDATA[<p>Functions and methods have a better status in the .Net world than they had in the Java world ... They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It's a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
+    <content type="html"><![CDATA[<p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
 <p>
 ```c#
 public event EventHandler NameChanged;
@@ -465,56 +523,70 @@ private string _name;
 public string Name
 {
   get
-  {
-    return _name;
-  }
+  {</p>
+
+<pre><code>return _name;
+</code></pre>
+
+<p>  }
   set
-  {
-    if (_name != value)
-    {
-      _name = value;
-      InvokeNameChanged();
-     }
-  }
+  {</p>
+
+<pre><code>if (_name != value)
+{
+  _name = value;
+  InvokeNameChanged();
+ }
+</code></pre>
+
+<p>  }
 }
-```
-<p />How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;T&gt; classes instances instead of raw properties.<p />
-```c#
+<code>
+&lt;p /&gt;How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&amp;lt;T&amp;gt; classes instances instead of raw properties.&lt;p /&gt;
+</code>c#
 class Presenter
 {
   public readonly Property<string> Name = new Property<string>();
 }
-```
-<p />The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :<p />
-```c#
+<code>
+&lt;p /&gt;The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :&lt;p /&gt;
+</code>c#
 public partial class MyForm : Form
 {
-  Presenter _presenter = new Presenter();
+  Presenter _presenter = new Presenter();</p>
 
-  public Form1()
-  {
-    InitializeComponent();
-  }
+<p>  public Form1()
+  {</p>
 
-  protected override void OnLoad(EventArgs e)
-   {
-    base.OnLoad(e);
+<pre><code>InitializeComponent();
+</code></pre>
 
-    AddBinding(textBox1, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
-    AddBinding(textBox2, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
-   }
+<p>  }</p>
 
-  void AddBinding<T>(Control control, string controlProperty, Property<T> property, bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode)
-  {
-    control.DataBindings.Add(controlProperty, property, "Value", formattingEnabled, dataSourceUpdateMode);
-   }
+<p>  protected override void OnLoad(EventArgs e)
+   {</p>
+
+<pre><code>base.OnLoad(e);
+
+AddBinding(textBox1, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+AddBinding(textBox2, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+</code></pre>
+
+<p>   }</p>
+
+<p>  void AddBinding<T>(Control control, string controlProperty, Property<T> property, bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode)
+  {</p>
+
+<pre><code>control.DataBindings.Add(controlProperty, property, "Value", formattingEnabled, dataSourceUpdateMode);
+</code></pre>
+
+<p>   }
 }
 ```
-<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be "Value", and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
+<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
 <ul>
 <li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
-<p>I hope this will help someone</p>
-
+<p>I hope this will help someone</p></p>
 ]]></content>
   </entry>
   

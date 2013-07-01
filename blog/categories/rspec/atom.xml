@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rspec | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rspec/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-07-01T20:32:15+02:00</updated>
+  <updated>2013-07-01T20:49:07+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -18,7 +18,7 @@
     <link href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/"/>
     <updated>2013-06-18T08:55:00+02:00</updated>
     <id>http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd</id>
-    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler's point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
+    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler&rsquo;s point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
 
 <ul>
 <li>test failures often pinpoint the falsy code</li>
@@ -35,13 +35,13 @@
 </ul>
 
 
-<p>That's what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
+<p>That&rsquo;s what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
 
 <ul>
 <li>extensive use of factories (with <a href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>) to simplify setup</li>
 <li>use of an <a href="http://www.sqlite.org/inmemorydb.html">in memory sqlite database</a> to get a fast full working db</li>
 <li>implement fully functional fakes for some parts of the system</li>
-<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown's thoughts on mocks</a>
+<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown&rsquo;s thoughts on mocks</a>
 
 <ul>
 <li>when a test is too slow</li>
@@ -61,7 +61,7 @@
 <p>With all this in place, it is most of the time possible to write straightforward tests. For example here, only real objects are used. @order gets its value when Order.create! is called.</p>
 
 <p>```ruby
-it "should create an order with the cart" do
+it &ldquo;should create an order with the cart&rdquo; do
   capture_result_from(Order, :create!, into: :order)</p>
 
 <p>  check_in_cart</p>
@@ -71,7 +71,7 @@ it "should create an order with the cart" do
 end
 ```</p>
 
-<p>Maybe I should swith to rr ...</p>
+<p>Maybe I should swith to rr &hellip;</p>
 ]]></content>
   </entry>
   
@@ -80,7 +80,7 @@ end
     <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
     <updated>2013-06-07T06:51:00+02:00</updated>
     <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
-    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it's a great testing framework.</p>
+    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&rsquo;s a great testing framework.</p>
 
 <p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
 
@@ -95,7 +95,7 @@ DEFAULT_BACKTRACE_PATTERNS = [
 ]
 </code></p>
 
-<p>Most of the time, that's great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as "method called with unexpected number of arguments" that does not refer to the code in the backtrace, but to some other library code ...</p>
+<p>Most of the time, that&rsquo;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &ldquo;method called with unexpected number of arguments&rdquo; that does not refer to the code in the backtrace, but to some other library code &hellip;</p>
 
 <p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
 
@@ -104,7 +104,7 @@ RSpec.configure do |config|</p>
 
 <p>  # RSpec automatically cleans stuff out of backtraces;
   # sometimes this is annoying when trying to debug something e.g. a gem
-  if ENV['FULLBACKTRACES'] == 'true'</p>
+  if ENV[&lsquo;FULLBACKTRACES&rsquo;] == &lsquo;true&rsquo;</p>
 
 <pre><code>config.backtrace_clean_patterns = []
 </code></pre>
@@ -129,9 +129,9 @@ FULLBACKTRACES=true bundle exec rspec spec
     <link href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/"/>
     <updated>2013-04-19T07:05:00+02:00</updated>
     <id>http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec</id>
-    <content type="html"><![CDATA[<p>Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?</p>
+    <content type="html"><![CDATA[<p>Rspec mocks now features a &lsquo;and_call_original&rsquo; method to create simple proxy mocks. But how could we build more complex proxies ?</p>
 
-<p>For the sake of the subject, let's take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You'd like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
+<p>For the sake of the subject, let&rsquo;s take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You&rsquo;d like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
 
 <p><code>ruby
 i = 0
@@ -165,32 +165,40 @@ end
     <link href="http://philippe.bourgau.net/order-of-execution-of-before-blocks-in-rspec/"/>
     <updated>2012-01-05T00:00:00+01:00</updated>
     <id>http://philippe.bourgau.net/order-of-execution-of-before-blocks-in-rspec</id>
-    <content type="html"><![CDATA[<p>I discovered that before blocks in RSpec's examples are executed in the order they are declared. There is no great deal about it, but it can be useful when using shared examples.<br />In rspec 1.3.8, it is possible to simulate shared examples with parameters by using instance variables instead. This is were it gets useful to know the order of evaluation of before blocks. As an example :<p />
+    <content type="html"><![CDATA[<p><p>I discovered that before blocks in RSpec&rsquo;s examples are executed in the order they are declared. There is no great deal about it, but it can be useful when using shared examples.<br />In rspec 1.3.8, it is possible to simulate shared examples with parameters by using instance variables instead. This is were it gets useful to know the order of evaluation of before blocks. As an example :<p />
 ```ruby
-shared_example_for "anything" do
-  before :each do
-    @thing.should_not be_nil
-  end
-end
+shared_example_for &ldquo;anything&rdquo; do
+  before :each do</p>
 
-describe "A monkey wrench" do
-  it_should_behave_like "anything"
-   before :each do
-    @thing = MonkeyWrench.new
-  end
+<pre><code>@thing.should_not be_nil
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>describe &ldquo;A monkey wrench&rdquo; do
+  it_should_behave_like &ldquo;anything&rdquo;
+   before :each do</p>
+
+<pre><code>@thing = MonkeyWrench.new
+</code></pre>
+
+<p>  end
+end
+<code>
+&lt;p /&gt;The previous example will fail, whereas the next one will succeed.&lt;p /&gt;
+</code>ruby
+describe &ldquo;A monkey wrench&rdquo; do
+  before :each do</p>
+
+<pre><code>@thing = MonkeyWrench.new
+</code></pre>
+
+<p>  end
+  it_should_behave_like &ldquo;anything&rdquo;
 end
 ```
-<p />The previous example will fail, whereas the next one will succeed.<p />
-```ruby
-describe "A monkey wrench" do
-  before :each do
-    @thing = MonkeyWrench.new
-  end
-  it_should_behave_like "anything"
-end
-```
-<p />That is the before blocks nested in shared examples still evaluate in the order of declaration.</p>
-
+<p />That is the before blocks nested in shared examples still evaluate in the order of declaration.</p></p>
 ]]></content>
   </entry>
   

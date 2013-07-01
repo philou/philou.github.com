@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-07-01T20:32:15+02:00</updated>
+  <updated>2013-07-01T20:49:07+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -18,7 +18,7 @@
     <link href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/"/>
     <updated>2013-07-01T20:20:00+02:00</updated>
     <id>http://philippe.bourgau.net/matching-meta-tags-with-capybara-2</id>
-    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(...) matches started to fail. Here was the message :</p>
+    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
 
 <p><code>
 expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)
@@ -35,7 +35,7 @@ meta_refresh_tags = Nokogiri::HTML(page.source).xpath("//meta[@http-equiv='refre
 expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
 </code></p>
 
-<p>I could do with something nicer, but it's ok for the moment.</p>
+<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
 ]]></content>
   </entry>
   
@@ -44,7 +44,7 @@ expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
     <link href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/"/>
     <updated>2013-06-18T08:55:00+02:00</updated>
     <id>http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd</id>
-    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler's point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
+    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler&rsquo;s point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
 
 <ul>
 <li>test failures often pinpoint the falsy code</li>
@@ -61,13 +61,13 @@ expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
 </ul>
 
 
-<p>That's what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
+<p>That&rsquo;s what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
 
 <ul>
 <li>extensive use of factories (with <a href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>) to simplify setup</li>
 <li>use of an <a href="http://www.sqlite.org/inmemorydb.html">in memory sqlite database</a> to get a fast full working db</li>
 <li>implement fully functional fakes for some parts of the system</li>
-<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown's thoughts on mocks</a>
+<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown&rsquo;s thoughts on mocks</a>
 
 <ul>
 <li>when a test is too slow</li>
@@ -87,7 +87,7 @@ expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
 <p>With all this in place, it is most of the time possible to write straightforward tests. For example here, only real objects are used. @order gets its value when Order.create! is called.</p>
 
 <p>```ruby
-it "should create an order with the cart" do
+it &ldquo;should create an order with the cart&rdquo; do
   capture_result_from(Order, :create!, into: :order)</p>
 
 <p>  check_in_cart</p>
@@ -97,7 +97,7 @@ it "should create an order with the cart" do
 end
 ```</p>
 
-<p>Maybe I should swith to rr ...</p>
+<p>Maybe I should swith to rr &hellip;</p>
 ]]></content>
   </entry>
   
@@ -106,7 +106,7 @@ end
     <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
     <updated>2013-06-07T06:51:00+02:00</updated>
     <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
-    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it's a great testing framework.</p>
+    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&rsquo;s a great testing framework.</p>
 
 <p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
 
@@ -121,7 +121,7 @@ DEFAULT_BACKTRACE_PATTERNS = [
 ]
 </code></p>
 
-<p>Most of the time, that's great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as "method called with unexpected number of arguments" that does not refer to the code in the backtrace, but to some other library code ...</p>
+<p>Most of the time, that&rsquo;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &ldquo;method called with unexpected number of arguments&rdquo; that does not refer to the code in the backtrace, but to some other library code &hellip;</p>
 
 <p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
 
@@ -130,7 +130,7 @@ RSpec.configure do |config|</p>
 
 <p>  # RSpec automatically cleans stuff out of backtraces;
   # sometimes this is annoying when trying to debug something e.g. a gem
-  if ENV['FULLBACKTRACES'] == 'true'</p>
+  if ENV[&lsquo;FULLBACKTRACES&rsquo;] == &lsquo;true&rsquo;</p>
 
 <pre><code>config.backtrace_clean_patterns = []
 </code></pre>
@@ -174,14 +174,14 @@ Sometimes we actually want to repeat the names though, either for clarity, or if
 <p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.
 ```ruby
 def main_account_name
-  @main_account_name ||= "credit"
+  @main_account_name ||= &ldquo;credit&rdquo;
 end
 def main_account_name=(account_name)
   @main_account_name ||= account_name
 end</p>
 
-<p>CAPTURE_ACCOUNT_NAME = Tranform(/<sup>(a|an|the)</sup> <em>(.</em>) account$/) do |_prefix, account_name|
-  if account_name == ""</p>
+<p>CAPTURE_ACCOUNT_NAME = Tranform(/^(a|an|the) <em>(.</em>) account$/) do |_prefix, account_name|
+  if account_name == &ldquo;&rdquo;</p>
 
 <pre><code>main_account_name
 </code></pre>
@@ -196,18 +196,18 @@ end
 <code>
 When creating the account, I added some code to set the main_account_name
 </code>ruby
-Given(/<sup>(#{CAPTURE_ACCOUNT_NAME})</sup> with (\d+)€$/) do |account_name, amount|
-  ...
+Given(/^(#{CAPTURE_ACCOUNT_NAME}) with (\d+)€$/) do |account_name, amount|
+  &hellip;
   self.main_account_name= account_name
 end
 <code>
 It is then possible to write steps like
 </code>
-When(/<sup>I</sup> withdraw (\d+)€ from (#{CAPTURE_ACCOUNT_NAME})$/) do |amount, account_name|
-  ...
+When(/^I withdraw (\d+)€ from (#{CAPTURE_ACCOUNT_NAME})$/) do |amount, account_name|
+  &hellip;
 end
 ```
-that will match both "the deposit account" and "the account" depending on context.</p>
+that will match both &ldquo;the deposit account&rdquo; and &ldquo;the account&rdquo; depending on context.</p>
 
 <p>It would be really nice to be able to write things like
 <code>gherkin
@@ -222,24 +222,24 @@ but because of the <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-
     <link href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/"/>
     <updated>2013-05-08T08:36:00+02:00</updated>
     <id>http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot</id>
-    <content type="html"><![CDATA[<p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place ... Even completly unrelated scenarios were failing ...</p>
+    <content type="html"><![CDATA[<p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &hellip; Even completly unrelated scenarios were failing &hellip;</p>
 
-<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the "Transforms wisdom" section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &ldquo;Transforms wisdom&rdquo; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
 
 <p>For example</p>
 
 <p>```ruby
-CAPTURE_NUMBER = Transform /<sup>.*$/</sup> do |digits|
+CAPTURE_NUMBER = Transform /^.*$/ do |digits|
   Float(digits)
 end</p>
 
-<p>When /<sup>I</sup> withdraw (#{CAPTURE_NUMBER}) from "([<sup>"]+)"$/</sup> do |amount, bank_name|
+<p>When /^I withdraw (#{CAPTURE_NUMBER}) from &ldquo;([^&rdquo;]+)&ldquo;$/ do |amount, bank_name|
   bank = Bank.find_by_name(bank_name)
   bank.withdraw(amount)
 end
 ```</p>
 
-<p>will match the bank name with CAPTURE_NUMBER, and you'll get an "invalid value for Float" error.</p>
+<p>will match the bank name with CAPTURE_NUMBER, and you&rsquo;ll get an &ldquo;invalid value for Float&rdquo; error.</p>
 ]]></content>
   </entry>
   

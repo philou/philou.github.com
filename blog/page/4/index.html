@@ -109,7 +109,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation &#8230;<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
+  <div class="entry-content"><p><p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation &hellip;<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -139,28 +139,28 @@
 <span class='line-number'>27</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">ListBuilder</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">private</span> <span class="k">readonly</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">_internalList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
-</span><span class='line'>  <span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">_listSnapshot</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
-</span><span class='line'>  <span class="k">private</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n">_locker</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
+</span><span class='line'>  <span class="k">private</span> <span class="k">readonly</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n"><em>internalList</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n"></em>listSnapshot</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;();</span>
+</span><span class='line'>  <span class="k">private</span> <span class="k">readonly</span> <span class="kt">object</span> <span class="n"><em>locker</span> <span class="p">=</span> <span class="k">new</span> <span class="kt">object</span><span class="p">();</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">ListSnapshot</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">lock</span> <span class="p">(</span><span class="n">_locker</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">lock</span> <span class="p">(</span><span class="n"></em>locker</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n">_listSnapshot</span><span class="p">.</span><span class="n">Count</span> <span class="p">!=</span> <span class="n">_internalList</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="p">(</span><span class="n"><em>listSnapshot</span><span class="p">.</span><span class="n">Count</span> <span class="p">!=</span> <span class="n"></em>internalList</span><span class="p">.</span><span class="n">Count</span><span class="p">)</span>
 </span><span class='line'>      <span class="p">{</span>
-</span><span class='line'>        <span class="n">_listSnapshot</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">_internalList</span><span class="p">);</span>
+</span><span class='line'>        <span class="n"><em>listSnapshot</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n"></em>internalList</span><span class="p">);</span>
 </span><span class='line'>      <span class="p">}</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_listSnapshot</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n"><em>listSnapshot</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">Add</span><span class="p">(</span><span class="n">T</span> <span class="n">newItem</span><span class="p">)</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">lock</span> <span class="p">(</span><span class="n">_locker</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">lock</span> <span class="p">(</span><span class="n"></em>locker</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="n">_internalList</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
+</span><span class='line'>      <span class="n"><em>internalList</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">newItem</span><span class="p">);</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
@@ -284,17 +284,17 @@
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">ADDED_ITEM</span> <span class="p">=</span> <span class="s">&quot;toto&quot;</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="k">private</span> <span class="n">ListBuilder</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">_appender</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">ListBuilder</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n"></em>appender</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="na">  [SetUp]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_appender</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ListBuilder</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
+</span><span class='line'>    <span class="n"><em>appender</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ListBuilder</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AddAnItem</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_appender</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">ADDED_ITEM</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"></em>appender</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">ADDED_ITEM</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerifyAddedItem</span><span class="p">(</span><span class="kt">string</span> <span class="n">addedItem</span><span class="p">)</span>
 </span><span class='line'>  <span class="p">{</span>
@@ -303,7 +303,7 @@
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">ListCopy</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_appender</span><span class="p">.</span><span class="n">ListSnapshot</span><span class="p">();</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n"><em>appender</span><span class="p">.</span><span class="n">ListSnapshot</span><span class="p">();</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -345,35 +345,35 @@
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[TestFixture]</span>
 </span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">OrderPresenterAsExecListBuilderTest</span> <span class="p">:</span> <span class="n">ListBuilderContractTest</span><span class="p">&lt;</span><span class="n">IExecRowPresenter</span><span class="p">&gt;</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">private</span> <span class="n">OrderPresenter</span> <span class="n">_presenter</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">private</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IExec</span><span class="p">&gt;</span> <span class="n">_exec</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">OrderPresenter</span> <span class="n"></em>presenter</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IExec</span><span class="p">&gt;</span> <span class="n"><em>exec</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="na">  [SetUp]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_exec</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IExec</span><span class="p">&gt;();</span>
-</span><span class='line'>    <span class="n">_exec</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Id</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;an exec&quot;</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">_exec</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Price</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">123.456</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">_exec</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Quantity</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">36</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"></em>exec</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IExec</span><span class="p">&gt;();</span>
+</span><span class='line'>    <span class="n"><em>exec</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Id</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;an exec&quot;</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"></em>exec</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Price</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">123.456</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"><em>exec</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Quantity</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">36</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">_presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">OrderPresenter</span><span class="p">();</span>
+</span><span class='line'>    <span class="n"></em>presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">OrderPresenter</span><span class="p">();</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AddAnItem</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_presenter</span><span class="p">.</span><span class="n">AddExec</span><span class="p">(</span><span class="n">_exec</span><span class="p">.</span><span class="n">Object</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"><em>presenter</span><span class="p">.</span><span class="n">AddExec</span><span class="p">(</span><span class="n"></em>exec</span><span class="p">.</span><span class="n">Object</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerifyAddedItem</span><span class="p">(</span><span class="n">IExecRowPresenter</span> <span class="n">addedItem</span><span class="p">)</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n">_exec</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Id</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n">_exec</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n">_exec</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Quantity</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n"><em>exec</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Id</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n"></em>exec</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Price</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Price</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n"><em>exec</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Quantity</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Quantity</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IExecRowPresenter</span><span class="p">&gt;</span> <span class="n">ListSnapshot</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">GraphicalExecs</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n"></em>presenter</span><span class="p">.</span><span class="n">GraphicalExecs</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -423,48 +423,47 @@
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[TestFixture]</span>
 </span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">StrategyPresenterAsOrderPresenterListBuilderTest</span> <span class="p">:</span> <span class="n">ListBuilderContractTest</span><span class="p">&lt;</span><span class="n">IOrderPresenter</span><span class="p">&gt;</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">private</span> <span class="n">StrategyPresenter</span> <span class="n">_presenter</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">private</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IStrategy</span><span class="p">&gt;</span> <span class="n">_strategy</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">private</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IOrder</span><span class="p">&gt;</span> <span class="n">_order</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">StrategyPresenter</span> <span class="n"><em>presenter</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IStrategy</span><span class="p">&gt;</span> <span class="n"></em>strategy</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">private</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IOrder</span><span class="p">&gt;</span> <span class="n"><em>order</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="na">  [SetUp]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_strategy</span><span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IStrategy</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">DefaultValue</span> <span class="p">=</span> <span class="n">DefaultValue</span><span class="p">.</span><span class="n">Mock</span> <span class="p">};</span>
+</span><span class='line'>    <span class="n"></em>strategy</span><span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IStrategy</span><span class="p">&gt;</span> <span class="p">{</span> <span class="n">DefaultValue</span> <span class="p">=</span> <span class="n">DefaultValue</span><span class="p">.</span><span class="n">Mock</span> <span class="p">};</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">_order</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IOrder</span><span class="p">&gt;();</span>
-</span><span class='line'>    <span class="n">_order</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Id</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"><em>order</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&lt;</span><span class="n">IOrder</span><span class="p">&gt;();</span>
+</span><span class='line'>    <span class="n"></em>order</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Id</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">123</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">_presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StrategyPresenter</span><span class="p">(</span><span class="n">_strategy</span><span class="p">.</span><span class="n">Object</span><span class="p">);</span>
+</span><span class='line'>    <span class="n"><em>presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StrategyPresenter</span><span class="p">(</span><span class="n"></em>strategy</span><span class="p">.</span><span class="n">Object</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">AddAnItem</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_strategy</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">SentQuantityChanged</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span> <span class="k">new</span> <span class="n">SentQuantityChangedEventArgs</span> <span class="p">{</span><span class="n">Origin</span> <span class="p">=</span> <span class="n">_order</span><span class="p">.</span><span class="n">Object</span><span class="p">});</span>
+</span><span class='line'>    <span class="n"><em>strategy</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">SentQuantityChanged</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span> <span class="k">new</span> <span class="n">SentQuantityChangedEventArgs</span> <span class="p">{</span><span class="n">Origin</span> <span class="p">=</span> <span class="n"></em>order</span><span class="p">.</span><span class="n">Object</span><span class="p">});</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">VerifyAddedItem</span><span class="p">(</span><span class="n">IOrderPresenter</span> <span class="n">addedItem</span><span class="p">)</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n">_order</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Id</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">Assert</span><span class="p">.</span><span class="n">AreEqual</span><span class="p">(</span><span class="n"><em>order</span><span class="p">.</span><span class="n">Object</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span> <span class="n">addedItem</span><span class="p">.</span><span class="n">Id</span><span class="p">);</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">IOrderPresenter</span><span class="p">&gt;</span> <span class="n">ListSnapshot</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">GraphicalOrderList</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n"></em>presenter</span><span class="p">.</span><span class="n">GraphicalOrderList</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'>
 </span><span class='line'><span class="na">  [Test]</span>
 </span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">ExecutedQuantityChangedShouldAddAnItem</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">_strategy</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">ExecutedQuantityChanged</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span> <span class="k">new</span> <span class="n">ExecutedQuantityChangedEventArgs</span> <span class="p">{</span><span class="n">Origin</span> <span class="p">=</span> <span class="n">_order</span><span class="p">.</span><span class="n">Object</span><span class="p">});</span>
+</span><span class='line'>    <span class="n"><em>strategy</span><span class="p">.</span><span class="n">Raise</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">ExecutedQuantityChanged</span> <span class="p">+=</span> <span class="k">null</span><span class="p">,</span> <span class="k">new</span> <span class="n">ExecutedQuantityChangedEventArgs</span> <span class="p">{</span><span class="n">Origin</span> <span class="p">=</span> <span class="n"></em>order</span><span class="p">.</span><span class="n">Object</span><span class="p">});</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="n">VerifyItemWasAdded</span><span class="p">();</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p>
-
+<p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p></p>
 </div>
   
   
@@ -500,7 +499,7 @@
   </header>
 
 
-  <div class="entry-content"><p>When trying to use devise 1.0.11 with rails 2.3.8 and bundler 1.0.10, I got the error &quot;could not find generator &#8230;&quot; when running bundle exec script/generate devise_install &#8230; After reading <a href="http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8" target="_blank">http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8</a> I ended up copying the file manually !<p /> I hope this is fixed in rails 3, I am looking forward to migrate.</p>
+  <div class="entry-content"><p>When trying to use devise 1.0.11 with rails 2.3.8 and bundler 1.0.10, I got the error &quot;could not find generator &hellip;&quot; when running bundle exec script/generate devise_install &hellip; After reading <a href="http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8" target="_blank"><a href="http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8">http://stackoverflow.com/questions/3366508/couldnt-find-devise-install-generator-rails-2-3-8-devise-1-0-8</a></a> I ended up copying the file manually !<p /> I hope this is fixed in rails 3, I am looking forward to migrate.</p>
 </div>
   
   
@@ -536,7 +535,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Don&#39;t waste your time as I did !<p />If ever you get a dependency gem version error when deploying to a new heroku test app, before starting to mess up your Gemfile configuration, check that the heroku stack of your new app is what you are expecting &#8230;</p>
+  <div class="entry-content"><p>Don&#39;t waste your time as I did !<p />If ever you get a dependency gem version error when deploying to a new heroku test app, before starting to mess up your Gemfile configuration, check that the heroku stack of your new app is what you are expecting &hellip;</p>
 </div>
   
   
@@ -572,7 +571,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
+  <div class="entry-content"><p><p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -585,10 +584,9 @@
 </span><span class='line'>  /rss</span></code></pre></td></tr></table></div></figure>
 <p />and that you want to use the following tag in your rss file<p />
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;r:find</span> <span class="na">url=</span><span class="s">&quot;/newsletters/&quot;</span><span class="nt">&gt;</span> ... <span class="nt">&lt;/r:find&gt;</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;r:find</span> <span class="na">url=</span><span class="s">&quot;/newsletters/&quot;</span><span class="nt">&gt;</span> &hellip; <span class="nt">&lt;/r:find&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />r:find won&#8217;t find newsletters because it is hidden, it has to be published to be found.</p>
-
+<p />r:find won&rsquo;t find newsletters because it is hidden, it has to be published to be found.</p></p>
 </div>
   
   
@@ -624,7 +622,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Here is an example showing the issue :<p />
+  <div class="entry-content"><p><p>Here is an example showing the issue :<p />
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -662,8 +660,7 @@
 </span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
-<p /> I am using rspec 1.3.0. Did you fall into the same issues ? Is this fixed in rspec 2 ?</p>
-
+<p /> I am using rspec 1.3.0. Did you fall into the same issues ? Is this fixed in rspec 2 ?</p></p>
 </div>
   
   
@@ -970,7 +967,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Functions and methods have a better status in the .Net world than they had in the Java world &#8230; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&#8217;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
+  <div class="entry-content"><p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
 <p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -990,18 +987,18 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">event</span> <span class="n">EventHandler</span> <span class="n">NameChanged</span><span class="p">;</span>
-</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n">_name</span><span class="p">;</span>
+</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n"><em>name</span><span class="p">;</span>
 </span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="k">get</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">_name</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n"></em>name</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>  <span class="k">set</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">_name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n"><em>name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="n">_name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+</span><span class='line'>      <span class="n"></em>name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
 </span><span class='line'>      <span class="n">InvokeNameChanged</span><span class="p">();</span>
 </span><span class='line'>     <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
@@ -1042,7 +1039,7 @@
 <span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">MyForm</span> <span class="p">:</span> <span class="n">Form</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">Presenter</span> <span class="n">_presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
+</span><span class='line'>  <span class="n">Presenter</span> <span class="n"><em>presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
@@ -1053,7 +1050,7 @@
 </span><span class='line'>   <span class="p">{</span>
 </span><span class='line'>    <span class="k">base</span><span class="p">.</span><span class="n">OnLoad</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n"></em>presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox2</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
 </span><span class='line'>   <span class="p">}</span>
 </span><span class='line'>
@@ -1063,11 +1060,10 @@
 </span><span class='line'>   <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &#8220;Value&#8221;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
+<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
 <ul>
 <li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
-<p>I hope this will help someone</p>
-
+<p>I hope this will help someone</p></p>
 </div>
   
   
@@ -1149,7 +1145,7 @@
 </ul>
 
 
-<p>When I can, I&#8217;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
+<p><p>When I can, I&rsquo;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>rake radiant:extensions:tags:install
 </span></code></pre></td></tr></table></div></figure>
@@ -1158,8 +1154,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;#Gem.searcher.find(&#39;radiant-tags-extension&#39;).full_gem_path}/lib/tasks/*.rake&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">ext</span><span class="o">|</span> <span class="nb">load</span> <span class="n">ext</span> <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
-
+</p></p>
 </div>
   
   
