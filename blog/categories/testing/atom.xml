@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-06-30T09:15:31+02:00</updated>
+  <updated>2013-07-01T20:32:15+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Matching meta tags with Capybara 2]]></title>
+    <link href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/"/>
+    <updated>2013-07-01T20:20:00+02:00</updated>
+    <id>http://philippe.bourgau.net/matching-meta-tags-with-capybara-2</id>
+    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(...) matches started to fail. Here was the message :</p>
+
+<p><code>
+expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)
+</code></p>
+
+<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :
+<code>ruby
+expect(response).to have_title('My page')
+</code></p>
+
+<p>To match meta tags, I had to resort to the following :
+<code>ruby
+meta_refresh_tags = Nokogiri::HTML(page.source).xpath("//meta[@http-equiv='refresh']")
+expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
+</code></p>
+
+<p>I could do with something nicer, but it's ok for the moment.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hitting the middle ground between classicist and mockist TDD]]></title>
@@ -214,29 +240,6 @@ end
 ```</p>
 
 <p>will match the bank name with CAPTURE_NUMBER, and you'll get an "invalid value for Float" error.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to stub around a call to the original method with rspec ?]]></title>
-    <link href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/"/>
-    <updated>2013-04-19T07:05:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec</id>
-    <content type="html"><![CDATA[<p>Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?</p>
-
-<p>For the sake of the subject, let's take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You'd like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
-
-<p><code>ruby
-i = 0
-original_get = Net::HTTP.method(:get)
-Net::HTTP.stub(:get) do |*args, &amp;block|
-  i = i+1
-  raise RuntimeError.new("network down") if i%3 == 0
-  original_get.call(*args, &amp;block)
-end
-</code></p>
-
-<p>Note the block is taken into account, in this example, it does not matter so much, but forgetting it can bring up really strange issues.</p>
 ]]></content>
   </entry>
   

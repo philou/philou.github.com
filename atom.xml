@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-06-30T09:15:31+02:00</updated>
+  <updated>2013-07-01T20:31:37+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Matching meta tags with Capybara 2]]></title>
+    <link href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/"/>
+    <updated>2013-07-01T20:20:00+02:00</updated>
+    <id>http://philippe.bourgau.net/matching-meta-tags-with-capybara-2</id>
+    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(&#8230;) matches started to fail. Here was the message :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To match meta tags, I had to resort to the following :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I could do with something nicer, but it&#8217;s ok for the moment.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Hitting the middle ground between classicist and mockist TDD]]></title>
@@ -879,135 +910,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 <p>Fixes and improvements are welcome.</p>
 
 </div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting up Postgre 9.1 for rails development]]></title>
-    <link href="http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development/"/>
-    <updated>2012-05-28T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development</id>
-    <content type="html"><![CDATA[<p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
-
-
-<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">## packages dependencies</span>
-</span><span class='line'> sudo apt-get install libxml2-dev libxslt1-dev postgresql libpq-dev sqlite3 libsqlite3-dev
-</span><span class='line'>
-</span><span class='line'><span class="c">## installing gems</span>
-</span><span class='line'> bundle install   rbenv rehash
-</span><span class='line'>
-</span><span class='line'><span class="c">## creating dbs</span>
-</span><span class='line'> sudo -u postgres createuser --superuser mes_courses
-</span><span class='line'> sudo -u postgres psql --command<span class="o">=</span><span class="s2">&quot;alter user mes_courses with encrypted password &#39;secret&#39;&quot;</span>
-</span><span class='line'> sudo sed -i <span class="s1">&#39;s/\(local *all *all *\)peer/\1md5/&#39;</span> /etc/postgresql/9.1/main/pg_hba.conf
-</span><span class='line'> bundle <span class="nb">exec </span>rake db:create:all
-</span><span class='line'>
-</span><span class='line'><span class="c">## initializing dbs</span>
-</span><span class='line'> bundle <span class="nb">exec </span>rake db:migrate
-</span><span class='line'> <span class="nv">RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>bundle <span class="nb">exec </span>rake db:migrate
-</span><span class='line'> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>rake db:migrate
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>Here is the corresponding config/database.yml</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'> <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_development</span>
-</span><span class='line'> <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'> <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'> <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'> <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'> <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'> <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'> <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'> <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_test</span>
-</span><span class='line'> <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'> <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'> <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'> <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'> <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'> <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'> <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'> <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_production</span>
-</span><span class='line'> <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'> <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'> <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'> <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'> <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'> <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'> <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>Hope this helps !</p>
 
 ]]></content>
   </entry>

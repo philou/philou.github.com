@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>There can be only one css stylesheet per media - Philippe Bourgau's blog</title>
+  <title>Matching meta tags with Capybara 2 - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="I thought it was a good idea to specify a media in my stylesheet link : 1
-&lt;link rel=&quot;stylesheet&quot; href=&quot;/stylesheets/tags.css&quot; &hellip;">
+  <meta name="description" content="As I updated my bundle, some capybara have_selector(&#8230;) matches started to fail. Here was the message : 1
+expected to find xpath "//meta[@http- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/there-can-be-only-one-css-stylesheet-per-medi/">
+  <link rel="canonical" href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -84,7 +84,7 @@
   
   <header>
     
-      <h1 class="entry-title">There Can Be Only One Css Stylesheet Per Media</h1>
+      <h1 class="entry-title">Matching Meta Tags With Capybara 2</h1>
     
     
       <p class="meta">
@@ -100,31 +100,36 @@
   
 
 
-<time datetime="2011-09-21T00:00:00+02:00" pubdate data-updated="true">Sep 21<span>st</span>, 2011</time>
+<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I thought it was a good idea to specify a media in my stylesheet link : <br />
+<div class="entry-content"><p>As I updated my bundle, some capybara have_selector(&#8230;) matches started to fail. Here was the message :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/tags.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;tags stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>but when I tried to add another stylesheet, it was ignored ! <br />
+<p>To match meta tags, I had to resort to the following :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/common.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;main stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/tags.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;tags stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>It worked by removing the media attribute. It seems that only one <br />stylesheet per media is taken into account.</p>
-
+<p>I could do with something nicer, but it&#8217;s ok for the moment.</p>
 </div>
 
 
@@ -147,12 +152,12 @@
   
 
 
-<time datetime="2011-09-21T00:00:00+02:00" pubdate data-updated="true">Sep 21<span>st</span>, 2011</time>
+<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/css/'>css</a>
+    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>, <a class='category' href='/blog/categories/web/'>web</a>
   
 </span>
 
@@ -161,7 +166,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/there-can-be-only-one-css-stylesheet-per-medi/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/there-can-be-only-one-css-stylesheet-per-medi/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -174,8 +179,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/" title="Previous Post: Hitting the middle ground between classicist and mockist TDD">&laquo; Hitting the middle ground between classicist and mockist TDD</a>
       
-        <a class="basic-alignment right" href="/using-gems-instead-of-rails-plugins-on-heroku/" title="Next Post: Using gems instead of rails plugins on heroku">Using gems instead of rails plugins on heroku &raquo;</a>
       
     </p>
   </footer>
@@ -288,8 +293,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/there-can-be-only-one-css-stylesheet-per-medi/';
-        var disqus_url = 'http://philippe.bourgau.net/there-can-be-only-one-css-stylesheet-per-medi/';
+        var disqus_identifier = 'http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/';
+        var disqus_url = 'http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/';
         var disqus_script = 'embed.js';
       
     (function () {
