@@ -9,8 +9,7 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message : 1
-expected to find xpath "//meta[@http- &hellip;">
+  <meta name="description" content="I have been using autotest for 2 years, and it&rsquo;s been great ! The first time I ran it I thought &ldquo;This rocks !&rdquo; and I have always &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +83,95 @@ expected to find xpath "//meta[@http- &hellip;">
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/ditching-autotest-for-guard/">Ditching Autotest for Guard</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-03T06:35:00+02:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have been using <a href="https://github.com/grosser/autotest">autotest</a> for 2 years, and it&rsquo;s been great ! The first time I ran it I thought &ldquo;This rocks !&rdquo; and I have always been using it since &hellip;</p>
+
+<p>A little later I read the book <a href="http://pragprog.com/book/rcctr/continuous-testing">Continuous Testing: with Ruby, Rails and JavaScript</a> and it suggested to use <a href="https://github.com/mynyml/watchr">watchr</a> instead. I never switched, partly because I did not take the time, and partly because watchr seemed to need quite a bit of manual configuration. Then, while contributing to other gems, I stumbled upon <a href="https://github.com/guard/guard">guard</a> and this one seemed great.</p>
+
+<p>Switching to guard was in fact very simple, It took about 15 minutes, a lot less than the time I had spent configuring or tweaking autotest. I simply added these to my Gemfile</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-rspec&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-cucumber&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I ran the install steps, and everything was working ! It&rsquo;s a shame I did not do the change earlier.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/be-careful-not-to-bundle-fakeweb-in-production/">Be Careful Not to Bundle FakeWeb in Production</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-03T06:31:00+02:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For testing purpose, I added <a href="https://github.com/chrisk/fakeweb">FakeWeb</a> to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with some strange Net::HTTPForbidden were occuring after about 90 minutes of scrapping, with no clear reason. It turned that I had mistakenly added FakeWeb to all environments, and that just removing it fixed the issue !</p>
+
+<p>As it is working now, I didn&rsquo;t take the time to dig deeper into it &hellip;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -659,130 +747,6 @@ expected to find xpath "//meta[@http- &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/1-rule-for-monitoring-emails/">#1 Rule for Monitoring Emails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-22T00:00:00+01:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just spent a few hours debugging my rails app on heroku to understand why the hell I did not systematicaly receive the monitoring emails that my app was sending &#8230;</p>
-
-
-<p>My app was actually rendering the email template.</p>
-
-
-<p>Wether the mail came through actually dependend on the mail content !</p>
-
-
-<p>It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from &#8216;ovh&#8217; and then forwarding emails to my gmail account, it was handy to apply automatic labels.</p>
-
-
-<p>Here is the #1 rule : always send your monitoring emails directly to the final recepient ! There will be less risk that some messages get lost.&nbsp;</p>
-
-
-<p>I changed the recipient to my gmail address, updated my label filter, and everything is back to normal (a lot of time lost for nothing).</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/the-poor-mans-memory-profiling/">The Poor Man&#8217;s Memory Profiling</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-01T00:00:00+01:00" pubdate data-updated="true">Feb 1<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
-
-
-<p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
-
-
-<ul>
-<li>write a unit test for this</li>
-<li>run the task once to warm up the memory</li>
-<li>run the task once for some small sample input and note the peak memory usage</li>
-<li>run the task once for some large sample input and note the peak memory usage</li>
-<li>check that the memory usages are very close, whatever the size of the inputs</li>
-</ul>
-
-
-<p>Everything there is quite straightforward, appart from &#8220;note the peak memory usage&#8221;. Here is what I came up with</p>
-
-
-<ul>
-<li>note the initial memory usage</li>
-<li>start a thread that garbage collects and notes the memory usage every 10 ms</li>
-<li>process the data</li>
-<li>tell the thread to stop</li>
-<li>memory usage is the difference between the maximum and initial memory usages</li>
-</ul>
-
-
-<p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
-
-
-<p>
-<script src="https://gist.github.com/4696311.js"></script>
-</p>
-
-
-<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it&#8217;s actually enough for our purpose.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -815,6 +779,14 @@ expected to find xpath "//meta[@http- &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/ditching-autotest-for-guard/">Ditching autotest for guard</a>
+      </li>
+    
+      <li class="post">
+        <a href="/be-careful-not-to-bundle-fakeweb-in-production/">Be careful not to bundle FakeWeb in production</a>
+      </li>
+    
+      <li class="post">
         <a href="/matching-meta-tags-with-capybara-2/">Matching meta tags with Capybara 2</a>
       </li>
     
@@ -824,14 +796,6 @@ expected to find xpath "//meta[@http- &hellip;">
     
       <li class="post">
         <a href="/display-full-backtraces-in-rspec/">Display full backtraces in rspec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t repeat names in cucumber scenarios</a>
-      </li>
-    
-      <li class="post">
-        <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If new cucumber transform breaks everyhing &#8230;</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can &hellip;">
+  <meta name="description" content="While I was looking for photos for an article on&nbsp; blog for mes-courses.fr, I found this site : http://www.photo-libre.fr. There are a lot of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +83,119 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/a-nice-place-to-find-free-pictures-for-my-web/">A Useful Link to Find Free Pictures</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-11T00:00:00+01:00" pubdate data-updated="true">Jan 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>While I was looking for photos for an article on&nbsp; <a href="http://www.mes-courses.fr/blog">blog for mes-courses.fr</a>, I found this site : <a href="http://www.photo-libre.fr">http://www.photo-libre.fr</a>. There are a lot of pictures, both &euro; free and royalties free. All that is asked for is a backing to <a href="http://www.photo-libre.fr/">http://www.photo-libre.fr</a>.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/order-of-execution-of-before-blocks-in-rspec/">Order of Execution of Before Blocks in RSpec</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-05T00:00:00+01:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>I discovered that before blocks in RSpec&rsquo;s examples are executed in the order they are declared. There is no great deal about it, but it can be useful when using shared examples.<br />In rspec 1.3.8, it is possible to simulate shared examples with parameters by using instance variables instead. This is were it gets useful to know the order of evaluation of before blocks. As an example :<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">shared_example_for</span> <span class="s2">&quot;anything&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>    <span class="vi">@thing</span><span class="o">.</span><span class="n">should_not</span> <span class="n">be_nil</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s2">&quot;A monkey wrench&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">it_should_behave_like</span> <span class="s2">&quot;anything&quot;</span>
+</span><span class='line'>   <span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>    <span class="vi">@thing</span> <span class="o">=</span> <span class="no">MonkeyWrench</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p />The previous example will fail, whereas the next one will succeed.<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s2">&quot;A monkey wrench&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>    <span class="vi">@thing</span> <span class="o">=</span> <span class="no">MonkeyWrench</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="n">it_should_behave_like</span> <span class="s2">&quot;anything&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p />That is the before blocks nested in shared examples still evaluate in the order of declaration.</p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1074,97 +1187,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/radiant-v091-incompatibility-with-radiant-tag/">Radiant v0.9.1 Incompatibility With Radiant-tags-extension ~> 1.6.2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-28T00:00:00+02:00" pubdate data-updated="true">Sep 28<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I was getting  an &quot;undefined method &#39;find_by_path&#39;&quot; error when using &lt;r:related_by_tags&gt;.<br /> I rolled back to radiant-tags-extension v1.6.1 and it was fixed.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/using-gems-instead-of-rails-plugins-on-heroku/">Using Gems Instead of Rails Plugins on Heroku</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-22T00:00:00+02:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you&#8217;ve got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules &#8230; You are left with 2 choices :</p>
-
-
-<ul>
-<li>Expand the submodule as classical files in your main git repository</li>
-<li>Use the extension or plugin as a gem (if possible)</li>
-</ul>
-
-
-<p><p>When I can, I&rsquo;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake radiant:extensions:tags:install
-</span></code></pre></td></tr></table></div></figure>
-<p />I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
-<p>in &lt;railsapproot&gt;/lib/tasks/gems.rake<br />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;#Gem.searcher.find(&#39;radiant-tags-extension&#39;).full_gem_path}/lib/tasks/*.rake&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">ext</span><span class="o">|</span> <span class="nb">load</span> <span class="n">ext</span> <span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-</p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1199,6 +1221,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/ditching-autotest-for-guard/">Ditching autotest for guard</a>
+      </li>
+    
+      <li class="post">
+        <a href="/be-careful-not-to-bundle-fakeweb-in-production/">Be careful not to bundle FakeWeb in production</a>
+      </li>
+    
+      <li class="post">
         <a href="/matching-meta-tags-with-capybara-2/">Matching meta tags with Capybara 2</a>
       </li>
     
@@ -1208,14 +1238,6 @@
     
       <li class="post">
         <a href="/display-full-backtraces-in-rspec/">Display full backtraces in rspec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t repeat names in cucumber scenarios</a>
-      </li>
-    
-      <li class="post">
-        <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If new cucumber transform breaks everyhing &#8230;</a>
       </li>
     
   </ul>
