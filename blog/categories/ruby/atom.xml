@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-07-04T07:05:51+02:00</updated>
+  <updated>2013-07-04T09:15:45+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jasmine and coffeescript setup for rails]]></title>
+    <link href="http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails/"/>
+    <updated>2013-07-04T07:44:00+02:00</updated>
+    <id>http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails</id>
+    <content type="html"><![CDATA[<p>As I started to write more javascript code in my <a href="https://www.mes-courses.fr">rails app</a>, it became obvious that I should be testing it ! I wanted to use <a href="http://pivotal.github.io/jasmine/">jasmine</a> and <a href="http://coffeescript.org">coffeescript</a>. I searched a long time to find out what was the most common and supported setup for a rails app, so now I recommand</p>
+
+<p><code>ruby
+gem 'jasmine'
+gem 'jasminerice'
+gem 'guard-jasmine'
+</code></p>
+
+<ul>
+<li>The <a href="https://github.com/pivotal/jasmine-gem">jasmine gem</a> is by far the most common jasmine gem, it is supported by <a href="http://pivotallabs.com">Pivotal Labs</a> so there is no fear of it being droped soon.</li>
+<li>The <a href="https://github.com/netzpirat/guard-jasmine">guard-jasmin gem</a> is supported by <a href="https://mksoft.ch">MKSoft</a>, and is not only handling continuous <a href="http://phantomjs.org/">phantomjs</a> headless jasmine testing through guard, but it also provides command line and rake tools to run your jasmine specs during continuous integration.</li>
+<li>Eventually, the <a href="https://github.com/bradphelan/jasminerice">jasminerice gem</a> makes it easy to write your jasmine specs with coffeescript. It also wraps a version of <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> to assist client javascript testing. Although there is a &ldquo;looking for maintainer&rdquo; message on the README page, there are some recent commits, so it seems that pull requests are still being merged even if the project is not actively developpped anymore &hellip; I belive volunteers are welcome.</li>
+</ul>
+
+
+<p>All 3 have detailed and up to date setup and usage instructions.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ditching autotest for guard]]></title>
@@ -128,55 +152,6 @@ end
 ```</p>
 
 <p>Maybe I should swith to rr &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
-    <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
-    <updated>2013-06-07T06:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
-    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&rsquo;s a great testing framework.</p>
-
-<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
-
-<p><code>ruby
-DEFAULT_BACKTRACE_PATTERNS = [
-  /\/lib\d*\/ruby\//,
-  /org\/jruby\//,
-  /bin\//,
-  %r|/gems/|,
-  /spec\/spec_helper\.rb/,
-  /lib\/rspec\/(core|expectations|matchers|mocks)/
-]
-</code></p>
-
-<p>Most of the time, that&rsquo;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &ldquo;method called with unexpected number of arguments&rdquo; that does not refer to the code in the backtrace, but to some other library code &hellip;</p>
-
-<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
-
-<p>```ruby
-RSpec.configure do |config|</p>
-
-<p>  # RSpec automatically cleans stuff out of backtraces;
-  # sometimes this is annoying when trying to debug something e.g. a gem
-  if ENV[&lsquo;FULLBACKTRACES&rsquo;] == &lsquo;true&rsquo;</p>
-
-<pre><code>config.backtrace_clean_patterns = []
-</code></pre>
-
-<p>  end</p>
-
-<p>  # some other configuration here</p>
-
-<p>end
-```</p>
-
-<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
-
-<p><code>
-FULLBACKTRACES=true bundle exec rspec spec
-</code></p>
 ]]></content>
   </entry>
   
