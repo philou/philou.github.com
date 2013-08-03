@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Rails url_helpers mixup when using rails engines - Philippe Bourgau's blog</title>
+  <title>Spork alternative compatible with cucumber - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="I just tried to integrate the blogit rails engine directly inside www.mes-courses.fr. Up till now, I was using a separated radiant app&nbsp;to deal &hellip;">
+  <meta name="description" content="Version 1.3.0 of Cucumber droped spork support, so I had to find something else. I am using Guard setup with rspec and Cucumber for my Rails app. I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/">
+  <link rel="canonical" href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -86,7 +86,7 @@
   
   <header>
     
-      <h1 class="entry-title">Rails Url_helpers Mixup When Using Rails Engines</h1>
+      <h1 class="entry-title">Spork Alternative Compatible With Cucumber</h1>
     
     
       <p class="meta">
@@ -102,45 +102,88 @@
   
 
 
-<time datetime="2012-08-09T00:00:00+02:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
+<time datetime="2013-08-03T08:51:00+02:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
+<div class="entry-content"><p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
 
+<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
+
+<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
 
 <ul>
-<li>I had to use special (javascript heavy) google analytics code through all cross app links, and that sometimes failed (somewhere in the combinaison of&nbsp;heroku, rails, and analytics)</li>
-<li>It was difficult to share the theme between the apps : on one side, templates, partials and css, on the other, rows in a database</li>
-<li>It was difficult to share session state between the two apps (login for example)</li>
+<li>remove spork from your Gemfile</li>
+<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
+<li>install spring</li>
 </ul>
 
 
-<p>As my blog is very basic, and as I am the only one editing the styles, I decided to embed a blog engine inside my app. I selected and tried a few&nbsp;engines : <a href="https://github.com/jipiboily/monologue">Monologue</a>, <a href="https://github.com/KatanaCode/blogit">Blogit</a>, <a href="http://refinerycms.com/">RefineryCMS</a> and to roll my own. Refinery looks way too complex to integrate regarding my basic needs. Monologue is not&nbsp;design to integrate with <a href="https://github.com/plataformatec/devise/">devise</a> users (which I already use) and I would prefer to contribute to an existing gem rather than to write the nth rails blog engine &#8230;</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install spring</span></code></pre></td></tr></table></div></figure>
 
 
-<p>After a few experiments, I settled on blogit. Unfortunately, I had really strange issues with links within blogit pages : all links were prefixed with &#8220;/blog&#8221; and blogit&nbsp;links where like &#8220;/blog/blogit?controller=posts&amp;action=new&#8221;. Hacking around in the rails console showed me that doing consecultively :</p>
+<ul>
+<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
+</ul>
 
 
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">include</span> <span class="ss">Blogit</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'><span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="n">group</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>resulted in the same behaviour. After a long debugging session, I eventually discovered that I had a helper in my application which explicitly required&nbsp;Rails.application.routes.url_helpers. This was causing the conflict. I changed my code to avoid this inclusion, and that fixed the links &#8230;</p>
+<ul>
+<li>update your Guardfile example :</li>
+</ul>
 
 
-<p>&#8230; nearly. Now rendering the application template for a blog page failed with a &#8220;message not understood&#8221; for the main app&#8217;s xxx_path methods. Hopefully, I had&nbsp;found <a href="http://www.candland.net/2012/04/17/rails-routes-used-in-an-isolated-engine/">a fix</a> for this error earlier on the web. Now everything was working like a charm.</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="ss">:rspec</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s2">&quot;--tag ~@slow&quot;</span><span class="p">,</span> <span class="n">all_after_pass</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="n">keep_failed</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">spring</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;cucumber&#39;</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s1">&#39;--format progress --no-profile&#39;</span><span class="p">,</span> <span class="n">command_prefix</span><span class="p">:</span> <span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
+<ul>
+<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;.spring.rb&quot;</span>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;spec/factories&quot;</span>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;features/env.rb&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch_method</span> <span class="o">=</span> <span class="ss">:listen</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -164,12 +207,12 @@
   
 
 
-<time datetime="2012-08-09T00:00:00+02:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
+<time datetime="2013-08-03T08:51:00+02:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
   
 </span>
 
@@ -178,7 +221,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -191,10 +234,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/hackers-et-peintres/" title="Previous Post: Hackers et peintres">&laquo; Hackers et peintres</a>
+        <a class="basic-alignment left" href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/" title="Previous Post: Simplest way to speed up rspec with in memory sqlite db">&laquo; Simplest way to speed up rspec with in memory sqlite db</a>
       
-      
-        <a class="basic-alignment right" href="/rails-autoload-good-practices/" title="Next Post: Rails autoload good practices">Rails autoload good practices &raquo;</a>
       
     </p>
   </footer>
@@ -321,8 +362,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/';
-        var disqus_url = 'http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/';
+        var disqus_identifier = 'http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/';
+        var disqus_url = 'http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/';
         var disqus_script = 'embed.js';
       
     (function () {

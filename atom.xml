@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-08-03T08:31:04+02:00</updated>
+  <updated>2013-08-03T14:10:30+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,90 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
+    <link href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/"/>
+    <updated>2013-08-03T08:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber</id>
+    <content type="html"><![CDATA[<p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
+
+<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
+
+<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
+
+<ul>
+<li>remove spork from your Gemfile</li>
+<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
+<li>install spring</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install spring</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="n">group</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>update your Guardfile example :</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="ss">:rspec</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s2">&quot;--tag ~@slow&quot;</span><span class="p">,</span> <span class="n">all_after_pass</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="n">keep_failed</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">spring</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;cucumber&#39;</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s1">&#39;--format progress --no-profile&#39;</span><span class="p">,</span> <span class="n">command_prefix</span><span class="p">:</span> <span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;.spring.rb&quot;</span>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;spec/factories&quot;</span>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;features/env.rb&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch_method</span> <span class="o">=</span> <span class="ss">:listen</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
@@ -677,34 +761,6 @@
 <p>
 <script src="https://gist.github.com/4492543.js"></script>
 </p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I set up a trustico rapid ssl certificate on heroku ssl endpoint]]></title>
-    <link href="http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate/"/>
-    <updated>2012-12-13T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate</id>
-    <content type="html"><![CDATA[<p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
-
-
-<ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku addons:add ssl:endpoint
-</span></code></pre></td></tr></table></div></figure>
-</li><li>Upload your certificate
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs:add server.crt private.key
-</span></code></pre></td></tr></table></div></figure>
-</li><li>Run the following and verify that you have an ssl endpoint with an explicit trusted &quot;True&quot; value
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs
-</span></code></pre></td></tr></table></div></figure>
-</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li> <li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li><li>Wait until dns are updated to check that it is working.</li></ol>
-
-
-<div> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></div>
 
 ]]></content>
   </entry>

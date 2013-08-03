@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-08-03T08:31:04+02:00</updated>
+  <updated>2013-08-03T14:10:30+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
+    <link href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/"/>
+    <updated>2013-08-03T08:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber</id>
+    <content type="html"><![CDATA[<p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
+
+<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
+
+<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
+
+<ul>
+<li>remove spork from your Gemfile</li>
+<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
+<li>install spring</li>
+</ul>
+
+
+<p><code>
+gem install spring
+</code></p>
+
+<ul>
+<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
+</ul>
+
+
+<p><code>ruby
+group :test, :development do
+  ...
+  gem 'spring'
+  ...
+group
+</code></p>
+
+<ul>
+<li>update your Guardfile example :</li>
+</ul>
+
+
+<p>```ruby
+guard :rspec, cli: &ldquo;&mdash;tag ~@slow&rdquo;, all_after_pass: true, all_on_start: false, keep_failed: true, spring: true, bundler: false do
+  &hellip;
+end</p>
+
+<p>guard &lsquo;cucumber&rsquo;, all_on_start: false, cli: &lsquo;&mdash;format progress &mdash;no-profile&rsquo;, command_prefix: &lsquo;spring&rsquo;, bundler: false do
+  &hellip;
+end
+```</p>
+
+<ul>
+<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
+</ul>
+
+
+<p>```ruby
+Spring.watch &ldquo;.spring.rb&rdquo;
+Spring.watch &ldquo;spec/factories&rdquo;
+Spring.watch &ldquo;features/env.rb&rdquo;</p>
+
+<p>Spring.watch_method = :listen
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
@@ -104,32 +169,6 @@ I ran the install steps, and everything was working ! It&rsquo;s a shame I did n
     <content type="html"><![CDATA[<p>For testing purpose, I added <a href="https://github.com/chrisk/fakeweb">FakeWeb</a> to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with some strange Net::HTTPForbidden were occuring after about 90 minutes of scrapping, with no clear reason. It turned that I had mistakenly added FakeWeb to all environments, and that just removing it fixed the issue !</p>
 
 <p>As it is working now, I didn&rsquo;t take the time to dig deeper into it &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Matching meta tags with Capybara 2]]></title>
-    <link href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/"/>
-    <updated>2013-07-01T20:20:00+02:00</updated>
-    <id>http://philippe.bourgau.net/matching-meta-tags-with-capybara-2</id>
-    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
-
-<p><code>
-expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)
-</code></p>
-
-<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :
-<code>ruby
-expect(response).to have_title('My page')
-</code></p>
-
-<p>To match meta tags, I had to resort to the following :
-<code>ruby
-meta_refresh_tags = Nokogiri::HTML(page.source).xpath("//meta[@http-equiv='refresh']")
-expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
-</code></p>
-
-<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
 ]]></content>
   </entry>
   
