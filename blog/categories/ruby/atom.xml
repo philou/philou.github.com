@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-07-25T07:34:11+02:00</updated>
+  <updated>2013-08-03T08:31:04+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
+    <link href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/"/>
+    <updated>2013-08-02T09:16:00+02:00</updated>
+    <id>http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db</id>
+    <content type="html"><![CDATA[<p>There are already a lot of articles explaining how to setup an in memory <a href="http://www.sqlite.org/">SQLite</a> database to speed up <a href="http://rubyonrails.org/">Rails</a> specs or unit tests. Most of them explain how to change your database.yml and to run setup your schema before running the tests. It works fine.</p>
+
+<p>There&rsquo;s a catch though : suppose you are using <a href="http://cukes.info/">cucumber</a>, it&rsquo;s likely you&rsquo;d rather run cucumber on a real database (<a href="http://www.postgresql.org/">PostgreSQL</a>, <a href="http://www.mysql.com/">MySQL</a> or whatever). Most gems expect cucumber and <a href="http://rspec.info/">rspec</a> to both run in the test environment &hellip; Every time I updated my bundle or that I wanted to use a new test gem, I would hit an issue about cucumber being run in its own &lsquo;cucumber&rsquo; environment : unexpected warnings and things not working out of the box.</p>
+
+<p>Eventually, I ditched the cucumber env, setup a PostgreSQL db on the test env, and injected the in memory sqlite database right inside spec_helper.rb :</p>
+
+<p>In database.yml :</p>
+
+<p><code>yaml
+test:
+  adapter: postgresql
+  database: mes_courses_test
+  encoding: utf8
+  pool: 5
+  timeout: 5000
+  username: mes_courses
+  password: secret
+  host: localhost
+  port: 5433
+</code></p>
+
+<p>At the bottom of spec_helper.rb</p>
+
+<p>```ruby
+setup_sqlite_db = lambda do
+  ActiveRecord::Base.establish_connection(adapter: &lsquo;sqlite3&rsquo;, database: &lsquo;:memory:&rsquo;)</p>
+
+<p>  load &ldquo;#{Rails.root.to_s}/db/schema.rb&rdquo; # use db agnostic schema by default
+  # ActiveRecord::Migrator.up(&lsquo;db/migrate&rsquo;) # use migrations
+end
+silence_stream(STDOUT, &amp;setup_sqlite_db)
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jasmine and coffeescript setup for rails]]></title>
@@ -90,68 +130,6 @@ expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
 </code></p>
 
 <p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hitting the middle ground between classicist and mockist TDD]]></title>
-    <link href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/"/>
-    <updated>2013-06-18T08:55:00+02:00</updated>
-    <id>http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd</id>
-    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler&rsquo;s point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
-
-<ul>
-<li>test failures often pinpoint the falsy code</li>
-<li>easier test organisation mimicking that of the code</li>
-<li>faster tests</li>
-<li>simpler test initialization</li>
-</ul>
-
-
-<p>Mocks also have their own problems, but mostly :</p>
-
-<ul>
-<li>especialy with dynamicaly typed languages, a mock for class A might not implement the same methods than the real class A, but the test might be passing though ! This ampers refactoring with a longer feedback loop and mock setup rewriting</li>
-</ul>
-
-
-<p>That&rsquo;s what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
-
-<ul>
-<li>extensive use of factories (with <a href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>) to simplify setup</li>
-<li>use of an <a href="http://www.sqlite.org/inmemorydb.html">in memory sqlite database</a> to get a fast full working db</li>
-<li>implement fully functional fakes for some parts of the system</li>
-<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown&rsquo;s thoughts on mocks</a>
-
-<ul>
-<li>when a test is too slow</li>
-<li>to cut off a dependency to a subsystem that is not available in a unit test</li>
-<li>to simplify overly long test data setup</li>
-</ul>
-</li>
-<li>use of test proxies (as in <a href="https://github.com/rr/rr">rr</a>) to inject specific behaviour or to perform specific checks without modifying the rest of the program.</li>
-</ul>
-
-
-<p>Here is how I implemented this with rspec :</p>
-
-<script src="https://gist.github.com/philou/5894144.js"></script>
-
-
-<p>With all this in place, it is most of the time possible to write straightforward tests. For example here, only real objects are used. @order gets its value when Order.create! is called.</p>
-
-<p>```ruby
-it &ldquo;should create an order with the cart&rdquo; do
-  capture_result_from(Order, :create!, into: :order)</p>
-
-<p>  check_in_cart</p>
-
-<p>  @order.should_not be_nil
-  @order.cart.should == @cart
-end
-```</p>
-
-<p>Maybe I should swith to rr &hellip;</p>
 ]]></content>
   </entry>
   
