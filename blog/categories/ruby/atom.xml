@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-09-11T12:03:28+02:00</updated>
+  <updated>2013-09-11T12:45:39+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec matchers combinators]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators/"/>
+    <updated>2013-09-11T12:23:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators</id>
+    <content type="html"><![CDATA[<p><a href="http://rubydoc.info/gems/rspec-expectations">Rspec matchers</a> are a lot like predicates. Predicates that can talk &hellip; The good thing about predicates, as anybody who has done a bit of functional programming will tell you, is that they are easy to combine together into bigger predicates. I was really suprised to see that rspec does not come with such simple combinators as &lsquo;and&rsquo; or &lsquo;or&rsquo;.</p>
+
+<p>Here is a gist where I define simple combinators :</p>
+
+<script src="https://gist.github.com/philou/6521797.js"></script>
+
+
+<p>With this and the <a href="https://github.com/bmabey/email-spec">email_spec</a> matchers, it is possible to write something like this to find if an email was sent by rails :</p>
+
+<p>```ruby
+expect(all_emails).to have_any_that(and_(deliver_to(receiver),</p>
+
+<pre><code>                                     have_subject(subject),
+                                     have_body_text(body)))
+</code></pre>
+
+<p>```</p>
+
+<p>It enables expressive test code and high reusability.</p>
+
+<p>Using the &lsquo;all&rsquo; combinator it is possible to write things like that :</p>
+
+<p><code>ruby
+expect(sample_items_attributes).to all_ have_key(:price)
+</code></p>
+
+<p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
+
+<p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby regex captures oneliner]]></title>
@@ -210,25 +247,6 @@ gem 'guard-jasmine'
 
 
 <p>All 3 have detailed and up to date setup and usage instructions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ditching autotest for guard]]></title>
-    <link href="http://philippe.bourgau.net/ditching-autotest-for-guard/"/>
-    <updated>2013-07-03T06:35:00+02:00</updated>
-    <id>http://philippe.bourgau.net/ditching-autotest-for-guard</id>
-    <content type="html"><![CDATA[<p>I have been using <a href="https://github.com/grosser/autotest">autotest</a> for 2 years, and it&rsquo;s been great ! The first time I ran it I thought &ldquo;This rocks !&rdquo; and I have always been using it since &hellip;</p>
-
-<p>A little later I read the book <a href="http://pragprog.com/book/rcctr/continuous-testing">Continuous Testing: with Ruby, Rails and JavaScript</a> and it suggested to use <a href="https://github.com/mynyml/watchr">watchr</a> instead. I never switched, partly because I did not take the time, and partly because watchr seemed to need quite a bit of manual configuration. Then, while contributing to other gems, I stumbled upon <a href="https://github.com/guard/guard">guard</a> and this one seemed great.</p>
-
-<p>Switching to guard was in fact very simple, It took about 15 minutes, a lot less than the time I had spent configuring or tweaking autotest. I simply added these to my Gemfile
-<code>ruby
-gem 'guard'
-gem 'guard-rspec'
-gem 'guard-cucumber'
-</code>
-I ran the install steps, and everything was working ! It&rsquo;s a shame I did not do the change earlier.</p>
 ]]></content>
   </entry>
   

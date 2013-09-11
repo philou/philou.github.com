@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-09-11T12:03:28+02:00</updated>
+  <updated>2013-09-11T12:45:39+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec matchers combinators]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators/"/>
+    <updated>2013-09-11T12:23:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators</id>
+    <content type="html"><![CDATA[<p><a href="http://rubydoc.info/gems/rspec-expectations">Rspec matchers</a> are a lot like predicates. Predicates that can talk &hellip; The good thing about predicates, as anybody who has done a bit of functional programming will tell you, is that they are easy to combine together into bigger predicates. I was really suprised to see that rspec does not come with such simple combinators as &lsquo;and&rsquo; or &lsquo;or&rsquo;.</p>
+
+<p>Here is a gist where I define simple combinators :</p>
+
+<script src="https://gist.github.com/philou/6521797.js"></script>
+
+
+<p>With this and the <a href="https://github.com/bmabey/email-spec">email_spec</a> matchers, it is possible to write something like this to find if an email was sent by rails :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">all_emails</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_any_that</span><span class="p">(</span><span class="n">and_</span><span class="p">(</span><span class="n">deliver_to</span><span class="p">(</span><span class="n">receiver</span><span class="p">),</span>
+</span><span class='line'>                                         <span class="n">have_subject</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span>
+</span><span class='line'>                                         <span class="n">have_body_text</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It enables expressive test code and high reusability.</p>
+
+<p>Using the &lsquo;all&rsquo; combinator it is possible to write things like that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">sample_items_attributes</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">all_</span> <span class="n">have_key</span><span class="p">(</span><span class="ss">:price</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
+
+<p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby regex captures oneliner]]></title>
@@ -809,24 +847,6 @@
     <updated>2013-01-28T00:00:00+01:00</updated>
     <id>http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen</id>
     <content type="html"><![CDATA[<p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to copy a database from an heroku app to another]]></title>
-    <link href="http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to/"/>
-    <updated>2013-01-11T00:00:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to</id>
-    <content type="html"><![CDATA[<p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &#8220;integration&#8221; app, where I can do late verifications before deploying to my production app. If you don&#8217;t already do this, I recommend you to start now !</p>
-
-
-<p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku pgbackups:restore DATABASE <span class="sb">`</span>heroku pgbackups:url --app my-app-prod<span class="sb">`</span> --app my-app-integ --confirm my-app-integ
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
