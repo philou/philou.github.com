@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-08-03T16:56:42+02:00</updated>
+  <updated>2013-09-11T12:03:28+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,77 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby regex captures oneliner]]></title>
+    <link href="http://philippe.bourgau.net/ruby-regex-captures-oneliner/"/>
+    <updated>2013-09-11T09:02:00+02:00</updated>
+    <id>http://philippe.bourgau.net/ruby-regex-captures-oneliner</id>
+    <content type="html"><![CDATA[<p>Surely this post is nothing new for experienced ruby developpers, but I found it so handy, that I thought it deserved a post of its own though. The problem is :</p>
+
+<blockquote><p>How do I match and assign captures from a regex in a single line of code ?</p></blockquote>
+
+<p>Here is the idea :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>brand, item = /([^,]<em>), (.</em>)/.match(&ldquo;APPLE, ipad&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;]
+brand
+=> &ldquo;APPLE&rdquo;
+item
+=> &ldquo;ipad&rdquo;
+```</p></blockquote>
+
+<p>There are a few variations around this, like grouping some catpures in an array :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>brand, <em>details = /([^,]</em>), ([^:]<em>): (.</em>)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+brand
+=> &ldquo;APPLE&rdquo;
+details
+=> [&ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+```</p></blockquote>
+
+<p>Or to ignore some capture, we could shorten skip some captures :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>item, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;)[2..-1]
+=> [&ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+item
+=> &ldquo;ipad&rdquo;
+details
+=> &ldquo;iOs&rdquo;
+```</p></blockquote>
+
+<p>But this only works for first or last captures, when this is not the case, one can also use the functional programming &lsquo;_&rsquo; sink convention :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>brand, _, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+brand
+=> &ldquo;APPLE&rdquo;
+details
+=> &ldquo;iOs&rdquo;
+```</p></blockquote>
+
+<p>One can even use &lsquo;_&rsquo; multiple times on the same match</p>
+
+<p>```ruby</p>
+
+<blockquote><p><em>, </em>, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+details
+=> &ldquo;iOs&rdquo;
+```</p></blockquote>
+
+<p>I hope this helps.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
@@ -158,17 +229,6 @@ gem 'guard-rspec'
 gem 'guard-cucumber'
 </code>
 I ran the install steps, and everything was working ! It&rsquo;s a shame I did not do the change earlier.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Be careful not to bundle FakeWeb in production]]></title>
-    <link href="http://philippe.bourgau.net/be-careful-not-to-bundle-fakeweb-in-production/"/>
-    <updated>2013-07-03T06:31:00+02:00</updated>
-    <id>http://philippe.bourgau.net/be-careful-not-to-bundle-fakeweb-in-production</id>
-    <content type="html"><![CDATA[<p>For testing purpose, I added <a href="https://github.com/chrisk/fakeweb">FakeWeb</a> to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with some strange Net::HTTPForbidden were occuring after about 90 minutes of scrapping, with no clear reason. It turned that I had mistakenly added FakeWeb to all environments, and that just removing it fixed the issue !</p>
-
-<p>As it is working now, I didn&rsquo;t take the time to dig deeper into it &hellip;</p>
 ]]></content>
   </entry>
   
