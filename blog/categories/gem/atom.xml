@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gem | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-09-11T12:45:39+02:00</updated>
+  <updated>2013-09-25T21:49:01+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem/"/>
+    <updated>2013-09-25T21:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem</id>
+    <content type="html"><![CDATA[<p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<p><code>ruby
+gem 'spec_combos', :group =&gt; 'test'
+</code></p>
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<p><code>ruby
+expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</code></p>
+
+<p>It outputs the following error :</p>
+
+<p>```text
+Failure/Error: expect([1,2,3]).to all<em>{and</em>(be_odd, be_instance_of(Fixnum))}
+  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:</p>
+
+<pre><code>[1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+  expected odd? to return true, got false
+</code></pre>
+
+<p>```</p>
+
+<p>I hope this might help !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails url_helpers mixup when using rails engines]]></title>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rspec | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rspec/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-09-11T12:45:39+02:00</updated>
+  <updated>2013-09-25T21:49:01+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem/"/>
+    <updated>2013-09-25T21:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem</id>
+    <content type="html"><![CDATA[<p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<p><code>ruby
+gem 'spec_combos', :group =&gt; 'test'
+</code></p>
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<p><code>ruby
+expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</code></p>
+
+<p>It outputs the following error :</p>
+
+<p>```text
+Failure/Error: expect([1,2,3]).to all<em>{and</em>(be_odd, be_instance_of(Fixnum))}
+  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:</p>
+
+<pre><code>[1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+  expected odd? to return true, got false
+</code></pre>
+
+<p>```</p>
+
+<p>I hope this might help !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RSpec matchers combinators]]></title>
@@ -214,55 +249,6 @@ end
 ```</p>
 
 <p>Maybe I should swith to rr &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
-    <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
-    <updated>2013-06-07T06:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
-    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&rsquo;s a great testing framework.</p>
-
-<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
-
-<p><code>ruby
-DEFAULT_BACKTRACE_PATTERNS = [
-  /\/lib\d*\/ruby\//,
-  /org\/jruby\//,
-  /bin\//,
-  %r|/gems/|,
-  /spec\/spec_helper\.rb/,
-  /lib\/rspec\/(core|expectations|matchers|mocks)/
-]
-</code></p>
-
-<p>Most of the time, that&rsquo;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &ldquo;method called with unexpected number of arguments&rdquo; that does not refer to the code in the backtrace, but to some other library code &hellip;</p>
-
-<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
-
-<p>```ruby
-RSpec.configure do |config|</p>
-
-<p>  # RSpec automatically cleans stuff out of backtraces;
-  # sometimes this is annoying when trying to debug something e.g. a gem
-  if ENV[&lsquo;FULLBACKTRACES&rsquo;] == &lsquo;true&rsquo;</p>
-
-<pre><code>config.backtrace_clean_patterns = []
-</code></pre>
-
-<p>  end</p>
-
-<p>  # some other configuration here</p>
-
-<p>end
-```</p>
-
-<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
-
-<p><code>
-FULLBACKTRACES=true bundle exec rspec spec
-</code></p>
 ]]></content>
   </entry>
   

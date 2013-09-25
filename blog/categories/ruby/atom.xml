@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-09-11T12:45:39+02:00</updated>
+  <updated>2013-09-25T21:49:01+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem/"/>
+    <updated>2013-09-25T21:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem</id>
+    <content type="html"><![CDATA[<p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<p><code>ruby
+gem 'spec_combos', :group =&gt; 'test'
+</code></p>
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<p><code>ruby
+expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</code></p>
+
+<p>It outputs the following error :</p>
+
+<p>```text
+Failure/Error: expect([1,2,3]).to all<em>{and</em>(be_odd, be_instance_of(Fixnum))}
+  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:</p>
+
+<pre><code>[1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+  expected odd? to return true, got false
+</code></pre>
+
+<p>```</p>
+
+<p>I hope this might help !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RSpec matchers combinators]]></title>
@@ -223,30 +258,6 @@ setup_sqlite_db = lambda do
 end
 silence_stream(STDOUT, &amp;setup_sqlite_db)
 ```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jasmine and coffeescript setup for rails]]></title>
-    <link href="http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails/"/>
-    <updated>2013-07-04T07:44:00+02:00</updated>
-    <id>http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails</id>
-    <content type="html"><![CDATA[<p>As I started to write more javascript code in my <a href="https://www.mes-courses.fr">rails app</a>, it became obvious that I should be testing it ! I wanted to use <a href="http://pivotal.github.io/jasmine/">jasmine</a> and <a href="http://coffeescript.org">coffeescript</a>. I searched a long time to find out what was the most common and supported setup for a rails app, so now I recommand</p>
-
-<p><code>ruby
-gem 'jasmine'
-gem 'jasminerice'
-gem 'guard-jasmine'
-</code></p>
-
-<ul>
-<li>The <a href="https://github.com/pivotal/jasmine-gem">jasmine gem</a> is by far the most common jasmine gem, it is supported by <a href="http://pivotallabs.com">Pivotal Labs</a> so there is no fear of it being droped soon.</li>
-<li>The <a href="https://github.com/netzpirat/guard-jasmine">guard-jasmin gem</a> is supported by <a href="https://mksoft.ch">MKSoft</a>, and is not only handling continuous <a href="http://phantomjs.org/">phantomjs</a> headless jasmine testing through guard, but it also provides command line and rake tools to run your jasmine specs during continuous integration.</li>
-<li>Eventually, the <a href="https://github.com/bradphelan/jasminerice">jasminerice gem</a> makes it easy to write your jasmine specs with coffeescript. It also wraps a version of <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> to assist client javascript testing. Although there is a &ldquo;looking for maintainer&rdquo; message on the README page, there are some recent commits, so it seems that pull requests are still being merged even if the project is not actively developpped anymore &hellip; I belive volunteers are welcome.</li>
-</ul>
-
-
-<p>All 3 have detailed and up to date setup and usage instructions.</p>
 ]]></content>
   </entry>
   

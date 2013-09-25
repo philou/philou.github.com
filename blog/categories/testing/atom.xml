@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-09-11T12:45:39+02:00</updated>
+  <updated>2013-09-25T21:49:01+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem/"/>
+    <updated>2013-09-25T21:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem</id>
+    <content type="html"><![CDATA[<p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<p><code>ruby
+gem 'spec_combos', :group =&gt; 'test'
+</code></p>
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<p><code>ruby
+expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</code></p>
+
+<p>It outputs the following error :</p>
+
+<p>```text
+Failure/Error: expect([1,2,3]).to all<em>{and</em>(be_odd, be_instance_of(Fixnum))}
+  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:</p>
+
+<pre><code>[1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+  expected odd? to return true, got false
+</code></pre>
+
+<p>```</p>
+
+<p>I hope this might help !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RSpec matchers combinators]]></title>
@@ -176,25 +211,6 @@ gem 'guard-jasmine'
 
 
 <p>All 3 have detailed and up to date setup and usage instructions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ditching autotest for guard]]></title>
-    <link href="http://philippe.bourgau.net/ditching-autotest-for-guard/"/>
-    <updated>2013-07-03T06:35:00+02:00</updated>
-    <id>http://philippe.bourgau.net/ditching-autotest-for-guard</id>
-    <content type="html"><![CDATA[<p>I have been using <a href="https://github.com/grosser/autotest">autotest</a> for 2 years, and it&rsquo;s been great ! The first time I ran it I thought &ldquo;This rocks !&rdquo; and I have always been using it since &hellip;</p>
-
-<p>A little later I read the book <a href="http://pragprog.com/book/rcctr/continuous-testing">Continuous Testing: with Ruby, Rails and JavaScript</a> and it suggested to use <a href="https://github.com/mynyml/watchr">watchr</a> instead. I never switched, partly because I did not take the time, and partly because watchr seemed to need quite a bit of manual configuration. Then, while contributing to other gems, I stumbled upon <a href="https://github.com/guard/guard">guard</a> and this one seemed great.</p>
-
-<p>Switching to guard was in fact very simple, It took about 15 minutes, a lot less than the time I had spent configuring or tweaking autotest. I simply added these to my Gemfile
-<code>ruby
-gem 'guard'
-gem 'guard-rspec'
-gem 'guard-cucumber'
-</code>
-I ran the install steps, and everything was working ! It&rsquo;s a shame I did not do the change earlier.</p>
 ]]></content>
   </entry>
   
