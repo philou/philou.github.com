@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>TOO_MANY_REDIRECTS when changing ssl requirements - Philippe Bourgau's blog</title>
+  <title>I just replaced Feedburner with MailChimp - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="While I was trying to enforce no ssl on a page of www.mes-courses.fr with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS &hellip;">
+  <meta name="description" content="Until now, I had been using Feedburner to manage the email subscriptions to my blog on mes-courses.fr. It had been working fine I thought it had been &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/">
+  <link rel="canonical" href="http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">TOO_MANY_REDIRECTS When Changing Ssl Requirements</h1>
+      <h1 class="entry-title">I Just Replaced Feedburner With MailChimp</h1>
     
     
       <p class="meta">
@@ -103,14 +103,35 @@
   
 
 
-<time datetime="2013-01-28T00:00:00+01:00" pubdate data-updated="true">Jan 28<span>th</span>, 2013</time>
+<time datetime="2013-10-08T06:36:00+02:00" pubdate data-updated="true">Oct 8<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
+<div class="entry-content"><p>Until now, I had been using <a href="http://www.feedburner.com">Feedburner</a> to manage the email subscriptions to my <a href="https://www.mes-courses.fr/blog">blog on mes-courses.fr</a>. <del>It had been working fine</del> I thought it had been working fine until a friend of mine asked me if I was still working on it, since it had been a time since she did not receive any email !</p>
+
+<p>It turned out that feedburner had not been forwarding emails for 6 months and that it had gone unnoticed &hellip; I had already had this issue before, and it was because my rss was not well formed according to feedburner (something related to unicode encoding I think). So to summarise :</p>
+
+<ul>
+<li>I lost trust in feedburner to forward my posts correctly</li>
+<li>Feedburner is not maintained by Google anymore</li>
+<li>They have been persistant rumors about Google shutting down Feedburner completly especially since the Reader shut down</li>
+</ul>
+
+
+<p>I started looking for alternatives. I tried <a href="http://www.nouri.sh">Nourish</a> and <a href="http://www.mailchimp.com">MailChimp</a> I did not manage to make Nourish work like I wanted, but I found MailChimp an intuitive and well documented product.</p>
+
+<p>The setup with MailChimp was a lot longer than with Feedburner, but the result is great. I feed a lot more confident about these emails being delivered now.</p>
+
+<p>There are a few points I still miss though :</p>
+
+<ul>
+<li>The social forward does not seem to work the same easy way, it looks like if MailChimp pushes the email content to your networks, but not a direct link to your blog</li>
+<li>MailChimp does not track non-email subscribers to your rss. I&rsquo;ll have to check my analytics to see how to do it.</li>
+</ul>
+
 </div>
 
 
@@ -133,12 +154,12 @@
   
 
 
-<time datetime="2013-01-28T00:00:00+01:00" pubdate data-updated="true">Jan 28<span>th</span>, 2013</time>
+<time datetime="2013-10-08T06:36:00+02:00" pubdate data-updated="true">Oct 8<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ssl/'>SSL</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/web/'>web</a>
+    <a class='category' href='/blog/categories/rss/'>rss</a>, <a class='category' href='/blog/categories/web/'>web</a>
   
 </span>
 
@@ -147,7 +168,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -160,10 +181,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/how-to-copy-a-database-from-an-heroku-app-to/" title="Previous Post: How to copy a database from an heroku app to another">&laquo; How to copy a database from an heroku app to another</a>
+        <a class="basic-alignment left" href="/rspec-matchers-combinators-2-spec-combos-gem/" title="Previous Post: RSpec Matchers Combinators 2 : spec_combos gem">&laquo; RSpec Matchers Combinators 2 : spec_combos gem</a>
       
-      
-        <a class="basic-alignment right" href="/the-poor-mans-memory-profiling/" title="Next Post: The poor man's memory profiling">The poor man's memory profiling &raquo;</a>
       
     </p>
   </footer>
@@ -304,8 +323,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/';
-        var disqus_url = 'http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/';
+        var disqus_identifier = 'http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp/';
+        var disqus_url = 'http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp/';
         var disqus_script = 'embed.js';
       
     (function () {

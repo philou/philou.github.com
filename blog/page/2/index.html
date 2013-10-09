@@ -9,8 +9,7 @@
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message : 1
-expected to find xpath "//meta[@http- &hellip;">
+  <meta name="description" content="For testing purpose, I added FakeWeb to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +84,44 @@ expected to find xpath "//meta[@http- &hellip;">
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/be-careful-not-to-bundle-fakeweb-in-production/">Be Careful Not to Bundle FakeWeb in Production</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-03T06:31:00+02:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For testing purpose, I added <a href="https://github.com/chrisk/fakeweb">FakeWeb</a> to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with some strange Net::HTTPForbidden were occuring after about 90 minutes of scrapping, with no clear reason. It turned that I had mistakenly added FakeWeb to all environments, and that just removing it fixed the issue !</p>
+
+<p>As it is working now, I didn&rsquo;t take the time to dig deeper into it &hellip;</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -712,78 +749,6 @@ expected to find xpath "//meta[@http- &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/the-poor-mans-memory-profiling/">The Poor Man&#8217;s Memory Profiling</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-02-01T00:00:00+01:00" pubdate data-updated="true">Feb 1<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
-
-
-<p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
-
-
-<ul>
-<li>write a unit test for this</li>
-<li>run the task once to warm up the memory</li>
-<li>run the task once for some small sample input and note the peak memory usage</li>
-<li>run the task once for some large sample input and note the peak memory usage</li>
-<li>check that the memory usages are very close, whatever the size of the inputs</li>
-</ul>
-
-
-<p>Everything there is quite straightforward, appart from &#8220;note the peak memory usage&#8221;. Here is what I came up with</p>
-
-
-<ul>
-<li>note the initial memory usage</li>
-<li>start a thread that garbage collects and notes the memory usage every 10 ms</li>
-<li>process the data</li>
-<li>tell the thread to stop</li>
-<li>memory usage is the difference between the maximum and initial memory usages</li>
-</ul>
-
-
-<p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
-
-
-<p>
-<script src="https://gist.github.com/4696311.js"></script>
-</p>
-
-
-<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it&#8217;s actually enough for our purpose.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -868,6 +833,10 @@ expected to find xpath "//meta[@http- &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/i-just-replaced-feedburner-with-mailchimp/">I just replaced Feedburner with MailChimp</a>
+      </li>
+    
+      <li class="post">
         <a href="/rspec-matchers-combinators-2-spec-combos-gem/">RSpec Matchers Combinators 2 : spec_combos gem</a>
       </li>
     
@@ -881,10 +850,6 @@ expected to find xpath "//meta[@http- &hellip;">
     
       <li class="post">
         <a href="/spork-alternative-compatible-with-cucumber/">Spork alternative compatible with cucumber</a>
-      </li>
-    
-      <li class="post">
-        <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">Simplest way to speed up rspec with in memory sqlite db</a>
       </li>
     
   </ul>
