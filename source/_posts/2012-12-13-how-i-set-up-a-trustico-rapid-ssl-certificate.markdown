@@ -24,4 +24,22 @@ heroku certs:add server.crt private.key
 ```sh
 heroku certs
 ```
-</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li> <li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li><li>Wait until dns are updated to check that it is working.</li></ol><div> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></div>
+</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li>
+<li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li>
+<li>Wait until dns are updated to check that it is working.</li>
+</ol>
+<p> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></p>
+
+
+
+EDIT 10/10/2013
+
+Any certificate will eventually expire, and need to be renewed. The process for this (at Trustico at least) is to generate a completly new certificate. To install this new certificate on heroku, start by combining the new certificate files as you did the first time, and then use
+
+```
+heroku certs:update server.crt private.key
+```
+
+instead of heroku certs:add. This should be enough, there is no need to update any dns entry.
+
+To make sure the new certificate is used, visit the heroku ssl endpoint directly (get it by running heroku certs) and then visit your ssl site to check the certificate infos from your browser.
