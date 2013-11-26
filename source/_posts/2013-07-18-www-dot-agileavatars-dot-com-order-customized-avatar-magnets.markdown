@@ -7,6 +7,7 @@ categories:
  - agile
  - side-project
  - startup
+ - agileavatars.com
 published: true
 ---
 As agile and lean methodologies are gaining some place inside the workplace, especially in large corporations, I heard and saw quite a few teams struggling with their whiteboard because of :
