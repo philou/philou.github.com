@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How I organized my javascript assets in Rails - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="Lately, I have been introducing javascript and coffeescript in www.mes-courses.fr (with structural architecture issues as a side effect, but that& &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="/stylesheets/side_projects.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-30589315-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How I Organized My Javascript Assets in Rails</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-27T05:56:00+01:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="/jasmine-and-coffeescript-setup-for-rails/">Lately</a>, I have been introducing javascript and coffeescript in <a href="http://www.mes-courses.com">www.mes-courses.fr</a> (with structural architecture issues as a side effect, but that&rsquo;s another story &hellip;).</p>
+
+<p>Here are the general goals I had when using the rails asset pipeline :</p>
+
+<ul>
+<li>most of js compiled in a single file</li>
+<li>no js code in your html files : I want to use unintrusive javascript techniques, and have some outside js hook code that will wire js and html together</li>
+<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I could not simply compile all js code in a single minified file</li>
+<li>In unit tests, I want to be able to manually set up and tear down the js hooks</li>
+</ul>
+
+
+<p>So, here is how I eventually organized my js code :</p>
+
+<ul>
+<li>I create a specific dependencies.js file that will require all outside dependencies</li>
+<li>I split my js code under 3 subdirectories :
+
+<ul>
+<li>explicit : hooks that will be explicitly included</li>
+<li>hooks : all the other hooks</li>
+<li>application : all the real code</li>
+</ul>
+</li>
+<li>In my application.js, I include dependencies and all files under application and hooks. Here is my app/assets/javascript/application.js</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//= require dependencies.js</span>
+</span><span class='line'><span class="c1">//= require_tree ./application</span>
+</span><span class='line'><span class="c1">//= require_tree ./hooks</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>In my tests, I only load dependencies and files from the application directory. Here is my spec/javascript/spec.js.coffee</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1">#= require ../../app/assets/javascripts/dependencies.js</span>
+</span><span class='line'><span class="c1">#= require_tree ../../app/assets/javascripts/application</span>
+</span><span class='line'><span class="c1">#= require_tree ./</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Hook code only consists of calling a setup function from the &lsquo;real&rsquo; code. For example, here is my app/assets/javascript/hooks/cart_lines/index.coffee file</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>this setUp function is defined in the app/assets/javascript/application/cart_lines/index.coffee file</p>
+
+<ul>
+<li>This way, from the unit tests, I can explicitly call this setUp function, here is the beginning of my spec/javascript/application/cart_lines/index_spec.coffee file</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">describe</span> <span class="s">&#39;mesCourses.cartLines.index&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">beforeEach</span> <span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you, how are you organizing your javacript assets ?</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-27T05:56:00+01:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/assets/'>assets</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/agileavatars-dot-com-magnets-for-real/" title="Previous Post: AgileAvatars.com magnets for real">&laquo; AgileAvatars.com magnets for real</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>I create things with code.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Side projects</h1>
+  <ul>
+    <li>
+      <img class="project logo" src="https://www.mes-courses.fr/images/logo.png" alt="mes-courses.fr logo"> </img>
+      <a href="http://www.mes-courses.fr">mes-courses.fr</a>
+      <p>A service to order one's weekly food shopping in just a few minutes (in France only).</p>
+    </li>
+    <li>
+      <img class="project logo" src="http://www.agileavatars.com/images/smiley-small.png" alt="AgileAvatars.fr logo"> </img>
+      <a href="http://www.agileavatars.com">AgileAvatars.com</a>
+      <p>Currently testing the market for a service to order customized avatar magnets, for agile and kanban team boards.</p>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/how-i-organized-my-javascript-assets-in-rails/">How I organized my javascript assets in Rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/agileavatars-dot-com-magnets-for-real/">AgileAvatars.com magnets for real</a>
+      </li>
+    
+      <li class="post">
+        <a href="/i-just-replaced-feedburner-with-mailchimp/">I just replaced Feedburner with MailChimp</a>
+      </li>
+    
+      <li class="post">
+        <a href="/rspec-matchers-combinators-2-spec-combos-gem/">RSpec Matchers Combinators 2 : spec_combos gem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/rspec-matchers-combinators/">RSpec matchers combinators</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><a href="http://www.oqube.com/journal/journal.html">OQube's blog</a></li>
+    <li><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's Blog (french)</a></li>
+    <li><a href="http://www.murex.com/">Murex (my company)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/';
+        var disqus_url = 'http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

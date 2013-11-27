@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-11-26T06:00:46+01:00</updated>
+  <updated>2013-11-27T06:36:37+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I organized my javascript assets in Rails]]></title>
+    <link href="http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/"/>
+    <updated>2013-11-27T05:56:00+01:00</updated>
+    <id>http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails</id>
+    <content type="html"><![CDATA[<p><a href="http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails/">Lately</a>, I have been introducing javascript and coffeescript in <a href="http://www.mes-courses.com">www.mes-courses.fr</a> (with structural architecture issues as a side effect, but that&rsquo;s another story &hellip;).</p>
+
+<p>Here are the general goals I had when using the rails asset pipeline :</p>
+
+<ul>
+<li>most of js compiled in a single file</li>
+<li>no js code in your html files : I want to use unintrusive javascript techniques, and have some outside js hook code that will wire js and html together</li>
+<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I could not simply compile all js code in a single minified file</li>
+<li>In unit tests, I want to be able to manually set up and tear down the js hooks</li>
+</ul>
+
+
+<p>So, here is how I eventually organized my js code :</p>
+
+<ul>
+<li>I create a specific dependencies.js file that will require all outside dependencies</li>
+<li>I split my js code under 3 subdirectories :
+
+<ul>
+<li>explicit : hooks that will be explicitly included</li>
+<li>hooks : all the other hooks</li>
+<li>application : all the real code</li>
+</ul>
+</li>
+<li>In my application.js, I include dependencies and all files under application and hooks. Here is my app/assets/javascript/application.js</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//= require dependencies.js</span>
+</span><span class='line'><span class="c1">//= require_tree ./application</span>
+</span><span class='line'><span class="c1">//= require_tree ./hooks</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>In my tests, I only load dependencies and files from the application directory. Here is my spec/javascript/spec.js.coffee</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1">#= require ../../app/assets/javascripts/dependencies.js</span>
+</span><span class='line'><span class="c1">#= require_tree ../../app/assets/javascripts/application</span>
+</span><span class='line'><span class="c1">#= require_tree ./</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Hook code only consists of calling a setup function from the &lsquo;real&rsquo; code. For example, here is my app/assets/javascript/hooks/cart_lines/index.coffee file</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>this setUp function is defined in the app/assets/javascript/application/cart_lines/index.coffee file</p>
+
+<ul>
+<li>This way, from the unit tests, I can explicitly call this setUp function, here is the beginning of my spec/javascript/application/cart_lines/index_spec.coffee file</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">describe</span> <span class="s">&#39;mesCourses.cartLines.index&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">beforeEach</span> <span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you, how are you organizing your javacript assets ?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[AgileAvatars.com magnets for real]]></title>
@@ -825,36 +917,6 @@
 
 
 <p>It works great.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to stub around a call to the original method with rspec ?]]></title>
-    <link href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/"/>
-    <updated>2013-04-19T07:05:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec</id>
-    <content type="html"><![CDATA[<p>Rspec mocks now features a &lsquo;and_call_original&rsquo; method to create simple proxy mocks. But how could we build more complex proxies ?</p>
-
-<p>For the sake of the subject, let&rsquo;s take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You&rsquo;d like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">original_get</span> <span class="o">=</span> <span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:get</span><span class="p">)</span>
-</span><span class='line'><span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:get</span><span class="p">)</span> <span class="k">do</span> <span class="o">|*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-</span><span class='line'>  <span class="k">raise</span> <span class="no">RuntimeError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;network down&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="n">original_get</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note the block is taken into account, in this example, it does not matter so much, but forgetting it can bring up really strange issues.</p>
 ]]></content>
   </entry>
   

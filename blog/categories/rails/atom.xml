@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-11-26T06:00:46+01:00</updated>
+  <updated>2013-11-27T06:37:12+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I organized my javascript assets in Rails]]></title>
+    <link href="http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/"/>
+    <updated>2013-11-27T05:56:00+01:00</updated>
+    <id>http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails</id>
+    <content type="html"><![CDATA[<p><a href="/jasmine-and-coffeescript-setup-for-rails/">Lately</a>, I have been introducing javascript and coffeescript in <a href="http://www.mes-courses.com">www.mes-courses.fr</a> (with structural architecture issues as a side effect, but that&rsquo;s another story &hellip;).</p>
+
+<p>Here are the general goals I had when using the rails asset pipeline :</p>
+
+<ul>
+<li>most of js compiled in a single file</li>
+<li>no js code in your html files : I want to use unintrusive javascript techniques, and have some outside js hook code that will wire js and html together</li>
+<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I cannot simply compile all js code in a single minified file</li>
+<li>In unit tests, I want to be able to manually set up and tear down the js hooks</li>
+</ul>
+
+
+<p>So, here is how I eventually organized my js code :</p>
+
+<ul>
+<li>I create a specific dependencies.js file that will require all outside dependencies</li>
+<li>I split my js code under 3 subdirectories :
+
+<ul>
+<li>explicit : hooks that will be explicitly included</li>
+<li>hooks : all the other hooks</li>
+<li>application : all the real code</li>
+</ul>
+</li>
+<li>In my application.js, I include dependencies and all files under application and hooks. Here is my app/assets/javascript/application.js</li>
+</ul>
+
+
+<p><code>javascript
+//= require dependencies.js
+//= require_tree ./application
+//= require_tree ./hooks
+</code></p>
+
+<ul>
+<li>In my tests, I only load dependencies and files from the application directory. Here is my spec/javascript/spec.js.coffee</li>
+</ul>
+
+
+<p>```coffeescript</p>
+
+<h1>= require ../../app/assets/javascripts/dependencies.js</h1>
+
+<h1>= require_tree ../../app/assets/javascripts/application</h1>
+
+<h1>= require_tree ./</h1>
+
+<p>```</p>
+
+<ul>
+<li>Hook code only consists of calling a setup function from the &lsquo;real&rsquo; code. For example, here is my app/assets/javascript/hooks/cart_lines/index.coffee file</li>
+</ul>
+
+
+<p><code>coffeescript
+$(document).ready(window.mesCourses.cartLines.index.setUp)
+</code></p>
+
+<p>this setUp function is defined in the app/assets/javascript/application/cart_lines/index.coffee file</p>
+
+<ul>
+<li>This way, from the unit tests, I can explicitly call this setUp function, here is the beginning of my spec/javascript/application/cart_lines/index_spec.coffee file</li>
+</ul>
+
+
+<p>```coffeescript
+describe &lsquo;mesCourses.cartLines.index&rsquo;, &ndash;></p>
+
+<p>  beforeEach &ndash;></p>
+
+<pre><code>window.mesCourses.cartLines.index.setUp()
+</code></pre>
+
+<p>  &hellip;
+```</p>
+
+<p>And you, how are you organizing your javacript assets ?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
@@ -188,88 +273,6 @@ include Rails.application.routes.url_helpers
 
 
 <p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Setting up Postgre 9.1 for rails development]]></title>
-    <link href="http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development/"/>
-    <updated>2012-05-28T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development</id>
-    <content type="html"><![CDATA[<p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
-
-
-<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
-
-
-<p>
-```sh
-#!/bin/sh
-
-## packages dependencies
- sudo apt-get install libxml2-dev libxslt1-dev postgresql libpq-dev sqlite3 libsqlite3-dev
-
-## installing gems
- bundle install   rbenv rehash
-
-## creating dbs
- sudo -u postgres createuser --superuser mes_courses
- sudo -u postgres psql --command="alter user mes_courses with encrypted password 'secret'"
- sudo sed -i 's/\(local *all *all *\)peer/\1md5/' /etc/postgresql/9.1/main/pg_hba.conf
- bundle exec rake db:create:all
-
-## initializing dbs
- bundle exec rake db:migrate
- RAILS_ENV=test bundle exec rake db:migrate
- RAILS_ENV=production bundle exec rake db:migrate
-```
-</p>
-
-
-<p>Here is the corresponding config/database.yml</p>
-
-
-<p>
-```yaml
-development:
- adapter: postgresql
- database: mes_courses_development
- encoding: utf8
- pool: 5
- timeout: 5000
- username: mes_courses
- password: secret
- host: localhost
- port: 5433
-
-test:
- adapter: postgresql
- database: mes_courses_test
- encoding: utf8
- pool: 5
- timeout: 5000
- username: mes_courses
- password: secret
- host: localhost
- port: 5433
-
-production:
- adapter: postgresql
- database: mes_courses_production
- encoding: utf8
- pool: 5
- timeout: 5000
- username: mes_courses
- password: secret
- host: localhost
- port: 5433
-
-```
-</p>
-
-
-<p>Hope this helps !</p>
 
 ]]></content>
   </entry>
