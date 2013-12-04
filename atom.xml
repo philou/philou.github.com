@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-11-27T06:36:37+01:00</updated>
+  <updated>2013-12-03T06:48:01+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reviews for everyone]]></title>
+    <link href="http://philippe.bourgau.net/reviews-for-everyone/"/>
+    <updated>2013-12-02T06:33:00+01:00</updated>
+    <id>http://philippe.bourgau.net/reviews-for-everyone</id>
+    <content type="html"><![CDATA[<p>We are using <a href="http://www.scrum.org">Scrum</a> at work. As an <a href="http://www.extremeprogramming.org/">eXtreme Programmer</a> to the bones, I wanted more <a href="http://www.extremeprogramming.org/rules/collective.html">collective code ownsership</a>. We were already doing some <a href="http://en.wikipedia.org/wiki/Pair_programming">pair programming</a> from time to time, but I thought it might be a good time to try public <a href="http://en.wikipedia.org/wiki/Code_review">code reviews</a>.</p>
+
+<p>I have already been doing code reviews in other jobs, but the experience has been disappointing up till now for the following reasons :</p>
+
+<ul>
+<li>Even with review tools, they involved too much manual efforts</li>
+<li>I&rsquo;ve been in jobs with reinforcing loops :
+<img class="center" src="http://philippe.bourgau.net/imgs/2013-12-02-reviews-for-everyone/graph.png" title="Schema of a vicious circle : poor quality, bugs, not enough time, poor quality ..." >
+In this kind of environment, even mandatory code reviews tend to become a useless &ldquo;tick in the box&rdquo; operation</li>
+<li>Often they are used as a control mechanism rather than a share tool</li>
+</ul>
+
+
+<p>Public reviews, <a href="http://producingoss.com/en/setting-tone.html#code-review">as discribed by Karl Fogel in Producing Free Open Source Software</a> on the other hand seem something great to encourage share and peer review. The principles are simple :</p>
+
+<ul>
+<li>All commits must be reviewed by at least one person</li>
+<li>Anyone can review anyone&rsquo;s code</li>
+</ul>
+
+
+<p>At work, we are using <a href="http://www.perforce.com">Perforce</a> and <a href="http://smartbear.com/products/software-development/code-review/">Code Collaborator</a> as a review tool. We did not have the possibility to send an email at every perforce submit, and manually creating code collaborator reviews for every change is a chore. I spent an afternoon writing a small ruby script that polls perforce for new changes, and automaticaly creates reviews in Code Collaborator from these. I also added something to spot existing Jira ids in commit messages, to enlarge the existing review instead of creating a new one for every commit.</p>
+
+<p>We are very pleased with the result, all the team is participating to the reviews. As with all good code reviews, it&rsquo;s helps :</p>
+
+<ul>
+<li>Spoting some bugs</li>
+<li>Spoting some possible design improvements</li>
+<li>Discussing the global design and architechure of our system</li>
+<li>Gathering coding standards</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I organized my javascript assets in Rails]]></title>
@@ -25,7 +65,7 @@
 <ul>
 <li>most of js compiled in a single file</li>
 <li>no js code in your html files : I want to use unintrusive javascript techniques, and have some outside js hook code that will wire js and html together</li>
-<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I could not simply compile all js code in a single minified file</li>
+<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I cannot simply compile all js code in a single minified file</li>
 <li>In unit tests, I want to be able to manually set up and tear down the js hooks</li>
 </ul>
 
@@ -902,21 +942,6 @@
     <updated>2013-04-24T06:42:00+02:00</updated>
     <id>http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool</id>
     <content type="html"><![CDATA[<p>Working with regular expressions is always a try and fail and retry &hellip; experience. It really helps to have an interactive tool with which to tune up your expression. This is exactly what <a href="http://rubular.com">Rubular</a> is made for. Give it a try next time you need to work with ruby regular expressions.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to evaluate an xpath in chrome ?]]></title>
-    <link href="http://philippe.bourgau.net/how-to-evaluate-an-xpath-in-chrome/"/>
-    <updated>2013-04-24T06:34:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-to-evaluate-an-xpath-in-chrome</id>
-    <content type="html"><![CDATA[<p>According to <a href="http://stackoverflow.com/questions/3030487/is-there-a-way-to-get-the-xpath-in-google-chrome">stack overflow</a>, simply use something like the following from the chrome console :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$x("//img")</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It works great.</p>
 ]]></content>
   </entry>
   
