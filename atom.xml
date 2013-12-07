@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2013-12-03T06:48:01+01:00</updated>
+  <updated>2013-12-07T08:18:32+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Trying to explain monads in java]]></title>
+    <link href="http://philippe.bourgau.net/trying-to-explain-monads-in-java/"/>
+    <updated>2013-12-07T07:37:00+01:00</updated>
+    <id>http://philippe.bourgau.net/trying-to-explain-monads-in-java</id>
+    <content type="html"><![CDATA[<p>A few days ago, a colleague currently taking <a href="https://www.coursera.org/course/reactive">the coursera course about reactive programming in scala</a>, asked me to explain him what monads are. It&rsquo;s always a tough question, and I rarely manage to give un understandable answer simply. This time though, I kind of managed to pass him some understanding of monads :</p>
+
+<ol>
+<li>When modelising a statefull data structure with immutable constructs, one has to pass in and return the data structure state of every function</li>
+<li>This results in a lot repeated code to pass this state around</li>
+<li>With a monad, you can factorize this glue code and only write the &lsquo;real&rsquo; code</li>
+</ol>
+
+
+<p>I thought it might be a good subject for a java kata ! This is what I tried to do in <a href="https://github.com/philou/java-monads-kata">java-monads-kata</a>. Here is some sample monadic code from the kata itself :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
+</span><span class='line'><span class="n">pops_objects_in_reverse_push_order</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">monad</span> <span class="o">=</span> <span class="n">monad</span><span class="o">.</span>
+</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">push</span><span class="o">(</span><span class="n">A</span><span class="o">)).</span>
+</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">push</span><span class="o">(</span><span class="n">B</span><span class="o">)).</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">pop</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">B</span><span class="o">,</span> <span class="n">monad</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">monad</span> <span class="o">=</span> <span class="n">monad</span><span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="n">pop</span><span class="o">());</span>
+</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">monad</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">empty</span><span class="o">(),</span> <span class="n">monad</span><span class="o">.</span><span class="na">stack</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can have a look at all <a href="https://github.com/philou/java-monads-kata">the final code</a>, or <a href="https://github.com/philou/java-monads-kata/commits/master">go through the whole history</a> to get the &lsquo;kata&rsquo; feeling. It&rsquo;s a shame Github does not offer a nice chronological repo history slideshow, for better experience, I recommend that you use Chrome with <a href="https://chrome.google.com/webstore/detail/github-improved/nkbnmpfpclijlllipmfbkkednidgngaa">Github improved</a> : this allows to view diffs right from the Github history.</p>
+
+<p>The resulting code is still quite far from a <a href="http://www.haskell.org/haskellwiki/Monad">Haskell monad</a> :</p>
+
+<ul>
+<li>Functions are not first class objects in Java. It is written in Java 7, without lambda, which does not help neither.</li>
+<li>Java does not have Haskell type class polymorphism, but only supports OO polymorphism and very little covariance</li>
+<li>The whole monad thing, designed at simulating/isolating side effects has a WTF feel in Java where side effects are just everywhere</li>
+</ul>
+
+
+<p>I&rsquo;d love to hear some feedback about it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reviews for everyone]]></title>
@@ -933,15 +997,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
 
 <p>will match the bank name with CAPTURE_NUMBER, and you&rsquo;ll get an &ldquo;invalid value for Float&rdquo; error.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rubular: a really usefull ruby regex tool]]></title>
-    <link href="http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool/"/>
-    <updated>2013-04-24T06:42:00+02:00</updated>
-    <id>http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool</id>
-    <content type="html"><![CDATA[<p>Working with regular expressions is always a try and fail and retry &hellip; experience. It really helps to have an interactive tool with which to tune up your expression. This is exactly what <a href="http://rubular.com">Rubular</a> is made for. Give it a try next time you need to work with ruby regular expressions.</p>
 ]]></content>
   </entry>
   
