@@ -17,3 +17,21 @@ Finding another word is difficult though, I thought of 'stage' or 'milestone' th
 {% img center http://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/ST_vs_Gloucester_-_Match_-_23.JPG/640px-ST_vs_Gloucester_-_Match_-_23.JPG A rugby scrum (Wikimedia) %}
 
 Overall, the traditional agile 'iteration' is not bad at all, at least a lot better than Sprint.
+
+**EDIT 01/08/2014:**
+
+The 'Quick and Dirty' Sprint strategy, is like trying to win a marathon with a greedy algorithm:
+
+```ruby
+while not finished
+  sprint(100m)
+end
+```
+
+Not likely to work ... Marathoners know that they've got to stick to a constant speed during the whole race in order to finish it. The way to get faster is to :
+
+* increase this cruise speed just a bit
+* get at ease with it during a few races
+* repeat
+
+Is there something to learn from this to improve software development speed ?
