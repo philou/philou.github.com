@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-01-21T06:28:08+01:00</updated>
+  <updated>2014-01-22T07:10:21+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,126 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
+    <link href="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/"/>
+    <updated>2014-01-21T06:50:00+01:00</updated>
+    <id>http://philippe.bourgau.net/online-store-scrapping-dsl-gem</id>
+    <category term="dsl" /><category term="gem" /><category term="open source" /><category term="ruby" /><category term="scrapping" />
+    <content type="html"><![CDATA[<p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
+
+<p>As explained in the Readme, it allows one to declare a store this way :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Storexplore</span><span class="p">:</span><span class="ss">:define_api</span> <span class="s1">&#39;dummy-store.com&#39;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">attributes</span> <span class="k">do</span>
+</span><span class='line'>      <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">attributes</span> <span class="k">do</span>
+</span><span class='line'>        <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">items</span> <span class="s1">&#39;a.item&#39;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">attributes</span> <span class="k">do</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:brand</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#brand&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:price</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">to_f</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:image</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#image&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:remote_id</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#remote_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And to use it like that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Api</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s1">&#39;http://www.dummy-store.com&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;category: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;attributes: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">category</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">sub_category</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  category: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  attributes: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">sub_category</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    item: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    attributes: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I tried my best to make this library high quality :</p>
+
+<ul>
+<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
+<li>Real world features like constant memory usage have been added to fix production bugs</li>
+<li>Documented with samples and rdoc</li>
+<li>Extensive automated testing</li>
+</ul>
+
+
+<p>Let&rsquo;s hope it will be usefull for some.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sprints are not sprints]]></title>
@@ -920,110 +1040,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FULLBACKTRACES</span><span class="o">=</span><span class="kp">true</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rspec</span> <span class="n">spec</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
-    <link href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/"/>
-    <updated>2013-05-09T08:35:00+02:00</updated>
-    <id>http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios</id>
-    <category term="BDD" /><category term="cucumber" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
-</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
-</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the deposit account</span>
-</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the deposit account</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It would be better if we could write it like that</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
-</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
-</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the account</span>
-</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the account</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
-
-<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span>
-</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="s2">&quot;credit&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span><span class="o">=</span><span class="p">(</span><span class="n">account_name</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="n">account_name</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">CAPTURE_ACCOUNT_NAME</span> <span class="o">=</span> <span class="no">Tranform</span><span class="p">(</span><span class="sr">/^(a|an|the) *(.*) account$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">_prefix</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">account_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>    <span class="n">main_account_name</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="n">account_name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When creating the account, I added some code to set the main_account_name</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^(</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">) with (\d+)€$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">account_name</span><span class="p">,</span> <span class="n">amount</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">main_account_name</span><span class="o">=</span> <span class="n">account_name</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It is then possible to write steps like</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I withdraw (\d+)€ from (</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>that will match both &ldquo;the deposit account&rdquo; and &ldquo;the account&rdquo; depending on context.</p>
-
-<p>It would be really nice to be able to write things like</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on it</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but because of the <a href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
 ]]></content>
   </entry>
   

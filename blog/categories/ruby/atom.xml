@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-01-21T06:28:49+01:00</updated>
+  <updated>2014-01-22T07:11:29+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
+    <link href="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/"/>
+    <updated>2014-01-21T06:50:00+01:00</updated>
+    <id>http://philippe.bourgau.net/online-store-scrapping-dsl-gem</id>
+    <content type="html"><![CDATA[<p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
+
+<p>As explained in the Readme, it allows one to declare a store this way :</p>
+
+<p>```ruby
+Storexplore::define_api &lsquo;dummy-store.com&rsquo; do</p>
+
+<p>  categories &lsquo;a.category&rsquo; do</p>
+
+<pre><code>attributes do
+  { :name =&gt; page.get_one("h1").content }
+end
+
+categories 'a.category' do
+  attributes do
+    { :name =&gt; page.get_one("h1").content }
+  end
+
+  items 'a.item' do
+    attributes do
+      {
+        :name =&gt; page.get_one('h1').content,
+        :brand =&gt; page.get_one('#brand').content,
+        :price =&gt; page.get_one('#price').content.to_f,
+        :image =&gt; page.get_one('#image').content,
+        :remote_id =&gt; page.get_one('#remote_id').content
+      }
+    end
+  end
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>And to use it like that :</p>
+
+<p>```ruby
+Api.browse(&lsquo;<a href="http://www.dummy-store.com">http://www.dummy-store.com</a>&rsquo;).categories.each do |category|</p>
+
+<p>  puts &ldquo;category: #{category.title}&rdquo;
+  puts &ldquo;attributes: #{category.attributes}&rdquo;</p>
+
+<p>  category.categories.each do |sub_category|</p>
+
+<pre><code>puts "  category: #{sub_category.title}"
+puts "  attributes: #{sub_category.attributes}"
+
+sub_category.items.each do |item|
+
+  puts "    item: #{item.title}"
+  puts "    attributes: #{item.attributes}"
+
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>I tried my best to make this library high quality :</p>
+
+<ul>
+<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
+<li>Real world features like constant memory usage have been added to fix production bugs</li>
+<li>Documented with samples and rdoc</li>
+<li>Extensive automated testing</li>
+</ul>
+
+
+<p>Let&rsquo;s hope it will be usefull for some.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
@@ -217,46 +297,6 @@ Spring.watch &ldquo;spec/factories&rdquo;
 Spring.watch &ldquo;features/env.rb&rdquo;</p>
 
 <p>Spring.watch_method = :listen
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
-    <link href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/"/>
-    <updated>2013-08-02T09:16:00+02:00</updated>
-    <id>http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db</id>
-    <content type="html"><![CDATA[<p>There are already a lot of articles explaining how to setup an in memory <a href="http://www.sqlite.org/">SQLite</a> database to speed up <a href="http://rubyonrails.org/">Rails</a> specs or unit tests. Most of them explain how to change your database.yml and to run setup your schema before running the tests. It works fine.</p>
-
-<p>There&rsquo;s a catch though : suppose you are using <a href="http://cukes.info/">cucumber</a>, it&rsquo;s likely you&rsquo;d rather run cucumber on a real database (<a href="http://www.postgresql.org/">PostgreSQL</a>, <a href="http://www.mysql.com/">MySQL</a> or whatever). Most gems expect cucumber and <a href="http://rspec.info/">rspec</a> to both run in the test environment &hellip; Every time I updated my bundle or that I wanted to use a new test gem, I would hit an issue about cucumber being run in its own &lsquo;cucumber&rsquo; environment : unexpected warnings and things not working out of the box.</p>
-
-<p>Eventually, I ditched the cucumber env, setup a PostgreSQL db on the test env, and injected the in memory sqlite database right inside spec_helper.rb :</p>
-
-<p>In database.yml :</p>
-
-<p><code>yaml
-test:
-  adapter: postgresql
-  database: mes_courses_test
-  encoding: utf8
-  pool: 5
-  timeout: 5000
-  username: mes_courses
-  password: secret
-  host: localhost
-  port: 5433
-</code></p>
-
-<p>At the bottom of spec_helper.rb</p>
-
-<p>```ruby
-setup_sqlite_db = lambda do
-  ActiveRecord::Base.establish_connection(adapter: &lsquo;sqlite3&rsquo;, database: &lsquo;:memory:&rsquo;)</p>
-
-<p>  load &ldquo;#{Rails.root.to_s}/db/schema.rb&rdquo; # use db agnostic schema by default
-  # ActiveRecord::Migrator.up(&lsquo;db/migrate&rsquo;) # use migrations
-end
-silence_stream(STDOUT, &amp;setup_sqlite_db)
 ```</p>
 ]]></content>
   </entry>
