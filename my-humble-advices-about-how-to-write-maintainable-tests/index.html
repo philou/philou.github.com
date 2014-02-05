@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Matching meta tags with Capybara 2 - Philippe Bourgau's blog</title>
+  <title>My humble advices about how to write maintainable tests - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message : 1
-expected to find xpath "//meta[@http- &hellip;">
+  <meta name="description" content="I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessary stressfull. On the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ expected to find xpath "//meta[@http- &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/">
+  <link rel="canonical" href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -88,7 +87,7 @@ expected to find xpath "//meta[@http- &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Matching Meta Tags With Capybara 2</h1>
+      <h1 class="entry-title">My Humble Advices About How to Write Maintainable Tests</h1>
     
     
       <p class="meta">
@@ -104,36 +103,53 @@ expected to find xpath "//meta[@http- &hellip;">
   
 
 
-<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
+<time datetime="2014-02-04T06:10:00+01:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
+<div class="entry-content"><p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessary stressfull. On the other hand, the code of maintaining badly written tests can sometimes outweight their benefits. This is usually the moment where the team resorts to manual testing, and gets back to &lsquo;the good old days&rsquo;. Personnaly, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
+<p>Here is how I try to make my tests as maintainable as possible :</p>
+
+<ul>
+<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
+<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
+<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writting more readable tests</li>
+<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual falty code. The receipe for writing short tests is to follow the given-when-then pattern :
+
+<ul>
+<li>start your test by setting the context (given)</li>
+<li>do the thing you actualy want to test (when)</li>
+<li>verify that it did what you wanted (then)</li>
+</ul>
+</li>
+<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
+<li>Use test data builders. This will avoid duplicated and long context setup at the begining of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
+<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
+<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
+<li>As <a href="http://0.0.0.0:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
+
+<ul>
+<li>speed up a test that is too slow</li>
+<li>cut off a dependency to a unavailable subsystem</li>
+<li>simplify an overly complex test setup</li>
+</ul>
+</li>
+<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
+<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
+<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completly until it is too late</li>
+<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really usefull when needed.</li>
+<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usualy very simple to setup</li>
+<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
+</ul>
 
 
-<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
+<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To match meta tags, I had to resort to the following :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
+<p>Happy testing !</p>
 </div>
 
 
@@ -156,12 +172,12 @@ expected to find xpath "//meta[@http- &hellip;">
   
 
 
-<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
+<time datetime="2014-02-04T06:10:00+01:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>, <a class='category' href='/blog/categories/web/'>web</a>
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
   
 </span>
 
@@ -170,7 +186,7 @@ expected to find xpath "//meta[@http- &hellip;">
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -183,10 +199,8 @@ expected to find xpath "//meta[@http- &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/" title="Previous Post: Hitting the middle ground between classicist and mockist TDD">&laquo; Hitting the middle ground between classicist and mockist TDD</a>
+        <a class="basic-alignment left" href="/online-store-scrapping-dsl-gem/" title="Previous Post: Online store scrapping DSL gem">&laquo; Online store scrapping DSL gem</a>
       
-      
-        <a class="basic-alignment right" href="/be-careful-not-to-bundle-fakeweb-in-production/" title="Next Post: Be careful not to bundle FakeWeb in production">Be careful not to bundle FakeWeb in production &raquo;</a>
       
     </p>
   </footer>
@@ -322,8 +336,8 @@ expected to find xpath "//meta[@http- &hellip;">
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/';
-        var disqus_url = 'http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/';
+        var disqus_identifier = 'http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/';
+        var disqus_url = 'http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/';
         var disqus_script = 'embed.js';
       
     (function () {

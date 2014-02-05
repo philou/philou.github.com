@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-01-22T07:11:29+01:00</updated>
+  <updated>2014-02-05T07:26:58+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,54 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My humble advices about how to write maintainable tests]]></title>
+    <link href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/"/>
+    <updated>2014-02-04T06:10:00+01:00</updated>
+    <id>http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests</id>
+    <content type="html"><![CDATA[<p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessary stressfull. On the other hand, the code of maintaining badly written tests can sometimes outweight their benefits. This is usually the moment where the team resorts to manual testing, and gets back to &lsquo;the good old days&rsquo;. Personnaly, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
+
+<p>Here is how I try to make my tests as maintainable as possible :</p>
+
+<ul>
+<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
+<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
+<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writting more readable tests</li>
+<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual falty code. The receipe for writing short tests is to follow the given-when-then pattern :
+
+<ul>
+<li>start your test by setting the context (given)</li>
+<li>do the thing you actualy want to test (when)</li>
+<li>verify that it did what you wanted (then)</li>
+</ul>
+</li>
+<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
+<li>Use test data builders. This will avoid duplicated and long context setup at the begining of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
+<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
+<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
+<li>As <a href="http://0.0.0.0:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
+
+<ul>
+<li>speed up a test that is too slow</li>
+<li>cut off a dependency to a unavailable subsystem</li>
+<li>simplify an overly complex test setup</li>
+</ul>
+</li>
+<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
+<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
+<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completly until it is too late</li>
+<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really usefull when needed.</li>
+<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usualy very simple to setup</li>
+<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
+</ul>
+
+
+<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
+
+<p>Happy testing !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I organized my javascript assets in Rails]]></title>
@@ -231,46 +279,6 @@ Spring.watch &ldquo;spec/factories&rdquo;
 Spring.watch &ldquo;features/env.rb&rdquo;</p>
 
 <p>Spring.watch_method = :listen
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
-    <link href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/"/>
-    <updated>2013-08-02T09:16:00+02:00</updated>
-    <id>http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db</id>
-    <content type="html"><![CDATA[<p>There are already a lot of articles explaining how to setup an in memory <a href="http://www.sqlite.org/">SQLite</a> database to speed up <a href="http://rubyonrails.org/">Rails</a> specs or unit tests. Most of them explain how to change your database.yml and to run setup your schema before running the tests. It works fine.</p>
-
-<p>There&rsquo;s a catch though : suppose you are using <a href="http://cukes.info/">cucumber</a>, it&rsquo;s likely you&rsquo;d rather run cucumber on a real database (<a href="http://www.postgresql.org/">PostgreSQL</a>, <a href="http://www.mysql.com/">MySQL</a> or whatever). Most gems expect cucumber and <a href="http://rspec.info/">rspec</a> to both run in the test environment &hellip; Every time I updated my bundle or that I wanted to use a new test gem, I would hit an issue about cucumber being run in its own &lsquo;cucumber&rsquo; environment : unexpected warnings and things not working out of the box.</p>
-
-<p>Eventually, I ditched the cucumber env, setup a PostgreSQL db on the test env, and injected the in memory sqlite database right inside spec_helper.rb :</p>
-
-<p>In database.yml :</p>
-
-<p><code>yaml
-test:
-  adapter: postgresql
-  database: mes_courses_test
-  encoding: utf8
-  pool: 5
-  timeout: 5000
-  username: mes_courses
-  password: secret
-  host: localhost
-  port: 5433
-</code></p>
-
-<p>At the bottom of spec_helper.rb</p>
-
-<p>```ruby
-setup_sqlite_db = lambda do
-  ActiveRecord::Base.establish_connection(adapter: &lsquo;sqlite3&rsquo;, database: &lsquo;:memory:&rsquo;)</p>
-
-<p>  load &ldquo;#{Rails.root.to_s}/db/schema.rb&rdquo; # use db agnostic schema by default
-  # ActiveRecord::Migrator.up(&lsquo;db/migrate&rsquo;) # use migrations
-end
-silence_stream(STDOUT, &amp;setup_sqlite_db)
 ```</p>
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-01-22T07:10:21+01:00</updated>
+  <updated>2014-02-05T07:26:15+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My humble advices about how to write maintainable tests]]></title>
+    <link href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/"/>
+    <updated>2014-02-04T06:10:00+01:00</updated>
+    <id>http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests</id>
+    <category term="agile" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessary stressfull. On the other hand, the code of maintaining badly written tests can sometimes outweight their benefits. This is usually the moment where the team resorts to manual testing, and gets back to &lsquo;the good old days&rsquo;. Personnaly, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
+
+<p>Here is how I try to make my tests as maintainable as possible :</p>
+
+<ul>
+<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
+<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
+<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writting more readable tests</li>
+<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual falty code. The receipe for writing short tests is to follow the given-when-then pattern :
+
+<ul>
+<li>start your test by setting the context (given)</li>
+<li>do the thing you actualy want to test (when)</li>
+<li>verify that it did what you wanted (then)</li>
+</ul>
+</li>
+<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
+<li>Use test data builders. This will avoid duplicated and long context setup at the begining of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
+<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
+<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
+<li>As <a href="http://0.0.0.0:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
+
+<ul>
+<li>speed up a test that is too slow</li>
+<li>cut off a dependency to a unavailable subsystem</li>
+<li>simplify an overly complex test setup</li>
+</ul>
+</li>
+<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
+<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
+<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completly until it is too late</li>
+<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really usefull when needed.</li>
+<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usualy very simple to setup</li>
+<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
+</ul>
+
+
+<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
+
+<p>Happy testing !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
@@ -973,73 +1022,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
 
 <p>Maybe I should swith to rr &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Display full backtraces in rspec]]></title>
-    <link href="http://philippe.bourgau.net/display-full-backtraces-in-rspec/"/>
-    <updated>2013-06-07T06:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/display-full-backtraces-in-rspec</id>
-    <category term="rspec" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&rsquo;s a great testing framework.</p>
-
-<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">DEFAULT_BACKTRACE_PATTERNS</span> <span class="o">=</span> <span class="o">[</span>
-</span><span class='line'>  <span class="sr">/\/lib\d*\/ruby\//</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/org\/jruby\//</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/bin\//</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">%r|/gems/|</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/spec\/spec_helper\.rb/</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/lib\/rspec\/(core|expectations|matchers|mocks)/</span>
-</span><span class='line'><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Most of the time, that&rsquo;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &ldquo;method called with unexpected number of arguments&rdquo; that does not refer to the code in the backtrace, but to some other library code &hellip;</p>
-
-<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># RSpec automatically cleans stuff out of backtraces;</span>
-</span><span class='line'>  <span class="c1"># sometimes this is annoying when trying to debug something e.g. a gem</span>
-</span><span class='line'>  <span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FULLBACKTRACES&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
-</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">backtrace_clean_patterns</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># some other configuration here</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FULLBACKTRACES</span><span class="o">=</span><span class="kp">true</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rspec</span> <span class="n">spec</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

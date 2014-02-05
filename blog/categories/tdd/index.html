@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Matching meta tags with Capybara 2 - Philippe Bourgau's blog</title>
+  <title>Category: tdd - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message : 1
-expected to find xpath "//meta[@http- &hellip;">
+  <meta name="description" content="Category: tdd">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ expected to find xpath "//meta[@http- &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/">
+  <link rel="canonical" href="http://philippe.bourgau.netblog/categories/tdd/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -84,119 +83,36 @@ expected to find xpath "//meta[@http- &hellip;">
     <div id="main">
       <div id="content">
 	<div>
-<article class="hentry" role="article">
+<article role="article">
   
   <header>
-    
-      <h1 class="entry-title">Matching Meta Tags With Capybara 2</h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
-        
-      </p>
+    <h1 class="entry-title">Category: Tdd</h1>
     
   </header>
-
-
-<div class="entry-content"><p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To match meta tags, I had to resort to the following :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
-</div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
-
-      
-
-
-
-
-
+  <div id="blog-archives" class="category">
 
 
 
   
+  <h2>2014</h2>
+
+<article>
+  
+<h1><a href="/my-humble-advices-about-how-to-write-maintainable-tests/">My humble advices about how to write maintainable tests</a></h1>
+<time datetime="2014-02-04T06:10:00+01:00" pubdate><span class='month'>Feb</span> <span class='day'>04</span> <span class='year'>2014</span></time>
+
+<footer>
+  <span class="categories">posted in <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/testing/'>testing</a></span>
+</footer>
 
 
-<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>, <a class='category' href='/blog/categories/web/'>web</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/" >Tweet</a>
-  
-  
-  <div class="g-plusone" data-size="medium"></div>
-  
-  
-    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/" title="Previous Post: Hitting the middle ground between classicist and mockist TDD">&laquo; Hitting the middle ground between classicist and mockist TDD</a>
-      
-      
-        <a class="basic-alignment right" href="/be-careful-not-to-bundle-fakeweb-in-production/" title="Next Post: Be careful not to bundle FakeWeb in production">Be careful not to bundle FakeWeb in production &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-  </section>
+
+  
+</article>
 
 </div>
 
@@ -321,10 +237,7 @@ expected to find xpath "//meta[@http- &hellip;">
       var disqus_shortname = 'philippe-bourgau';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/';
-        var disqus_url = 'http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
