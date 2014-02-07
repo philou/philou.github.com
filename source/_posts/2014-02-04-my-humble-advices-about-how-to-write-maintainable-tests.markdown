@@ -23,7 +23,7 @@ Here is how I try to make my tests as maintainable as possible :
 * Use test data builders. This will avoid duplicated and long context setup at the begining of every test. Don't use factory methods or the object mother pattern, it just does not scale. In java, this usually means [rollying your own](http://www.natpryce.com/articles/000714.html), in ruby, just use [Factory Girl](https://github.com/thoughtbot/factory_girl)
 * Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in [rspec](http://rspec.info/) and its [matcher dsl](https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher). Lately, in Java I have been using [Fest Assert](https://github.com/alexruiz/fest-assert-2.x)
 * Use the extended red -> red with explicit error message -> green -> refactor in place of the shorter red -> green -> refactor. By spending some time to improve your assertion messages, you'll eventually save time to understand what broke when the test fails
-* As [I already wrote about](http://0.0.0.0:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/), only use mocks to
+* As [I already wrote about](http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/), only use mocks to
     * speed up a test that is too slow
     * cut off a dependency to a unavailable subsystem
     * simplify an overly complex test setup
