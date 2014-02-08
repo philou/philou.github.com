@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-02-05T07:26:58+01:00</updated>
+  <updated>2014-02-07T22:40:49+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -18,7 +18,7 @@
     <link href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/"/>
     <updated>2014-02-04T06:10:00+01:00</updated>
     <id>http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests</id>
-    <content type="html"><![CDATA[<p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessary stressfull. On the other hand, the code of maintaining badly written tests can sometimes outweight their benefits. This is usually the moment where the team resorts to manual testing, and gets back to &lsquo;the good old days&rsquo;. Personnaly, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
+    <content type="html"><![CDATA[<p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessarily stressfull. On the other hand, the code of maintaining badly written tests can sometimes outweight their benefits. This is usually the moment where the team resorts to manual testing, and gets back to the ways of &lsquo;the good old days&rsquo;. Personnaly, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
 
 <p>Here is how I try to make my tests as maintainable as possible :</p>
 
@@ -38,7 +38,7 @@
 <li>Use test data builders. This will avoid duplicated and long context setup at the begining of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
 <li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
 <li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
-<li>As <a href="http://0.0.0.0:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
+<li>As <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
 
 <ul>
 <li>speed up a test that is too slow</li>
