@@ -1,4 +1,5 @@
 ---
+keywords: "web, chrome, html, evaluate, xpath"
 layout: post
 title: "How to evaluate an xpath in chrome ?"
 date: 2013-04-24 06:34

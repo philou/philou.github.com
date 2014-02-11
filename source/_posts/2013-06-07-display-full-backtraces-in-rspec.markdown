@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, rspec, testing, Display, backtraces"
 layout: post
 title: "Display full backtraces in rspec"
 published: true

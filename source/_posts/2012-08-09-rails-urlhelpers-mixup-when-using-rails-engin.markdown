@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, rails, gem, url_helpers, mixup, using, engines"
 layout: post
 title: Rails url_helpers mixup when using rails engines
 published: true

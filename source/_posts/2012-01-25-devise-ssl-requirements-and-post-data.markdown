@@ -1,4 +1,5 @@
 ---
+keywords: "Devise, rails, SSL, Devise,, requirements, post, data"
 layout: post
 title: Devise, SSL requirements and post data
 published: true

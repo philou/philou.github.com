@@ -1,4 +1,5 @@
 ---
+keywords: "gem, heroku, rake, ruby, Using, gems, instead, rails, plugins"
 layout: post
 title: Using gems instead of rails plugins on heroku
 published: true

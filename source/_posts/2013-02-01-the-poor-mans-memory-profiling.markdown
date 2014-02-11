@@ -1,4 +1,5 @@
 ---
+keywords: "memory, ruby, testing, poor, mans, profiling"
 layout: post
 title: The poor man's memory profiling
 published: true

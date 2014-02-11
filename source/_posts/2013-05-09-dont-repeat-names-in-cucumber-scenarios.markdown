@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, testing, cucumber, BDD, Dont, repeat, names, scenarios"
 layout: post
 title: "Don't repeat names in cucumber scenarios"
 date: 2013-05-09 08:35

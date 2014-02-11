@@ -1,4 +1,5 @@
 ---
+keywords: "gem, Ruby, Best Practices, thirdparties, practices"
 layout: post
 title: Ruby thirdparties best practices
 published: true

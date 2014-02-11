@@ -1,4 +1,5 @@
 ---
+keywords: "web, exploitation, rule, monitoring, emails"
 layout: post
 title: ! '#1 rule for monitoring emails'
 published: true

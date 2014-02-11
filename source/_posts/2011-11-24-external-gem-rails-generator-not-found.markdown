@@ -1,4 +1,5 @@
 ---
+keywords: "Devise, rails, ruby, workaround, external, gem, generator, found"
 layout: post
 title: external gem rails generator not found
 published: true

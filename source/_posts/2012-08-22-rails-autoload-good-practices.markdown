@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, Rails, autoload, good, practices"
 layout: post
 title: Rails autoload good practices
 published: true

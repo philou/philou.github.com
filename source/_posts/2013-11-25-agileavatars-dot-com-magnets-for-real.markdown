@@ -1,4 +1,5 @@
 ---
+keywords: "AgileAvatarscom, magnets, real"
 layout: post
 title: "AgileAvatars.com magnets for real"
 date: 2013-11-25 06:40

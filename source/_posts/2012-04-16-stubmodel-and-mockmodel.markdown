@@ -1,4 +1,5 @@
 ---
+keywords: "mocking, rspec, ruby, testing, stub_model, mock_model"
 layout: post
 title: stub_model and mock_model
 published: true

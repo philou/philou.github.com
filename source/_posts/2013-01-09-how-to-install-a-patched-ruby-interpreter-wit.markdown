@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, install, patched, interpreter, rbenv, ruby-build"
 layout: post
 title: How to install a patched ruby interpreter with rbenv and ruby-build
 published: true

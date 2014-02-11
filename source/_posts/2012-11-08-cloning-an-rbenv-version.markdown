@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, Cloning, rbenv, version"
 layout: post
 title: Cloning an rbenv version
 published: true

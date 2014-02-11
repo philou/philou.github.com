@@ -1,4 +1,5 @@
 ---
+keywords: "c#, testing, test, class, using, implementation, helper"
 layout: post
 title: How to test a class using an implementation helper ?
 published: true

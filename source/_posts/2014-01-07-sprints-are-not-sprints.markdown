@@ -1,4 +1,5 @@
 ---
+keywords: "agile, scrum, sprints"
 layout: post
 title: "Sprints are not sprints"
 date: 2014-01-07 06:22

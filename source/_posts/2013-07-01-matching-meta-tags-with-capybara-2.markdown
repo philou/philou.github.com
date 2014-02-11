@@ -1,4 +1,5 @@
 ---
+keywords: "testing, ruby, web, Matching, meta, tags, Capybara"
 layout: post
 title: "Matching meta tags with Capybara 2"
 date: 2013-07-01 20:20

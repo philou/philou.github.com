@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, cucumber, testing, BDD, new, transform, breaks, everyhing"
 layout: post
 title: "If new cucumber transform breaks everyhing ..."
 date: 2013-05-08 08:36

@@ -1,4 +1,5 @@
 ---
+keywords: "agile, side-project, startup, agileavatars.com, wwwagileavatarscom, order, customized, avatar, magnets"
 layout: post
 title: "www.agileavatars.com : order customized avatar magnets"
 date: 2013-07-18 07:56

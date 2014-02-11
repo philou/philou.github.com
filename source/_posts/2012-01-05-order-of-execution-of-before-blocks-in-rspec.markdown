@@ -1,4 +1,5 @@
 ---
+keywords: "RSpec, ruby, Order, execution, before, blocks"
 layout: post
 title: Order of execution of before blocks in RSpec
 published: true

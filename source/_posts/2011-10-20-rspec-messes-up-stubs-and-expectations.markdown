@@ -1,4 +1,5 @@
 ---
+keywords: "Rspec, ruby, messes, stubs, expectations"
 layout: post
 title: Rspec messes up stubs and expectations
 published: true

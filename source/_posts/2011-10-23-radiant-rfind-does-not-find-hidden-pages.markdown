@@ -1,4 +1,5 @@
 ---
+keywords: "radiant-tags-extension, radiant, rfind, find, hidden, pages"
 layout: post
 title: radiant r:find does not find hidden pages
 published: true

@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, testing, rails, javascript, coffeescript, Jasmine, setup"
 layout: post
 title: "Jasmine and coffeescript setup for rails"
 date: 2013-07-04 07:44

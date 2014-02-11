@@ -1,4 +1,5 @@
 ---
+keywords: "Radiant, radiant-tags-extension, Radiant v0.9.1, radiant-tags-extension ~> 1.6.2, incompatibility"
 layout: post
 title: Radiant v0.9.1 incompatibility with radiant-tags-extension ~> 1.6.2
 published: true

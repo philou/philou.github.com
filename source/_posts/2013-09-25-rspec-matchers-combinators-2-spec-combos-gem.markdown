@@ -1,4 +1,5 @@
 ---
+keywords: "RSpec, ruby, testing, gem, open source, Matchers, Combinators, spec_combos"
 layout: post
 title: "RSpec Matchers Combinators 2 : spec_combos gem"
 date: 2013-09-25 21:29

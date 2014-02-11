@@ -1,4 +1,5 @@
 ---
+keywords: "Hacking, Hackers, peintres"
 layout: post
 title: Hackers et peintres
 published: true

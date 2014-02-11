@@ -1,4 +1,5 @@
 ---
+keywords: "heroku, ruby, Dont, forget, stack"
 layout: post
 title: Don't forget the heroku stack
 published: true

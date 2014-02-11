@@ -1,4 +1,5 @@
 ---
+keywords: "css, stylesheet, media"
 layout: post
 title: There can be only one css stylesheet per media
 published: true

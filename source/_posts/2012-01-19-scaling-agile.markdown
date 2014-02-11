@@ -1,4 +1,5 @@
 ---
+keywords: "Agile, Enterprise, Lean, Scrum, XP, Scaling"
 layout: post
 title: Scaling Agile
 published: true

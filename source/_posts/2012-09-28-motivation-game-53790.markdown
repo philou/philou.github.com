@@ -1,4 +1,5 @@
 ---
+keywords: "Lean, Motivation, game"
 layout: post
 title: Motivation game
 published: true

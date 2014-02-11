@@ -1,4 +1,5 @@
 ---
+keywords: "binding, C#, UI, Making, properties, class, objects"
 layout: post
 title: Making C# properties first class objects
 published: true

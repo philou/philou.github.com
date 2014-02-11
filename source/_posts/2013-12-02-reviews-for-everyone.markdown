@@ -1,4 +1,5 @@
 ---
+keywords: "code reviews, agile, version control, Reviews, everyone"
 layout: post
 title: "Reviews for everyone"
 date: 2013-12-02 06:33

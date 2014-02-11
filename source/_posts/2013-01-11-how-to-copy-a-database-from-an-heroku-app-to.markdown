@@ -1,4 +1,5 @@
 ---
+keywords: "heroku, postgre, copy, database, app, another"
 layout: post
 title: How to copy a database from an heroku app to another
 published: true

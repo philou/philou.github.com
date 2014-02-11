@@ -1,4 +1,5 @@
 ---
+keywords: "testing, ruby, Ditching, autotest, guard"
 layout: post
 title: "Ditching autotest for guard"
 date: 2013-07-03 06:35

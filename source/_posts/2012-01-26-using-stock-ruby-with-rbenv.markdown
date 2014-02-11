@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, unix, Using, stock, rbenv"
 layout: post
 title: Using stock ruby with rbenv
 published: true

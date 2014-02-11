@@ -1,4 +1,5 @@
 ---
+keywords: "ruby, rspec, testing, Hitting, middle, ground, between, classicist, mockist, TDD"
 layout: post
 title: "Hitting the middle ground between classicist and mockist TDD"
 published: true

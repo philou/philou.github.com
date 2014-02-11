@@ -1,4 +1,5 @@
 ---
+keywords: "blogging, pictures, useful, link, find, free"
 layout: post
 title: A useful link to find free pictures
 published: true

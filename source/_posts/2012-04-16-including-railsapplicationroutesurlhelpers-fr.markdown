@@ -1,4 +1,5 @@
 ---
+keywords: "rails, ruby, Including, Railsapplicationroutesurl_helpers, module"
 layout: post
 title: ! ' Including Rails.application.routes.url_helpers from a module'
 published: true

@@ -1,4 +1,5 @@
 ---
+keywords: "C#, mocking, mock, out, process, COM, server"
 layout: post
 title: How to mock an out of process COM server with C#
 published: true

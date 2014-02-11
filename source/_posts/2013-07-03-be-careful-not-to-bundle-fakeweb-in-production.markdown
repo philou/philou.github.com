@@ -1,4 +1,5 @@
 ---
+keywords: "testing, ruby, careful, bundle, FakeWeb, production"
 layout: post
 title: "Be careful not to bundle FakeWeb in production"
 date: 2013-07-03 06:31

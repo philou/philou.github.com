@@ -1,4 +1,5 @@
 ---
+keywords: "C#, testing, Windows, licker"
 layout: post
 title: Windows licker like with C#
 published: true

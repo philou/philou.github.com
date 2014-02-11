@@ -1,4 +1,5 @@
 ---
+keywords: "Postgre, rails, ruby, Postgre 9.1, Setting, development"
 layout: post
 title: Setting up Postgre 9.1 for rails development
 published: true

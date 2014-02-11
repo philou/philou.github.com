@@ -1,4 +1,5 @@
 ---
+keywords: "agile, Best Practices, XP, Collecting, practices"
 layout: post
 title: Collecting agile and XP best practices
 published: true

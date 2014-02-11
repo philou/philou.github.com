@@ -1,4 +1,5 @@
 ---
+keywords: "RSpec, ruby, testing, matchers, combinators"
 layout: post
 title: "RSpec matchers combinators"
 date: 2013-09-11 12:23
