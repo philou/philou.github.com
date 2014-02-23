@@ -27,8 +27,9 @@
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="/stylesheets/side_projects.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/side_projects.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 <meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
@@ -46,6 +47,7 @@
   ga('linker:autoLink', ['agileavatars.com']);
 </script>
 
+<!-- tables css -->
 
   
 
@@ -86,6 +88,117 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/programming-as-an-exponential-problem/">Programming as an Exponential Problem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-21T06:30:00+01:00" pubdate data-updated="true">Feb 21<span>st</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As said Tom Cargill</p>
+
+<blockquote><p>The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.</p></blockquote>
+
+<p>By extrapolation, this would mean that every time we increase the requirements by 10%, we need to double the total development time ! That would mean that solution complexity is an exponential function of the complexity of the problem.</p>
+
+<p>That could explain why techniques that work well for small problems don&rsquo;t work well at all for large problems, and vice et versa. For example</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"> In the small (think one page script) </th>
+<th align="center"> In the large (think multi millions lines system)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"> Dynamic typing                       </td>
+<td align="center"> Static typing</td>
+</tr>
+<tr>
+<td align="center"> Mutable globals                      </td>
+<td align="center"> Immutability</td>
+</tr>
+<tr>
+<td align="center"> Imperative style                     </td>
+<td align="center"> Declarative style</td>
+</tr>
+<tr>
+<td align="center"> Manual memory management             </td>
+<td align="center"> Garbage collection</td>
+</tr>
+<tr>
+<td align="center"> Shared memory                        </td>
+<td align="center"> Message passing</td>
+</tr>
+</tbody>
+</table>
+
+
+<br/>
+
+
+<p>Just for fun, let&rsquo;s suppose that we could deduce a unique constant C for every language such that</p>
+
+<p><img class="center" src="/imgs/2014-02-21-programming-as-an-exponential-problem/formula.png" title="Secret formula linking problem and solution complexities" ></p>
+
+<p>Here is a plot of this formula with different values of C (0.5, 1 and 2)</p>
+
+<p><img class="center" src="/imgs/2014-02-21-programming-as-an-exponential-problem/close-plot.png" title="Plot of the formula for different C constant values" ></p>
+
+<p>We can see that small values of C are best for small problems, whereas greater values are evolve better with larger problems. For a given problem, there is quite a difference in the solution complexity, if the formula was true, and that we knew in which zone of complexity our problem will always be, we could choose the appropriate technology ! Experienced engineers already have the gut knowledge about how to chose the right tool for the job !</p>
+
+<p>That&rsquo;s not all, let&rsquo;s have a bird&rsquo;s eye view of the same formulas</p>
+
+<p><img class="center" src="/imgs/2014-02-21-programming-as-an-exponential-problem/wide-plot.png" title="Same plot at a larger scale" ></p>
+
+<p>I increased the maximum problem complexity by a factor of 3, I had to multiply the solution complexity by 100 ! In the end, these exponential curves all seem frighteningly vertical. This could explain why the divide and conquer approach works so well in software : 2e<sup>x</sup> &lt; e<sup>2x</sup>. Abstract and powerful APIs might be our best weapon against complexity.</p>
+
+<p>People behaviour does not match this exponential hypothesis though :</p>
+
+<ul>
+<li>At work, I&rsquo;ve seen quite a few projects started from scratch, and everybody expecting it to maintain it&rsquo;s initial speed during its whole lifetime</li>
+<li>Some recent hiring or investing trend seem to rely on hackathons, startup week ends, or coding games, all &lsquo;in the small&rsquo; exercises</li>
+<li>I&rsquo;ve observed in quick and dirty overtime work to meet a deadline &hellip; If productivity is proportional to the solution complexity, that crunch mode would be completely unproductive</li>
+</ul>
+
+
+<p>This leads to more interesting questions :</p>
+
+<ul>
+<li>Is my exponential model complete garbage ?</li>
+<li>Or are humans particularly bad at forecasting an exponential behaviour ?</li>
+<li>If so, what practices could we adopt to stop relying on this misleading gut feeling ?</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -809,71 +922,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rspec-matchers-combinators-2-spec-combos-gem/">RSpec Matchers Combinators 2 : Spec_combos Gem</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-25T21:29:00+02:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
-
-<p>To use it, just add the following to your Gemfile :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;spec_combos&#39;</span><span class="p">,</span> <span class="ss">:group</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">all_</span><span class="p">{</span><span class="n">and_</span><span class="p">(</span><span class="n">be_odd</span><span class="p">,</span> <span class="n">be_instance_of</span><span class="p">(</span><span class="no">Fixnum</span><span class="p">))}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It outputs the following error :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='text'><span class='line'>Failure/Error: expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
-</span><span class='line'>  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:
-</span><span class='line'>    [1] (2): expected 2 to be odd and be an instance of Fixnum, but:
-</span><span class='line'>      expected odd? to return true, got false
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I hope this might help !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -951,6 +999,10 @@ In this kind of environment, even mandatory code reviews tend to become a useles
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/programming-as-an-exponential-problem/">Programming as an exponential problem</a>
+      </li>
+    
+      <li class="post">
         <a href="/retroactively-add-keywords-for-your-existing-octopress-posts/">Retroactively add keywords for your existing Octopress posts</a>
       </li>
     
@@ -964,10 +1016,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
     
       <li class="post">
         <a href="/sprints-are-not-sprints/">Sprints are not sprints</a>
-      </li>
-    
-      <li class="post">
-        <a href="/trying-to-explain-monads-in-java/">Trying to explain monads in java</a>
       </li>
     
   </ul>

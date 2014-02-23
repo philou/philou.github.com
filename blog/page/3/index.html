@@ -27,8 +27,9 @@
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="/stylesheets/side_projects.css" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/side_projects.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
 <meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
@@ -46,6 +47,7 @@
   ga('linker:autoLink', ['agileavatars.com']);
 </script>
 
+<!-- tables css -->
 
   
 
@@ -86,6 +88,64 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/matching-meta-tags-with-capybara-2/">Matching Meta Tags With Capybara 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To match meta tags, I had to resort to the following :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -727,42 +787,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/toomanyredirects-when-changing-ssl-requiremen/">TOO_MANY_REDIRECTS When Changing Ssl Requirements</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-28T00:00:00+01:00" pubdate data-updated="true">Jan 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -842,6 +866,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/programming-as-an-exponential-problem/">Programming as an exponential problem</a>
+      </li>
+    
+      <li class="post">
         <a href="/retroactively-add-keywords-for-your-existing-octopress-posts/">Retroactively add keywords for your existing Octopress posts</a>
       </li>
     
@@ -855,10 +883,6 @@
     
       <li class="post">
         <a href="/sprints-are-not-sprints/">Sprints are not sprints</a>
-      </li>
-    
-      <li class="post">
-        <a href="/trying-to-explain-monads-in-java/">Trying to explain monads in java</a>
       </li>
     
   </ul>

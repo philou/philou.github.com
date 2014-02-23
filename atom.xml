@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-02-20T06:39:34+01:00</updated>
+  <updated>2014-02-23T09:09:10+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Programming as an exponential problem]]></title>
+    <link href="http://philippe.bourgau.net/programming-as-an-exponential-problem/"/>
+    <updated>2014-02-21T06:30:00+01:00</updated>
+    <id>http://philippe.bourgau.net/programming-as-an-exponential-problem</id>
+    <category term="complexity" /><category term="programming" /><category term="reflexion" />
+    <content type="html"><![CDATA[<p>As said Tom Cargill</p>
+
+<blockquote><p>The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.</p></blockquote>
+
+<p>By extrapolation, this would mean that every time we increase the requirements by 10%, we need to double the total development time ! That would mean that solution complexity is an exponential function of the complexity of the problem.</p>
+
+<p>That could explain why techniques that work well for small problems don&rsquo;t work well at all for large problems, and vice et versa. For example</p>
+
+<table>
+<thead>
+<tr>
+<th align="center"> In the small (think one page script) </th>
+<th align="center"> In the large (think multi millions lines system)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"> Dynamic typing                       </td>
+<td align="center"> Static typing</td>
+</tr>
+<tr>
+<td align="center"> Mutable globals                      </td>
+<td align="center"> Immutability</td>
+</tr>
+<tr>
+<td align="center"> Imperative style                     </td>
+<td align="center"> Declarative style</td>
+</tr>
+<tr>
+<td align="center"> Manual memory management             </td>
+<td align="center"> Garbage collection</td>
+</tr>
+<tr>
+<td align="center"> Shared memory                        </td>
+<td align="center"> Message passing</td>
+</tr>
+</tbody>
+</table>
+
+
+<br/>
+
+
+<p>Just for fun, let&rsquo;s suppose that we could deduce a unique constant C for every language such that</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-02-21-programming-as-an-exponential-problem/formula.png" title="Secret formula linking problem and solution complexities" ></p>
+
+<p>Here is a plot of this formula with different values of C (0.5, 1 and 2)</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-02-21-programming-as-an-exponential-problem/close-plot.png" title="Plot of the formula for different C constant values" ></p>
+
+<p>We can see that small values of C are best for small problems, whereas greater values are evolve better with larger problems. For a given problem, there is quite a difference in the solution complexity, if the formula was true, and that we knew in which zone of complexity our problem will always be, we could choose the appropriate technology ! Experienced engineers already have the gut knowledge about how to chose the right tool for the job !</p>
+
+<p>That&rsquo;s not all, let&rsquo;s have a bird&rsquo;s eye view of the same formulas</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-02-21-programming-as-an-exponential-problem/wide-plot.png" title="Same plot at a larger scale" ></p>
+
+<p>I increased the maximum problem complexity by a factor of 3, I had to multiply the solution complexity by 100 ! In the end, these exponential curves all seem frighteningly vertical. This could explain why the divide and conquer approach works so well in software : 2e<sup>x</sup> &lt; e<sup>2x</sup>. Abstract and powerful APIs might be our best weapon against complexity.</p>
+
+<p>People behaviour does not match this exponential hypothesis though :</p>
+
+<ul>
+<li>At work, I&rsquo;ve seen quite a few projects started from scratch, and everybody expecting it to maintain it&rsquo;s initial speed during its whole lifetime</li>
+<li>Some recent hiring or investing trend seem to rely on hackathons, startup week ends, or coding games, all &lsquo;in the small&rsquo; exercises</li>
+<li>I&rsquo;ve observed in quick and dirty overtime work to meet a deadline &hellip; If productivity is proportional to the solution complexity, that crunch mode would be completely unproductive</li>
+</ul>
+
+
+<p>This leads to more interesting questions :</p>
+
+<ul>
+<li>Is my exponential model complete garbage ?</li>
+<li>Or are humans particularly bad at forecasting an exponential behaviour ?</li>
+<li>If so, what practices could we adopt to stop relying on this misleading gut feeling ?</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Retroactively add keywords for your existing Octopress posts]]></title>
@@ -946,38 +1031,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
     <content type="html"><![CDATA[<p>For testing purpose, I added <a href="https://github.com/chrisk/fakeweb">FakeWeb</a> to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with some strange Net::HTTPForbidden were occuring after about 90 minutes of scrapping, with no clear reason. It turned that I had mistakenly added FakeWeb to all environments, and that just removing it fixed the issue !</p>
 
 <p>As it is working now, I didn&rsquo;t take the time to dig deeper into it &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Matching meta tags with Capybara 2]]></title>
-    <link href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/"/>
-    <updated>2013-07-01T20:20:00+02:00</updated>
-    <id>http://philippe.bourgau.net/matching-meta-tags-with-capybara-2</id>
-    <category term="ruby" /><category term="testing" /><category term="web" />
-    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To match meta tags, I had to resort to the following :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
 ]]></content>
   </entry>
   
