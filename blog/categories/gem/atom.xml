@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gem | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/gem/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-03-05T07:04:09+01:00</updated>
+  <updated>2014-03-21T07:04:54+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Auchandirect-ScrAPI : an unofficial API Ruby Gem]]></title>
+    <link href="http://philippe.bourgau.net/auchandirect-scrapi-an-unofficial-api-ruby-gem/"/>
+    <updated>2014-03-21T06:31:00+01:00</updated>
+    <id>http://philippe.bourgau.net/auchandirect-scrapi-an-unofficial-api-ruby-gem</id>
+    <content type="html"><![CDATA[<p><a href="http://mashable.com/2011/01/04/brand-open-api-developers/">Every brands should provide an API for developpers</a> &hellip; unfortunately, it far from the truth right now. A few years ago, when I started my mes-courses.fr side project, I would have loved to find a french online grocery providing an open API. I had to resort to scrapping <em>(that&rsquo;s how I learnt that heavily relying on scrapping for a 15hr/week side project is not a good fit &hellip; but that&rsquo;s another story)</em>.</p>
+
+<p>As I am taking mes-courses.fr down, I have extracted the whole unofficial API I had built around <a href="http://www.auchandirect.fr">http://www.auchandirect.fr</a> (I&rsquo;m talking to you french hackers !) into an open source Ruby Gem. Briefly :</p>
+
+<ul>
+<li>It walks the whole store, from categories to items</li>
+<li>Given valid credentials, it can fill and save a cart</li>
+<li>It&rsquo;s <a href="http://choosealicense.com/licenses/lgpl-v3/">LGPL</a> : anyone can use it as long as they give back any improvement to the community</li>
+<li>It&rsquo;s using <a href="https://github.com/philou/storexplore">Storexplore</a>, another of my mes-courses.fr rip-off open source Ruby Gem</li>
+<li>It&rsquo;s tested on <a href="https://travis-ci.org/philou/auchandirect-scrAPI">Travis</a> and I&rsquo;m currently trying to make it daily tested with <a href="http://traviscron.pythonanywhere.com/">Traviscron</a></li>
+</ul>
+
+
+<p>There&rsquo;s mainly one thing it <em>cannot</em> do :</p>
+
+<ul>
+<li>It cannot procede to any payment or ordering</li>
+</ul>
+
+
+<p>Happy scrapping !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
@@ -178,33 +207,6 @@ include Rails.application.routes.url_helpers
 <li>use Bundler <a href="http://gembundler.com"><a href="http://gembundler.com">http://gembundler.com</a></a></li><li>keep your Gemfile simple : just the top level dependencies, and no version constraints</li><li>try to stick to popular gems : you&rsquo;ll find a lot more answers to your questions from the web. It&rsquo;s often simpler to write and maintain a little extra code than to depend on a crappy thirdparty that is supposed to meet your need</li><li>stick with the most recent versions of your dependencies. With a good test suite and with Bundler, it should be rather easy to upgrade, so do it often to avoid both the upgrade tunnel effect and struggling with bugs and incompatibility of unmaintained old versions of gems.</li></ul>
 <p>Edit: I discovered <a href="http://www.ruby-toolbox.com">the ruby toolbox</a>&nbsp;that categorizes and sorts gems based on their popularity !</p>
 <p>Edit 2: I discovered it is sometimes necessary to add constraints to get the latest versions of gems that would otherwise conflict (directly or not) with others.</p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Using gems instead of rails plugins on heroku]]></title>
-    <link href="http://philippe.bourgau.net/using-gems-instead-of-rails-plugins-on-heroku/"/>
-    <updated>2011-09-22T00:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/using-gems-instead-of-rails-plugins-on-heroku</id>
-    <content type="html"><![CDATA[<p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you've got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules ... You are left with 2 choices :</p>
-
-
-<ul>
-<li>Expand the submodule as classical files in your main git repository</li>
-<li>Use the extension or plugin as a gem (if possible)</li>
-</ul>
-
-
-<p><p>When I can, I&rsquo;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
-<code>sh
-rake radiant:extensions:tags:install
-</code>
-<p />I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
-<p>in &lt;railsapproot&gt;/lib/tasks/gems.rake<br />
-<code>ruby
-Dir["#Gem.searcher.find('radiant-tags-extension').full_gem_path}/lib/tasks/*.rake"].each { |ext| load ext }
-</code>
-</p></p>
 ]]></content>
   </entry>
   

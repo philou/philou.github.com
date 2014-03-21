@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-03-05T07:04:50+01:00</updated>
+  <updated>2014-03-21T07:04:54+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Auchandirect-ScrAPI : an unofficial API Ruby Gem]]></title>
+    <link href="http://philippe.bourgau.net/auchandirect-scrapi-an-unofficial-api-ruby-gem/"/>
+    <updated>2014-03-21T06:31:00+01:00</updated>
+    <id>http://philippe.bourgau.net/auchandirect-scrapi-an-unofficial-api-ruby-gem</id>
+    <content type="html"><![CDATA[<p><a href="http://mashable.com/2011/01/04/brand-open-api-developers/">Every brands should provide an API for developpers</a> &hellip; unfortunately, it far from the truth right now. A few years ago, when I started my mes-courses.fr side project, I would have loved to find a french online grocery providing an open API. I had to resort to scrapping <em>(that&rsquo;s how I learnt that heavily relying on scrapping for a 15hr/week side project is not a good fit &hellip; but that&rsquo;s another story)</em>.</p>
+
+<p>As I am taking mes-courses.fr down, I have extracted the whole unofficial API I had built around <a href="http://www.auchandirect.fr">http://www.auchandirect.fr</a> (I&rsquo;m talking to you french hackers !) into an open source Ruby Gem. Briefly :</p>
+
+<ul>
+<li>It walks the whole store, from categories to items</li>
+<li>Given valid credentials, it can fill and save a cart</li>
+<li>It&rsquo;s <a href="http://choosealicense.com/licenses/lgpl-v3/">LGPL</a> : anyone can use it as long as they give back any improvement to the community</li>
+<li>It&rsquo;s using <a href="https://github.com/philou/storexplore">Storexplore</a>, another of my mes-courses.fr rip-off open source Ruby Gem</li>
+<li>It&rsquo;s tested on <a href="https://travis-ci.org/philou/auchandirect-scrAPI">Travis</a> and I&rsquo;m currently trying to make it daily tested with <a href="http://traviscron.pythonanywhere.com/">Traviscron</a></li>
+</ul>
+
+
+<p>There&rsquo;s mainly one thing it <em>cannot</em> do :</p>
+
+<ul>
+<li>It cannot procede to any payment or ordering</li>
+</ul>
+
+
+<p>Happy scrapping !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
@@ -233,71 +262,6 @@ details
 ```</p></blockquote>
 
 <p>I hope this helps.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
-    <link href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/"/>
-    <updated>2013-08-03T08:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber</id>
-    <content type="html"><![CDATA[<p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
-
-<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
-
-<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
-
-<ul>
-<li>remove spork from your Gemfile</li>
-<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
-<li>install spring</li>
-</ul>
-
-
-<p><code>
-gem install spring
-</code></p>
-
-<ul>
-<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
-</ul>
-
-
-<p><code>ruby
-group :test, :development do
-  ...
-  gem 'spring'
-  ...
-group
-</code></p>
-
-<ul>
-<li>update your Guardfile example :</li>
-</ul>
-
-
-<p>```ruby
-guard :rspec, cli: &ldquo;&mdash;tag ~@slow&rdquo;, all_after_pass: true, all_on_start: false, keep_failed: true, spring: true, bundler: false do
-  &hellip;
-end</p>
-
-<p>guard &lsquo;cucumber&rsquo;, all_on_start: false, cli: &lsquo;&mdash;format progress &mdash;no-profile&rsquo;, command_prefix: &lsquo;spring&rsquo;, bundler: false do
-  &hellip;
-end
-```</p>
-
-<ul>
-<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
-</ul>
-
-
-<p>```ruby
-Spring.watch &ldquo;.spring.rb&rdquo;
-Spring.watch &ldquo;spec/factories&rdquo;
-Spring.watch &ldquo;features/env.rb&rdquo;</p>
-
-<p>Spring.watch_method = :listen
-```</p>
 ]]></content>
   </entry>
   
