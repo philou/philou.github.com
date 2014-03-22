@@ -26,4 +26,6 @@ There's mainly one thing it *cannot* do :
 
 * It cannot procede to any payment or ordering
 
+It's available on [Github](https://github.com/philou/auchandirect-scrAPI)
+
 Happy scrapping !
