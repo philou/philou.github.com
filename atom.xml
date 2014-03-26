@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-03-22T08:18:57+01:00</updated>
+  <updated>2014-03-26T06:40:10+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Automatic Travis daily build with Heroku scheduler]]></title>
+    <link href="http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler/"/>
+    <updated>2014-03-24T06:31:00+01:00</updated>
+    <id>http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler</id>
+    <category term="continuous-integration" /><category term="heroku" /><category term="open-source" /><category term="rake" /><category term="travis" />
+    <content type="html"><![CDATA[<p>As <a href="http://philippe.bourgau.net/auchandirect-scrapi-an-unofficial-api-ruby-gem/">I just released</a> <a href="https://github.com/philou/auchandirect-scrAPI">auchandirect-scrAPI</a>, and that it relies on scrapping, I needed a daily build.</p>
+
+<p>The <a href="https://travis-ci.org">Travis</a> team <a href="https://github.com/travis-ci/travis-ci/issues/582">is already working</a> on this, and I found a small utility app called <a href="http://traviscron.pythonanywhere.com/">TravisCron</a> where anyone can register his repo for an automatic build.</p>
+
+<p>Unfortunately, the feature is not yet ready in Travis, and the TravisCron guys did not yet activate my repo. After having a look at the <a href="https://github.com/FiloSottile/travis-cron">TravisCron source code</a> and the <a href="https://github.com/travis-ci/travis.rb">Travis API</a>, I found out that it is really simple to do the same thing on my own.</p>
+
+<p>That&rsquo;s how I created <a href="https://github.com/philou/daily-travis">daily-travis</a>. It&rsquo;s a tiny Rake task, ready to be pushed and automaticaly scheduled on heroku that will restart the latest build when run.</p>
+
+<p>Details are in the <a href="https://github.com/philou/daily-travis/blob/master/README.md">README</a></p>
+
+<p>@Travis : Thanks again for your service.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg" title="I love Travis logo" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Auchandirect-ScrAPI : an unofficial API Ruby Gem]]></title>
@@ -1010,34 +1032,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 <li>How to create the avatars ?</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jasmine and coffeescript setup for rails]]></title>
-    <link href="http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails/"/>
-    <updated>2013-07-04T07:44:00+02:00</updated>
-    <id>http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails</id>
-    <category term="coffeescript" /><category term="jasmine" /><category term="javascript" /><category term="rails" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>As I started to write more javascript code in my <a href="https://www.mes-courses.fr">rails app</a>, it became obvious that I should be testing it ! I wanted to use <a href="http://pivotal.github.io/jasmine/">jasmine</a> and <a href="http://coffeescript.org">coffeescript</a>. I searched a long time to find out what was the most common and supported setup for a rails app, so now I recommand</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;jasmine&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jasminerice&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-jasmine&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>The <a href="https://github.com/pivotal/jasmine-gem">jasmine gem</a> is by far the most common jasmine gem, it is supported by <a href="http://pivotallabs.com">Pivotal Labs</a> so there is no fear of it being droped soon.</li>
-<li>The <a href="https://github.com/netzpirat/guard-jasmine">guard-jasmin gem</a> is supported by <a href="https://mksoft.ch">MKSoft</a>, and is not only handling continuous <a href="http://phantomjs.org/">phantomjs</a> headless jasmine testing through guard, but it also provides command line and rake tools to run your jasmine specs during continuous integration.</li>
-<li>Eventually, the <a href="https://github.com/bradphelan/jasminerice">jasminerice gem</a> makes it easy to write your jasmine specs with coffeescript. It also wraps a version of <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> to assist client javascript testing. Although there is a &ldquo;looking for maintainer&rdquo; message on the README page, there are some recent commits, so it seems that pull requests are still being merged even if the project is not actively developpped anymore &hellip; I belive volunteers are welcome.</li>
-</ul>
-
-
-<p>All 3 have detailed and up to date setup and usage instructions.</p>
 ]]></content>
   </entry>
   

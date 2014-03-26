@@ -98,6 +98,87 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/scaling-agile/">Scaling Agile</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-19T00:00:00+01:00" pubdate data-updated="true">Jan 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have worked in small agile teams, and it does indeed work a lot better than the classical waterfall &amp; hierarchic environment. When speaking with other people who have been through the same experience,&nbsp;we started to wonder how could this be scaled to a big organization ?</p>
+
+
+<p>I read two good books on the subject from Craig Larman and Bas Vodde:</p>
+
+
+<ul>
+<li>
+<div><span><a href="http://www.amazon.com/Scaling-Lean-Agile-Development-Organizational/dp/0321480961/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-1">Scaling Lean &amp; Agile Development: Thinking and Organizational Tools for Large-Scale Scrum</a></span></div>
+</li>
+<li>
+<div><span><a href="http://www.amazon.com/Practices-Scaling-Lean-Agile-Development/dp/0321636406/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-2">Practices for Scaling Lean &amp; Agile Development: Large, Multisite, and Offshore Product Development with Large-Scale Scrum</a></span></div>
+</li>
+</ul>
+
+
+<p>There made a lot of good points and techniques, but it&nbsp;still sounded a bit theorical. Later&nbsp;I read <a href="http://producingoss.com/">&#8220;Producing Open Source Software&#8221;</a>&nbsp;from Karl Fogel. At first,&nbsp;it did not seem to&nbsp;have any link with scaling agile, but successfull open source projects have to&nbsp;handle distributed developpment&nbsp;and&nbsp;high turnover, so I thought that maybe large&nbsp;agile organizations have something to learn from open source developpment mechanics. Why wouldn&#8217;t these technics that are successful at sharing code between companies be used internaly to share code between teams ?</p>
+
+
+<p>At the same time, at work, I learnt the hard way that I should avoid to work for a &#8220;library, framework, engine &#8230;&#8221; team. It&#8217;s both frustrating and&nbsp;unrewarding :</p>
+
+
+<ul>
+<li>
+<div>You never really understand what you are working for, what is the final goal</div>
+</li>
+<li>
+<div>You are always doing a poor job at priorizing requests from different sponsors</div>
+</li>
+<li>
+<div>You are doing too much on some areas, but too few on others</div>
+</li>
+</ul>
+
+
+<p>Agile &amp; incremental development and architecture solves this the nice&nbsp;way, by extract framework and libraries from running software ! Successful open source projects often start&nbsp;like that&nbsp;(<a href="http://rubyonrails.org/">Rails</a> being the cannonical example).</p>
+
+
+<p>So why couldn&#8217;t we just let libraries and framework emerge&nbsp;the same way inside a company ? Why don&#8217;t we maintain these projects as we would maintain an open source project : as a side product of&nbsp;our main output ?</p>
+
+
+<p>Craig Larman and Bas Vodde speak of feature teams, 20% free time, communities : all this fits nicely with this idea. Suppose we could&nbsp;have 20%&nbsp;of our time to work on what we like, any developper could take&nbsp;this time to extract a library from his team&#8217;s codebase and promote it as a company library, he could become dictator in chief as long as he wishes to. Other teams could reuse it and submit patches. All of the time proven open source developpment best practices could be used.</p>
+
+
+<p>Edit: <a href="http://zachholman.com/talk/how-github-uses-github-to-build-github/">Github builds Github</a> with something a lot like this !</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/a-nice-place-to-find-free-pictures-for-my-web/">A Useful Link to Find Free Pictures</a></h1>
     
     
@@ -1064,138 +1145,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/making-c-properties-first-class-objects/">Making C# Properties First Class Objects</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-29T00:00:00+02:00" pubdate data-updated="true">Sep 29<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">event</span> <span class="n">EventHandler</span> <span class="n">NameChanged</span><span class="p">;</span>
-</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n"><em>name</span><span class="p">;</span>
-</span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">get</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n"></em>name</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>  <span class="k">set</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n"><em>name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="n"></em>name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
-</span><span class='line'>      <span class="n">InvokeNameChanged</span><span class="p">();</span>
-</span><span class='line'>     <span class="p">}</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-<p />How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;T&gt; classes instances instead of raw properties.<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">class</span> <span class="nc">Presenter</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">public</span> <span class="k">readonly</span> <span class="n">Property</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Name</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Property</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-<p />The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">MyForm</span> <span class="p">:</span> <span class="n">Form</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">Presenter</span> <span class="n"><em>presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">InitializeComponent</span><span class="p">();</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">OnLoad</span><span class="p">(</span><span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
-</span><span class='line'>   <span class="p">{</span>
-</span><span class='line'>    <span class="k">base</span><span class="p">.</span><span class="n">OnLoad</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n"></em>presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox2</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">void</span> <span class="n">AddBinding</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">Control</span> <span class="n">control</span><span class="p">,</span> <span class="kt">string</span> <span class="n">controlProperty</span><span class="p">,</span> <span class="n">Property</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">property</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">formattingEnabled</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span> <span class="n">dataSourceUpdateMode</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">control</span><span class="p">.</span><span class="n">DataBindings</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">controlProperty</span><span class="p">,</span> <span class="n">property</span><span class="p">,</span> <span class="s">&quot;Value&quot;</span><span class="p">,</span> <span class="n">formattingEnabled</span><span class="p">,</span> <span class="n">dataSourceUpdateMode</span><span class="p">);</span>
-</span><span class='line'>   <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
-<ul>
-<li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
-<p>I hope this will help someone</p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1275,6 +1224,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/automatic-travis-daily-build-with-heroku-scheduler/">Automatic Travis daily build with Heroku scheduler</a>
+      </li>
+    
+      <li class="post">
         <a href="/auchandirect-scrapi-an-unofficial-api-ruby-gem/">Auchandirect-ScrAPI : an unofficial API Ruby Gem</a>
       </li>
     
@@ -1288,10 +1241,6 @@
     
       <li class="post">
         <a href="/retroactively-add-keywords-for-your-existing-octopress-posts/">Retroactively add keywords for your existing Octopress posts</a>
-      </li>
-    
-      <li class="post">
-        <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">My humble advices about how to write maintainable tests</a>
       </li>
     
   </ul>
