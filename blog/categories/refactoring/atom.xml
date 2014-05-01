@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: refactoring | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/refactoring/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2014-05-01T07:42:58+02:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Refactoring trick to insert a wrapper]]></title>
+    <link href="http://philippe.bourgau.net/refactoring-trick-to-insert-a-wrapper/"/>
+    <updated>2014-04-30T08:01:00+02:00</updated>
+    <id>http://philippe.bourgau.net/refactoring-trick-to-insert-a-wrapper</id>
+    <content type="html"><![CDATA[<p>Last week at work, we decided that we needed an <a href="http://stackoverflow.com/questions/909264/ddd-anti-corruption-layer-how-to">Anticorruption Layer</a> between our code and another team&rsquo;s. They have been using our internal data structures as they needed to, in an ad hoc way. This turned out to be an issue when we want to refactor our code. The goals of this layer are :</p>
+
+<ul>
+<li>to provide an explicit API layer, controlling what is accessible from the outside</li>
+<li>to allow us to improve our implementation independently of this API</li>
+</ul>
+
+
+<p>The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
+
+<ol>
+<li>Make sure you have a clean SCC state</li>
+<li>Rename the class to be wrapped (let&rsquo;s call it Foo) into FooWrapper</li>
+<li>From SCC, revert the part of the code where you want to continue using Foo directly</li>
+<li>In SCC, revert Foo and FooWrapper</li>
+<li>Manually (re)create the FooWrapper class</li>
+<li>Create FooWrapper.wrap(x) and FooWrapper.unwrap(x) methods</li>
+<li>Fix all the compilation issues (mostly by calling wrap() and unwrap())</li>
+<li>Run your tests and fix any remaining points</li>
+</ol>
+
+
+<p>That saved us a whole lot of time. If your layer contains several classes with references between them, they is an optimal order through which to introduce the wrappers. Any order will work, but some will require more temporary calls to wrap and unwrap (step 7.). At the end, wrap() and unwrap() methods should only be called from within the layer.</p>
+
+<p>Often you&rsquo;ll find out that to complete the wrapping of a class, you&rsquo;ll first need to wrap another class, you can :</p>
+
+<ul>
+<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental</li>
+<li>Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward</li>
+<li>Insert temporary calls to wrap() and unwrap() : they&rsquo;ll be removed when you&rsquo;ll later wrap the other class. This might be the only way if the classes have cyclic dependencies.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

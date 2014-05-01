@@ -98,6 +98,42 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/rubular-a-really-usefull-ruby-regex-tool/">Rubular: A Really Usefull Ruby Regex Tool</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-24T06:42:00+02:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Working with regular expressions is always a try and fail and retry &hellip; experience. It really helps to have an interactive tool with which to tune up your expression. This is exactly what <a href="http://rubular.com">Rubular</a> is made for. Give it a try next time you need to work with ruby regular expressions.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-evaluate-an-xpath-in-chrome/">How to Evaluate an Xpath in Chrome ?</a></h1>
     
     
@@ -569,94 +605,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/windows-licker-like-with-c/">Windows Licker Like With C#</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-07T00:00:00+01:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a>&nbsp;they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a>&nbsp;to pilot a gui running in&nbsp;test thread. Next time I started a new project, I&nbsp;wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
-
-
-<p>Here is the user test code I wanted to be able to write (inside a <a href="http://www.specflow.org">SpecFlow</a> step) :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;TheUserEntersHisEmail&quot;&quot;(.*)&quot;&quot;&quot;)]</span>
-</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenTheUserEntersHisEmail</span><span class="p">(</span><span class="kt">string</span> <span class="n">email</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">User</span><span class="p">.</span><span class="n">Enters</span><span class="p">(</span><span class="n">ScenarioContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">UserForm</span><span class="p">().</span><span class="n">EmailTextBox</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>Here UserForm is an extension method I added to the ScenarioContext that is responsible for returning the current user form.</p>
-
-
-<p>As you have noticed, the various gui components must be&nbsp;exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
-
-
-<p>Eventually, I had to write the User class, and it turned out to be really simple :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">static</span> <span class="k">class</span> <span class="nc">User</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="k">internal</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Enters</span><span class="p">(</span><span class="n">TextBox</span> <span class="n">textBox</span><span class="p">,</span> <span class="kt">string</span> <span class="n">text</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="n">textBox</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="k">new</span> <span class="n">MethodInvoker</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">textBox</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">text</span><span class="p">));</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>That&#8217;s it, all that was needed was to ask the thread of the control to update the text !</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -736,6 +684,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/refactoring-trick-to-insert-a-wrapper/">Refactoring trick to insert a wrapper</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-we-introduced-efficient-agile-retrospectives/">How we introduced efficient agile retrospectives</a>
       </li>
     
@@ -749,10 +701,6 @@
     
       <li class="post">
         <a href="/harley-davidson-programming/">Harley Davidson programming</a>
-      </li>
-    
-      <li class="post">
-        <a href="/programming-as-an-exponential-problem/">Programming as an exponential problem</a>
       </li>
     
   </ul>

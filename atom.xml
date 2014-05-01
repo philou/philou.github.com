@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-04-24T06:19:21+02:00</updated>
+  <updated>2014-05-01T07:42:13+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Refactoring trick to insert a wrapper]]></title>
+    <link href="http://philippe.bourgau.net/refactoring-trick-to-insert-a-wrapper/"/>
+    <updated>2014-04-30T08:01:00+02:00</updated>
+    <id>http://philippe.bourgau.net/refactoring-trick-to-insert-a-wrapper</id>
+    <category term="anticorruption layer" /><category term="refactoring" />
+    <content type="html"><![CDATA[<p>Last week at work, we decided that we needed an <a href="http://stackoverflow.com/questions/909264/ddd-anti-corruption-layer-how-to">Anticorruption Layer</a> between our code and another team&rsquo;s. They have been using our internal data structures as they needed to, in an ad hoc way. This turned out to be an issue when we want to refactor our code. The goals of this layer are :</p>
+
+<ul>
+<li>to provide an explicit API layer, controlling what is accessible from the outside</li>
+<li>to allow us to improve our implementation independently of this API</li>
+</ul>
+
+
+<p>The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
+
+<ol>
+<li>Make sure you have a clean SCC state</li>
+<li>Rename the class to be wrapped (let&rsquo;s call it Foo) into FooWrapper</li>
+<li>From SCC, revert the part of the code where you want to continue using Foo directly</li>
+<li>In SCC, revert Foo and FooWrapper</li>
+<li>Manually (re)create the FooWrapper class</li>
+<li>Create FooWrapper.wrap(x) and FooWrapper.unwrap(x) methods</li>
+<li>Fix all the compilation issues (mostly by calling wrap() and unwrap())</li>
+<li>Run your tests and fix any remaining points</li>
+</ol>
+
+
+<p>That saved us a whole lot of time. If your layer contains several classes with references between them, they is an optimal order through which to introduce the wrappers. Any order will work, but some will require more temporary calls to wrap and unwrap (step 7.). At the end, wrap() and unwrap() methods should only be called from within the layer.</p>
+
+<p>Often you&rsquo;ll find out that to complete the wrapping of a class, you&rsquo;ll first need to wrap another class, you can :</p>
+
+<ul>
+<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental</li>
+<li>Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward</li>
+<li>Insert temporary calls to wrap() and unwrap() : they&rsquo;ll be removed when you&rsquo;ll later wrap the other class. This might be the only way if the classes have cyclic dependencies.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we introduced efficient agile retrospectives]]></title>
@@ -1035,35 +1076,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 </span><span class='line'><span class="n">silence_stream</span><span class="p">(</span><span class="no">STDOUT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">setup_sqlite_db</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My own side project best practices after reading the 'Side Project Book']]></title>
-    <link href="http://philippe.bourgau.net/my-own-side-project-best-practices-after-reading-the-side-project-book/"/>
-    <updated>2013-07-25T07:26:00+02:00</updated>
-    <id>http://philippe.bourgau.net/my-own-side-project-best-practices-after-reading-the-side-project-book</id>
-    <category term="boostrapping" /><category term="side project" /><category term="startup" />
-    <content type="html"><![CDATA[<p>First, i recommend <a href="http://sideprojectbook.com/">this book</a> to any side project infected person : it&rsquo;s a great motivation boost !</p>
-
-<p>After reading it, it seems that there are no absolute rules to side projects success. Some did no marketting and just did what they loved, others did à carefull market study before building anything, some did the whole things, others outsourced the code or the design, or even both &hellip; That said, as I read somewhere, it seems that one is more likely to achieve commercial success if he first focusses on the market, then marketting, then the design, and eventually on the features.</p>
-
-<p>Common advices from the interviewees are :</p>
-
-<ul>
-<li>ship early</li>
-<li>iterate</li>
-<li>don&rsquo;t give up</li>
-</ul>
-
-
-<p>Why not apply these principle to &ldquo;building a side project&rdquo; instead of &ldquo;building XXX in my free time&rdquo; ?</p>
-
-<p>From now on, I am going to set up project target duration and revenue. For example, if I don&rsquo;t make at least 100€ / month after one year, I&rsquo;ll stop working on it and start a new one.</p>
-
-<p>I hope that by iterating more quickly through projects I&rsquo;ll learn more and increase my chances of successes as the time goes. Keeping the same target duration and revenue for all projects should make me better at filtering ideas that are a good fit to my resources. As I tend to get bored quickly, it should also allow me to keep my motivation high.</p>
-
-<p>Let&rsquo;s see what happens !</p>
 ]]></content>
   </entry>
   
