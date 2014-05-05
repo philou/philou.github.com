@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-01T07:42:13+02:00</updated>
+  <updated>2014-05-05T07:05:16+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Coding as a living can be dangerous to your health]]></title>
+    <link href="http://philippe.bourgau.net/coding-as-a-living-can-be-dangerous-to-your-health/"/>
+    <updated>2014-05-05T06:49:00+02:00</updated>
+    <id>http://philippe.bourgau.net/coding-as-a-living-can-be-dangerous-to-your-health</id>
+    <category term="clean code" /><category term="comic" /><category term="joke" /><category term="programming" />
+    <content type="html"><![CDATA[<p><a href="https://groups.google.com/forum/#!topic/comp.lang.c++/rYCO5yn4lXw">In 1991, John F. Woods wrote</a> :</p>
+
+<blockquote><p>Always code as if the guy who ends up maintaining your code will be a
+violent psychopath who knows where you live.  Code for readability.</p></blockquote>
+
+<p>Here is how it might go :</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-05-05-coding-as-a-living-can-be-dangerous-to-your-health/psychopath-coworker.JPG" title="Simple drawing of the psychopath coworker begging his teammate for a speak ... with an axe !" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Refactoring trick to insert a wrapper]]></title>
@@ -1016,64 +1033,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 </span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;features/env.rb&quot;</span>
 </span><span class='line'>
 </span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch_method</span> <span class="o">=</span> <span class="ss">:listen</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Simplest way to speed up rspec with in memory sqlite db]]></title>
-    <link href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/"/>
-    <updated>2013-08-02T09:16:00+02:00</updated>
-    <id>http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db</id>
-    <category term="cucumber" /><category term="rails" /><category term="rspec" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>There are already a lot of articles explaining how to setup an in memory <a href="http://www.sqlite.org/">SQLite</a> database to speed up <a href="http://rubyonrails.org/">Rails</a> specs or unit tests. Most of them explain how to change your database.yml and to run setup your schema before running the tests. It works fine.</p>
-
-<p>There&rsquo;s a catch though : suppose you are using <a href="http://cukes.info/">cucumber</a>, it&rsquo;s likely you&rsquo;d rather run cucumber on a real database (<a href="http://www.postgresql.org/">PostgreSQL</a>, <a href="http://www.mysql.com/">MySQL</a> or whatever). Most gems expect cucumber and <a href="http://rspec.info/">rspec</a> to both run in the test environment &hellip; Every time I updated my bundle or that I wanted to use a new test gem, I would hit an issue about cucumber being run in its own &lsquo;cucumber&rsquo; environment : unexpected warnings and things not working out of the box.</p>
-
-<p>Eventually, I ditched the cucumber env, setup a PostgreSQL db on the test env, and injected the in memory sqlite database right inside spec_helper.rb :</p>
-
-<p>In database.yml :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_test</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>At the bottom of spec_helper.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">setup_sqlite_db</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span>
-</span><span class='line'>  <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">load</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="s2">/db/schema.rb&quot;</span> <span class="c1"># use db agnostic schema by default</span>
-</span><span class='line'>  <span class="c1"># ActiveRecord::Migrator.up(&#39;db/migrate&#39;) # use migrations</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">silence_stream</span><span class="p">(</span><span class="no">STDOUT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">setup_sqlite_db</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
