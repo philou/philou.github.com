@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-05T07:06:01+02:00</updated>
+  <updated>2014-05-18T21:49:46+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Better error messages when testing html views]]></title>
+    <link href="http://philippe.bourgau.net/better-error-messages-when-testing-html-views/"/>
+    <updated>2014-05-18T21:14:00+02:00</updated>
+    <id>http://philippe.bourgau.net/better-error-messages-when-testing-html-views</id>
+    <content type="html"><![CDATA[<p>When testing html views, either from <a href="http://rspec.info/">RSpec</a> or from <a href="http://rspec.info/">Cucumber</a>, <a href="http://fr.wikipedia.org/wiki/XPath">XPath</a> can be really helpful to quickly find expected elements.</p>
+
+<p>Unfortunately, a bit like regular expressions, when you start to use xpath to solve a problem, you often end up with 2 problems &hellip; Part of the reason is that xpaths tend to be cryptic. In the case of testing, error messages coming from unmatched xpath are even more crytic !</p>
+
+<p>That&rsquo;s why I had the idea for <a href="https://github.com/philou/xpath-specs">xpath-specs</a> : a small gem that allows to associate a description with an xpath, to nest xpaths together, all this to simplify tests and assertion failure reporting.</p>
+
+<p>For example, with an assertion like this :</p>
+
+<p><code>ruby
+expect(html).to contain_a(dish_with_name("Grilled Lobster")
+</code></p>
+
+<p>Here is the kind of failure message one can get :</p>
+
+<p>```
+expected the page to contain a dish that is named Grilled Lobster (//table[@id=&lsquo;dish-panel&rsquo;]//tr[td[contains(.,&lsquo;#{name}&rsquo;)]])</p>
+
+<pre><code>   it found a dish (//table[@id='dish-panel']//tr) :
+      &lt;tr&gt;&lt;td&gt;Pizza&lt;/td&gt;...&lt;/tr&gt;
+   but not a dish that is named Grilled Lobster (//table[@id='dish-panel']//tr[td[contains(.,'#{name}')]])
+</code></pre>
+
+<p>```</p>
+
+<p>And here is the required setup :</p>
+
+<p>```ruby</p>
+
+<h1>spec/support/knows_page_parts.rb</h1>
+
+<p>module KnowsPageParts
+  def dish</p>
+
+<pre><code>Xpath::Specs::PagePart.new("a dish", "//table[@id='dish-panel']//tr")
+</code></pre>
+
+<p>  end</p>
+
+<p>  def dish_with_name(name)</p>
+
+<pre><code>dish.that("is named #{name}", "[td[contains(.,'#{name}')]]")
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>```</p>
+
+<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Auchandirect-ScrAPI : an unofficial API Ruby Gem]]></title>
@@ -193,77 +250,6 @@ expect(sample_items_attributes).to all_ have_key(:price)
 <p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
 
 <p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby regex captures oneliner]]></title>
-    <link href="http://philippe.bourgau.net/ruby-regex-captures-oneliner/"/>
-    <updated>2013-09-11T09:02:00+02:00</updated>
-    <id>http://philippe.bourgau.net/ruby-regex-captures-oneliner</id>
-    <content type="html"><![CDATA[<p>Surely this post is nothing new for experienced ruby developpers, but I found it so handy, that I thought it deserved a post of its own though. The problem is :</p>
-
-<blockquote><p>How do I match and assign captures from a regex in a single line of code ?</p></blockquote>
-
-<p>Here is the idea :</p>
-
-<p>```ruby</p>
-
-<blockquote><p>brand, item = /([^,]<em>), (.</em>)/.match(&ldquo;APPLE, ipad&rdquo;).captures
-=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;]
-brand
-=> &ldquo;APPLE&rdquo;
-item
-=> &ldquo;ipad&rdquo;
-```</p></blockquote>
-
-<p>There are a few variations around this, like grouping some catpures in an array :</p>
-
-<p>```ruby</p>
-
-<blockquote><p>brand, <em>details = /([^,]</em>), ([^:]<em>): (.</em>)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
-=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
-brand
-=> &ldquo;APPLE&rdquo;
-details
-=> [&ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
-```</p></blockquote>
-
-<p>Or to ignore some capture, we could shorten skip some captures :</p>
-
-<p>```ruby</p>
-
-<blockquote><p>item, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;)[2..-1]
-=> [&ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
-item
-=> &ldquo;ipad&rdquo;
-details
-=> &ldquo;iOs&rdquo;
-```</p></blockquote>
-
-<p>But this only works for first or last captures, when this is not the case, one can also use the functional programming &lsquo;_&rsquo; sink convention :</p>
-
-<p>```ruby</p>
-
-<blockquote><p>brand, _, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
-=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
-brand
-=> &ldquo;APPLE&rdquo;
-details
-=> &ldquo;iOs&rdquo;
-```</p></blockquote>
-
-<p>One can even use &lsquo;_&rsquo; multiple times on the same match</p>
-
-<p>```ruby</p>
-
-<blockquote><p><em>, </em>, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
-=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
-details
-=> &ldquo;iOs&rdquo;
-```</p></blockquote>
-
-<p>I hope this helps.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: html | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-05T07:06:01+02:00</updated>
+  <updated>2014-05-18T21:49:46+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,63 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Better error messages when testing html views]]></title>
+    <link href="http://philippe.bourgau.net/better-error-messages-when-testing-html-views/"/>
+    <updated>2014-05-18T21:14:00+02:00</updated>
+    <id>http://philippe.bourgau.net/better-error-messages-when-testing-html-views</id>
+    <content type="html"><![CDATA[<p>When testing html views, either from <a href="http://rspec.info/">RSpec</a> or from <a href="http://rspec.info/">Cucumber</a>, <a href="http://fr.wikipedia.org/wiki/XPath">XPath</a> can be really helpful to quickly find expected elements.</p>
+
+<p>Unfortunately, a bit like regular expressions, when you start to use xpath to solve a problem, you often end up with 2 problems &hellip; Part of the reason is that xpaths tend to be cryptic. In the case of testing, error messages coming from unmatched xpath are even more crytic !</p>
+
+<p>That&rsquo;s why I had the idea for <a href="https://github.com/philou/xpath-specs">xpath-specs</a> : a small gem that allows to associate a description with an xpath, to nest xpaths together, all this to simplify tests and assertion failure reporting.</p>
+
+<p>For example, with an assertion like this :</p>
+
+<p><code>ruby
+expect(html).to contain_a(dish_with_name("Grilled Lobster")
+</code></p>
+
+<p>Here is the kind of failure message one can get :</p>
+
+<p>```
+expected the page to contain a dish that is named Grilled Lobster (//table[@id=&lsquo;dish-panel&rsquo;]//tr[td[contains(.,&lsquo;#{name}&rsquo;)]])</p>
+
+<pre><code>   it found a dish (//table[@id='dish-panel']//tr) :
+      &lt;tr&gt;&lt;td&gt;Pizza&lt;/td&gt;...&lt;/tr&gt;
+   but not a dish that is named Grilled Lobster (//table[@id='dish-panel']//tr[td[contains(.,'#{name}')]])
+</code></pre>
+
+<p>```</p>
+
+<p>And here is the required setup :</p>
+
+<p>```ruby</p>
+
+<h1>spec/support/knows_page_parts.rb</h1>
+
+<p>module KnowsPageParts
+  def dish</p>
+
+<pre><code>Xpath::Specs::PagePart.new("a dish", "//table[@id='dish-panel']//tr")
+</code></pre>
+
+<p>  end</p>
+
+<p>  def dish_with_name(name)</p>
+
+<pre><code>dish.that("is named #{name}", "[td[contains(.,'#{name}')]]")
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>```</p>
+
+<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to evaluate an xpath in chrome ?]]></title>

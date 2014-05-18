@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-05T07:05:16+02:00</updated>
+  <updated>2014-05-18T21:48:55+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Better error messages when testing html views]]></title>
+    <link href="http://philippe.bourgau.net/better-error-messages-when-testing-html-views/"/>
+    <updated>2014-05-18T21:14:00+02:00</updated>
+    <id>http://philippe.bourgau.net/better-error-messages-when-testing-html-views</id>
+    <category term="html" /><category term="matcher" /><category term="rspec" /><category term="ruby" />
+    <content type="html"><![CDATA[<p>When testing html views, either from <a href="http://rspec.info/">RSpec</a> or from <a href="http://rspec.info/">Cucumber</a>, <a href="http://fr.wikipedia.org/wiki/XPath">XPath</a> can be really helpful to quickly find expected elements.</p>
+
+<p>Unfortunately, a bit like regular expressions, when you start to use xpath to solve a problem, you often end up with 2 problems &hellip; Part of the reason is that xpaths tend to be cryptic. In the case of testing, error messages coming from unmatched xpath are even more crytic !</p>
+
+<p>That&rsquo;s why I had the idea for <a href="https://github.com/philou/xpath-specs">xpath-specs</a> : a small gem that allows to associate a description with an xpath, to nest xpaths together, all this to simplify tests and assertion failure reporting.</p>
+
+<p>For example, with an assertion like this :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">html</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">contain_a</span><span class="p">(</span><span class="n">dish_with_name</span><span class="p">(</span><span class="s2">&quot;Grilled Lobster&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here is the kind of failure message one can get :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">contain</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">it</span> <span class="n">found</span> <span class="n">a</span> <span class="n">dish</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="p">)</span> <span class="p">:</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="no">Pizza</span><span class="o">&lt;</span><span class="sr">/td&gt;...&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span><span class='line'>       <span class="n">but</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here is the required setup :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># spec/support/knows_page_parts.rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">KnowsPageParts</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">dish</span>
+</span><span class='line'>    <span class="ss">Xpath</span><span class="p">:</span><span class="ss">:Specs</span><span class="o">::</span><span class="no">PagePart</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;a dish&quot;</span><span class="p">,</span> <span class="s2">&quot;//table[@id=&#39;dish-panel&#39;]//tr&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">dish_with_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dish</span><span class="o">.</span><span class="n">that</span><span class="p">(</span><span class="s2">&quot;is named </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;[td[contains(.,&#39;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#39;)]]&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Coding as a living can be dangerous to your health]]></title>
@@ -950,91 +1013,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
 
 <p>I hope this helps.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
-    <link href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/"/>
-    <updated>2013-08-03T08:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber</id>
-    <category term="cucumber" /><category term="rspec" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
-
-<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
-
-<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
-
-<ul>
-<li>remove spork from your Gemfile</li>
-<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
-<li>install spring</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install spring</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="n">group</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>update your Guardfile example :</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="ss">:rspec</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s2">&quot;--tag ~@slow&quot;</span><span class="p">,</span> <span class="n">all_after_pass</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="n">keep_failed</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">spring</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;cucumber&#39;</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s1">&#39;--format progress --no-profile&#39;</span><span class="p">,</span> <span class="n">command_prefix</span><span class="p">:</span> <span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;.spring.rb&quot;</span>
-</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;spec/factories&quot;</span>
-</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;features/env.rb&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch_method</span> <span class="o">=</span> <span class="ss">:listen</span>
-</span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   
