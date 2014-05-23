@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: rake - Philippe Bourgau's blog</title>
+  <title>My new gem for creating rspec proxies - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Category: rake">
+  <meta name="description" content="A presentation of the rspecproxies ruby gem library">
 
   
-  <meta name="keywords" content="blog, programming, ruby, coffeescript, c#, java, agile, extreme programming, xp, kanban, scrum, tdd, testing, unit testing">
+  <meta name="keywords" content="ruby, rspec, testing, mocking, proxies, rspec proxies, rspec proxy, agile, tdd, test driven developmnent">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.netblog/categories/rake/">
+  <link rel="canonical" href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -91,53 +91,161 @@
     <div id="main">
       <div id="content">
 	<div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Rake</h1>
+    
+      <h1 class="entry-title">My New Gem for Creating Rspec Proxies</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-23T06:20:00+02:00" pubdate data-updated="true">May 23<span>rd</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
 
-  
-  <h2>2014</h2>
+<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
 
-<article>
-  
-<h1><a href="/automatic-travis-daily-build-with-heroku-scheduler/">Automatic Travis daily build with Heroku scheduler</a></h1>
-<time datetime="2014-03-24T06:31:00+01:00" pubdate><span class='month'>Mar</span> <span class='day'>24</span> <span class='year'>2014</span></time>
+<p>Here are the pain points proxies try to fix :</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/continuous-integration/'>continuous-integration</a>, <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>, <a class='category' href='/blog/categories/rake/'>rake</a>, <a class='category' href='/blog/categories/travis/'>travis</a></span>
-</footer>
+<ul>
+<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
+<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
+</ul>
 
 
-</article>
+<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
+
+<ul>
+<li>Verify actual load count without interfering in any behaviour</li>
+</ul>
 
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">capture_results_from</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
-  
-  <h2>2011</h2>
 
-<article>
-  
-<h1><a href="/using-gems-instead-of-rails-plugins-on-heroku/">Using gems instead of rails plugins on heroku</a></h1>
-<time datetime="2011-09-22T00:00:00+02:00" pubdate><span class='month'>Sep</span> <span class='day'>22</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/heroku/'>heroku</a>, <a class='category' href='/blog/categories/rake/'>rake</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
-</footer>
+<ul>
+<li>Use proxies to stub an object that does not yet exist</li>
+</ul>
 
 
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;rounds the completion ratio&#39;</span> <span class="k">do</span>
+</span><span class='line'>   <span class="no">RenderingTask</span><span class="o">.</span><span class="n">proxy_chain</span><span class="p">(</span><span class="ss">:load</span><span class="p">,</span> <span class="ss">:completion_ratio</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2523</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">renderingController</span><span class="o">.</span><span class="n">show</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
+
+<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-23T06:20:00+02:00" pubdate data-updated="true">May 23<span>rd</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/mocking/'>mocking</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/better-error-messages-when-testing-html-views/" title="Previous Post: Better error messages when testing html views">&laquo; Better error messages when testing html views</a>
+      
+      
+    </p>
+  </footer>
 </article>
+<div class="banner agileavatar">
+  <img class="logo" src="http://www.agileavatars.com/images/smiley-small.png" alt="AgileAvatars.fr logo"> </img>
+  <a href="http://www.agileavatars.com">AgileAvatars.com<span class="clickzone"></span></a>
+  <p>Tired of post-its falling from your agile or kanban whiteboard ? Order your own customized avatar magnets.</p>
+</div>
+
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -263,7 +371,10 @@
       var disqus_shortname = 'philippe-bourgau';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/';
+        var disqus_url = 'http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

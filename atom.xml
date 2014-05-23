@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-18T21:48:55+02:00</updated>
+  <updated>2014-05-23T07:11:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
+    <link href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/"/>
+    <updated>2014-05-23T06:20:00+02:00</updated>
+    <id>http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies</id>
+    <category term="agile" /><category term="mocking" /><category term="rspec" /><category term="ruby" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<p>I already wrote a lot about test proxies (<a href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
+
+<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
+
+<p>Here are the pain points proxies try to fix :</p>
+
+<ul>
+<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
+<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
+</ul>
+
+
+<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
+
+<ul>
+<li>Verify actual load count without interfering in any behaviour</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">capture_results_from</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Use proxies to stub an object that does not yet exist</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;rounds the completion ratio&#39;</span> <span class="k">do</span>
+</span><span class='line'>   <span class="no">RenderingTask</span><span class="o">.</span><span class="n">proxy_chain</span><span class="p">(</span><span class="ss">:load</span><span class="p">,</span> <span class="ss">:completion_ratio</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2523</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">renderingController</span><span class="o">.</span><span class="n">show</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Better error messages when testing html views]]></title>
@@ -918,101 +988,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 <p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
 
 <p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby regex captures oneliner]]></title>
-    <link href="http://philippe.bourgau.net/ruby-regex-captures-oneliner/"/>
-    <updated>2013-09-11T09:02:00+02:00</updated>
-    <id>http://philippe.bourgau.net/ruby-regex-captures-oneliner</id>
-    <category term="regex" /><category term="ruby" />
-    <content type="html"><![CDATA[<p>Surely this post is nothing new for experienced ruby developpers, but I found it so handy, that I thought it deserved a post of its own though. The problem is :</p>
-
-<blockquote><p>How do I match and assign captures from a regex in a single line of code ?</p></blockquote>
-
-<p>Here is the idea :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="n">item</span> <span class="o">=</span> <span class="sr">/([^,]*), (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">item</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;ipad&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There are a few variations around this, like grouping some catpures in an array :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="o">*</span><span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Or to ignore some capture, we could shorten skip some captures :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">item</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">item</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;ipad&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But this only works for first or last captures, when this is not the case, one can also use the functional programming &lsquo;_&rsquo; sink convention :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>One can even use &lsquo;_&rsquo; multiple times on the same match</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I hope this helps.</p>
 ]]></content>
   </entry>
   

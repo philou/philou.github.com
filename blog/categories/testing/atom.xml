@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-18T21:49:46+02:00</updated>
+  <updated>2014-05-23T07:12:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
+    <link href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/"/>
+    <updated>2014-05-23T06:20:00+02:00</updated>
+    <id>http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies</id>
+    <content type="html"><![CDATA[<p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
+
+<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
+
+<p>Here are the pain points proxies try to fix :</p>
+
+<ul>
+<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
+<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
+</ul>
+
+
+<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
+
+<ul>
+<li>Verify actual load count without interfering in any behaviour</li>
+</ul>
+
+
+<p>```ruby
+it &lsquo;caches users&rsquo; do
+  users = User.capture_results_from(:load)</p>
+
+<p>  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)
+  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)</p>
+
+<p>  expect(users).to have_exactly(1).items
+end
+```</p>
+
+<ul>
+<li>Use proxies to stub an object that does not yet exist</li>
+</ul>
+
+
+<p>```ruby
+it &lsquo;rounds the completion ratio&rsquo; do
+   RenderingTask.proxy_chain(:load, :completion_ratio) {|s| s.and_return(0.2523) }</p>
+
+<p>   renderingController.show</p>
+
+<p>   expect(response).to include(&lsquo;25%&rsquo;)
+end
+```</p>
+
+<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My humble advices about how to write maintainable tests]]></title>
@@ -215,71 +269,6 @@ expect(sample_items_attributes).to all_ have_key(:price)
 <p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
 
 <p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
-    <link href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/"/>
-    <updated>2013-08-03T08:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber</id>
-    <content type="html"><![CDATA[<p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
-
-<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
-
-<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
-
-<ul>
-<li>remove spork from your Gemfile</li>
-<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
-<li>install spring</li>
-</ul>
-
-
-<p><code>
-gem install spring
-</code></p>
-
-<ul>
-<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
-</ul>
-
-
-<p><code>ruby
-group :test, :development do
-  ...
-  gem 'spring'
-  ...
-group
-</code></p>
-
-<ul>
-<li>update your Guardfile example :</li>
-</ul>
-
-
-<p>```ruby
-guard :rspec, cli: &ldquo;&mdash;tag ~@slow&rdquo;, all_after_pass: true, all_on_start: false, keep_failed: true, spring: true, bundler: false do
-  &hellip;
-end</p>
-
-<p>guard &lsquo;cucumber&rsquo;, all_on_start: false, cli: &lsquo;&mdash;format progress &mdash;no-profile&rsquo;, command_prefix: &lsquo;spring&rsquo;, bundler: false do
-  &hellip;
-end
-```</p>
-
-<ul>
-<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
-</ul>
-
-
-<p>```ruby
-Spring.watch &ldquo;.spring.rb&rdquo;
-Spring.watch &ldquo;spec/factories&rdquo;
-Spring.watch &ldquo;features/env.rb&rdquo;</p>
-
-<p>Spring.watch_method = :listen
-```</p>
 ]]></content>
   </entry>
   

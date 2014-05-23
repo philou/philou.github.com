@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-05-18T21:49:46+02:00</updated>
+  <updated>2014-05-23T07:11:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
+    <link href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/"/>
+    <updated>2014-05-23T06:20:00+02:00</updated>
+    <id>http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies</id>
+    <content type="html"><![CDATA[<p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
+
+<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
+
+<p>Here are the pain points proxies try to fix :</p>
+
+<ul>
+<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
+<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
+</ul>
+
+
+<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
+
+<ul>
+<li>Verify actual load count without interfering in any behaviour</li>
+</ul>
+
+
+<p>```ruby
+it &lsquo;caches users&rsquo; do
+  users = User.capture_results_from(:load)</p>
+
+<p>  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)
+  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)</p>
+
+<p>  expect(users).to have_exactly(1).items
+end
+```</p>
+
+<ul>
+<li>Use proxies to stub an object that does not yet exist</li>
+</ul>
+
+
+<p>```ruby
+it &lsquo;rounds the completion ratio&rsquo; do
+   RenderingTask.proxy_chain(:load, :completion_ratio) {|s| s.and_return(0.2523) }</p>
+
+<p>   renderingController.show</p>
+
+<p>   expect(response).to include(&lsquo;25%&rsquo;)
+end
+```</p>
+
+<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My humble advices about how to write maintainable tests]]></title>
