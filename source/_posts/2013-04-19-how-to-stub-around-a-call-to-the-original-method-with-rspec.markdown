@@ -10,6 +10,8 @@ categories:
 - rspec
 - testing
 ---
+**Update 05/23/2014: I created a [gem](https://github.com/philou/rspecproxies) for this, read an introduction [here](http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/)**
+
 Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?
 
 For the sake of the subject, let's take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You'd like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do
