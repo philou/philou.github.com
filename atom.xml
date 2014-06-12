@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-06-04T07:07:00+02:00</updated>
+  <updated>2014-06-12T21:14:40+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,148 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks]]></title>
+    <link href="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/"/>
+    <updated>2014-06-12T06:28:00+02:00</updated>
+    <id>http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks</id>
+    <category term="cucumber" /><category term="gem" /><category term="ruby" /><category term="testing" />
+    <content type="html"><![CDATA[<p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
+
+<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
+
+<h3>Use pronouns to reference previously introduced items</h3>
+
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the tool &#39;screwdriver&#39;</span>
+</span><span class='line'><span class="k">When </span><span class="nf">this tool is used</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>steps.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">A_TOOL</span> <span class="o">=</span> <span class="no">NameOrPronounTransform</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="s1">&#39;hammer&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Given</span> <span class="sr">/^(</span><span class="si">#{</span><span class="no">A_TOOL</span><span class="si">}</span><span class="sr">)$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">tool</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
+
+<p>steps.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">GivenEither</span> <span class="sr">/^the dog named &quot;(.*)&quot;$)$/</span><span class="p">,</span>
+</span><span class='line'>            <span class="sr">/^the following dogs$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs_table</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the dog &quot;</span><span class="s">Rolphy</span><span class="nf">&quot;</span>
+</span><span class='line'><span class="nf">...</span>
+</span><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">  |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k"> |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Volt</span><span class="k"> |</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Add default values to the hashes of a table</h3>
+
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
+</span><span class='line'><span class="k">  |</span><span class="s"> names</span><span class="k"> |</span><span class="s"> color</span><span class="k"> |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">   |</span><span class="s"> white</span><span class="k"> |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k">  |</span><span class="s"> Sand</span><span class="k">  |</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>steps.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dogs$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">hashes</span> <span class="o">=</span> <span class="n">dogs</span><span class="o">.</span><span class="n">hashes_with_defaults</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;tail&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;wagging&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;not nice&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#  hashes.each do |hash|</span>
+</span><span class='line'><span class="c1">#    expect(hash[&#39;smell&#39;]).to eq(&#39;not nice&#39;)</span>
+</span><span class='line'><span class="c1">#  end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Define named lists from a table</h3>
+
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dishes</span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Spaghetti Bolognaise</span><span class="k"> |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Spaghetti</span><span class="k"> |</span><span class="s"> Bolognaise sauce</span><span class="k"> |       |         |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Burger</span><span class="k">               |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Bread</span><span class="k">     |</span><span class="s"> Meat</span><span class="k">             |</span><span class="s"> Salad</span><span class="k"> |</span><span class="s"> Ketchup</span><span class="k"> |</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>steps.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dishes$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dishes</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">name_2_dishes</span> <span class="o">=</span> <span class="n">dishes</span><span class="o">.</span><span class="n">hash_2_lists</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#  expect(name_2_dishes[&#39;Burger&#39;]).to eq([&#39;Bread&#39;,&#39;Meat&#39;,&#39;Salad&#39;,&#39;Ketchup&#39;])</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
@@ -949,45 +1091,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
 
 <p>I hope this might help !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RSpec matchers combinators]]></title>
-    <link href="http://philippe.bourgau.net/rspec-matchers-combinators/"/>
-    <updated>2013-09-11T12:23:00+02:00</updated>
-    <id>http://philippe.bourgau.net/rspec-matchers-combinators</id>
-    <category term="rspec" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p><a href="http://rubydoc.info/gems/rspec-expectations">Rspec matchers</a> are a lot like predicates. Predicates that can talk &hellip; The good thing about predicates, as anybody who has done a bit of functional programming will tell you, is that they are easy to combine together into bigger predicates. I was really suprised to see that rspec does not come with such simple combinators as &lsquo;and&rsquo; or &lsquo;or&rsquo;.</p>
-
-<p>Here is a gist where I define simple combinators :</p>
-
-<script src="https://gist.github.com/philou/6521797.js"></script>
-
-
-<p>With this and the <a href="https://github.com/bmabey/email-spec">email_spec</a> matchers, it is possible to write something like this to find if an email was sent by rails :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">all_emails</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_any_that</span><span class="p">(</span><span class="n">and_</span><span class="p">(</span><span class="n">deliver_to</span><span class="p">(</span><span class="n">receiver</span><span class="p">),</span>
-</span><span class='line'>                                         <span class="n">have_subject</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span>
-</span><span class='line'>                                         <span class="n">have_body_text</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It enables expressive test code and high reusability.</p>
-
-<p>Using the &lsquo;all&rsquo; combinator it is possible to write things like that :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">sample_items_attributes</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">all_</span> <span class="n">have_key</span><span class="p">(</span><span class="ss">:price</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
-
-<p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
 ]]></content>
   </entry>
   

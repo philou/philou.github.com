@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Spork alternative compatible with cucumber - Philippe Bourgau's blog</title>
+  <title>Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="A programming blog. Particularly about agile development, real world walkthrough, tutorials, side project entrepreneurship and open source software.">
+  <meta name="description" content="Presentation of the cucumber_tricks gem, which provides simple but usefull cucumber and gherkin extensions in order to write more english like &hellip;">
 
   
-  <meta name="keywords" content="ruby, rspec, cucumber, testing, Spork, alternative, compatible">
+  <meta name="keywords" content="cucumber, ruby, gherkin, testing, BDD, ruby gem">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/">
+  <link rel="canonical" href="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -95,7 +95,7 @@
   
   <header>
     
-      <h1 class="entry-title">Spork Alternative Compatible With Cucumber</h1>
+      <h1 class="entry-title">Cucumber_tricks Gem : My Favorite Gherkin and Cucumber Tricks</h1>
     
     
       <p class="meta">
@@ -111,52 +111,91 @@
   
 
 
-<time datetime="2013-08-03T08:51:00+02:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time>
+<time datetime="2014-06-12T06:28:00+02:00" pubdate data-updated="true">Jun 12<span>th</span>, 2014</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
+<div class="entry-content"><p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
 
-<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
+<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
 
-<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
+<h3>Use pronouns to reference previously introduced items</h3>
 
-<ul>
-<li>remove spork from your Gemfile</li>
-<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
-<li>install spring</li>
-</ul>
+<p>foo.feature</p>
 
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>gem install spring</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the tool &#39;screwdriver&#39;</span>
+</span><span class='line'><span class="k">When </span><span class="nf">this tool is used</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
-</ul>
-
+<p>steps.rb</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">A_TOOL</span> <span class="o">=</span> <span class="no">NameOrPronounTransform</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="s1">&#39;hammer&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Given</span> <span class="sr">/^(</span><span class="si">#{</span><span class="no">A_TOOL</span><span class="si">}</span><span class="sr">)$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">tool</span><span class="o">|</span>
 </span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="n">group</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>update your Guardfile example :</li>
-</ul>
+<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
 
+<p>steps.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">GivenEither</span> <span class="sr">/^the dog named &quot;(.*)&quot;$)$/</span><span class="p">,</span>
+</span><span class='line'>            <span class="sr">/^the following dogs$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs_table</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the dog &quot;</span><span class="s">Rolphy</span><span class="nf">&quot;</span>
+</span><span class='line'><span class="nf">...</span>
+</span><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">  |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k"> |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Volt</span><span class="k"> |</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Add default values to the hashes of a table</h3>
+
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
+</span><span class='line'><span class="k">  |</span><span class="s"> names</span><span class="k"> |</span><span class="s"> color</span><span class="k"> |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">   |</span><span class="s"> white</span><span class="k"> |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k">  |</span><span class="s"> Sand</span><span class="k">  |</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>steps.rb</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -166,34 +205,52 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="ss">:rspec</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s2">&quot;--tag ~@slow&quot;</span><span class="p">,</span> <span class="n">all_after_pass</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="n">keep_failed</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">spring</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dogs$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">hashes</span> <span class="o">=</span> <span class="n">dogs</span><span class="o">.</span><span class="n">hashes_with_defaults</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;tail&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;wagging&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;not nice&#39;</span><span class="p">)</span>
 </span><span class='line'>
+</span><span class='line'><span class="c1">#  hashes.each do |hash|</span>
+</span><span class='line'><span class="c1">#    expect(hash[&#39;smell&#39;]).to eq(&#39;not nice&#39;)</span>
+</span><span class='line'><span class="c1">#  end</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;cucumber&#39;</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s1">&#39;--format progress --no-profile&#39;</span><span class="p">,</span> <span class="n">command_prefix</span><span class="p">:</span> <span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
 </span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
-</ul>
+<h3>Define named lists from a table</h3>
 
+<p>foo.feature</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dishes</span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Spaghetti Bolognaise</span><span class="k"> |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Spaghetti</span><span class="k"> |</span><span class="s"> Bolognaise sauce</span><span class="k"> |       |         |</span><span class="nf"></span>
+</span><span class='line'><span class="k">  |</span><span class="s"> Burger</span><span class="k">               |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Bread</span><span class="k">     |</span><span class="s"> Meat</span><span class="k">             |</span><span class="s"> Salad</span><span class="k"> |</span><span class="s"> Ketchup</span><span class="k"> |</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>steps.rb</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;.spring.rb&quot;</span>
-</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;spec/factories&quot;</span>
-</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;features/env.rb&quot;</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dishes$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dishes</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">name_2_dishes</span> <span class="o">=</span> <span class="n">dishes</span><span class="o">.</span><span class="n">hash_2_lists</span>
 </span><span class='line'>
-</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch_method</span> <span class="o">=</span> <span class="ss">:listen</span>
+</span><span class='line'><span class="c1">#  expect(name_2_dishes[&#39;Burger&#39;]).to eq([&#39;Bread&#39;,&#39;Meat&#39;,&#39;Salad&#39;,&#39;Ketchup&#39;])</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
 </div>
 
 
@@ -216,12 +273,12 @@
   
 
 
-<time datetime="2013-08-03T08:51:00+02:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time>
+<time datetime="2014-06-12T06:28:00+02:00" pubdate data-updated="true">Jun 12<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+    <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
   
 </span>
 
@@ -230,7 +287,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -243,10 +300,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/" title="Previous Post: Simplest way to speed up rspec with in memory sqlite db">&laquo; Simplest way to speed up rspec with in memory sqlite db</a>
+        <a class="basic-alignment left" href="/my-new-gem-for-creating-rspec-proxies/" title="Previous Post: My new gem for creating rspec proxies">&laquo; My new gem for creating rspec proxies</a>
       
-      
-        <a class="basic-alignment right" href="/ruby-regex-captures-oneliner/" title="Next Post: Ruby regex captures oneliner">Ruby regex captures oneliner &raquo;</a>
       
     </p>
   </footer>
@@ -389,8 +444,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/';
-        var disqus_url = 'http://philippe.bourgau.net/spork-alternative-compatible-with-cucumber/';
+        var disqus_identifier = 'http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/';
+        var disqus_url = 'http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/';
         var disqus_script = 'embed.js';
       
     (function () {

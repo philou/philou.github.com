@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cucumber | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/cucumber/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-06-04T07:07:52+02:00</updated>
+  <updated>2014-06-12T21:15:29+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks]]></title>
+    <link href="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/"/>
+    <updated>2014-06-12T06:28:00+02:00</updated>
+    <id>http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks</id>
+    <content type="html"><![CDATA[<p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
+
+<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
+
+<h3>Use pronouns to reference previously introduced items</h3>
+
+<p>foo.feature</p>
+
+<p><code>gherkin
+Given the tool 'screwdriver'
+When this tool is used
+</code></p>
+
+<p>steps.rb</p>
+
+<p>```ruby
+A_TOOL = NameOrPronounTransform(&lsquo;tool&rsquo;, &lsquo;hammer&rsquo;)</p>
+
+<p>Given /^(#{A_TOOL})$/ do |tool|
+  &hellip;
+end
+```</p>
+
+<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
+
+<p>steps.rb</p>
+
+<p>```ruby
+GivenEither /^the dog named &ldquo;(.*)&rdquo;$)$/,</p>
+
+<pre><code>        /^the following dogs$/ do |dogs_table|
+</code></pre>
+
+<p>  &hellip;
+end
+```</p>
+
+<p>foo.feature</p>
+
+<p><code>gherkin
+Given the dog "Rolphy"
+...
+Given the following dogs
+  | Rex  |
+  | King |
+  | Volt |
+</code></p>
+
+<h3>Add default values to the hashes of a table</h3>
+
+<p>foo.feature</p>
+
+<p><code>gherkin
+Given the following dogs
+  | names | color |
+  | Rex   | white |
+  | King  | Sand  |
+</code></p>
+
+<p>steps.rb</p>
+
+<p>```ruby
+Given /^the following dogs$$/ do |dogs|
+  hashes = dogs.hashes_with_defaults(&lsquo;names&rsquo;, &lsquo;tail&rsquo; => &lsquo;wagging&rsquo;, &lsquo;smell&rsquo; => &lsquo;not nice&rsquo;)</p>
+
+<h1>hashes.each do |hash|</h1>
+
+<h1>expect(hash[&lsquo;smell&rsquo;]).to eq(&lsquo;not nice&rsquo;)</h1>
+
+<h1>end</h1>
+
+<p>  &hellip;
+end
+```</p>
+
+<h3>Define named lists from a table</h3>
+
+<p>foo.feature</p>
+
+<p><code>gherkin
+Given the following dishes
+  | Spaghetti Bolognaise | =&gt; | Spaghetti | Bolognaise sauce |       |         |
+  | Burger               | =&gt; | Bread     | Meat             | Salad | Ketchup |
+</code></p>
+
+<p>steps.rb</p>
+
+<p>```ruby
+Given /^the following dishes$$/ do |dishes|
+  name_2_dishes = dishes.hash_2_lists</p>
+
+<h1>expect(name_2_dishes[&lsquo;Burger&rsquo;]).to eq([&lsquo;Bread&rsquo;,&lsquo;Meat&rsquo;,&lsquo;Salad&rsquo;,&lsquo;Ketchup&rsquo;])</h1>
+
+<p>  &hellip;
+end
+```</p>
+
+<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Spork alternative compatible with cucumber]]></title>
@@ -123,7 +229,9 @@ silence_stream(STDOUT, &amp;setup_sqlite_db)
     <link href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/"/>
     <updated>2013-05-09T08:35:00+02:00</updated>
     <id>http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios</id>
-    <content type="html"><![CDATA[<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.
+    <content type="html"><![CDATA[<p><strong>Update 06/12/2014: I created a <a href="https://github.com/philou/cucumber_tricks">gem</a> for this and other things, read an introduction <a href="http://philippe.bourgau.net//">here</a></strong></p>
+
+<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.
 <code>gherkin
 Scenario: Withdrawing some cash
   Given a deposit account with 1000€
