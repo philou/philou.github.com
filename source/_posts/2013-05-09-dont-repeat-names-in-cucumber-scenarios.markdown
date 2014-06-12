@@ -10,6 +10,8 @@ categories:
 - cucumber
 - BDD
 ---
+**Update 06/12/2014: I created a [gem](https://github.com/philou/cucumber_tricks) for this and other things, read an introduction [here](http://philippe.bourgau.net//)**
+
 When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.
 ```gherkin
 Scenario: Withdrawing some cash
