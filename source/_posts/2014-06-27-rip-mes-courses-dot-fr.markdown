@@ -14,7 +14,7 @@ Rest In Peace [mes-courses.fr](https://dl.dropboxusercontent.com/u/206938/mes-co
 
 {% img center /imgs/2014-06-27-rip-mes-courses-dot-fr/screenshot.png Screen shot of the home page of mes-courses.fr %}
 
-I wanted to create a really fast on-line grocery front-end, where people could shop for the week in only 5 minutes. It supported shopping recipes instead of individual items but I also envisioned to allow automatic menus recommendations, and automatic item preference selection. I started 4 years ago, and this is my last doing on the subject :)
+I wanted to create a really fast on-line grocery front-end, where people could shop for the week in only 5 minutes. It supported shopping recipes instead of individual items but I also envisioned to allow automatic menus recommendations, and automatic item preference selection. I started 4 years ago, and this is my last doing on the subject :). If you're thinking about starting your own side project, this post is for you.
 
 ### Here are the lessons I learned
 
@@ -38,24 +38,24 @@ I wanted to create a really fast on-line grocery front-end, where people could s
   * Use standard open source software, stick to the latest version
   * Use standard and wide spread technology
 * Automated testing and deployment saved me some time from the start. Especially with the small amount of time that I could spend on my project, it was really easy to forget details and to make mistakes.
-  * [Here](https://github.com/philou/mes-courses/blob/master/lib/mes_courses/deployment.rb) is the [Heroku](https://www.heroku.com/) deployment script I used to test and deploy in a single script call
+  * [Here](https://github.com/philou/mes-courses/blob/master/lib/mes_courses/deployment.rb) is the [Heroku](https://www.heroku.com/) deployment script I used to test and deploy in a single shell call
   * And [here](https://github.com/philou/mes-courses/blob/master/lib/mes_courses/utils/scheduled_tasks.rb) is a Heroku workaround to run some cron tasks weekly, this allowed me to run some scrapping tests every week on Heroku
-* It took all my time ! Next time I start a side-project, I'll be prepared to
-  * Spend all my free time on it
+* It took all my time ! Next time I start a side project, I'll be prepared to
+  * Spend all my free time on it (my time was divided between day-job, family, side project)
   * Spend all my learning time (books, on-line trainings ...) for it
   * Choose something that I am passionate about !
   * Choose a different kind of project to fit my constraints
-    * Joining an existing open source project will let you focus on technical work at your own pace
+    * Joining an existing open source project would let me focus on technical work at my own pace
     * Volunteer for a not for profit project might be less time intensive while allowing some fulfilment
 * I did my project alone, and it was hard to keep my motivation high on the long run. Next time :
   * I'll join someone else
   * I'll [time box my project](/my-own-side-project-best-practices-after-reading-the-side-project-book/) before a pivot or starting something completely different
-* I did not manage to get anything done before I settle a regular daily rhythm. I used to work from 5:30am to 7:30am, I first tried in the evening, but I was too tired after a day's work to be really productive.
+* I did not manage to get anything done before I settled a regular daily rhythm. I used to work from 5:30am to 7:30am, I first tried in the evening, but after a day's work, I was too tired to be really productive.
 * When I could afford it, paying for things or services really saved me some time. I'm thinking of
   * A fast computer
   * Some paying on-line services
 
-It is sure that doing a side project seriously is a heavy time investment, it's also a way to get a lot !
+It is sure that doing a side project seriously is a heavy time investment, but there's also a lot of benefits !
 
 {% img center /imgs/2014-06-27-rip-mes-courses-dot-fr/side-projects-are-important.gif Side projects are important blackboard %}
 
@@ -78,9 +78,9 @@ It is sure that doing a side project seriously is a heavy time investment, it's 
 * Failing allowed me to actually understand Lean Start up ! The ideas are easy to understand in theory, the practice is a very different thing. It should help me for my next project.
 * Resolving real problems on my own was a very good source for valuable blog articles.
 * I collaborated with very clever people on open source libraries
-  * By fixing some bugs in libraries I was using
+  * By fixing some bugs in some libraries I was using
   * By releasing some parts of my code as open source libraries
 
 Next time, I hope I'll get more euros as well !
 
-You've got nothing to loose from trying ! Just do it. Give yourself 1 year to get some small success, and then continue or repeat !
+You've got nothing to loose from trying ! Just do it. Give yourself 1 year to get some small success, and then continue or repeat with something else !
