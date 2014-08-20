@@ -49,3 +49,7 @@ end
 ```
 
 Maybe I should swith to rr ...
+
+**EDIT 20/08/2014:**
+
+I eventually moved this code into its own gem, it's [on github](https://github.com/philou/rspecproxies).
