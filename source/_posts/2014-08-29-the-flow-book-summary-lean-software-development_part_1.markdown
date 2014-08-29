@@ -39,4 +39,4 @@ Lately, I've been thinking of an economical framework of my own, that I could us
 6. Prioritizing technical improvements
 7. Summing it up for my next side project
 
-Stay tuned.
+Next part will feature an explanation of the XP practices with the lean principles. Stay tuned.
