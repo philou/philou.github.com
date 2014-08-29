@@ -98,6 +98,125 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-i-organized-my-javascript-assets-in-rails/">How I Organized My Javascript Assets in Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-27T05:56:00+01:00" pubdate data-updated="true">Nov 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/jasmine-and-coffeescript-setup-for-rails/">Lately</a>, I have been introducing javascript and coffeescript in <a href="http://www.mes-courses.com">www.mes-courses.fr</a> (with structural architecture issues as a side effect, but that&rsquo;s another story &hellip;).</p>
+
+<p>Here are the general goals I had when using the rails asset pipeline :</p>
+
+<ul>
+<li>most of js compiled in a single file</li>
+<li>no js code in your html files : I want to use unintrusive javascript techniques, and have some outside js hook code that will wire js and html together</li>
+<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I cannot simply compile all js code in a single minified file</li>
+<li>In unit tests, I want to be able to manually set up and tear down the js hooks</li>
+</ul>
+
+
+<p>So, here is how I eventually organized my js code :</p>
+
+<ul>
+<li>I create a specific dependencies.js file that will require all outside dependencies</li>
+<li>I split my js code under 3 subdirectories :
+
+<ul>
+<li>explicit : hooks that will be explicitly included</li>
+<li>hooks : all the other hooks</li>
+<li>application : all the real code</li>
+</ul>
+</li>
+<li>In my application.js, I include dependencies and all files under application and hooks. Here is my app/assets/javascript/application.js</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//= require dependencies.js</span>
+</span><span class='line'><span class="c1">//= require_tree ./application</span>
+</span><span class='line'><span class="c1">//= require_tree ./hooks</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>In my tests, I only load dependencies and files from the application directory. Here is my spec/javascript/spec.js.coffee</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1">#= require ../../app/assets/javascripts/dependencies.js</span>
+</span><span class='line'><span class="c1">#= require_tree ../../app/assets/javascripts/application</span>
+</span><span class='line'><span class="c1">#= require_tree ./</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Hook code only consists of calling a setup function from the &lsquo;real&rsquo; code. For example, here is my app/assets/javascript/hooks/cart_lines/index.coffee file</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>this setUp function is defined in the app/assets/javascript/application/cart_lines/index.coffee file</p>
+
+<ul>
+<li>This way, from the unit tests, I can explicitly call this setUp function, here is the beginning of my spec/javascript/application/cart_lines/index_spec.coffee file</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">describe</span> <span class="s">&#39;mesCourses.cartLines.index&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">beforeEach</span> <span class="nf">-&gt;</span>
+</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">()</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And you, how are you organizing your javacript assets ?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/agileavatars-dot-com-magnets-for-real/">AgileAvatars.com Magnets for Real</a></h1>
     
     
@@ -761,60 +880,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/jasmine-and-coffeescript-setup-for-rails/">Jasmine and Coffeescript Setup for Rails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-04T07:44:00+02:00" pubdate data-updated="true">Jul 4<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I started to write more javascript code in my <a href="https://www.mes-courses.fr">rails app</a>, it became obvious that I should be testing it ! I wanted to use <a href="http://pivotal.github.io/jasmine/">jasmine</a> and <a href="http://coffeescript.org">coffeescript</a>. I searched a long time to find out what was the most common and supported setup for a rails app, so now I recommand</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;jasmine&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jasminerice&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-jasmine&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>The <a href="https://github.com/pivotal/jasmine-gem">jasmine gem</a> is by far the most common jasmine gem, it is supported by <a href="http://pivotallabs.com">Pivotal Labs</a> so there is no fear of it being droped soon.</li>
-<li>The <a href="https://github.com/netzpirat/guard-jasmine">guard-jasmin gem</a> is supported by <a href="https://mksoft.ch">MKSoft</a>, and is not only handling continuous <a href="http://phantomjs.org/">phantomjs</a> headless jasmine testing through guard, but it also provides command line and rake tools to run your jasmine specs during continuous integration.</li>
-<li>Eventually, the <a href="https://github.com/bradphelan/jasminerice">jasminerice gem</a> makes it easy to write your jasmine specs with coffeescript. It also wraps a version of <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> to assist client javascript testing. Although there is a &ldquo;looking for maintainer&rdquo; message on the README page, there are some recent commits, so it seems that pull requests are still being merged even if the project is not actively developpped anymore &hellip; I belive volunteers are welcome.</li>
-</ul>
-
-
-<p>All 3 have detailed and up to date setup and usage instructions.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -894,6 +959,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary (lean software development part 1)</a>
+      </li>
+    
+      <li class="post">
         <a href="/the-holy-code-antipattern/">The Holy Code Antipattern</a>
       </li>
     
@@ -907,10 +976,6 @@
     
       <li class="post">
         <a href="/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/">Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/my-new-gem-for-creating-rspec-proxies/">My new gem for creating rspec proxies</a>
       </li>
     
   </ul>

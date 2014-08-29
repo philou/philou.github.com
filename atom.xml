@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2014-08-20T21:55:54+02:00</updated>
+  <updated>2014-08-29T06:58:26+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Flow book summary (lean software development part 1)]]></title>
+    <link href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/"/>
+    <updated>2014-08-29T06:25:00+02:00</updated>
+    <id>http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1</id>
+    <category term="agile" /><category term="book" /><category term="lean" />
+    <content type="html"><![CDATA[<p>A few weeks ago, I read <a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009">The principles of product development flow</a> from Donald G. Reinertsen.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-08-29-the-flow-book-summary-lean-software-development_part_1/flow_book_cover.jpg" title="The cover of the book" ></p>
+
+<p>I read it both for work and for my side projects, and I think it will be useful for both. The book is about lean product development, and is in fact a collection of 175 lean principles that one can study and understand in order to make better decisions when developing new products. The principles are divided into the following 8 categories</p>
+
+<ol>
+<li>Economics</li>
+<li>Queues</li>
+<li>Variability</li>
+<li>Batch sise</li>
+<li>WIP constraints</li>
+<li>Cadence, synchronization and flow control</li>
+<li>Fast feedback</li>
+<li>Decentralized control</li>
+</ol>
+
+
+<p>I really loved the book. I have not been thrilled like that by a book since <a href="http://www.threeriversinstitute.org/">Kent Beck</a>&rsquo;s <a href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416">1st edition of Extreme Programming Explained</a>. Where Kent Beck described some values, principles and practices that work. D.G. Reinertsen has the ambition to help us to quantify these practices in order not move from belief based to fact based decisions. For this, he gives us the keys to creating an economical framework with which we should be able to convert any change option to its economical cost</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-08-29-the-flow-book-summary-lean-software-development_part_1/xp_book_cover.jpg" title="The cover of the book &#34;Extreme Programming Explained&#34;" alt="The cover of the book &#34;Extreme Programming Explained&#34;"></p>
+
+<p>Lately, I&rsquo;ve been thinking of an economical framework of my own, that I could use on the projects I am currently involved in. This post is the first of a series about this :</p>
+
+<ol>
+<li>The Flow book summary</li>
+<li>XP from the Flow book perspective</li>
+<li>Measure speed with business value</li>
+<li>Take informed high payoff risks</li>
+<li>Measure the value of the lean startup &lsquo;learning&rsquo;</li>
+<li>Prioritizing technical improvements</li>
+<li>Summing it up for my next side project</li>
+</ol>
+
+
+<p>Stay tuned.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Holy Code Antipattern]]></title>
@@ -1154,99 +1199,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 <li>Gathering coding standards</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I organized my javascript assets in Rails]]></title>
-    <link href="http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails/"/>
-    <updated>2013-11-27T05:56:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-i-organized-my-javascript-assets-in-rails</id>
-    <category term="assets" /><category term="javascript" /><category term="rails" /><category term="testing" />
-    <content type="html"><![CDATA[<p><a href="http://philippe.bourgau.net/jasmine-and-coffeescript-setup-for-rails/">Lately</a>, I have been introducing javascript and coffeescript in <a href="http://www.mes-courses.com">www.mes-courses.fr</a> (with structural architecture issues as a side effect, but that&rsquo;s another story &hellip;).</p>
-
-<p>Here are the general goals I had when using the rails asset pipeline :</p>
-
-<ul>
-<li>most of js compiled in a single file</li>
-<li>no js code in your html files : I want to use unintrusive javascript techniques, and have some outside js hook code that will wire js and html together</li>
-<li>sometimes, I want some js code to be only explicitly included by some particular pages (example: hooking a timer on the document ready event of a particular html page). This means that I cannot simply compile all js code in a single minified file</li>
-<li>In unit tests, I want to be able to manually set up and tear down the js hooks</li>
-</ul>
-
-
-<p>So, here is how I eventually organized my js code :</p>
-
-<ul>
-<li>I create a specific dependencies.js file that will require all outside dependencies</li>
-<li>I split my js code under 3 subdirectories :
-
-<ul>
-<li>explicit : hooks that will be explicitly included</li>
-<li>hooks : all the other hooks</li>
-<li>application : all the real code</li>
-</ul>
-</li>
-<li>In my application.js, I include dependencies and all files under application and hooks. Here is my app/assets/javascript/application.js</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="c1">//= require dependencies.js</span>
-</span><span class='line'><span class="c1">//= require_tree ./application</span>
-</span><span class='line'><span class="c1">//= require_tree ./hooks</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>In my tests, I only load dependencies and files from the application directory. Here is my spec/javascript/spec.js.coffee</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1">#= require ../../app/assets/javascripts/dependencies.js</span>
-</span><span class='line'><span class="c1">#= require_tree ../../app/assets/javascripts/application</span>
-</span><span class='line'><span class="c1">#= require_tree ./</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Hook code only consists of calling a setup function from the &lsquo;real&rsquo; code. For example, here is my app/assets/javascript/hooks/cart_lines/index.coffee file</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>this setUp function is defined in the app/assets/javascript/application/cart_lines/index.coffee file</p>
-
-<ul>
-<li>This way, from the unit tests, I can explicitly call this setUp function, here is the beginning of my spec/javascript/application/cart_lines/index_spec.coffee file</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="nx">describe</span> <span class="s">&#39;mesCourses.cartLines.index&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nx">beforeEach</span> <span class="nf">-&gt;</span>
-</span><span class='line'>    <span class="nb">window</span><span class="p">.</span><span class="nx">mesCourses</span><span class="p">.</span><span class="nx">cartLines</span><span class="p">.</span><span class="nx">index</span><span class="p">.</span><span class="nx">setUp</span><span class="p">()</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="p">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And you, how are you organizing your javacript assets ?</p>
 ]]></content>
   </entry>
   
