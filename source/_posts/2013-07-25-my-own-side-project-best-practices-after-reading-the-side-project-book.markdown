@@ -8,6 +8,7 @@ categories:
  - boostrapping
  - side project
  - startup
+ - book
 published: true
 ---
 First, i recommend [this book](http://sideprojectbook.com/) to any side project infected person : it's a great motivation boost !
