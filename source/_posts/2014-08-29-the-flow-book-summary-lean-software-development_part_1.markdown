@@ -31,8 +31,8 @@ I really loved the book. I have not been thrilled like that by a book since [Ken
 
 Lately, I've been thinking of an economical framework of my own, that I could use on the projects I am currently involved in. This post is the first of a series about this :
 
-1. The Flow book summary
-2. XP from the Flow book perspective
+1. [The Flow book summary](/the-flow-book-summary-lean-software-development_part_1)
+2. [What's in Kent Beck's eXtreme Programming Lean diet ?](/whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/)
 3. Measure speed with business value
 4. Take informed high payoff risks
 5. Measure the value of the lean startup 'learning'
