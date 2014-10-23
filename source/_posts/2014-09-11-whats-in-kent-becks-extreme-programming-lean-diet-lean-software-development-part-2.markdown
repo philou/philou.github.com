@@ -12,7 +12,7 @@ description: "Using the lean principles, let's analyse the 12 XP core practices 
 ---
 I've been programming for quite some time now, in different teams, using various methodologies. I also had the luck to do XP for at least 3 different projects. To me the conclusion is obvious, [XP](http://www.extremeprogramming.org/) delivers more. Even better, programmers working with XP seem to be happier. The only thing I've seen that works better than XP, is fine tunning it once the team has mastered the main principles.
 
-{% img center /imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/lean-extreme.jpg An extreme diet pill bottle" %}
+{% img center /imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/lean-extreme.jpg "An extreme diet pill bottle" %}
 
 [XP was first put in place](http://en.wikipedia.org/wiki/Extreme_programming#History) at the Chrysler C3 project for SmallTalk performance issues. After being called for performance issues, [Kent Beck](http://www.threeriversinstitute.org/) discovered that these were only the tip of the iceberg, everything was going astray. As the expert in the room, people started to ask him how to organize. I remember reading some time ago that without having thought about it before, he gathered all the most efficient programming techniques he knew together into a new process. XP was born.
 
@@ -323,4 +323,4 @@ And here is where to look at when you'll need to upgrade XP
 
 Kent Beck could not have read the Flow book when he invented XP, but it seems he just had a bit of advance on the rest of us ...
 
-This was part 2 of my suite of article about Lean Software Development, Part 1 was [The Flow book summary](/the-flow-book-summary-lean-software-development_part_1/), Part 3 will be "Measure speed with business value".
+This was part 2 of my suite of article about Lean Software Development, Part 1 was [The Flow book summary](/the-flow-book-summary-lean-software-development_part_1/), Part 3 will be [How to measure your speed with your business value ?](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/)
