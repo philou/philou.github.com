@@ -81,4 +81,4 @@ At the end of the sprint, just as we track the story points we completed with th
 
 The more I learn about Lean principles, the more I find our current Issues Tracking Systems (I'm used to Jira) limited. They seem to be databases with a nice UI, whereas what we need are tools to help us to make better decisions out of the multitude of items ... How come they do not provide something as simple as the WSJF ?
 
-This was part 3 of my suite of article about Lean Software Development, Part 2 was 2. [What's in Kent Beck's eXtreme Programming Lean diet ?](/whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/), Part 4 will be "Take informed high payoff risks".
+This was part 3 of my suite of article about Lean Software Development, Part 2 was [Why eXtreme Programming works ?](/why-extreme-programming-works-lean-software-development-part-2/), Part 4 will be "Take informed high payoff risks".
