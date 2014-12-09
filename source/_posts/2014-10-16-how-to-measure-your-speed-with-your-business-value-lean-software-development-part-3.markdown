@@ -81,4 +81,8 @@ At the end of the sprint, just as we track the story points we completed with th
 
 The more I learn about Lean principles, the more I find our current Issues Tracking Systems (I'm used to Jira) limited. They seem to be databases with a nice UI, whereas what we need are tools to help us to make better decisions out of the multitude of items ... How come they do not provide something as simple as the WSJF ?
 
+## Edit 12/09/2014
+
+I got some pretty positive feedback from practicing these business value pokers. Inviting the product owner forced him to explain in details why he believed some features were more valuable than others. On the opposite, it allowed the developpers to hightlight how some seemingly unimportant stories were critical to a long term goal. In the end, everyone, including the product owner, is asking for more. It's a good practice that helps introducing the business value / cost of delay concept.
+
 This was part 3 of my suite of article about Lean Software Development, Part 2 was [Why eXtreme Programming works ?](/why-extreme-programming-works-lean-software-development-part-2/), Part 4 will be "Take informed high payoff risks".
