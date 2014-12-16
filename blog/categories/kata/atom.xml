@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: kata | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/kata/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2014-12-16T07:02:58+01:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Trying to explain monads in java]]></title>
+    <link href="http://philippe.bourgau.net/trying-to-explain-monads-in-java/"/>
+    <updated>2013-12-07T07:37:00+01:00</updated>
+    <id>http://philippe.bourgau.net/trying-to-explain-monads-in-java</id>
+    <content type="html"><![CDATA[<p>A few days ago, a colleague currently taking <a href="https://www.coursera.org/course/reactive">the coursera course about reactive programming in scala</a>, asked me to explain him what monads are. It&rsquo;s always a tough question, and I rarely manage to give un understandable answer simply. This time though, I kind of managed to pass him some understanding of monads :</p>
+
+<ol>
+<li>When modelising a statefull data structure with immutable constructs, one has to pass in and return the data structure state of every function</li>
+<li>This results in a lot repeated code to pass this state around</li>
+<li>With a monad, you can factorize this glue code and only write the &lsquo;real&rsquo; code</li>
+</ol>
+
+
+<p>I thought it might be a good subject for a java kata ! This is what I tried to do in <a href="https://github.com/philou/java-monads-kata">java-monads-kata</a>. Here is some sample monadic code from the kata itself :</p>
+
+<p>```java
+@Test public void
+pops_objects_in_reverse_push_order() {
+  monad = monad.</p>
+
+<pre><code>bind(push(A)).
+bind(push(B)).
+
+bind(pop());
+</code></pre>
+
+<p>  assertEquals(B, monad.value);</p>
+
+<p>  monad = monad.bind(pop());
+  assertEquals(A, monad.value);</p>
+
+<p>  assertEquals(empty(), monad.stack);
+}
+```</p>
+
+<p>You can have a look at all <a href="https://github.com/philou/java-monads-kata">the final code</a>, or <a href="https://github.com/philou/java-monads-kata/commits/master">go through the whole history</a> to get the &lsquo;kata&rsquo; feeling. It&rsquo;s a shame Github does not offer a nice chronological repo history slideshow, for better experience, I recommend that you use Chrome with <a href="https://chrome.google.com/webstore/detail/github-improved/nkbnmpfpclijlllipmfbkkednidgngaa">Github improved</a> : this allows to view diffs right from the Github history.</p>
+
+<p>The resulting code is still quite far from a <a href="http://www.haskell.org/haskellwiki/Monad">Haskell monad</a> :</p>
+
+<ul>
+<li>Functions are not first class objects in Java. It is written in Java 7, without lambda, which does not help neither.</li>
+<li>Java does not have Haskell type class polymorphism, but only supports OO polymorphism and very little covariance</li>
+<li>The whole monad thing, designed at simulating/isolating side effects has a WTF feel in Java where side effects are just everywhere</li>
+</ul>
+
+
+<p>I&rsquo;d love to hear some feedback about it.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: UI | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/ui/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2014-12-16T07:02:58+01:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Making C# properties first class objects]]></title>
+    <link href="http://philippe.bourgau.net/making-c-properties-first-class-objects/"/>
+    <updated>2011-09-29T00:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/making-c-properties-first-class-objects</id>
+    <content type="html"><![CDATA[<p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
+<p>
+```c#
+public event EventHandler NameChanged;
+private string _name;
+public string Name
+{
+  get
+  {</p>
+
+<pre><code>return _name;
+</code></pre>
+
+<p>  }
+  set
+  {</p>
+
+<pre><code>if (_name != value)
+{
+  _name = value;
+  InvokeNameChanged();
+ }
+</code></pre>
+
+<p>  }
+}
+<code>
+&lt;p /&gt;How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&amp;lt;T&amp;gt; classes instances instead of raw properties.&lt;p /&gt;
+</code>c#
+class Presenter
+{
+  public readonly Property<string> Name = new Property<string>();
+}
+<code>
+&lt;p /&gt;The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :&lt;p /&gt;
+</code>c#
+public partial class MyForm : Form
+{
+  Presenter _presenter = new Presenter();</p>
+
+<p>  public Form1()
+  {</p>
+
+<pre><code>InitializeComponent();
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void OnLoad(EventArgs e)
+   {</p>
+
+<pre><code>base.OnLoad(e);
+
+AddBinding(textBox1, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+AddBinding(textBox2, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+</code></pre>
+
+<p>   }</p>
+
+<p>  void AddBinding<T>(Control control, string controlProperty, Property<T> property, bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode)
+  {</p>
+
+<pre><code>control.DataBindings.Add(controlProperty, property, "Value", formattingEnabled, dataSourceUpdateMode);
+</code></pre>
+
+<p>   }
+}
+```
+<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
+<ul>
+<li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
+<p>I hope this will help someone</p></p>
+]]></content>
+  </entry>
+  
+</feed>

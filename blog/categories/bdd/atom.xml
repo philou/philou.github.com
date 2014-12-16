@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: BDD | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/bdd/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2014-12-16T07:02:58+01:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Don't repeat names in cucumber scenarios]]></title>
+    <link href="http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios/"/>
+    <updated>2013-05-09T08:35:00+02:00</updated>
+    <id>http://philippe.bourgau.net/dont-repeat-names-in-cucumber-scenarios</id>
+    <content type="html"><![CDATA[<p><strong>Update 06/12/2014: I created a <a href="https://github.com/philou/cucumber_tricks">gem</a> for this and other things, read an introduction <a href="http://philippe.bourgau.net//">here</a></strong></p>
+
+<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.
+<code>gherkin
+Scenario: Withdrawing some cash
+  Given a deposit account with 1000€
+  When I withdraw 100€ from the deposit account
+  Then there should be 900€ on the deposit account
+</code>
+It would be better if we could write it like that
+<code>gherkin
+Scenario: Withdrawing some cash
+  Given a deposit account with 1000€
+  When I withdraw 100€ from the account
+  Then there should be 900€ on the account
+</code>
+Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
+
+<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.
+```ruby
+def main_account_name
+  @main_account_name ||= &ldquo;credit&rdquo;
+end
+def main_account_name=(account_name)
+  @main_account_name ||= account_name
+end</p>
+
+<p>CAPTURE_ACCOUNT_NAME = Tranform(/^(a|an|the) <em>(.</em>) account$/) do |_prefix, account_name|
+  if account_name == &ldquo;&rdquo;</p>
+
+<pre><code>main_account_name
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>account_name
+</code></pre>
+
+<p>  end
+end
+<code>
+When creating the account, I added some code to set the main_account_name
+</code>ruby
+Given(/^(#{CAPTURE_ACCOUNT_NAME}) with (\d+)€$/) do |account_name, amount|
+  &hellip;
+  self.main_account_name= account_name
+end
+<code>
+It is then possible to write steps like
+</code>
+When(/^I withdraw (\d+)€ from (#{CAPTURE_ACCOUNT_NAME})$/) do |amount, account_name|
+  &hellip;
+end
+```
+that will match both &ldquo;the deposit account&rdquo; and &ldquo;the account&rdquo; depending on context.</p>
+
+<p>It would be really nice to be able to write things like
+<code>gherkin
+  Then there should be 900€ on it
+</code>
+but because of the <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[If new cucumber transform breaks everyhing ...]]></title>
+    <link href="http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/"/>
+    <updated>2013-05-08T08:36:00+02:00</updated>
+    <id>http://philippe.bourgau.net/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &hellip; Even completly unrelated scenarios were failing &hellip;</p>
+
+<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &ldquo;Transforms wisdom&rdquo; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+
+<p>For example</p>
+
+<p>```ruby
+CAPTURE_NUMBER = Transform /^.*$/ do |digits|
+  Float(digits)
+end</p>
+
+<p>When /^I withdraw (#{CAPTURE_NUMBER}) from &ldquo;([^&rdquo;]+)&ldquo;$/ do |amount, bank_name|
+  bank = Bank.find_by_name(bank_name)
+  bank.withdraw(amount)
+end
+```</p>
+
+<p>will match the bank name with CAPTURE_NUMBER, and you&rsquo;ll get an &ldquo;invalid value for Float&rdquo; error.</p>
+]]></content>
+  </entry>
+  
+</feed>
