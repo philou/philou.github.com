@@ -4,8 +4,10 @@ title: "How to setup a weekly fruit basket in no time"
 date: 2014-12-17 07:11
 comments: true
 categories:
-keywords:
-description:
+ - team building
+ - workplace
+keywords: "fruits, fruit basket, weekly fruit basket, do it yourself fruit basket"
+description: "My story about how we setup a weekly fruit basket at work, without waiting for the company"
 ---
 [{% img center /imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruit.jpg "A multi-fruit sandwich" %}](http://www.groupe-patus.fr/wp-content/uploads/2014/03/07-Beautiful-Fruit-Wallpapers.jpg)
 
@@ -13,7 +15,7 @@ If you're interested in agile software development, just read Kent Beck's [Extre
 
 If you actually read it, you'll notice that Kent emphasizes about having food at the office. He claims that it improves the moral and builds team cohesion.
 
-My first attempt was to asked my enterprise for weekly fresh fruits baskets. They are currently experimenting regular self service fruit baskets deliveries in some offices. Unfortunately not in ours yet. Let's hope it changes soon. Meanwhile, we decided to handle the thing ourselves.
+As my company already provides free drinks, my first attempt was to asked for weekly fresh fruits baskets. They are currently experimenting regular self service fruit baskets deliveries in some offices. Unfortunately not in ours yet. Let's hope it changes soon. Meanwhile, we decided to handle the thing ourselves.
 
 ## Here comes the fruit basket lean startup !
 
