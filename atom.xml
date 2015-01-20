@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-01-10T08:10:15+01:00</updated>
+  <updated>2015-01-20T06:51:15+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,60 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Performance is a feature]]></title>
+    <link href="http://philippe.bourgau.net/performance-is-a-feature/"/>
+    <updated>2015-01-19T06:46:00+01:00</updated>
+    <id>http://philippe.bourgau.net/performance-is-a-feature</id>
+    <category term="agile" /><category term="performance" /><category term="testing" />
+    <content type="html"><![CDATA[<p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
+
+<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
+
+<h1>What&rsquo;s in it for us ?</h1>
+
+<p>If performance is indead a feature, then it can be managed like any feature :</p>
+
+<ul>
+<li><p>It should result from use cases</p>
+
+<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
+<li><p>It can be split into user stories</p></li>
+</ul>
+
+
+<blockquote><ul>
+<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
+<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>They can be prioritized against other stories</li>
+</ul>
+
+
+<blockquote><ul>
+<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
+<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>The performance on these use cases should be automatically tested and non regressed</li>
+</ul>
+
+
+<blockquote><ul>
+<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
+<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
+</ul>
+</blockquote>
+
+<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to setup a weekly fruit basket in no time]]></title>
@@ -2372,126 +2426,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 <p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
 
 <p>Happy testing !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
-    <link href="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/"/>
-    <updated>2014-01-21T06:50:00+01:00</updated>
-    <id>http://philippe.bourgau.net/online-store-scrapping-dsl-gem</id>
-    <category term="dsl" /><category term="gem" /><category term="open source" /><category term="ruby" /><category term="scrapping" />
-    <content type="html"><![CDATA[<p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
-
-<p>As explained in the Readme, it allows one to declare a store this way :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Storexplore</span><span class="p">:</span><span class="ss">:define_api</span> <span class="s1">&#39;dummy-store.com&#39;</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">attributes</span> <span class="k">do</span>
-</span><span class='line'>      <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">attributes</span> <span class="k">do</span>
-</span><span class='line'>        <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">items</span> <span class="s1">&#39;a.item&#39;</span> <span class="k">do</span>
-</span><span class='line'>        <span class="n">attributes</span> <span class="k">do</span>
-</span><span class='line'>          <span class="p">{</span>
-</span><span class='line'>            <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:brand</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#brand&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:price</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">to_f</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:image</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#image&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:remote_id</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#remote_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-</span><span class='line'>          <span class="p">}</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And to use it like that :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Api</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s1">&#39;http://www.dummy-store.com&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;category: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;attributes: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">category</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">sub_category</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  category: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  attributes: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">sub_category</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    item: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    attributes: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I tried my best to make this library high quality :</p>
-
-<ul>
-<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
-<li>Real world features like constant memory usage have been added to fix production bugs</li>
-<li>Documented with samples and rdoc</li>
-<li>Extensive automated testing</li>
-</ul>
-
-
-<p>Let&rsquo;s hope it will be usefull for some.</p>
 ]]></content>
   </entry>
   

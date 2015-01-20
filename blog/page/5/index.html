@@ -98,6 +98,138 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t Repeat Names in Cucumber Scenarios</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-09T08:35:00+02:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Update 06/12/2014: I created a <a href="https://github.com/philou/cucumber_tricks">gem</a> for this and other things, read an introduction <a href="http://philippe.bourgau.net//">here</a></strong></p>
+
+<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
+</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
+</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the deposit account</span>
+</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the deposit account</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It would be better if we could write it like that</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
+</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
+</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the account</span>
+</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the account</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
+
+<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span>
+</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="s2">&quot;credit&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span><span class="o">=</span><span class="p">(</span><span class="n">account_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="n">account_name</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">CAPTURE_ACCOUNT_NAME</span> <span class="o">=</span> <span class="no">Tranform</span><span class="p">(</span><span class="sr">/^(a|an|the) *(.*) account$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">_prefix</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">account_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>    <span class="n">main_account_name</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">account_name</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When creating the account, I added some code to set the main_account_name</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^(</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">) with (\d+)€$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">account_name</span><span class="p">,</span> <span class="n">amount</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">main_account_name</span><span class="o">=</span> <span class="n">account_name</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It is then possible to write steps like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I withdraw (\d+)€ from (</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>that will match both &ldquo;the deposit account&rdquo; and &ldquo;the account&rdquo; depending on context.</p>
+
+<p>It would be really nice to be able to write things like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>but because of the <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If New Cucumber Transform Breaks Everyhing &#8230;</a></h1>
     
     
@@ -552,77 +684,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-i-set-up-a-trustico-rapid-ssl-certificate/">How I Set Up a Trustico Rapid Ssl Certificate on Heroku Ssl Endpoint</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-13T00:00:00+01:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
-
-
-<ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku addons:add ssl:endpoint
-</span></code></pre></td></tr></table></div></figure>
-</li><li>Upload your certificate
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs:add server.crt private.key
-</span></code></pre></td></tr></table></div></figure>
-</li><li>Run the following and verify that you have an ssl endpoint with an explicit trusted &quot;True&quot; value
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs
-</span></code></pre></td></tr></table></div></figure>
-</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li>
-<li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li>
-<li>Wait until dns are updated to check that it is working.</li>
-</ol>
-
-
-<p> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></p>
-
-
-<p>EDIT 10/10/2013</p>
-
-<p>Any certificate will eventually expire, and need to be renewed. The process for this (at Trustico at least) is to generate a completly new certificate. To install this new certificate on heroku, start by combining the new certificate files as you did the first time, and then use</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs:update server.crt private.key
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>instead of heroku certs:add. This should be enough, there is no need to update any dns entry.</p>
-
-<p>To make sure the new certificate is used, visit the heroku ssl endpoint directly (get it by running heroku certs) and then visit your ssl site to check the certificate infos from your browser.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -702,6 +763,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/performance-is-a-feature/">Performance is a feature</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/">How to setup a weekly fruit basket in no time</a>
       </li>
     
@@ -715,10 +780,6 @@
     
       <li class="post">
         <a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary (lean software development part 1)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/the-holy-code-antipattern/">The Holy Code Antipattern</a>
       </li>
     
   </ul>
