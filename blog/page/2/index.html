@@ -98,6 +98,102 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/my-new-gem-for-creating-rspec-proxies/">My New Gem for Creating Rspec Proxies</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-23T06:20:00+02:00" pubdate data-updated="true">May 23<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
+
+<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
+
+<p>Here are the pain points proxies try to fix :</p>
+
+<ul>
+<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
+<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
+</ul>
+
+
+<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
+
+<ul>
+<li>Verify actual load count without interfering in any behaviour</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">capture_results_from</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Use proxies to stub an object that does not yet exist</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;rounds the completion ratio&#39;</span> <span class="k">do</span>
+</span><span class='line'>   <span class="no">RenderingTask</span><span class="o">.</span><span class="n">proxy_chain</span><span class="p">(</span><span class="ss">:load</span><span class="p">,</span> <span class="ss">:completion_ratio</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2523</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">renderingController</span><span class="o">.</span><span class="n">show</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/better-error-messages-when-testing-html-views/">Better Error Messages When Testing Html Views</a></h1>
     
     
@@ -696,81 +792,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/my-humble-advices-about-how-to-write-maintainable-tests/">My Humble Advices About How to Write Maintainable Tests</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-04T06:10:00+01:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessarily stressful. On the other hand, the cost of maintaining badly written tests can sometimes outweigh their benefits. This is usually the moment where the team resorts to manual testing, and gets back to the ways of &lsquo;the good old days&rsquo;. Personally, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
-
-<p>Here is how I try to make my tests as maintainable as possible :</p>
-
-<ul>
-<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
-<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
-<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writing more readable tests</li>
-<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual faulty code. The receipe for writing short tests is to follow the given-when-then pattern :
-
-<ul>
-<li>start your test by setting the context (given)</li>
-<li>do the thing you actually want to test (when)</li>
-<li>verify that it did what you wanted (then)</li>
-</ul>
-</li>
-<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
-<li>Use test data builders. This will avoid duplicated and long context setup at the beginning of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
-<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
-<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
-<li>As <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
-
-<ul>
-<li>speed up a test that is too slow</li>
-<li>cut off a dependency to an unavailable subsystem</li>
-<li>simplify an overly complex test setup</li>
-</ul>
-</li>
-<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
-<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
-<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completely until it is too late</li>
-<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really useful when needed.</li>
-<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usually very simple to setup</li>
-<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
-</ul>
-
-
-<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
-
-<p>Happy testing !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -850,6 +871,10 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/can-agile-teams-commit/">Can agile teams commit?</a>
+      </li>
+    
+      <li class="post">
         <a href="/performance-is-a-feature/">Performance is a feature</a>
       </li>
     
@@ -863,10 +888,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     
       <li class="post">
         <a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ? (Lean Software Development part 2)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary (lean software development part 1)</a>
       </li>
     
   </ul>

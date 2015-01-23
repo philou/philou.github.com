@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-01-20T06:51:15+01:00</updated>
+  <updated>2015-01-23T07:01:06+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,133 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Can agile teams commit?]]></title>
+    <link href="http://philippe.bourgau.net/can-agile-teams-commit/"/>
+    <updated>2015-01-21T06:57:00+01:00</updated>
+    <id>http://philippe.bourgau.net/can-agile-teams-commit</id>
+    <category term="agile" /><category term="planning" /><category term="risks" />
+    <content type="html"><![CDATA[<p>Making commitments to deliver software is always difficult. Whatever the margin you might take, it invariably seems wrong afterward &hellip;</p>
+
+<p>Most Scrum, XP or Kanban litterature does not adress the issue, simply saying that commitment is not required, as long as you continuously deliver value (faster than your competition). That&rsquo;s kind of true, but sometimes you need commitments, for example if your customer is not yet ready to deploy your new software every friday worldwide &hellip;</p>
+
+<p>So how can you do it while remaining agile ?</p>
+
+<p>Grossly speaking, you have 2 options :</p>
+
+<h2>Do it as usual</h2>
+
+<p>Discuss with your experts, take some margin, do whatever voodoo you are used to. This will not be worse than it used to be. It might turn out better, thanks to your agile process, you should be able to deploy with a reduced the scope if needed.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg" title="A guy entranced with voodoo" ></p>
+
+<h2>Use your agile process metrics</h2>
+
+<p>This technique is explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a>, in section &ldquo;Risk Management&rdquo;, page 227.</p>
+
+<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg" title="The cover of The Art of Agile Development" ></a></p>
+
+<h3>Let&rsquo;s estimate the time you&rsquo;ll need before the release</h3>
+
+<ul>
+<li>First, list all the stories you want it your release</li>
+<li>Then estimate them with story points.</li>
+<li>Now that you have the total number of story points you&rsquo;ll have to deliver before the release, apply a generic risk multiplier :</li>
+</ul>
+
+
+<table>
+<thead>
+<tr>
+<th>Chances of making it </th>
+<th> Using XP practices </th>
+<th> Otherwise </th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%              </td>
+<td>x1              </td>
+<td> x1        </td>
+<td> Almost impossible (ignore)</td>
+</tr>
+<tr>
+<td>50%              </td>
+<td>x1.4            </td>
+<td> x2        </td>
+<td> 50-50 chance (stretch goal)</td>
+</tr>
+<tr>
+<td>90%              </td>
+<td>x1.8            </td>
+<td> x4        </td>
+<td> Virtually certain (commit)</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><em>As explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> page 227, these numbers com from <a href="http://www.systemsguild.com/riskology/">DeMarco&rsquo;s Riskology</a> system. Using XP practices means fixing all bugs at all iteration, sticking rigorously to DONE-DONE, and having a stable velocity over iterations.</em></p>
+
+<p>This factor will account for unavoidable scope creep and wrong estimations.
+* Use you iteration velocity to know how many sprints you&rsquo;ll need to finish.</p>
+
+<h4>For example :</h4>
+
+<p>Suppose you have 45 stories that account for a total of 152 story points, and that your velocity is 23 story points per iteration. You need to do a commitment, but hopefully, you are applying all the XP practices. So you can compute :</p>
+
+<blockquote><p>Number of sprints = 152*1.8/23 = 12 sprints, (24 weeks, or about 5.5 months)</p></blockquote>
+
+<h3>What about unknown risks ?</h3>
+
+<p>Unfortunately, using just the previous, you might miss some unavoidable important tasks you&rsquo;ll need to do before you can release. Think about monitoring tools and stress testing, when did your product owner prioritize these ? These are risk management activities that need to be added to your backlog in the first place. Here is how to list most of them.</p>
+
+<ul>
+<li>Do a full team brainstorming about anything that could possibly go bad for your project</li>
+<li>For every item discovered, estimate
+
+<ul>
+<li>It&rsquo;s probability of occurrence (low, medium, high)</li>
+<li>It&rsquo;s consequences (delay, cost, cancellation of the project)</li>
+</ul>
+</li>
+<li>For every item, decide whether to
+
+<ul>
+<li>avoid it : you have to find a way to make sure this will not happen</li>
+<li>contain it : you&rsquo;ll deal with the risk when it occurs</li>
+<li>mitigate it : you have to find a way to reduce it&rsquo;s impact</li>
+<li>ignore it : don&rsquo;t bother with unlikely risks of no importance</li>
+</ul>
+</li>
+<li>Finally, create stories to match your risk management decisions. These might be :
+
+<ul>
+<li>Monitoring systems helps to contain a risk</li>
+<li>Logging helps to mitigate a risk</li>
+<li>An automated scaling in script for situations of high demand helps both mitigate and contain the risk</li>
+</ul>
+</li>
+<li>Simply add these stories to your backlog, and repeat the previous section. You can now make your commitment</li>
+</ul>
+
+
+<h2>Afterthoughts</h2>
+
+<p>Contrary to the widespread belief, agile practices and metrics actually helps to make commitments.</p>
+
+<p>It would be better if we had project specific statistics instead of generic risk multipliers. It&rsquo;s a shame that task tracking tools (JIRA &amp; friends) still don&rsquo;t help us with this.</p>
+
+<p>We should keep in mind though, that estimating all your backlog in advance takes some time and is actually some kind of waste. If possible, just sticking to build (and sell) the thing that is the most useful now is more simple (<a href="http://vimeo.com/75196281">this guy calls it drunken stumble</a>).</p>
+
+<iframe src="http://philippe.bourgau.net//player.vimeo.com/video/75196281" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<p> <p><a href="http://vimeo.com/75196281">Tech Mesh 2012 &ndash; Building an Application Platform: Lessons from CloudBees &ndash; Garrett Smith</a> from <a href="http://vimeo.com/erlang">Erlang Solutions</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Performance is a feature]]></title>
@@ -2377,55 +2504,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
 
 <p>Just add this code to your toplevel Rakefile, and run <code>bundle exec rake add_keywords</code> and keywords will be added to your existing posts.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My humble advices about how to write maintainable tests]]></title>
-    <link href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/"/>
-    <updated>2014-02-04T06:10:00+01:00</updated>
-    <id>http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests</id>
-    <category term="agile" /><category term="tdd" /><category term="testing" />
-    <content type="html"><![CDATA[<p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessarily stressful. On the other hand, the cost of maintaining badly written tests can sometimes outweigh their benefits. This is usually the moment where the team resorts to manual testing, and gets back to the ways of &lsquo;the good old days&rsquo;. Personally, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
-
-<p>Here is how I try to make my tests as maintainable as possible :</p>
-
-<ul>
-<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
-<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
-<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writing more readable tests</li>
-<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual faulty code. The receipe for writing short tests is to follow the given-when-then pattern :
-
-<ul>
-<li>start your test by setting the context (given)</li>
-<li>do the thing you actually want to test (when)</li>
-<li>verify that it did what you wanted (then)</li>
-</ul>
-</li>
-<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
-<li>Use test data builders. This will avoid duplicated and long context setup at the beginning of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
-<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
-<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
-<li>As <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
-
-<ul>
-<li>speed up a test that is too slow</li>
-<li>cut off a dependency to an unavailable subsystem</li>
-<li>simplify an overly complex test setup</li>
-</ul>
-</li>
-<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
-<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
-<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completely until it is too late</li>
-<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really useful when needed.</li>
-<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usually very simple to setup</li>
-<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
-</ul>
-
-
-<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
-
-<p>Happy testing !</p>
 ]]></content>
   </entry>
   
