@@ -34,7 +34,7 @@ Lately, I've been thinking of an economical framework of my own, that I could us
 1. [The Flow book summary](/the-flow-book-summary-lean-software-development_part_1)
 2. [Why eXtreme Programming works ?](/why-extreme-programming-works-lean-software-development-part-2/)
 3. [How to measure your speed with your business value ?](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/)
-4. Take informed high payoff risks
+4. [Measure the business value of your spikes and take high payoff risks](/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/)
 5. Measure the value of the lean startup 'learning'
 6. Prioritizing technical improvements
 7. Summing it up for my next side project

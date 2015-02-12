@@ -323,4 +323,4 @@ And here is where to look at when you'll need to upgrade XP
 
 Kent Beck could not have read the Flow book when he invented XP, but it seems he just had a bit of advance on the rest of us ...
 
-This was part 2 of my suite of article about Lean Software Development, Part 1 was [The Flow book summary](/the-flow-book-summary-lean-software-development_part_1/), Part 3 will be [How to measure your speed with your business value ?](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/)
+This was part 2 of my [suite of article about Lean Software Development](/the-flow-book-summary-lean-software-development_part_1/), Part 1 was [The Flow book summary](/the-flow-book-summary-lean-software-development_part_1/), Part 3 will be [How to measure your speed with your business value ?](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/)
