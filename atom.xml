@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-01-27T20:43:04+01:00</updated>
+  <updated>2015-02-12T07:28:13+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,798 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Measure The Business Value of Your Spikes and Take High Payoff Risks (Lean Software Development Part 4)]]></title>
+    <link href="http://philippe.bourgau.net/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/"/>
+    <updated>2015-01-31T15:13:00+01:00</updated>
+    <id>http://philippe.bourgau.net/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4</id>
+    <category term="agile" /><category term="lean" /><category term="xp" />
+    <content type="html"><![CDATA[<p>Lately <a href="http://www.murex.com">at work</a>, we&rsquo;ve unexpectedly been asked by other teams if they could use our product for something that we had not forseen. As we are not sure whether we&rsquo;ll be able to tune our product to their needs, we are thinking about doing a short study to know the answer. This looks like a great opportunity to try out <a href="http://en.wikipedia.org/wiki/Cost_of_delay">Cost of Delay</a> analysis about uncertain tasks.</p>
+
+<p>Unfortunately, I cannot write the details of what we are creating at work in this blog, so let&rsquo;s assume that we are building a Todo List Software.</p>
+
+<p>We have been targeting the enterprise market. Lately, we&rsquo;ve seen some interest from individuals planning to use our todo list system for themselves at home.</p>
+
+<p>For individuals, the system would need to be highly available and live 24/7 over the internet, latency will also be critical to retain customers, but the product could get a market share with a basic feature set.</p>
+
+<p>On the other side, enterprise customers need advanced features, absolute data safety, but they can cope with nightly restarts of the server.</p>
+
+<p>In order to know if we can make our todo list system available and fast enough for the individuals market, we are planning to conduct a pre-study, so as not to waste time on an unreachable goal. In <a href="http://www.extremeprogramming.org/">XP</a> terms, this is a <a href="http://www.extremeprogramming.org/rules/spike.html">spike</a>, and it&rsquo;s a bunch of experiments rather than a theoretical study.</p>
+
+<p><a href="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study-petit.jpg" title="Photo of someone studying behind piles of books" ></a></p>
+
+<h2>When should we prioritize this spike ?</h2>
+
+<p>If we are using the <a href="http://www.scaledagileframework.com/wsjf/">Weighted Shortest Job First</a> metric to prioritize our work, we need to estimate the cost of delay of a task to determine its priority. Hereafter I will explain how we could determine the value of this spike.</p>
+
+<h2>Computing the cost of delay</h2>
+
+<p>The strategy to compute the cost of delay for such a risk mitigation task is to compute the difference in cost of delays with or without doing it.</p>
+
+<h3>1. The products, the features, the MVP and the estimates</h3>
+
+<p>As I explained in <a href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">a previous post</a>, for usual features, cost of delay is equivalent to it&rsquo;s value. Along with our gross estimates, here are the relative values that our product owner gave us for the different products we are envisioning.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Estimated work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 1</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>TOTAL Cost Of Delay of v1 </td>
+<td> 80           </td>
+<td> 100           </td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<p><small>Stared (*) features are required for the first version of the product. Features with a value of 0 are not required for the product. Eventually, unstared features with a non null business value would be great for a second release.</small><br></p>
+
+<p>It seems that the individuals market is a greater opportunity, so it&rsquo;s worth thinking about it. Unfortunately for the moment, we really don&rsquo;t know if we&rsquo;ll manage to get the high availability that is required for such a product.</p>
+
+<p>The availability spike we are envisioning would take 1 unit of time.</p>
+
+<h3>2. Computing the cost of delay of this spike</h3>
+
+<p>The cost of delay of a task involving some uncertainty is the probabilistic expected value of its cost of delay. We estimate that we have 50% of chances of matching the availability required by individuals. It means that CoD of the spike = 50% * CoD if we match the latency + 50% CoD if we don&rsquo;t match the availability.</p>
+
+<h4>2.a. The Cost of Delay if we get the availability</h4>
+
+<p>Let&rsquo;s consider the future in which we&rsquo;ll manage to reduce the latency.
+The cost of delay of a spike task is the difference in Cost with and without doing the spike, per relevent months.</p>
+
+<h5>2.a.i. The cost if we don&rsquo;t do the spike</h5>
+
+<p>Unfortunately, at this point in this future, we don&rsquo;t yet know that we&rsquo;ll manage to get to the availability.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> $ Expected   </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>We&rsquo;ll resort to WSJF to prioritize our work. Here is what we&rsquo;ll be able to ship :</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individuals                     </td>
+<td> 7    </td>
+<td> 100   </td>
+<td>  700</td>
+</tr>
+<tr>
+<td>Individuals Durability          </td>
+<td> 7    </td>
+<td> 13    </td>
+<td>   91</td>
+</tr>
+<tr>
+<td>Individuals Labels              </td>
+<td> 9    </td>
+<td> 13    </td>
+<td>  117</td>
+</tr>
+<tr>
+<td>Enterprise                      </td>
+<td> 11   </td>
+<td> 80    </td>
+<td>  880</td>
+</tr>
+<tr>
+<td>Enterprise labels               </td>
+<td> 11   </td>
+<td> 20    </td>
+<td>  220</td>
+</tr>
+<tr>
+<td>Individuals Multi user lists    </td>
+<td> 13   </td>
+<td> 8     </td>
+<td>  104</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 16   </td>
+<td> 13    </td>
+<td>  208</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td> 2320</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.a.ii. The cost if we do the spike</h5>
+
+<p>In this case, we would start by the spike, and it would tell us that we can reach the individuals availability and so that we should go for this feature first. Here will be our planning</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Estimated work </th>
+<th> Enterprise WSJF </th>
+<th> Individuals WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility spike         </td>
+<td>              </td>
+<td>               </td>
+<td> 1              </td>
+<td>                 </td>
+<td></td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 1              </td>
+<td>                 </td>
+<td> 40</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 2              </td>
+<td>                 </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 2              </td>
+<td> 10              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 2              </td>
+<td> 20              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 2              </td>
+<td> 10              </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 2              </td>
+<td> 10              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 3              </td>
+<td> 4               </td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Here is how we will be able to ship :</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individuals                     </td>
+<td> 6    </td>
+<td> 100   </td>
+<td>  600</td>
+</tr>
+<tr>
+<td>Individuals Durability          </td>
+<td> 8    </td>
+<td> 13    </td>
+<td>  104</td>
+</tr>
+<tr>
+<td>Individuals Multi user lists    </td>
+<td> 10   </td>
+<td> 8     </td>
+<td>   80</td>
+</tr>
+<tr>
+<td>Enterprise                      </td>
+<td> 10   </td>
+<td> 80    </td>
+<td>  800</td>
+</tr>
+<tr>
+<td>Individuals Labels              </td>
+<td> 12   </td>
+<td> 13    </td>
+<td>  156</td>
+</tr>
+<tr>
+<td>Enterprise Labels               </td>
+<td> 12   </td>
+<td> 20    </td>
+<td>  240</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 15   </td>
+<td> 13    </td>
+<td>  195</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td> 2175</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.a.iii. Cost of delay of the spike if we reach the availability</h5>
+
+<p>By making the spike, we would save 2320 &ndash; 2175 = 145$</p>
+
+<p>Without doing the spike, we would discover whether we would reach the availability when we try it, around time 7 (see 2.a.i).</p>
+
+<p>So the cost of delay for the spike would be around 145/7 = 21 $/m</p>
+
+<h4>2.b. The Cost of Delay if we don&rsquo;t get the availability</h4>
+
+<p>Let&rsquo;s now consider the future in which we don&rsquo;t manage to increase the availability.</p>
+
+<p>Using the same logic as before, let&rsquo;s now see what happens</p>
+
+<h5>2.b.i. The cost if we don&rsquo;t do the spike</h5>
+
+<p>Unfortunately, at this point in this future, we don&rsquo;t yet know that we&rsquo;ll not manage to get to the availability.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> $ Expected   </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>When we&rsquo;ll fail at the availability, we&rsquo;ll switch multi user lists and labels to be able to ship to enterprises as quickly as possible.
+Here is what we&rsquo;ll ship.</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enterprise                      </td>
+<td>  9   </td>
+<td> 80    </td>
+<td>  720</td>
+</tr>
+<tr>
+<td>Enterprise Labels               </td>
+<td> 11   </td>
+<td> 20    </td>
+<td>  220</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 14   </td>
+<td> 13    </td>
+<td>  182</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td> 1122</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.b.ii. The cost if we do the spike</h5>
+
+<p>In this case, we would start by the spike, and it would tell us that we won&rsquo;t match the availability required for individuals and so that that there&rsquo;s no need to run after this now.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature            </th>
+<th> $ Enterprise </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility spike  </td>
+<td>              </td>
+<td> 1              </td>
+<td></td>
+</tr>
+<tr>
+<td>Durability     </td>
+<td> 40*      </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness     </td>
+<td> 20*      </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists   </td>
+<td> 20*          </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels             </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool </td>
+<td> 13           </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Here is how we will be able to ship :</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enterprise                      </td>
+<td>  7   </td>
+<td> 80    </td>
+<td>  560</td>
+</tr>
+<tr>
+<td>Enterprise Labels               </td>
+<td>  9   </td>
+<td> 20    </td>
+<td>  180</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 12   </td>
+<td> 13    </td>
+<td>  156</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td>  896</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.b.iii. Cost of delay of the spike if we reach the availability</h5>
+
+<p>By making the spike, we would save 1122 &ndash; 896 = 226$</p>
+
+<p>As before, without doing the spike, we would discover whether we would get the availability when we try it, around time 7.</p>
+
+<p>So the cost of delay for the spike is around 226/7 = 32 $/m</p>
+
+<h4>2.c. Compute overall Cost of Delay of the Spike</h4>
+
+<p><a href="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD-petit.jpg" title="Bank notes going through an hourglass" ></a></p>
+
+<p>Given that we estimate that there is a 50% chances of making the latency, the overall expected cost of delay is</p>
+
+<p>50% * 21 + 50% * 32 = 26.5 $/m</p>
+
+<p>Inject the spike in the backlog</p>
+
+<p>With the Cost of Delay of the spike, we can compute it&rsquo;s WSJF and prioritize it against other features.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Expected $ </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility Spike         </td>
+<td>              </td>
+<td>               </td>
+<td> 26.5         </td>
+<td> 1              </td>
+<td> 26.5</td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>The spike comes at the top of our backlog. Which confirms our gut feeling.</p>
+
+<h2>Conclusion</h2>
+
+<p>Doing this long study confirmed classic rule of thumbs</p>
+
+<ul>
+<li>Don&rsquo;t develop many products at the same time</li>
+<li>Do some Proof Of Concepts early before starting to work on uncertain features</li>
+<li>Tackle the most risky features first</li>
+</ul>
+
+
+<p>By improving the inputs, we could get more quality results :</p>
+
+<ul>
+<li>If we had access to real sales or finance figures for the costs</li>
+<li>If we did some sort of poker risk estimation instead of just guessing at 50% chances</li>
+</ul>
+
+
+<p>Obviously, the analysis itself is not perfect, but it hints to the good choices. And as <a href="http://reinertsenassociates.com/">Don Reinertsen</a> puts it, using an economical framework, the spread between people estimations goes down from <a href="http://leanmagazine.net/lean/cost-of-delay-don-reinertsen/">50:1</a> to 2:1 ! This seems a good alternative to the experience and gut feeling approach which :</p>
+
+<ul>
+<li>can trigger heated unfounded discussions</li>
+<li>often means high dependence on the intuition of a single individual</li>
+</ul>
+
+
+<p>As everything is quantitative though, one could imagine that with other figures, we could have got to another conclusion, such as :</p>
+
+<ul>
+<li>The spike is not worth doing (it costs more than it might save)</li>
+<li>The spike can wait a bit</li>
+</ul>
+
+
+<p><a href="http://dilbert.com/strip/2014-03-30"><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/dt140330.jpg" title="A dilbert strip about gut feeling at work" ></a></p>
+
+<p>This was part 4 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 3 was <a href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value</a>, Part 5 will be &ldquo;Measure the value of the lean startup &lsquo;learning&rsquo;&rdquo;.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[From Zero to Pair Programming Hero]]></title>
@@ -461,7 +1253,7 @@ We tried the following, in that order :</p>
 
 <p>I got some pretty positive feedback from practicing these business value pokers. Inviting the product owner forced him to explain in details why he believed some features were more valuable than others. On the opposite, it allowed the developpers to hightlight how some seemingly unimportant stories were critical to a long term goal. In the end, everyone, including the product owner, is asking for more. It&rsquo;s a good practice that helps introducing the business value / cost of delay concept.</p>
 
-<p>This was part 3 of my suite of article about Lean Software Development, Part 2 was <a href="http://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a>, Part 4 will be &ldquo;Take informed high payoff risks&rdquo;.</p>
+<p>This was part 3 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 2 was <a href="http://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a>, Part 4 will be <a href="http://philippe.bourgau.net/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>.</p>
 ]]></content>
   </entry>
   
@@ -1754,7 +2546,7 @@ We tried the following, in that order :</p>
 
 <p>Kent Beck could not have read the Flow book when he invented XP, but it seems he just had a bit of advance on the rest of us &hellip;</p>
 
-<p>This was part 2 of my suite of article about Lean Software Development, Part 1 was <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary</a>, Part 3 will be <a href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value ?</a></p>
+<p>This was part 2 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 1 was <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary</a>, Part 3 will be <a href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value ?</a></p>
 ]]></content>
   </entry>
   
@@ -1792,7 +2584,7 @@ We tried the following, in that order :</p>
 <li><a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1">The Flow book summary</a></li>
 <li><a href="http://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a></li>
 <li><a href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value ?</a></li>
-<li>Take informed high payoff risks</li>
+<li><a href="http://philippe.bourgau.net/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a></li>
 <li>Measure the value of the lean startup &lsquo;learning&rsquo;</li>
 <li>Prioritizing technical improvements</li>
 <li>Summing it up for my next side project</li>
@@ -2515,91 +3307,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     <content type="html"><![CDATA[<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-03-05-harley-davidson-programming/programmer.jpg" title="Drawing of a software programmer sitting at the bottom of his chair lower than his computer" ></p>
 
 <p>Maybe we should add motors to these desk chairs ;&ndash;)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Programming as an exponential problem]]></title>
-    <link href="http://philippe.bourgau.net/programming-as-an-exponential-problem/"/>
-    <updated>2014-02-21T06:30:00+01:00</updated>
-    <id>http://philippe.bourgau.net/programming-as-an-exponential-problem</id>
-    <category term="complexity" /><category term="programming" /><category term="reflexion" />
-    <content type="html"><![CDATA[<p>As said Tom Cargill</p>
-
-<blockquote><p>The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.</p></blockquote>
-
-<p>By extrapolation, this would mean that every time we increase the requirements by 10%, we need to double the total development time ! That would mean that solution complexity is an exponential function of the complexity of the problem.</p>
-
-<p>That could explain why techniques that work well for small problems don&rsquo;t work well at all for large problems, and vice et versa. For example</p>
-
-<table>
-<thead>
-<tr>
-<th align="center"> In the small (think one page script) </th>
-<th align="center"> In the large (think multi millions lines system)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"> Dynamic typing                       </td>
-<td align="center"> Static typing</td>
-</tr>
-<tr>
-<td align="center"> Mutable globals                      </td>
-<td align="center"> Immutability</td>
-</tr>
-<tr>
-<td align="center"> Imperative style                     </td>
-<td align="center"> Declarative style</td>
-</tr>
-<tr>
-<td align="center"> Manual memory management             </td>
-<td align="center"> Garbage collection</td>
-</tr>
-<tr>
-<td align="center"> Shared memory                        </td>
-<td align="center"> Message passing</td>
-</tr>
-</tbody>
-</table>
-
-
-<br/>
-
-
-<p>Just for fun, let&rsquo;s suppose that we could deduce a unique constant C for every language such that</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-02-21-programming-as-an-exponential-problem/formula.png" title="Secret formula linking problem and solution complexities" ></p>
-
-<p>Here is a plot of this formula with different values of C (0.5, 1 and 2)</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-02-21-programming-as-an-exponential-problem/close-plot.png" title="Plot of the formula for different C constant values" ></p>
-
-<p>We can see that small values of C are best for small problems, whereas greater values are evolve better with larger problems. For a given problem, there is quite a difference in the solution complexity, if the formula was true, and that we knew in which zone of complexity our problem will always be, we could choose the appropriate technology ! Experienced engineers already have the gut knowledge about how to chose the right tool for the job !</p>
-
-<p>That&rsquo;s not all, let&rsquo;s have a bird&rsquo;s eye view of the same formulas</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-02-21-programming-as-an-exponential-problem/wide-plot.png" title="Same plot at a larger scale" ></p>
-
-<p>I increased the maximum problem complexity by a factor of 3, I had to multiply the solution complexity by 100 ! In the end, these exponential curves all seem frighteningly vertical. This could explain why the divide and conquer approach works so well in software : 2e<sup>x</sup> &lt; e<sup>2x</sup>. Abstract and powerful APIs might be our best weapon against complexity.</p>
-
-<p>People behaviour does not match this exponential hypothesis though :</p>
-
-<ul>
-<li>At work, I&rsquo;ve seen quite a few projects started from scratch, and everybody expecting it to maintain it&rsquo;s initial speed during its whole lifetime</li>
-<li>Some recent hiring or investing trend seem to rely on hackathons, startup week ends, or coding games, all &lsquo;in the small&rsquo; exercises</li>
-<li>I&rsquo;ve observed in quick and dirty overtime work to meet a deadline &hellip; If productivity is proportional to the solution complexity, that crunch mode would be completely unproductive</li>
-</ul>
-
-
-<p>This leads to more interesting questions :</p>
-
-<ul>
-<li>Is my exponential model complete garbage ?</li>
-<li>Or are humans particularly bad at forecasting an exponential behaviour ?</li>
-<li>If so, what practices could we adopt to stop relying on this misleading gut feeling ?</li>
-</ul>
-
 ]]></content>
   </entry>
   
