@@ -16,9 +16,9 @@ I recently got hands on an abandonned laptop that was better than the one I was 
 
 If you want to jump to the solution, just have a look at this [git change](https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b). Here is the slightly longer version.
 
-1. Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.
+* Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.
 
-2. Provision your VM. That proved a lot more complex. There are a lot of examples using variants of [Chef](https://www.chef.io/), but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.
+* Provision your VM. That proved a lot more complex. There are a lot of examples using variants of [Chef](https://www.chef.io/), but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.
 
 ```ruby
   config.vm.provision "shell", inline: <<-SHELL
@@ -72,10 +72,36 @@ If you want to jump to the solution, just have a look at this [git change](https
 
     cd /vagrant
     bundle install
+
+    if [ ! -d "/vagrant/_deploy" ]; then
+      bundle exec rake setup_github_pages["git@github.com:philou/philou.github.com"]
+      git checkout . # Revert github deploy url to my domain
+      cd _deploy
+      git pull origin master # pull to avoid non fast forward push
+      cd ..
+    fi
   SHELL
 ```
 
-3. Setup port forwarding. That should have been simple ... after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding ```--host 0.0.0.0``` to the rackup command line in [Octopress Rackfile](https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile)
+* Setup port forwarding. That should have been simple ... after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding ```--host 0.0.0.0``` to the rackup command line in [Octopress Rackfile](https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile)
+
+* Setup ssh forwarding. In order to be able to deploy to github pages with my local ssh keys, I added the following to my Vagrantfile.
+
+```ruby
+  # The path to the private key to use to SSH into the guest machine. By
+  # default this is the insecure private key that ships with Vagrant, since
+  # that is what public boxes use. If you make your own custom box with a
+  # custom SSH key, this should point to that private key.
+  # You can also specify multiple private keys by setting this to be an array.
+  # This is useful, for example, if you use the default private key to
+  # bootstrap the machine, but replace it with perhaps a more secure key later.
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+
+  #  If true, agent forwarding over SSH connections is enabled. Defaults to false.
+  config.ssh.forward_agent = true
+```
+
+I admit it was a lot longer than I expected it to be, but at least now it's repeatable !
 
 [{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png The Docker logo%}](http://docker.io)
 
