@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-03-21T08:16:04+00:00</updated>
+  <updated>2015-03-23T21:52:54+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -24,10 +24,10 @@
 
 <p>If you want to jump to the solution, just have a look at this <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b">git change</a>. Here is the slightly longer version.</p>
 
-<ol>
+<ul>
 <li><p>Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.</p></li>
 <li><p>Provision your VM. That proved a lot more complex. There are a lot of examples using variants of <a href="https://www.chef.io/">Chef</a>, but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.</p></li>
-</ol>
+</ul>
 
 
 <p>```ruby
@@ -86,15 +86,40 @@ fi
 
 cd /vagrant
 bundle install
+
+if [ ! -d "/vagrant/_deploy" ]; then
+  bundle exec rake setup_github_pages["git@github.com:philou/philou.github.com"]
+  git checkout . # Revert github deploy url to my domain
+  cd _deploy
+  git pull origin master # pull to avoid non fast forward push
+  cd ..
+fi
 </code></pre>
 
 <p>  SHELL
 ```</p>
 
-<ol>
-<li>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></li>
-</ol>
+<ul>
+<li><p>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></p></li>
+<li><p>Setup ssh forwarding. In order to be able to deploy to github pages with my local ssh keys, I added the following to my Vagrantfile.</p></li>
+</ul>
 
+
+<p>```ruby
+  # The path to the private key to use to SSH into the guest machine. By
+  # default this is the insecure private key that ships with Vagrant, since
+  # that is what public boxes use. If you make your own custom box with a
+  # custom SSH key, this should point to that private key.
+  # You can also specify multiple private keys by setting this to be an array.
+  # This is useful, for example, if you use the default private key to
+  # bootstrap the machine, but replace it with perhaps a more secure key later.
+  config.ssh.private_key_path = &ldquo;~/.ssh/id_rsa&rdquo;</p>
+
+<p>  #  If true, agent forwarding over SSH connections is enabled. Defaults to false.
+  config.ssh.forward_agent = true
+```</p>
+
+<p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
 
 <p><a href="http://docker.io">{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png The Docker logo%}</a></p>
 
