@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: travis | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/travis/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2015-03-21T08:11:03+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Automatic Travis daily build with Heroku scheduler]]></title>
+    <link href="http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler/"/>
+    <updated>2014-03-24T06:31:00+00:00</updated>
+    <id>http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler</id>
+    <content type="html"><![CDATA[<p>As <a href="/auchandirect-scrapi-an-unofficial-api-ruby-gem/">I just released</a> <a href="https://github.com/philou/auchandirect-scrAPI">auchandirect-scrAPI</a>, and that it relies on scrapping, I needed a daily build.</p>
+
+<p>The <a href="https://travis-ci.org">Travis</a> team <a href="https://github.com/travis-ci/travis-ci/issues/582">is already working</a> on this, and I found a small utility app called <a href="http://traviscron.pythonanywhere.com/">TravisCron</a> where anyone can register his repo for an automatic build.</p>
+
+<p>Unfortunately, the feature is not yet ready in Travis, and the TravisCron guys did not yet activate my repo. After having a look at the <a href="https://github.com/FiloSottile/travis-cron">TravisCron source code</a> and the <a href="https://github.com/travis-ci/travis.rb">Travis API</a>, I found out that it is really simple to do the same thing on my own.</p>
+
+<p>That&rsquo;s how I created <a href="https://github.com/philou/daily-travis">daily-travis</a>. It&rsquo;s a tiny Rake task, ready to be pushed and automaticaly scheduled on heroku that will restart the latest build when run.</p>
+
+<p>Details are in the <a href="https://github.com/philou/daily-travis/blob/master/README.md">README</a></p>
+
+<p>@Travis : Thanks again for your service.</p>
+
+<p><img class="center" src="/imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg" title="I love Travis logo" ></p>
+]]></content>
+  </entry>
+  
+</feed>

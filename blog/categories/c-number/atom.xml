@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: c# | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/c-number/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2015-03-21T08:11:03+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Windows licker like with C#]]></title>
+    <link href="http://philippe.bourgau.net/windows-licker-like-with-c/"/>
+    <updated>2012-11-07T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/windows-licker-like-with-c</id>
+    <content type="html"><![CDATA[<p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a>&nbsp;they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a>&nbsp;to pilot a gui running in&nbsp;test thread. Next time I started a new project, I&nbsp;wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
+
+
+<p>Here is the user test code I wanted to be able to write (inside a <a href="http://www.specflow.org">SpecFlow</a> step) :</p>
+
+
+<p>
+```c#
+[Given(@"TheUserEntersHisEmail""(.*)""")]
+public void GivenTheUserEntersHisEmail(string email)
+{
+  User.Enters(ScenarioContext.Current.UserForm().EmailTextBox, email);
+}
+```
+</p>
+
+
+<p>Here UserForm is an extension method I added to the ScenarioContext that is responsible for returning the current user form.</p>
+
+
+<p>As you have noticed, the various gui components must be&nbsp;exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
+
+
+<p>Eventually, I had to write the User class, and it turned out to be really simple :</p>
+
+
+<p>
+```c#
+static class User
+{
+  internal static void Enters(TextBox textBox, string text)
+  {
+    textBox.Invoke(new MethodInvoker(() => textBox.Text = text));
+  }
+}
+```
+</p>
+
+
+<p>That's it, all that was needed was to ask the thread of the control to update the text !</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to mock an out of process COM server with C#]]></title>
+    <link href="http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with/"/>
+    <updated>2012-02-14T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with</id>
+    <content type="html"><![CDATA[<p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
+
+
+<p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
+
+
+<p>After searching the web, I tried ServicedComponent but I did not manage to make it work ... I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
+
+
+<p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
+
+
+<p>
+```c#
+   // CSSimpleObject.cs
+   internal class CSSimpleObjectClassFactory : IClassFactory
+   {
+      public int CreateInstance(IntPtr pUnkOuter, ref Guid riid, out IntPtr ppvObject)
+      {
+         ...
+         if (riid == new Guid(CSSimpleObject.ClassId) ||
+            riid == new Guid(COMNative.IID_IDispatch) ||
+            riid == new Guid(COMNative.IID_IUnknown))
+         {
+            // Create the instance of the .NET object
+            var simpleObject = new Mock&lt;CSSimpleObject&gt; {CallBase = true};
+            simpleObject.SetupGet(x =&gt; x.FloatProperty).Returns(666);
+            simpleObject.Setup(x =&gt; x.HelloWorld()).Returns("Hello, you got pwned !!!");
+
+            ppvObject = Marshal.GetComInterfaceForObject(
+               simpleObject.Object, typeof(ICSSimpleObject));
+            }
+            ...
+```
+</p>
+
+
+<p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
+
+
+<p>So here is how I eventually integrated this in our test harness :</p>
+
+
+<ul>
+<li>I ran tlbimp.exe on the real COM server I wanted to mock</li>
+<li>In CSSimpleObject.cs, I returned a Mock on the interface of the COM component I wanted to mock</li>
+<li>In&nbsp;CSSimpleObject.cs, I removed SimpleObjectsXXX types</li>
+<li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
+<li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
+</ul>
+
+
+<p>Edit:</p>
+
+
+<p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to test a class using an implementation helper ?]]></title>
+    <link href="http://philippe.bourgau.net/how-to-test-a-class-using-an-implementation-h/"/>
+    <updated>2011-12-14T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-test-a-class-using-an-implementation-h</id>
+    <content type="html"><![CDATA[<p><p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation &hellip;<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
+```c#
+public class ListBuilder<T>
+{
+  private readonly List<T> <em>internalList = new List<T>();
+  private List<T> </em>listSnapshot = new List<T>();
+  private readonly object _locker = new object();</p>
+
+<p>  public List<T> ListSnapshot()
+  {</p>
+
+<pre><code>lock (_locker)
+{
+  if (_listSnapshot.Count != _internalList.Count)
+  {
+    _listSnapshot = new List&lt;T&gt;(_internalList);
+  }
+}
+
+return _listSnapshot;
+</code></pre>
+
+<p>  }</p>
+
+<p>  public void Add(T newItem)
+  {</p>
+
+<pre><code>lock (_locker)
+{
+  _internalList.Add(newItem);
+}
+</code></pre>
+
+<p>  }
+}</p>
+
+<p><code>
+&lt;p /&gt;Here is the tests for ListBuilder class itself&lt;p /&gt;
+</code>
+public abstract class ListBuilderContractTest<T>
+{
+  protected abstract void AddAnItem();
+  protected abstract void VerifyAddedItem(T addedItem);
+  protected abstract List<T> ListCopy();</p>
+
+<p>  [Test]
+  public void TheDefaultListShouldBeEmpty()
+  {</p>
+
+<pre><code>Assert.AreEqual(0, ListCopy().Count);
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
+  public void AddShouldAddItemInList()
+  {</p>
+
+<pre><code>AddAnItem();
+VerifyItemWasAdded();
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected void VerifyItemWasAdded()
+  {</p>
+
+<pre><code>var copy = ListCopy();
+Assert.AreEqual(1, copy.Count);
+VerifyAddedItem(copy[0]);
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
+  public void WhenOfSameSizeNewListCopyShoulReturnSameList()
+  {</p>
+
+<pre><code>AddAnItem();
+Assert.AreSame(ListCopy(), ListCopy());
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
+  public void CopiesShouldBeSnapshots()
+  {</p>
+
+<pre><code>var copy = ListCopy();
+
+AssertExecution.Of(AddAnItem)
+  .ShouldNotChange(() =&gt; copy.Count);
+</code></pre>
+
+<p>  }
+}</p>
+
+<p>[TestFixture]
+public class ListBuilderTest : ListBuilderContractTest<string>
+{
+  private const string ADDED_ITEM = &ldquo;toto&rdquo;;</p>
+
+<p>  private ListBuilder<string> _appender;</p>
+
+<p>  [SetUp]
+  public void SetUp()
+  {</p>
+
+<pre><code>_appender = new ListBuilder&lt;string&gt;();
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void AddAnItem()
+  {</p>
+
+<pre><code>_appender.Add(ADDED_ITEM);
+</code></pre>
+
+<p>  }
+  protected override void VerifyAddedItem(string addedItem)
+  {</p>
+
+<pre><code>Assert.AreEqual(ADDED_ITEM, addedItem);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override List<string> ListCopy()
+  {</p>
+
+<pre><code>return _appender.ListSnapshot();
+</code></pre>
+
+<p>  }
+}</p>
+
+<p><code>
+&lt;p /&gt;And here are tests for other class using it. First a simple one :&lt;p /&gt;
+</code>c#
+[TestFixture]
+public class OrderPresenterAsExecListBuilderTest : ListBuilderContractTest<IExecRowPresenter>
+{
+  private OrderPresenter <em>presenter;
+  private Mock<IExec> </em>exec;</p>
+
+<p>  [SetUp]
+  public void SetUp()
+  {</p>
+
+<pre><code>_exec = new Mock&lt;IExec&gt;();
+_exec.Setup(x =&gt; x.Id).Returns("an exec");
+_exec.Setup(x =&gt; x.Price).Returns(123.456);
+_exec.Setup(x =&gt; x.Quantity).Returns(36);
+
+_presenter = new OrderPresenter();
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void AddAnItem()
+  {</p>
+
+<pre><code>_presenter.AddExec(_exec.Object);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void VerifyAddedItem(IExecRowPresenter addedItem)
+  {</p>
+
+<pre><code>Assert.AreEqual(_exec.Object.Id, addedItem.Id);
+Assert.AreEqual(_exec.Object.Price, addedItem.Price);
+Assert.AreEqual(_exec.Object.Quantity, addedItem.Quantity);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override List<IExecRowPresenter> ListSnapshot()
+  {</p>
+
+<pre><code>return _presenter.GraphicalExecs;
+</code></pre>
+
+<p>  }
+}</p>
+
+<p><code>
+&lt;p /&gt;Then a more complex one :&lt;p /&gt;
+</code>c#
+[TestFixture]
+public class StrategyPresenterAsOrderPresenterListBuilderTest : ListBuilderContractTest<IOrderPresenter>
+{
+  private StrategyPresenter <em>presenter;
+  private Mock<IStrategy> </em>strategy;
+  private Mock<IOrder> _order;</p>
+
+<p>  [SetUp]
+  public void SetUp()
+  {</p>
+
+<pre><code>_strategy= new Mock&lt;IStrategy&gt; { DefaultValue = DefaultValue.Mock };
+
+_order = new Mock&lt;IOrder&gt;();
+_order.Setup(x =&gt; x.Id).Returns(123);
+
+_presenter = new StrategyPresenter(_strategy.Object);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void AddAnItem()
+  {</p>
+
+<pre><code>_strategy.Raise(x =&gt; x.SentQuantityChanged += null, new SentQuantityChangedEventArgs {Origin = _order.Object});
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void VerifyAddedItem(IOrderPresenter addedItem)
+  {</p>
+
+<pre><code>Assert.AreEqual(_order.Object.Id, addedItem.Id);
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override List<IOrderPresenter> ListSnapshot()
+  {</p>
+
+<pre><code>return _presenter.GraphicalOrderList;
+</code></pre>
+
+<p>  }</p>
+
+<p>  [Test]
+  public void ExecutedQuantityChangedShouldAddAnItem()
+  {</p>
+
+<pre><code>_strategy.Raise(x =&gt; x.ExecutedQuantityChanged += null, new ExecutedQuantityChangedEventArgs {Origin = _order.Object});
+
+VerifyItemWasAdded();
+</code></pre>
+
+<p>  }
+}
+```
+<p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automaticaly rollback static overrides when testing legacy code]]></title>
+    <link href="http://philippe.bourgau.net/75417332/"/>
+    <updated>2011-10-14T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/75417332</id>
+    <content type="html"><![CDATA[<p>When working with legacy code, writing tests requires to exploit seams to -hack- inject custom behaviour. In his <a href="http://www.amazon.co.uk/Working-Effectively-Legacy-Robert-Martin/dp/0131177052/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1245554188&amp;sr=8-1" title="Great book about testing legacy code">book</a> Michael Feathers explains that singleton (the anti pattern) are often good starting seams. The idea is as follow :</p>
+
+
+<ol>
+<li>create a public method to override the singleton value</li>
+<li>make this method deprecated, obsolete or use a TEST_ONLY_ name prefix so that it is not called elsewhere in the code</li>
+<li>Call this method from your test code to inject a mock or whatever so that you can test in isolation</li>
+</ol>
+
+
+<p>This works fine ... until you end up with an unexpected failing test [long debugging session]&nbsp;that is in fact the result of a test not restoring a singleton it had overriden. You can try hard not to forget, or you can use some kind of auto restore test class. Here is how it could look like in C#</p>
+
+
+<p>
+```c#
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
+
+namespace Test.Utils
+{
+  public class CleanOverridesTest
+  {
+    private class StaticOverrider&lt;T&gt; : IDisposable
+    {
+      private readonly T _initialValue;
+      private readonly Action&lt;T&gt; _setter;
+
+      public StaticOverrider(T initialValue, Action&lt;T&gt; setter, T newValue)
+      {
+        _initialValue = initialValue;
+        _setter = setter;
+
+        _setter(newValue);
+      }
+
+      public void Dispose()
+      {
+        _setter(_initialValue);
+      }
+    }
+
+    private List&lt;IDisposable&gt; _toDisposeAfterEachTest;
+    private List&lt;IDisposable&gt; ToDisposeAfterEachTest
+    {
+      get
+      {
+        // NUnit enforces a single SetUp method, so we have to make sure the base SetUp method was called by subclasses
+        Assert.IsTrue(BaseSetUpCalled, "Override SetUp and TearDown, and call base implementation.");
+        return _toDisposeAfterEachTest;
+      }
+    }
+
+
+    [SetUp]
+    public virtual void SetUp()
+    {
+      _toDisposeAfterEachTest = new List&lt;IDisposable&gt;();
+    }
+    private bool BaseSetUpCalled
+    {
+      get { return _toDisposeAfterEachTest != null; }
+    }
+
+    [TearDown]
+    public virtual void TearDown()
+    {
+      // Overides and restores should be done in reverse order
+      ToDisposeAfterEachTest.Reverse();
+      foreach(var disposable in ToDisposeAfterEachTest)
+      {
+        try
+        {
+          disposable.Dispose();
+        }
+        catch (Exception)
+        { }
+
+      }
+      ToDisposeAfterEachTest.Clear();
+    }
+
+    protected void OverrideStatic&lt;T&gt;(T initialValue, Action&lt;T&gt; setter, T newValue)
+    {
+      ToDisposeAfterEachTest.Add(new StaticOverrider&lt;T&gt;(initialValue, setter, newValue));
+    }
+  }
+}
+```
+</p>
+
+
+<p>Later in an actual test :</p>
+
+
+<p>
+```c#
+[TestFixture]
+public class LegacyTest : CleanOverridesTest
+{
+  [Test]
+  public void LegacyShouldWorkWhenZingAndZang()
+  {
+    OverrideStatic(BigManager.Instance, BigManager.TestOnlySetInstance, new BigInstanceMock());
+
+    ...
+  }
+}
+```
+</p>
+
+
+<p>The singleton is automaticaly restored in the TearDown method of the base class. In C#, we are luky enough to have delegates so that we can pass the injection setter directly. In language without this feature, you could use reflection or anonymous class.</p>
+
+
+<p>Of course, when the code is more reliably tested, you should try to move away from all this hack ...</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Making C# properties first class objects]]></title>
+    <link href="http://philippe.bourgau.net/making-c-properties-first-class-objects/"/>
+    <updated>2011-09-29T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/making-c-properties-first-class-objects</id>
+    <content type="html"><![CDATA[<p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
+<p>
+```c#
+public event EventHandler NameChanged;
+private string _name;
+public string Name
+{
+  get
+  {</p>
+
+<pre><code>return _name;
+</code></pre>
+
+<p>  }
+  set
+  {</p>
+
+<pre><code>if (_name != value)
+{
+  _name = value;
+  InvokeNameChanged();
+ }
+</code></pre>
+
+<p>  }
+}
+<code>
+&lt;p /&gt;How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&amp;lt;T&amp;gt; classes instances instead of raw properties.&lt;p /&gt;
+</code>c#
+class Presenter
+{
+  public readonly Property<string> Name = new Property<string>();
+}
+<code>
+&lt;p /&gt;The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :&lt;p /&gt;
+</code>c#
+public partial class MyForm : Form
+{
+  Presenter _presenter = new Presenter();</p>
+
+<p>  public Form1()
+  {</p>
+
+<pre><code>InitializeComponent();
+</code></pre>
+
+<p>  }</p>
+
+<p>  protected override void OnLoad(EventArgs e)
+   {</p>
+
+<pre><code>base.OnLoad(e);
+
+AddBinding(textBox1, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+AddBinding(textBox2, "Text", _presenter.Name, false, DataSourceUpdateMode.OnPropertyChanged);
+</code></pre>
+
+<p>   }</p>
+
+<p>  void AddBinding<T>(Control control, string controlProperty, Property<T> property, bool formattingEnabled, DataSourceUpdateMode dataSourceUpdateMode)
+  {</p>
+
+<pre><code>control.DataBindings.Add(controlProperty, property, "Value", formattingEnabled, dataSourceUpdateMode);
+</code></pre>
+
+<p>   }
+}
+```
+<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
+<ul>
+<li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
+<p>I hope this will help someone</p></p>
+]]></content>
+  </entry>
+  
+</feed>

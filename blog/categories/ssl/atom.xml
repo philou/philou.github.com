@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SSL | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/ssl/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2015-03-21T08:11:03+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[TOO_MANY_REDIRECTS when changing ssl requirements]]></title>
+    <link href="http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/"/>
+    <updated>2013-01-28T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen</id>
+    <content type="html"><![CDATA[<p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How I set up a trustico rapid ssl certificate on heroku ssl endpoint]]></title>
+    <link href="http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate/"/>
+    <updated>2012-12-13T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate</id>
+    <content type="html"><![CDATA[<p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
+
+
+<ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application
+```sh
+heroku addons:add ssl:endpoint
+```
+</li><li>Upload your certificate
+```sh
+heroku certs:add server.crt private.key
+```
+</li><li>Run the following and verify that you have an ssl endpoint with an explicit trusted &quot;True&quot; value
+```sh
+heroku certs
+```
+</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li>
+<li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li>
+<li>Wait until dns are updated to check that it is working.</li>
+</ol>
+
+
+<p> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></p>
+
+
+<p>EDIT 10/10/2013</p>
+
+<p>Any certificate will eventually expire, and need to be renewed. The process for this (at Trustico at least) is to generate a completly new certificate. To install this new certificate on heroku, start by combining the new certificate files as you did the first time, and then use</p>
+
+<p><code>
+heroku certs:update server.crt private.key
+</code></p>
+
+<p>instead of heroku certs:add. This should be enough, there is no need to update any dns entry.</p>
+
+<p>To make sure the new certificate is used, visit the heroku ssl endpoint directly (get it by running heroku certs) and then visit your ssl site to check the certificate infos from your browser.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devise, SSL requirements and post data]]></title>
+    <link href="http://philippe.bourgau.net/devise-ssl-requirements-and-post-data/"/>
+    <updated>2012-01-25T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/devise-ssl-requirements-and-post-data</id>
+    <content type="html"><![CDATA[<p>I am using rails 2.3.8, devise 1.0.11 and ssl_requirements 0.1.0. I am having strange behaviour when mixing devise with ssl_requirements. When a form posts to an action that is required to be ssl, the post is redirected to ssl as a get, and looses its post data !</p>
+
+
+<p>To workaround the problem, I had to require ssl for the form itself aswell.</p>
+
+
+<p>I hope the situation will be better once I migrate to rails 3 and to newer versions of devise and ssl_requirements.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: postgre | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/postgre/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2015-03-21T08:16:04+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to copy a database from an heroku app to another]]></title>
+    <link href="http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to/"/>
+    <updated>2013-01-11T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-copy-a-database-from-an-heroku-app-to</id>
+    <content type="html"><![CDATA[<p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as "integration" app, where I can do late verifications before deploying to my production app. If you don't already do this, I recommend you to start now !</p>
+
+
+<p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
+
+
+<p><code>sh
+heroku pgbackups:restore DATABASE `heroku pgbackups:url --app my-app-prod` --app my-app-integ --confirm my-app-integ
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up Postgre 9.1 for rails development]]></title>
+    <link href="http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development/"/>
+    <updated>2012-05-28T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/setting-up-postgre-91-for-rails-development</id>
+    <content type="html"><![CDATA[<p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
+
+
+<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
+
+
+<p>
+```sh
+#!/bin/sh
+
+## packages dependencies
+ sudo apt-get install libxml2-dev libxslt1-dev postgresql libpq-dev sqlite3 libsqlite3-dev
+
+## installing gems
+ bundle install   rbenv rehash
+
+## creating dbs
+ sudo -u postgres createuser --superuser mes_courses
+ sudo -u postgres psql --command="alter user mes_courses with encrypted password 'secret'"
+ sudo sed -i 's/\(local *all *all *\)peer/\1md5/' /etc/postgresql/9.1/main/pg_hba.conf
+ bundle exec rake db:create:all
+
+## initializing dbs
+ bundle exec rake db:migrate
+ RAILS_ENV=test bundle exec rake db:migrate
+ RAILS_ENV=production bundle exec rake db:migrate
+```
+</p>
+
+
+<p>Here is the corresponding config/database.yml</p>
+
+
+<p>
+```yaml
+development:
+ adapter: postgresql
+ database: mes_courses_development
+ encoding: utf8
+ pool: 5
+ timeout: 5000
+ username: mes_courses
+ password: secret
+ host: localhost
+ port: 5433
+
+test:
+ adapter: postgresql
+ database: mes_courses_test
+ encoding: utf8
+ pool: 5
+ timeout: 5000
+ username: mes_courses
+ password: secret
+ host: localhost
+ port: 5433
+
+production:
+ adapter: postgresql
+ database: mes_courses_production
+ encoding: utf8
+ pool: 5
+ timeout: 5000
+ username: mes_courses
+ password: secret
+ host: localhost
+ port: 5433
+
+```
+</p>
+
+
+<p>Hope this helps !</p>
+
+]]></content>
+  </entry>
+  
+</feed>
