@@ -54,6 +54,18 @@ Vagrant.configure(2) do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
+  # The path to the private key to use to SSH into the guest machine. By
+  # default this is the insecure private key that ships with Vagrant, since
+  # that is what public boxes use. If you make your own custom box with a
+  # custom SSH key, this should point to that private key.
+  # You can also specify multiple private keys by setting this to be an array.
+  # This is useful, for example, if you use the default private key to
+  # bootstrap the machine, but replace it with perhaps a more secure key later.
+  config.ssh.private_key_path = "~/.ssh/id_rsa"
+
+  #  If true, agent forwarding over SSH connections is enabled. Defaults to false.
+  config.ssh.forward_agent = true
+
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
   # such as FTP and Heroku are also available. See the documentation at
   # https://docs.vagrantup.com/v2/push/atlas.html for more information.
@@ -115,5 +127,13 @@ Vagrant.configure(2) do |config|
 
     cd /vagrant
     bundle install
+
+    if [ ! -d "/vagrant/_deploy" ]; then
+      bundle exec rake setup_github_pages["git@github.com:philou/philou.github.com"]
+      git checkout . # Revert github deploy url to my domain
+      cd _deploy
+      git pull origin master # pull to avoid non fast forward push
+      cd ..
+    fi
   SHELL
 end
