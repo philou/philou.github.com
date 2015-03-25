@@ -127,10 +127,10 @@
 
 <p>If you want to jump to the solution, just have a look at this <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b">git change</a>. Here is the slightly longer version.</p>
 
-<ol>
+<ul>
 <li><p>Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.</p></li>
 <li><p>Provision your VM. That proved a lot more complex. There are a lot of examples using variants of <a href="https://www.chef.io/">Chef</a>, but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.</p></li>
-</ol>
+</ul>
 
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -185,6 +185,14 @@
 <span class='line-number'>50</span>
 <span class='line-number'>51</span>
 <span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">inline</span><span class="p">:</span> <span class="o">&lt;&lt;-</span><span class="no">SHELL</span>
 </span><span class='line'><span class="sh">    echo &quot;Updating package definitions&quot;</span>
 </span><span class='line'><span class="sh">    sudo apt-get update</span>
@@ -236,14 +244,50 @@
 </span><span class='line'>
 </span><span class='line'><span class="sh">    cd /vagrant</span>
 </span><span class='line'><span class="sh">    bundle install</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;/vagrant/_deploy&quot; ]; then</span>
+</span><span class='line'><span class="sh">      bundle exec rake setup_github_pages[&quot;git@github.com:philou/philou.github.com&quot;]</span>
+</span><span class='line'><span class="sh">      git checkout . # Revert github deploy url to my domain</span>
+</span><span class='line'><span class="sh">      cd _deploy</span>
+</span><span class='line'><span class="sh">      git pull origin master # pull to avoid non fast forward push</span>
+</span><span class='line'><span class="sh">      cd ..</span>
+</span><span class='line'><span class="sh">    fi</span>
 </span><span class='line'><span class="no">  SHELL</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<ol>
-<li>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></li>
-</ol>
+<ul>
+<li><p>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></p></li>
+<li><p>Setup ssh forwarding. In order to be able to deploy to github pages with my local ssh keys, I added the following to my Vagrantfile.</p></li>
+</ul>
 
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># The path to the private key to use to SSH into the guest machine. By</span>
+</span><span class='line'>  <span class="c1"># default this is the insecure private key that ships with Vagrant, since</span>
+</span><span class='line'>  <span class="c1"># that is what public boxes use. If you make your own custom box with a</span>
+</span><span class='line'>  <span class="c1"># custom SSH key, this should point to that private key.</span>
+</span><span class='line'>  <span class="c1"># You can also specify multiple private keys by setting this to be an array.</span>
+</span><span class='line'>  <span class="c1"># This is useful, for example, if you use the default private key to</span>
+</span><span class='line'>  <span class="c1"># bootstrap the machine, but replace it with perhaps a more secure key later.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">private_key_path</span> <span class="o">=</span> <span class="s2">&quot;~/.ssh/id_rsa&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#  If true, agent forwarding over SSH connections is enabled. Defaults to false.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">forward_agent</span> <span class="o">=</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
 
 <p><a href="http://docker.io"><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png" title="The Docker logo" ></a></p>
 
@@ -3246,66 +3290,6 @@ We tried the following, in that order :</p>
     </div>
     <footer role="contentinfo"><p>
   Copyright &copy; 2015 - Philippe Bourgau -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
-</p>
-
-</footer>
-    
-
-<script type="text/javascript">
-      var disqus_shortname = 'philippe-bourgau';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-  </div>
-</body>
-</html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     Bourgau -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
 </p>
 

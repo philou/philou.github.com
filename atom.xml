@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-03-23T21:47:27+00:00</updated>
+  <updated>2015-03-25T21:34:31+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -843,7 +843,127 @@ Here is what we&rsquo;ll ship.</p>
 
 <p>By making the spike, we would save 1122 &ndash; 896 = 226$</p>
 
-<p>As before, without doing the sp>50:1</a> to 2:1 ! This seems a good alternative to the experience and gut feeling approach which :</p>
+<p>As before, without doing the spike, we would discover whether we would get the availability when we try it, around time 7.</p>
+
+<p>So the cost of delay for the spike is around 226/7 = 32 $/m</p>
+
+<h4>2.c. Compute overall Cost of Delay of the Spike</h4>
+
+<p><a href="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD-petit.jpg" title="Bank notes going through an hourglass" ></a></p>
+
+<p>Given that we estimate that there is a 50% chances of making the latency, the overall expected cost of delay is</p>
+
+<p>50% * 21 + 50% * 32 = 26.5 $/m</p>
+
+<p>Inject the spike in the backlog</p>
+
+<p>With the Cost of Delay of the spike, we can compute it&rsquo;s WSJF and prioritize it against other features.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Expected $ </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility Spike         </td>
+<td>              </td>
+<td>               </td>
+<td> 26.5         </td>
+<td> 1              </td>
+<td> 26.5</td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>The spike comes at the top of our backlog. Which confirms our gut feeling.</p>
+
+<h2>Conclusion</h2>
+
+<p>Doing this long study confirmed classic rule of thumbs</p>
+
+<ul>
+<li>Don&rsquo;t develop many products at the same time</li>
+<li>Do some Proof Of Concepts early before starting to work on uncertain features</li>
+<li>Tackle the most risky features first</li>
+</ul>
+
+
+<p>By improving the inputs, we could get more quality results :</p>
+
+<ul>
+<li>If we had access to real sales or finance figures for the costs</li>
+<li>If we did some sort of poker risk estimation instead of just guessing at 50% chances</li>
+</ul>
+
+
+<p>Obviously, the analysis itself is not perfect, but it hints to the good choices. And as <a href="http://reinertsenassociates.com/">Don Reinertsen</a> puts it, using an economical framework, the spread between people estimations goes down from <a href="http://leanmagazine.net/lean/cost-of-delay-don-reinertsen/">50:1</a> to 2:1 ! This seems a good alternative to the experience and gut feeling approach which :</p>
 
 <ul>
 <li>can trigger heated unfounded discussions</li>
@@ -1182,71 +1302,6 @@ Here is what we&rsquo;ll ship.</p>
 <p>If you actually read it, you&rsquo;ll notice that Kent emphasizes about having food at the office. He claims that it improves the moral and builds team cohesion.</p>
 
 <p>As my company already provides free drinks, my first attempt was to asked for weekly fresh fruits baskets. They are currently experimenting regular self service fruit baskets deliveries in some offices. Unfortunately not in ours yet. Let&rsquo;s hope it changes soon. Meanwhile, we decided to handle the thing ourselves.</p>
-
-<h2>Here comes the fruit basket lean startup !</h2>
-
-<h3>First, let&rsquo;s setup the simplest way it could possibly work</h3>
-
-<ul>
-<li>Invest 10€</li>
-<li>Buy some fruits from the closest shop</li>
-<li>Put them in a basket next to my desk</li>
-<li>Let people buy them for 50c each</li>
-<li>Leave a plastic cup next to the basket to receive the money</li>
-<li>Hold the accounting public and visible in your wiki for example</li>
-<li>Repeat every monday</li>
-</ul>
-
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruits-basket.jpg" title="&#34;Our fruit basket at my desk&#34;" alt="&#34;Our fruit basket at my desk&#34;"></p>
-
-<h3>Then, verify that it is sustainable</h3>
-
-<p>It turns out it works fine !</p>
-
-<h3>&hellip; Until someone started to steal some money !</h3>
-
-<p>If we forgot to hide the money cup before we left in the evening, obvious isn&rsquo;t it ?
-We tried the following, in that order :</p>
-
-<ol>
-<li>Setup an automatic reminder to hide the money before leaving &hellip; FAIL</li>
-<li>Setup a fake webcam and a warning notice &hellip; FAIL</li>
-<li>Only keep 1€ worth of change in the money cup, and repeatedly lock up the rest in a safe place &hellip; SUCCESS !</li>
-</ol>
-
-
-<p>With just a bit of time, anyone, anywhere can setup a fresh fruit basket at work. It does improve the moral and build the team.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to measure your speed with your business value ? (Lean Software Development Part 3)]]></title>
-    <link href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/"/>
-    <updated>2014-10-16T07:07:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3</id>
-    <category term="agile" /><category term="business-value" /><category term="lean" />
-    <content type="html"><![CDATA[<p>There is a french idiom that basicaly is</p>
-
-<blockquote><p>No use to run, all that is needed is to start on time &hellip;</p></blockquote>
-
-<p>an agile engineer would add</p>
-
-<blockquote><p>&hellip; and to go in the good direction</p></blockquote>
-
-<p>Indeed, velocity or mean cycle time as speed measures have their shortcomings :</p>
-
-<ul>
-<li>Can be falsified by story point inflation !</li>
-<li>Does not tell the team or its product owner whether they are working on the right thing.</li>
-</ul>
-
-
-<p>Wouldn&rsquo;t it be great if we could track the business value we are creating instead ? Wouldn&rsquo;t it be more motivating for developpers to know how they are contributing to the bottom line ? Wouldn&rsquo;t it help various people to align inside the organization ?</p>
-
-<h2>How to track and prioritize based on your business value</h2>
-
-<p>From <a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1413953773&amp;sr=8-1&amp;keywords=product+development+flow">Reinertsen&rsquo;s Flow book</a>, we learned that the cost of delay is the main driver of the value creation : the faster you deliver a feature, less you spend the cost of delay of thaes. Unfortunately not in ours yet. Let&rsquo;s hope it changes soon. Meanwhile, we decided to handle the thing ourselves.</p>
 
 <h2>Here comes the fruit basket lean startup !</h2>
 
