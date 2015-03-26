@@ -284,6 +284,20 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li>Fix virtual box synced folder. When I tried to pimp my favicon up, changing the png in the host machine did not update it on the guest ! I lost almost 3 hours figuring this out &hellip; searching google, I eventually found that <a href="http://docs.vagrantup.com/v2/synced-folders/virtualbox.html">Virtual Box synced folders can have issues</a>, and that <a href="http://stackoverflow.com/questions/18933547/vagrant-virtualbox-shared-folder-out-of-sync-when-there-are-many-file-related">installing the guest additions is recommended</a>. For this, just enter the following in the command line from your project&rsquo;s working dir :</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">vagrant</span> <span class="n">plugin</span> <span class="n">install</span> <span class="n">vagrant</span><span class="o">-</span><span class="n">vbguest</span>
+</span><span class='line'><span class="n">vagrant</span> <span class="n">reload</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;ll tell you if this does not do the trick.</p>
+
 <p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
 
 <p><a href="http://docker.io"><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png" title="The Docker logo" ></a></p>
