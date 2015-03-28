@@ -243,4 +243,4 @@ As everything is quantitative though, one could imagine that with other figures,
 
 [{% img center /imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/dt140330.jpg A dilbert strip about gut feeling at work%}](http://dilbert.com/strip/2014-03-30)
 
-This was part 4 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 3 was [How to measure your speed with your business value](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/), Part 5 will be "Measure the value of the lean startup 'learning'".
+This was part 4 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 3 was [How to measure your speed with your business value](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/), continue on Part 5 : [What optimization should we work on ?](/what-optimization-should-we-work-on-lean-software-development-part-5/).

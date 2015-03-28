@@ -101,6 +101,15 @@ If you want to jump to the solution, just have a look at this [git change](https
   config.ssh.forward_agent = true
 ```
 
+* Fix virtual box synced folder. When I tried to pimp my favicon up, changing the png in the host machine did not update it on the guest ! I lost almost 3 hours figuring this out ... searching google, I eventually found that [Virtual Box synced folders can have issues](http://docs.vagrantup.com/v2/synced-folders/virtualbox.html), and that [installing the guest additions is recommended](http://stackoverflow.com/questions/18933547/vagrant-virtualbox-shared-folder-out-of-sync-when-there-are-many-file-related). For this, just enter the following in the command line from your project's working dir :
+
+```
+vagrant plugin install vagrant-vbguest
+vagrant reload
+```
+
+I'll tell you if this does not do the trick.
+
 I admit it was a lot longer than I expected it to be, but at least now it's repeatable !
 
 [{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png The Docker logo%}](http://docker.io)
