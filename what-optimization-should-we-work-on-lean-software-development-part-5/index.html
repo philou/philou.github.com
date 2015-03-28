@@ -1,0 +1,594 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What Optimization Should We Work On (Lean Software Development Part 5) - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="An example about how to use a downgraded version of cost of delay to choose between different optimization strategies">
+
+  
+  <meta name="keywords" content="Lean Software Development, eXtreme Programming, Business Value, Spike, Cost of Delay, Performance, Optimizations">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">What Optimization Should We Work on (Lean Software Development Part 5)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-26T20:30:00+00:00" pubdate data-updated="true">Mar 26<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>At work, we are building a risk aggregation system. As it&rsquo;s dealing with a large bunch of numbers, it&rsquo;s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
+
+<p>That&rsquo;s were we are now doing.</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" title="A turtle with a rocket on the back" ></p>
+
+<h1>How do we choose which optimization to work on ?</h1>
+
+<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage &hellip;</p>
+
+<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
+
+<h2>Let&rsquo;s walk through an example</h2>
+
+<h3>I. List the optimizations you are thinking of</h3>
+
+<p>Let&rsquo;s suppose we are thinking of the following 3 optimizations for our engine</p>
+
+<ul>
+<li>Create better data structures to speed up the reconciliation algorithm</li>
+<li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
+<li>Minimize boxing and unboxing</li>
+</ul>
+
+
+<h3>II. Poker estimate the story points and speedup</h3>
+
+<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
+As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
+We will then just have to work on the stories with the highest speedup rate first.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title                   </th>
+<th> Story Points  </th>
+<th> /10    </th>
+<th> /2     </th>
+<th> -10%    </th>
+<th> ~  </th>
+<th> +10%   </th>
+<th> x2      </th>
+<th> x10     </th>
+<th> Expected Speedup ratio* </th>
+<th> Speedup rate / story point**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structures     </td>
+<td> 13        </td>
+<td>        </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 4 votes</td>
+<td> 5 votes </td>
+<td>         </td>
+<td> x 1.533                 </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> 13        </td>
+<td>    </td>
+<td> 1 vote </td>
+<td> 1 vote      </td>
+<td> 2 votes</td>
+<td> 1 vote </td>
+<td> 2 votes </td>
+<td> 2 votes </td>
+<td> x 1.799                 </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> 8     </td>
+<td>    </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 9 votes</td>
+<td>         </td>
+<td>         </td>
+<td> x 1.1                   </td>
+<td> x 1.012</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br>
+<sup><em>** Speedup rate is &ldquo;speedup<sup>(1/ story points)</sup>&rdquo;</em></sup></p>
+
+<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
+
+<ol>
+<li>Algorithm</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ol>
+
+
+<h3>III. And what about the risks ?</h3>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" title="A danger zone panel" ></p>
+
+<p>This poker estimation tells us something else &hellip;</p>
+
+<blockquote><p>We don&rsquo;t have a clue about the speedup we will get by trying to optimize the algorithm !</p></blockquote>
+
+<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Story points </th>
+<th> Expected Speedup rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithm spike : measure out of context CPU cache optimization speedup </td>
+<td> 2 </td>
+<td>   ?</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>In order to compute the expected speedup rate, let&rsquo;s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
+
+<p>They are computed by splitting the votes in 2 :</p>
+
+<ul>
+<li><em>low_speedup = 0.846</em></li>
+<li><em>high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike succeeds</h4>
+
+<p>We&rsquo;ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
+
+<ul>
+<li><em>spike_high_speedup = high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike fails</h4>
+
+<p>We&rsquo;ll also start by working on the spike. Afterwards, instead of the algorithm story, we&rsquo;ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
+
+<ul>
+<li><em>average_speedup_rate = (1.033 * 1.011)<sup>&frac12;</sup> = 1.022</em></li>
+<li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
+</ul>
+
+
+<h4>Spike speedup rate</h4>
+
+<p>We can now compute the average expected speedup rate for the full period &lsquo;spike &amp; algorithm&rsquo; stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
+
+<ul>
+<li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>&frac12;</sup> = 2.253</em></li>
+<li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
+</ul>
+
+
+<h3>IV. Putting it all together</h3>
+
+<p>Here are all the speedup rate for the different stories.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Speedup rate / story point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structure  </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> x 1.012</td>
+</tr>
+<tr>
+<td>Algorithm spike         </td>
+<td> x 1.056</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Finally, here is the optimal order through which we should perform the stories :</p>
+
+<ul>
+<li>Algorithm spike</li>
+<li>Algorithm (only if the spike proved it would work)</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ul>
+
+
+<h2>Summary</h2>
+
+<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" title="Formula for a spike speedup rate" ></p>
+
+<p>I think most experienced engineers would have come to the same conclusion by gut feeling &hellip;</p>
+
+<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
+
+<p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be &ldquo;Measure the value of the lean startup &lsquo;learning&rsquo;&rdquo;.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-26T20:30:00+00:00" pubdate data-updated="true">Mar 26<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/lean/'>lean</a>, <a class='category' href='/blog/categories/performance/'>performance</a>, <a class='category' href='/blog/categories/xp/'>xp</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/setting-up-octopress-with-vagrant-and-rbenv/" title="Previous Post: Setting up Octopress with Vagrant and rbenv">&laquo; Setting up Octopress with Vagrant and rbenv</a>
+      
+      
+    </p>
+  </footer>
+</article>
+<div class="banner agileavatar">
+  <img class="logo" src="/imgs/agileavatars/logo-100px.png" alt="AgileAvatars.fr logo"> </img>
+  <a href="http://www.agileavatars.com">Scrum / Kanban Board Supplies<span class="clickzone"></span></a>
+  <p class="url">www.agileavatars.com</p>
+  <p>Give a professional look to your Scrum or Kanban wall board</p>
+</div>
+
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Familly man, T shaped agile software engineer at <a href="http://www.murex.com">Murex</a>, side project entrepreneur and hacker.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Side projects</h1>
+  <ul>
+    <li>
+      <img class="project logo" src="/imgs/agileavatars/logo-100px.png" alt="AgileAvatars.fr logo"> </img>
+      <a href="http://www.agileavatars.com">AgileAvatars.com</a>
+      <p>Scrum / Kanban Board Supplies : Give a professional look to your Scrum or Kanban wall board</p>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What Optimization Should We Work On (Lean Software Development Part 5)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/setting-up-octopress-with-vagrant-and-rbenv/">Setting up Octopress with Vagrant and rbenv</a>
+      </li>
+    
+      <li class="post">
+        <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure The Business Value of Your Spikes and Take High Payoff Risks (Lean Software Development Part 4)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/from-zero-to-pair-programming-hero/">From Zero to Pair Programming Hero</a>
+      </li>
+    
+      <li class="post">
+        <a href="/can-agile-teams-commit/">Can agile teams commit?</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs's blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/';
+        var disqus_url = 'http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
