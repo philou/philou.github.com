@@ -39,7 +39,7 @@ Quite a lot in fact :
 
 {% img center /imgs/2015-04-20-real-programmers-have-todo-lists/check.gif A tick in a check box %}
 
-- It's satisfying to cross something as done !
+- It's satisfying to check something as done !
 - Our programming gets better, because we can fully concentrate on it
 - We have a clear idea about what's done, what's still to be done, and why we are doing it
 - We avoid getting lost in things that don't really need to be done
@@ -66,6 +66,7 @@ Here is a list of tools you can use to set up a todo list :
 - [Org Mode](http://orgmode.org/) of [Emacs](https://www.gnu.org/software/emacs/) has built-in support for todo lists. It's a simple text file, but with color highlighting and shortcuts
 - [Google Keep](https://keep.google.com/) might do just fine for you
 - [Google Docs](https://docs.google.com) can also be useful, especially if you need to share your todo list with others (when pair programming for example)
+- [Trello](https://trello.com) is also a good one, it can even be used as a personal kanban board
 - Any other todo list tool that suits you !
 
 If you are not already using a todo list, start now and become more productive ! No excuse !
