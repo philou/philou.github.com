@@ -98,6 +98,240 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/75417332/">Automaticaly Rollback Static Overrides When Testing Legacy Code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-14T00:00:00+00:00" pubdate data-updated="true">Oct 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When working with legacy code, writing tests requires to exploit seams to -hack- inject custom behaviour. In his <a href="http://www.amazon.co.uk/Working-Effectively-Legacy-Robert-Martin/dp/0131177052/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1245554188&amp;sr=8-1" title="Great book about testing legacy code">book</a> Michael Feathers explains that singleton (the anti pattern) are often good starting seams. The idea is as follow :</p>
+
+
+<ol>
+<li>create a public method to override the singleton value</li>
+<li>make this method deprecated, obsolete or use a TEST_ONLY_ name prefix so that it is not called elsewhere in the code</li>
+<li>Call this method from your test code to inject a mock or whatever so that you can test in isolation</li>
+</ol>
+
+
+<p>This works fine &#8230; until you end up with an unexpected failing test [long debugging session]&nbsp;that is in fact the result of a test not restoring a singleton it had overriden. You can try hard not to forget, or you can use some kind of auto restore test class. Here is how it could look like in C#</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">namespace</span> <span class="nn">Test.Utils</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">public</span> <span class="k">class</span> <span class="nc">CleanOverridesTest</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="k">private</span> <span class="k">class</span> <span class="nc">StaticOverrider</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">:</span> <span class="n">IDisposable</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="k">private</span> <span class="k">readonly</span> <span class="n">T</span> <span class="n">_initialValue</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">private</span> <span class="k">readonly</span> <span class="n">Action</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">_setter</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">public</span> <span class="nf">StaticOverrider</span><span class="p">(</span><span class="n">T</span> <span class="n">initialValue</span><span class="p">,</span> <span class="n">Action</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">setter</span><span class="p">,</span> <span class="n">T</span> <span class="n">newValue</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>        <span class="n">_initialValue</span> <span class="p">=</span> <span class="n">initialValue</span><span class="p">;</span>
+</span><span class='line'>        <span class="n">_setter</span> <span class="p">=</span> <span class="n">setter</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">_setter</span><span class="p">(</span><span class="n">newValue</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="k">public</span> <span class="k">void</span> <span class="nf">Dispose</span><span class="p">()</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>        <span class="n">_setter</span><span class="p">(</span><span class="n">_initialValue</span><span class="p">);</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">private</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IDisposable</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">_toDisposeAfterEachTest</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">private</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IDisposable</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">ToDisposeAfterEachTest</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="k">get</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>        <span class="c1">// NUnit enforces a single SetUp method, so we have to make sure the base SetUp method was called by subclasses</span>
+</span><span class='line'>        <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">BaseSetUpCalled</span><span class="p">,</span> <span class="s">&quot;Override SetUp and TearDown, and call base implementation.&quot;</span><span class="p">);</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">_toDisposeAfterEachTest</span><span class="p">;</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [SetUp]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="n">_toDisposeAfterEachTest</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">IDisposable</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="k">private</span> <span class="kt">bool</span> <span class="n">BaseSetUpCalled</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="k">get</span> <span class="p">{</span> <span class="k">return</span> <span class="n">_toDisposeAfterEachTest</span> <span class="p">!=</span> <span class="k">null</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="na">    [TearDown]</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">virtual</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// Overides and restores should be done in reverse order</span>
+</span><span class='line'>      <span class="n">ToDisposeAfterEachTest</span><span class="p">.</span><span class="n">Reverse</span><span class="p">();</span>
+</span><span class='line'>      <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">disposable</span> <span class="k">in</span> <span class="n">ToDisposeAfterEachTest</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>        <span class="k">try</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>          <span class="n">disposable</span><span class="p">.</span><span class="n">Dispose</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>        <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">{</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>      <span class="n">ToDisposeAfterEachTest</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">protected</span> <span class="k">void</span> <span class="n">OverrideStatic</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">T</span> <span class="n">initialValue</span><span class="p">,</span> <span class="n">Action</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">setter</span><span class="p">,</span> <span class="n">T</span> <span class="n">newValue</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>      <span class="n">ToDisposeAfterEachTest</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">StaticOverrider</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">initialValue</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">newValue</span><span class="p">));</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>Later in an actual test :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[TestFixture]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">class</span> <span class="nc">LegacyTest</span> <span class="p">:</span> <span class="n">CleanOverridesTest</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="na">  [Test]</span>
+</span><span class='line'>  <span class="k">public</span> <span class="k">void</span> <span class="nf">LegacyShouldWorkWhenZingAndZang</span><span class="p">()</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="n">OverrideStatic</span><span class="p">(</span><span class="n">BigManager</span><span class="p">.</span><span class="n">Instance</span><span class="p">,</span> <span class="n">BigManager</span><span class="p">.</span><span class="n">TestOnlySetInstance</span><span class="p">,</span> <span class="k">new</span> <span class="n">BigInstanceMock</span><span class="p">());</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>The singleton is automaticaly restored in the TearDown method of the base class. In C#, we are luky enough to have delegates so that we can pass the injection setter directly. In language without this feature, you could use reflection or anonymous class.</p>
+
+
+<p>Of course, when the code is more reliably tested, you should try to move away from all this hack &#8230;</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/collecting-agile-and-xp-best-practices/">Collecting Agile and XP Best Practices</a></h1>
     
     
@@ -483,6 +717,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/the-agile-change-management-viral-hack/">The Agile Change Management Viral Hack</a>
+      </li>
+    
+      <li class="post">
         <a href="/real-programmers-have-todo-lists/">Real Programmers Have Todo Lists</a>
       </li>
     
@@ -496,10 +734,6 @@
     
       <li class="post">
         <a href="/setting-up-octopress-with-vagrant-and-rbenv/">Setting up Octopress with Vagrant and rbenv</a>
-      </li>
-    
-      <li class="post">
-        <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure The Business Value of Your Spikes and Take High Payoff Risks (Lean Software Development Part 4)</a>
       </li>
     
   </ul>

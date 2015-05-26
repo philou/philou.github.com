@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-04-23T05:52:24+00:00</updated>
+  <updated>2015-05-26T04:15:16+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[The Agile Change Management Viral Hack]]></title>
+    <link href="http://philippe.bourgau.net/the-agile-change-management-viral-hack/"/>
+    <updated>2015-05-23T05:51:00+00:00</updated>
+    <id>http://philippe.bourgau.net/the-agile-change-management-viral-hack</id>
+    <category term="Agile" /><category term="Coaching" /><category term="Testing" />
+    <content type="html"><![CDATA[<p>We just discovered a hack to spread agile (<a href="http://en.wikipedia.org/wiki/Behavior-driven_development">BDD</a> by the way) through an organization. It works provided :</p>
+
+<ul>
+<li>There is a BDD testing expert in your team</li>
+<li>Your team is using the work of another software team from your company</li>
+</ul>
+
+
+<p>If this team does not use agile practices, they are likely to regularly create regressions or to be late at providing new versions.</p>
+
+<p>Use your client role in the relation, and propose your help ! Spend some time with them to help them put automated customer tests in place. Be genuinely nice with them, show example, be available and, obviously, bring improvement. With some chance, they might soon be asking for more.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="n">there</span> <span class="n">are</span> <span class="n">too</span> <span class="n">many</span> <span class="n">bugs</span>
+</span><span class='line'><span class="no">When</span> <span class="n">you</span> <span class="n">can</span> <span class="n">help</span>
+</span><span class='line'><span class="no">Then</span> <span class="no">DO</span> <span class="no">IT</span> <span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Real Programmers Have Todo Lists]]></title>
@@ -3752,47 +3781,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 <p>Here is how it might go :</p>
 
 <p><img class="center" src="http://philippe.bourgau.net/imgs/2014-05-05-coding-as-a-living-can-be-dangerous-to-your-health/psychopath-coworker.JPG" title="Simple drawing of the psychopath coworker begging his teammate for a speak ... with an axe !" ></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Refactoring trick to insert a wrapper]]></title>
-    <link href="http://philippe.bourgau.net/refactoring-trick-to-insert-a-wrapper/"/>
-    <updated>2014-04-30T08:01:00+00:00</updated>
-    <id>http://philippe.bourgau.net/refactoring-trick-to-insert-a-wrapper</id>
-    <category term="anticorruption layer" /><category term="refactoring" />
-    <content type="html"><![CDATA[<p>Last week at work, we decided that we needed an <a href="http://stackoverflow.com/questions/909264/ddd-anti-corruption-layer-how-to">Anticorruption Layer</a> between our code and another team&rsquo;s. They have been using our internal data structures as they needed to, in an ad hoc way. This turned out to be an issue when we want to refactor our code. The goals of this layer are :</p>
-
-<ul>
-<li>to provide an explicit API layer, controlling what is accessible from the outside</li>
-<li>to allow us to improve our implementation independently of this API</li>
-</ul>
-
-
-<p>The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
-
-<ol>
-<li>Make sure you have a clean SCC state</li>
-<li>Rename the class to be wrapped (let&rsquo;s call it Foo) into FooWrapper</li>
-<li>From SCC, revert the part of the code where you want to continue using Foo directly</li>
-<li>In SCC, revert Foo and FooWrapper</li>
-<li>Manually (re)create the FooWrapper class</li>
-<li>Create FooWrapper.wrap(x) and FooWrapper.unwrap(x) methods</li>
-<li>Fix all the compilation issues (mostly by calling wrap() and unwrap())</li>
-<li>Run your tests and fix any remaining points</li>
-</ol>
-
-
-<p>That saved us a whole lot of time. If your layer contains several classes with references between them, they is an optimal order through which to introduce the wrappers. Any order will work, but some will require more temporary calls to wrap and unwrap (step 7.). At the end, wrap() and unwrap() methods should only be called from within the layer.</p>
-
-<p>Often you&rsquo;ll find out that to complete the wrapping of a class, you&rsquo;ll first need to wrap another class, you can :</p>
-
-<ul>
-<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental</li>
-<li>Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward</li>
-<li>Insert temporary calls to wrap() and unwrap() : they&rsquo;ll be removed when you&rsquo;ll later wrap the other class. This might be the only way if the classes have cyclic dependencies.</li>
-</ul>
-
 ]]></content>
   </entry>
   
