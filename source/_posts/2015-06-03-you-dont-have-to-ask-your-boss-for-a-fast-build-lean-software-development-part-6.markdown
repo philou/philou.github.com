@@ -6,7 +6,7 @@ comments: true
 categories:
  - agile
  - lean
-keywords: "agile, lean, software, cost of delay, build time, feedback loop, decision rules"
+keywords: "agile, lean, software, lean software, xcost of delay, build time, feedback loop, decision rules"
 description: "By doing really basic maths, a software team can create decision rules to decide how much work to do to speed up their build"
 ---
 A slow build costs money. I mean it costs *a whole lot of money all the time !*
