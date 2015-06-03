@@ -127,4 +127,4 @@ I think most experienced engineers would have come to the same conclusion by gut
 
 Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !
 
-This was part 5 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 4 was [Measure the business value of your spikes and take high payoff risks](/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/), Part 5 will be "Measure the value of the lean startup 'learning'".
+This was part 5 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 4 was [Measure the business value of your spikes and take high payoff risks](/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/), Part 5 will be [You don't have to ask your boss for a fast build](/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/).
