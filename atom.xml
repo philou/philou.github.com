@@ -3785,3 +3785,39 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   </entry>
   
 </feed>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here is the required setup :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># spec/support/knows_page_parts.rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">KnowsPageParts</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">dish</span>
+</span><span class='line'>    <span class="ss">Xpath</span><span class="p">:</span><span class="ss">:Specs</span><span class="o">::</span><span class="no">PagePart</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;a dish&quot;</span><span class="p">,</span> <span class="s2">&quot;//table[@id=&#39;dish-panel&#39;]//tr&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">dish_with_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dish</span><span class="o">.</span><span class="n">that</span><span class="p">(</span><span class="s2">&quot;is named </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;[td[contains(.,&#39;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#39;)]]&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
+]]></content>
+  </entry>
+  
+</feed>
