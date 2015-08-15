@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-06-04T21:27:42+00:00</updated>
+  <updated>2015-08-15T14:34:30+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,221 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Actors and Green Threads in Java Demystified]]></title>
+    <link href="http://philippe.bourgau.net/actors-and-green-threads-in-java-demystified/"/>
+    <updated>2015-08-15T13:17:00+00:00</updated>
+    <id>http://philippe.bourgau.net/actors-and-green-threads-in-java-demystified</id>
+    <category term="concurrency" /><category term="java" /><category term="programming" />
+    <content type="html"><![CDATA[<p>After finishing my <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a>, one of the things that most surprised me, is how simple it was to prototype the <a href="https://en.wikipedia.org/wiki/Actor_model">Actor Model</a> in Java using <a href="https://en.wikipedia.org/wiki/Green_threads">Green Threads</a>.</p>
+
+<h2>The Code</h2>
+
+<p>First, here is the base class for all actors.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Actor</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ExecutorService</span> <span class="n">threadPool</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ConcurrentLinkedQueue</span><span class="o">&lt;</span><span class="n">Runnable</span><span class="o">&gt;</span> <span class="n">mailbox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentLinkedQueue</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">stoped</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">Actor</span><span class="o">(</span><span class="n">ExecutorService</span> <span class="n">threadPool</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">threadPool</span> <span class="o">=</span> <span class="n">threadPool</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">stoped</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Runnable</span> <span class="n">nextMessage</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">nextMessage</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">nextMessage</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="n">submitContinuation</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">submitContinuation</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">stop</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">stoped</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">send</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">runnable</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">mailbox</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">submitContinuation</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">threadPool</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, I simply used Runnable as the type of the messages.</p>
+
+<p>The Actor itself is Runnable, meaning that it can be submitted to the thread pool. When executed :</p>
+
+<ol>
+<li>it tries to handle a message from the mailbox if there is one.</li>
+<li>It then re-submits the actor itself</li>
+</ol>
+
+
+<p>This ensures that only one thread is executing messages on an actor at a given time, and it also avoids spawning new thread for every new actor.</p>
+
+<p>As an example, here is how I used this to make an actor of an existing InProcessChatRoom class.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ChatRoom</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">broadcast</span><span class="o">(</span><span class="n">Output</span> <span class="n">client</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InProcessChatRoom</span> <span class="kd">implements</span> <span class="n">ChatRoom</span> <span class="o">{</span>
+</span><span class='line'>  <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ChatRoomActor</span> <span class="kd">extends</span> <span class="n">Actor</span> <span class="kd">implements</span> <span class="n">ChatRoom</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ChatRoom</span> <span class="n">realChatroom</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">ChatRoomActor</span><span class="o">(</span><span class="n">ChatRoom</span> <span class="n">realChatroom</span><span class="o">,</span> <span class="n">ExecutorService</span> <span class="n">threadPool</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">super</span><span class="o">(</span><span class="n">threadPool</span><span class="o">);</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">realChatroom</span> <span class="o">=</span> <span class="n">realChatroom</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">start</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">broadcast</span><span class="o">(</span><span class="kd">final</span> <span class="n">Output</span> <span class="n">client</span><span class="o">,</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="nd">@Override</span>
+</span><span class='line'>            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                <span class="n">realChatroom</span><span class="o">.</span><span class="na">broadcast</span><span class="o">(</span><span class="n">client</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">});</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ChatRoomActor is in fact some kind of proxy to use from other actors to send messages to the chat room.</p>
+
+<p>As with any implementation of the Actors Model, the neet thing is the separation of threading and logic. That makes it so much simpler ! (You can get more detail about the complexity I am talking about by taking a look at the <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a>)</p>
+
+<h2>Performances</h2>
+
+<p>Here is a performance summary of this implementation compared to others on a &ldquo;throughput vs clients&rdquo; benchmark of the style &ldquo;Enter while others are talking&rdquo;</p>
+
+<p><a href="https://github.com/philou/concurrency-kata"><img class="center" src="https://raw.githubusercontent.com/philou/concurrency-kata/master/enter-while-others-are-talking.png" title="Result graphs of benchmark enter while others are talking" ></a></p>
+
+<p>Results can be disappointing compared to other implementations but the example itself is a bit misleading. The chatroom does exclusively message passing, there is not much computation to parallelize, in a different setting, the results would have been completely different.</p>
+
+<h2>Limitations</h2>
+
+<p>As you can see, this implementation is just a quick prototype, nothing production ready. Here are the main limitations I can think of right now :</p>
+
+<ul>
+<li>It uses <a href="https://en.wikipedia.org/wiki/Busy_waiting">Busy Waiting</a> for the next message, meaning that it consumes unnecessary resources, and that more important messages to other Actors might be delayed</li>
+<li>Usually, actor messages are selected on their type rather than on their order of arrival, this is not the case here</li>
+<li>The usage of the Runnable interface as base message type, though handy, opens the door to inter-thread calls that might violate the model altogether</li>
+<li>There is absolutely no support of out of process actors until the messages are Serializable</li>
+</ul>
+
+
+<h2>Going Further</h2>
+
+<p>I started this <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a> as a training material about concurrency for colleagues at <a href="http://www.murex.com">work</a>. In the spirit of the coding kata, it&rsquo;s a git repo you can walk, explore and experiment with.</p>
+
+<p>So if you want to learn more about different models of concurrency, you are welcome to have a look at the How-To section in the <a href="https://github.com/philou/concurrency-kata">README</a> file.</p>
+
+<p>On my part, although it was a lot more work than I would have guessed at the beginning, I barely scratch the surface of the subject ! I could now :</p>
+
+<ul>
+<li>extract the <a href="https://fr.wikipedia.org/wiki/Communicating_sequential_processes">CSP</a> or Actor implementation and make them more robust</li>
+<li>practice and present the whole kata as a 2 hours live coding session</li>
+<li>prepare a hands-on training about concurrency</li>
+</ul>
+
+
+<p>So, if you are willing to do any of the above you are welcome to contribute !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[You don't have to ask your boss for a fast build (Lean Software Development part 6)]]></title>
@@ -3761,69 +3976,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
 
 
 <p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Better error messages when testing html views]]></title>
-    <link href="http://philippe.bourgau.net/better-error-messages-when-testing-html-views/"/>
-    <updated>2014-05-18T21:14:00+00:00</updated>
-    <id>http://philippe.bourgau.net/better-error-messages-when-testing-html-views</id>
-    <category term="html" /><category term="matcher" /><category term="rspec" /><category term="ruby" />
-    <content type="html"><![CDATA[<p>When testing html views, either from <a href="http://rspec.info/">RSpec</a> or from <a href="http://rspec.info/">Cucumber</a>, <a href="http://fr.wikipedia.org/wiki/XPath">XPath</a> can be really helpful to quickly find expected elements.</p>
-
-<p>Unfortunately, a bit like regular expressions, when you start to use xpath to solve a problem, you often end up with 2 problems &hellip; Part of the reason is that xpaths tend to be cryptic. In the case of testing, error messages coming from unmatched xpath are even more crytic !</p>
-
-<p>That&rsquo;s why I had the idea for <a href="https://github.com/philou/xpath-specs">xpath-specs</a> : a small gem that allows to associate a description with an xpath, to nest xpaths together, all this to simplify tests and assertion failure reporting.</p>
-
-<p>For example, with an assertion like this :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">html</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">contain_a</span><span class="p">(</span><span class="n">dish_with_name</span><span class="p">(</span><span class="s2">&quot;Grilled Lobster&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here is the kind of failure message one can get :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">contain</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
-</span><span class='line'>       <span class="n">it</span> <span class="n">found</span> <span class="n">a</span> <span class="n">dish</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="p">)</span> <span class="p">:</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="no">Pizza</span><span class="o">&lt;</span><span class="sr">/td&gt;...&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-</span><span class='line'>       <span class="n">but</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And here is the required setup :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># spec/support/knows_page_parts.rb</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">module</span> <span class="nn">KnowsPageParts</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">dish</span>
-</span><span class='line'>    <span class="ss">Xpath</span><span class="p">:</span><span class="ss">:Specs</span><span class="o">::</span><span class="no">PagePart</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;a dish&quot;</span><span class="p">,</span> <span class="s2">&quot;//table[@id=&#39;dish-panel&#39;]//tr&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">dish_with_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">dish</span><span class="o">.</span><span class="n">that</span><span class="p">(</span><span class="s2">&quot;is named </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;[td[contains(.,&#39;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#39;)]]&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
 ]]></content>
   </entry>
   
