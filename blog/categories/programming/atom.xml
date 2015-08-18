@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-08-15T14:39:47+00:00</updated>
+  <updated>2015-08-18T05:56:56+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,120 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira]]></title>
+    <link href="http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/"/>
+    <updated>2015-08-17T05:46:00+00:00</updated>
+    <id>http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira</id>
+    <content type="html"><![CDATA[<p>Not long ago, I wrote that <a href="/real-programmers-have-todo-lists/">Real Programmers have TODO lists</a> &hellip; I was wrong, I now work without a TODO list ! So either I&rsquo;m not a real programmer anymore, or I&rsquo;m actually using TODO List v.2.0. Read on !</p>
+
+<h2>Motivations</h2>
+
+<p>My work has become quite varied lately. On top of programming and pairing, I am also doing quite some coaching within the team. For the whole Murex programmers community, I&rsquo;m organizing <a href="https://github.com/murex/murex-coding-dojo">Coding Dojos</a>, <a href="http://www.brownbaglunch.fr/">Brown Bag Lunches</a> and Technical Talk Video Sessions. Finaly, like all of us, I have to cope with my share of organization overhead.</p>
+
+<p>Multitasking was starting to kill me. I was feeling exhausted at the end of the day, with the certainty that I was not getting much done &hellip;</p>
+
+<h2>Personnal Kanban To The Rescue</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> is a method to organize your work relying on <a href="http://www.personalkanban.com/pk/featured/why-limit-work-in-progress/#sthash.QFI0D8l5.dpbs">Work In Progress limits</a> : it minimizes multitasking and encourages prioritization.</p>
+
+<p>As its name suggests it, <a href="http://personalkanban.com">Personal Kanban</a> is simply applying Kanban to your own tasks. It turns out that :</p>
+
+<ul>
+<li>My team tasks are already in <a href="https://www.atlassian.com/software/jira">JIRA</a></li>
+<li>Some guys have already tried to <a href="https://jira.atlassian.com/browse/JRA-13472">use JIRA as a todo list</a></li>
+<li>JIRA supports Kanban boards with WIP limits and all</li>
+</ul>
+
+
+<h2>The Kanban Board</h2>
+
+<p>In our team, <a href="http://bilal.eltayara.net">TAYARA Bilal</a> had already experimented the approach and asked to JIRA admins to create us a custom project for our todo lists. I piggybacked on it and created my own kanban board. Here is what it looks like.</p>
+
+<p>{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/board.png Screenshot of the full JIRA board %}</p>
+
+<h3>Mixing Project Stories And Personnal Tasks</h3>
+
+<p>JIRA allows creating a kanban board that spans many projects ! You can simply choose multiple projects when you setup the board for the first time, or you can edit your board filter like this :</p>
+
+<p><code>sql
+project in (POPIMDB, POPABTODO) ...
+</code></p>
+
+<p>This makes it possible to see <em>all</em> of my work at a glance on the same board.</p>
+
+<h3>Work In Progress Limit</h3>
+
+<p>{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/wip.png Zoom on the wip constraints of the JIRA column %}</p>
+
+<p>JIRA allows WIP limits, warning me with a red background when I am multitasking or when I am getting late on my tasks</p>
+
+<h3>Color Conventions</h3>
+
+<p>{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/color-cards.png Different colors of JIRA cards %}</p>
+
+<p>JIRA makes it possible to assign different colors to cards, for example</p>
+
+<ul>
+<li>Red for tasks that are due soon</li>
+<li>orange for cards that are due some time</li>
+<li>light brown for project stories</li>
+<li>green for other programming tasks</li>
+<li>blue for other tasks</li>
+</ul>
+
+
+<h3>Swimlanes</h3>
+
+<p>{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/swimlanes.png Closup on a JIRA swimlane %}</p>
+
+<p>JIRA has swimlanes, separating project from personal tasks</p>
+
+<h3>Reports</h3>
+
+<p>An extra bonus with JIRA Kanban board is that they have reports ! Here is my cumulative flow diagram for my first week of usage :</p>
+
+<p>{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/cumulative-flow.png A screenshot of the JIRA cumulative flow diagram %}</p>
+
+<h3>Configuration</h3>
+
+<p>Here is the JQL query I used to configure it this way.</p>
+
+<p>```sql
+&mdash; board filter
+project in (POPIMDB, POPABTODO) AND (Assignee = pbourgau OR Co-Assignees in (pbourgau) OR mentors in (pbourgau)) AND (status != CLOSED OR updated >= -1d) ORDER BY Rank ASC</p>
+
+<p>&mdash; Swimlanes
+priority = &ldquo;1-Very High&rdquo; &mdash; Expedite
+project in (&ldquo;POP IMDB&rdquo;) and (labels not in (SLACK) OR labels is EMPTY) &mdash; IMDB Stories
+&mdash; and a blank filter for Other Tasks</p>
+
+<p>&mdash; Card Colours
+duedate &lt;= 7d or priority = &ldquo;1-Very High&rdquo; &mdash; red
+duedate is not EMPTY &mdash; orange
+labels in (SLACK) &mdash; green
+type = Task &mdash; blue
+&mdash; and an empty filter for light brown
+```</p>
+
+<h2>The End Result</h2>
+
+<p>By setting a WIP limit of 3 on the &ldquo;In Progress&rdquo; column, the following naturally happened :</p>
+
+<ul>
+<li>Once I have started a programming task, I now defer any other activity in the TODO column until I am finished. (HINT: If you get invited to meetings all the time, lock your agenda with &lsquo;Unbookable&rsquo; days when you start programming)</li>
+<li>It actually pushed me into finishing the <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a> training I had started long ago.</li>
+</ul>
+
+
+<p>I also set a high WIP limit (around 10) on the TODO column, this way, I get a kind of warning that next time I finish a programming task, I should take some time off to prune the column.</p>
+
+<p>The overall result is that I do lot less multitasking. I get the feeling of doing steadier, more efficient work.</p>
+
+<p>If you are suffering from multitasking and decide to give it a try, I&rsquo;d love to read about your experience !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Actors and Green Threads in Java Demystified]]></title>
@@ -272,90 +386,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     <content type="html"><![CDATA[<p>{% img center /imgs/2014-03-05-harley-davidson-programming/programmer.jpg Drawing of a software programmer sitting at the bottom of his chair lower than his computer %}</p>
 
 <p>Maybe we should add motors to these desk chairs ;&ndash;)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Programming as an exponential problem]]></title>
-    <link href="http://philippe.bourgau.net/programming-as-an-exponential-problem/"/>
-    <updated>2014-02-21T06:30:00+00:00</updated>
-    <id>http://philippe.bourgau.net/programming-as-an-exponential-problem</id>
-    <content type="html"><![CDATA[<p>As said Tom Cargill</p>
-
-<blockquote><p>The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.</p></blockquote>
-
-<p>By extrapolation, this would mean that every time we increase the requirements by 10%, we need to double the total development time ! That would mean that solution complexity is an exponential function of the complexity of the problem.</p>
-
-<p>That could explain why techniques that work well for small problems don&rsquo;t work well at all for large problems, and vice et versa. For example</p>
-
-<table>
-<thead>
-<tr>
-<th align="center"> In the small (think one page script) </th>
-<th align="center"> In the large (think multi millions lines system)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"> Dynamic typing                       </td>
-<td align="center"> Static typing</td>
-</tr>
-<tr>
-<td align="center"> Mutable globals                      </td>
-<td align="center"> Immutability</td>
-</tr>
-<tr>
-<td align="center"> Imperative style                     </td>
-<td align="center"> Declarative style</td>
-</tr>
-<tr>
-<td align="center"> Manual memory management             </td>
-<td align="center"> Garbage collection</td>
-</tr>
-<tr>
-<td align="center"> Shared memory                        </td>
-<td align="center"> Message passing</td>
-</tr>
-</tbody>
-</table>
-
-
-<br/>
-
-
-<p>Just for fun, let&rsquo;s suppose that we could deduce a unique constant C for every language such that</p>
-
-<p>{% img center /imgs/2014-02-21-programming-as-an-exponential-problem/formula.png Secret formula linking problem and solution complexities %}</p>
-
-<p>Here is a plot of this formula with different values of C (0.5, 1 and 2)</p>
-
-<p>{% img center /imgs/2014-02-21-programming-as-an-exponential-problem/close-plot.png Plot of the formula for different C constant values %}</p>
-
-<p>We can see that small values of C are best for small problems, whereas greater values are evolve better with larger problems. For a given problem, there is quite a difference in the solution complexity, if the formula was true, and that we knew in which zone of complexity our problem will always be, we could choose the appropriate technology ! Experienced engineers already have the gut knowledge about how to chose the right tool for the job !</p>
-
-<p>That&rsquo;s not all, let&rsquo;s have a bird&rsquo;s eye view of the same formulas</p>
-
-<p>{% img center /imgs/2014-02-21-programming-as-an-exponential-problem/wide-plot.png Same plot at a larger scale %}</p>
-
-<p>I increased the maximum problem complexity by a factor of 3, I had to multiply the solution complexity by 100 ! In the end, these exponential curves all seem frighteningly vertical. This could explain why the divide and conquer approach works so well in software : 2e<sup>x</sup> &lt; e<sup>2x</sup>. Abstract and powerful APIs might be our best weapon against complexity.</p>
-
-<p>People behaviour does not match this exponential hypothesis though :</p>
-
-<ul>
-<li>At work, I&rsquo;ve seen quite a few projects started from scratch, and everybody expecting it to maintain it&rsquo;s initial speed during its whole lifetime</li>
-<li>Some recent hiring or investing trend seem to rely on hackathons, startup week ends, or coding games, all &lsquo;in the small&rsquo; exercises</li>
-<li>I&rsquo;ve observed in quick and dirty overtime work to meet a deadline &hellip; If productivity is proportional to the solution complexity, that crunch mode would be completely unproductive</li>
-</ul>
-
-
-<p>This leads to more interesting questions :</p>
-
-<ul>
-<li>Is my exponential model complete garbage ?</li>
-<li>Or are humans particularly bad at forecasting an exponential behaviour ?</li>
-<li>If so, what practices could we adopt to stop relying on this misleading gut feeling ?</li>
-</ul>
-
 ]]></content>
   </entry>
   

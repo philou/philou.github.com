@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-08-15T14:34:30+00:00</updated>
+  <updated>2015-08-18T05:52:20+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,136 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira]]></title>
+    <link href="http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/"/>
+    <updated>2015-08-17T05:46:00+00:00</updated>
+    <id>http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira</id>
+    <category term="jira" /><category term="kanban" /><category term="programming" /><category term="self-organization" />
+    <content type="html"><![CDATA[<p>Not long ago, I wrote that <a href="http://philippe.bourgau.net/real-programmers-have-todo-lists/">Real Programmers have TODO lists</a> &hellip; I was wrong, I now work without a TODO list ! So either I&rsquo;m not a real programmer anymore, or I&rsquo;m actually using TODO List v.2.0. Read on !</p>
+
+<h2>Motivations</h2>
+
+<p>My work has become quite varied lately. On top of programming and pairing, I am also doing quite some coaching within the team. For the whole Murex programmers community, I&rsquo;m organizing <a href="https://github.com/murex/murex-coding-dojo">Coding Dojos</a>, <a href="http://www.brownbaglunch.fr/">Brown Bag Lunches</a> and Technical Talk Video Sessions. Finaly, like all of us, I have to cope with my share of organization overhead.</p>
+
+<p>Multitasking was starting to kill me. I was feeling exhausted at the end of the day, with the certainty that I was not getting much done &hellip;</p>
+
+<h2>Personnal Kanban To The Rescue</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> is a method to organize your work relying on <a href="http://www.personalkanban.com/pk/featured/why-limit-work-in-progress/#sthash.QFI0D8l5.dpbs">Work In Progress limits</a> : it minimizes multitasking and encourages prioritization.</p>
+
+<p>As its name suggests it, <a href="http://personalkanban.com">Personal Kanban</a> is simply applying Kanban to your own tasks. It turns out that :</p>
+
+<ul>
+<li>My team tasks are already in <a href="https://www.atlassian.com/software/jira">JIRA</a></li>
+<li>Some guys have already tried to <a href="https://jira.atlassian.com/browse/JRA-13472">use JIRA as a todo list</a></li>
+<li>JIRA supports Kanban boards with WIP limits and all</li>
+</ul>
+
+
+<h2>The Kanban Board</h2>
+
+<p>In our team, <a href="http://bilal.eltayara.net">TAYARA Bilal</a> had already experimented the approach and asked to JIRA admins to create us a custom project for our todo lists. I piggybacked on it and created my own kanban board. Here is what it looks like.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/board.png" title="Screenshot of the full JIRA board" ></p>
+
+<h3>Mixing Project Stories And Personnal Tasks</h3>
+
+<p>JIRA allows creating a kanban board that spans many projects ! You can simply choose multiple projects when you setup the board for the first time, or you can edit your board filter like this :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">project</span> <span class="k">in</span> <span class="p">(</span><span class="n">POPIMDB</span><span class="p">,</span> <span class="n">POPABTODO</span><span class="p">)</span> <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This makes it possible to see <em>all</em> of my work at a glance on the same board.</p>
+
+<h3>Work In Progress Limit</h3>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/wip.png" title="Zoom on the wip constraints of the JIRA column" ></p>
+
+<p>JIRA allows WIP limits, warning me with a red background when I am multitasking or when I am getting late on my tasks</p>
+
+<h3>Color Conventions</h3>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/color-cards.png" title="Different colors of JIRA cards" ></p>
+
+<p>JIRA makes it possible to assign different colors to cards, for example</p>
+
+<ul>
+<li>Red for tasks that are due soon</li>
+<li>orange for cards that are due some time</li>
+<li>light brown for project stories</li>
+<li>green for other programming tasks</li>
+<li>blue for other tasks</li>
+</ul>
+
+
+<h3>Swimlanes</h3>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/swimlanes.png" title="Closup on a JIRA swimlane" ></p>
+
+<p>JIRA has swimlanes, separating project from personal tasks</p>
+
+<h3>Reports</h3>
+
+<p>An extra bonus with JIRA Kanban board is that they have reports ! Here is my cumulative flow diagram for my first week of usage :</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/cumulative-flow.png" title="A screenshot of the JIRA cumulative flow diagram" ></p>
+
+<h3>Configuration</h3>
+
+<p>Here is the JQL query I used to configure it this way.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- board filter</span>
+</span><span class='line'><span class="n">project</span> <span class="k">in</span> <span class="p">(</span><span class="n">POPIMDB</span><span class="p">,</span> <span class="n">POPABTODO</span><span class="p">)</span> <span class="k">AND</span> <span class="p">(</span><span class="n">Assignee</span> <span class="o">=</span> <span class="n">pbourgau</span> <span class="k">OR</span> <span class="n">Co</span><span class="o">-</span><span class="n">Assignees</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="p">)</span> <span class="k">OR</span> <span class="n">mentors</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="p">))</span> <span class="k">AND</span> <span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">CLOSED</span> <span class="k">OR</span> <span class="n">updated</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">1</span><span class="n">d</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Rank</span> <span class="k">ASC</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- Swimlanes</span>
+</span><span class='line'><span class="n">priority</span> <span class="o">=</span> <span class="ss">&quot;1-Very High&quot;</span> <span class="c1">-- Expedite</span>
+</span><span class='line'><span class="n">project</span> <span class="k">in</span> <span class="p">(</span><span class="ss">&quot;POP IMDB&quot;</span><span class="p">)</span> <span class="k">and</span> <span class="p">(</span><span class="n">labels</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span><span class="n">SLACK</span><span class="p">)</span> <span class="k">OR</span> <span class="n">labels</span> <span class="k">is</span> <span class="n">EMPTY</span><span class="p">)</span> <span class="c1">-- IMDB Stories</span>
+</span><span class='line'><span class="c1">-- and a blank filter for Other Tasks</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- Card Colours</span>
+</span><span class='line'><span class="n">duedate</span> <span class="o">&lt;=</span> <span class="mi">7</span><span class="n">d</span> <span class="k">or</span> <span class="n">priority</span> <span class="o">=</span> <span class="ss">&quot;1-Very High&quot;</span> <span class="c1">-- red</span>
+</span><span class='line'><span class="n">duedate</span> <span class="k">is</span> <span class="k">not</span> <span class="n">EMPTY</span> <span class="c1">-- orange</span>
+</span><span class='line'><span class="n">labels</span> <span class="k">in</span> <span class="p">(</span><span class="n">SLACK</span><span class="p">)</span> <span class="c1">-- green</span>
+</span><span class='line'><span class="k">type</span> <span class="o">=</span> <span class="n">Task</span> <span class="c1">-- blue</span>
+</span><span class='line'><span class="c1">-- and an empty filter for light brown</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>The End Result</h2>
+
+<p>By setting a WIP limit of 3 on the &ldquo;In Progress&rdquo; column, the following naturally happened :</p>
+
+<ul>
+<li>Once I have started a programming task, I now defer any other activity in the TODO column until I am finished. (HINT: If you get invited to meetings all the time, lock your agenda with &lsquo;Unbookable&rsquo; days when you start programming)</li>
+<li>It actually pushed me into finishing the <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a> training I had started long ago.</li>
+</ul>
+
+
+<p>I also set a high WIP limit (around 10) on the TODO column, this way, I get a kind of warning that next time I finish a programming task, I should take some time off to prune the column.</p>
+
+<p>The overall result is that I do lot less multitasking. I get the feeling of doing steadier, more efficient work.</p>
+
+<p>If you are suffering from multitasking and decide to give it a try, I&rsquo;d love to read about your experience !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Actors and Green Threads in Java Demystified]]></title>
@@ -3906,76 +4036,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
 
 
 <p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
-    <link href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/"/>
-    <updated>2014-05-23T06:20:00+00:00</updated>
-    <id>http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies</id>
-    <category term="agile" /><category term="mocking" /><category term="rspec" /><category term="ruby" /><category term="tdd" /><category term="testing" />
-    <content type="html"><![CDATA[<p>I already wrote a lot about test proxies (<a href="http://philippe.bourgau.net/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
-
-<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
-
-<p>Here are the pain points proxies try to fix :</p>
-
-<ul>
-<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
-<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
-</ul>
-
-
-<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
-
-<ul>
-<li>Verify actual load count without interfering in any behaviour</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">capture_results_from</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Use proxies to stub an object that does not yet exist</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;rounds the completion ratio&#39;</span> <span class="k">do</span>
-</span><span class='line'>   <span class="no">RenderingTask</span><span class="o">.</span><span class="n">proxy_chain</span><span class="p">(</span><span class="ss">:load</span><span class="p">,</span> <span class="ss">:completion_ratio</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2523</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="n">renderingController</span><span class="o">.</span><span class="n">show</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
 ]]></content>
   </entry>
   
