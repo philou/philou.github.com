@@ -70,3 +70,5 @@ Here is a list of tools you can use to set up a todo list :
 - Any other todo list tool that suits you !
 
 If you are not already using a todo list, start now and become more productive ! No excuse !
+
+EDIT 2015-08-18 : [I am now using Personnal Kanban instead of TODO lists](/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/).
