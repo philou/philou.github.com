@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-08-18T06:23:13+00:00</updated>
+  <updated>2015-08-19T05:59:07+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,149 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mining GitHub For New Hires]]></title>
+    <link href="http://philippe.bourgau.net/mining-github-for-new-hires/"/>
+    <updated>2015-08-19T05:30:00+00:00</updated>
+    <id>http://philippe.bourgau.net/mining-github-for-new-hires</id>
+    <category term="github" /><category term="hiring" /><category term="programming" /><category term="ruby" />
+    <content type="html"><![CDATA[<h2>In search of an experienced software engineer</h2>
+
+<p>We have been trying to hire such a profile for the last year &hellip; The position is hopefully filled now. During that year, we have tried to mine <a href="https://github.com/">github</a> for candidates. Here is how we did it.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-08-19-mining-github-for-new-hires/github.png" title="Github's banner" ></p>
+
+<p>Software engineers, especially experienced, are known to be hard to find. Over the past months, we had steadily been improving our hiring process :</p>
+
+<ul>
+<li>By regularly rewriting and optimizing our job post</li>
+<li>By posting it on Twitter</li>
+<li>By defining a precise interview template</li>
+</ul>
+
+
+<p>We went from very few applications to :</p>
+
+<ul>
+<li>More applications</li>
+<li>More experienced candidates</li>
+<li>Regular interviews</li>
+<li>Effective interviews</li>
+</ul>
+
+
+<p>Unfortunately, we were still not interviewing candidates as skilled as we would have liked to. We were convinced that we were offering a great job : the project is very interesting, and the team is a dream to work in.</p>
+
+<h2>How could we reach more great devs ?</h2>
+
+<p>Someday, I played with <a href="https://github.com/">github</a>&rsquo;s Rest Api and I managed to write a short ruby script that finds the contributors to a given project that are living near Paris (France).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rest_client&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RestClient</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="s2">&quot;http://proxy:3128&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">github_get</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="no">RestClient</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.github.com</span><span class="si">#{</span><span class="n">resource</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="ss">params</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                              <span class="n">access_token</span><span class="p">:</span> <span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span><span class="p">,</span>
+</span><span class='line'>                              <span class="n">per_page</span><span class="p">:</span> <span class="mi">200</span><span class="p">}))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">repo</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;searching for </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> contributors in France&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">contributors</span> <span class="o">=</span> <span class="n">github_get</span><span class="p">(</span><span class="s2">&quot;/repos/</span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/contributors&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">logins_locations</span> <span class="o">=</span> <span class="n">contributors</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="n">login</span> <span class="o">=</span> <span class="n">user</span><span class="o">[</span><span class="s1">&#39;login&#39;</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">location</span> <span class="o">=</span> <span class="n">github_get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">#{</span><span class="n">login</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">[</span><span class="s1">&#39;location&#39;</span><span class="o">]</span>
+</span><span class='line'>    <span class="p">{</span><span class="ss">login</span><span class="p">:</span> <span class="n">login</span><span class="p">,</span> <span class="ss">location</span><span class="p">:</span> <span class="n">location</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;could not see details of </span><span class="si">#{</span><span class="n">login</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="p">{</span><span class="ss">login</span><span class="p">:</span> <span class="n">login</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Here are all the contributors&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">logins_locations</span>
+</span><span class='line'><span class="n">french_contributors</span> <span class="o">=</span> <span class="n">logins_locations</span><span class="o">.</span><span class="n">select</span> <span class="k">do</span> <span class="o">|</span><span class="n">login_location</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">location</span> <span class="o">=</span> <span class="n">login_location</span><span class="o">[</span><span class="ss">:location</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">location</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="p">(</span><span class="n">location</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;france&#39;</span><span class="p">)</span> <span class="ow">or</span>
+</span><span class='line'>     <span class="n">location</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;paris&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;----------------------------&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Here are all the frenchcontributors&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">french_contributors</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What&rsquo;s next ?</h2>
+
+<p>We eventually filled the position before following our github experiment. We might continue some day though ! Here is a list of improvements I thought of :</p>
+
+<ul>
+<li>Gather a list of projects that overlap with what we are building</li>
+<li>Search for repositories using some keyword or regular expression</li>
+<li>List github users that contributed to such projects, that live near us and that know java</li>
+<li>Use more complex algorithms to find best candidates (<a href="http://www.hackdiary.com/2010/02/10/algorithmic-recruitment-with-github/">Algorithmic Recruitment With GitHub</a>)</li>
+<li>Spend more time socializing on GitHub (<a href="http://www.sourcecon.com/news/2014/01/21/the-complete-guide-to-recruiting-and-sourcing-candidates-on-github/">The Complete Guide To Recruiting And Sourcing Candidates On GitHub</a>)</li>
+</ul>
+
+
+<p>It really looks like if software is eating recruitment &hellip;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira]]></title>
@@ -3896,148 +4039,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
 <p>&hellip; or dragged away &hellip;</p>
 
 <p>&hellip; or trampled &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks]]></title>
-    <link href="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/"/>
-    <updated>2014-06-12T06:28:00+00:00</updated>
-    <id>http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks</id>
-    <category term="cucumber" /><category term="gem" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
-
-<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
-
-<h3>Use pronouns to reference previously introduced items</h3>
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the tool &#39;screwdriver&#39;</span>
-</span><span class='line'><span class="k">When </span><span class="nf">this tool is used</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">A_TOOL</span> <span class="o">=</span> <span class="no">NameOrPronounTransform</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="s1">&#39;hammer&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Given</span> <span class="sr">/^(</span><span class="si">#{</span><span class="no">A_TOOL</span><span class="si">}</span><span class="sr">)$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">tool</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">GivenEither</span> <span class="sr">/^the dog named &quot;(.*)&quot;$)$/</span><span class="p">,</span>
-</span><span class='line'>            <span class="sr">/^the following dogs$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs_table</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the dog &quot;</span><span class="s">Rolphy</span><span class="nf">&quot;</span>
-</span><span class='line'><span class="nf">...</span>
-</span><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">  |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k"> |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Volt</span><span class="k"> |</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Add default values to the hashes of a table</h3>
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
-</span><span class='line'><span class="k">  |</span><span class="s"> names</span><span class="k"> |</span><span class="s"> color</span><span class="k"> |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">   |</span><span class="s"> white</span><span class="k"> |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k">  |</span><span class="s"> Sand</span><span class="k">  |</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dogs$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">hashes</span> <span class="o">=</span> <span class="n">dogs</span><span class="o">.</span><span class="n">hashes_with_defaults</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;tail&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;wagging&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;not nice&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#  hashes.each do |hash|</span>
-</span><span class='line'><span class="c1">#    expect(hash[&#39;smell&#39;]).to eq(&#39;not nice&#39;)</span>
-</span><span class='line'><span class="c1">#  end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Define named lists from a table</h3>
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dishes</span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Spaghetti Bolognaise</span><span class="k"> |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Spaghetti</span><span class="k"> |</span><span class="s"> Bolognaise sauce</span><span class="k"> |       |         |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Burger</span><span class="k">               |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Bread</span><span class="k">     |</span><span class="s"> Meat</span><span class="k">             |</span><span class="s"> Salad</span><span class="k"> |</span><span class="s"> Ketchup</span><span class="k"> |</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dishes$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dishes</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">name_2_dishes</span> <span class="o">=</span> <span class="n">dishes</span><span class="o">.</span><span class="n">hash_2_lists</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#  expect(name_2_dishes[&#39;Burger&#39;]).to eq([&#39;Bread&#39;,&#39;Meat&#39;,&#39;Salad&#39;,&#39;Ketchup&#39;])</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
 ]]></content>
   </entry>
   
