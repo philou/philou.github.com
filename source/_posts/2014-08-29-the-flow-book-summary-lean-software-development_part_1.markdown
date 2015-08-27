@@ -37,8 +37,8 @@ Lately, I've been thinking of an economical framework of my own, that I could us
 4. [Measure the business value of your spikes and take high payoff risks](/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/)
 5. [What optimization should we work on ?](/what-optimization-should-we-work-on-lean-software-development-part-5/)
 6. [You don't have to ask your boss for a fast build](/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/)
-7. A Plan for Technical Debt
-6. Measure the value of the lean startup 'learning'
-8. Summing it up for my next side project
+7. [A Plan for Technical Debt](/a-plan-for-technical-debt-lean-software-development-part-7/)
+8. Measure the value of the lean startup 'learning'
+9. Summing it up for my next side project
 
 Next part will feature an explanation of the XP practices with the lean principles. Stay tuned.

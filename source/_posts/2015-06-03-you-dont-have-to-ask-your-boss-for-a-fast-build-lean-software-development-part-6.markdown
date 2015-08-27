@@ -52,4 +52,4 @@ While designing the 777 Boeing used a similar decision rule to meet the required
 
 Finally, it would be great if we had the same rule for technical debt ! Imagine that you knew both the costs of fixing and not fixing your technical debt, you could then decided whether it makes sense to work on the debt right now or not. But that's for a later experiment.
 
-This was part 6 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 5 was [What optimization should we work on ?](/what-optimization-should-we-work-on-lean-software-development-part-5/), Part 6 will be "A Plan for Technical Debt".
+This was part 6 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 5 was [What optimization should we work on ?](/what-optimization-should-we-work-on-lean-software-development-part-5/), Part 7 will be [A Plan for Technical Debt](/a-plan-for-technical-debt-lean-software-development-part-7/).
