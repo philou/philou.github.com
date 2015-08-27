@@ -4,7 +4,7 @@
   <title><![CDATA[Category: planning | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/planning/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-08-19T05:59:07+00:00</updated>
+  <updated>2015-08-27T06:15:24+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,214 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A Plan For Technical Debt (Lean Software Development Part 7)]]></title>
+    <link href="http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7/"/>
+    <updated>2015-08-20T17:11:00+00:00</updated>
+    <id>http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7</id>
+    <content type="html"><![CDATA[<p>The sad truth :</p>
+
+<blockquote><p>The <a href="http://en.wikipedia.org/wiki/Technical_debt">technical debt</a> metaphor does not help me to fix it.</p></blockquote>
+
+<p>{% img center /imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/debt.jpg &ldquo;A desperate man counting his debts&rdquo; %}</p>
+
+<p>Here is my modest 2€ plan about how to try to get out of this.</p>
+
+<h2>Why does the metaphor fall short ?</h2>
+
+<p>The debt comparison effectively helps non programming people to understand that bad code costs money. Unfortunately, it does not tell you how much. As a consequence, deciding whether it&rsquo;s best to fix the technical debt or to live with it remains a gut feeling decision <del>(aka programmers want to stop the world and fix all of it while the product owner wants to live with it)</del>.</p>
+
+<p>They are very good reason why we cannot measure how much the technical debt costs :</p>
+
+<ul>
+<li>It is purely subjective : bad code for someone might be good code for another. Even worse, as you become a better programmer, yesterday&rsquo;s master piece might become today&rsquo;s crap. More often, as a team gains insight on the domain, old code might suddenly appear completely wrong &hellip;</li>
+<li>Tools such as Sonar only spot the a small part of the debt. The larger part (design, architecture and domain) remains invisible</li>
+<li>Finally, non-remediation cost (the time wasted working on the bad code) is often overlooked and very difficult to measure : it depends on what you are going to work in the future !</li>
+</ul>
+
+
+<p>No surprise it&rsquo;s difficult to convince anyone else why fixing your debt is a good investment.</p>
+
+<p><a href="http://www.dilbert.com">{% img center /imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/dilbert.jpg &ldquo;A dilbert cartoon about a programmer killed by technical debt&rdquo; %}</a></p>
+
+<h2>The Plan</h2>
+
+<p>In the team, we usually try not to create debt in the first place. We have strong code conventions and working agreements. We are doing a lot of refactoring in order to keep our code base clean. But even with all this, debt creeps in :</p>
+
+<ul>
+<li>a pair worked on something and did not know that there is another part of the system that does roughly the same thing</li>
+<li>we understand something new about the domain and some previously fine code becomes debt !</li>
+<li>like all programmers, we are constantly in a hurry, and sometimes, we just let debt through</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>If the required refactoring is small enough, we just slip it inside a user story and do it on the fly. The real problem comes larger refactorings.</p>
+
+<p>The strategy to deal with those is to get estimations of both the remediation and non-remediation costs. This way, the technical debt becomes an investment ! Invest X$ now and receive Y$ every month up to the end of the life of product. Provided you have the Cost Of Delay of the product, you can estimate the cost of delay of this individual technical debt fix. For example :</p>
+
+<ul>
+<li>Let&rsquo;s define the product horizon as its expected remaining life span at any moment</li>
+<li>Suppose the product has a 5 years (60 months) horizon</li>
+<li>Suppose the Cost Of Delay of the full product is 150K€/month</li>
+<li>Suppose that the technical debt costs 10 days (0.5 month) to fix</li>
+<li>Suppose that that once fixed, you&rsquo;ll save 2 days (0.1 month) of work per month</li>
+<li>By doing the fix now, at the end of the 5 years, you would have saved : <em>(60 &ndash; 0.5) * 0.1 &ndash; 0.5 = 5.45 months</em></li>
+<li>Using CoD, this ammounts to : <em>5.45 * 159K = 817.5K €</em></li>
+<li>Dividing by the number of months, we finaly get the CoD for this technical debt fix : <em>817.5K / 60 = 13 625 €/month</em></li>
+</ul>
+
+
+<p>This can be compared to the CoD of other backlog items, allowing us to prioritize large refactorings as we would of any feature or story.</p>
+
+<p>One nice thing about this is that it not only helps to know if a refactoring is cost effective, but also when is the best moment to do it. As the CoD of the refactoring is proportional to inverse of the product horizon, a premature refactoring for a startup product might become a real bargain after the product has settled as a market leader. Here are examples of possible product horizons :</p>
+
+<table>
+<thead>
+<tr>
+<th>Context </th>
+<th> Horizon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Startup </td>
+<td> 6 months</td>
+</tr>
+<tr>
+<td>3 years old company </td>
+<td> 3 years</td>
+</tr>
+<tr>
+<td>Market leading product </td>
+<td> 10 years</td>
+</tr>
+<tr>
+<td>Aging System </td>
+<td> 5 years</td>
+</tr>
+<tr>
+<td>Legacy System </td>
+<td> 2 years</td>
+</tr>
+</tbody>
+</table>
+
+
+<br/>
+
+
+<p>Oh, and just one more thing &hellip; prioritizing technical debt fixes in your backlog will create some real time to focus on and only on refactoring, reducing task switching and saving even more time.</p>
+
+<p>All this sounds great ! There&rsquo;s just one last little thing : how do we get estimations of both costs of the technical debt ?</p>
+
+<h2>Idea 1 : Collective Estimations</h2>
+
+<p>When I attended Donald Reinertsen&rsquo;s training, I asked him the question and he answered :</p>
+
+<blockquote><p>I&rsquo;d gather the top programmers in a room and I&rsquo;d make them do an estimation of both costs.</p></blockquote>
+
+<p>So I asked my team if they wanted to do the following :</p>
+
+<ol>
+<li>whenever you spot a large piece of debt, create a JIRA issue for it</li>
+<li>at the end of your next sprint planning session, go through all your technical debt issues, and for each
+
+<ol>
+<li>estimate the remediation cost in story points</li>
+<li>estimate the non-remediation cost on the coming sprint, taking the prioritized stories into account</li>
+</ol>
+</li>
+<li>using the ROI horizon for every issues, collectively decide which one to tackle and add them to the sprint backlog</li>
+</ol>
+
+
+<p>To keep the story short, it did not stick. I bet it was just too boring.</p>
+
+<h2>Idea 2 : Technical Debt Code Annotations</h2>
+
+<p>During a retrospective, we discussed marking technical debt directly in the code to decide when to fix it. I created 2 code annotations so that this can be done. Here is an example of some identified technical debt :</p>
+
+<p>```java
+public final class Transformers {</p>
+
+<p>   private Transformers() {
+   }</p>
+
+<p>   @TechnicalDebt(storyPoints = 8, description =</p>
+
+<pre><code> "We need to find a way to do all the ast rewriting before staring the analysis", wastes = {
+ @Waste(date = "2015/05/14", hours = 16, summary =
+   "For union, we lost quite some time identifying which transformers were not copying the full tree")})
+</code></pre>
+
+<p>   public static AstNode analyzeAst(AstNode ast) {</p>
+
+<pre><code> ...
+</code></pre>
+
+<p>```</p>
+
+<p>The @TechnicalDebt annotation identifies areas of the code that could be improved.
+The @Waste annotation is a way to log time wasted because of this bad code.</p>
+
+<p>By comparing the time to fix the technical debt and the flow of extra work it incurs, we should be able to more easily justify and prioritize these in our backlog.</p>
+
+<p>We are thinking of writing a sonar plugin to keep track of this technical debt right in our <a href="http://www.sonarqube.org/">Sonar dashboard</a>. It would :</p>
+
+<ul>
+<li>create a technical debt item in sonar for every @TechnicalDebt annotation found in the code</li>
+<li>link it with a mirror technical debt issue in JIRA</li>
+<li>use the story points we entered in the annotation as remediation cost</li>
+<li>extrapolate the non remediation cost by the sum of wasted hours registered during the last month</li>
+</ul>
+
+
+<p>We just started using those, and I cannot give enough feedback for the moment. I bet not enough @Waste items will be entered though &hellip; again, it might just be too boring</p>
+
+<p><a href="http://www.sonarqube.org/">{% img center /imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/sonar-sqale.jpg &ldquo;A screenshot of Sonar Qube Sqale technical debt plugin&rdquo; %}</a></p>
+
+<h2>Idea 3 : Sonar and IDE Plugins</h2>
+
+<p>If it&rsquo;s too boring to add @Waste annotations in the code, it might be easier to have an IDE plugin with 1 big button to register some time wasted on the local @TechnicalDebt zone.</p>
+
+<p>Pushing things a bit further, it might even be possible to estimate non remediation cost by having a look at what files are read the more, what files are triggering the more test failures when changed, etc.</p>
+
+<p>Unfortunately, that&rsquo;s a long shot, we&rsquo;re definitely not there yet !</p>
+
+<h2>Possible Improvements</h2>
+
+<h3>The Mikado Method</h3>
+
+<p>Whether you&rsquo;ve got these estimations or not, it&rsquo;s always a good practice to learn how to  use the <a href="https://mikadomethod.wordpress.com/2010/02/02/the-mikado-method-in-under-a-minute/">mikado method</a>. It&rsquo;s great to split a refactoring into smaller part and spread them over many sprints.</p>
+
+<p>The pill is easier to swallow for everyone, and it keeps the code releasable at any given time.</p>
+
+<h3>Decision Rule</h3>
+
+<p>Provided you have :</p>
+
+<ul>
+<li>Product CoD</li>
+<li>Top Features CoD</li>
+<li>Product horizon</li>
+</ul>
+
+
+<p>You could easily come up with a <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">decision rule</a> to help us prioritizing technical debt more quickly, without the need for a formal planning.</p>
+
+<h2>References</h2>
+
+<ul>
+<li><a href="http://fr.slideshare.net/zazworka/identifying-and-managing-technical-debt">Identifying and Managing Technical Debt</a></li>
+<li><a href="http://www.amazon.com/Managing-Software-Debt-Inevitable-Development/dp/0321948610/ref=sr_1_2?ie=UTF8&amp;qid=1433246385&amp;sr=8-2&amp;keywords=managing+technical+debt">Managing Technical Debt</a></li>
+</ul>
+
+
+<p>This was part 7 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 6 was <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>, Part 8 will be &ldquo;Measure the value of the lean startup &lsquo;learning&rsquo;&rdquo;.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Can agile teams commit?]]></title>
@@ -30,13 +238,13 @@
 
 <p>Discuss with your experts, take some margin, do whatever voodoo you are used to. This will not be worse than it used to be. It might turn out better, thanks to your agile process, you should be able to deploy with a reduced the scope if needed.</p>
 
-<p><img class="center" src="/imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg" title="A guy entranced with voodoo" ></p>
+<p>{% img center /imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg A guy entranced with voodoo %}</p>
 
 <h2>Use your agile process metrics</h2>
 
 <p>This technique is explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a>, in section &ldquo;Risk Management&rdquo;, page 227.</p>
 
-<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img class="center" src="/imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg" title="The cover of The Art of Agile Development" ></a></p>
+<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">{% img center /imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg The cover of The Art of Agile Development%}</a></p>
 
 <h3>Let&rsquo;s estimate the time you&rsquo;ll need before the release</h3>
 
