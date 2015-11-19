@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: open-source | Philippe Bourgau's blog]]></title>
+  <title><![CDATA[Category: open source | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/open-source/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-11-19T21:45:46+00:00</updated>
+  <updated>2015-11-19T21:56:25+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,23 +14,117 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Automatic Travis daily build with Heroku scheduler]]></title>
-    <link href="http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler/"/>
-    <updated>2014-03-24T06:31:00+00:00</updated>
-    <id>http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler</id>
-    <content type="html"><![CDATA[<p>As <a href="/auchandirect-scrapi-an-unofficial-api-ruby-gem/">I just released</a> <a href="https://github.com/philou/auchandirect-scrAPI">auchandirect-scrAPI</a>, and that it relies on scrapping, I needed a daily build.</p>
+    <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
+    <link href="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/"/>
+    <updated>2014-01-21T06:50:00+00:00</updated>
+    <id>http://philippe.bourgau.net/online-store-scrapping-dsl-gem</id>
+    <content type="html"><![CDATA[<p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
 
-<p>The <a href="https://travis-ci.org">Travis</a> team <a href="https://github.com/travis-ci/travis-ci/issues/582">is already working</a> on this, and I found a small utility app called <a href="http://traviscron.pythonanywhere.com/">TravisCron</a> where anyone can register his repo for an automatic build.</p>
+<p>As explained in the Readme, it allows one to declare a store this way :</p>
 
-<p>Unfortunately, the feature is not yet ready in Travis, and the TravisCron guys did not yet activate my repo. After having a look at the <a href="https://github.com/FiloSottile/travis-cron">TravisCron source code</a> and the <a href="https://github.com/travis-ci/travis.rb">Travis API</a>, I found out that it is really simple to do the same thing on my own.</p>
+<p>```ruby
+Storexplore::define_api &lsquo;dummy-store.com&rsquo; do</p>
 
-<p>That&rsquo;s how I created <a href="https://github.com/philou/daily-travis">daily-travis</a>. It&rsquo;s a tiny Rake task, ready to be pushed and automaticaly scheduled on heroku that will restart the latest build when run.</p>
+<p>  categories &lsquo;a.category&rsquo; do</p>
 
-<p>Details are in the <a href="https://github.com/philou/daily-travis/blob/master/README.md">README</a></p>
+<pre><code>attributes do
+  { :name =&gt; page.get_one("h1").content }
+end
 
-<p>@Travis : Thanks again for your service.</p>
+categories 'a.category' do
+  attributes do
+    { :name =&gt; page.get_one("h1").content }
+  end
 
-<p><img class="center" src="/imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg" title="I love Travis logo" ></p>
+  items 'a.item' do
+    attributes do
+      {
+        :name =&gt; page.get_one('h1').content,
+        :brand =&gt; page.get_one('#brand').content,
+        :price =&gt; page.get_one('#price').content.to_f,
+        :image =&gt; page.get_one('#image').content,
+        :remote_id =&gt; page.get_one('#remote_id').content
+      }
+    end
+  end
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>And to use it like that :</p>
+
+<p>```ruby
+Api.browse(&lsquo;<a href="http://www.dummy-store.com">http://www.dummy-store.com</a>&rsquo;).categories.each do |category|</p>
+
+<p>  puts &ldquo;category: #{category.title}&rdquo;
+  puts &ldquo;attributes: #{category.attributes}&rdquo;</p>
+
+<p>  category.categories.each do |sub_category|</p>
+
+<pre><code>puts "  category: #{sub_category.title}"
+puts "  attributes: #{sub_category.attributes}"
+
+sub_category.items.each do |item|
+
+  puts "    item: #{item.title}"
+  puts "    attributes: #{item.attributes}"
+
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>I tried my best to make this library high quality :</p>
+
+<ul>
+<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
+<li>Real world features like constant memory usage have been added to fix production bugs</li>
+<li>Documented with samples and rdoc</li>
+<li>Extensive automated testing</li>
+</ul>
+
+
+<p>Let&rsquo;s hope it will be usefull for some.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem/"/>
+    <updated>2013-09-25T21:29:00+00:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem</id>
+    <content type="html"><![CDATA[<p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<p><code>ruby
+gem 'spec_combos', :group =&gt; 'test'
+</code></p>
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<p><code>ruby
+expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</code></p>
+
+<p>It outputs the following error :</p>
+
+<p>```text
+Failure/Error: expect([1,2,3]).to all<em>{and</em>(be_odd, be_instance_of(Fixnum))}
+  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:</p>
+
+<pre><code>[1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+  expected odd? to return true, got false
+</code></pre>
+
+<p>```</p>
+
+<p>I hope this might help !</p>
 ]]></content>
   </entry>
   
