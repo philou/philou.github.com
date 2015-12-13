@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2015-12-04T05:10:42+00:00</updated>
+  <updated>2015-12-13T08:15:39+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I'll measure the lean startup value of information in my next side project (Lean Software Development Part 8)]]></title>
+    <link href="http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/"/>
+    <updated>2015-12-07T21:19:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8</id>
+    
+    <content type="html"><![CDATA[<p>There must be a way to know the real money value of Lean Startup &lsquo;knowledge&rsquo;.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/knowledge-money.jpg" title="A brain or some money ?" ></p>
+
+<p>Lean Startup is about gathering &lsquo;knowledge&rsquo; through experiments instead of building things. Flow book suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.</p>
+
+<p>The overall plan would be :</p>
+
+<ol>
+<li>Start with a rough business plan, but assume that all that&rsquo;s in it has got 1 chance out of 10 of being right</li>
+<li>Design experiments to precise the likelyhood of what&rsquo;s in the business plan</li>
+<li>Compute the value of each experiment as the difference of the expected bottom line after and before running it (This should be possible if relying on the business plan for other parameters)</li>
+<li>Work on the task with the highest expected value, be it an experiment, a development, a sales task, or whatever</li>
+<li>Adapt you business plan with any new information</li>
+<li>Repeat</li>
+<li>If it becomes obvious that the expected final earnings are too low, pivot</li>
+</ol>
+
+
+<p>Flow explains that all the principles are pretty robust to bad inputs and errors. In short, the final estimations of earnings are still a lot better than without using any specific method. In the case of Lean Startup, it means that a false business plan is a good enough starting point.</p>
+
+<h2>How to assess the likelyhood of a figure ?</h2>
+
+<p>By default let&rsquo;s assume the value of a feature is somewhere between 0 and your highest estimate. As we&rsquo;ll go through experiments we&rsquo;ll be able to narrow this value range and have a more accurate estimate for the real value.</p>
+
+<p>To keep things simple we could assume that the probability of value is uniformaly distributed within this range. From what I read in <a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">Waltzing With Bears</a>, here would be a more realistic probability distribution.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/Demarco-probability.png" title="The curve of the probability of value according to DeMarco" ></p>
+
+<h2>How to estimate the value of an experiment ?</h2>
+
+<p>I&rsquo;m not going to go into the details here, because the logic is exactly the same as with technical experiments (which <a href="http://philippe.bourgau.net/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">I already wrote about</a>)</p>
+
+<p>Since then though, I read <a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">Waltzing With Bears</a> which presents a way of doing Monte Carlo simulations in order to estimate risks on your project. I guess the same thing could be used for value, which would save us from a lot of complex math.</p>
+
+<p><a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears"><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/waltzing-with-bears.jpg" title="Cover of 'Waltzing With Bears'" ></a></p>
+
+<h2>When to stop doing experiments ?</h2>
+
+<p>Isn&rsquo;t all this overkill ? One could argue that the point of Lean Startup should be to build just enough knowledge ! In fact, this value of information concept naturaly helps to find out when running the experiment is not worth it compared to actually doing the real thing.</p>
+
+<p>BTW, a tool doing all this for your automaticaly would be great, wouldn&rsquo;t it ?</p>
+
+<h2>What I&rsquo;ll do for my next bootstrap side project</h2>
+
+<ol>
+<li>Start with a target hourly earning rate.</li>
+<li>Collect a list of projects I&rsquo;d be interested in.</li>
+<li>Pick a project and write a business goal for it.</li>
+<li>Assign likelyhoods and ranges on every figure in the business plan.</li>
+<li>Design experiments to improve the figures.</li>
+<li>Create tasks to actually build and sell the product.</li>
+<li>Compute values for each of these tasks.</li>
+<li>Work the most valueable first.</li>
+<li>If the figures prove that I will not make my target wage with this project, I&rsquo;ll pivot, and restart from 2.</li>
+<li>Otherwise, I&rsquo;ll repeat from 4.</li>
+</ol>
+
+
+<p>This was part 8 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 7 was <a href="http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7/">A Plan for Technical Debt</a>, Part 9 will be &ldquo;Summing it up for my next side project&rdquo;.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fixing the 'TLS-enabled daemon' docker error on Ubuntu]]></title>
@@ -481,7 +550,7 @@ The @Waste annotation is a way to log time wasted because of this bad code.</p>
 </ul>
 
 
-<p>This was part 7 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 6 was <a href="http://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>, Part 8 will be &ldquo;Measure the value of the lean startup &lsquo;learning&rsquo;&rdquo;.</p>
+<p>This was part 7 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 6 was <a href="http://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>, Part 8 will be <a href="http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a></p>
 ]]></content>
   </entry>
   
@@ -2777,57 +2846,6 @@ Here is what we&rsquo;ll ship.</p>
 </blockquote>
 
 <p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to setup a weekly fruit basket in no time]]></title>
-    <link href="http://philippe.bourgau.net/how-to-setup-a-weekly-fruit-basket-in-no-time/"/>
-    <updated>2014-12-17T07:11:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-setup-a-weekly-fruit-basket-in-no-time</id>
-    <category term="team building" /><category term="workplace" />
-    <content type="html"><![CDATA[<p><a href="http://www.groupe-patus.fr/wp-content/uploads/2014/03/07-Beautiful-Fruit-Wallpapers.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruit.jpg" title="&#34;A multi-fruit sandwich&#34;" alt="&#34;A multi-fruit sandwich&#34;"></a></p>
-
-<p>If you&rsquo;re interested in agile software development, just read Kent Beck&rsquo;s <a href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/B00CF6EJG8/ref=sr_1_1?ie=UTF8&amp;qid=1417609208&amp;sr=8-1&amp;keywords=embrace+change+1st+edition">Extreme Programming Explained : Embrace Change 1st edition</a>. It&rsquo;s only 200 pages, it was written in 1999, but it&rsquo;s still tremendously relevent, and it&rsquo;s got the highest ratio of information per page on the subject.</p>
-
-<p>If you actually read it, you&rsquo;ll notice that Kent emphasizes about having food at the office. He claims that it improves the moral and builds team cohesion.</p>
-
-<p>As my company already provides free drinks, my first attempt was to asked for weekly fresh fruits baskets. They are currently experimenting regular self service fruit baskets deliveries in some offices. Unfortunately not in ours yet. Let&rsquo;s hope it changes soon. Meanwhile, we decided to handle the thing ourselves.</p>
-
-<h2>Here comes the fruit basket lean startup !</h2>
-
-<h3>First, let&rsquo;s setup the simplest way it could possibly work</h3>
-
-<ul>
-<li>Invest 10€</li>
-<li>Buy some fruits from the closest shop</li>
-<li>Put them in a basket next to my desk</li>
-<li>Let people buy them for 50c each</li>
-<li>Leave a plastic cup next to the basket to receive the money</li>
-<li>Hold the accounting public and visible in your wiki for example</li>
-<li>Repeat every monday</li>
-</ul>
-
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruits-basket.jpg" title="&#34;Our fruit basket at my desk&#34;" alt="&#34;Our fruit basket at my desk&#34;"></p>
-
-<h3>Then, verify that it is sustainable</h3>
-
-<p>It turns out it works fine !</p>
-
-<h3>&hellip; Until someone started to steal some money !</h3>
-
-<p>If we forgot to hide the money cup before we left in the evening, obvious isn&rsquo;t it ?
-We tried the following, in that order :</p>
-
-<ol>
-<li>Setup an automatic reminder to hide the money before leaving &hellip; FAIL</li>
-<li>Setup a fake webcam and a warning notice &hellip; FAIL</li>
-<li>Only keep 1€ worth of change in the money cup, and repeatedly lock up the rest in a safe place &hellip; SUCCESS !</li>
-</ol>
-
-
-<p>With just a bit of time, anyone, anywhere can setup a fresh fruit basket at work. It does improve the moral and build the team.</p>
 ]]></content>
   </entry>
   

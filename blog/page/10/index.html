@@ -99,6 +99,80 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/rspec-messes-up-stubs-and-expectations/">Rspec Messes Up Stubs and Expectations</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-10-20T00:00:00+00:00" pubdate data-updated="true">Oct 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><p>Here is an example showing the issue :<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p />This example should obviously fail, but it passes ! Here is a working (failing) version :<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+<p /> I am using rspec 1.3.0. Did you fall into the same issues ? Is this fixed in rspec 2 ?</p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/75417332/">Automaticaly Rollback Static Overrides When Testing Legacy Code</a></h1>
     
     
@@ -710,6 +784,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&#8217;ll measure the lean startup value of information in my next side project (Lean Software Development Part 8)</a>
+      </li>
+    
+      <li class="post">
         <a href="/fixing-the-tls-enabled-daemon-docker-error-on-ubuntu/">Fixing the &#8216;TLS-enabled daemon&#8217; docker error on Ubuntu</a>
       </li>
     
@@ -723,10 +801,6 @@
     
       <li class="post">
         <a href="/silosis/">Silosis</a>
-      </li>
-    
-      <li class="post">
-        <a href="/feedback-on-360-degrees-feedback-session/">Feedback On 360° Feedback Session</a>
       </li>
     
   </ul>
