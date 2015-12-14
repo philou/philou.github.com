@@ -4,14 +4,18 @@ title: "How I'll measure the lean startup value of information in my next side p
 date: 2015-12-07 21:19
 comments: true
 categories:
-keywords:
-description:
+ - lean
+ - software
+ - planning
+ - business value
+keywords: "Lean, Lean Startup, Lean Software Development, Lean Development"
+description: "Explanation of how I am going to try to prioritize between Lean Startup experiments and other activities"
 ---
-There must be a way to know the real money value of Lean Startup 'knowledge'.
+There must be a way to know the real money value of [Lean Startup](http://theleanstartup.com/) 'knowledge'.
 
 {% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/knowledge-money.jpg A brain or some money ? %}
 
-Lean Startup is about gathering 'knowledge' through experiments instead of building things. Flow book suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.
+Lean Startup is about gathering 'knowledge' through experiments instead of building things. [Flow book](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_3?ie=UTF8&qid=1450068976&sr=8-3&keywords=lean+product+development) suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.
 
 The overall plan would be :
 
