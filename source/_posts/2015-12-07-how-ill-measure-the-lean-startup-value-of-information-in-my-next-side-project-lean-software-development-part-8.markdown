@@ -64,4 +64,4 @@ BTW, a tool doing all this for your automaticaly would be great, wouldn't it ?
 9. If the figures prove that I will not make my target wage with this project, I'll pivot, and restart from 2.
 10. Otherwise, I'll repeat from 4.
 
-This was part 8 of my [suite of article about Lean Software Development](/the-flow-book-summary-lean-software-development_part_1/), Part 7 was [A Plan for Technical Debt](/a-plan-for-technical-debt-lean-software-development-part-7/), Part 9 will be "Summing it up for my next side project".
+This was part 8 of my [suite of article about Lean Software Development](/the-flow-book-summary-lean-software-development_part_1/), Part 7 was [A Plan for Technical Debt](/a-plan-for-technical-debt-lean-software-development-part-7/), Part 9 will be [My Dream Lean Software Development Tool](/my-dream-lean-software-development-tool-lean-software-development-part-9/).

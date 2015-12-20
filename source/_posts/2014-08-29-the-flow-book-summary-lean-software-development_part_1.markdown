@@ -39,6 +39,6 @@ Lately, I've been thinking of an economical framework of my own, that I could us
 6. [You don't have to ask your boss for a fast build](/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/)
 7. [A Plan for Technical Debt](/a-plan-for-technical-debt-lean-software-development-part-7/)
 8. [How I'll Measure the Lean Startup Value of Information in My Next Side Project](/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/)
-9. Summing it up for my next side project
+9. [My Dream Lean Software Development Tool](/my-dream-lean-software-development-tool-lean-software-development-part-9/)
 
 Next part will feature an explanation of the XP practices with the lean principles. Stay tuned.
