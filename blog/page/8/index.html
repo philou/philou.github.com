@@ -99,6 +99,42 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/toomanyredirects-when-changing-ssl-requiremen/">TOO_MANY_REDIRECTS When Changing Ssl Requirements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-28T00:00:00+00:00" pubdate data-updated="true">Jan 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-copy-a-database-from-an-heroku-app-to/">How to Copy a Database From an Heroku App to Another</a></h1>
     
     
@@ -816,162 +852,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/setting-up-postgre-91-for-rails-development/">Setting Up Postgre 9.1 for Rails Development</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-28T00:00:00+00:00" pubdate data-updated="true">May 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
-
-
-<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="c">#!/bin/sh</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">## packages dependencies</span>
-</span><span class='line'> sudo apt-get install libxml2-dev libxslt1-dev postgresql libpq-dev sqlite3 libsqlite3-dev
-</span><span class='line'>
-</span><span class='line'><span class="c">## installing gems</span>
-</span><span class='line'> bundle install   rbenv rehash
-</span><span class='line'>
-</span><span class='line'><span class="c">## creating dbs</span>
-</span><span class='line'> sudo -u postgres createuser --superuser mes_courses
-</span><span class='line'> sudo -u postgres psql --command<span class="o">=</span><span class="s2">&quot;alter user mes_courses with encrypted password &#39;secret&#39;&quot;</span>
-</span><span class='line'> sudo sed -i <span class="s1">&#39;s/\(local *all *all *\)peer/\1md5/&#39;</span> /etc/postgresql/9.1/main/pg_hba.conf
-</span><span class='line'> bundle <span class="nb">exec </span>rake db:create:all
-</span><span class='line'>
-</span><span class='line'><span class="c">## initializing dbs</span>
-</span><span class='line'> bundle <span class="nb">exec </span>rake db:migrate
-</span><span class='line'> <span class="nv">RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>bundle <span class="nb">exec </span>rake db:migrate
-</span><span class='line'> <span class="nv">RAILS_ENV</span><span class="o">=</span>production bundle <span class="nb">exec </span>rake db:migrate
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>Here is the corresponding config/database.yml</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'> <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_development</span>
-</span><span class='line'> <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'> <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'> <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'> <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'> <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'> <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'> <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'> <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_test</span>
-</span><span class='line'> <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'> <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'> <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'> <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'> <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'> <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'> <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-</span><span class='line'> <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'> <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_production</span>
-</span><span class='line'> <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'> <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'> <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'> <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'> <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'> <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'> <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>Hope this helps !</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -1043,6 +923,10 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-write-good-performance-stories/">How To Write Good Performance Stories</a>
+      </li>
+    
+      <li class="post">
         <a href="/great-developers-are-free/">Great Developers Are Free</a>
       </li>
     
@@ -1056,10 +940,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&#8217;ll measure the lean startup value of information in my next side project (Lean Software Development Part 8)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/fixing-the-tls-enabled-daemon-docker-error-on-ubuntu/">Fixing the &#8216;TLS-enabled daemon&#8217; docker error on Ubuntu</a>
       </li>
     
   </ul>
