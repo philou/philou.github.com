@@ -4,7 +4,7 @@
   <title><![CDATA[Category: agile | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-01-08T09:24:53+00:00</updated>
+  <updated>2016-01-08T09:31:29+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How To Write Good Performance Stories]]></title>
+    <link href="http://philippe.bourgau.net/how-to-write-good-performance-stories/"/>
+    <updated>2016-01-08T07:58:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-write-good-performance-stories</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re having difficulties writing good performance related stories for your projet, that&rsquo;s no surprise ! We&rsquo;ve been through the same troubles and we found a way that works a lot better.</p>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg" title="A Mb speed counter" ></p>
+
+<p>TODO picture of something fast</p>
+
+<h2>Solution 1 : <a href="/performance-is-a-feature/">Performance is a feature</a></h2>
+
+<p>Right ? In typical agile way, a story about performance would be written like</p>
+
+<blockquote><p>As marketting, I want the page load to perform under 1 second, In order for the customers to stay on the site</p></blockquote>
+
+<p>If the performance bottleneck and the fix are obvious, that might work very well. If that&rsquo;s your case, then go on, that&rsquo;s the simplest way!</p>
+
+<p>Unfortunately for us, we are not in that case. <a href="http://www.murex.com">At work</a> we are building a risk engine and we need to perform extremely well on a wide set of different scenarios. Imagine a story such as</p>
+
+<blockquote><p>As a risk manager, I want the VAR scenario to compute in less than 1 second, in order to have real time data</p></blockquote>
+
+<ul>
+<li>we&rsquo;re pretty sure that there won&rsquo;t be 1 but many bottlenecks to fix before reaching the expected performance</li>
+<li>speeding up the VAR scenario might slow down other scenarios</li>
+</ul>
+
+
+<p>That makes this kind of story too fuzzy. We tried them, and we had difficulties to estimate and close them.</p>
+
+<h2>Solution 2 : Back to the traditional way</h2>
+
+<p>Without an agile backlog, developers would have worked on tasks such as</p>
+
+<blockquote><p>Add caching to the computation engine</p></blockquote>
+
+<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, tt&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
+
+<h2>Solution 3 : Mixing both</h2>
+
+<p>Here is how we we are now writing performance stories at work :</p>
+
+<blockquote><p>As a risk manager, I want to have caching in the computation engine, in order to the VAR sceneario compute under 1 second (in order to have real time data)</p></blockquote>
+
+<p>It&rsquo;s now estimable, we know what it&rsquo;s there for. It&rsquo;s obviously not enough though : we know that we will very likely need to do other performance stories after this one.</p>
+
+<h2>Embrace uncertainty</h2>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg" title="A Maserati engine" ></p>
+
+<p>The fact is that in our context, getting better performances is <em>hard</em> :</p>
+
+<ul>
+<li>it requires a lot of work</li>
+<li>we don&rsquo;t know how much at the begining</li>
+<li>we often try things that don&rsquo;t work</li>
+</ul>
+
+
+<p>This makes the whole project more uncertain, so we&rsquo;re better off embracing this uncertainty in the way we write and prioritize our performance stories.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The technical debt ponzi scheme]]></title>
@@ -390,64 +454,6 @@ The @Waste annotation is a way to log time wasted because of this bad code.</p>
 
 
 <p>This was part 7 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 6 was <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>, Part 8 will be <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[You don't have to ask your boss for a fast build (Lean Software Development part 6)]]></title>
-    <link href="http://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/"/>
-    <updated>2015-06-03T04:43:00+00:00</updated>
-    <id>http://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6</id>
-    <content type="html"><![CDATA[<p>A slow build costs money. I mean it costs <em>a whole lot of money all the time !</em></p>
-
-<p>Spending some time to speed up the build is like an investment, you&rsquo;ll pay some money now, but then it&rsquo;s only a matter of time until you get a return on investment. Here is the trick, if you manage to get it quickly, no one will even notice that you spent some time making the build faster !</p>
-
-<p>With a bit of maths, you can even get what <a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1432909293&amp;sr=8-1&amp;keywords=reinertsen+flow">Reinertsen</a> calls a &ldquo;Decentralized Decision Rule&rdquo;, making it possible for anyone in the organization to figure out if he should spend some time on the build or not; without the need to ask the permission to anyone.</p>
-
-<p><a href="http://fr.wikipedia.org/wiki/Balance_%28instrument%29"><img class="center" src="/imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Balance_ordinaire.jpg" title="A 2-pan balance (From Wikipedia)" ></a></p>
-
-<h2>Our example</h2>
-
-<p>Our team is constituted of 5 pairs, each running the build at least 10 times per day. Let&rsquo;s figure out the value of 1 minute build time speed-up</p>
-
-<ul>
-<li>The whole team would save : 1m x 5 pairs x 10 builds = 50 minutes per day</li>
-<li>In a 2 weeks sprint, this would amount to around 1 day of work</li>
-</ul>
-
-
-<p>This means that if a pair spends half a day to get a 1 minute build speed-up, it would not change the output of the sprint, and it would in fact increase the throughput of the team for further sprints.</p>
-
-<p>Anyone in our team that spots a potential 1 minute build time speed-up that would take less that 1 man.day to implement should do it right away, without asking the permission to anyone</p>
-
-<h2>Other Benefits</h2>
-
-<p>A direct benefit is that the issue will not have to be re-discussed every time someone spots a build time improvement. This will save some management time, and more build speed-up actions will eventually be undertaken.</p>
-
-<p>The astute lean reader will have noticed that I completely ignored the second effect of fast feedback :</p>
-
-<ul>
-<li>if the build is faster</li>
-<li>we will run it more often</li>
-<li>we&rsquo;ll spot errors earlier</li>
-<li>less errors will be submitted</li>
-<li>the overall throughput will be increased even more</li>
-</ul>
-
-
-<p>Another hidden benefit concerns the <a href="http://en.wikipedia.org/wiki/Cost_of_delay">Cost of Delay</a> (the cost of not selling the product NOW). As Cost of Delay typically trumps the work costs, this means that any improvement to the build time will bring even greater ROI in the long term.</p>
-
-<h2>Variations</h2>
-
-<p><a href="http://en.wikipedia.org/wiki/Boeing_777"><img class="center" src="/imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Boeing_777.jpg" title="A Boeing 777 in flight over the mountains (From Wikipedia)" ></a></p>
-
-<p>If your sponsor agrees, you can negotiate a longer return on investment period for your decision rule. For example, if he agreed to increase the horizon to 2 sprints, we could undertake more build time speed-up tasks. You might also prefer only to discuss really long ROI investments with him.</p>
-
-<p>While designing the 777 Boeing used a similar decision rule to meet the required weight of the plan : any engineer could increase the production cost of 300$ provided it saved a pound of weight on the plane. This fixed issues they previously had with department weight budgets and escalation.</p>
-
-<p>Finally, it would be great if we had the same rule for technical debt ! Imagine that you knew both the costs of fixing and not fixing your technical debt, you could then decided whether it makes sense to work on the debt right now or not. But that&rsquo;s for a later experiment.</p>
-
-<p>This was part 6 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 5 was <a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What optimization should we work on ?</a>, Part 7 will be <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">A Plan for Technical Debt</a>.</p>
 ]]></content>
   </entry>
   
