@@ -13,8 +13,6 @@ If you're having difficulties writing good performance related stories for your 
 
 {% img center /imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg A Mb speed counter %}
 
-TODO picture of something fast
-
 ## Solution 1 : [Performance is a feature](/performance-is-a-feature/)
 
 Right ? In typical agile way, a story about performance would be written like
