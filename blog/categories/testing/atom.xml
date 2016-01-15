@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
+  <title><![CDATA[Category: Testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-01-08T09:38:13+00:00</updated>
+  <updated>2016-01-15T04:45:59+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,307 +14,27 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Performance is a feature]]></title>
-    <link href="http://philippe.bourgau.net/performance-is-a-feature/"/>
-    <updated>2015-01-19T06:46:00+00:00</updated>
-    <id>http://philippe.bourgau.net/performance-is-a-feature</id>
-    <content type="html"><![CDATA[<p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
-
-<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
-
-<h1>What&rsquo;s in it for us ?</h1>
-
-<p>If performance is indead a feature, then it can be managed like any feature :</p>
+    <title type="html"><![CDATA[The Agile Change Management Viral Hack]]></title>
+    <link href="http://philippe.bourgau.net/the-agile-change-management-viral-hack/"/>
+    <updated>2015-05-23T05:51:00+00:00</updated>
+    <id>http://philippe.bourgau.net/the-agile-change-management-viral-hack</id>
+    <content type="html"><![CDATA[<p>We just discovered a hack to spread agile (<a href="http://en.wikipedia.org/wiki/Behavior-driven_development">BDD</a> by the way) through an organization. It works provided :</p>
 
 <ul>
-<li><p>It should result from use cases</p>
-
-<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
-<li><p>It can be split into user stories</p></li>
+<li>There is a BDD testing expert in your team</li>
+<li>Your team is using the work of another software team from your company</li>
 </ul>
 
 
-<blockquote><ul>
-<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
-<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
-</ul>
-</blockquote>
+<p>If this team does not use agile practices, they are likely to regularly create regressions or to be late at providing new versions.</p>
 
-<ul>
-<li>They can be prioritized against other stories</li>
-</ul>
+<p>Use your client role in the relation, and propose your help ! Spend some time with them to help them put automated customer tests in place. Be genuinely nice with them, show example, be available and, obviously, bring improvement. With some chance, they might soon be asking for more.</p>
 
-
-<blockquote><ul>
-<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
-<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>The performance on these use cases should be automatically tested and non regressed</li>
-</ul>
-
-
-<blockquote><ul>
-<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
-<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
-</ul>
-</blockquote>
-
-<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Enabling agile practices and elephant taming]]></title>
-    <link href="http://philippe.bourgau.net/enabling-agile-practices-and-elephant-taming/"/>
-    <updated>2014-06-15T21:37:00+00:00</updated>
-    <id>http://philippe.bourgau.net/enabling-agile-practices-and-elephant-taming</id>
-    <content type="html"><![CDATA[<p>Everybody knows about the agile software development promise &ldquo;Regularly and continuously deliver value&rdquo;. This is how it is supposed to work :</p>
-
-<ul>
-<li>Iterative</li>
-<li>Focusing on what is needed now</li>
-<li>Release as soon as possible</li>
-<li>Planning small stories according to the team&rsquo;s velocity</li>
-</ul>
-
-
-<p><img class="center" src="/imgs/2014-06-15-enabling-agile-practices-and-elephant-taming/squirrel.jpg" title="A business A squirrel jumping from one tree to another (source mayamumu.centerblog.net)" ></p>
-
-<p>It all seems common sense and simple. Especialy for people who don&rsquo;t code. That&rsquo;s not the whole story though, let&rsquo;s have a look at a few variations :</p>
-
-<p>Suppose a team uses <a href="http://www.scrum.org">Scrum</a> but does not do any automated testing. As soon as the software will be used, bugs will create havoc in the planning. The velocity will quickly fall, within a few monthes, the team won&rsquo;t be able to add any value. Surely, things could be improved with some rewrite and upfront design &hellip; this does not sound like Scrum anymore.</p>
-
-<p>Now let&rsquo;s suppose that another team is also using Scrum, uses automated tests, but <a href="/sprints-are-not-sprints/">missunderstood Sprint</a> and KISS for quick-and-dirty-coding. Hopefully, this team won&rsquo;t get too many bugs in production ! Unfortunately, any change to the source code will trigger hundreds of test failures : again, the velocity will decrease. I&rsquo;ve been in such projects, in about 2 years, the team got really slow, and might eventually drop their test suit &hellip;</p>
-
-<p>These two examples show that automated testing improves the situation, but also that it is not enough ! There are quite a few agile practices that are in fact <em>enabling</em> practices. These are the practices that are required for the process to accomplish the agile promise described at the begining of this article. Most come from <a href="http://www.extremeprogramming.org/">eXtreme Programming</a> and have been reincarnated through <a href="http://manifesto.softwarecraftsmanship.org/">Software Craftsmanship</a>. That&rsquo;s what Kent Beck meant when he said that XP practices reinforce each other. Here are a few examples :</p>
-
-<p>For example let&rsquo;s take <strong>coding standards</strong> and <strong>pair programming</strong> which really seem to be a programmer choice.
-It turns out that they help to achieve <strong>collective code ownership</strong>.
-Which in turn helps to get &lsquo;switchable&rsquo; team members.
-Which helps to make good team estimates.
-Which is required to have have a reliable <strong>velocity</strong>.
-Which is a must have to regularly <strong>deliver value</strong> on commitment !</p>
-
-<p>It turns out that all of the other original <a href="http://www.extremeprogramming.org/rules.html">XP practices</a> help to achieve the agile promise.</p>
-
-<p><img class="center" src="/imgs/2014-06-15-enabling-agile-practices-and-elephant-taming/elephant-in-the-room.jpg" title="A business meeting with a real elephant in the room" ></p>
-
-<p>After a lot of time spent writing software, I now tend to think of the code as the elephant in the room. It directly or indirectly constrains every decision that is make. Recognize and tame your elephant or you&rsquo;ll get carted away &hellip;</p>
-
-<p>&hellip; or dragged away &hellip;</p>
-
-<p>&hellip; or trampled &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks]]></title>
-    <link href="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/"/>
-    <updated>2014-06-12T06:28:00+00:00</updated>
-    <id>http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks</id>
-    <content type="html"><![CDATA[<p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
-
-<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
-
-<h3>Use pronouns to reference previously introduced items</h3>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the tool 'screwdriver'
-When this tool is used
+<p><code>ruby
+Given there are too many bugs
+When you can help
+Then DO IT !
 </code></p>
-
-<p>steps.rb</p>
-
-<p>```ruby
-A_TOOL = NameOrPronounTransform(&lsquo;tool&rsquo;, &lsquo;hammer&rsquo;)</p>
-
-<p>Given /^(#{A_TOOL})$/ do |tool|
-  &hellip;
-end
-```</p>
-
-<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
-
-<p>steps.rb</p>
-
-<p>```ruby
-GivenEither /^the dog named &ldquo;(.*)&rdquo;$)$/,</p>
-
-<pre><code>        /^the following dogs$/ do |dogs_table|
-</code></pre>
-
-<p>  &hellip;
-end
-```</p>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the dog "Rolphy"
-...
-Given the following dogs
-  | Rex  |
-  | King |
-  | Volt |
-</code></p>
-
-<h3>Add default values to the hashes of a table</h3>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the following dogs
-  | names | color |
-  | Rex   | white |
-  | King  | Sand  |
-</code></p>
-
-<p>steps.rb</p>
-
-<p>```ruby
-Given /^the following dogs$$/ do |dogs|
-  hashes = dogs.hashes_with_defaults(&lsquo;names&rsquo;, &lsquo;tail&rsquo; => &lsquo;wagging&rsquo;, &lsquo;smell&rsquo; => &lsquo;not nice&rsquo;)</p>
-
-<h1>hashes.each do |hash|</h1>
-
-<h1>expect(hash[&lsquo;smell&rsquo;]).to eq(&lsquo;not nice&rsquo;)</h1>
-
-<h1>end</h1>
-
-<p>  &hellip;
-end
-```</p>
-
-<h3>Define named lists from a table</h3>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the following dishes
-  | Spaghetti Bolognaise | =&gt; | Spaghetti | Bolognaise sauce |       |         |
-  | Burger               | =&gt; | Bread     | Meat             | Salad | Ketchup |
-</code></p>
-
-<p>steps.rb</p>
-
-<p>```ruby
-Given /^the following dishes$$/ do |dishes|
-  name_2_dishes = dishes.hash_2_lists</p>
-
-<h1>expect(name_2_dishes[&lsquo;Burger&rsquo;]).to eq([&lsquo;Bread&rsquo;,&lsquo;Meat&rsquo;,&lsquo;Salad&rsquo;,&lsquo;Ketchup&rsquo;])</h1>
-
-<p>  &hellip;
-end
-```</p>
-
-<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
-    <link href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/"/>
-    <updated>2014-05-23T06:20:00+00:00</updated>
-    <id>http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies</id>
-    <content type="html"><![CDATA[<p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
-
-<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
-
-<p>Here are the pain points proxies try to fix :</p>
-
-<ul>
-<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
-<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
-</ul>
-
-
-<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
-
-<ul>
-<li>Verify actual load count without interfering in any behaviour</li>
-</ul>
-
-
-<p>```ruby
-it &lsquo;caches users&rsquo; do
-  users = User.capture_results_from(:load)</p>
-
-<p>  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)
-  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)</p>
-
-<p>  expect(users).to have_exactly(1).items
-end
-```</p>
-
-<ul>
-<li>Use proxies to stub an object that does not yet exist</li>
-</ul>
-
-
-<p>```ruby
-it &lsquo;rounds the completion ratio&rsquo; do
-   RenderingTask.proxy_chain(:load, :completion_ratio) {|s| s.and_return(0.2523) }</p>
-
-<p>   renderingController.show</p>
-
-<p>   expect(response).to include(&lsquo;25%&rsquo;)
-end
-```</p>
-
-<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My humble advices about how to write maintainable tests]]></title>
-    <link href="http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests/"/>
-    <updated>2014-02-04T06:10:00+00:00</updated>
-    <id>http://philippe.bourgau.net/my-humble-advices-about-how-to-write-maintainable-tests</id>
-    <content type="html"><![CDATA[<p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessarily stressful. On the other hand, the cost of maintaining badly written tests can sometimes outweigh their benefits. This is usually the moment where the team resorts to manual testing, and gets back to the ways of &lsquo;the good old days&rsquo;. Personally, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
-
-<p>Here is how I try to make my tests as maintainable as possible :</p>
-
-<ul>
-<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
-<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
-<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writing more readable tests</li>
-<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual faulty code. The receipe for writing short tests is to follow the given-when-then pattern :
-
-<ul>
-<li>start your test by setting the context (given)</li>
-<li>do the thing you actually want to test (when)</li>
-<li>verify that it did what you wanted (then)</li>
-</ul>
-</li>
-<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
-<li>Use test data builders. This will avoid duplicated and long context setup at the beginning of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
-<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
-<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
-<li>As <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
-
-<ul>
-<li>speed up a test that is too slow</li>
-<li>cut off a dependency to an unavailable subsystem</li>
-<li>simplify an overly complex test setup</li>
-</ul>
-</li>
-<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
-<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
-<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completely until it is too late</li>
-<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really useful when needed.</li>
-<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usually very simple to setup</li>
-<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
-</ul>
-
-
-<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
-
-<p>Happy testing !</p>
 ]]></content>
   </entry>
   
