@@ -36,7 +36,7 @@ Without an agile backlog, developers would have worked on tasks such as
 
 > Add caching to the computation engine
 
-That's estimable, but we've got no clue of the *why* ! When it's done, we won't be able to know whether it's worth to keep it or not. In fact, tt's just not a [story](https://en.wikipedia.org/wiki/INVEST_(mnemonic)) !
+That's estimable, but we've got no clue of the *why* ! When it's done, we won't be able to know whether it's worth to keep it or not. In fact, it's just not a [story](https://en.wikipedia.org/wiki/INVEST_(mnemonic)) !
 
 ## Solution 3 : Mixing both
 
