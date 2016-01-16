@@ -9,7 +9,7 @@ categories:
 keywords: "Agile, Stories, Performance, Performance Stories, Uncertainty"
 description: "The pitfalls and a guide about how to write performance stories in an uncertain context"
 ---
-If you're having difficulties writing good performance related stories for your projet, that's no surprise ! We've been through the same troubles and we found a way that works a lot better.
+If you're having difficulties writing good performance related stories for your project, that's no surprise ! We've been through the same troubles and we found a way that works a lot better.
 
 {% img center /imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg A Mb speed counter %}
 
@@ -17,7 +17,7 @@ If you're having difficulties writing good performance related stories for your 
 
 Right ? In typical agile way, a story about performance would be written like
 
-> As marketting, I want the page load to perform under 1 second, In order for the customers to stay on the site
+> As marketing, I want the page load to perform under 1 second, In order for the customers to stay on the site
 
 If the performance bottleneck and the fix are obvious, that might work very well. If that's your case, then go on, that's the simplest way!
 
@@ -42,7 +42,7 @@ That's estimable, but we've got no clue of the *why* ! When it's done, we won't 
 
 Here is how we we are now writing performance stories at work :
 
-> As a risk manager, I want to have caching in the computation engine, in order to the VAR sceneario compute under 1 second (in order to have real time data)
+> As a risk manager, I want to have caching in the computation engine, in order to the VAR scenario compute under 1 second (in order to have real time data)
 
 It's now estimable, we know what it's there for. It's obviously not enough though : we know that we will very likely need to do other performance stories after this one.
 
@@ -53,7 +53,7 @@ It's now estimable, we know what it's there for. It's obviously not enough thoug
 The fact is that in our context, getting better performances is *hard* :
 
 * it requires a lot of work
-* we don't know how much at the begining
+* we don't know how much at the beginning
 * we often try things that don't work
 
 This makes the whole project more uncertain, so we're better off embracing this uncertainty in the way we write and prioritize our performance stories.
