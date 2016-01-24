@@ -99,6 +99,74 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/rails-urlhelpers-mixup-when-using-rails-engin/">Rails Url_helpers Mixup When Using Rails Engines</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-09T00:00:00+00:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
+
+
+<ul>
+<li>I had to use special (javascript heavy) google analytics code through all cross app links, and that sometimes failed (somewhere in the combinaison of&nbsp;heroku, rails, and analytics)</li>
+<li>It was difficult to share the theme between the apps : on one side, templates, partials and css, on the other, rows in a database</li>
+<li>It was difficult to share session state between the two apps (login for example)</li>
+</ul>
+
+
+<p>As my blog is very basic, and as I am the only one editing the styles, I decided to embed a blog engine inside my app. I selected and tried a few&nbsp;engines : <a href="https://github.com/jipiboily/monologue">Monologue</a>, <a href="https://github.com/KatanaCode/blogit">Blogit</a>, <a href="http://refinerycms.com/">RefineryCMS</a> and to roll my own. Refinery looks way too complex to integrate regarding my basic needs. Monologue is not&nbsp;design to integrate with <a href="https://github.com/plataformatec/devise/">devise</a> users (which I already use) and I would prefer to contribute to an existing gem rather than to write the nth rails blog engine &#8230;</p>
+
+
+<p>After a few experiments, I settled on blogit. Unfortunately, I had really strange issues with links within blogit pages : all links were prefixed with &#8220;/blog&#8221; and blogit&nbsp;links where like &#8220;/blog/blogit?controller=posts&amp;action=new&#8221;. Hacking around in the rails console showed me that doing consecultively :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">include</span> <span class="ss">Blogit</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
+</span><span class='line'><span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>resulted in the same behaviour. After a long debugging session, I eventually discovered that I had a helper in my application which explicitly required&nbsp;Rails.application.routes.url_helpers. This was causing the conflict. I changed my code to avoid this inclusion, and that fixed the links &#8230;</p>
+
+
+<p>&#8230; nearly. Now rendering the application template for a blog page failed with a &#8220;message not understood&#8221; for the main app&#8217;s xxx_path methods. Hopefully, I had&nbsp;found <a href="http://www.candland.net/2012/04/17/rails-routes-used-in-an-isolated-engine/">a fix</a> for this error earlier on the web. Now everything was working like a charm.</p>
+
+
+<p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/hackers-et-peintres/">Hackers Et Peintres</a></h1>
     
     
@@ -852,43 +920,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/a-nice-place-to-find-free-pictures-for-my-web/">A Useful Link to Find Free Pictures</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-11T00:00:00+00:00" pubdate data-updated="true">Jan 11<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While I was looking for photos for an article on&nbsp; <a href="http://www.mes-courses.fr/blog">blog for mes-courses.fr</a>, I found this site : <a href="http://www.photo-libre.fr">http://www.photo-libre.fr</a>. There are a lot of pictures, both &euro; free and royalties free. All that is asked for is a backing to <a href="http://www.photo-libre.fr/">http://www.photo-libre.fr</a>.</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -960,6 +991,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-we-started-exploratory-testing/">How We Started Exploratory Testing</a>
       </li>
     
@@ -973,10 +1008,6 @@
     
       <li class="post">
         <a href="/how-to-do-screencasts-on-ubuntu/">How to do screencasts on Ubuntu</a>
-      </li>
-    
-      <li class="post">
-        <a href="/my-dream-lean-software-development-tool-lean-software-development-part-9/">My Dream Lean Software Development Tool (Lean Software Development part 9)</a>
       </li>
     
   </ul>

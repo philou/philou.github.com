@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-01-16T07:32:14+00:00</updated>
+  <updated>2016-01-24T06:28:27+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,186 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Most Common Ways To Speed up an algorithm]]></title>
+    <link href="http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm/"/>
+    <updated>2016-01-20T05:14:00+00:00</updated>
+    <id>http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm</id>
+    <category term="algorithms" /><category term="performance" /><category term="ruby" />
+    <content type="html"><![CDATA[<p>Algorithms are <em>hard</em>, and making them fast is even harder &hellip; But there are shortcuts that work quite often !</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg" title="A street panel called Short Cut Road" ></p>
+
+<h2>The Challenge</h2>
+
+<p>Imagine you just arrived to your new job, and you are asked to make a part of the system faster. After a bit of investigation, you discover that most of the time is spent in some weird in-house algorithm that seems to take forever. How can you optimize this without deep knowledge neither in algorithm science nor in the code itself ?</p>
+
+<p>Here are 4 tricks to reduce the complexity of algorithms (I&rsquo;m using fairly basic examples for the sake of understandably. Most of these exact examples could be done better using standard libraries, but I hope it will be easy to adapt to other situations) :</p>
+
+<h3>Replace a nested loop by first building a hash and then looping</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># before</span>
+</span><span class='line'><span class="n">orders</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">client</span> <span class="o">=</span> <span class="n">list_of_clients</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span><span class="o">|</span><span class="n">client</span><span class="o">|</span> <span class="n">client</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">order</span><span class="o">.</span><span class="n">client_id</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">handle_order</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># after</span>
+</span><span class='line'><span class="n">clients_by_id</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="n">list_of_clients</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">client</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">clients_by_id</span><span class="o">[</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="o">]</span> <span class="o">=</span> <span class="n">client</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">orders</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">handle_order</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">clients_by_id</span><span class="o">[</span><span class="n">order</span><span class="o">.</span><span class="n">client_id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This reduces the complexity from O(2) to O(1). This is tremendous. On large lists O(2) algorithms are terrible.</p>
+
+<h3>Remove unnecessary accumulations</h3>
+
+<p>The most classic example is the use of a string buffer :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">//</span> <span class="no">Before</span>
+</span><span class='line'><span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'><span class="n">line_items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line_item</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">report</span> <span class="o">+=</span> <span class="n">line_item</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">//</span> <span class="no">After</span>
+</span><span class='line'><span class="n">report</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="n">line_items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line_item</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="n">line_item</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">report</span><span class="o">.</span><span class="n">join</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Again, this reduces the complexity from O(2) to O(1). Every language has variants of Java&rsquo;s StringBuilders. This does not only apply for strings, it works any time you are repeatedly accumulating results inside a loop but where you could do it only once at the end.</p>
+
+<h3>Cache intermediate or previous results</h3>
+
+<p>This is called <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a>. Some algorithms (especially recursive algorithms) repeatedly compute the same thing again and again. Spotting this pattern is an opportunity to move an algorithm out of exponential complexity. For example, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijsktra&rsquo;s algorithm</a> for finding the shortest path in a graph uses this technique to go from O(e<sup>n</sup>) to O(n<sup>2</sup>) complexity. If you suspect this could be helpful, your best friend is logging to trace actual parameters and results.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif"><img class="center" src="http://philippe.bourgau.net/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif" title="Dijsktra's path finding algorithm animated (from Wikipedia)" ></a></p>
+
+<p>A word of caution : using memoization with mutable inputs or outputs will harm your mental health.</p>
+
+<h3><a href="https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists">Zip merge</a></h3>
+
+<p>There are 2 ways to merge sorted lists into a unique sorted list : the fast, and the slow &hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># The slow</span>
+</span><span class='line'><span class="p">(</span><span class="n">list_1</span> <span class="o">+</span> <span class="n">list_2</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The fast</span>
+</span><span class='line'><span class="n">i_1</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">i_2</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="n">i_1</span> <span class="o">&lt;</span> <span class="n">list_1</span><span class="o">.</span><span class="n">size</span> <span class="ow">and</span> <span class="n">i_2</span> <span class="o">&lt;</span> <span class="n">list_2</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">i_1</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">elsif</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">i_2</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="n">i_1</span> <span class="o">&lt;</span> <span class="n">list_1</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">i_1</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="n">i_2</span> <span class="o">&lt;</span> <span class="n">list_2</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">i_2</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Obviously, the slow version is a lot easier to read than the fast one. And the fast one could benefit from a bit of refactoring also &hellip; Nevertheless, the slow version is at best in O(n.ln(n)) whereas the fast on is in O(n). On large data, that can make a big difference.</p>
+
+<h2>Is that all ?</h2>
+
+<p>Obviously not, there can be a lot of other things going on slowly in algorithms, but from my experience, a software engineer can have a good career without knowing more about algorithms theory than that.</p>
+
+<p>In the end, you manage to optimize this in-house algorithm, you become the company&rsquo;s hero, you need your job and get a pay raise !</p>
+
+<h2>End word</h2>
+
+<p>The fact is, in 15 years of writing software, I did not write a lot of algorithmic code. I can categories my working with algorithms in 3 :</p>
+
+<ol>
+<li>Write a simple algorithm for a non performance critical feature</li>
+<li>Optimize an existing somewhat algorithmic part of code</li>
+<li>Write a complex algorithm for a performance critical part of the system</li>
+</ol>
+
+
+<p>Case 1. is not really an issue since however the code will be written, it will run fast enough. If you&rsquo;re in case 3, there&rsquo;s no shortcut, you&rsquo;ll have to dig deep into algorithms and optimization, this happens rather rarely though. This leaves us with case 2, which I just wrote about.</p>
+
+<p>Interestingly, <a href="http://www.murex.com">my current job</a> is deep into case 3 ! We&rsquo;re building a risk engine for corporate markets and are borrowing a lot of techniques from database science &hellip; which is, you can guess, rather algorithmic !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How We Started Exploratory Testing]]></title>
@@ -136,7 +316,7 @@
 
 <blockquote><p>Add caching to the computation engine</p></blockquote>
 
-<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, tt&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
+<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, it&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
 
 <h2>Solution 3 : Mixing both</h2>
 
@@ -1656,244 +1836,6 @@ The @Waste annotation is a way to log time wasted because of this bad code.</p>
 
 
 <p><a href="http://philippe.bourgau.net/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys-small.jpg" title="The 5 why activity on a physical whiteboard" ></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Optimization Should We Work On (Lean Software Development Part 5)]]></title>
-    <link href="http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/"/>
-    <updated>2015-03-26T20:30:00+00:00</updated>
-    <id>http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5</id>
-    <category term="agile" /><category term="lean" /><category term="performance" /><category term="xp" />
-    <content type="html"><![CDATA[<p>At work, we are building a risk aggregation system. As it&rsquo;s dealing with a large bunch of numbers, it&rsquo;s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
-
-<p>That&rsquo;s were we are now doing.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" title="A turtle with a rocket on the back" ></p>
-
-<h1>How do we choose which optimization to work on ?</h1>
-
-<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage &hellip;</p>
-
-<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
-
-<h2>Let&rsquo;s walk through an example</h2>
-
-<h3>I. List the optimizations you are thinking of</h3>
-
-<p>Let&rsquo;s suppose we are thinking of the following 3 optimizations for our engine</p>
-
-<ul>
-<li>Create better data structures to speed up the reconciliation algorithm</li>
-<li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
-<li>Minimize boxing and unboxing</li>
-</ul>
-
-
-<h3>II. Poker estimate the story points and speedup</h3>
-
-<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
-As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
-We will then just have to work on the stories with the highest speedup rate first.</p>
-
-<table>
-<thead>
-<tr>
-<th>Title                   </th>
-<th> Story Points  </th>
-<th> /10    </th>
-<th> /2     </th>
-<th> -10%    </th>
-<th> ~  </th>
-<th> +10%   </th>
-<th> x2      </th>
-<th> x10     </th>
-<th> Expected Speedup ratio* </th>
-<th> Speedup rate / story point**</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data Structures     </td>
-<td> 13        </td>
-<td>        </td>
-<td>        </td>
-<td>             </td>
-<td>        </td>
-<td> 4 votes</td>
-<td> 5 votes </td>
-<td>         </td>
-<td> x 1.533                 </td>
-<td> x 1.033</td>
-</tr>
-<tr>
-<td>Algorithm           </td>
-<td> 13        </td>
-<td>    </td>
-<td> 1 vote </td>
-<td> 1 vote      </td>
-<td> 2 votes</td>
-<td> 1 vote </td>
-<td> 2 votes </td>
-<td> 2 votes </td>
-<td> x 1.799                 </td>
-<td> x 1.046</td>
-</tr>
-<tr>
-<td>Boxing                  </td>
-<td> 8     </td>
-<td>    </td>
-<td>        </td>
-<td>             </td>
-<td>        </td>
-<td> 9 votes</td>
-<td>         </td>
-<td>         </td>
-<td> x 1.1                   </td>
-<td> x 1.012</td>
-</tr>
-</tbody>
-</table>
-
-
-<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br>
-<sup><em>** Speedup rate is &ldquo;speedup<sup>(1/ story points)</sup>&rdquo;</em></sup></p>
-
-<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
-
-<ol>
-<li>Algorithm</li>
-<li>Data Structures</li>
-<li>Boxing</li>
-</ol>
-
-
-<h3>III. And what about the risks ?</h3>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" title="A danger zone panel" ></p>
-
-<p>This poker estimation tells us something else &hellip;</p>
-
-<blockquote><p>We don&rsquo;t have a clue about the speedup we will get by trying to optimize the algorithm !</p></blockquote>
-
-<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
-
-<table>
-<thead>
-<tr>
-<th>Title </th>
-<th> Story points </th>
-<th> Expected Speedup rate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Algorithm spike : measure out of context CPU cache optimization speedup </td>
-<td> 2 </td>
-<td>   ?</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>In order to compute the expected speedup rate, let&rsquo;s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
-
-<p>They are computed by splitting the votes in 2 :</p>
-
-<ul>
-<li><em>low_speedup = 0.846</em></li>
-<li><em>high_speedup = 3.827</em></li>
-</ul>
-
-
-<h4>If the spike succeeds</h4>
-
-<p>We&rsquo;ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
-
-<ul>
-<li><em>spike_high_speedup = high_speedup = 3.827</em></li>
-</ul>
-
-
-<h4>If the spike fails</h4>
-
-<p>We&rsquo;ll also start by working on the spike. Afterwards, instead of the algorithm story, we&rsquo;ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
-
-<ul>
-<li><em>average_speedup_rate = (1.033 * 1.011)<sup>&frac12;</sup> = 1.022</em></li>
-<li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
-</ul>
-
-
-<h4>Spike speedup rate</h4>
-
-<p>We can now compute the average expected speedup rate for the full period &lsquo;spike &amp; algorithm&rsquo; stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
-
-<ul>
-<li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>&frac12;</sup> = 2.253</em></li>
-<li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
-</ul>
-
-
-<h3>IV. Putting it all together</h3>
-
-<p>Here are all the speedup rate for the different stories.</p>
-
-<table>
-<thead>
-<tr>
-<th>Title </th>
-<th> Speedup rate / story point</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data Structure  </td>
-<td> x 1.033</td>
-</tr>
-<tr>
-<td>Algorithm           </td>
-<td> x 1.046</td>
-</tr>
-<tr>
-<td>Boxing                  </td>
-<td> x 1.012</td>
-</tr>
-<tr>
-<td>Algorithm spike         </td>
-<td> x 1.056</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>Finally, here is the optimal order through which we should perform the stories :</p>
-
-<ul>
-<li>Algorithm spike</li>
-<li>Algorithm (only if the spike proved it would work)</li>
-<li>Data Structures</li>
-<li>Boxing</li>
-</ul>
-
-
-<h2>Summary</h2>
-
-<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" title="Formula for a spike speedup rate" ></p>
-
-<p>I think most experienced engineers would have come to the same conclusion by gut feeling &hellip;</p>
-
-<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
-
-<p>This was part 5 of my <a href="http://philippe.bourgau.net/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="http://philippe.bourgau.net/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="http://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>.</p>
 ]]></content>
   </entry>
   

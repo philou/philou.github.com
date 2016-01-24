@@ -4,7 +4,7 @@
   <title><![CDATA[Category: performance | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/performance/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-01-16T07:32:14+00:00</updated>
+  <updated>2016-01-24T06:28:27+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,141 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Most Common Ways To Speed up an algorithm]]></title>
+    <link href="http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm/"/>
+    <updated>2016-01-20T05:14:00+00:00</updated>
+    <id>http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm</id>
+    <content type="html"><![CDATA[<p>Algorithms are <em>hard</em>, and making them fast is even harder &hellip; But there are shortcuts that work quite often !</p>
+
+<p><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg" title="A street panel called Short Cut Road" ></p>
+
+<h2>The Challenge</h2>
+
+<p>Imagine you just arrived to your new job, and you are asked to make a part of the system faster. After a bit of investigation, you discover that most of the time is spent in some weird in-house algorithm that seems to take forever. How can you optimize this without deep knowledge neither in algorithm science nor in the code itself ?</p>
+
+<p>Here are 4 tricks to reduce the complexity of algorithms (I&rsquo;m using fairly basic examples for the sake of understandably. Most of these exact examples could be done better using standard libraries, but I hope it will be easy to adapt to other situations) :</p>
+
+<h3>Replace a nested loop by first building a hash and then looping</h3>
+
+<p>```ruby</p>
+
+<h1>before</h1>
+
+<p>orders.each do |order|
+  client = list_of_clients.find {|client| client.id = order.client_id }
+  handle_order(order, client)
+end</p>
+
+<h1>after</h1>
+
+<p>clients_by_id = {}
+list_of_clients.each do |client|
+  clients_by_id[client.id] = client
+end
+orders.each do |order|
+  handle_order(order, clients_by_id[order.client_id])
+end
+```
+This reduces the complexity from O(2) to O(1). This is tremendous. On large lists O(2) algorithms are terrible.</p>
+
+<h3>Remove unnecessary accumulations</h3>
+
+<p>The most classic example is the use of a string buffer :</p>
+
+<p>```ruby
+// Before
+report = &ldquo;&rdquo;
+line_items.each do |line_item|
+  report += line_item.to_s + &ldquo;\n&rdquo;
+end</p>
+
+<p>// After
+report = []
+line_items.each do |line_item|
+  report &lt;&lt; line_item.to_s
+  report &lt;&lt; &ldquo;\n&rdquo;
+end
+report.join
+```
+Again, this reduces the complexity from O(2) to O(1). Every language has variants of Java&rsquo;s StringBuilders. This does not only apply for strings, it works any time you are repeatedly accumulating results inside a loop but where you could do it only once at the end.</p>
+
+<h3>Cache intermediate or previous results</h3>
+
+<p>This is called <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a>. Some algorithms (especially recursive algorithms) repeatedly compute the same thing again and again. Spotting this pattern is an opportunity to move an algorithm out of exponential complexity. For example, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijsktra&rsquo;s algorithm</a> for finding the shortest path in a graph uses this technique to go from O(e<sup>n</sup>) to O(n<sup>2</sup>) complexity. If you suspect this could be helpful, your best friend is logging to trace actual parameters and results.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif"><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif" title="Dijsktra&rsquo;s path finding algorithm animated (from Wikipedia)" ></a></p>
+
+<p>A word of caution : using memoization with mutable inputs or outputs will harm your mental health.</p>
+
+<h3><a href="https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists">Zip merge</a></h3>
+
+<p>There are 2 ways to merge sorted lists into a unique sorted list : the fast, and the slow &hellip;</p>
+
+<p>```ruby</p>
+
+<h1>The slow</h1>
+
+<p>(list_1 + list_2).sort</p>
+
+<h1>The fast</h1>
+
+<p>i_1 = 0
+i_2 = 0
+result = []</p>
+
+<p>while i_1 &lt; list_1.size and i_2 &lt; list_2.size
+  if list_1[i_1] &lt;= list_2[i_2]</p>
+
+<pre><code>result &lt;&lt; list_1[i_1]
+i_1 += 1
+</code></pre>
+
+<p>  elsif list_2[i_2] &lt;= list_1[i_1]</p>
+
+<pre><code>result &lt;&lt; list_2[i_2]
+i_2 += 1
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>while i_1 &lt; list_1.size
+  result &lt;&lt; list_1[i_1]
+  i_1 += 1
+end</p>
+
+<p>while i_2 &lt; list_2.size
+  result &lt;&lt; list_2[i_2]
+  i_2 += 1
+end
+```</p>
+
+<p>Obviously, the slow version is a lot easier to read than the fast one. And the fast one could benefit from a bit of refactoring also &hellip; Nevertheless, the slow version is at best in O(n.ln(n)) whereas the fast on is in O(n). On large data, that can make a big difference.</p>
+
+<h2>Is that all ?</h2>
+
+<p>Obviously not, there can be a lot of other things going on slowly in algorithms, but from my experience, a software engineer can have a good career without knowing more about algorithms theory than that.</p>
+
+<p>In the end, you manage to optimize this in-house algorithm, you become the company&rsquo;s hero, you need your job and get a pay raise !</p>
+
+<h2>End word</h2>
+
+<p>The fact is, in 15 years of writing software, I did not write a lot of algorithmic code. I can categories my working with algorithms in 3 :</p>
+
+<ol>
+<li>Write a simple algorithm for a non performance critical feature</li>
+<li>Optimize an existing somewhat algorithmic part of code</li>
+<li>Write a complex algorithm for a performance critical part of the system</li>
+</ol>
+
+
+<p>Case 1. is not really an issue since however the code will be written, it will run fast enough. If you&rsquo;re in case 3, there&rsquo;s no shortcut, you&rsquo;ll have to dig deep into algorithms and optimization, this happens rather rarely though. This leaves us with case 2, which I just wrote about.</p>
+
+<p>Interestingly, <a href="http://www.murex.com">my current job</a> is deep into case 3 ! We&rsquo;re building a risk engine for corporate markets and are borrowing a lot of techniques from database science &hellip; which is, you can guess, rather algorithmic !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How To Write Good Performance Stories]]></title>
@@ -48,7 +183,7 @@
 
 <blockquote><p>Add caching to the computation engine</p></blockquote>
 
-<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, tt&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
+<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, it&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
 
 <h2>Solution 3 : Mixing both</h2>
 
