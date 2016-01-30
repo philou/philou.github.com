@@ -1,18 +1,29 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+#Check if you have the good Vagrant version to use docker provider...
+Vagrant.require_version ">= 1.6.0"
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+# Use docker as default provider
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+
+# This docker config was inspired by https://github.com/bubenkoff/vagrant-docker-example
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
-Vagrant.configure(2) do |config|
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The most common configuration options are documented and commented below.
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/trusty64"
+  # config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -42,17 +53,24 @@ Vagrant.configure(2) do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
+  #
+  config.vm.provider "docker" do |d|
+    # The path to a directory containing a Dockerfile. One of this or
+    # image is required.
+    d.build_dir = "."
 
-  config.vm.provider "virtualbox" do |vb|
-    # Display the VirtualBox GUI when booting the machine
-    # vb.gui = true
-
-    # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    # If true, then Vagrant will support SSH with the container. This
+    # allows vagrant ssh to work, provisioners, etc. This defaults to
+    # false.
+    d.has_ssh = true
   end
 
-  # View the documentation for the provider you are using for more
-  # information on available options.
+  # The port to SSH into. By default this is port 22.
+  config.ssh.port = 22
+
+  # If true, X11 forwarding over SSH connections is enabled. Defaults to
+  # false.
+  # config.ssh.forward_x11 = true
 
   # The path to the private key to use to SSH into the guest machine. By
   # default this is the insecure private key that ships with Vagrant, since
@@ -61,10 +79,13 @@ Vagrant.configure(2) do |config|
   # You can also specify multiple private keys by setting this to be an array.
   # This is useful, for example, if you use the default private key to
   # bootstrap the machine, but replace it with perhaps a more secure key later.
-  config.ssh.private_key_path = "~/.ssh/id_rsa"
+  # config.ssh.private_key_path = [ "~/.vagrant.d/insecure_private_key", "~/.ssh/id_rsa"]
 
-  #  If true, agent forwarding over SSH connections is enabled. Defaults to false.
+  # If true, agent forwarding over SSH connections is enabled. Defaults to false.
   config.ssh.forward_agent = true
+
+  # View the documentation for the provider you are using for more
+  # information on available options.
 
   # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
   # such as FTP and Heroku are also available. See the documentation at
@@ -84,10 +105,9 @@ Vagrant.configure(2) do |config|
     sudo apt-get -y install git autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
   SHELL
 
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    git config --global user.name "philou"
-    git config --global user.email "philippe.bourgau@gmail.com"
+  config.vm.provision "file", source: "~/.gitconfig", destination: "$HOME/.gitconfig"
 
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
     if [ ! -d "$HOME/.rbenv" ]; then
       echo "Installing rbenv and ruby-build"
 
@@ -110,11 +130,11 @@ Vagrant.configure(2) do |config|
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
 
-    if [ ! -d "$HOME/.rbenv/versions/2.2.0" ]; then
+    if [ ! -d "$HOME/.rbenv/versions/2.2.4" ]; then
       echo "Installing ruby"
 
-      rbenv install 2.2.0
-      rbenv global 2.2.0
+      rbenv install 2.2.4
+      rbenv global 2.2.4
 
       gem update --system
       gem update
@@ -135,5 +155,7 @@ Vagrant.configure(2) do |config|
       git pull origin master # pull to avoid non fast forward push
       cd ..
     fi
+
   SHELL
+
 end
