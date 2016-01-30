@@ -145,6 +145,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       rbenv rehash
     fi
 
+    if [ -z "$LANG" ]; then
+      echo "Setting LANG to us UTF8"
+      echo 'export LANG=en_US.UTF-8' >> ~/.bashrc
+    fi
+    if [ -z "$LC_ALL" ]; then
+      echo "Setting LC_ALL to us UTF8"
+      echo 'export LC_ALL=en_US.UTF-8' >> ~/.bashrc
+    fi
+
     cd /vagrant
     bundle install
 
