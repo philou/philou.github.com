@@ -28,7 +28,7 @@ I tried to destroy and re-create my box with the same result : it eventually tim
 
 After searching the internet and a lot of experimentation, I managed to make it work by commenting out the following line in my Vagrantfile
 
-```ruby
+```
 # config.ssh.private_key_path = "~/.ssh/id_rsa"
 ```
 
