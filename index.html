@@ -99,6 +99,72 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I Fixed &#8216;Warning: Authentication Failure. Retrying&#8217; With Vagrant</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-31T06:39:00+00:00" pubdate data-updated="true">Jan 31<span>st</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lately, I went into an upgrade cycle : <a href="http://www.ubuntu.com/">Ubuntu</a>, which forced me to upgrade <a href="https://www.docker.com/">Docker</a>, and then <a href="https://www.vagrantup.com/">Vagrant</a> &hellip; you know the story. Unfortunately, my vagrant config did not want to start anymore with the following error :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img class="center" src="/imgs/2016-01-31-how-i-fixed-warning-authentication-failure-retrying-with-vagrant/ssh.jpg" title="A screen with the ssh prompt" ></p>
+
+<p>I tried to destroy and re-create my box with the same result : it eventually timedout, but the provisions were not executed.</p>
+
+<p>After searching the internet and a lot of experimentation, I managed to make it work by commenting out the following line in my Vagrantfile</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># config.ssh.private_key_path = "~/.ssh/id_rsa"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I think I added this a long time ago to be able to push to github from my Vagrantbox, but after trying it, it work with the difference of my having to validate the remote ssh key, that&rsquo;s not of a big deal.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways to Speed Up an Algorithm</a></h1>
     
     
@@ -1005,95 +1071,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/binary-hand-planning-poker/">Binary Hand Planning Poker</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-09-23T19:44:00+00:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2015</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>At <a href="http://www.murex.com">work</a>, we are using as we all have Android phones, we are using the <a href="https://play.google.com/store/apps/details?id=artarmin.android.scrum.poker&amp;hl=fr">Scrum Poker Cards</a> app to do our <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker</a>.</p>
-
-<p>This usually works fine, but newcomers usually have one bad remark about it :</p>
-
-<blockquote><p>It&rsquo;s not geeky enough</p></blockquote>
-
-<p>Obviously, it also does not work if one lakes a phone, but who would come in a meeting without it nowadays ?</p>
-
-<p>Enters the binary hand poker !</p>
-
-<table>
-<thead>
-<tr>
-<th> Score </th>
-<th> Sign </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td> <br/> <img src="/imgs/2015-09-23-binary-hand-planning-poker/01.jpg" alt="Sign for 1" /></td>
-</tr>
-<tr>
-<td>2</td>
-<td> <img src="/imgs/2015-09-23-binary-hand-planning-poker/02.jpg" alt="Sign for 2" /></td>
-</tr>
-<tr>
-<td>3</td>
-<td> <img src="/imgs/2015-09-23-binary-hand-planning-poker/03.jpg" alt="Sign for 3" /></td>
-</tr>
-<tr>
-<td>5</td>
-<td> <img src="/imgs/2015-09-23-binary-hand-planning-poker/05.jpg" alt="Sign for 5" /></td>
-</tr>
-<tr>
-<td>8</td>
-<td> <img src="/imgs/2015-09-23-binary-hand-planning-poker/08.jpg" alt="Sign for 8" /></td>
-</tr>
-<tr>
-<td>13</td>
-<td> <img src="/imgs/2015-09-23-binary-hand-planning-poker/13.jpg" alt="Sign for 13" /></td>
-</tr>
-<tr>
-<td>20</td>
-<td> <img src="/imgs/2015-09-23-binary-hand-planning-poker/20.jpg" alt="Sign for 20" /></td>
-</tr>
-</tbody>
-</table>
-
-
-<br/>
-
-
-<p>Now that&rsquo;s geeky ! I still have to find a symbol for the coffee cup and the question mark though &hellip;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1163,6 +1140,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed &#8216;Warning: Authentication failure. Retrying&#8217; with Vagrant</a>
+      </li>
+    
+      <li class="post">
         <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
       </li>
     
@@ -1176,10 +1157,6 @@
     
       <li class="post">
         <a href="/great-developers-are-free/">Great Developers Are Free</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-do-screencasts-on-ubuntu/">How to do screencasts on Ubuntu</a>
       </li>
     
   </ul>
