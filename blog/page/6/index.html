@@ -99,6 +99,97 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/trying-to-explain-monads-in-java/">Trying to Explain Monads in Java</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T07:37:00+00:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few days ago, a colleague currently taking <a href="https://www.coursera.org/course/reactive">the coursera course about reactive programming in scala</a>, asked me to explain him what monads are. It&rsquo;s always a tough question, and I rarely manage to give un understandable answer simply. This time though, I kind of managed to pass him some understanding of monads :</p>
+
+<ol>
+<li>When modelising a statefull data structure with immutable constructs, one has to pass in and return the data structure state of every function</li>
+<li>This results in a lot repeated code to pass this state around</li>
+<li>With a monad, you can factorize this glue code and only write the &lsquo;real&rsquo; code</li>
+</ol>
+
+
+<p>I thought it might be a good subject for a java kata ! This is what I tried to do in <a href="https://github.com/philou/java-monads-kata">java-monads-kata</a>. Here is some sample monadic code from the kata itself :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
+</span><span class='line'><span class="n">pops_objects_in_reverse_push_order</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">monad</span> <span class="o">=</span> <span class="n">monad</span><span class="o">.</span>
+</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">push</span><span class="o">(</span><span class="n">A</span><span class="o">)).</span>
+</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">push</span><span class="o">(</span><span class="n">B</span><span class="o">)).</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">pop</span><span class="o">());</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">B</span><span class="o">,</span> <span class="n">monad</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">monad</span> <span class="o">=</span> <span class="n">monad</span><span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="n">pop</span><span class="o">());</span>
+</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">monad</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">empty</span><span class="o">(),</span> <span class="n">monad</span><span class="o">.</span><span class="na">stack</span><span class="o">);</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can have a look at all <a href="https://github.com/philou/java-monads-kata">the final code</a>, or <a href="https://github.com/philou/java-monads-kata/commits/master">go through the whole history</a> to get the &lsquo;kata&rsquo; feeling. It&rsquo;s a shame Github does not offer a nice chronological repo history slideshow, for better experience, I recommend that you use Chrome with <a href="https://chrome.google.com/webstore/detail/github-improved/nkbnmpfpclijlllipmfbkkednidgngaa">Github improved</a> : this allows to view diffs right from the Github history.</p>
+
+<p>The resulting code is still quite far from a <a href="http://www.haskell.org/haskellwiki/Monad">Haskell monad</a> :</p>
+
+<ul>
+<li>Functions are not first class objects in Java. It is written in Java 7, without lambda, which does not help neither.</li>
+<li>Java does not have Haskell type class polymorphism, but only supports OO polymorphism and very little covariance</li>
+<li>The whole monad thing, designed at simulating/isolating side effects has a WTF feel in Java where side effects are just everywhere</li>
+</ul>
+
+
+<p>I&rsquo;d love to hear some feedback about it.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/reviews-for-everyone/">Reviews for Everyone</a></h1>
     
     
@@ -829,61 +920,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/my-own-side-project-best-practices-after-reading-the-side-project-book/">My Own Side Project Best Practices After Reading the &#8216;Side Project Book&#8217;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-25T07:26:00+00:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First, i recommend <a href="http://sideprojectbook.com/">this book</a> to any side project infected person : it&rsquo;s a great motivation boost !</p>
-
-<p>After reading it, it seems that there are no absolute rules to side projects success. Some did no marketting and just did what they loved, others did à carefull market study before building anything, some did the whole things, others outsourced the code or the design, or even both &hellip; That said, as I read somewhere, it seems that one is more likely to achieve commercial success if he first focusses on the market, then marketting, then the design, and eventually on the features.</p>
-
-<p>Common advices from the interviewees are :</p>
-
-<ul>
-<li>ship early</li>
-<li>iterate</li>
-<li>don&rsquo;t give up</li>
-</ul>
-
-
-<p>Why not apply these principle to &ldquo;building a side project&rdquo; instead of &ldquo;building XXX in my free time&rdquo; ?</p>
-
-<p>From now on, I am going to set up project target duration and revenue. For example, if I don&rsquo;t make at least 100€ / month after one year, I&rsquo;ll stop working on it and start a new one.</p>
-
-<p>I hope that by iterating more quickly through projects I&rsquo;ll learn more and increase my chances of successes as the time goes. Keeping the same target duration and revenue for all projects should make me better at filtering ideas that are a good fit to my resources. As I tend to get bored quickly, it should also allow me to keep my motivation high.</p>
-
-<p>Let&rsquo;s see what happens !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -955,6 +991,10 @@ In this kind of environment, even mandatory code reviews tend to become a useles
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">How I fixed &#8216;invalid byte sequence in US-ASCII&#8217; exception with octopress (and vagrant)</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
       </li>
     
@@ -968,10 +1008,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
     
       <li class="post">
         <a href="/how-we-started-exploratory-testing/">How We Started Exploratory Testing</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-write-good-performance-stories/">How To Write Good Performance Stories</a>
       </li>
     
   </ul>

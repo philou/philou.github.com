@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vagrant | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-02-06T06:24:32+00:00</updated>
+  <updated>2016-02-10T06:32:06+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,77 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)]]></title>
+    <link href="http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/"/>
+    <updated>2016-02-10T05:59:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant</id>
+    <content type="html"><![CDATA[<p>I don&rsquo;t know if you noticed, but <a href="http://octopress.org/">Octopress 2</a> preview is slow as hell on <a href="https://www.virtualbox.org/">Virtual Box</a>. I wanted to try using <a href="https://www.docker.com/">Docker</a> instead. So a few weeks ago, I started to upgrade my <a href="https://www.vagrantup.com/">Vagrant</a>, Virtual Box and Docker stack &hellip;</p>
+
+<p>Hell loose !</p>
+
+<p><img class="center" src="/imgs/2016-02-10-how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/upgrade_hell.jpg" title="A naughty dog with a banner &ldquo;I&rsquo;m in upgrade hell&rdquo;" ></p>
+
+<p>I know all open source software needs to be kept up to date at all time, but it&rsquo;s not that easy. Especialy when the versions in the <a href="http://www.ubuntu.com/">Ubuntu</a> repostiories are really old and you had to install them manually. Anyway, after a bit of tedious work, I finally got to the point where my Octopress blog was running on a brand new stack. And I got this error :</p>
+
+<p>```
+vagrant@239c4077ae16:/vagrant$bundle exec rake generate</p>
+
+<h2>Generating Site with Jekyll</h2>
+
+<p>unchanged sass/screen.scss
+/vagrant/vendor/bundle/gems/liquid-2.3.0/lib/liquid/htmltags.rb:44: warning: duplicated key at line 47 ignored: &ldquo;index0&rdquo;
+Configuration from /vagrant/_config.yml
+Building site: source &ndash;> public
+YAML Exception reading index.markdown: invalid byte sequence in US-ASCII
+/vagrant/plugins/backtick_code_block.rb:13:in `gsub': invalid byte sequence in US-ASCII (ArgumentError)</p>
+
+<pre><code>from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
+from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
+from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
+from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
+from /vagrant/plugins/post_filters.rb:111:in `each'
+from /vagrant/plugins/post_filters.rb:111:in `pre_render'
+from /vagrant/plugins/post_filters.rb:166:in `do_layout'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/page.rb:100:in `render'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:204:in `block in render'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:203:in `each'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:203:in `render'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
+from /vagrant/vendor/bundle/bin/jekyll:23:in `load'
+from /vagrant/vendor/bundle/bin/jekyll:23:in `&lt;main&gt;'
+</code></pre>
+
+<p>```</p>
+
+<p>After some searching on the internet, I found <a href="http://alexzeitler.com/blog/2012/01/15/rake-generate-for-octopress-fails-with-invalid-byte-sequence-in-us-ascii-argumenterror/">this post</a> by Alex Zeitler that made me figure out that locales were not set correctly by default on my vm. I just needed to set this once and for all in my Vagrantfile</p>
+
+<p>```
+config.vm.provision &ldquo;shell&rdquo;, privileged: false, inline: &lt;&lt;-SHELL
+  if [ -z &ldquo;$LANG&rdquo; ]; then</p>
+
+<pre><code>echo "Setting LANG to us UTF8"
+echo 'export LANG=en_US.UTF-8' &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>  fi
+  if [ -z &ldquo;$LC_ALL&rdquo; ]; then</p>
+
+<pre><code>echo "Setting LC_ALL to us UTF8"
+echo 'export LC_ALL=en_US.UTF-8' &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>  fi
+SHELL
+```</p>
+
+<p>After reprovisioning my box, generate and preview were working as expected !</p>
+
+<p>:&ndash;( Now I&rsquo;ve got a pygement-ruby issue to deal with, I guess I&rsquo;ll be back on the subject soon &hellip;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I fixed 'Warning: Authentication failure. Retrying' with Vagrant]]></title>
