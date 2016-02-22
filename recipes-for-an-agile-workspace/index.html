@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant) - Philippe Bourgau's blog</title>
+  <title>Recipes For An Agile Workspace - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="A short summary about how to fix a locale issue when using Octopress through Vagrant Virtual Machines">
+  <meta name="description" content="A walk through of different practices for agile workplace design, and a proposal for Lego style workplace building">
 
   
-  <meta name="keywords" content="Octopress, Vagrant, Locale, Virtual Machine">
+  <meta name="keywords" content="Workplace, Workplace design, Software Workplace, Software Workplace design, Agile Workplace, Self Organized Workplace">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">
+  <link rel="canonical" href="http://philippe.bourgau.net/recipes-for-an-agile-workspace/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -96,7 +96,7 @@
   
   <header>
     
-      <h1 class="entry-title">How I Fixed 'Invalid Byte Sequence in US-ASCII' Exception With Octopress (and Vagrant)</h1>
+      <h1 class="entry-title">Recipes for an Agile Workspace</h1>
     
     
       <p class="meta">
@@ -112,96 +112,100 @@
   
 
 
-<time datetime="2016-02-10T05:59:00+00:00" pubdate data-updated="true">Feb 10<span>th</span>, 2016</time>
+<time datetime="2016-02-17T06:40:00+00:00" pubdate data-updated="true">Feb 17<span>th</span>, 2016</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I don&rsquo;t know if you noticed, but <a href="http://octopress.org/">Octopress 2</a> preview is slow as hell on <a href="https://www.virtualbox.org/">Virtual Box</a>. I wanted to try using <a href="https://www.docker.com/">Docker</a> instead. So a few weeks ago, I started to upgrade my <a href="https://www.vagrantup.com/">Vagrant</a>, Virtual Box and Docker stack &hellip;</p>
+<div class="entry-content"><p>Nowadays, start-ups and tech companies seem to be competing for the most beautiful offices in order to attract top talents.</p>
 
-<p>Hell loose !</p>
+<p><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/open-space.jpg" title="A nice modern and beautiful co-working space" ></p>
 
-<p><img class="center" src="/imgs/2016-02-10-how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/upgrade_hell.jpg" title="A naughty dog with a banner &#34;I'm in upgrade hell&#34;" alt="A naughty dog with a banner &#34;I'm in upgrade hell&#34;"></p>
+<p>Unfortunately, sometimes, it&rsquo;s just the good old office in disguise. At the opposite, some teams or companies actually think and decide how to organize their offices. For example, here is what <a href="https://twitter.com/kentbeck">Kent Beck</a> says about office setup in <a href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?ie=UTF8&amp;qid=1456177035&amp;sr=8-2&amp;keywords=extreme+programming+embrace+change">XP embrace change</a></p>
 
-<p>I know all open source software needs to be kept up to date at all time, but it&rsquo;s not that easy. Especialy when the versions in the <a href="http://www.ubuntu.com/">Ubuntu</a> repostiories are really old and you had to install them manually. Anyway, after a bit of tedious work, I finally got to the point where my Octopress blog was running on a brand new stack. And I got this error :</p>
+<blockquote><p>If you don&rsquo;t have a reasonable place to work, your project won&rsquo;t be successful. The difference
+between a good space for the team and a bad space for the team is immediate and dramatic.</p></blockquote>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant@239c4077ae16:/vagrant$bundle exec rake generate
-</span><span class='line'>## Generating Site with Jekyll
-</span><span class='line'>unchanged sass/screen.scss
-</span><span class='line'>/vagrant/vendor/bundle/gems/liquid-2.3.0/lib/liquid/htmltags.rb:44: warning: duplicated key at line 47 ignored: "index0"
-</span><span class='line'>Configuration from /vagrant/_config.yml
-</span><span class='line'>Building site: source -&gt; public
-</span><span class='line'>YAML Exception reading index.markdown: invalid byte sequence in US-ASCII
-</span><span class='line'>/vagrant/plugins/backtick_code_block.rb:13:in `gsub': invalid byte sequence in US-ASCII (ArgumentError)
-</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
-</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
-</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `each'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `pre_render'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:166:in `do_layout'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/page.rb:100:in `render'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:204:in `block in render'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:203:in `each'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:203:in `render'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
-</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:23:in `load'
-</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:23:in `&lt;main&gt;'</span></code></pre></td></tr></table></div></figure>
+<p>Joel Spolsky has been blogging a lot about the office setups at <a href="http://www.joelonsoftware.com/articles/BionicOffice.html">FogBugz</a></p>
 
+<p><a href="http://www.joelonsoftware.com/articles/BionicOffice.html"><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/fog-bugz.jpg" title="The beautiful FogBugz office" ></a></p>
 
-<p>After some searching on the internet, I found <a href="http://alexzeitler.com/blog/2012/01/15/rake-generate-for-octopress-fails-with-invalid-byte-sequence-in-us-ascii-argumenterror/">this post</a> by Alex Zeitler that made me figure out that locales were not set correctly by default on my vm. I just needed to set this once and for all in my Vagrantfile</p>
+<p>While defining its agile culture, <a href="http://fr.slideshare.net/JoakimSunden/agile-at-spotify">Spotify too designed custom offices</a></p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>config.vm.provision "shell", privileged: false, inline: &lt;&lt;-SHELL
-</span><span class='line'>  if [ -z "$LANG" ]; then
-</span><span class='line'>    echo "Setting LANG to us UTF8"
-</span><span class='line'>    echo 'export LANG=en_US.UTF-8' &gt;&gt; ~/.bashrc
-</span><span class='line'>  fi
-</span><span class='line'>  if [ -z "$LC_ALL" ]; then
-</span><span class='line'>    echo "Setting LC_ALL to us UTF8"
-</span><span class='line'>    echo 'export LC_ALL=en_US.UTF-8' &gt;&gt; ~/.bashrc
-</span><span class='line'>  fi
-</span><span class='line'>SHELL</span></code></pre></td></tr></table></div></figure>
+<p><a href="http://fr.slideshare.net/JoakimSunden/agile-at-spotify"><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify.jpg" title="Spotify offices" ></a></p>
 
+<h2>How does it work ?</h2>
 
-<p>After reprovisioning my box, generate and preview were working as expected !</p>
+<p>Let&rsquo;s review a few office design practices to understand how they work :</p>
 
-<p>:&ndash;( Now I&rsquo;ve got a pygement-ruby issue to deal with, I guess I&rsquo;ll be back on the subject soon &hellip;</p>
+<h3>The team room or space</h3>
+
+<p>Having a delimited room helps to build a real team. First, by isolating from noises, it helps the team to focus on its work and current topics. Second, by providing a visual barrier to cross before anyone can disturb the team. Finally, it allows the team to organize its own visual management.</p>
+
+<p><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-team-room.jpg" title="Team private work place at spotify" ></p>
+
+<h3>Private team gathering area</h3>
+
+<p>An area where the team (and only the team) can meet at any time is great to do on the spot meetings (without the hassle of finding a room). This area should be comfortable and provide a relaxed and creative atmosphere (which is very important to conduct efficient retrospectives). It can also be used to take breaks and lunches, fostering team spirit again.</p>
+
+<p><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-gathering-area.jpg" title="Team gathering area with writable walls and a wall screen at spotify" ></p>
+
+<h3>Writable walls</h3>
+
+<p>It&rsquo;s pretty easy to cover the walls with whiteboard stickers so that there is plenty of room for discussing design and otherwise keeping important things visible for everyone.</p>
+
+<h3>Laptops, Wifi and movable desks</h3>
+
+<p>Lean manufacturing favors simple, versatile and configurable machines over powerful specialised ones, which are often pretty long to setup. In software, we don&rsquo;t rely on machines as much as factories do, but there might be something to take here. Using laptops, a good Wifi and movable desks, it is pretty easy to reconfigure your office as it best fits the team at a particular moment. This way a team can easily adapt to personal preferences and turnover.</p>
+
+<h3>Wall screens</h3>
+
+<p>Agile and Lean thinkings both heavily use visual management. Having a lot of wall screens dedicated to displaying team relevant information in the team space brings a lot of value. To get the maximum benefit, these wall screens should be fully configurable and movable by the team.</p>
+
+<p><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/wall-screens.jpg" title="Our own wall screens at work" ></p>
+
+<h3>Team budget</h3>
+
+<p>Eventually, in order to make sure the team can always work as efficiently as possible, it should have some money to spend for its workspace. It could be used to buy any of the upper, but also anything else that might help the team at a particular point in time. Without such a budget, teams have to make a request to the office department to get anything, often to no avail, or with extra long delays.</p>
+
+<h2>Distributed teams</h2>
+
+<p>Distributed teams bring their own challenges &hellip; and workplaces needs.</p>
+
+<h3>Remote team space</h3>
+
+<p>If your team is split between 2 places (as our team is at <a href="http://www.murex.com">Murex</a>) then obviously, each site should have its own delimited space, with its own gathering area.</p>
+
+<h3>Constant visio connection</h3>
+
+<p>Connecting gathering areas through visio is a great way to build the distributed team. It prevents loosing time when a meeting is required. It also builds the team by showing what&rsquo;s happening on the other side and by making it possible to take distributed lunches and breaks !</p>
+
+<p><a href="http://www.infoq.com/presentations/distributed-team-agile"><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/distributed-lunch.jpg" title="A team sharing food remotely between offices" ></a></p>
+
+<h3>Distributed whiteboards</h3>
+
+<p>I never had the chance to work with one of these, but I often missed a whiteboard when working remotely &hellip; Any input on this subject would be welcome !</p>
+
+<h2>Lego offices</h2>
+
+<p>Here is another extract from Kent Beck&rsquo;s &ldquo;XP Embrace Change&rdquo;</p>
+
+<blockquote><p>The courage value finds its expression in the XP attitude toward facilities. If the corporate attitude
+toward facilities is at odds with the team&rsquo;s attitude, the team wins. If the computers are in the
+wrong place, they are moved. If the partitions are in the way, they are taken down. If the lights are
+too bright, they are taken out. If the phones are too loud, one day, mysteriously, they are all found
+to have cotton stuffed in the bells.</p></blockquote>
+
+<p>Improving the office is a cheap way to make a software organization more efficient. For another reference, here is what Tom DeMarco &amp; Tim Lister wrote in <a href="http://www.amazon.com/gp/product/0321934113/ref=s9_simh_gw_g14_i3_r?pf_rd_m=ATVPDKIKX0DER&amp;pf_rd_s=desktop-1&amp;pf_rd_r=1K2KEWBRQK6F1R26D5D2&amp;pf_rd_t=36701&amp;pf_rd_p=2079475242&amp;pf_rd_i=desktop">Peopleware</a></p>
+
+<blockquote><p>Police-mentality planners design workplaces the way they would design prisons: optimized for containment at minimal cost. We have unthinkingly yielded to them on the subject of workplace
+design, yet for most organizations with productivity problems, there is no more fruitful area for improvement than the workplace. As long as workers are crowded into noisy, sterile, disruptive space, it&rsquo;s not worth improving anything but the <strong>workplace</strong>.</p></blockquote>
+
+<p>Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables and light easy to fix wall monitors are all things that would make this possible.</p>
+
+<p><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/lego-office.jpg" title="A miniature office in Legos" ></p>
 </div>
 
 
@@ -224,12 +228,12 @@
   
 
 
-<time datetime="2016-02-10T05:59:00+00:00" pubdate data-updated="true">Feb 10<span>th</span>, 2016</time>
+<time datetime="2016-02-17T06:40:00+00:00" pubdate data-updated="true">Feb 17<span>th</span>, 2016</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant</a>
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/lean/'>lean</a>, <a class='category' href='/blog/categories/self-organization/'>self-organization</a>, <a class='category' href='/blog/categories/team-building/'>team-building</a>, <a class='category' href='/blog/categories/workplace/'>workplace</a>
   
 </span>
 
@@ -238,7 +242,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/recipes-for-an-agile-workspace/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/recipes-for-an-agile-workspace/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -251,10 +255,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/how-to-keep-programming-when-assigned-a-management-job/" title="Previous Post: How To Keep Programming When Assigned A Management Job">&laquo; How To Keep Programming When Assigned A Management Job</a>
+        <a class="basic-alignment left" href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/" title="Previous Post: How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)">&laquo; How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)</a>
       
-      
-        <a class="basic-alignment right" href="/recipes-for-an-agile-workspace/" title="Next Post: Recipes For An Agile Workspace">Recipes For An Agile Workspace &raquo;</a>
       
     </p>
   </footer>
@@ -375,8 +377,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/';
-        var disqus_url = 'http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/';
+        var disqus_identifier = 'http://philippe.bourgau.net/recipes-for-an-agile-workspace/';
+        var disqus_url = 'http://philippe.bourgau.net/recipes-for-an-agile-workspace/';
         var disqus_script = 'embed.js';
       
     (function () {
