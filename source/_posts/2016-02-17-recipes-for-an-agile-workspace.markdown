@@ -96,6 +96,6 @@ Improving the office is a cheap way to make a software organization more efficie
 > Police-mentality planners design workplaces the way they would design prisons: optimized for containment at minimal cost. We have unthinkingly yielded to them on the subject of workplace
 design, yet for most organizations with productivity problems, there is no more fruitful area for improvement than the workplace. As long as workers are crowded into noisy, sterile, disruptive space, it's not worth improving anything but the **workplace**.
 
-Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables and light easy to fix wall monitors are all things that would make this possible.
+Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables, movable walls and easy to fix wall monitors are all things that would make this possible.
 
 {% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/lego-office.jpg A miniature office in Legos %}
