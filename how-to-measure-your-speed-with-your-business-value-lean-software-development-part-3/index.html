@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to measure your speed with your business value ? (Lean Software Development Part 3) - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="This article presents a way of measuring an agile team's speed against business value instead of story points">
+
+  
+  <meta name="keywords" content="Measuring Business Value, Business Value, Software Development Speed, Lean Software Development, Agile Software Development">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Measure Your Speed With Your Business Value ? (Lean Software Development Part 3)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-16T07:07:00+00:00" pubdate data-updated="true">Oct 16<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>There is a french idiom that basicaly is</p>
+
+<blockquote><p>No use to run, all that is needed is to start on time &hellip;</p></blockquote>
+
+<p>an agile engineer would add</p>
+
+<blockquote><p>&hellip; and to go in the good direction</p></blockquote>
+
+<p>Indeed, velocity or mean cycle time as speed measures have their shortcomings :</p>
+
+<ul>
+<li>Can be falsified by story point inflation !</li>
+<li>Does not tell the team or its product owner whether they are working on the right thing.</li>
+</ul>
+
+
+<p>Wouldn&rsquo;t it be great if we could track the business value we are creating instead ? Wouldn&rsquo;t it be more motivating for developpers to know how they are contributing to the bottom line ? Wouldn&rsquo;t it help various people to align inside the organization ?</p>
+
+<h2>How to track and prioritize based on your business value</h2>
+
+<p>From <a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1413953773&amp;sr=8-1&amp;keywords=product+development+flow">Reinertsen&rsquo;s Flow book</a>, we learned that the cost of delay is the main driver of the value creation : the faster you deliver a feature, less you spend the cost of delay of that feature, the more value you are creating for your company. <a href="http://scaledagileframework.com/wsjf/">This article</a> suggests that the cost of delay can be computed with the following formula :</p>
+
+<blockquote><p>cost of delay = f(user business value) + g(time criticality) + h(risk reduction opportunity)</p></blockquote>
+
+<p><a href="http://fr.slideshare.net/jchyip/estimating-cost-of-delay/27">This other article</a> suggests that they are different types of tasks that corresponds to the different terms of the formula above.</p>
+
+<p><img class="center" src="/imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/task-types.jpeg" title="&#34;Different kind of tasks&#34;" alt="&#34;Different kind of tasks&#34;"></p>
+
+<p>Here is how we could link the 2 articles :</p>
+
+<ul>
+<li>Stories with deadlines : either through legal or market constraints, not doing this will put you out of business (&lsquo;time criticality&rsquo; in the formula)</li>
+<li>Stories that influence the bottom line : by increasing the sales figures when delivered, or decreasing them when not delivered, which is kind of the same (&lsquo;user business value&rsquo; in the formula)</li>
+<li>Risk reduction tasks : by mitigating risk or streamlining the process, these tasks actually improve the bottom line of other stories (&lsquo;risk reduction opportunity&rsquo; in the formula)</li>
+</ul>
+
+
+<p>The later type of task will be detailed in other articles. Let&rsquo;s focus on the two others.</p>
+
+<h2>The case of the deadlined feature ?</h2>
+
+<p>First, I&rsquo;d say its business value is 0, until it&rsquo;s too late. You should not be working on it too soon, but you should not be working on it too late neither !</p>
+
+<p>In his book <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1413954965&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> James Shore details in great details how an agile team can commit to deliverables (I really recommend this part, I might even write a post about it). He explains that in order to commit, teams should multiply their estimates by 4, or by 1.8 if they are very rigourous in their application of all the XP practices.</p>
+
+<p>So a rule to handle such a task could be to</p>
+
+<ul>
+<li>estimate it</li>
+<li>multiply that estimate by 4</li>
+<li>substract this time from the deadline</li>
+<li>prioritize it so that it can be started at that date, but not earlier</li>
+<li>don&rsquo;t expect to be creating any value by completing these stories</li>
+</ul>
+
+
+<h2>What&rsquo;s the business value of other typical user stories</h2>
+
+<p><a href="http://scaledagileframework.com/wsjf/">This article</a> suggests that in this case the cost of delay is equal to the business value of the feature for the user. But how can we have an idea of its actual user business value ?</p>
+
+<p>Before actually selling and getting the money, it&rsquo;s just an estimation. With the good information, some people will make better estimates than others, never the less, it&rsquo;s still an estimate. Let&rsquo;s try a &ldquo;Business Value Poker&rdquo; ! Here are a few ideas about how to conduct this:</p>
+
+<ul>
+<li>Estimate business value at the same time as you estimate the complexity of a story</li>
+<li>Create some business value $ poker estimate cards, write an app for this, or bring in some Poker Chips to estimate the value</li>
+<li>Invite some business people (sales, marketting &hellip;) to the meeting to get real knowledge (being organized as a feature team will help)</li>
+</ul>
+
+
+<p><a href="https://gigaom.com/2012/05/16/social-gaming-to-gambling-states-inch-forward/poker-chips-by-sanzar-murzin/"><img class="center" src="/imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/all-in.jpg" title="&#34;Hands pushing poker chips for an all-in&#34;" alt="&#34;Hands pushing poker chips for an all-in&#34;"></a></p>
+
+<p>At the end, when you have the estimated cost of delay and duration of every task, you can directly prioritize using the WSJF (Weighted Shortest Job First) :</p>
+
+<blockquote><p>WSJF = Cost of Delay / Duration</p></blockquote>
+
+<p>Just do the tasks by decreasing order of WSJF.</p>
+
+<p>At the end of the sprint, just as we track the story points we completed with the velocity, we could track the business value we created, that would be our business value speed. If you have access to real sales numbers, it might be interesting to see if it&rsquo;s possible to correlate the figures.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>The more I learn about Lean principles, the more I find our current Issues Tracking Systems (I&rsquo;m used to Jira) limited. They seem to be databases with a nice UI, whereas what we need are tools to help us to make better decisions out of the multitude of items &hellip; How come they do not provide something as simple as the WSJF ?</p>
+
+<h2>Edit 12/09/2014</h2>
+
+<p>I got some pretty positive feedback from practicing these business value pokers. Inviting the product owner forced him to explain in details why he believed some features were more valuable than others. On the opposite, it allowed the developpers to hightlight how some seemingly unimportant stories were critical to a long term goal. In the end, everyone, including the product owner, is asking for more. It&rsquo;s a good practice that helps introducing the business value / cost of delay concept.</p>
+
+<p>This was part 3 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 2 was <a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a>, Part 4 will be <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-16T07:07:00+00:00" pubdate data-updated="true">Oct 16<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/business-value/'>business-value</a>, <a class='category' href='/blog/categories/lean/'>lean</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/why-extreme-programming-works-lean-software-development-part-2/" title="Previous Post: Why eXtreme Programming works ? (Lean Software Development part 2)">&laquo; Why eXtreme Programming works ? (Lean Software Development part 2)</a>
+      
+      
+        <a class="basic-alignment right" href="/how-to-setup-a-weekly-fruit-basket-in-no-time/" title="Next Post: How to setup a weekly fruit basket in no time">How to setup a weekly fruit basket in no time &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/recipes-for-an-agile-workspace/">Recipes For An Agile Workspace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed 'Warning: Authentication failure. Retrying' with Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs's blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/';
+        var disqus_url = 'http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

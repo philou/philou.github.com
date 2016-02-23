@@ -206,7 +206,7 @@ to have cotton stuffed in the bells.</p></blockquote>
 <blockquote><p>Police-mentality planners design workplaces the way they would design prisons: optimized for containment at minimal cost. We have unthinkingly yielded to them on the subject of workplace
 design, yet for most organizations with productivity problems, there is no more fruitful area for improvement than the workplace. As long as workers are crowded into noisy, sterile, disruptive space, it&rsquo;s not worth improving anything but the <strong>workplace</strong>.</p></blockquote>
 
-<p>Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables and light easy to fix wall monitors are all things that would make this possible.</p>
+<p>Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables, movable walls and easy to fix wall monitors are all things that would make this possible.</p>
 
 <p><img class="center" src="/imgs/2016-02-17-recipes-for-an-agile-workspace/lego-office.jpg" title="A miniature office in Legos" ></p>
 </div>
@@ -476,7 +476,749 @@ design, yet for most organizations with productivity problems, there is no more 
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I Fixed &#8216;Warning: Authentication Failure. Retrying&#8217; With Vagrant</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-31T06:39:00+00:00" pubdate data-updated="true">Jan 31<span>st</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lately, I went into an upgrade cycle : <a href="http://www.ubuntu.com/">Ubuntu</a>, which forced me to upgrade <a href="https://www.docker.com/">Docker</a>, and then <a href="https://www.vagrantup.com/">Vagrant</a> &hellip; you know the story. Unfortunately, my vagrant config did not want to start anymore with the following error :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>Warning: Authentication failure. Retrying
+</span><span class='line'>...</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img class="center" src="/imgs/2016-01-31-how-i-fixed-warning-authentication-failure-retrying-with-vagrant/ssh.jpg" title="A screen with the ssh prompt" ></p>
+
+<p>I tried to destroy and re-create my box with the same result : it eventually timedout, but the provisions were not executed.</p>
+
+<p>After searching the internet and a lot of experimentation, I managed to make it work by commenting out the following line in my Vagrantfile</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># config.ssh.private_key_path = "~/.ssh/id_rsa"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I think I added this a long time ago to be able to push to github from my Vagrantbox, but after trying it, it work with the difference of my having to validate the remote ssh key, that&rsquo;s not of a big deal.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways to Speed Up an Algorithm</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-20T05:14:00+00:00" pubdate data-updated="true">Jan 20<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Algorithms are <em>hard</em>, and making them fast is even harder &hellip; But there are shortcuts that work quite often !</p>
+
+<p><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg" title="A street panel called Short Cut Road" ></p>
+
+<h2>The Challenge</h2>
+
+<p>Imagine you just arrived to your new job, and you are asked to make a part of the system faster. After a bit of investigation, you discover that most of the time is spent in some weird in-house algorithm that seems to take forever. How can you optimize this without deep knowledge neither in algorithm science nor in the code itself ?</p>
+
+<p>Here are 4 tricks to reduce the complexity of algorithms (I&rsquo;m using fairly basic examples for the sake of understandably. Most of these exact examples could be done better using standard libraries, but I hope it will be easy to adapt to other situations) :</p>
+
+<h3>Replace a nested loop by first building a hash and then looping</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># before</span>
+</span><span class='line'><span class="n">orders</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">client</span> <span class="o">=</span> <span class="n">list_of_clients</span><span class="o">.</span><span class="n">find</span> <span class="p">{</span><span class="o">|</span><span class="n">client</span><span class="o">|</span> <span class="n">client</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">order</span><span class="o">.</span><span class="n">client_id</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">handle_order</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># after</span>
+</span><span class='line'><span class="n">clients_by_id</span> <span class="o">=</span> <span class="p">{}</span>
+</span><span class='line'><span class="n">list_of_clients</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">client</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">clients_by_id</span><span class="o">[</span><span class="n">client</span><span class="o">.</span><span class="n">id</span><span class="o">]</span> <span class="o">=</span> <span class="n">client</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">orders</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">order</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">handle_order</span><span class="p">(</span><span class="n">order</span><span class="p">,</span> <span class="n">clients_by_id</span><span class="o">[</span><span class="n">order</span><span class="o">.</span><span class="n">client_id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This reduces the complexity from O(2) to O(1). This is tremendous. On large lists O(2) algorithms are terrible.</p>
+
+<h3>Remove unnecessary accumulations</h3>
+
+<p>The most classic example is the use of a string buffer :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="sr">//</span> <span class="no">Before</span>
+</span><span class='line'><span class="n">report</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'><span class="n">line_items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line_item</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">report</span> <span class="o">+=</span> <span class="n">line_item</span><span class="o">.</span><span class="n">to_s</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">//</span> <span class="no">After</span>
+</span><span class='line'><span class="n">report</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="n">line_items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">line_item</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="n">line_item</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="n">report</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">report</span><span class="o">.</span><span class="n">join</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Again, this reduces the complexity from O(2) to O(1). Every language has variants of Java&rsquo;s StringBuilders. This does not only apply for strings, it works any time you are repeatedly accumulating results inside a loop but where you could do it only once at the end.</p>
+
+<h3>Cache intermediate or previous results</h3>
+
+<p>This is called <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a>. Some algorithms (especially recursive algorithms) repeatedly compute the same thing again and again. Spotting this pattern is an opportunity to move an algorithm out of exponential complexity. For example, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijsktra&rsquo;s algorithm</a> for finding the shortest path in a graph uses this technique to go from O(e<sup>n</sup>) to O(n<sup>2</sup>) complexity. If you suspect this could be helpful, your best friend is logging to trace actual parameters and results.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif"><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif" title="Dijsktra's path finding algorithm animated (from Wikipedia)" ></a></p>
+
+<p>A word of caution : using memoization with mutable inputs or outputs will harm your mental health.</p>
+
+<h3><a href="https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists">Zip merge</a></h3>
+
+<p>There are 2 ways to merge sorted lists into a unique sorted list : the fast, and the slow &hellip;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># The slow</span>
+</span><span class='line'><span class="p">(</span><span class="n">list_1</span> <span class="o">+</span> <span class="n">list_2</span><span class="p">)</span><span class="o">.</span><span class="n">sort</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The fast</span>
+</span><span class='line'><span class="n">i_1</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">i_2</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'><span class="n">result</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="n">i_1</span> <span class="o">&lt;</span> <span class="n">list_1</span><span class="o">.</span><span class="n">size</span> <span class="ow">and</span> <span class="n">i_2</span> <span class="o">&lt;</span> <span class="n">list_2</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">i_1</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">elsif</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">i_2</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="n">i_1</span> <span class="o">&lt;</span> <span class="n">list_1</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_1</span><span class="o">[</span><span class="n">i_1</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">i_1</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">while</span> <span class="n">i_2</span> <span class="o">&lt;</span> <span class="n">list_2</span><span class="o">.</span><span class="n">size</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="n">list_2</span><span class="o">[</span><span class="n">i_2</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">i_2</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Obviously, the slow version is a lot easier to read than the fast one. And the fast one could benefit from a bit of refactoring also &hellip; Nevertheless, the slow version is at best in O(n.ln(n)) whereas the fast on is in O(n). On large data, that can make a big difference.</p>
+
+<h2>Is that all ?</h2>
+
+<p>Obviously not, there can be a lot of other things going on slowly in algorithms, but from my experience, a software engineer can have a good career without knowing more about algorithms theory than that.</p>
+
+<p>In the end, you manage to optimize this in-house algorithm, you become the company&rsquo;s hero, you need your job and get a pay raise !</p>
+
+<h2>End word</h2>
+
+<p>The fact is, in 15 years of writing software, I did not write a lot of algorithmic code. I can categories my working with algorithms in 3 :</p>
+
+<ol>
+<li>Write a simple algorithm for a non performance critical feature</li>
+<li>Optimize an existing somewhat algorithmic part of code</li>
+<li>Write a complex algorithm for a performance critical part of the system</li>
+</ol>
+
+
+<p>Case 1. is not really an issue since however the code will be written, it will run fast enough. If you&rsquo;re in case 3, there&rsquo;s no shortcut, you&rsquo;ll have to dig deep into algorithms and optimization, this happens rather rarely though. This leaves us with case 2, which I just wrote about.</p>
+
+<p>Interestingly, <a href="http://www.murex.com">my current job</a> is deep into case 3 ! We&rsquo;re building a risk engine for corporate markets and are borrowing a lot of techniques from database science &hellip; which is, you can guess, rather algorithmic !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-we-started-exploratory-testing/">How We Started Exploratory Testing</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-08T18:18:00+00:00" pubdate data-updated="true">Jan 8<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Manual testing is important. Here is how we got to love exploratory testing.</p>
+
+<p><img class="center" src="/imgs/2016-01-08-how-we-started-exploratory-testing/explore.jpg" title="A map and a telescope for exploration" ></p>
+
+<h2>Initial situation</h2>
+
+<p><a href="http://www.murex.com">At work</a> we are building a risk computation engine for the financial markets. It uses a DSL to describe the exact computations to estimate the risk on the data it knows. This in itself is already complex enough to justify the heavy investment in automated testing we did.</p>
+
+<p>With 90% of automated test coverage, Cucumber scenarios to verify quality, everything should just work &hellip; shouldn&rsquo;t it ?</p>
+
+<h2>First try at exploratory testing</h2>
+
+<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1452279644&amp;sr=8-1&amp;keywords=the+art+of+agile+development"><img class="center" src="/imgs/2016-01-08-how-we-started-exploratory-testing/art-of-agile-development.jpg" title="The cover of the Art Of Agile Development" ></a></p>
+
+<p>In <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1452279644&amp;sr=8-1&amp;keywords=the+art+of+agile+development">The art of agile development</a>, James Shore details the practice of exploratory testing as a great way of both :</p>
+
+<ul>
+<li>improving the quality of the product by finding bugs</li>
+<li>improving the process</li>
+</ul>
+
+
+<p>That&rsquo;s why we gave it a try. Here is the recipe for an exploratory session :</p>
+
+<ol>
+<li>Book 1 hour for the full team to do exploratory testing</li>
+<li>Prepare a downloadable zip with all the material required to run and test your software</li>
+<li>Ask everyone to pick a particular aspect of the system to test during this session</li>
+<li>Record bugs when you find one</li>
+<li>Spend 30 minutes just after the session to filter duplicate bugs and make sure they are well described</li>
+</ol>
+
+
+<p>Obviously, we also added our special sauce</p>
+
+<ol>
+<li>We were to do exploratory testing in pairs, as we do programming, to find more bugs</li>
+<li>We gamified it by granting a price to the pair that finds the most bugs. Do you remember how I brought <a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/">fruits for sale in the office</a> ? It turns out we are slowly earning money with the fruits &hellip; enough for the price to be 5 fruits each for the wining pair !</li>
+</ol>
+
+
+<p>This transformed developers into ferocious testers ! I guarantee that with such incentives you&rsquo;ll find bugs &hellip; as we did.</p>
+
+<p><a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/"><img class="center" src="/imgs/2016-01-08-how-we-started-exploratory-testing/fruits-basket.jpg" title="Our weekly fruit basket at work" ></a></p>
+
+<h2>Doing it systematically</h2>
+
+<p>We took some time to fix all these bugs during a few sprints. And did another exploratory testing session a few months after &hellip;</p>
+
+<p>As we were still finding bugs in the second session, we decided to make them part of the every sprint. As we got better at testing, a lot of bugs started to get uncovered ! So much that we had to change something.</p>
+
+<h2>Improving our process</h2>
+
+<p>We meet in retrospective and here is what we decided :</p>
+
+<ol>
+<li>Fix all bugs before working on any other story (obviously, automated tests are added in the process)</li>
+<li>Classify what exactly is a bug. For example, for us, a bug is something that used to work or silently returns bad results or corrupts the data</li>
+<li>Add exploratory testing by another pair to our definition of done</li>
+</ol>
+
+
+<p>The number of bugs we find during exploratory testing sessions is starting to decrease. We hope that we&rsquo;ll soon be able to do exploratory testing on the fly, as part of our daily work and to completely remove the specific sessions.</p>
+
+<h2>Benefits</h2>
+
+<p>Exploratory testing brought us a lot.</p>
+
+<ul>
+<li>Obviously, the product is a lot more solid</li>
+<li>We are surely saving time that would have been lost if the bugs had been uncovered by the users</li>
+<li>Fixing the bugs forced us to fix some technical debt : bugs often came from areas of the code that we were not so proud or confident of</li>
+</ul>
+
+
+<p>Exploratory testing is a nobrainer. All teams should do it.</p>
+
+<p>So, in the end, as in the old days, we are back to regular manual testing &hellip; but only for exploration.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-write-good-performance-stories/">How to Write Good Performance Stories</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-08T07:58:00+00:00" pubdate data-updated="true">Jan 8<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you&rsquo;re having difficulties writing good performance related stories for your project, that&rsquo;s no surprise ! We&rsquo;ve been through the same troubles and we found a way that works a lot better.</p>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg" title="A Mb speed counter" ></p>
+
+<h2>Solution 1 : <a href="/performance-is-a-feature/">Performance is a feature</a></h2>
+
+<p>Right ? In typical agile way, a story about performance would be written like</p>
+
+<blockquote><p>As marketing, I want the page load to perform under 1 second, In order for the customers to stay on the site</p></blockquote>
+
+<p>If the performance bottleneck and the fix are obvious, that might work very well. If that&rsquo;s your case, then go on, that&rsquo;s the simplest way!</p>
+
+<p>Unfortunately for us, we are not in that case. <a href="http://www.murex.com">At work</a> we are building a risk engine and we need to perform extremely well on a wide set of different scenarios. Imagine a story such as</p>
+
+<blockquote><p>As a risk manager, I want the VAR scenario to compute in less than 1 second, in order to have real time data</p></blockquote>
+
+<ul>
+<li>we&rsquo;re pretty sure that there won&rsquo;t be 1 but many bottlenecks to fix before reaching the expected performance</li>
+<li>speeding up the VAR scenario might slow down other scenarios</li>
+</ul>
+
+
+<p>That makes this kind of story too fuzzy. We tried them, and we had difficulties to estimate and close them.</p>
+
+<h2>Solution 2 : Back to the traditional way</h2>
+
+<p>Without an agile backlog, developers would have worked on tasks such as</p>
+
+<blockquote><p>Add caching to the computation engine</p></blockquote>
+
+<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, it&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
+
+<h2>Solution 3 : Mixing both</h2>
+
+<p>Here is how we we are now writing performance stories at work :</p>
+
+<blockquote><p>As a risk manager, I want to have caching in the computation engine, in order to the VAR scenario compute under 1 second (in order to have real time data)</p></blockquote>
+
+<p>It&rsquo;s now estimable, we know what it&rsquo;s there for. It&rsquo;s obviously not enough though : we know that we will very likely need to do other performance stories after this one.</p>
+
+<h2>Embrace uncertainty</h2>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg" title="A Maserati engine" ></p>
+
+<p>The fact is that in our context, getting better performances is <em>hard</em> :</p>
+
+<ul>
+<li>it requires a lot of work</li>
+<li>we don&rsquo;t know how much at the beginning</li>
+<li>we often try things that don&rsquo;t work</li>
+</ul>
+
+
+<p>This makes the whole project more uncertain, so we&rsquo;re better off embracing this uncertainty in the way we write and prioritize our performance stories.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/great-developers-are-free/">Great Developers Are Free</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-31T12:24:00+00:00" pubdate data-updated="true">Dec 31<span>st</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For many reasons. But mostly because they are key to efficiently growing a software organization.</p>
+
+<p><img class="center" src="/imgs/2015-12-31-great-developers-are-free/cat-codes-for-food.jpg" title="A funny picture sleeping on a keyboard, with the mention 'Will code for food'" ></p>
+
+<h2>A tale of 2 teams</h2>
+
+<p>Let&rsquo;s have a look at 2 software teams in the world of corporate finance.</p>
+
+<h3>The junior in-house team</h3>
+
+<p><a href="http://www.lefigaro.fr/emploi/2013/12/07/09005-20131207ARTFIG00309-bruit-temperature-air8230-les-salaries-reserves-sur-l-open-space.php"><img class="center" src="/imgs/2015-12-31-great-developers-are-free/open-space.jpg" title="A big corporate open space" ></a></p>
+
+<p>One is an in-house software development team in a large bank. The project already has a bad reputation among developers.The bank has difficulties to hire so the team is constituted of 10 rather junior developers. Unfortunately, without guidance and long term vision, the quality of the code suffers. It looks like an ad-hoc composition of various technolgies, glue code, and reinvented frameworks. The overall result is a barely good enough product that costs a small fortune in maintainance and support. The user experience is awful, which make it difficult to the the team leaders and the users to collaborate effectively. As a result of all this, the project is suffering from high turnover. Managing this project is really challenging &hellip; and kind of depressing.</p>
+
+<h3>The experienced software team</h3>
+
+<p><a href="http://www.personalized-software.ie/aboutus"><img class="center" src="/imgs/2015-12-31-great-developers-are-free/experienced-team.jpg" title="An experienced software team" ></a></p>
+
+<p>Now let&rsquo;s imagine the same product developed at a software house. It&rsquo;s been on the market for a while now, but new features are regularly added to it at a good pace. The product is solid and the users are happy using it. The structure of the team is completely different : 5 developers, mainly experienced, coming from various backgrounds. As a result, the team builds on all their different expertises to build real competitive advantages. They tend to get into healthy debates about a lot of things, such as :</p>
+
+<ul>
+<li>Should we re-use or re-write ?</li>
+<li>Is this gold plating or plain technical debt ?</li>
+<li>Which technology should we use to build this ?</li>
+</ul>
+
+
+<p>In the end, that makes the product even better. The humane side of the team is also completely different. These experienced developers have all been exposed to the big picture during their careers, and they know things like :</p>
+
+<ul>
+<li>&lsquo;Business talk&rsquo; and so they can discuss product topics with the product managers</li>
+<li>The best way to go through chores at work is to do them right now</li>
+<li>Enough management, testing, ops to make the team self organized</li>
+</ul>
+
+
+<p>The single junior developer in the team tends to mimic this model, and has ease finding mentors, to teach him their trade and to give him career counsels.</p>
+
+<p>As a result, the product and the team remain healthy, and keep providing benefits to all stakeholders.</p>
+
+<h2>Benefits of experienced teams</h2>
+
+<p>First, from a purely short term financial point of view, it&rsquo;s a no brainer ! Even if you pay experienced developers twice as much as juniors, the costs will still be on par. But the difference in created value is huge !</p>
+
+<p>Let&rsquo;s then have a look at the longer term, organizational aspect of things. Obviously, managing such teams requires a lot less work ! Both because of their size and because experienced developers tends to manage themselves very well &hellip; Promoting self-organized &amp; cross-functionnal teams is a great opportunity to reduce the management cost and friction, making the organization more reactive and cost efficient in the long run.</p>
+
+<h2>What is an experienced developer ?</h2>
+
+<p>Obviously, I&rsquo;ve worked with people that were experienced on paper, but not in practice. I <a href="http://www.jrothman.com/htp/interview/2004/12/whats-a-year-of-experience/">read</a> that repeating 10 times the same year of work only amounts to 1 year of experience.</p>
+
+<p>If I was asked to give a definition, I&rsquo;d say that experienced developers have worked on different kind of systems (embeded, web, client, server &hellip;) using different technologies (Java, Ruby, C, Spring, Rails, Javascript &hellip;). Their experiences need not be professional, I&rsquo;ve seen a physics teacher that hacked himself into a great hacker through side projects and open source. Speaking of the subject, good developers always spent a lot of time learning, reading, doing side projects and contributing to open source. Some can be found in local user groups and online programming communities.</p>
+
+<h2>So How do you get them ?</h2>
+
+<p>I can only think of 3 obvious ways :</p>
+
+<ul>
+<li>train them</li>
+<li>keep them</li>
+<li>hire them</li>
+</ul>
+
+
+<p>I&rsquo;m pretty sure training them will not be an issue if you already have enough of them. So that brings us to the 2 other points.</p>
+
+<p><a href="https://www.prestashop.com/blog/en/guided-visit-prestashops-new-paris-headquarters/"><img class="center" src="/imgs/2015-12-31-great-developers-are-free/prestashop.jpg" title="The prestashop offices in Paris" ></a></p>
+
+<p>Lot&rsquo;s of articles have been written about attracting and keeping the best developers. Some companies even made it <a href="http://www.joelonsoftware.com/articles/HighNotes.html">their differentiating point</a>. Here are a few links :</p>
+
+<ul>
+<li>In his post <a href="http://avc.com/2012/02/the-management-team-guest-post-from-joel-spolsky/">&ldquo;The Management Team&rdquo;</a> Joel Splosky details the inverted pyramid model</li>
+<li>Joel Spolsky&rsquo;s (again) <a href="http://www.joelonsoftware.com/articles/DevelopmentAbstraction.html">Development Abstraction Layer</a> explains all the physical environment that makes programmers happy at work</li>
+<li><a href="http://qz.com/169147/applications-have-doubled-to-the-company-that-discloses-its-salaries/">After disclosing employee salaries, Buffer was inundated with resumes</a> when <a href="http::/www.buffer.com">buffer.com</a> publicly disclosed <a href="https://open.buffer.com/introducing-open-salaries-at-buffer-including-our-transparent-formula-and-all-individual-salaries/">their salary formula</a>, the number of applications the company received doubled</li>
+<li>Spotify organizes <a href="https://labs.spotify.com/2013/02/15/organizing-a-hack-week/">Hack Weeks</a> where  the company stops for a while to invent new things</li>
+<li>Google summarizes it &ldquo;Do Cool Things That Matters&rdquo; in their long advertises <a href="http://www.google.com/about/careers/lifeatgoogle/">Life At Google</a></li>
+</ul>
+
+
+<p>These are just a few examples and are by no way the only things that motivate developers. To summarize, provide the best working conditions (careful, that not money), and communicate a lot about it.</p>
+
+<h2>Hiring is too important to be left to HR</h2>
+
+<p><a href="https://management30.com/product/workouts/">Jurgen Appelo</a> said</p>
+
+<blockquote><p>Management is too important to be left to managers.</p></blockquote>
+
+<p>I guess the same thing can be said about hiring.</p>
+
+<p>Engineers are absolutely required to take the main role when hiring other engineers. Companies that seriously want to have the best developers on board are spending substantial engineering time on hiring. Here are some well known examples :</p>
+
+<ul>
+<li><a href="http://www.google.com/about/careers/lifeatgoogle/hiringprocess/">Google</a> is known to conduct around 9 interviews before hiring someone</li>
+<li>In its <a href="http://www.valvesoftware.com/company/Valve_Handbook_LowRes.pdf">Handbook for New Employee</a> Valve explicitly states that hiring is your most important role</li>
+</ul>
+
+
+<h2>Endword</h2>
+
+<p>As <a href="https://en.wikiquote.org/wiki/Tom_DeMarco">Tom DeMarco</a> said about quality, in <a href="http://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=sr_1_1?ie=UTF8&amp;qid=1451733851&amp;sr=8-1&amp;keywords=peopleware">Peopleware</a> :</p>
+
+<blockquote><p>Great developers are free, but only for those who are willing to pay for them</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-do-screencasts-on-ubuntu/">How to Do Screencasts on Ubuntu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-23T06:01:00+00:00" pubdate data-updated="true">Dec 23<span>rd</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It is easy to record and share great screencasts on <a href="http://www.ubuntu.com">Ubuntu</a> (and I guess on Linux in general).</p>
+
+<p>Recently, I had to create a screencast to demonstrate how to use <a href="/storexplore/">Storexplore</a>, a gem I wrote that transforms online stores into APIs. Here is the result</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O30xReGgdVU" frameborder="0" allowfullscreen></iframe>
+
+
+<p>Don&rsquo;t lose your time searching for anything else than <a href="http://www.maartenbaert.be/simplescreenrecorder">SimpleScreenRecorder</a> (I did, and actually did lose quite some time). Follow the <a href="http://www.maartenbaert.be/simplescreenrecorder/#download">installation instructions</a> :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
+</span><span class='line'>sudo apt-get update
+</span><span class='line'>sudo apt-get install simplescreenrecorder
+</span><span class='line'><span class="c"># if you want to record 32-bit OpenGL applications on a 64-bit system:</span>
+</span><span class='line'>sudo apt-get install simplescreenrecorder-lib:i386
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s dead simple to use, just try to record your first video, and you should know it all !</p>
+
+<p>At the difference of other tools I tried (I&rsquo;m looking at you <a href="http://recordmydesktop.sourceforge.net/about.php">RecordMyDesktop</a>) I could easily encode my video to efficient formats (mp4, h.264 &amp; mp3) that are well known on the internet, and in particular, by <a href="http://www.youtube.com">YouTube</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/my-dream-lean-software-development-tool-lean-software-development-part-9/">My Dream Lean Software Development Tool (Lean Software Development Part 9)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-14T20:49:00+00:00" pubdate data-updated="true">Dec 14<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Current software project tracking tools suck !</p>
+
+<p><img class="center" src="/imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/it-sucks.jpg" title="A stamp that writes &#34;SUCKS&#34;" alt="A stamp that writes &#34;SUCKS&#34;"></p>
+
+<p>By writing <a href="/the-flow-book-summary-lean-software-development_part_1/">this series of posts</a>, I realized that they should help us to prioritize rather than just serving as a nice GUIs on top of a ticket database.</p>
+
+<p>Let&rsquo;s take the story of developer Joe as an example. Joe is working for Megacorp, where he makes a good living, but feels like a small cog in the machine. He has lost the thrill of programming &hellip; He&rsquo;s still staying informed about latest trends in software world, but his job involves aging technologies. He knows that if he wants to remain in the course, he has to change gears. One day, he decides to do something <em>now</em>, and starts a side project in the hope of someday making a living out of it.</p>
+
+<p>He does not have a large amount of money to invest in his project, so he decides to bootstrap his product using <a href="http://theleanstartup.com/">Lean Startup</a>. He reads and understands that there is a lot of different kind of activities to do if he wants to realize his dream : experiments, marketing, sales, design, coding &hellip;</p>
+
+<p>Unfortunately, he&rsquo;s so tired of programming boring stuff that he contracted the developer bias : he starves to code cool things again ! He knows the rest is important, he tries to do some of it, but he just doesn&rsquo;t realize how <em>much</em> needs to be done. So, without realising it, he wastes a lot of time coding something that people eventually don&rsquo;t buy. After 1 or 2 years of hard work, a working product but no users, he eventually quits, quite depressed &hellip;</p>
+
+<p>I guess you don&rsquo;t want to be Joe ! I know you&rsquo;ll think it won&rsquo;t happen to you &hellip; believe me, it can, <a href="rip-mes-courses-dot-fr/">I learned it the hard way</a> !</p>
+
+<p>Now suppose you had a tool that estimates the expected values of all different tasks :</p>
+
+<ul>
+<li>By applying <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulations</a> to probabilistic value and size ranges, it could compute which features we should work on first. As a side effect, this could give us some release date estimates for a feature, depending on its position in the backlog.</li>
+<li>By having explicit experiment tasks with target value or size ranges, it could compute the value of information and prioritize experiments versus other tasks.</li>
+<li>Crossing informations from IDEs, VCS, Quality Trackers and CIs, it could detect technical debt items (aka. productivity opportunities), compute their values in the long run, and prioritize them with other tasks.</li>
+<li>If we found a way to integrate marketing, sales and design tasks, any kind of activity could be stored in the backlog, valued and prioritized.</li>
+</ul>
+
+
+<p>Here is what the backlog could look like :</p>
+
+<p><img class="center" src="/imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/mockup.jpg" title="A mockup of the backlog view of such a product" ></p>
+
+<p>All different kind of activities (developments, marketing, experiments, refactorings) would fit in the backlog. The system would estimate the value of every task for Joe, advising him what to work on first. It would make it obvious just how much market experiments are important when starting ! With such a tool, he is a lot more likely to build his new life.</p>
+
+<p>The good thing with such a tool is that it could be built by feeding itself. <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Eating its own dog&rsquo;s food</a> has always been the nice thing about writing software tools.</p>
+
+<p>I&rsquo;d like to know, what do you think of the idea ? Would you use such a tool ? Is it worth me spending my nights building it ?</p>
+
+<p>This was 9th and last part of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 8 was <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -552,6 +1294,14 @@ design, yet for most organizations with productivity problems, there is no more 
     
       <li class="post">
         <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed &#8216;Warning: Authentication failure. Retrying&#8217; with Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
       </li>
     
   </ul>

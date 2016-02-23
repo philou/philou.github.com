@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Dream Lean Software Development Tool (Lean Software Development part 9) - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="A vision of a software project tool providing business insights by using lean product development techniques.">
+
+  
+  <meta name="keywords" content="Lean, Software, Lean Software Development, Project Management Tool">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">My Dream Lean Software Development Tool (Lean Software Development Part 9)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-14T20:49:00+00:00" pubdate data-updated="true">Dec 14<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Current software project tracking tools suck !</p>
+
+<p><img class="center" src="/imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/it-sucks.jpg" title="A stamp that writes &#34;SUCKS&#34;" alt="A stamp that writes &#34;SUCKS&#34;"></p>
+
+<p>By writing <a href="/the-flow-book-summary-lean-software-development_part_1/">this series of posts</a>, I realized that they should help us to prioritize rather than just serving as a nice GUIs on top of a ticket database.</p>
+
+<p>Let&rsquo;s take the story of developer Joe as an example. Joe is working for Megacorp, where he makes a good living, but feels like a small cog in the machine. He has lost the thrill of programming &hellip; He&rsquo;s still staying informed about latest trends in software world, but his job involves aging technologies. He knows that if he wants to remain in the course, he has to change gears. One day, he decides to do something <em>now</em>, and starts a side project in the hope of someday making a living out of it.</p>
+
+<p>He does not have a large amount of money to invest in his project, so he decides to bootstrap his product using <a href="http://theleanstartup.com/">Lean Startup</a>. He reads and understands that there is a lot of different kind of activities to do if he wants to realize his dream : experiments, marketing, sales, design, coding &hellip;</p>
+
+<p>Unfortunately, he&rsquo;s so tired of programming boring stuff that he contracted the developer bias : he starves to code cool things again ! He knows the rest is important, he tries to do some of it, but he just doesn&rsquo;t realize how <em>much</em> needs to be done. So, without realising it, he wastes a lot of time coding something that people eventually don&rsquo;t buy. After 1 or 2 years of hard work, a working product but no users, he eventually quits, quite depressed &hellip;</p>
+
+<p>I guess you don&rsquo;t want to be Joe ! I know you&rsquo;ll think it won&rsquo;t happen to you &hellip; believe me, it can, <a href="rip-mes-courses-dot-fr/">I learned it the hard way</a> !</p>
+
+<p>Now suppose you had a tool that estimates the expected values of all different tasks :</p>
+
+<ul>
+<li>By applying <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulations</a> to probabilistic value and size ranges, it could compute which features we should work on first. As a side effect, this could give us some release date estimates for a feature, depending on its position in the backlog.</li>
+<li>By having explicit experiment tasks with target value or size ranges, it could compute the value of information and prioritize experiments versus other tasks.</li>
+<li>Crossing informations from IDEs, VCS, Quality Trackers and CIs, it could detect technical debt items (aka. productivity opportunities), compute their values in the long run, and prioritize them with other tasks.</li>
+<li>If we found a way to integrate marketing, sales and design tasks, any kind of activity could be stored in the backlog, valued and prioritized.</li>
+</ul>
+
+
+<p>Here is what the backlog could look like :</p>
+
+<p><img class="center" src="/imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/mockup.jpg" title="A mockup of the backlog view of such a product" ></p>
+
+<p>All different kind of activities (developments, marketing, experiments, refactorings) would fit in the backlog. The system would estimate the value of every task for Joe, advising him what to work on first. It would make it obvious just how much market experiments are important when starting ! With such a tool, he is a lot more likely to build his new life.</p>
+
+<p>The good thing with such a tool is that it could be built by feeding itself. <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Eating its own dog&rsquo;s food</a> has always been the nice thing about writing software tools.</p>
+
+<p>I&rsquo;d like to know, what do you think of the idea ? Would you use such a tool ? Is it worth me spending my nights building it ?</p>
+
+<p>This was 9th and last part of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 8 was <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-12-14T20:49:00+00:00" pubdate data-updated="true">Dec 14<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/business-value/'>business value</a>, <a class='category' href='/blog/categories/lean/'>lean</a>, <a class='category' href='/blog/categories/planning/'>planning</a>, <a class='category' href='/blog/categories/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/" title="Previous Post: How I'll measure the lean startup value of information in my next side project (Lean Software Development Part 8)">&laquo; How I'll measure the lean startup value of information in my next side project (Lean Software Development Part 8)</a>
+      
+      
+        <a class="basic-alignment right" href="/how-to-do-screencasts-on-ubuntu/" title="Next Post: How to do screencasts on Ubuntu">How to do screencasts on Ubuntu &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/recipes-for-an-agile-workspace/">Recipes For An Agile Workspace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed 'Warning: Authentication failure. Retrying' with Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs's blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9/';
+        var disqus_url = 'http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

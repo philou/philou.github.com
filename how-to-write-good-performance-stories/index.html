@@ -1,0 +1,407 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How To Write Good Performance Stories - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="The pitfalls and a guide about how to write performance stories in an uncertain context">
+
+  
+  <meta name="keywords" content="Agile, Stories, Performance, Performance Stories, Uncertainty">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/how-to-write-good-performance-stories/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Write Good Performance Stories</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-08T07:58:00+00:00" pubdate data-updated="true">Jan 8<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>If you&rsquo;re having difficulties writing good performance related stories for your project, that&rsquo;s no surprise ! We&rsquo;ve been through the same troubles and we found a way that works a lot better.</p>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg" title="A Mb speed counter" ></p>
+
+<h2>Solution 1 : <a href="/performance-is-a-feature/">Performance is a feature</a></h2>
+
+<p>Right ? In typical agile way, a story about performance would be written like</p>
+
+<blockquote><p>As marketing, I want the page load to perform under 1 second, In order for the customers to stay on the site</p></blockquote>
+
+<p>If the performance bottleneck and the fix are obvious, that might work very well. If that&rsquo;s your case, then go on, that&rsquo;s the simplest way!</p>
+
+<p>Unfortunately for us, we are not in that case. <a href="http://www.murex.com">At work</a> we are building a risk engine and we need to perform extremely well on a wide set of different scenarios. Imagine a story such as</p>
+
+<blockquote><p>As a risk manager, I want the VAR scenario to compute in less than 1 second, in order to have real time data</p></blockquote>
+
+<ul>
+<li>we&rsquo;re pretty sure that there won&rsquo;t be 1 but many bottlenecks to fix before reaching the expected performance</li>
+<li>speeding up the VAR scenario might slow down other scenarios</li>
+</ul>
+
+
+<p>That makes this kind of story too fuzzy. We tried them, and we had difficulties to estimate and close them.</p>
+
+<h2>Solution 2 : Back to the traditional way</h2>
+
+<p>Without an agile backlog, developers would have worked on tasks such as</p>
+
+<blockquote><p>Add caching to the computation engine</p></blockquote>
+
+<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, it&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
+
+<h2>Solution 3 : Mixing both</h2>
+
+<p>Here is how we we are now writing performance stories at work :</p>
+
+<blockquote><p>As a risk manager, I want to have caching in the computation engine, in order to the VAR scenario compute under 1 second (in order to have real time data)</p></blockquote>
+
+<p>It&rsquo;s now estimable, we know what it&rsquo;s there for. It&rsquo;s obviously not enough though : we know that we will very likely need to do other performance stories after this one.</p>
+
+<h2>Embrace uncertainty</h2>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg" title="A Maserati engine" ></p>
+
+<p>The fact is that in our context, getting better performances is <em>hard</em> :</p>
+
+<ul>
+<li>it requires a lot of work</li>
+<li>we don&rsquo;t know how much at the beginning</li>
+<li>we often try things that don&rsquo;t work</li>
+</ul>
+
+
+<p>This makes the whole project more uncertain, so we&rsquo;re better off embracing this uncertainty in the way we write and prioritize our performance stories.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-01-08T07:58:00+00:00" pubdate data-updated="true">Jan 8<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/performance/'>performance</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/how-to-write-good-performance-stories/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/how-to-write-good-performance-stories/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/great-developers-are-free/" title="Previous Post: Great Developers Are Free">&laquo; Great Developers Are Free</a>
+      
+      
+        <a class="basic-alignment right" href="/how-we-started-exploratory-testing/" title="Next Post: How We Started Exploratory Testing">How We Started Exploratory Testing &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/recipes-for-an-agile-workspace/">Recipes For An Agile Workspace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed 'Warning: Authentication failure. Retrying' with Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs's blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/how-to-write-good-performance-stories/';
+        var disqus_url = 'http://philippe.bourgau.net/how-to-write-good-performance-stories/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

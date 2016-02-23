@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Online store scrapping DSL gem - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="A programming blog. Particularly about agile development, real world walkthrough, tutorials, side project entrepreneurship and open source software.">
+
+  
+  <meta name="keywords" content="ruby, scrapping, DSL, gem, open source, Online, store">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Online Store Scrapping DSL Gem</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-21T06:50:00+00:00" pubdate data-updated="true">Jan 21<span>st</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
+
+<p>As explained in the Readme, it allows one to declare a store this way :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Storexplore</span><span class="p">:</span><span class="ss">:define_api</span> <span class="s1">&#39;dummy-store.com&#39;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">attributes</span> <span class="k">do</span>
+</span><span class='line'>      <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">attributes</span> <span class="k">do</span>
+</span><span class='line'>        <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">items</span> <span class="s1">&#39;a.item&#39;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">attributes</span> <span class="k">do</span>
+</span><span class='line'>          <span class="p">{</span>
+</span><span class='line'>            <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:brand</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#brand&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:price</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">to_f</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:image</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#image&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
+</span><span class='line'>            <span class="ss">:remote_id</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#remote_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</span><span class='line'>          <span class="p">}</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And to use it like that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Api</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s1">&#39;http://www.dummy-store.com&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;category: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;attributes: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">category</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">sub_category</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  category: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  attributes: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">sub_category</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    item: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    attributes: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I tried my best to make this library high quality :</p>
+
+<ul>
+<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
+<li>Real world features like constant memory usage have been added to fix production bugs</li>
+<li>Documented with samples and rdoc</li>
+<li>Extensive automated testing</li>
+</ul>
+
+
+<p>Let&rsquo;s hope it will be usefull for some.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-21T06:50:00+00:00" pubdate data-updated="true">Jan 21<span>st</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/dsl/'>dsl</a>, <a class='category' href='/blog/categories/gem/'>gem</a>, <a class='category' href='/blog/categories/open-source/'>open source</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/scrapping/'>scrapping</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/sprints-are-not-sprints/" title="Previous Post: Sprints are not sprints">&laquo; Sprints are not sprints</a>
+      
+      
+        <a class="basic-alignment right" href="/my-humble-advices-about-how-to-write-maintainable-tests/" title="Next Post: My humble advices about how to write maintainable tests">My humble advices about how to write maintainable tests &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/recipes-for-an-agile-workspace/">Recipes For An Agile Workspace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed 'Warning: Authentication failure. Retrying' with Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs's blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/online-store-scrapping-dsl-gem/';
+        var disqus_url = 'http://philippe.bourgau.net/online-store-scrapping-dsl-gem/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

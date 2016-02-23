@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Mining GitHub For New Hires - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="A quick explanation about how we mined github in an attempt to hire an experienced software engineer">
+
+  
+  <meta name="keywords" content="Hiring, Github Hiring, Github Mining, Software Engineer">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/mining-github-for-new-hires/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Mining GitHub for New Hires</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-19T05:30:00+00:00" pubdate data-updated="true">Aug 19<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>In search of an experienced software engineer</h2>
+
+<p>We have been trying to hire such a profile for the last year &hellip; The position is hopefully filled now. During that year, we have tried to mine <a href="https://github.com/">github</a> for candidates. Here is how we did it.</p>
+
+<p><img class="center" src="/imgs/2015-08-19-mining-github-for-new-hires/github.png" title="Github's banner" ></p>
+
+<p>Software engineers, especially experienced, are known to be hard to find. Over the past months, we had steadily been improving our hiring process :</p>
+
+<ul>
+<li>By regularly rewriting and optimizing our job post</li>
+<li>By posting it on Twitter</li>
+<li>By defining a precise interview template</li>
+</ul>
+
+
+<p>We went from very few applications to :</p>
+
+<ul>
+<li>More applications</li>
+<li>More experienced candidates</li>
+<li>Regular interviews</li>
+<li>Effective interviews</li>
+</ul>
+
+
+<p>Unfortunately, we were still not interviewing candidates as skilled as we would have liked to. We were convinced that we were offering a great job : the project is very interesting, and the team is a dream to work in.</p>
+
+<h2>How could we reach more great devs ?</h2>
+
+<p>Someday, I played with <a href="https://github.com/">github</a>&rsquo;s Rest Api and I managed to write a short ruby script that finds the contributors to a given project that are living near Paris (France).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rubygems&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;rest_client&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;json&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RestClient</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="s2">&quot;http://proxy:3128&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">github_get</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+</span><span class='line'>  <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="no">RestClient</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://api.github.com</span><span class="si">#{</span><span class="n">resource</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="ss">params</span><span class="p">:</span> <span class="p">{</span>
+</span><span class='line'>                              <span class="n">access_token</span><span class="p">:</span> <span class="s1">&#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;</span><span class="p">,</span>
+</span><span class='line'>                              <span class="n">per_page</span><span class="p">:</span> <span class="mi">200</span><span class="p">}))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">repo</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;searching for </span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2"> contributors in France&quot;</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">contributors</span> <span class="o">=</span> <span class="n">github_get</span><span class="p">(</span><span class="s2">&quot;/repos/</span><span class="si">#{</span><span class="n">repo</span><span class="si">}</span><span class="s2">/contributors&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="n">logins_locations</span> <span class="o">=</span> <span class="n">contributors</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">user</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">begin</span>
+</span><span class='line'>    <span class="n">login</span> <span class="o">=</span> <span class="n">user</span><span class="o">[</span><span class="s1">&#39;login&#39;</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">location</span> <span class="o">=</span> <span class="n">github_get</span><span class="p">(</span><span class="s2">&quot;/users/</span><span class="si">#{</span><span class="n">login</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">[</span><span class="s1">&#39;location&#39;</span><span class="o">]</span>
+</span><span class='line'>    <span class="p">{</span><span class="ss">login</span><span class="p">:</span> <span class="n">login</span><span class="p">,</span> <span class="ss">location</span><span class="p">:</span> <span class="n">location</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">rescue</span> <span class="no">Exception</span> <span class="o">=&gt;</span> <span class="n">e</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;could not see details of </span><span class="si">#{</span><span class="n">login</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="p">{</span><span class="ss">login</span><span class="p">:</span> <span class="n">login</span> <span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Here are all the contributors&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">logins_locations</span>
+</span><span class='line'><span class="n">french_contributors</span> <span class="o">=</span> <span class="n">logins_locations</span><span class="o">.</span><span class="n">select</span> <span class="k">do</span> <span class="o">|</span><span class="n">login_location</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">location</span> <span class="o">=</span> <span class="n">login_location</span><span class="o">[</span><span class="ss">:location</span><span class="o">]</span>
+</span><span class='line'>  <span class="n">location</span> <span class="o">!=</span> <span class="kp">nil</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="p">(</span><span class="n">location</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;france&#39;</span><span class="p">)</span> <span class="ow">or</span>
+</span><span class='line'>     <span class="n">location</span><span class="o">.</span><span class="n">downcase</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="s1">&#39;paris&#39;</span><span class="p">))</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;----------------------------&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="s2">&quot;Here are all the frenchcontributors&quot;</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">french_contributors</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>What&rsquo;s next ?</h2>
+
+<p>We eventually filled the position before following our github experiment. We might continue some day though ! Here is a list of improvements I thought of :</p>
+
+<ul>
+<li>Gather a list of projects that overlap with what we are building</li>
+<li>Search for repositories using some keyword or regular expression</li>
+<li>List github users that contributed to such projects, that live near us and that know java</li>
+<li>Use more complex algorithms to find best candidates (<a href="http://www.hackdiary.com/2010/02/10/algorithmic-recruitment-with-github/">Algorithmic Recruitment With GitHub</a>)</li>
+<li>Spend more time socializing on GitHub (<a href="http://www.sourcecon.com/news/2014/01/21/the-complete-guide-to-recruiting-and-sourcing-candidates-on-github/">The Complete Guide To Recruiting And Sourcing Candidates On GitHub</a>)</li>
+</ul>
+
+
+<p>It really looks like if software is eating recruitment &hellip;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-19T05:30:00+00:00" pubdate data-updated="true">Aug 19<span>th</span>, 2015</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/hiring/'>hiring</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/mining-github-for-new-hires/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/mining-github-for-new-hires/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/" title="Previous Post: Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira">&laquo; Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira</a>
+      
+      
+        <a class="basic-alignment right" href="/a-plan-for-technical-debt-lean-software-development-part-7/" title="Next Post: A Plan For Technical Debt (Lean Software Development Part 7)">A Plan For Technical Debt (Lean Software Development Part 7) &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/recipes-for-an-agile-workspace/">Recipes For An Agile Workspace</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/">How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-keep-programming-when-assigned-a-management-job/">How To Keep Programming When Assigned A Management Job</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed 'Warning: Authentication failure. Retrying' with Vagrant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs's blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick's blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/mining-github-for-new-hires/';
+        var disqus_url = 'http://philippe.bourgau.net/mining-github-for-new-hires/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

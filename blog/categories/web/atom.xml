@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: web | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/web/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2016-02-23T08:21:43+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[I just replaced Feedburner with MailChimp]]></title>
+    <link href="http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp/"/>
+    <updated>2013-10-08T06:36:00+00:00</updated>
+    <id>http://philippe.bourgau.net/i-just-replaced-feedburner-with-mailchimp</id>
+    <content type="html"><![CDATA[<p>Until now, I had been using <a href="http://www.feedburner.com">Feedburner</a> to manage the email subscriptions to my <a href="https://www.mes-courses.fr/blog">blog on mes-courses.fr</a>. <del>It had been working fine</del> I thought it had been working fine until a friend of mine asked me if I was still working on it, since it had been a time since she did not receive any email !</p>
+
+<p>It turned out that feedburner had not been forwarding emails for 6 months and that it had gone unnoticed &hellip; I had already had this issue before, and it was because my rss was not well formed according to feedburner (something related to unicode encoding I think). So to summarise :</p>
+
+<ul>
+<li>I lost trust in feedburner to forward my posts correctly</li>
+<li>Feedburner is not maintained by Google anymore</li>
+<li>They have been persistant rumors about Google shutting down Feedburner completly especially since the Reader shut down</li>
+</ul>
+
+
+<p>I started looking for alternatives. I tried <a href="http://www.nouri.sh">Nourish</a> and <a href="http://www.mailchimp.com">MailChimp</a> I did not manage to make Nourish work like I wanted, but I found MailChimp an intuitive and well documented product.</p>
+
+<p>The setup with MailChimp was a lot longer than with Feedburner, but the result is great. I feed a lot more confident about these emails being delivered now.</p>
+
+<p>There are a few points I still miss though :</p>
+
+<ul>
+<li>The social forward does not seem to work the same easy way, it looks like if MailChimp pushes the email content to your networks, but not a direct link to your blog</li>
+<li>MailChimp does not track non-email subscribers to your rss. I&rsquo;ll have to check my analytics to see how to do it.</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Matching meta tags with Capybara 2]]></title>
+    <link href="http://philippe.bourgau.net/matching-meta-tags-with-capybara-2/"/>
+    <updated>2013-07-01T20:20:00+00:00</updated>
+    <id>http://philippe.bourgau.net/matching-meta-tags-with-capybara-2</id>
+    <content type="html"><![CDATA[<p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
+
+<p><code>
+expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)
+</code></p>
+
+<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :
+<code>ruby
+expect(response).to have_title('My page')
+</code></p>
+
+<p>To match meta tags, I had to resort to the following :
+<code>ruby
+meta_refresh_tags = Nokogiri::HTML(page.source).xpath("//meta[@http-equiv='refresh']")
+expect(meta_refresh_tags).not_to(be_empty, 'could not find a meta refresh tag')
+</code></p>
+
+<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to evaluate an xpath in chrome ?]]></title>
+    <link href="http://philippe.bourgau.net/how-to-evaluate-an-xpath-in-chrome/"/>
+    <updated>2013-04-24T06:34:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-evaluate-an-xpath-in-chrome</id>
+    <content type="html"><![CDATA[<p>According to <a href="http://stackoverflow.com/questions/3030487/is-there-a-way-to-get-the-xpath-in-google-chrome">stack overflow</a>, simply use something like the following from the chrome console :
+<code>
+$x("//img")
+</code></p>
+
+<p>It works great.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[#1 rule for monitoring emails]]></title>
+    <link href="http://philippe.bourgau.net/1-rule-for-monitoring-emails/"/>
+    <updated>2013-02-22T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/1-rule-for-monitoring-emails</id>
+    <content type="html"><![CDATA[<p>I just spent a few hours debugging my rails app on heroku to understand why the hell I did not systematicaly receive the monitoring emails that my app was sending ...</p>
+
+
+<p>My app was actually rendering the email template.</p>
+
+
+<p>Wether the mail came through actually dependend on the mail content !</p>
+
+
+<p>It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from 'ovh' and then forwarding emails to my gmail account, it was handy to apply automatic labels.</p>
+
+
+<p>Here is the #1 rule : always send your monitoring emails directly to the final recepient ! There will be less risk that some messages get lost.&nbsp;</p>
+
+
+<p>I changed the recipient to my gmail address, updated my label filter, and everything is back to normal (a lot of time lost for nothing).</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[TOO_MANY_REDIRECTS when changing ssl requirements]]></title>
+    <link href="http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen/"/>
+    <updated>2013-01-28T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/toomanyredirects-when-changing-ssl-requiremen</id>
+    <content type="html"><![CDATA[<p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
+]]></content>
+  </entry>
+  
+</feed>
