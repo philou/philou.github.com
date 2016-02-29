@@ -99,6 +99,86 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/performance-is-a-feature/">Performance Is a Feature</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-19T06:46:00+00:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
+
+<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
+
+<h1>What&rsquo;s in it for us ?</h1>
+
+<p>If performance is indead a feature, then it can be managed like any feature :</p>
+
+<ul>
+<li><p>It should result from use cases</p>
+
+<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
+<li><p>It can be split into user stories</p></li>
+</ul>
+
+
+<blockquote><ul>
+<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
+<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>They can be prioritized against other stories</li>
+</ul>
+
+
+<blockquote><ul>
+<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
+<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>The performance on these use cases should be automatically tested and non regressed</li>
+</ul>
+
+
+<blockquote><ul>
+<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
+<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
+</ul>
+</blockquote>
+
+<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/">How to Setup a Weekly Fruit Basket in No Time</a></h1>
     
     
@@ -2274,95 +2354,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/better-error-messages-when-testing-html-views/">Better Error Messages When Testing Html Views</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-18T21:14:00+00:00" pubdate data-updated="true">May 18<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When testing html views, either from <a href="http://rspec.info/">RSpec</a> or from <a href="http://rspec.info/">Cucumber</a>, <a href="http://fr.wikipedia.org/wiki/XPath">XPath</a> can be really helpful to quickly find expected elements.</p>
-
-<p>Unfortunately, a bit like regular expressions, when you start to use xpath to solve a problem, you often end up with 2 problems &hellip; Part of the reason is that xpaths tend to be cryptic. In the case of testing, error messages coming from unmatched xpath are even more crytic !</p>
-
-<p>That&rsquo;s why I had the idea for <a href="https://github.com/philou/xpath-specs">xpath-specs</a> : a small gem that allows to associate a description with an xpath, to nest xpaths together, all this to simplify tests and assertion failure reporting.</p>
-
-<p>For example, with an assertion like this :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">html</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">contain_a</span><span class="p">(</span><span class="n">dish_with_name</span><span class="p">(</span><span class="s2">&quot;Grilled Lobster&quot;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here is the kind of failure message one can get :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">contain</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
-</span><span class='line'>       <span class="n">it</span> <span class="n">found</span> <span class="n">a</span> <span class="n">dish</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="p">)</span> <span class="p">:</span>
-</span><span class='line'>          <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="no">Pizza</span><span class="o">&lt;</span><span class="sr">/td&gt;...&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
-</span><span class='line'>       <span class="n">but</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And here is the required setup :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># spec/support/knows_page_parts.rb</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">module</span> <span class="nn">KnowsPageParts</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">dish</span>
-</span><span class='line'>    <span class="ss">Xpath</span><span class="p">:</span><span class="ss">:Specs</span><span class="o">::</span><span class="no">PagePart</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;a dish&quot;</span><span class="p">,</span> <span class="s2">&quot;//table[@id=&#39;dish-panel&#39;]//tr&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">dish_with_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">dish</span><span class="o">.</span><span class="n">that</span><span class="p">(</span><span class="s2">&quot;is named </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;[td[contains(.,&#39;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#39;)]]&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -2434,6 +2425,10 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-long-can-your-inner-drive-last/">How Long Can Your Inner Drive Last ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/recipes-for-an-agile-workspace/">Recipes For An Agile Workspace</a>
       </li>
     
@@ -2447,10 +2442,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
     
       <li class="post">
         <a href="/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/">How I fixed &#8216;Warning: Authentication failure. Retrying&#8217; with Vagrant</a>
-      </li>
-    
-      <li class="post">
-        <a href="/most-common-ways-to-speed-up-an-algorithm/">Most Common Ways To Speed up an algorithm</a>
       </li>
     
   </ul>
