@@ -12,7 +12,7 @@ description: "A summary / review of the book 'Petit guide de management lean a l
 ---
 A few weeks ago, as I was looking the internet for Lean principles to improve our way of working, I fell upon this book [Petit guide de management lean a l'usage des équipes agiles](leanagilecamp.fr) (NB: the book is in French, the title means 'Little lean management guide at the usage of agile teams'). It made me think and I thought it deserved a blog post.
 
-[{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/cover.svg The book cover %}](leanagilecamp.fr)
+[{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/cover.svg The book cover %}](http://leanagilecamp.fr)
 
 It explains that agility can be though of as a set of practices and principles, shared through a huge community. This makes it a great production system, where improvement are mostly brought by gut feeling retrospectives and trial of other teams practices. At the contrary, Lean is very light framework for continuous improvement, relying on a more systematic waste elimination.
 

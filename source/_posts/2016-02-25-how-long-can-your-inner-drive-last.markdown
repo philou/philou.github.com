@@ -16,7 +16,7 @@ Any software project (job, startup or side project) will require some time befor
 
 ## The hard truth
 
-Your inner drive will only last up to some point. Without feedback, your motivation will dye, and this will kill your project.
+Your inner drive will only last up to some point. Without feedback, your motivation will die, and this will kill your project.
 
 ## How to deal with it ?
 
