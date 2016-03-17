@@ -4,8 +4,12 @@ title: "Scrum teams do not need A Scrum Master"
 date: 2016-03-15 05:41
 comments: true
 categories:
-keywords:
-description:
+ - management
+ - agile
+ - self-organization
+ - management30
+keywords: "Delegation board, Scrum Master, Scrum Master Round Robin"
+description: "How our team switch to a round robin scrum master role, in order to increase self organization and delegation"
 ---
 We don't have an official scrum master in our team anymore. We now have 7 ! A different team member assumes the full scrum master role at every sprint.
 
@@ -21,9 +25,9 @@ It all started with our [delegation poker](https://management30.com/product/dele
 
 ## How did we do it ?
 
-Before our [delegation board meeting](https://management30.com/product/workouts/delegation-employee-engagement/), we had prepared all the activities we are regularly doing. We found quite a few recurrent non programming tasks that traditionaly echewed to the team lead (me in that case). The initial plan was to find ways to delegate these activities to the team during the meeting, but it would have took way too much time.
+Before our [delegation board meeting](https://management30.com/product/workouts/delegation-employee-engagement/), we had prepared all the activities we are regularly doing. We found quite a few recurrent non programming tasks that traditionally eschewed to the team lead (me in that case). The initial plan was to find ways to delegate these activities to the team during the meeting, but it would have took way too much time.
 
-Having identified all these activities, I individualy suggested at everyone in the team to do a round robin scrum master role, which would handle all these activities for a sprint. I was happily surprise by the quasi complete buy-in from all the team. Before I announced it to the team, I did 2 things :
+Having identified all these activities, I individually suggested at everyone in the team to do a round robin scrum master role, which would handle all these activities for a sprint. I was happily surprise by the quasi complete buy-in from all the team. Before I announced it to the team, I did 2 things :
 
 ### List all the activities of the scrum master.
 
@@ -31,7 +35,7 @@ Here is a subset :
 
 * attend other teams meetings
 * make sure there are enough workable stories for the next planning session with the product owner
-* repare and animate a retrospective
+* prepare and animate a retrospective
 * animate the demo
 
 ### Make this more fun !
