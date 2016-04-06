@@ -6,7 +6,7 @@ comments: true
 categories:
  - programming
  - kanban
- - self-organization
+ - selforganizing
  - jira
 keywords: "Personnal Kanban, Jira, Kanban, Work In Progress Limit, TODO-List, Organization, Self Organization"
 description: "Why I moved from todo lists to personnal kanban, and how I did it using JIRA"

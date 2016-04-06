@@ -5,7 +5,7 @@ date: 2015-12-31 12:24
 comments: true
 categories:
  - software
- - self-organization
+ - selforganizing
  - team-building
  - workplace
  - hiring

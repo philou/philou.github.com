@@ -7,7 +7,7 @@ categories:
  - agile
  - management
  - management30
- - self-organization
+ - selforganizing
 keywords: "management, developer, management 3.0, agile management, developer manager"
 description: "A fiction about how developer Joe managed to keep programming while he became a manager"
 ---

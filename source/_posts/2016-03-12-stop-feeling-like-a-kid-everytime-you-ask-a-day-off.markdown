@@ -6,7 +6,7 @@ comments: true
 categories:
  - management
  - agile
- - self-organization
+ - selforganizing
  - management30
 keywords: "Agile Management, Delegative management, Simplifying vacations"
 description: "A short post about how we delegated our vacation procedure"

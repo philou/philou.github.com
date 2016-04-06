@@ -4,7 +4,7 @@ title: "Make hiring everyone's business"
 date: 2016-03-21 21:05
 comments: true
 categories:
- - self-organization
+ - selforganizing
  - management30
  - hiring
 keywords: "self organization, hiring, management 3.0"
@@ -41,7 +41,6 @@ Here is the process we have decided to follow to handle hiring team members
 
 1. First, everyone in the team is responsible to speak up when he thinks we need to hire someone, during our retrospectives for example
 2. To handle new applications, we have prepared an online interview. It contains open questions and online coding exercises, on [cyber-dojo](http://www.cyber-dojo.org/), which allows us to track all the candidates iterations
-When the candidate.
 3. We do a round robin to find out who will follow the candidate through the hiring process. This means taking notes, organizing interviews, keeping the rest of the team up to date.
 4. When a candidate passes the online interview, we will receive him for an technical and general interview with 2 people from the team.
 5. All the team will then meet the candidate for a coffee break, in order to know if he will fit in the team

@@ -6,7 +6,7 @@ comments: true
 categories:
  - management
  - agile
- - self-organization
+ - selforganizing
  - management30
 keywords: "Delegation board, Scrum Master, Scrum Master Round Robin"
 description: "How our team switch to a round robin scrum master role, in order to increase self organization and delegation"
