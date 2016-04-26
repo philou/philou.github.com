@@ -1,0 +1,43 @@
+---
+keywords: "Agile, Enterprise, Lean, Scrum, XP, Scaling"
+layout: post
+title: Scaling Agile
+published: true
+date: 2012-01-19
+categories:
+- Agile
+- Enterprise
+- Lean
+- Scrum
+- XP
+posterous_url: http://philippe.bourgau.net/scaling-agile
+posterous_slug: scaling-agile
+comments: true
+---
+<p>I have worked in small agile teams, and it does indeed work a lot better than the classical waterfall &amp; hierarchic environment. When speaking with other people who have been through the same experience,&nbsp;we started to wonder how could this be scaled to a big organization ?</p>
+<p>I read two good books on the subject from Craig Larman and Bas Vodde:</p>
+<ul>
+<li>
+<div><span><a href="http://www.amazon.com/Scaling-Lean-Agile-Development-Organizational/dp/0321480961/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-1">Scaling Lean &amp; Agile Development: Thinking and Organizational Tools for Large-Scale Scrum</a></span></div>
+</li>
+<li>
+<div><span><a href="http://www.amazon.com/Practices-Scaling-Lean-Agile-Development/dp/0321636406/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-2">Practices for Scaling Lean &amp; Agile Development: Large, Multisite, and Offshore Product Development with Large-Scale Scrum</a></span></div>
+</li>
+</ul>
+<p>There made a lot of good points and techniques, but it&nbsp;still sounded a bit theorical. Later&nbsp;I read <a href="http://producingoss.com/">"Producing Open Source Software"</a>&nbsp;from Karl Fogel. At first,&nbsp;it did not seem to&nbsp;have any link with scaling agile, but successfull open source projects have to&nbsp;handle distributed developpment&nbsp;and&nbsp;high turnover, so I thought that maybe large&nbsp;agile organizations have something to learn from open source developpment mechanics. Why wouldn't these technics that are successful at sharing code between companies be used internaly to share code between teams ?</p>
+<p>At the same time, at work, I learnt the hard way that I should avoid to work for a "library, framework, engine ..." team. It's both frustrating and&nbsp;unrewarding :</p>
+<ul>
+<li>
+<div>You never really understand what you are working for, what is the final goal</div>
+</li>
+<li>
+<div>You are always doing a poor job at priorizing requests from different sponsors</div>
+</li>
+<li>
+<div>You are doing too much on some areas, but too few on others</div>
+</li>
+</ul>
+<p>Agile &amp; incremental development and architecture solves this the nice&nbsp;way, by extract framework and libraries from running software ! Successful open source projects often start&nbsp;like that&nbsp;(<a href="http://rubyonrails.org/">Rails</a> being the cannonical example).</p>
+<p>So why couldn't we just let libraries and framework emerge&nbsp;the same way inside a company ? Why don't we maintain these projects as we would maintain an open source project : as a side product of&nbsp;our main output ?</p>
+<p>Craig Larman and Bas Vodde speak of feature teams, 20% free time, communities : all this fits nicely with this idea. Suppose we could&nbsp;have 20%&nbsp;of our time to work on what we like, any developper could take&nbsp;this time to extract a library from his team's codebase and promote it as a company library, he could become dictator in chief as long as he wishes to. Other teams could reuse it and submit patches. All of the time proven open source developpment best practices could be used.</p>
+<p>Edit: <a href="http://zachholman.com/talk/how-github-uses-github-to-build-github/">Github builds Github</a> with something a lot like this !</p>
