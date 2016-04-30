@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/vagrant/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2016-04-21T06:00:22+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)]]></title>
+    <link href="http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/"/>
+    <updated>2016-02-10T05:59:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant</id>
+    <content type="html"><![CDATA[<p>I don&rsquo;t know if you noticed, but <a href="http://octopress.org/">Octopress 2</a> preview is slow as hell on <a href="https://www.virtualbox.org/">Virtual Box</a>. I wanted to try using <a href="https://www.docker.com/">Docker</a> instead. So a few weeks ago, I started to upgrade my <a href="https://www.vagrantup.com/">Vagrant</a>, Virtual Box and Docker stack &hellip;</p>
+
+<p>Hell loose !</p>
+
+<p><img class="center" src="/imgs/2016-02-10-how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/upgrade_hell.jpg" title="A naughty dog with a banner &ldquo;I&rsquo;m in upgrade hell&rdquo;" ></p>
+
+<p>I know all open source software needs to be kept up to date at all time, but it&rsquo;s not that easy. Especialy when the versions in the <a href="http://www.ubuntu.com/">Ubuntu</a> repostiories are really old and you had to install them manually. Anyway, after a bit of tedious work, I finally got to the point where my Octopress blog was running on a brand new stack. And I got this error :</p>
+
+<p>```
+vagrant@239c4077ae16:/vagrant$bundle exec rake generate</p>
+
+<h2>Generating Site with Jekyll</h2>
+
+<p>unchanged sass/screen.scss
+/vagrant/vendor/bundle/gems/liquid-2.3.0/lib/liquid/htmltags.rb:44: warning: duplicated key at line 47 ignored: &ldquo;index0&rdquo;
+Configuration from /vagrant/_config.yml
+Building site: source &ndash;> public
+YAML Exception reading index.markdown: invalid byte sequence in US-ASCII
+/vagrant/plugins/backtick_code_block.rb:13:in `gsub': invalid byte sequence in US-ASCII (ArgumentError)</p>
+
+<pre><code>from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
+from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
+from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
+from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
+from /vagrant/plugins/post_filters.rb:111:in `each'
+from /vagrant/plugins/post_filters.rb:111:in `pre_render'
+from /vagrant/plugins/post_filters.rb:166:in `do_layout'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/page.rb:100:in `render'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:204:in `block in render'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:203:in `each'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:203:in `render'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
+from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
+from /vagrant/vendor/bundle/bin/jekyll:23:in `load'
+from /vagrant/vendor/bundle/bin/jekyll:23:in `&lt;main&gt;'
+</code></pre>
+
+<p>```</p>
+
+<p>After some searching on the internet, I found <a href="http://alexzeitler.com/blog/2012/01/15/rake-generate-for-octopress-fails-with-invalid-byte-sequence-in-us-ascii-argumenterror/">this post</a> by Alex Zeitler that made me figure out that locales were not set correctly by default on my vm. I just needed to set this once and for all in my Vagrantfile</p>
+
+<p>```
+config.vm.provision &ldquo;shell&rdquo;, privileged: false, inline: &lt;&lt;-SHELL
+  if [ -z &ldquo;$LANG&rdquo; ]; then</p>
+
+<pre><code>echo "Setting LANG to us UTF8"
+echo 'export LANG=en_US.UTF-8' &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>  fi
+  if [ -z &ldquo;$LC_ALL&rdquo; ]; then</p>
+
+<pre><code>echo "Setting LC_ALL to us UTF8"
+echo 'export LC_ALL=en_US.UTF-8' &gt;&gt; ~/.bashrc
+</code></pre>
+
+<p>  fi
+SHELL
+```</p>
+
+<p>After reprovisioning my box, generate and preview were working as expected !</p>
+
+<p>:&ndash;( Now I&rsquo;ve got a pygement-ruby issue to deal with, I guess I&rsquo;ll be back on the subject soon &hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How I fixed 'Warning: Authentication failure. Retrying' with Vagrant]]></title>
+    <link href="http://philippe.bourgau.net/how-i-fixed-warning-authentication-failure-retrying-with-vagrant/"/>
+    <updated>2016-01-31T06:39:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-fixed-warning-authentication-failure-retrying-with-vagrant</id>
+    <content type="html"><![CDATA[<p>Lately, I went into an upgrade cycle : <a href="http://www.ubuntu.com/">Ubuntu</a>, which forced me to upgrade <a href="https://www.docker.com/">Docker</a>, and then <a href="https://www.vagrantup.com/">Vagrant</a> &hellip; you know the story. Unfortunately, my vagrant config did not want to start anymore with the following error :</p>
+
+<p><code>
+Warning: Authentication failure. Retrying
+Warning: Authentication failure. Retrying
+Warning: Authentication failure. Retrying
+Warning: Authentication failure. Retrying
+Warning: Authentication failure. Retrying
+Warning: Authentication failure. Retrying
+Warning: Authentication failure. Retrying
+...
+</code></p>
+
+<p><img class="center" src="/imgs/2016-01-31-how-i-fixed-warning-authentication-failure-retrying-with-vagrant/ssh.jpg" title="A screen with the ssh prompt" ></p>
+
+<p>I tried to destroy and re-create my box with the same result : it eventually timedout, but the provisions were not executed.</p>
+
+<p>After searching the internet and a lot of experimentation, I managed to make it work by commenting out the following line in my Vagrantfile</p>
+
+<p>```</p>
+
+<h1>config.ssh.private_key_path = &ldquo;~/.ssh/id_rsa&rdquo;</h1>
+
+<p>```</p>
+
+<p>I think I added this a long time ago to be able to push to github from my Vagrantbox, but after trying it, it work with the difference of my having to validate the remote ssh key, that&rsquo;s not of a big deal.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fixing the 'TLS-enabled daemon' docker error on Ubuntu]]></title>
+    <link href="http://philippe.bourgau.net/fixing-the-tls-enabled-daemon-docker-error-on-ubuntu/"/>
+    <updated>2015-12-04T04:29:00+00:00</updated>
+    <id>http://philippe.bourgau.net/fixing-the-tls-enabled-daemon-docker-error-on-ubuntu</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/imgs/2015-12-04-fixing-the-tls-enabled-daemon-docker-error-on-ubuntu/docker-vagrant-ubuntu.jpg" title="&ldquo;The 3 logos of Docker, Vagrant and Docker&rdquo;" ></p>
+
+<p>I am using <a href="http://www.ubuntu.com/">Ubuntu</a>, <a href="https://www.vagrantup.com/">Vagrant</a> and <a href="https://www.docker.com/">Docker</a> together to handle my various development environments. It usually works just fine : it&rsquo;s fast, low weight, it keeps my machine clean and it&rsquo;s quite simple once you&rsquo;ve setup your first VM. Until last time &hellip; read on !</p>
+
+<p>When I tried to start my docker session through Vagrant as usuall, here is the error I suddenly got :</p>
+
+<p>```
+philou@philou-UX31E:~/code/concurrency-kata$ vagrant up
+/home/philou/.ssh/known_hosts updated.
+Original contents retained as /home/philou/.ssh/known_hosts.old
+A Docker command executed by Vagrant didn&rsquo;t complete successfully!
+The command run along with the output from the command is shown
+below.</p>
+
+<p>Command: [&ldquo;docker&rdquo;, &ldquo;ps&rdquo;, &ldquo;-a&rdquo;, &ldquo;-q&rdquo;, &ldquo;&mdash;no-trunc&rdquo;, {:notify=>[:stdout, :stderr]}]</p>
+
+<p>Stderr: time=&ldquo;2015-10-19T06:16:27+02:00&rdquo; level=&ldquo;fatal&rdquo; msg=&ldquo;Get <a href="http:///var/run/docker.sock/v1.17/containers/json?all=1:">http:///var/run/docker.sock/v1.17/containers/json?all=1:</a> dial unix /var/run/docker.sock: no such file or directory. Are you trying to connect to a TLS-enabled daemon without TLS?&rdquo;</p>
+
+<p>Stdout:
+ssh: connect to host localhost port 2222: Connection refused
+```</p>
+
+<p>After a bit of Google searching, I found that the docker service needed to be started. <code>service docker start</code> did the trick &hellip; until next reboot !</p>
+
+<p>With still some more Googling, I found a <a href="http://askubuntu.com/questions/19320/how-to-enable-or-disable-services">page</a> explaining how to manage Ubuntu services. In order to make the docker service automaticaly start at every reboot, I just had to enter the following :</p>
+
+<p><code>
+systemctl enable docker.service
+</code></p>
+
+<p>That did the trick ! I thought that might be useful for others.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setting up Octopress with Vagrant and rbenv]]></title>
+    <link href="http://philippe.bourgau.net/setting-up-octopress-with-vagrant-and-rbenv/"/>
+    <updated>2015-03-20T05:33:00+00:00</updated>
+    <id>http://philippe.bourgau.net/setting-up-octopress-with-vagrant-and-rbenv</id>
+    <content type="html"><![CDATA[<p>I recently got hands on an abandonned laptop that was better than the one I was currently using for my personnal hackings, so I decided to switch to this one. I felt this was the time to learn Vagrant and save me some time later on. I settled on creating a <a href="https://www.vagrantup.com/">Vagrant</a> environment for this <a href="http://octopress.org/">Octopress</a> blogging. That proved a lot longer than I thought it would.</p>
+
+<p><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png" title="Vagrant logo + Octopress logo" ></p>
+
+<p>If you want to jump to the solution, just have a look at this <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b">git change</a>. Here is the slightly longer version.</p>
+
+<ul>
+<li><p>Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.</p></li>
+<li><p>Provision your VM. That proved a lot more complex. There are a lot of examples using variants of <a href="https://www.chef.io/">Chef</a>, but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.</p></li>
+</ul>
+
+
+<p>```ruby
+  config.vm.provision &ldquo;shell&rdquo;, inline: &lt;&lt;-SHELL</p>
+
+<pre><code>echo "Updating package definitions"
+sudo apt-get update
+
+echo "Installing git and build tools"
+sudo apt-get -y install git autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+</code></pre>
+
+<p>  SHELL</p>
+
+<p>  config.vm.provision &ldquo;shell&rdquo;, privileged: false, inline: &lt;&lt;-SHELL</p>
+
+<pre><code>git config --global user.name "john.doe"
+git config --global user.email "john.doe@mail.com"
+
+if [ ! -d "$HOME/.rbenv" ]; then
+  echo "Installing rbenv and ruby-build"
+
+  git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' &gt;&gt; ~/.bashrc
+  echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.bashrc
+
+else
+  echo "Updating rbenv and ruby-build"
+
+  cd ~/.rbenv
+  git pull
+
+  cd ~/.rbenv/plugins/ruby-build
+  git pull
+fi
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+if [ ! -d "$HOME/.rbenv/versions/2.2.0" ]; then
+  echo "Installing ruby"
+
+  rbenv install 2.2.0
+  rbenv global 2.2.0
+
+  gem update --system
+  gem update
+
+  gem install bundler
+  bundle config path vendor/bundle
+
+  rbenv rehash
+fi
+
+cd /vagrant
+bundle install
+
+if [ ! -d "/vagrant/_deploy" ]; then
+  bundle exec rake setup_github_pages["git@github.com:philou/philou.github.com"]
+  git checkout . # Revert github deploy url to my domain
+  cd _deploy
+  git pull origin master # pull to avoid non fast forward push
+  cd ..
+fi
+</code></pre>
+
+<p>  SHELL
+```</p>
+
+<ul>
+<li><p>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></p></li>
+<li><p>Setup ssh forwarding. In order to be able to deploy to github pages with my local ssh keys, I added the following to my Vagrantfile.</p></li>
+</ul>
+
+
+<p>```ruby
+  # The path to the private key to use to SSH into the guest machine. By
+  # default this is the insecure private key that ships with Vagrant, since
+  # that is what public boxes use. If you make your own custom box with a
+  # custom SSH key, this should point to that private key.
+  # You can also specify multiple private keys by setting this to be an array.
+  # This is useful, for example, if you use the default private key to
+  # bootstrap the machine, but replace it with perhaps a more secure key later.
+  config.ssh.private_key_path = &ldquo;~/.ssh/id_rsa&rdquo;</p>
+
+<p>  #  If true, agent forwarding over SSH connections is enabled. Defaults to false.
+  config.ssh.forward_agent = true
+```</p>
+
+<ul>
+<li>Fix virtual box synced folder. When I tried to pimp my favicon up, changing the png in the host machine did not update it on the guest ! I lost almost 3 hours figuring this out &hellip; searching google, I eventually found that <a href="http://docs.vagrantup.com/v2/synced-folders/virtualbox.html">Virtual Box synced folders can have issues</a>, and that <a href="http://stackoverflow.com/questions/18933547/vagrant-virtualbox-shared-folder-out-of-sync-when-there-are-many-file-related">installing the guest additions is recommended</a>. For this, just enter the following in the command line from your project&rsquo;s working dir :</li>
+</ul>
+
+
+<p><code>
+vagrant plugin install vagrant-vbguest
+vagrant reload
+</code></p>
+
+<p>I&rsquo;ll tell you if this does not do the trick.</p>
+
+<p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
+
+<p><a href="http://docker.io"><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png" title="The Docker logo" ></a></p>
+
+<p>Next steps will be to use <a href="http://docker.io">Docker</a> providers and Dockerfile to factorize provisioning and speedup up VM startup.</p>
+]]></content>
+  </entry>
+  
+</feed>

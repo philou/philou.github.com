@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: performance | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/performance/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2016-04-21T06:00:22+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Most Common Ways To Speed up an algorithm]]></title>
+    <link href="http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm/"/>
+    <updated>2016-01-20T05:14:00+00:00</updated>
+    <id>http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm</id>
+    <content type="html"><![CDATA[<p>Algorithms are <em>hard</em>, and making them fast is even harder &hellip; But there are shortcuts that work quite often !</p>
+
+<p><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg" title="A street panel called Short Cut Road" ></p>
+
+<h2>The Challenge</h2>
+
+<p>Imagine you just arrived to your new job, and you are asked to make a part of the system faster. After a bit of investigation, you discover that most of the time is spent in some weird in-house algorithm that seems to take forever. How can you optimize this without deep knowledge neither in algorithm science nor in the code itself ?</p>
+
+<p>Here are 4 tricks to reduce the complexity of algorithms (I&rsquo;m using fairly basic examples for the sake of understandably. Most of these exact examples could be done better using standard libraries, but I hope it will be easy to adapt to other situations) :</p>
+
+<h3>Replace a nested loop by first building a hash and then looping</h3>
+
+<p>```ruby</p>
+
+<h1>before</h1>
+
+<p>orders.each do |order|
+  client = list_of_clients.find {|client| client.id = order.client_id }
+  handle_order(order, client)
+end</p>
+
+<h1>after</h1>
+
+<p>clients_by_id = {}
+list_of_clients.each do |client|
+  clients_by_id[client.id] = client
+end
+orders.each do |order|
+  handle_order(order, clients_by_id[order.client_id])
+end
+```
+This reduces the complexity from O(2) to O(1). This is tremendous. On large lists O(2) algorithms are terrible.</p>
+
+<h3>Remove unnecessary accumulations</h3>
+
+<p>The most classic example is the use of a string buffer :</p>
+
+<p>```ruby
+// Before
+report = &ldquo;&rdquo;
+line_items.each do |line_item|
+  report += line_item.to_s + &ldquo;\n&rdquo;
+end</p>
+
+<p>// After
+report = []
+line_items.each do |line_item|
+  report &lt;&lt; line_item.to_s
+  report &lt;&lt; &ldquo;\n&rdquo;
+end
+report.join
+```
+Again, this reduces the complexity from O(2) to O(1). Every language has variants of Java&rsquo;s StringBuilders. This does not only apply for strings, it works any time you are repeatedly accumulating results inside a loop but where you could do it only once at the end.</p>
+
+<h3>Cache intermediate or previous results</h3>
+
+<p>This is called <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a>. Some algorithms (especially recursive algorithms) repeatedly compute the same thing again and again. Spotting this pattern is an opportunity to move an algorithm out of exponential complexity. For example, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijsktra&rsquo;s algorithm</a> for finding the shortest path in a graph uses this technique to go from O(e<sup>n</sup>) to O(n<sup>2</sup>) complexity. If you suspect this could be helpful, your best friend is logging to trace actual parameters and results.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif"><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif" title="Dijsktra&rsquo;s path finding algorithm animated (from Wikipedia)" ></a></p>
+
+<p>A word of caution : using memoization with mutable inputs or outputs will harm your mental health.</p>
+
+<h3><a href="https://en.wikipedia.org/wiki/Merge_algorithm#Merging_two_lists">Zip merge</a></h3>
+
+<p>There are 2 ways to merge sorted lists into a unique sorted list : the fast, and the slow &hellip;</p>
+
+<p>```ruby</p>
+
+<h1>The slow</h1>
+
+<p>(list_1 + list_2).sort</p>
+
+<h1>The fast</h1>
+
+<p>i_1 = 0
+i_2 = 0
+result = []</p>
+
+<p>while i_1 &lt; list_1.size and i_2 &lt; list_2.size
+  if list_1[i_1] &lt;= list_2[i_2]</p>
+
+<pre><code>result &lt;&lt; list_1[i_1]
+i_1 += 1
+</code></pre>
+
+<p>  elsif list_2[i_2] &lt;= list_1[i_1]</p>
+
+<pre><code>result &lt;&lt; list_2[i_2]
+i_2 += 1
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>while i_1 &lt; list_1.size
+  result &lt;&lt; list_1[i_1]
+  i_1 += 1
+end</p>
+
+<p>while i_2 &lt; list_2.size
+  result &lt;&lt; list_2[i_2]
+  i_2 += 1
+end
+```</p>
+
+<p>Obviously, the slow version is a lot easier to read than the fast one. And the fast one could benefit from a bit of refactoring also &hellip; Nevertheless, the slow version is at best in O(n.ln(n)) whereas the fast on is in O(n). On large data, that can make a big difference.</p>
+
+<h2>Is that all ?</h2>
+
+<p>Obviously not, there can be a lot of other things going on slowly in algorithms, but from my experience, a software engineer can have a good career without knowing more about algorithms theory than that.</p>
+
+<p>In the end, you manage to optimize this in-house algorithm, you become the company&rsquo;s hero, you need your job and get a pay raise !</p>
+
+<h2>End word</h2>
+
+<p>The fact is, in 15 years of writing software, I did not write a lot of algorithmic code. I can categories my working with algorithms in 3 :</p>
+
+<ol>
+<li>Write a simple algorithm for a non performance critical feature</li>
+<li>Optimize an existing somewhat algorithmic part of code</li>
+<li>Write a complex algorithm for a performance critical part of the system</li>
+</ol>
+
+
+<p>Case 1. is not really an issue since however the code will be written, it will run fast enough. If you&rsquo;re in case 3, there&rsquo;s no shortcut, you&rsquo;ll have to dig deep into algorithms and optimization, this happens rather rarely though. This leaves us with case 2, which I just wrote about.</p>
+
+<p>Interestingly, <a href="http://www.murex.com">my current job</a> is deep into case 3 ! We&rsquo;re building a risk engine for corporate markets and are borrowing a lot of techniques from database science &hellip; which is, you can guess, rather algorithmic !</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How To Write Good Performance Stories]]></title>
+    <link href="http://philippe.bourgau.net/how-to-write-good-performance-stories/"/>
+    <updated>2016-01-08T07:58:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-write-good-performance-stories</id>
+    <content type="html"><![CDATA[<p>If you&rsquo;re having difficulties writing good performance related stories for your project, that&rsquo;s no surprise ! We&rsquo;ve been through the same troubles and we found a way that works a lot better.</p>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg" title="A Mb speed counter" ></p>
+
+<h2>Solution 1 : <a href="/performance-is-a-feature/">Performance is a feature</a></h2>
+
+<p>Right ? In typical agile way, a story about performance would be written like</p>
+
+<blockquote><p>As marketing, I want the page load to perform under 1 second, In order for the customers to stay on the site</p></blockquote>
+
+<p>If the performance bottleneck and the fix are obvious, that might work very well. If that&rsquo;s your case, then go on, that&rsquo;s the simplest way!</p>
+
+<p>Unfortunately for us, we are not in that case. <a href="http://www.murex.com">At work</a> we are building a risk engine and we need to perform extremely well on a wide set of different scenarios. Imagine a story such as</p>
+
+<blockquote><p>As a risk manager, I want the VAR scenario to compute in less than 1 second, in order to have real time data</p></blockquote>
+
+<ul>
+<li>we&rsquo;re pretty sure that there won&rsquo;t be 1 but many bottlenecks to fix before reaching the expected performance</li>
+<li>speeding up the VAR scenario might slow down other scenarios</li>
+</ul>
+
+
+<p>That makes this kind of story too fuzzy. We tried them, and we had difficulties to estimate and close them.</p>
+
+<h2>Solution 2 : Back to the traditional way</h2>
+
+<p>Without an agile backlog, developers would have worked on tasks such as</p>
+
+<blockquote><p>Add caching to the computation engine</p></blockquote>
+
+<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, it&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
+
+<h2>Solution 3 : Mixing both</h2>
+
+<p>Here is how we we are now writing performance stories at work :</p>
+
+<blockquote><p>As a risk manager, I want to have caching in the computation engine, in order to the VAR scenario compute under 1 second (in order to have real time data)</p></blockquote>
+
+<p>It&rsquo;s now estimable, we know what it&rsquo;s there for. It&rsquo;s obviously not enough though : we know that we will very likely need to do other performance stories after this one.</p>
+
+<h2>Embrace uncertainty</h2>
+
+<p><img class="center" src="/imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg" title="A Maserati engine" ></p>
+
+<p>The fact is that in our context, getting better performances is <em>hard</em> :</p>
+
+<ul>
+<li>it requires a lot of work</li>
+<li>we don&rsquo;t know how much at the beginning</li>
+<li>we often try things that don&rsquo;t work</li>
+</ul>
+
+
+<p>This makes the whole project more uncertain, so we&rsquo;re better off embracing this uncertainty in the way we write and prioritize our performance stories.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What Optimization Should We Work On (Lean Software Development Part 5)]]></title>
+    <link href="http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/"/>
+    <updated>2015-03-26T20:30:00+00:00</updated>
+    <id>http://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5</id>
+    <content type="html"><![CDATA[<p>At work, we are building a risk aggregation system. As it&rsquo;s dealing with a large bunch of numbers, it&rsquo;s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
+
+<p>That&rsquo;s were we are now doing.</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" title="A turtle with a rocket on the back" ></p>
+
+<h1>How do we choose which optimization to work on ?</h1>
+
+<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage &hellip;</p>
+
+<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
+
+<h2>Let&rsquo;s walk through an example</h2>
+
+<h3>I. List the optimizations you are thinking of</h3>
+
+<p>Let&rsquo;s suppose we are thinking of the following 3 optimizations for our engine</p>
+
+<ul>
+<li>Create better data structures to speed up the reconciliation algorithm</li>
+<li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
+<li>Minimize boxing and unboxing</li>
+</ul>
+
+
+<h3>II. Poker estimate the story points and speedup</h3>
+
+<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
+As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
+We will then just have to work on the stories with the highest speedup rate first.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title                   </th>
+<th> Story Points  </th>
+<th> /10    </th>
+<th> /2     </th>
+<th> -10%    </th>
+<th> ~  </th>
+<th> +10%   </th>
+<th> x2      </th>
+<th> x10     </th>
+<th> Expected Speedup ratio* </th>
+<th> Speedup rate / story point**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structures     </td>
+<td> 13        </td>
+<td>        </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 4 votes</td>
+<td> 5 votes </td>
+<td>         </td>
+<td> x 1.533                 </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> 13        </td>
+<td>    </td>
+<td> 1 vote </td>
+<td> 1 vote      </td>
+<td> 2 votes</td>
+<td> 1 vote </td>
+<td> 2 votes </td>
+<td> 2 votes </td>
+<td> x 1.799                 </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> 8     </td>
+<td>    </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 9 votes</td>
+<td>         </td>
+<td>         </td>
+<td> x 1.1                   </td>
+<td> x 1.012</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br>
+<sup><em>** Speedup rate is &ldquo;speedup<sup>(1/ story points)</sup>&rdquo;</em></sup></p>
+
+<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
+
+<ol>
+<li>Algorithm</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ol>
+
+
+<h3>III. And what about the risks ?</h3>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" title="A danger zone panel" ></p>
+
+<p>This poker estimation tells us something else &hellip;</p>
+
+<blockquote><p>We don&rsquo;t have a clue about the speedup we will get by trying to optimize the algorithm !</p></blockquote>
+
+<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Story points </th>
+<th> Expected Speedup rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithm spike : measure out of context CPU cache optimization speedup </td>
+<td> 2 </td>
+<td>   ?</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>In order to compute the expected speedup rate, let&rsquo;s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
+
+<p>They are computed by splitting the votes in 2 :</p>
+
+<ul>
+<li><em>low_speedup = 0.846</em></li>
+<li><em>high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike succeeds</h4>
+
+<p>We&rsquo;ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
+
+<ul>
+<li><em>spike_high_speedup = high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike fails</h4>
+
+<p>We&rsquo;ll also start by working on the spike. Afterwards, instead of the algorithm story, we&rsquo;ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
+
+<ul>
+<li><em>average_speedup_rate = (1.033 * 1.011)<sup>&frac12;</sup> = 1.022</em></li>
+<li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
+</ul>
+
+
+<h4>Spike speedup rate</h4>
+
+<p>We can now compute the average expected speedup rate for the full period &lsquo;spike &amp; algorithm&rsquo; stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
+
+<ul>
+<li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>&frac12;</sup> = 2.253</em></li>
+<li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
+</ul>
+
+
+<h3>IV. Putting it all together</h3>
+
+<p>Here are all the speedup rate for the different stories.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Speedup rate / story point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structure  </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> x 1.012</td>
+</tr>
+<tr>
+<td>Algorithm spike         </td>
+<td> x 1.056</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Finally, here is the optimal order through which we should perform the stories :</p>
+
+<ul>
+<li>Algorithm spike</li>
+<li>Algorithm (only if the spike proved it would work)</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ul>
+
+
+<h2>Summary</h2>
+
+<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" title="Formula for a spike speedup rate" ></p>
+
+<p>I think most experienced engineers would have come to the same conclusion by gut feeling &hellip;</p>
+
+<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
+
+<p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Performance is a feature]]></title>
+    <link href="http://philippe.bourgau.net/performance-is-a-feature/"/>
+    <updated>2015-01-19T06:46:00+00:00</updated>
+    <id>http://philippe.bourgau.net/performance-is-a-feature</id>
+    <content type="html"><![CDATA[<p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
+
+<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
+
+<h1>What&rsquo;s in it for us ?</h1>
+
+<p>If performance is indead a feature, then it can be managed like any feature :</p>
+
+<ul>
+<li><p>It should result from use cases</p>
+
+<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
+<li><p>It can be split into user stories</p></li>
+</ul>
+
+
+<blockquote><ul>
+<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
+<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>They can be prioritized against other stories</li>
+</ul>
+
+
+<blockquote><ul>
+<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
+<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>The performance on these use cases should be automatically tested and non regressed</li>
+</ul>
+
+
+<blockquote><ul>
+<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
+<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
+</ul>
+</blockquote>
+
+<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
+]]></content>
+  </entry>
+  
+</feed>

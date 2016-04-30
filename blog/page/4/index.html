@@ -1,0 +1,2329 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="A programming blog. Particularly about agile development, real world walkthrough, tutorials, side project entrepreneurship and open source software.">
+
+  
+  <meta name="keywords" content="blog, programming, ruby, coffeescript, c#, java, agile, extreme programming, xp, kanban, scrum, tdd, testing, unit testing">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/blog/page/4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/the-agile-change-management-viral-hack/">The Agile Change Management Viral Hack</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-05-23T05:51:00+00:00" pubdate data-updated="true">May 23<span>rd</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We just discovered a hack to spread agile (<a href="http://en.wikipedia.org/wiki/Behavior-driven_development">BDD</a> by the way) through an organization. It works provided :</p>
+
+<ul>
+<li>There is a BDD testing expert in your team</li>
+<li>Your team is using the work of another software team from your company</li>
+</ul>
+
+
+<p>If this team does not use agile practices, they are likely to regularly create regressions or to be late at providing new versions.</p>
+
+<p>Use your client role in the relation, and propose your help ! Spend some time with them to help them put automated customer tests in place. Be genuinely nice with them, show example, be available and, obviously, bring improvement. With some chance, they might soon be asking for more.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="n">there</span> <span class="n">are</span> <span class="n">too</span> <span class="n">many</span> <span class="n">bugs</span>
+</span><span class='line'><span class="no">When</span> <span class="n">you</span> <span class="n">can</span> <span class="n">help</span>
+</span><span class='line'><span class="no">Then</span> <span class="no">DO</span> <span class="no">IT</span> <span class="o">!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/real-programmers-have-todo-lists/">Real Programmers Have Todo Lists</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-20T05:42:00+00:00" pubdate data-updated="true">Apr 20<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Productive programmers maintain a todo list. No Exception.</p>
+
+<p><img class="center" src="/imgs/2015-04-20-real-programmers-have-todo-lists/programmer.jpg" title="A programmer concentrating on his code" ></p>
+
+<h2>Why is it so important</h2>
+
+<p>As programmers, here is the typical internal discussion we have all day long :</p>
+
+<blockquote><p>- Why the hell am I doing this again ?<br>
+&hellip; hard thinking &hellip;<br>
+- Yes ! I remember now :<br>
+- Encapsulate this field<br>
+- In order to move it to another class<br>
+- In order to move this other function there too<br>
+- In order to be able to remove that other static variable<br>
+- In order to refactor the login module<br>
+- In order to remove the dependency between the custom search query generator and the login module<br>
+- In order to refactor the query generator<br>
+- In order to be able to optimize it<br>
+- In order to speed up the whole website !</p></blockquote>
+
+<p>Phew, now that&rsquo;s a list ! A 9 frame stack, all in our heads, and that&rsquo;s only a simple example. Knowing that us humans usually have around 7 &lsquo;registers&rsquo; in our brains, this makes a lot of clutter to remember.</p>
+
+<p>Maintaining all this in a todo list frees us some brainpower !</p>
+
+<h2>What happens when you use a todo list</h2>
+
+<p>Quite a lot in fact :</p>
+
+<p><img class="center" src="/imgs/2015-04-20-real-programmers-have-todo-lists/check.gif" title="A tick in a check box" ></p>
+
+<ul>
+<li>It&rsquo;s satisfying to check something as done !</li>
+<li>Our programming gets better, because we can fully concentrate on it</li>
+<li>We have a clear idea about what&rsquo;s done, what&rsquo;s still to be done, and why we are doing it</li>
+<li>We avoid getting lost in things that don&rsquo;t really need to be done</li>
+<li>We can make better choices about what to do, what to postpone, and what not to do</li>
+<li>We can make more accurate estimates about the time it will take to finish the job</li>
+</ul>
+
+
+<p>In the end, all this makes you feel less stressed and more productive !</p>
+
+<h2>How to do it</h2>
+
+<p>There are many ways to maintain a todo list. Which to choose is not as important as having one. Here are my 2 design principles for a todo list system :</p>
+
+<ul>
+<li>It goes in finer details than a typical bug tracking software</li>
+<li>It should help you to concentrate on the few items you can do in the coming hours</li>
+</ul>
+
+
+<p>For example, I am now using a simple TODAY &hellip; TOMORROW &hellip; LATER &hellip; scheme. I tend to avoid deep hierarchies as it gets in the way of my second principle. I like to keep DONE items visible to keep track of what I did for up to 1 day.</p>
+
+<p><img class="center" src="/imgs/2015-04-20-real-programmers-have-todo-lists/org-mode.jpg" title="A screen shot of my org-mode todo list" ></p>
+
+<p>Here is a list of tools you can use to set up a todo list :</p>
+
+<ul>
+<li>Any text editor using a simple format convention will do</li>
+<li><a href="http://www.dropbox.com">Dropbox</a> or any other synchronization tool can be helpful to access it from different places</li>
+<li><a href="http://orgmode.org/">Org Mode</a> of <a href="https://www.gnu.org/software/emacs/">Emacs</a> has built-in support for todo lists. It&rsquo;s a simple text file, but with color highlighting and shortcuts</li>
+<li><a href="https://keep.google.com/">Google Keep</a> might do just fine for you</li>
+<li><a href="https://docs.google.com">Google Docs</a> can also be useful, especially if you need to share your todo list with others (when pair programming for example)</li>
+<li><a href="https://trello.com">Trello</a> is also a good one, it can even be used as a personal kanban board</li>
+<li>Any other todo list tool that suits you !</li>
+</ul>
+
+
+<p>If you are not already using a todo list, start now and become more productive ! No excuse !</p>
+
+<p>EDIT 2015-08-18 : <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">I am now using Personnal Kanban instead of TODO lists</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/trellospectives-remote-retrospectives-with-trello/">Trellospectives : Remote Retrospectives With Trello</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-04-05T06:18:00+00:00" pubdate data-updated="true">Apr 5<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As a distributed team working from Paris and Beirut, after <a href="/from-zero-to-pair-programming-hero/">pair programming</a>, it was time for our retrospectives to get remote !</p>
+
+<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup-small.jpg" title="A remote retrospective meeting with Trello setup" ></a></p>
+
+<h2>Initial setup</h2>
+
+<p>At first we were using the visio conference system. The retrospective facilitator would connect with the remote participants through instant chat and forward theirs post-its. We also used an extra webcam connected to the laptop in order to show the whiteboard in the other room.</p>
+
+<h4>Pros</h4>
+
+<ul>
+<li>Anyone can do it now</li>
+<li>Kind of works</li>
+</ul>
+
+
+<h4>Cons</h4>
+
+<ul>
+<li>We often used to loose 5 minutes setting all the infrastructure up</li>
+<li>The remote room cannot see the board clearly through the webcam</li>
+<li>The animator has to spend his time forwarding the other room&rsquo;s points</li>
+<li>There is a &lsquo;master&rsquo; and a &lsquo;slave&rsquo; room</li>
+</ul>
+
+
+<h2>Sensei Tool</h2>
+
+<p>When Mohamad joined the team in Beirut, we thought that this was not going to scale &hellip; We decided to try something else. With the availability of the new conferencing system, we had the idea to use a web tool to run the retro. We found and tried <a href="http://senseitool.com/">senseitool.com</a>. After creating accounts for every member of the team and scheduling a retrospective through the tool, we could all equally participate using our smartphones. The retrospective follows a typical workflow that is fine for teams new to the practice.</p>
+
+<h4>Pros</h4>
+
+<ul>
+<li>Even easier to setup</li>
+<li>Works fine</li>
+</ul>
+
+
+<h4>Cons</h4>
+
+<ul>
+<li>The website was a bit slow</li>
+<li>The retrospective was too guided for an experienced team, we did not get as good outputs as we used to</li>
+<li>Everyone could participate as easily</li>
+</ul>
+
+
+<h2>Trello</h2>
+
+<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat-small.jpg" title="The boat activity on Trello" ></a></p>
+
+<p><a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=remote%20retrospective">Asking Google</a>, we discovered that some teams were having success using <a href="https://trello.com/">Trello</a> for their remote retrospectives. We decided to give it a try. Ahmad from Beirut got to work on our first retrospective with it. He had to prepare it beforehand (as we always have been doing). In practice :</p>
+
+<ul>
+<li>Ahmad created an organization for our team</li>
+<li>We all registered to Trello and joined the organization (we like joining (smile))</li>
+<li>Ahmad created a custom board for each activity</li>
+<li>During the meeting, we used the video conferencing system and the instant chat to have both visio and screen sharing</li>
+<li>The animator used a laptop to manage the Trello boards</li>
+<li>Everyone of us could add post-its through his smartphone app</li>
+</ul>
+
+
+<h4>Pros</h4>
+
+<ul>
+<li>The setup is easy</li>
+<li>The retrospective worked well and delivered interesting output</li>
+<li>We actually all see the board</li>
+<li>The smartphone app works well</li>
+<li>It is possible to vote directly through Trello</li>
+<li>Everyone could participate as easily</li>
+<li>We can classify post-its with labels</li>
+<li>We can insert pictures and photos</li>
+<li>There are a lot of chrome extensions to Trello (<a href="https://chrome.google.com/webstore/detail/vertical-lists-for-trello/aldklnbenbdgfgfbflalmlddkkndgnlc?utm_source=chrome-app-launcher-info-dialog">Vertical Lists for Trello</a>), <a href="https://chrome.google.com/webstore/detail/card-color-titles-for-tre/hpmobkglehhleflhaefmfajhbdnjmgim?utm_source=chrome-app-launcher-info-dialog">Card Color Titles for Trello</a></li>
+</ul>
+
+
+<h4>Cons</h4>
+
+<ul>
+<li>There is nothing to &lsquo;group&rsquo; post its together</li>
+<li>We need to prepare custom boards for every activity</li>
+<li>We would need to pay for the gold version with custom backgrounds and stickers</li>
+</ul>
+
+
+<h2>Conclusion</h2>
+
+<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti-small.jpg" title="The Return On Time Invested activity on Trello" ></a></p>
+
+<p>While missing a few features that would make it awesome, Trello is the best tool we found for remote retrospective, and is better than our initial physical setup. We&rsquo;re continuing to use it, and we now have to figure out</p>
+
+<ul>
+<li>If we could find a way to speed up the meeting preparation</li>
+<li>How to handle &lsquo;graph oriented&rsquo; activities such as the &lsquo;5 whys&rsquo;</li>
+</ul>
+
+
+<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys-small.jpg" title="The 5 why activity on a physical whiteboard" ></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What Optimization Should We Work on (Lean Software Development Part 5)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-26T20:30:00+00:00" pubdate data-updated="true">Mar 26<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At work, we are building a risk aggregation system. As it&rsquo;s dealing with a large bunch of numbers, it&rsquo;s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
+
+<p>That&rsquo;s were we are now doing.</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" title="A turtle with a rocket on the back" ></p>
+
+<h1>How do we choose which optimization to work on ?</h1>
+
+<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage &hellip;</p>
+
+<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
+
+<h2>Let&rsquo;s walk through an example</h2>
+
+<h3>I. List the optimizations you are thinking of</h3>
+
+<p>Let&rsquo;s suppose we are thinking of the following 3 optimizations for our engine</p>
+
+<ul>
+<li>Create better data structures to speed up the reconciliation algorithm</li>
+<li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
+<li>Minimize boxing and unboxing</li>
+</ul>
+
+
+<h3>II. Poker estimate the story points and speedup</h3>
+
+<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
+As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
+We will then just have to work on the stories with the highest speedup rate first.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title                   </th>
+<th> Story Points  </th>
+<th> /10    </th>
+<th> /2     </th>
+<th> -10%    </th>
+<th> ~  </th>
+<th> +10%   </th>
+<th> x2      </th>
+<th> x10     </th>
+<th> Expected Speedup ratio* </th>
+<th> Speedup rate / story point**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structures     </td>
+<td> 13        </td>
+<td>        </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 4 votes</td>
+<td> 5 votes </td>
+<td>         </td>
+<td> x 1.533                 </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> 13        </td>
+<td>    </td>
+<td> 1 vote </td>
+<td> 1 vote      </td>
+<td> 2 votes</td>
+<td> 1 vote </td>
+<td> 2 votes </td>
+<td> 2 votes </td>
+<td> x 1.799                 </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> 8     </td>
+<td>    </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 9 votes</td>
+<td>         </td>
+<td>         </td>
+<td> x 1.1                   </td>
+<td> x 1.012</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br>
+<sup><em>** Speedup rate is &ldquo;speedup<sup>(1/ story points)</sup>&rdquo;</em></sup></p>
+
+<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
+
+<ol>
+<li>Algorithm</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ol>
+
+
+<h3>III. And what about the risks ?</h3>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" title="A danger zone panel" ></p>
+
+<p>This poker estimation tells us something else &hellip;</p>
+
+<blockquote><p>We don&rsquo;t have a clue about the speedup we will get by trying to optimize the algorithm !</p></blockquote>
+
+<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Story points </th>
+<th> Expected Speedup rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithm spike : measure out of context CPU cache optimization speedup </td>
+<td> 2 </td>
+<td>   ?</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>In order to compute the expected speedup rate, let&rsquo;s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
+
+<p>They are computed by splitting the votes in 2 :</p>
+
+<ul>
+<li><em>low_speedup = 0.846</em></li>
+<li><em>high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike succeeds</h4>
+
+<p>We&rsquo;ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
+
+<ul>
+<li><em>spike_high_speedup = high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike fails</h4>
+
+<p>We&rsquo;ll also start by working on the spike. Afterwards, instead of the algorithm story, we&rsquo;ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
+
+<ul>
+<li><em>average_speedup_rate = (1.033 * 1.011)<sup>&frac12;</sup> = 1.022</em></li>
+<li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
+</ul>
+
+
+<h4>Spike speedup rate</h4>
+
+<p>We can now compute the average expected speedup rate for the full period &lsquo;spike &amp; algorithm&rsquo; stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
+
+<ul>
+<li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>&frac12;</sup> = 2.253</em></li>
+<li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
+</ul>
+
+
+<h3>IV. Putting it all together</h3>
+
+<p>Here are all the speedup rate for the different stories.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Speedup rate / story point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structure  </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> x 1.012</td>
+</tr>
+<tr>
+<td>Algorithm spike         </td>
+<td> x 1.056</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Finally, here is the optimal order through which we should perform the stories :</p>
+
+<ul>
+<li>Algorithm spike</li>
+<li>Algorithm (only if the spike proved it would work)</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ul>
+
+
+<h2>Summary</h2>
+
+<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" title="Formula for a spike speedup rate" ></p>
+
+<p>I think most experienced engineers would have come to the same conclusion by gut feeling &hellip;</p>
+
+<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
+
+<p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/setting-up-octopress-with-vagrant-and-rbenv/">Setting Up Octopress With Vagrant and Rbenv</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-20T05:33:00+00:00" pubdate data-updated="true">Mar 20<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently got hands on an abandonned laptop that was better than the one I was currently using for my personnal hackings, so I decided to switch to this one. I felt this was the time to learn Vagrant and save me some time later on. I settled on creating a <a href="https://www.vagrantup.com/">Vagrant</a> environment for this <a href="http://octopress.org/">Octopress</a> blogging. That proved a lot longer than I thought it would.</p>
+
+<p><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png" title="Vagrant logo + Octopress logo" ></p>
+
+<p>If you want to jump to the solution, just have a look at this <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b">git change</a>. Here is the slightly longer version.</p>
+
+<ul>
+<li><p>Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.</p></li>
+<li><p>Provision your VM. That proved a lot more complex. There are a lot of examples using variants of <a href="https://www.chef.io/">Chef</a>, but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">inline</span><span class="p">:</span> <span class="o">&lt;&lt;-</span><span class="no">SHELL</span>
+</span><span class='line'><span class="sh">    echo &quot;Updating package definitions&quot;</span>
+</span><span class='line'><span class="sh">    sudo apt-get update</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    echo &quot;Installing git and build tools&quot;</span>
+</span><span class='line'><span class="sh">    sudo apt-get -y install git autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev</span>
+</span><span class='line'><span class="no">  SHELL</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">privileged</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">inline</span><span class="p">:</span> <span class="o">&lt;&lt;-</span><span class="no">SHELL</span>
+</span><span class='line'><span class="sh">    git config --global user.name &quot;john.doe&quot;</span>
+</span><span class='line'><span class="sh">    git config --global user.email &quot;john.doe@mail.com&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;$HOME/.rbenv&quot; ]; then</span>
+</span><span class='line'><span class="sh">      echo &quot;Installing rbenv and ruby-build&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      git clone https://github.com/sstephenson/rbenv.git ~/.rbenv</span>
+</span><span class='line'><span class="sh">      git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc</span>
+</span><span class='line'><span class="sh">      echo &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bashrc</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    else</span>
+</span><span class='line'><span class="sh">      echo &quot;Updating rbenv and ruby-build&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      cd ~/.rbenv</span>
+</span><span class='line'><span class="sh">      git pull</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      cd ~/.rbenv/plugins/ruby-build</span>
+</span><span class='line'><span class="sh">      git pull</span>
+</span><span class='line'><span class="sh">    fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;</span>
+</span><span class='line'><span class="sh">    eval &quot;$(rbenv init -)&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;$HOME/.rbenv/versions/2.2.0&quot; ]; then</span>
+</span><span class='line'><span class="sh">      echo &quot;Installing ruby&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      rbenv install 2.2.0</span>
+</span><span class='line'><span class="sh">      rbenv global 2.2.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      gem update --system</span>
+</span><span class='line'><span class="sh">      gem update</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      gem install bundler</span>
+</span><span class='line'><span class="sh">      bundle config path vendor/bundle</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      rbenv rehash</span>
+</span><span class='line'><span class="sh">    fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    cd /vagrant</span>
+</span><span class='line'><span class="sh">    bundle install</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;/vagrant/_deploy&quot; ]; then</span>
+</span><span class='line'><span class="sh">      bundle exec rake setup_github_pages[&quot;git@github.com:philou/philou.github.com&quot;]</span>
+</span><span class='line'><span class="sh">      git checkout . # Revert github deploy url to my domain</span>
+</span><span class='line'><span class="sh">      cd _deploy</span>
+</span><span class='line'><span class="sh">      git pull origin master # pull to avoid non fast forward push</span>
+</span><span class='line'><span class="sh">      cd ..</span>
+</span><span class='line'><span class="sh">    fi</span>
+</span><span class='line'><span class="no">  SHELL</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></p></li>
+<li><p>Setup ssh forwarding. In order to be able to deploy to github pages with my local ssh keys, I added the following to my Vagrantfile.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># The path to the private key to use to SSH into the guest machine. By</span>
+</span><span class='line'>  <span class="c1"># default this is the insecure private key that ships with Vagrant, since</span>
+</span><span class='line'>  <span class="c1"># that is what public boxes use. If you make your own custom box with a</span>
+</span><span class='line'>  <span class="c1"># custom SSH key, this should point to that private key.</span>
+</span><span class='line'>  <span class="c1"># You can also specify multiple private keys by setting this to be an array.</span>
+</span><span class='line'>  <span class="c1"># This is useful, for example, if you use the default private key to</span>
+</span><span class='line'>  <span class="c1"># bootstrap the machine, but replace it with perhaps a more secure key later.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">private_key_path</span> <span class="o">=</span> <span class="s2">&quot;~/.ssh/id_rsa&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#  If true, agent forwarding over SSH connections is enabled. Defaults to false.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">forward_agent</span> <span class="o">=</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Fix virtual box synced folder. When I tried to pimp my favicon up, changing the png in the host machine did not update it on the guest ! I lost almost 3 hours figuring this out &hellip; searching google, I eventually found that <a href="http://docs.vagrantup.com/v2/synced-folders/virtualbox.html">Virtual Box synced folders can have issues</a>, and that <a href="http://stackoverflow.com/questions/18933547/vagrant-virtualbox-shared-folder-out-of-sync-when-there-are-many-file-related">installing the guest additions is recommended</a>. For this, just enter the following in the command line from your project&rsquo;s working dir :</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">vagrant</span> <span class="n">plugin</span> <span class="n">install</span> <span class="n">vagrant</span><span class="o">-</span><span class="n">vbguest</span>
+</span><span class='line'><span class="n">vagrant</span> <span class="n">reload</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;ll tell you if this does not do the trick.</p>
+
+<p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
+
+<p><a href="http://docker.io"><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png" title="The Docker logo" ></a></p>
+
+<p>Next steps will be to use <a href="http://docker.io">Docker</a> providers and Dockerfile to factorize provisioning and speedup up VM startup.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the Business Value of Your Spikes and Take High Payoff Risks (Lean Software Development Part 4)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-31T15:13:00+00:00" pubdate data-updated="true">Jan 31<span>st</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Lately <a href="http://www.murex.com">at work</a>, we&rsquo;ve unexpectedly been asked by other teams if they could use our product for something that we had not forseen. As we are not sure whether we&rsquo;ll be able to tune our product to their needs, we are thinking about doing a short study to know the answer. This looks like a great opportunity to try out <a href="http://en.wikipedia.org/wiki/Cost_of_delay">Cost of Delay</a> analysis about uncertain tasks.</p>
+
+<p>Unfortunately, I cannot write the details of what we are creating at work in this blog, so let&rsquo;s assume that we are building a Todo List Software.</p>
+
+<p>We have been targeting the enterprise market. Lately, we&rsquo;ve seen some interest from individuals planning to use our todo list system for themselves at home.</p>
+
+<p>For individuals, the system would need to be highly available and live 24/7 over the internet, latency will also be critical to retain customers, but the product could get a market share with a basic feature set.</p>
+
+<p>On the other side, enterprise customers need advanced features, absolute data safety, but they can cope with nightly restarts of the server.</p>
+
+<p>In order to know if we can make our todo list system available and fast enough for the individuals market, we are planning to conduct a pre-study, so as not to waste time on an unreachable goal. In <a href="http://www.extremeprogramming.org/">XP</a> terms, this is a <a href="http://www.extremeprogramming.org/rules/spike.html">spike</a>, and it&rsquo;s a bunch of experiments rather than a theoretical study.</p>
+
+<p><a href="/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study.jpg"><img class="center" src="/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study-petit.jpg" title="Photo of someone studying behind piles of books" ></a></p>
+
+<h2>When should we prioritize this spike ?</h2>
+
+<p>If we are using the <a href="http://www.scaledagileframework.com/wsjf/">Weighted Shortest Job First</a> metric to prioritize our work, we need to estimate the cost of delay of a task to determine its priority. Hereafter I will explain how we could determine the value of this spike.</p>
+
+<h2>Computing the cost of delay</h2>
+
+<p>The strategy to compute the cost of delay for such a risk mitigation task is to compute the difference in cost of delays with or without doing it.</p>
+
+<h3>1. The products, the features, the MVP and the estimates</h3>
+
+<p>As I explained in <a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">a previous post</a>, for usual features, cost of delay is equivalent to it&rsquo;s value. Along with our gross estimates, here are the relative values that our product owner gave us for the different products we are envisioning.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Estimated work</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 1</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>TOTAL Cost Of Delay of v1 </td>
+<td> 80           </td>
+<td> 100           </td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<p><small>Stared (*) features are required for the first version of the product. Features with a value of 0 are not required for the product. Eventually, unstared features with a non null business value would be great for a second release.</small><br></p>
+
+<p>It seems that the individuals market is a greater opportunity, so it&rsquo;s worth thinking about it. Unfortunately for the moment, we really don&rsquo;t know if we&rsquo;ll manage to get the high availability that is required for such a product.</p>
+
+<p>The availability spike we are envisioning would take 1 unit of time.</p>
+
+<h3>2. Computing the cost of delay of this spike</h3>
+
+<p>The cost of delay of a task involving some uncertainty is the probabilistic expected value of its cost of delay. We estimate that we have 50% of chances of matching the availability required by individuals. It means that CoD of the spike = 50% * CoD if we match the latency + 50% CoD if we don&rsquo;t match the availability.</p>
+
+<h4>2.a. The Cost of Delay if we get the availability</h4>
+
+<p>Let&rsquo;s consider the future in which we&rsquo;ll manage to reduce the latency.
+The cost of delay of a spike task is the difference in Cost with and without doing the spike, per relevent months.</p>
+
+<h5>2.a.i. The cost if we don&rsquo;t do the spike</h5>
+
+<p>Unfortunately, at this point in this future, we don&rsquo;t yet know that we&rsquo;ll manage to get to the availability.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> $ Expected   </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>We&rsquo;ll resort to WSJF to prioritize our work. Here is what we&rsquo;ll be able to ship :</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individuals                     </td>
+<td> 7    </td>
+<td> 100   </td>
+<td>  700</td>
+</tr>
+<tr>
+<td>Individuals Durability          </td>
+<td> 7    </td>
+<td> 13    </td>
+<td>   91</td>
+</tr>
+<tr>
+<td>Individuals Labels              </td>
+<td> 9    </td>
+<td> 13    </td>
+<td>  117</td>
+</tr>
+<tr>
+<td>Enterprise                      </td>
+<td> 11   </td>
+<td> 80    </td>
+<td>  880</td>
+</tr>
+<tr>
+<td>Enterprise labels               </td>
+<td> 11   </td>
+<td> 20    </td>
+<td>  220</td>
+</tr>
+<tr>
+<td>Individuals Multi user lists    </td>
+<td> 13   </td>
+<td> 8     </td>
+<td>  104</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 16   </td>
+<td> 13    </td>
+<td>  208</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td> 2320</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.a.ii. The cost if we do the spike</h5>
+
+<p>In this case, we would start by the spike, and it would tell us that we can reach the individuals availability and so that we should go for this feature first. Here will be our planning</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Estimated work </th>
+<th> Enterprise WSJF </th>
+<th> Individuals WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility spike         </td>
+<td>              </td>
+<td>               </td>
+<td> 1              </td>
+<td>                 </td>
+<td></td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 1              </td>
+<td>                 </td>
+<td> 40</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 2              </td>
+<td>                 </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 2              </td>
+<td> 10              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 2              </td>
+<td> 20              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 2              </td>
+<td> 10              </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 2              </td>
+<td> 10              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 3              </td>
+<td> 4               </td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Here is how we will be able to ship :</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Individuals                     </td>
+<td> 6    </td>
+<td> 100   </td>
+<td>  600</td>
+</tr>
+<tr>
+<td>Individuals Durability          </td>
+<td> 8    </td>
+<td> 13    </td>
+<td>  104</td>
+</tr>
+<tr>
+<td>Individuals Multi user lists    </td>
+<td> 10   </td>
+<td> 8     </td>
+<td>   80</td>
+</tr>
+<tr>
+<td>Enterprise                      </td>
+<td> 10   </td>
+<td> 80    </td>
+<td>  800</td>
+</tr>
+<tr>
+<td>Individuals Labels              </td>
+<td> 12   </td>
+<td> 13    </td>
+<td>  156</td>
+</tr>
+<tr>
+<td>Enterprise Labels               </td>
+<td> 12   </td>
+<td> 20    </td>
+<td>  240</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 15   </td>
+<td> 13    </td>
+<td>  195</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td> 2175</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.a.iii. Cost of delay of the spike if we reach the availability</h5>
+
+<p>By making the spike, we would save 2320 &ndash; 2175 = 145$</p>
+
+<p>Without doing the spike, we would discover whether we would reach the availability when we try it, around time 7 (see 2.a.i).</p>
+
+<p>So the cost of delay for the spike would be around 145/7 = 21 $/m</p>
+
+<h4>2.b. The Cost of Delay if we don&rsquo;t get the availability</h4>
+
+<p>Let&rsquo;s now consider the future in which we don&rsquo;t manage to increase the availability.</p>
+
+<p>Using the same logic as before, let&rsquo;s now see what happens</p>
+
+<h5>2.b.i. The cost if we don&rsquo;t do the spike</h5>
+
+<p>Unfortunately, at this point in this future, we don&rsquo;t yet know that we&rsquo;ll not manage to get to the availability.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature                   </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> $ Expected   </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>When we&rsquo;ll fail at the availability, we&rsquo;ll switch multi user lists and labels to be able to ship to enterprises as quickly as possible.
+Here is what we&rsquo;ll ship.</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enterprise                      </td>
+<td>  9   </td>
+<td> 80    </td>
+<td>  720</td>
+</tr>
+<tr>
+<td>Enterprise Labels               </td>
+<td> 11   </td>
+<td> 20    </td>
+<td>  220</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 14   </td>
+<td> 13    </td>
+<td>  182</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td> 1122</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.b.ii. The cost if we do the spike</h5>
+
+<p>In this case, we would start by the spike, and it would tell us that we won&rsquo;t match the availability required for individuals and so that that there&rsquo;s no need to run after this now.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature            </th>
+<th> $ Enterprise </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility spike  </td>
+<td>              </td>
+<td> 1              </td>
+<td></td>
+</tr>
+<tr>
+<td>Durability     </td>
+<td> 40*      </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness     </td>
+<td> 20*      </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists   </td>
+<td> 20*          </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels             </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool </td>
+<td> 13           </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Here is how we will be able to ship :</p>
+
+<table>
+<thead>
+<tr>
+<th>Product </th>
+<th> Delay </th>
+<th> CoD </th>
+<th> Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Enterprise                      </td>
+<td>  7   </td>
+<td> 80    </td>
+<td>  560</td>
+</tr>
+<tr>
+<td>Enterprise Labels               </td>
+<td>  9   </td>
+<td> 20    </td>
+<td>  180</td>
+</tr>
+<tr>
+<td>Enterprise Custom reports       </td>
+<td> 12   </td>
+<td> 13    </td>
+<td>  156</td>
+</tr>
+<tr>
+<td>                                </td>
+<td>      </td>
+<td>       </td>
+<td>  896</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<h5>2.b.iii. Cost of delay of the spike if we reach the availability</h5>
+
+<p>By making the spike, we would save 1122 &ndash; 896 = 226$</p>
+
+<p>As before, without doing the spike, we would discover whether we would get the availability when we try it, around time 7.</p>
+
+<p>So the cost of delay for the spike is around 226/7 = 32 $/m</p>
+
+<h4>2.c. Compute overall Cost of Delay of the Spike</h4>
+
+<p><a href="/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD.jpg"><img class="center" src="/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD-petit.jpg" title="Bank notes going through an hourglass" ></a></p>
+
+<p>Given that we estimate that there is a 50% chances of making the latency, the overall expected cost of delay is</p>
+
+<p>50% * 21 + 50% * 32 = 26.5 $/m</p>
+
+<p>Inject the spike in the backlog</p>
+
+<p>With the Cost of Delay of the spike, we can compute it&rsquo;s WSJF and prioritize it against other features.</p>
+
+<table>
+<thead>
+<tr>
+<th>Feature </th>
+<th> $ Enterprise </th>
+<th> $ Individuals </th>
+<th> Expected $ </th>
+<th> Estimated work </th>
+<th> WSJF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feasibility Spike         </td>
+<td>              </td>
+<td>               </td>
+<td> 26.5         </td>
+<td> 1              </td>
+<td> 26.5</td>
+</tr>
+<tr>
+<td>Latency                   </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 1              </td>
+<td> 20</td>
+</tr>
+<tr>
+<td>Durability            </td>
+<td> 40*          </td>
+<td> 13            </td>
+<td> 26           </td>
+<td> 2              </td>
+<td> 13</td>
+</tr>
+<tr>
+<td>Robustness            </td>
+<td> 20*          </td>
+<td> 20*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Availability              </td>
+<td> 0            </td>
+<td> 40*           </td>
+<td> 20           </td>
+<td> 2              </td>
+<td> 10</td>
+</tr>
+<tr>
+<td>Multi user lists          </td>
+<td> 20*          </td>
+<td> 8             </td>
+<td> 14           </td>
+<td> 2              </td>
+<td> 7</td>
+</tr>
+<tr>
+<td>Labels                    </td>
+<td> 20           </td>
+<td> 13            </td>
+<td> 17           </td>
+<td> 2              </td>
+<td> 9</td>
+</tr>
+<tr>
+<td>Custom report tool        </td>
+<td> 13           </td>
+<td> 0             </td>
+<td> 8            </td>
+<td> 3              </td>
+<td> 3</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>The spike comes at the top of our backlog. Which confirms our gut feeling.</p>
+
+<h2>Conclusion</h2>
+
+<p>Doing this long study confirmed classic rule of thumbs</p>
+
+<ul>
+<li>Don&rsquo;t develop many products at the same time</li>
+<li>Do some Proof Of Concepts early before starting to work on uncertain features</li>
+<li>Tackle the most risky features first</li>
+</ul>
+
+
+<p>By improving the inputs, we could get more quality results :</p>
+
+<ul>
+<li>If we had access to real sales or finance figures for the costs</li>
+<li>If we did some sort of poker risk estimation instead of just guessing at 50% chances</li>
+</ul>
+
+
+<p>Obviously, the analysis itself is not perfect, but it hints to the good choices. And as <a href="http://reinertsenassociates.com/">Don Reinertsen</a> puts it, using an economical framework, the spread between people estimations goes down from <a href="http://leanmagazine.net/lean/cost-of-delay-don-reinertsen/">50:1</a> to 2:1 ! This seems a good alternative to the experience and gut feeling approach which :</p>
+
+<ul>
+<li>can trigger heated unfounded discussions</li>
+<li>often means high dependence on the intuition of a single individual</li>
+</ul>
+
+
+<p>As everything is quantitative though, one could imagine that with other figures, we could have got to another conclusion, such as :</p>
+
+<ul>
+<li>The spike is not worth doing (it costs more than it might save)</li>
+<li>The spike can wait a bit</li>
+</ul>
+
+
+<p><a href="http://dilbert.com/strip/2014-03-30"><img class="center" src="/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/dt140330.jpg" title="A dilbert strip about gut feeling at work" ></a></p>
+
+<p>This was part 4 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 3 was <a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value</a>, continue on Part 5 : <a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What optimization should we work on ?</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/from-zero-to-pair-programming-hero/">From Zero to Pair Programming Hero</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-27T06:31:00+00:00" pubdate data-updated="true">Jan 27<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In my team at <a href="http://www.murex.com">Murex</a>, we&rsquo;ve been doing Pair programming 75% of our time for the past 9 months now.</p>
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.JPG"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.resized.JPG" title="Photo of all the team doing pair programming" ></a></p>
+
+<p>Before I explain how we got there, let&rsquo;s summarize our observations :</p>
+
+<ul>
+<li>No immediate productivity drop</li>
+<li>Pair programming is really tiring</li>
+<li>Quality expectations throughout the team soared up</li>
+<li>As a result, the quality actually increased a lot</li>
+<li>But existing technical debt suddenly became incompatible with the team&rsquo;s own quality criterion. We went on to pay it back, which slowed us down for a while</li>
+<li>Productivity is regularly going up as the technical debt is reduced</li>
+<li>It helped us to define shared coding conventions</li>
+<li>Pair programming is not for everyone. It has likely precipitated the departure of one team member</li>
+<li>It certainly helped the team to <a href="http://www.hans-eric.com/2007/08/13/is-your-team-jelled/">jell</a></li>
+<li>Newcomers can submit code on day 1</li>
+<li>The skills of everyone increase a lot quicker than before</li>
+<li><em>Bonus</em> : it improves personal skills of all the team members</li>
+</ul>
+
+
+<p>If you are interested in how we got there, read on, here is our story :</p>
+
+<h2>Best Effort Code Reviews</h2>
+
+<p>At the beginning, only experienced team members were reviewing the submitted code, and making remarks for improvement over our default review system : <a href="http://smartbear.com/product/collaborator/overview/">Code Collaborator</a>.</p>
+
+<p>This practice revealed tedious, especially with large change lists. As it was not systematic, reviewers constantly had to remind to the reviewees to act on the remarks, which hindered empowerment.</p>
+
+<h2>Systematic Code Reviews</h2>
+
+<p>Observing this during a <a href="/how-we-introduced-efficient-agile-retrospectives/">retrospective</a>, we decided to do add code review to our <a href="https://www.scrum.org/Resources/Scrum-Glossary/Definition-of-Done">Definition Of Done</a>. Inspired by <a href="http://producingoss.com/en/setting-tone.html#code-review">best practices in the Open Source world</a>, we created a ruby review script that automatically creates Code Collaborator reviews based on the <a href="www.perforce.com">Perforce</a> submits. Everyone was made observer of any code change, and everyone was to participate in the reviews.</p>
+
+<p>At first, to make this practice stick, a few benevolent review champions had to comment all the submitted code; once the habit was taken, everyone participated in the reviews.</p>
+
+<p>Code Collaborator spamming was certainly an issue, but using Code Collaborator System Tray App helped each of us to keep up to date with the remaining reviews to do.</p>
+
+<p><em>Bonus</em> : As everyone was doing reviews, and that reviews of small changes are easier, submits became smaller.</p>
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.png"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.resized.png" title="A screenshot of our code collaborator installation" ></a></p>
+
+<p>This was certainly an improvement, but it remained time consuming. We believed we could do better.</p>
+
+<h2>Pair Programming</h2>
+
+<p>After 1 or 2 months of systematic code reviews, during a retrospective (again) nearly all the team members decided to give <a href="http://blogs.sourceallies.com/2011/03/pair-programming-101/">pair programming</a> a try.</p>
+
+<p>We felt the difference after the very first day : pair programming is intense, but the results are great. We never turned back.</p>
+
+<p>With pair programming in place, we had to settle a pair switching frequency. We started with the full story, tried a one day rotation, and eventually settled on &ldquo;MIN(1 week, the story)&rdquo;.</p>
+
+<p>This is not set in stone and is team dependent. It may vary depending on the learning curve required to work on a story. We might bring it down later maybe.</p>
+
+<h2>Remote Pair Programming</h2>
+
+<p>Ahmad, a Murex guy from Beirut joined the team a few months ago. We did not want to change our way of working, and decided to try remote pair programming.</p>
+
+<h3>Initial Setup</h3>
+
+<p>At the beginning, we were using <a href="http://products.office.com/en-us/Lync/lync-2013-video-conferencing-meeting-software">Lync</a> (Microsoft&rsquo;s chat system) with webcams, headphones and screen sharing. It works, but Lync&rsquo;s screen sharing does not allow seamless remote control between Paris and Beirut. Here is how we coped with this :</p>
+
+<ul>
+<li>Only exceptionally use Lync&rsquo;s &ldquo;Give Control&rdquo; feature : it lags too much</li>
+<li>Do small submits, and switch control at submits</li>
+<li>When you cannot submit soon, shelve the code on perforce (you would just pull your buddy&rsquo;s repo with git), and switch control</li>
+</ul>
+
+
+<p>As a result, Ahmad became productive a lot more quickly. We are not 2 sub teams focusing on their own area of expertise, but 1 single distributed team sharing everything.</p>
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.jpg"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.resized.jpg" title="My remote pair programming setup" ></a></p>
+
+<h3>Improved Setup</h3>
+
+<p>Remote pair programming as such is workable, but does not feel as easy as being collocated. Here are a few best practices we are now using to improve the experience :</p>
+
+<ul>
+<li>Keep your pair&rsquo;s video constantly visible : either on your laptop of in a corner of you main screen, but it&rsquo;s important to see his facial expression all the time</li>
+<li>In order to allow eye contact, place your cam next to the window containing the video of your pair.</li>
+<li>Using 2 cameras, <a href="http://download.manycam.com/">ManyCams</a> and a small whiteboard allows to share drawings !</li>
+</ul>
+
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.jpg"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.resized.jpg" title="A screenshot of my pair programming environment" ></a></p>
+
+<ul>
+<li>We started using the <a href="http://pomodorotechnique.com/">Pomodoro technique</a> for control switching. <a href="http://www.marinaratimer.com/">MarinaraTimer</a> provides an online and shareable timer.</li>
+<li>We also started maintaining a todo list with an online shareable editor such as <a href="http://collabedit.com/">CollabEdit</a> or <a href="https://docs.google.com/">Google Docs</a>.</li>
+</ul>
+
+
+<h3>Future Setup</h3>
+
+<p>We are currently welcoming a new engineer in Beirut, and as we will be doing more remote pair programming, we&rsquo;ll need to make this more seamless. Control sharing and lag through Lync remain the main issues. We don&rsquo;t have a solution for that yet, but here are the fixes we are looking into</p>
+
+<ul>
+<li><a href="http://www.saros-project.org/">Saros</a> is an <a href="https://eclipse.org/">Eclipse</a> plugin for remote concurrent and real time editing of files. Many people can edit the files at the same time. We are waiting for the <a href="https://www.jetbrains.com/idea/">Intellij</a> version that is still under development</li>
+</ul>
+
+
+<p><a href="http://www.saros-project.org/screenshots"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/saros.resized.png" title="A screenshot from Eclipse with Saros plugin" ></a></p>
+
+<ul>
+<li><a href="https://floobits.com/">Floobits</a> is a commercial equivalent of saros. We tried it and it seems great. It&rsquo;s not cheap though, especially with in-house servers.</li>
+<li><a href="https://screenhero.com/">Screenhero</a> is a commercial low-lag, multi cursor screen sharing tool. Unfortunately, it currently does not work behind a proxy, and so we were not able to evaluate it yet.</li>
+</ul>
+
+
+<h2>Final thoughts</h2>
+
+<p>I believe that collocated, and remote, pair programming are becoming key skills for a modern software engineer.</p>
+
+<p>I hope this will help teams envisioning pair programming. We&rsquo;d love to read about your best practices as well !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/can-agile-teams-commit/">Can Agile Teams Commit?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-21T06:57:00+00:00" pubdate data-updated="true">Jan 21<span>st</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Making commitments to deliver software is always difficult. Whatever the margin you might take, it invariably seems wrong afterward &hellip;</p>
+
+<p>Most Scrum, XP or Kanban litterature does not adress the issue, simply saying that commitment is not required, as long as you continuously deliver value (faster than your competition). That&rsquo;s kind of true, but sometimes you need commitments, for example if your customer is not yet ready to deploy your new software every friday worldwide &hellip;</p>
+
+<p>So how can you do it while remaining agile ?</p>
+
+<p>Grossly speaking, you have 2 options :</p>
+
+<h2>Do it as usual</h2>
+
+<p>Discuss with your experts, take some margin, do whatever voodoo you are used to. This will not be worse than it used to be. It might turn out better, thanks to your agile process, you should be able to deploy with a reduced the scope if needed.</p>
+
+<p><img class="center" src="/imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg" title="A guy entranced with voodoo" ></p>
+
+<h2>Use your agile process metrics</h2>
+
+<p>This technique is explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a>, in section &ldquo;Risk Management&rdquo;, page 227.</p>
+
+<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img class="center" src="/imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg" title="The cover of The Art of Agile Development" ></a></p>
+
+<h3>Let&rsquo;s estimate the time you&rsquo;ll need before the release</h3>
+
+<ul>
+<li>First, list all the stories you want it your release</li>
+<li>Then estimate them with story points.</li>
+<li>Now that you have the total number of story points you&rsquo;ll have to deliver before the release, apply a generic risk multiplier :</li>
+</ul>
+
+
+<table>
+<thead>
+<tr>
+<th>Chances of making it </th>
+<th> Using XP practices </th>
+<th> Otherwise </th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%              </td>
+<td>x1              </td>
+<td> x1        </td>
+<td> Almost impossible (ignore)</td>
+</tr>
+<tr>
+<td>50%              </td>
+<td>x1.4            </td>
+<td> x2        </td>
+<td> 50-50 chance (stretch goal)</td>
+</tr>
+<tr>
+<td>90%              </td>
+<td>x1.8            </td>
+<td> x4        </td>
+<td> Virtually certain (commit)</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><em>As explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> page 227, these numbers com from <a href="http://www.systemsguild.com/riskology/">DeMarco&rsquo;s Riskology</a> system. Using XP practices means fixing all bugs at all iteration, sticking rigorously to DONE-DONE, and having a stable velocity over iterations.</em></p>
+
+<p>This factor will account for unavoidable scope creep and wrong estimations.
+* Use you iteration velocity to know how many sprints you&rsquo;ll need to finish.</p>
+
+<h4>For example :</h4>
+
+<p>Suppose you have 45 stories that account for a total of 152 story points, and that your velocity is 23 story points per iteration. You need to do a commitment, but hopefully, you are applying all the XP practices. So you can compute :</p>
+
+<blockquote><p>Number of sprints = 152*1.8/23 = 12 sprints, (24 weeks, or about 5.5 months)</p></blockquote>
+
+<h3>What about unknown risks ?</h3>
+
+<p>Unfortunately, using just the previous, you might miss some unavoidable important tasks you&rsquo;ll need to do before you can release. Think about monitoring tools and stress testing, when did your product owner prioritize these ? These are risk management activities that need to be added to your backlog in the first place. Here is how to list most of them.</p>
+
+<ul>
+<li>Do a full team brainstorming about anything that could possibly go bad for your project</li>
+<li>For every item discovered, estimate
+
+<ul>
+<li>It&rsquo;s probability of occurrence (low, medium, high)</li>
+<li>It&rsquo;s consequences (delay, cost, cancellation of the project)</li>
+</ul>
+</li>
+<li>For every item, decide whether to
+
+<ul>
+<li>avoid it : you have to find a way to make sure this will not happen</li>
+<li>contain it : you&rsquo;ll deal with the risk when it occurs</li>
+<li>mitigate it : you have to find a way to reduce it&rsquo;s impact</li>
+<li>ignore it : don&rsquo;t bother with unlikely risks of no importance</li>
+</ul>
+</li>
+<li>Finally, create stories to match your risk management decisions. These might be :
+
+<ul>
+<li>Monitoring systems helps to contain a risk</li>
+<li>Logging helps to mitigate a risk</li>
+<li>An automated scaling in script for situations of high demand helps both mitigate and contain the risk</li>
+</ul>
+</li>
+<li>Simply add these stories to your backlog, and repeat the previous section. You can now make your commitment</li>
+</ul>
+
+
+<h2>Afterthoughts</h2>
+
+<p>Contrary to the widespread belief, agile practices and metrics actually helps to make commitments.</p>
+
+<p>It would be better if we had project specific statistics instead of generic risk multipliers. It&rsquo;s a shame that task tracking tools (JIRA &amp; friends) still don&rsquo;t help us with this.</p>
+
+<p>We should keep in mind though, that estimating all your backlog in advance takes some time and is actually some kind of waste. If possible, just sticking to build (and sell) the thing that is the most useful now is more simple (<a href="http://vimeo.com/75196281">this guy calls it drunken stumble</a>).</p>
+
+<iframe src="//player.vimeo.com/video/75196281" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<p> <p><a href="http://vimeo.com/75196281">Tech Mesh 2012 &ndash; Building an Application Platform: Lessons from CloudBees &ndash; Garrett Smith</a> from <a href="http://vimeo.com/erlang">Erlang Solutions</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/performance-is-a-feature/">Performance Is a Feature</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-19T06:46:00+00:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
+
+<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
+
+<h1>What&rsquo;s in it for us ?</h1>
+
+<p>If performance is indead a feature, then it can be managed like any feature :</p>
+
+<ul>
+<li><p>It should result from use cases</p>
+
+<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
+<li><p>It can be split into user stories</p></li>
+</ul>
+
+
+<blockquote><ul>
+<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
+<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>They can be prioritized against other stories</li>
+</ul>
+
+
+<blockquote><ul>
+<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
+<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
+</ul>
+</blockquote>
+
+<ul>
+<li>The performance on these use cases should be automatically tested and non regressed</li>
+</ul>
+
+
+<blockquote><ul>
+<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
+<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
+</ul>
+</blockquote>
+
+<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/">How to Setup a Weekly Fruit Basket in No Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-12-17T07:11:00+00:00" pubdate data-updated="true">Dec 17<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.groupe-patus.fr/wp-content/uploads/2014/03/07-Beautiful-Fruit-Wallpapers.jpg"><img class="center" src="/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruit.jpg" title="&#34;A multi-fruit sandwich&#34;" alt="&#34;A multi-fruit sandwich&#34;"></a></p>
+
+<p>If you&rsquo;re interested in agile software development, just read Kent Beck&rsquo;s <a href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/B00CF6EJG8/ref=sr_1_1?ie=UTF8&amp;qid=1417609208&amp;sr=8-1&amp;keywords=embrace+change+1st+edition">Extreme Programming Explained : Embrace Change 1st edition</a>. It&rsquo;s only 200 pages, it was written in 1999, but it&rsquo;s still tremendously relevent, and it&rsquo;s got the highest ratio of information per page on the subject.</p>
+
+<p>If you actually read it, you&rsquo;ll notice that Kent emphasizes about having food at the office. He claims that it improves the moral and builds team cohesion.</p>
+
+<p>As my company already provides free drinks, my first attempt was to asked for weekly fresh fruits baskets. They are currently experimenting regular self service fruit baskets deliveries in some offices. Unfortunately not in ours yet. Let&rsquo;s hope it changes soon. Meanwhile, we decided to handle the thing ourselves.</p>
+
+<h2>Here comes the fruit basket lean startup !</h2>
+
+<h3>First, let&rsquo;s setup the simplest way it could possibly work</h3>
+
+<ul>
+<li>Invest 10€</li>
+<li>Buy some fruits from the closest shop</li>
+<li>Put them in a basket next to my desk</li>
+<li>Let people buy them for 50c each</li>
+<li>Leave a plastic cup next to the basket to receive the money</li>
+<li>Hold the accounting public and visible in your wiki for example</li>
+<li>Repeat every monday</li>
+</ul>
+
+
+<p><img class="center" src="/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruits-basket.jpg" title="&#34;Our fruit basket at my desk&#34;" alt="&#34;Our fruit basket at my desk&#34;"></p>
+
+<h3>Then, verify that it is sustainable</h3>
+
+<p>It turns out it works fine !</p>
+
+<h3>&hellip; Until someone started to steal some money !</h3>
+
+<p>If we forgot to hide the money cup before we left in the evening, obvious isn&rsquo;t it ?
+We tried the following, in that order :</p>
+
+<ol>
+<li>Setup an automatic reminder to hide the money before leaving &hellip; FAIL</li>
+<li>Setup a fake webcam and a warning notice &hellip; FAIL</li>
+<li>Only keep 1€ worth of change in the money cup, and repeatedly lock up the rest in a safe place &hellip; SUCCESS !</li>
+</ol>
+
+
+<p>With just a bit of time, anyone, anywhere can setup a fresh fruit basket at work. It does improve the moral and build the team.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/5/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/3/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/a-lego-office-experiment/">A Lego Office Experiment</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-we-decentralized-our-companys-training-program/">How We Decentralized Our Company&#8217;s Training Program</a>
+      </li>
+    
+      <li class="post">
+        <a href="/trello-templates-to-boost-your-remote-retrospectives/">Trello Templates to Boost Your Remote Retrospectives</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-deal-with-the-incentive-system-in-an-agile-team/">How to deal with the incentive system in an agile team ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/make-hiring-everyones-business/">Make hiring everyone&#8217;s business</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend&#8217;s blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain&#8217;s blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas&#8217; blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs&#8217;s blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick&#8217;s blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

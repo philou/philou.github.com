@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: regex | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/regex/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2016-04-21T06:00:22+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby regex captures oneliner]]></title>
+    <link href="http://philippe.bourgau.net/ruby-regex-captures-oneliner/"/>
+    <updated>2013-09-11T09:02:00+00:00</updated>
+    <id>http://philippe.bourgau.net/ruby-regex-captures-oneliner</id>
+    <content type="html"><![CDATA[<p>Surely this post is nothing new for experienced ruby developpers, but I found it so handy, that I thought it deserved a post of its own though. The problem is :</p>
+
+<blockquote><p>How do I match and assign captures from a regex in a single line of code ?</p></blockquote>
+
+<p>Here is the idea :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>brand, item = /([^,]<em>), (.</em>)/.match(&ldquo;APPLE, ipad&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;]
+brand
+=> &ldquo;APPLE&rdquo;
+item
+=> &ldquo;ipad&rdquo;
+```</p></blockquote>
+
+<p>There are a few variations around this, like grouping some catpures in an array :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>brand, <em>details = /([^,]</em>), ([^:]<em>): (.</em>)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+brand
+=> &ldquo;APPLE&rdquo;
+details
+=> [&ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+```</p></blockquote>
+
+<p>Or to ignore some capture, we could shorten skip some captures :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>item, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;)[2..-1]
+=> [&ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+item
+=> &ldquo;ipad&rdquo;
+details
+=> &ldquo;iOs&rdquo;
+```</p></blockquote>
+
+<p>But this only works for first or last captures, when this is not the case, one can also use the functional programming &lsquo;_&rsquo; sink convention :</p>
+
+<p>```ruby</p>
+
+<blockquote><p>brand, _, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+brand
+=> &ldquo;APPLE&rdquo;
+details
+=> &ldquo;iOs&rdquo;
+```</p></blockquote>
+
+<p>One can even use &lsquo;_&rsquo; multiple times on the same match</p>
+
+<p>```ruby</p>
+
+<blockquote><p><em>, </em>, details = /([^,]<em>), ([^:]</em>): (.*)/.match(&ldquo;APPLE, ipad: iOs&rdquo;).captures
+=> [&ldquo;APPLE&rdquo;, &ldquo;ipad&rdquo;, &ldquo;iOs&rdquo;]
+details
+=> &ldquo;iOs&rdquo;
+```</p></blockquote>
+
+<p>I hope this helps.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rubular: a really usefull ruby regex tool]]></title>
+    <link href="http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool/"/>
+    <updated>2013-04-24T06:42:00+00:00</updated>
+    <id>http://philippe.bourgau.net/rubular-a-really-usefull-ruby-regex-tool</id>
+    <content type="html"><![CDATA[<p>Working with regular expressions is always a try and fail and retry &hellip; experience. It really helps to have an interactive tool with which to tune up your expression. This is exactly what <a href="http://rubular.com">Rubular</a> is made for. Give it a try next time you need to work with ruby regular expressions.</p>
+]]></content>
+  </entry>
+  
+</feed>
