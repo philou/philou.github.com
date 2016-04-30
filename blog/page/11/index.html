@@ -101,6 +101,116 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-mock-an-out-of-process-com-server-with/">How to Mock an Out of Process COM Server With C#</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-14T00:00:00+00:00" pubdate data-updated="true">Feb 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
+
+
+<p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
+
+
+<p>After searching the web, I tried ServicedComponent but I did not manage to make it work &#8230; I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
+
+
+<p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'>   <span class="c1">// CSSimpleObject.cs</span>
+</span><span class='line'>   <span class="k">internal</span> <span class="k">class</span> <span class="nc">CSSimpleObjectClassFactory</span> <span class="p">:</span> <span class="n">IClassFactory</span>
+</span><span class='line'>   <span class="p">{</span>
+</span><span class='line'>      <span class="k">public</span> <span class="kt">int</span> <span class="nf">CreateInstance</span><span class="p">(</span><span class="n">IntPtr</span> <span class="n">pUnkOuter</span><span class="p">,</span> <span class="k">ref</span> <span class="n">Guid</span> <span class="n">riid</span><span class="p">,</span> <span class="k">out</span> <span class="n">IntPtr</span> <span class="n">ppvObject</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span>
+</span><span class='line'>         <span class="p">...</span>
+</span><span class='line'>         <span class="k">if</span> <span class="p">(</span><span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">CSSimpleObject</span><span class="p">.</span><span class="n">ClassId</span><span class="p">)</span> <span class="p">||</span>
+</span><span class='line'>            <span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">COMNative</span><span class="p">.</span><span class="n">IID_IDispatch</span><span class="p">)</span> <span class="p">||</span>
+</span><span class='line'>            <span class="n">riid</span> <span class="p">==</span> <span class="k">new</span> <span class="n">Guid</span><span class="p">(</span><span class="n">COMNative</span><span class="p">.</span><span class="n">IID_IUnknown</span><span class="p">))</span>
+</span><span class='line'>         <span class="p">{</span>
+</span><span class='line'>            <span class="c1">// Create the instance of the .NET object</span>
+</span><span class='line'>            <span class="kt">var</span> <span class="n">simpleObject</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Mock</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">CSSimpleObject</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">{</span><span class="n">CallBase</span> <span class="p">=</span> <span class="k">true</span><span class="p">};</span>
+</span><span class='line'>            <span class="n">simpleObject</span><span class="p">.</span><span class="n">SetupGet</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="n">FloatProperty</span><span class="p">).</span><span class="n">Returns</span><span class="p">(</span><span class="m">666</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">simpleObject</span><span class="p">.</span><span class="n">Setup</span><span class="p">(</span><span class="n">x</span> <span class="p">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">x</span><span class="p">.</span><span class="n">HelloWorld</span><span class="p">()).</span><span class="n">Returns</span><span class="p">(</span><span class="s">&quot;Hello, you got pwned !!!&quot;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">ppvObject</span> <span class="p">=</span> <span class="n">Marshal</span><span class="p">.</span><span class="n">GetComInterfaceForObject</span><span class="p">(</span>
+</span><span class='line'>               <span class="n">simpleObject</span><span class="p">.</span><span class="n">Object</span><span class="p">,</span> <span class="k">typeof</span><span class="p">(</span><span class="n">ICSSimpleObject</span><span class="p">));</span>
+</span><span class='line'>            <span class="p">}</span>
+</span><span class='line'>            <span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
+
+
+<p>So here is how I eventually integrated this in our test harness :</p>
+
+
+<ul>
+<li>I ran tlbimp.exe on the real COM server I wanted to mock</li>
+<li>In CSSimpleObject.cs, I returned a Mock on the interface of the COM component I wanted to mock</li>
+<li>In&nbsp;CSSimpleObject.cs, I removed SimpleObjectsXXX types</li>
+<li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
+<li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
+</ul>
+
+
+<p>Edit:</p>
+
+
+<p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/using-stock-ruby-with-rbenv/">Using Stock Ruby With Rbenv</a></h1>
     
     
@@ -893,80 +1003,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rspec-messes-up-stubs-and-expectations/">Rspec Messes Up Stubs and Expectations</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-20T00:00:00+00:00" pubdate data-updated="true">Oct 20<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>Here is an example showing the issue :<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-<p />This example should obviously fail, but it passes ! Here is a working (failing) version :<p />
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span> <span class="o">=</span> <span class="n">stub</span><span class="p">(</span><span class="s2">&quot;a car&quot;</span><span class="p">)</span>
-</span><span class='line'> <span class="k">end</span>
-</span><span class='line'><span class="n">it</span> <span class="s2">&quot;should be possible to mix stubbing and expectations&quot;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="vi">@car</span><span class="o">.</span><span class="n">should_receive</span><span class="p">(</span><span class="ss">:move</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="mi">2</span><span class="o">.</span><span class="n">times</span> <span class="p">{</span> <span class="vi">@car</span><span class="o">.</span><span class="n">move</span> <span class="p">}</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-<p /> I am using rspec 1.3.0. Did you fall into the same issues ? Is this fixed in rspec 2 ?</p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/12/">&larr; Older</a>
@@ -1038,6 +1074,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/5-books-about-data-driven-lean-software-development/">5 Books About Data Driven Lean Software Development</a>
+      </li>
+    
+      <li class="post">
         <a href="/a-lego-office-experiment/">A Lego Office Experiment</a>
       </li>
     
@@ -1051,10 +1091,6 @@
     
       <li class="post">
         <a href="/how-to-deal-with-the-incentive-system-in-an-agile-team/">How to deal with the incentive system in an agile team ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/make-hiring-everyones-business/">Make hiring everyone&#8217;s business</a>
       </li>
     
   </ul>
