@@ -34,7 +34,7 @@ The last floor of our building in Paris has a nice (really) open space area with
 {% img center /imgs/2016-04-20-a-lego-office-experiment/setup-meeting-area.jpg Setup meeting area %}
 {% img center /imgs/2016-04-20-a-lego-office-experiment/setup-rest-area.jpg Setup rest area %}
 
-The place is large enough to have dedicated rest and meeting space. We managed to create a visio setup using our build monitor.
+The place is large enough to have dedicated rest and meeting space. We managed to create a visio setup using our build monitor. We even had a remote lunch once, which we should repeat more often !
 
 ## What's missing
 
@@ -50,4 +50,4 @@ After getting some feedback throughout the company, it turns out that some devel
 
 ## Last minute question
 
-Thinking of it ... are remote offices considered Lego ?
+Thinking of it ... could different remote offices such as your home, or a co-working space be considered as Lego blocks ?
