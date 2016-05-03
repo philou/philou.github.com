@@ -1,0 +1,36 @@
+---
+keywords: "memory, ruby, testing, poor, mans, profiling"
+layout: post
+title: The poor man's memory profiling
+published: true
+date: 2013-02-01
+categories:
+- memory
+- ruby
+- testing
+posterous_url: http://philippe.bourgau.net/the-poor-mans-memory-profiling
+posterous_slug: the-poor-mans-memory-profiling
+comments: true
+---
+<p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
+<p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
+<ul>
+<li>write a unit test for this</li>
+<li>run the task once to warm up the memory</li>
+<li>run the task once for some small sample input and note the peak memory usage</li>
+<li>run the task once for some large sample input and note the peak memory usage</li>
+<li>check that the memory usages are very close, whatever the size of the inputs</li>
+</ul>
+<p>Everything there is quite straightforward, appart from "note the peak memory usage". Here is what I came up with</p>
+<ul>
+<li>note the initial memory usage</li>
+<li>start a thread that garbage collects and notes the memory usage every 10 ms</li>
+<li>process the data</li>
+<li>tell the thread to stop</li>
+<li>memory usage is the difference between the maximum and initial memory usages</li>
+</ul>
+<p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
+<p>
+<script src="https://gist.github.com/4696311.js"></script>
+</p>
+<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it's actually enough for our purpose.</p>
