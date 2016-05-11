@@ -101,6 +101,81 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/my-humble-advices-about-how-to-write-maintainable-tests/">My Humble Advices About How to Write Maintainable Tests</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-04T06:10:00+00:00" pubdate data-updated="true">Feb 4<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I love writing automated tests &hellip; or rather, I hate having to work in untested code. I find it makes my life unnecessarily stressful. On the other hand, the cost of maintaining badly written tests can sometimes outweigh their benefits. This is usually the moment where the team resorts to manual testing, and gets back to the ways of &lsquo;the good old days&rsquo;. Personally, I don&rsquo;t like the good old days when we had to stay up all night <del>to add even more mess</del> to fix something for an important deadline.</p>
+
+<p>Here is how I try to make my tests as maintainable as possible :</p>
+
+<ul>
+<li>Write the tests before the code, it gets a (short) time to get used to, but after that, it&rsquo;s just a lot more fun. Just try it for a while</li>
+<li>Write tests with no side effects, otherwise, it will not be possible to run your tests alone, or in a different order ! So don&rsquo;t use globals</li>
+<li>Write readable tests : did you ever had to fix a test that you cannot figure out the intent ? A lot of the other points just help writing more readable tests</li>
+<li>Write small tests : they are usually faster to run, allow you to test more edge cases, and make a better job at pinpointing the actual faulty code. The receipe for writing short tests is to follow the given-when-then pattern :
+
+<ul>
+<li>start your test by setting the context (given)</li>
+<li>do the thing you actually want to test (when)</li>
+<li>verify that it did what you wanted (then)</li>
+</ul>
+</li>
+<li>Remove code duplication from your tests, in the same way as you would in production code. This will help you when you&rsquo;ll want to modify that constructor that is used in 764 test files &hellip;</li>
+<li>Use test data builders. This will avoid duplicated and long context setup at the beginning of every test. Don&rsquo;t use factory methods or the object mother pattern, it just does not scale. In java, this usually means <a href="http://www.natpryce.com/articles/000714.html">rollying your own</a>, in ruby, just use <a href="https://github.com/thoughtbot/factory_girl">Factory Girl</a></li>
+<li>Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in <a href="http://rspec.info/">rspec</a> and its <a href="https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher">matcher dsl</a>. Lately, in Java I have been using <a href="https://github.com/alexruiz/fest-assert-2.x">Fest Assert</a></li>
+<li>Use the extended red &ndash;> red with explicit error message &ndash;> green &ndash;> refactor in place of the shorter red &ndash;> green &ndash;> refactor. By spending some time to improve your assertion messages, you&rsquo;ll eventually save time to understand what broke when the test fails</li>
+<li>As <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">I already wrote about</a>, only use mocks to
+
+<ul>
+<li>speed up a test that is too slow</li>
+<li>cut off a dependency to an unavailable subsystem</li>
+<li>simplify an overly complex test setup</li>
+</ul>
+</li>
+<li>Use constructor based dependency injection. It&rsquo;s straightforward, low tech, and simplifies test setup</li>
+<li>As there is no need to mock immutable data structures, I found that using immutable classes for values simplifies tests</li>
+<li>Usually use hand coded mocks. Hand coded mocks become difficult to maintain when the code becomes too tangled, they can help me to know that I am doing something wrong (not mocking at the correct place, testing implementation, not doing enough refactoring &hellip;). On the contrary, mock framework make this so easy that I usually miss the issue completely until it is too late</li>
+<li>Except when your mocking framework provides object proxing and automatic unmocking. Ruby&rsquo;s <a href="http://rr.github.io/rr/">RR</a> provides this. Both features can be really useful when needed.</li>
+<li>Use existing mocks when possible. For example, <a href="http://www.sqlite.org/">Sqlite</a> in memory database : it speeds up the tests, removes the need for any environment setup, and is usually very simple to setup</li>
+<li>Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere</li>
+</ul>
+
+
+<p>All in all there is nothing new here. A lot of things come from <a href="http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1391579113&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">GOOS</a> others from <a href="http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y">Clean Code</a>, the mocking &lsquo;requirements&rsquo; come from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">an article from Gregory Brown</a>, I found others from my own experience and from a lot of other sources I cannot remember now &hellip;</p>
+
+<p>Happy testing !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/online-store-scrapping-dsl-gem/">Online Store Scrapping DSL Gem</a></h1>
     
     
@@ -820,127 +895,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/ruby-regex-captures-oneliner/">Ruby Regex Captures Oneliner</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-11T09:02:00+00:00" pubdate data-updated="true">Sep 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Surely this post is nothing new for experienced ruby developpers, but I found it so handy, that I thought it deserved a post of its own though. The problem is :</p>
-
-<blockquote><p>How do I match and assign captures from a regex in a single line of code ?</p></blockquote>
-
-<p>Here is the idea :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="n">item</span> <span class="o">=</span> <span class="sr">/([^,]*), (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">item</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;ipad&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>There are a few variations around this, like grouping some catpures in an array :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="o">*</span><span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Or to ignore some capture, we could shorten skip some captures :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">item</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">item</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;ipad&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But this only works for first or last captures, when this is not the case, one can also use the functional programming &lsquo;_&rsquo; sink convention :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>One can even use &lsquo;_&rsquo; multiple times on the same match</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
-</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
-</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I hope this helps.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1012,6 +966,10 @@ In this kind of environment, even mandatory code reviews tend to become a useles
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/real-developers-ship/">Real Developers Ship</a>
+      </li>
+    
+      <li class="post">
         <a href="/pair-programming-from-pain-zone-to-skill-zone/">Pair Programming, From Pain Zone To Skill Zone</a>
       </li>
     
@@ -1025,10 +983,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
     
       <li class="post">
         <a href="/how-we-decentralized-our-companys-training-program/">How We Decentralized Our Company&#8217;s Training Program</a>
-      </li>
-    
-      <li class="post">
-        <a href="/trello-templates-to-boost-your-remote-retrospectives/">Trello Templates to Boost Your Remote Retrospectives</a>
       </li>
     
   </ul>
