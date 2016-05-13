@@ -102,7 +102,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     sudo apt-get update
 
     echo "Installing git and build tools"
-    sudo apt-get -y install git autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
+    sudo apt-get -y install git autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev python2.7
+
+    sudo ln -sf /usr/bin/python2.7 /usr/bin/python #pygments require pyton2 to work
   SHELL
 
   config.vm.provision "file", source: "~/.gitconfig", destination: "$HOME/.gitconfig"
