@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-05-11T04:42:00+00:00</updated>
+  <updated>2016-05-16T07:20:24+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,136 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I fixed the unknown language Pygments error in Octopress]]></title>
+    <link href="http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/"/>
+    <updated>2016-05-13T03:54:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress</id>
+    <category term="blogging" /><category term="octopress" /><category term="software" />
+    <content type="html"><![CDATA[<p>Last time I tried to insert a code snippet in my <a href="http://octopress.org/">Octopress</a> blog, I was hurt by the following error :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant@ae4a04cebb73:/vagrant$ bundle exec rake generate
+</span><span class='line'>## Generating Site with Jekyll
+</span><span class='line'>unchanged sass/screen.scss
+</span><span class='line'>Configuration from /vagrant/_config.yml
+</span><span class='line'>Building site: source -&gt; public
+</span><span class='line'>/vagrant/plugins/pygments_code.rb:27:in `rescue in pygments': Pygments can't parse unknown language: ruby. (RuntimeError)
+</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:24:in `pygments'
+</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:14:in `highlight'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:37:in `block in render_code_block'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `gsub'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
+</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
+</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `each'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:166:in `do_layout'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/post.rb:195:in `render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:200:in `block in render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `each'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
+</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `load'
+</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `&lt;main&gt;'
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I had been switching to <a href="https://www.docker.com/">Docker</a> in <a href="https://www.vagrantup.com/">Vagrant</a> to host my Octopress installation, but that did not seem related &hellip;</p>
+
+<h2>Plan A : Upgrade Octopress</h2>
+
+<p>It turned out it was related to my migration to Vagrant and Docker.xs This kind of nasty error often comes from obsolete environment. <a href="https://github.com/imathis/octopress/issues/1173">Internet confirmed</a> confirmed it :</p>
+
+<ul>
+<li>Ubuntu now uses Python3 instead of Python2</li>
+<li>Octopress2 uses an old version of Pygments</li>
+<li>That version of Pygments requires Python2</li>
+</ul>
+
+
+<p>I thought that I did not want to play <a href="http://philippe.bourgau.net/ruby-thirdparties-best-practices/">this game</a> against open source libs, so I set out to update. Octopress 3 has been released. It&rsquo;s not yet documented yet, and there is no official upgrade guide, but some guys have done it :</p>
+
+<ul>
+<li><a href="http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/">http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/</a></li>
+<li><a href="http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/">http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/</a></li>
+<li><a href="https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/">https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/</a></li>
+</ul>
+
+
+<p>I tried it &hellip; but I stopped before the end. It&rsquo;s kind of working, but fundamental features like category archives required too much Jekylling for me at the time. And themes are still an issue &hellip; I mean, stock theme uses a clean and simple gem based update workflow, but most other themes rely on a tricky git clone-merge update workflow.</p>
+
+<h2>Plan B : Find a hosted blog engine for hackers</h2>
+
+<p>I found quite a few options :</p>
+
+<ul>
+<li><a href="http://medium.com">Medium</a> Looks cool, but there is no simple migration tool, and I&rsquo;ve been burned by postero.us shutting down, I want to keep control on my content</li>
+<li><a href="https://posthaven.com/">Posthaven</a> Having loved postero.us, this one seems cool, It&rsquo;s just I&rsquo;m not sure the guys are keeping the motivation to increase their feature list with their current business model</li>
+<li><a href="http://ghost.org">Ghost</a> Looked great, but too expensive for me (19$ per month)</li>
+<li><a href="http://codrspace.com">Codrspace</a> This is a special blogging platform for coders, but it seems it has not been updated for a long time</li>
+<li><a href="https://logdown.com/">LogDown</a> This also is a special blogging platform for hackers. It seemed great and had everything I was looking for &hellip; I was ready to spend the 50$ per year for it as it could save me a lot of hassle. Unfortunately, I could not find a way to forward the categories of a post as <a href="https://twitter.com/pbourgau">Twitter</a> hashtags as I&rsquo;ve been doing with Octopress and <a href="https://feedburner.google.com">Feedburner</a></li>
+</ul>
+
+
+<p>In the end, I was rather disappointed by the alternatives, even though I was ready to pay for them.</p>
+
+<h2>Plan C : Fix the error in Octopress 2</h2>
+
+<p>Eventually, the fix was rather easy. People had fixed it by patching mentos.py file in the pygments.rb gem to run Python 2 instead of the stock Python. That&rsquo;s not great because it means that I&rsquo;d have to redo the patch every time I updated my gems, or rebuilt my workspace. Here is what I added to my Vagrantfile instead :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get -y install python2.7
+</span><span class='line'>sudo ln -sf /usr/bin/python2.7 /usr/bin/python</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://github.com/philou/philou.github.com/commit/ae14c511b682295ed7fdcb3b1a818926f803dd3a">Here</a> is the commit on my Github repo.</p>
+
+<h2>Conclusion</h2>
+
+<p>I&rsquo;m sticking with Octopress2 for the moment. Maybe I&rsquo;ll re-try to migrate to Octopress3 later on, when an official migration tool or <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">guide</a> is available. Meanwhile, I&rsquo;m still dreaming of my perfect blogging platform :</p>
+
+<ul>
+<li>Open source</li>
+<li>Static HTML generation</li>
+<li>Self or SAAS hosted</li>
+<li>Great integration with social media and the web</li>
+<li>Easy to maintain</li>
+<li>Plugable themes</li>
+</ul>
+
+
+<p>I&rsquo;m looking for my next side project at the moment, that could be a useful one ! Anyone interested ?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Real Developers Ship]]></title>
@@ -1465,116 +1595,6 @@ design, yet for most organizations with productivity problems, there is no more 
 
 
 <p>This makes the whole project more uncertain, so we&rsquo;re better off embracing this uncertainty in the way we write and prioritize our performance stories.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Great Developers Are Free]]></title>
-    <link href="http://philippe.bourgau.net/great-developers-are-free/"/>
-    <updated>2015-12-31T12:24:00+00:00</updated>
-    <id>http://philippe.bourgau.net/great-developers-are-free</id>
-    <category term="enterprise" /><category term="hiring" /><category term="selforganizing" /><category term="software" /><category term="team-building" /><category term="workplace" />
-    <content type="html"><![CDATA[<p>For many reasons. But mostly because they are key to efficiently growing a software organization.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-31-great-developers-are-free/cat-codes-for-food.jpg" title="A funny picture sleeping on a keyboard, with the mention 'Will code for food'" ></p>
-
-<h2>A tale of 2 teams</h2>
-
-<p>Let&rsquo;s have a look at 2 software teams in the world of corporate finance.</p>
-
-<h3>The junior in-house team</h3>
-
-<p><a href="http://www.lefigaro.fr/emploi/2013/12/07/09005-20131207ARTFIG00309-bruit-temperature-air8230-les-salaries-reserves-sur-l-open-space.php"><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-31-great-developers-are-free/open-space.jpg" title="A big corporate open space" ></a></p>
-
-<p>One is an in-house software development team in a large bank. The project already has a bad reputation among developers.The bank has difficulties to hire so the team is constituted of 10 rather junior developers. Unfortunately, without guidance and long term vision, the quality of the code suffers. It looks like an ad-hoc composition of various technolgies, glue code, and reinvented frameworks. The overall result is a barely good enough product that costs a small fortune in maintainance and support. The user experience is awful, which make it difficult to the the team leaders and the users to collaborate effectively. As a result of all this, the project is suffering from high turnover. Managing this project is really challenging &hellip; and kind of depressing.</p>
-
-<h3>The experienced software team</h3>
-
-<p><a href="http://www.personalized-software.ie/aboutus"><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-31-great-developers-are-free/experienced-team.jpg" title="An experienced software team" ></a></p>
-
-<p>Now let&rsquo;s imagine the same product developed at a software house. It&rsquo;s been on the market for a while now, but new features are regularly added to it at a good pace. The product is solid and the users are happy using it. The structure of the team is completely different : 5 developers, mainly experienced, coming from various backgrounds. As a result, the team builds on all their different expertises to build real competitive advantages. They tend to get into healthy debates about a lot of things, such as :</p>
-
-<ul>
-<li>Should we re-use or re-write ?</li>
-<li>Is this gold plating or plain technical debt ?</li>
-<li>Which technology should we use to build this ?</li>
-</ul>
-
-
-<p>In the end, that makes the product even better. The humane side of the team is also completely different. These experienced developers have all been exposed to the big picture during their careers, and they know things like :</p>
-
-<ul>
-<li>&lsquo;Business talk&rsquo; and so they can discuss product topics with the product managers</li>
-<li>The best way to go through chores at work is to do them right now</li>
-<li>Enough management, testing, ops to make the team self organized</li>
-</ul>
-
-
-<p>The single junior developer in the team tends to mimic this model, and has ease finding mentors, to teach him their trade and to give him career counsels.</p>
-
-<p>As a result, the product and the team remain healthy, and keep providing benefits to all stakeholders.</p>
-
-<h2>Benefits of experienced teams</h2>
-
-<p>First, from a purely short term financial point of view, it&rsquo;s a no brainer ! Even if you pay experienced developers twice as much as juniors, the costs will still be on par. But the difference in created value is huge !</p>
-
-<p>Let&rsquo;s then have a look at the longer term, organizational aspect of things. Obviously, managing such teams requires a lot less work ! Both because of their size and because experienced developers tends to manage themselves very well &hellip; Promoting self-organized &amp; cross-functionnal teams is a great opportunity to reduce the management cost and friction, making the organization more reactive and cost efficient in the long run.</p>
-
-<h2>What is an experienced developer ?</h2>
-
-<p>Obviously, I&rsquo;ve worked with people that were experienced on paper, but not in practice. I <a href="http://www.jrothman.com/htp/interview/2004/12/whats-a-year-of-experience/">read</a> that repeating 10 times the same year of work only amounts to 1 year of experience.</p>
-
-<p>If I was asked to give a definition, I&rsquo;d say that experienced developers have worked on different kind of systems (embeded, web, client, server &hellip;) using different technologies (Java, Ruby, C, Spring, Rails, Javascript &hellip;). Their experiences need not be professional, I&rsquo;ve seen a physics teacher that hacked himself into a great hacker through side projects and open source. Speaking of the subject, good developers always spent a lot of time learning, reading, doing side projects and contributing to open source. Some can be found in local user groups and online programming communities.</p>
-
-<h2>So How do you get them ?</h2>
-
-<p>I can only think of 3 obvious ways :</p>
-
-<ul>
-<li>train them</li>
-<li>keep them</li>
-<li>hire them</li>
-</ul>
-
-
-<p>I&rsquo;m pretty sure training them will not be an issue if you already have enough of them. So that brings us to the 2 other points.</p>
-
-<p><a href="https://www.prestashop.com/blog/en/guided-visit-prestashops-new-paris-headquarters/"><img class="center" src="http://philippe.bourgau.net/imgs/2015-12-31-great-developers-are-free/prestashop.jpg" title="The prestashop offices in Paris" ></a></p>
-
-<p>Lot&rsquo;s of articles have been written about attracting and keeping the best developers. Some companies even made it <a href="http://www.joelonsoftware.com/articles/HighNotes.html">their differentiating point</a>. Here are a few links :</p>
-
-<ul>
-<li>In his post <a href="http://avc.com/2012/02/the-management-team-guest-post-from-joel-spolsky/">&ldquo;The Management Team&rdquo;</a> Joel Splosky details the inverted pyramid model</li>
-<li>Joel Spolsky&rsquo;s (again) <a href="http://www.joelonsoftware.com/articles/DevelopmentAbstraction.html">Development Abstraction Layer</a> explains all the physical environment that makes programmers happy at work</li>
-<li><a href="http://qz.com/169147/applications-have-doubled-to-the-company-that-discloses-its-salaries/">After disclosing employee salaries, Buffer was inundated with resumes</a> when <a href="http::/www.buffer.com">buffer.com</a> publicly disclosed <a href="https://open.buffer.com/introducing-open-salaries-at-buffer-including-our-transparent-formula-and-all-individual-salaries/">their salary formula</a>, the number of applications the company received doubled</li>
-<li>Spotify organizes <a href="https://labs.spotify.com/2013/02/15/organizing-a-hack-week/">Hack Weeks</a> where  the company stops for a while to invent new things</li>
-<li>Google summarizes it &ldquo;Do Cool Things That Matters&rdquo; in their long advertises <a href="http://www.google.com/about/careers/lifeatgoogle/">Life At Google</a></li>
-</ul>
-
-
-<p>These are just a few examples and are by no way the only things that motivate developers. To summarize, provide the best working conditions (careful, that not money), and communicate a lot about it.</p>
-
-<h2>Hiring is too important to be left to HR</h2>
-
-<p><a href="https://management30.com/product/workouts/">Jurgen Appelo</a> said</p>
-
-<blockquote><p>Management is too important to be left to managers.</p></blockquote>
-
-<p>I guess the same thing can be said about hiring.</p>
-
-<p>Engineers are absolutely required to take the main role when hiring other engineers. Companies that seriously want to have the best developers on board are spending substantial engineering time on hiring. Here are some well known examples :</p>
-
-<ul>
-<li><a href="http://www.google.com/about/careers/lifeatgoogle/hiringprocess/">Google</a> is known to conduct around 9 interviews before hiring someone</li>
-<li>In its <a href="http://www.valvesoftware.com/company/Valve_Handbook_LowRes.pdf">Handbook for New Employee</a> Valve explicitly states that hiring is your most important role</li>
-</ul>
-
-
-<h2>Endword</h2>
-
-<p>As <a href="https://en.wikiquote.org/wiki/Tom_DeMarco">Tom DeMarco</a> said about quality, in <a href="http://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=sr_1_1?ie=UTF8&amp;qid=1451733851&amp;sr=8-1&amp;keywords=peopleware">Peopleware</a> :</p>
-
-<blockquote><p>Great developers are free, but only for those who are willing to pay for them</p></blockquote>
 ]]></content>
   </entry>
   

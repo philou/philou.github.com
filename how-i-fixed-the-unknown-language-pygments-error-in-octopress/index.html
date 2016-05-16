@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Feedback On 360° Feedback Session - Philippe Bourgau's blog</title>
+  <title>How I fixed the unknown language Pygments error in Octopress - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="My quick feedback on our first 360° feedback session, as described in the Management 3.0 book">
+  <meta name="description" content="Thrilling story of how I fixed the 'unknown language' Pygments error in my Octopress blog">
 
   
-  <meta name="keywords" content="Feedback, 360 Feedback, Collaborative Management, Self Organizing Team, Management 3.0">
+  <meta name="keywords" content="Blogging, Octopress, Blogging for hackers, Blogging for programmers">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/feedback-on-360-degrees-feedback-session/">
+  <link rel="canonical" href="http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -98,7 +98,7 @@
   
   <header>
     
-      <h1 class="entry-title">Feedback on 360° Feedback Session</h1>
+      <h1 class="entry-title">How I Fixed the Unknown Language Pygments Error in Octopress</h1>
     
     
       <p class="meta">
@@ -114,80 +114,134 @@
   
 
 
-<time datetime="2015-08-27T19:40:00+00:00" pubdate data-updated="true">Aug 27<span>th</span>, 2015</time>
+<time datetime="2016-05-13T03:54:00+00:00" pubdate data-updated="true">May 13<span>th</span>, 2016</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><blockquote><p>If you remove your job, you are promoted. (a classic lean quote)</p></blockquote>
+<div class="entry-content"><p>Last time I tried to insert a code snippet in my <a href="http://octopress.org/">Octopress</a> blog, I was hurt by the following error :</p>
 
-<p>In <a href="http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?ie=UTF8&amp;qid=1438085414&amp;sr=8-1&amp;keywords=management+3.0">Management 3.0</a>, <a href="http://jurgenappelo.com/">Jurgen Appelo</a> suggests doing full team 360° feedback sessions instead of more traditional manager-collaborator meetings.</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant@ae4a04cebb73:/vagrant$ bundle exec rake generate
+</span><span class='line'>## Generating Site with Jekyll
+</span><span class='line'>unchanged sass/screen.scss
+</span><span class='line'>Configuration from /vagrant/_config.yml
+</span><span class='line'>Building site: source -&gt; public
+</span><span class='line'>/vagrant/plugins/pygments_code.rb:27:in `rescue in pygments': Pygments can't parse unknown language: ruby. (RuntimeError)
+</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:24:in `pygments'
+</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:14:in `highlight'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:37:in `block in render_code_block'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `gsub'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
+</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
+</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `each'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:166:in `do_layout'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/post.rb:195:in `render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:200:in `block in render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `each'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
+</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `load'
+</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `&lt;main&gt;'
+</span></code></pre></td></tr></table></div></figure>
 
-<p><a href="http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?ie=UTF8&amp;qid=1438085414&amp;sr=8-1&amp;keywords=management+3.0"><img class="center" src="/imgs/2015-08-27-feedback-on-360-degrees-feedback-session/management30.jpg" title="&#34;The cover of Management 3.0 book&#34;" alt="&#34;The cover of Management 3.0 book&#34;"></a></p>
 
-<p>He argues in favor of this practice in order to :</p>
+<p>I had been switching to <a href="https://www.docker.com/">Docker</a> in <a href="https://www.vagrantup.com/">Vagrant</a> to host my Octopress installation, but that did not seem related &hellip;</p>
+
+<h2>Plan A : Upgrade Octopress</h2>
+
+<p>It turned out it was related to my migration to Vagrant and Docker.xs This kind of nasty error often comes from obsolete environment. <a href="https://github.com/imathis/octopress/issues/1173">Internet confirmed</a> confirmed it :</p>
 
 <ul>
-<li>obviously, get some feedback and improve</li>
-<li>also give feedback to the manager so he too can improve</li>
-<li>help the team to further self organize</li>
-<li>practice everyone&rsquo;s people skills</li>
-<li>have more quality objective feedback than subjective manager feedback</li>
-<li>free some manager time</li>
+<li>Ubuntu now uses Python3 instead of Python2</li>
+<li>Octopress2 uses an old version of Pygments</li>
+<li>That version of Pygments requires Python2</li>
 </ul>
 
 
-<h2>Our Experience</h2>
-
-<p>We just gave it a try. As a fist experiment, we did it at just 3, all willing to try. Here is the ROTI (Return On Time Invested)</p>
-
-<table>
-<thead>
-<tr>
-<th>Grade(/5) </th>
-<th> Comment</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>5 </td>
-<td> Useful and healthy. It&rsquo;s a way to stop grumbling. It&rsquo;s also the occasion to say things that we often don&rsquo;t.</td>
-</tr>
-<tr>
-<td>5 </td>
-<td> I&rsquo;m leaving the room with real improvement topics. It calms my emotions, it&rsquo;s like &ldquo;balm for the heart&rdquo;</td>
-</tr>
-<tr>
-<td>5 </td>
-<td> I&rsquo;m getting out with great advises. I think it&rsquo;s great for team spirit. It took 1h for just the 3 of us, I&rsquo;m wondering how we&rsquo;ll manage this if we are more ?</td>
-</tr>
-</tbody>
-</table>
-
-
-<h2>If you want to try it</h2>
-
-<p>A few last minute advises  :</p>
+<p>I thought that I did not want to play <a href="/ruby-thirdparties-best-practices/">this game</a> against open source libs, so I set out to update. Octopress 3 has been released. It&rsquo;s not yet documented yet, and there is no official upgrade guide, but some guys have done it :</p>
 
 <ul>
-<li>Don&rsquo;t force it onto people, start with volunteers</li>
-<li>There must be a safe and positive atmosphere in the team</li>
-<li>This is an improvement exercices, and it should not be used as any kind of evaluation</li>
-<li>Learn how to give feedback
-
-<ul>
-<li><a href="http://www.murex.com">Our company</a> provides trainings on non violent communication and positive feedback, maybe yours does too !</li>
-<li>Appelo explains how to give written feedback in his other book <a href="http://www.amazon.com/gp/product/9492032023">#Workout</a>. Though better suited for email feedback, I found it a great way to prepare for the session.</li>
-</ul>
-</li>
+<li><a href="http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/">http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/</a></li>
+<li><a href="http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/">http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/</a></li>
+<li><a href="https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/">https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/</a></li>
 </ul>
 
 
-<p><a href="https://management30.com/product/workouts/"><img class="center" src="/imgs/2015-08-27-feedback-on-360-degrees-feedback-session/feedback-wrap.jpg" title="&#34;The front page of #Workout chapter about written feedback&#34;" alt="&#34;The front page of #Workout chapter about written feedback&#34;"></a></p>
+<p>I tried it &hellip; but I stopped before the end. It&rsquo;s kind of working, but fundamental features like category archives required too much Jekylling for me at the time. And themes are still an issue &hellip; I mean, stock theme uses a clean and simple gem based update workflow, but most other themes rely on a tricky git clone-merge update workflow.</p>
 
-<p>I&rsquo;d like to ear about your experiences with such collaborative feedbacks.</p>
+<h2>Plan B : Find a hosted blog engine for hackers</h2>
+
+<p>I found quite a few options :</p>
+
+<ul>
+<li><a href="http://medium.com">Medium</a> Looks cool, but there is no simple migration tool, and I&rsquo;ve been burned by postero.us shutting down, I want to keep control on my content</li>
+<li><a href="https://posthaven.com/">Posthaven</a> Having loved postero.us, this one seems cool, It&rsquo;s just I&rsquo;m not sure the guys are keeping the motivation to increase their feature list with their current business model</li>
+<li><a href="http://ghost.org">Ghost</a> Looked great, but too expensive for me (19$ per month)</li>
+<li><a href="http://codrspace.com">Codrspace</a> This is a special blogging platform for coders, but it seems it has not been updated for a long time</li>
+<li><a href="https://logdown.com/">LogDown</a> This also is a special blogging platform for hackers. It seemed great and had everything I was looking for &hellip; I was ready to spend the 50$ per year for it as it could save me a lot of hassle. Unfortunately, I could not find a way to forward the categories of a post as <a href="https://twitter.com/pbourgau">Twitter</a> hashtags as I&rsquo;ve been doing with Octopress and <a href="https://feedburner.google.com">Feedburner</a></li>
+</ul>
+
+
+<p>In the end, I was rather disappointed by the alternatives, even though I was ready to pay for them.</p>
+
+<h2>Plan C : Fix the error in Octopress 2</h2>
+
+<p>Eventually, the fix was rather easy. People had fixed it by patching mentos.py file in the pygments.rb gem to run Python 2 instead of the stock Python. That&rsquo;s not great because it means that I&rsquo;d have to redo the patch every time I updated my gems, or rebuilt my workspace. Here is what I added to my Vagrantfile instead :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get -y install python2.7
+</span><span class='line'>sudo ln -sf /usr/bin/python2.7 /usr/bin/python</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://github.com/philou/philou.github.com/commit/ae14c511b682295ed7fdcb3b1a818926f803dd3a">Here</a> is the commit on my Github repo.</p>
+
+<h2>Conclusion</h2>
+
+<p>I&rsquo;m sticking with Octopress2 for the moment. Maybe I&rsquo;ll re-try to migrate to Octopress3 later on, when an official migration tool or <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">guide</a> is available. Meanwhile, I&rsquo;m still dreaming of my perfect blogging platform :</p>
+
+<ul>
+<li>Open source</li>
+<li>Static HTML generation</li>
+<li>Self or SAAS hosted</li>
+<li>Great integration with social media and the web</li>
+<li>Easy to maintain</li>
+<li>Plugable themes</li>
+</ul>
+
+
+<p>I&rsquo;m looking for my next side project at the moment, that could be a useful one ! Anyone interested ?</p>
 </div>
 
 
@@ -210,12 +264,12 @@
   
 
 
-<time datetime="2015-08-27T19:40:00+00:00" pubdate data-updated="true">Aug 27<span>th</span>, 2015</time>
+<time datetime="2016-05-13T03:54:00+00:00" pubdate data-updated="true">May 13<span>th</span>, 2016</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/feedback/'>feedback</a>, <a class='category' href='/blog/categories/management30/'>management30</a>
+    <a class='category' href='/blog/categories/blogging/'>blogging</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/software/'>software</a>
   
 </span>
 
@@ -224,7 +278,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/feedback-on-360-degrees-feedback-session/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/feedback-on-360-degrees-feedback-session/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -237,10 +291,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/a-plan-for-technical-debt-lean-software-development-part-7/" title="Previous Post: A Plan For Technical Debt (Lean Software Development Part 7)">&laquo; A Plan For Technical Debt (Lean Software Development Part 7)</a>
+        <a class="basic-alignment left" href="/real-developers-ship/" title="Previous Post: Real Developers Ship">&laquo; Real Developers Ship</a>
       
-      
-        <a class="basic-alignment right" href="/silosis/" title="Next Post: Silosis">Silosis &raquo;</a>
       
     </p>
   </footer>
@@ -369,8 +421,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/feedback-on-360-degrees-feedback-session/';
-        var disqus_url = 'http://philippe.bourgau.net/feedback-on-360-degrees-feedback-session/';
+        var disqus_identifier = 'http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/';
+        var disqus_url = 'http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/';
         var disqus_script = 'embed.js';
       
     (function () {
