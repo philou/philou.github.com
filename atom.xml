@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-05-16T07:20:24+00:00</updated>
+  <updated>2016-05-24T04:31:05+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Software is like writing and revising a giant book]]></title>
+    <link href="http://philippe.bourgau.net/software-is-like-writing-and-revising-a-giant-book/"/>
+    <updated>2016-05-23T03:52:00+00:00</updated>
+    <id>http://philippe.bourgau.net/software-is-like-writing-and-revising-a-giant-book</id>
+    <category term="complexity" /><category term="software" />
+    <content type="html"><![CDATA[<p>With time, I discovered a way of explaining the subtleties of my developer job to my uninformed relatives and friends.</p>
+
+<p>Sharing what your developer job is about with others can be very frustrating. Some people think you are &ldquo;Just playing around with computers&rdquo; as if it was not serious work. Others think that it is an extremely Cartesian and solitary activity with no place for communication or creativity. Trying to explain the diversity and richness of a developer&rsquo;s work is often a disappointing experience.</p>
+
+<h2>The book metaphor</h2>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-05-23-software-is-like-writing-and-revising-a-giant-book/book.jpg" title="An old book" ></p>
+
+<p>I explain to people that writing software is not unlike writing a huge book. A book long many millions of lines. I explain that the challenge is to maintain the whole story of the book coherent. I stress how difficult this is given that no one can take the time to read the full book, that the authors come and go, and that the book is under constant heavy revision.</p>
+
+<h2>Details of our work</h2>
+
+<p>The metaphor is quite valid and even holds about more subtle aspects of our work. Here is a summary of the last discussion I had about the book metaphor :</p>
+
+<blockquote><ul>
+<li>(Him) Do you have some &lsquo;gatekeepers&rsquo; for different sections of the story to make sure that these parts remain coherent ?</li>
+<li>(Me) That&rsquo;s what we would call strong code ownership, this was the norm 20 years ago, but that the industry is moving to more collective code ownership, in order to decrease the bus factor.</li>
+<li>(Him) What is the bus factor ?</li>
+<li>(Me) The number of person who need to be hit by a bus to block your development progress</li>
+<li>(Him) I see, that&rsquo;s kind of funny. But then, does that mean that any developer can change any part of the code ? Isn&rsquo;t that dangerous ?</li>
+<li>(Me) Sure that would be difficult, that&rsquo;s not really how we do it. We make a lot of efforts to split the big story in many smaller independent ones as much as possible. This way, teams specialize on different &lsquo;chapters&rsquo; and work collectively within it.</li>
+<li>(Him) I see</li>
+<li>(Me) And if you need to change something in another &lsquo;chapter&rsquo; you should ask the guys who know it better to help you.</li>
+<li>(Him) That makes sense. And what happens if two developers want to modify the same part of the story at the same time</li>
+<li>(Me) That can happen. People might even want to modify the story in conflicting ways ! We&rsquo;ve got tools, processes and best practices to minimize this. If nothing is done, we&rsquo;ll get what we call a &lsquo;merge conflict&rsquo;.</li>
+<li>(Him) Ho &hellip; I wouldn&rsquo;t have guessed, but it seems collaboration is really important in your work, isn&rsquo;t it ?</li>
+<li>(Me) Sure it is !</li>
+</ul>
+</blockquote>
+
+<h2>We are software writers</h2>
+
+<p>All this reminds me of DHH&rsquo;s talk about writing software :</p>
+
+<iframe class="center" width="560" height="315" src="https://www.youtube.com/embed/9LfmrkyP81M" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I fixed the unknown language Pygments error in Octopress]]></title>
@@ -1532,69 +1577,6 @@ design, yet for most organizations with productivity problems, there is no more 
 <p>Exploratory testing is a nobrainer. All teams should do it.</p>
 
 <p>So, in the end, as in the old days, we are back to regular manual testing &hellip; but only for exploration.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How To Write Good Performance Stories]]></title>
-    <link href="http://philippe.bourgau.net/how-to-write-good-performance-stories/"/>
-    <updated>2016-01-08T07:58:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-write-good-performance-stories</id>
-    <category term="agile" /><category term="performance" />
-    <content type="html"><![CDATA[<p>If you&rsquo;re having difficulties writing good performance related stories for your project, that&rsquo;s no surprise ! We&rsquo;ve been through the same troubles and we found a way that works a lot better.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg" title="A Mb speed counter" ></p>
-
-<h2>Solution 1 : <a href="http://philippe.bourgau.net/performance-is-a-feature/">Performance is a feature</a></h2>
-
-<p>Right ? In typical agile way, a story about performance would be written like</p>
-
-<blockquote><p>As marketing, I want the page load to perform under 1 second, In order for the customers to stay on the site</p></blockquote>
-
-<p>If the performance bottleneck and the fix are obvious, that might work very well. If that&rsquo;s your case, then go on, that&rsquo;s the simplest way!</p>
-
-<p>Unfortunately for us, we are not in that case. <a href="http://www.murex.com">At work</a> we are building a risk engine and we need to perform extremely well on a wide set of different scenarios. Imagine a story such as</p>
-
-<blockquote><p>As a risk manager, I want the VAR scenario to compute in less than 1 second, in order to have real time data</p></blockquote>
-
-<ul>
-<li>we&rsquo;re pretty sure that there won&rsquo;t be 1 but many bottlenecks to fix before reaching the expected performance</li>
-<li>speeding up the VAR scenario might slow down other scenarios</li>
-</ul>
-
-
-<p>That makes this kind of story too fuzzy. We tried them, and we had difficulties to estimate and close them.</p>
-
-<h2>Solution 2 : Back to the traditional way</h2>
-
-<p>Without an agile backlog, developers would have worked on tasks such as</p>
-
-<blockquote><p>Add caching to the computation engine</p></blockquote>
-
-<p>That&rsquo;s estimable, but we&rsquo;ve got no clue of the <em>why</em> ! When it&rsquo;s done, we won&rsquo;t be able to know whether it&rsquo;s worth to keep it or not. In fact, it&rsquo;s just not a <a href="https://en.wikipedia.org/wiki/INVEST_(mnemonic">story</a>) !</p>
-
-<h2>Solution 3 : Mixing both</h2>
-
-<p>Here is how we we are now writing performance stories at work :</p>
-
-<blockquote><p>As a risk manager, I want to have caching in the computation engine, in order to the VAR scenario compute under 1 second (in order to have real time data)</p></blockquote>
-
-<p>It&rsquo;s now estimable, we know what it&rsquo;s there for. It&rsquo;s obviously not enough though : we know that we will very likely need to do other performance stories after this one.</p>
-
-<h2>Embrace uncertainty</h2>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg" title="A Maserati engine" ></p>
-
-<p>The fact is that in our context, getting better performances is <em>hard</em> :</p>
-
-<ul>
-<li>it requires a lot of work</li>
-<li>we don&rsquo;t know how much at the beginning</li>
-<li>we often try things that don&rsquo;t work</li>
-</ul>
-
-
-<p>This makes the whole project more uncertain, so we&rsquo;re better off embracing this uncertainty in the way we write and prioritize our performance stories.</p>
 ]]></content>
   </entry>
   
