@@ -9,7 +9,6 @@ categories:
  - technical-debt
 keywords: "Glasses, Programming, Software, Legacy Code"
 description: "A joke about glasses that hide dirty code"
-published: false
 ---
 I think I found a way to fix the dirty code problem once and for all ...
 
