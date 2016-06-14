@@ -9,7 +9,6 @@ categories:
  - technical-debt
 keywords: "Coverall for developers, Legacy code day"
 description: "A joke about developers wearing coveralls to protect against legacy code"
-published: false
 ---
 {% img center /imgs/2016-06-06-legacy-code-coverall-day/miners.jpg Miners going to work in Coveralls %}
 
