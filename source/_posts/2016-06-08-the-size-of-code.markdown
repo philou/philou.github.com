@@ -9,15 +9,14 @@ categories:
  - technical-debt
 keywords: "Programming, Technical Debt, Lines of Code"
 description: "Crazy ideas to demonstrate the size of your code base to non developers"
-published: false
 ---
 The CFO's debt is visible in his balance sheet. The CTO's technical debt is invisible. What about making it visible ?
 
-Developers have an intuitive sense of the technical debt in some parts of the system. But few have an accurate estimation of its full extent. Even the size of a code base is difficult to grasp. In the same way, the size of the code is just a number. But the fact are there : between 10 000 lines of code and 10 000 000, the rules aren't the same, but it's only invisible data on hard drives ...
+Developers have an intuitive sense of the technical debt in some parts of the system. But few have an accurate estimation of its full extent. Even the size of a code base is difficult to grasp. In the same way, the size of the code is just a number. But the fact are there : between 10 000 and 10 000 000 lines of code, the rules aren't the same, but it's only invisible data on hard drives ...
 
 ## Showing It
 
-If we had a device or a trick to show to non-developers the size of the source code, people might start to feel the embarrassment of working in a bloated code base. Unfortunately, for the moment, the only ideas I had are somehow unrealistic albeit funny !
+If we had a device or a trick to show to non-developers the size of the source code, people might start to feel the embarrassment of working in a bloated code base. Unfortunately, for the moment, the only ideas I had are somehow unrealistic, albeit funny !
 
 ### First Idea : Printouts
 
@@ -32,7 +31,7 @@ Keeping these printouts in sync with the real cost would make the thing even mor
 
 ### Second Idea : Inflatable Device
 
-What about an inflatable device linked to [SonarQube](http://www.sonarqube.org/) (or any other code metrics tracking system) ? It could grow as new code is written. We could make it as large as we want : 1m<sup>3</sup> for every 10K lines of Code, making the whole office a difficult place to walk around. Try to figure out this thing in the office :
+What about an inflatable device linked to [SonarQube](http://www.sonarqube.org/) (or any other code metrics tracking system) ? It could grow as new code is written. We could make it as large as we want : 1m<sup>3</sup> for every 10K lines of Code, making the whole office a difficult place to walk around. Try to figure out how to work with this thing in the office :
 
 [{% img center /imgs/2016-06-08-the-size-of-code/Large_Inflatable_Art.jpg Large Inflatable Art (Jimmy Kuehnle) %}](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/)
 
