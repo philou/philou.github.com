@@ -101,6 +101,73 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/refactoring-trick-to-insert-a-wrapper/">Refactoring Trick to Insert a Wrapper</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-30T08:01:00+00:00" pubdate data-updated="true">Apr 30<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last week at work, we decided that we needed an <a href="http://stackoverflow.com/questions/909264/ddd-anti-corruption-layer-how-to">Anticorruption Layer</a> between our code and another team&rsquo;s. They have been using our internal data structures as they needed to, in an ad hoc way. This turned out to be an issue when we want to refactor our code. The goals of this layer are :</p>
+
+<ul>
+<li>to provide an explicit API layer, controlling what is accessible from the outside</li>
+<li>to allow us to improve our implementation independently of this API</li>
+</ul>
+
+
+<p>The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
+
+<ol>
+<li>Make sure you have a clean SCC state</li>
+<li>Rename the class to be wrapped (let&rsquo;s call it Foo) into FooWrapper</li>
+<li>From SCC, revert the part of the code where you want to continue using Foo directly</li>
+<li>In SCC, revert Foo and FooWrapper</li>
+<li>Manually (re)create the FooWrapper class</li>
+<li>Create FooWrapper.wrap(x) and FooWrapper.unwrap(x) methods</li>
+<li>Fix all the compilation issues (mostly by calling wrap() and unwrap())</li>
+<li>Run your tests and fix any remaining points</li>
+</ol>
+
+
+<p>That saved us a whole lot of time. If your layer contains several classes with references between them, they is an optimal order through which to introduce the wrappers. Any order will work, but some will require more temporary calls to wrap and unwrap (step 7.). At the end, wrap() and unwrap() methods should only be called from within the layer.</p>
+
+<p>Often you&rsquo;ll find out that to complete the wrapping of a class, you&rsquo;ll first need to wrap another class, you can :</p>
+
+<ul>
+<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental</li>
+<li>Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward</li>
+<li>Insert temporary calls to wrap() and unwrap() : they&rsquo;ll be removed when you&rsquo;ll later wrap the other class. This might be the only way if the classes have cyclic dependencies.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-we-introduced-efficient-agile-retrospectives/">How We Introduced Efficient Agile Retrospectives</a></h1>
     
     
@@ -789,97 +856,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/trying-to-explain-monads-in-java/">Trying to Explain Monads in Java</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-12-07T07:37:00+00:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A few days ago, a colleague currently taking <a href="https://www.coursera.org/course/reactive">the coursera course about reactive programming in scala</a>, asked me to explain him what monads are. It&rsquo;s always a tough question, and I rarely manage to give un understandable answer simply. This time though, I kind of managed to pass him some understanding of monads :</p>
-
-<ol>
-<li>When modelising a statefull data structure with immutable constructs, one has to pass in and return the data structure state of every function</li>
-<li>This results in a lot repeated code to pass this state around</li>
-<li>With a monad, you can factorize this glue code and only write the &lsquo;real&rsquo; code</li>
-</ol>
-
-
-<p>I thought it might be a good subject for a java kata ! This is what I tried to do in <a href="https://github.com/philou/java-monads-kata">java-monads-kata</a>. Here is some sample monadic code from the kata itself :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">pops_objects_in_reverse_push_order</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'>  <span class="n">monad</span> <span class="o">=</span> <span class="n">monad</span><span class="o">.</span>
-</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">push</span><span class="o">(</span><span class="n">A</span><span class="o">)).</span>
-</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">push</span><span class="o">(</span><span class="n">B</span><span class="o">)).</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">bind</span><span class="o">(</span><span class="n">pop</span><span class="o">());</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">B</span><span class="o">,</span> <span class="n">monad</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">monad</span> <span class="o">=</span> <span class="n">monad</span><span class="o">.</span><span class="na">bind</span><span class="o">(</span><span class="n">pop</span><span class="o">());</span>
-</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">monad</span><span class="o">.</span><span class="na">value</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">empty</span><span class="o">(),</span> <span class="n">monad</span><span class="o">.</span><span class="na">stack</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You can have a look at all <a href="https://github.com/philou/java-monads-kata">the final code</a>, or <a href="https://github.com/philou/java-monads-kata/commits/master">go through the whole history</a> to get the &lsquo;kata&rsquo; feeling. It&rsquo;s a shame Github does not offer a nice chronological repo history slideshow, for better experience, I recommend that you use Chrome with <a href="https://chrome.google.com/webstore/detail/github-improved/nkbnmpfpclijlllipmfbkkednidgngaa">Github improved</a> : this allows to view diffs right from the Github history.</p>
-
-<p>The resulting code is still quite far from a <a href="http://www.haskell.org/haskellwiki/Monad">Haskell monad</a> :</p>
-
-<ul>
-<li>Functions are not first class objects in Java. It is written in Java 7, without lambda, which does not help neither.</li>
-<li>Java does not have Haskell type class polymorphism, but only supports OO polymorphism and very little covariance</li>
-<li>The whole monad thing, designed at simulating/isolating side effects has a WTF feel in Java where side effects are just everywhere</li>
-</ul>
-
-
-<p>I&rsquo;d love to hear some feedback about it.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -951,6 +927,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/5-years-of-blogging-about-software/">5 Years of Blogging About Software</a>
+      </li>
+    
+      <li class="post">
         <a href="/the-size-of-code/">The Size Of Code</a>
       </li>
     
@@ -964,10 +944,6 @@
     
       <li class="post">
         <a href="/how-to-keep-up-with-software-technologies/">How To Keep Up With Software Technologies</a>
-      </li>
-    
-      <li class="post">
-        <a href="/software-is-like-writing-and-revising-a-giant-book/">Software is like writing and revising a giant book</a>
       </li>
     
   </ul>
