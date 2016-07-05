@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-06-28T04:41:34+00:00</updated>
+  <updated>2016-07-05T03:51:34+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,96 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Docker Compose trick : How to have an overridable environment variable in development mode ?]]></title>
+    <link href="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/"/>
+    <updated>2016-07-04T03:55:00+00:00</updated>
+    <id>http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode</id>
+    <category term="docker" /><category term="heroku" />
+    <content type="html"><![CDATA[<p>I have recently been playing with <a href="https://www.docker.com/">Docker</a> and <a href="https://docs.docker.com/compose/">Docker Compose</a> while starting <a href="https://github.com/philou/planning-poker">my new side project</a>. I&rsquo;ve fallen into a situation where my production container uses a value for an environment variable, but while developing, I&rsquo;ll need both a different default and the ability to override this value.</p>
+
+<p>I&rsquo;m using <a href="http://rubyonrails.org/">Rails</a> and found various references about how to deploy Rails app using Docker, but in the end, I decided to use <a href="http://www.heroku.com">Heroku</a> which handles a lot of ops for me. Rails uses the RAILS_ENV environment variable to know if it&rsquo;s going to run in development, test or production mode. The <a href="https://hub.docker.com/r/heroku/ruby/">heroku/ruby</a> image sets <code>RAILS_ENV=production</code>, but we usually want to use <code>RAILS_ENV=development</code> locally. I could have overridden RAILS_ENV in a docker-compose.override.yml file, but that would prevent me from running my app in production locally.</p>
+
+<h2>The trick</h2>
+
+<p>I eventually fixed my issue with combination of 2 files.</p>
+
+<h3>docker-compose.override.yml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span><span class='line'><span class="nn">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>.env</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>The logs</h3>
+
+<p>My app starts in development mode by default :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ </span>docker-compose up web
+</span><span class='line'>Starting planningpoker_herokuPostgresql_1
+</span><span class='line'>Recreating planningpoker_web_1
+</span><span class='line'>Attaching to planningpoker_web_1
+</span><span class='line'>web_1               | Puma starting in single mode...
+</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
+</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
+</span><span class='line'>web_1               | * Environment: development
+</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
+</span><span class='line'>web_1               | Use Ctrl-C to stop
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But I can still override RAILS_ENV to test for example :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>docker-compose up web
+</span><span class='line'>planningpoker_herokuPostgresql_1 is up-to-date
+</span><span class='line'>Recreating planningpoker_web_1
+</span><span class='line'>Attaching to planningpoker_web_1
+</span><span class='line'>web_1               | Puma starting in single mode...
+</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
+</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
+</span><span class='line'>web_1               | * Environment: <span class="nb">test</span>
+</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
+</span><span class='line'>web_1               | Use Ctrl-C to stop
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[5 Years of Blogging About Software]]></title>
@@ -62,8 +152,8 @@
 <li>First thing is that you&rsquo;ll obviously gain more visibility. I&rsquo;ve got readers from all over the world, and my articles are sometimes re-tweeted many times.</li>
 <li>You&rsquo;ll improve your writing skills. Writing skills turn out to be unexpectedly important for <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">software writers</a> !</li>
 <li>In order to lay down your ideas about something, you&rsquo;ll need to dig a bit more into. It is said to be the last step to learning.</li>
-<li>It can act as a personal documentation. I tend to use mine as a how-to notepad on which I can refer later on.</li>
-<li>If you have a day job, you can re-post your articles there. I might gain extra visibility and expose the company to new ideas.</li>
+<li>It can act as a personal documentation. I used to write mine as a how-to notepad on which I could refer later on.</li>
+<li>If you have a day job, you can re-post your articles there. You should gain extra visibility and expose the company to new ideas.</li>
 </ul>
 
 
@@ -88,22 +178,22 @@
 <tbody>
 <tr>
 <td><a href="http://octopress.org/">Octopress</a> </td>
-<td> free, Open Source, Github hosting, static HTML generation, markdown &amp; Git based, made for programmers </td>
+<td> Free, Open Source, Github hosting, static HTML generation, markdown &amp; Git based, made for programmers </td>
 <td> Theming can be rocky</td>
 </tr>
 <tr>
 <td><a href="https://medium.com/">Medium</a>    </td>
-<td> free, no setup, good looking, simple to use </td>
-<td> It&rsquo;s a private company, so it could close some day ! <a href="http://www.posterous.com">postero.us</a> did so some day (I remember, I was there …)</td>
+<td> Free, no setup, good looking, simple to use </td>
+<td> It&rsquo;s a private company, so it could close some day ! It happened to <a href="http://www.posterous.com">postero.us</a> (I remember, I was there …)</td>
 </tr>
 <tr>
 <td><a href="https://posthaven.com/">Posthaven</a> </td>
-<td> created by the founders of postero.us, sustainable, guarantees to keep it live for ever, can post by email ! </td>
-<td> nothing special for programmers, 5$ / month</td>
+<td> Created by the founders of postero.us, sustainable, guarantees to keep it live for ever, can post by email ! </td>
+<td> Nothing special for programmers, 5$ / month</td>
 </tr>
 <tr>
 <td><a href="https://logdown.com/">Logdown</a>   </td>
-<td> looks like a hosted version of Octopress, without the hassle ! </td>
+<td> Looks like a hosted version of Octopress, without the hassle ! </td>
 <td> 50$/year</td>
 </tr>
 </tbody>
@@ -118,11 +208,13 @@
 
 <h2>Blog regularly</h2>
 
-<p>Blogging every week made a huge difference to me. My traffic went from eratic to steadily increasing. I am currently observing a 11% traffic increase per month. This means that it nearly quadruples every year : I&rsquo;m not going to stop now !</p>
+<p>Blogging every week made a huge difference to me. My traffic went from erratic to steadily increasing. I am currently observing a 11% traffic increase per month. This means that it nearly quadruples every year : I&rsquo;m not going to stop now !</p>
 
 <h2>Integrate with the web</h2>
 
-<p>This boils down to social networks and analytics. Obviously, you&rsquo;ll want to use Google Analytics to see how people are reading your content. I&rsquo;m using the venerable <a href="https://feedburner.google.com">Feedburner</a> to automatically post my new articles on <a href="https://twitter.com">twitter</a>. There&rsquo;s an option to use your post categories as hashtags, be sure that works, it brings a lot of traffic.</p>
+<p>This boils down to social networks and analytics. Obviously, you&rsquo;ll want to use Google Analytics to see how people are reading your content. I&rsquo;m using the venerable <a href="https://feedburner.google.com">Feedburner</a> to automatically post my new articles on <a href="https://twitter.com">twitter</a>. There&rsquo;s an option to use your post categories as hashtags, be sure to make it works, it brings a lot of traffic.</p>
+
+<p>It&rsquo;s all up to you now !</p>
 ]]></content>
   </entry>
   
@@ -1230,102 +1322,6 @@ The team also agreed on the practice of asking for help at the good person when 
 <p>Maybe getting real feedback from real users takes time, but getting very early feedback from future users is almost always possible.</p>
 
 <p>Keep going, get some feedback !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Recipes For An Agile Workspace]]></title>
-    <link href="http://philippe.bourgau.net/recipes-for-an-agile-workspace/"/>
-    <updated>2016-02-17T06:40:00+00:00</updated>
-    <id>http://philippe.bourgau.net/recipes-for-an-agile-workspace</id>
-    <category term="agile" /><category term="lean" /><category term="selforganizing" /><category term="team-building" /><category term="workplace" />
-    <content type="html"><![CDATA[<p>Nowadays, start-ups and tech companies seem to be competing for the most beautiful offices in order to attract top talents.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/open-space.jpg" title="A nice modern and beautiful co-working space" ></p>
-
-<p>Unfortunately, sometimes, it&rsquo;s just the good old office in disguise. At the opposite, some teams or companies actually think and decide how to organize their offices. For example, here is what <a href="https://twitter.com/kentbeck">Kent Beck</a> says about office setup in <a href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?ie=UTF8&amp;qid=1456177035&amp;sr=8-2&amp;keywords=extreme+programming+embrace+change">XP embrace change</a></p>
-
-<blockquote><p>If you don&rsquo;t have a reasonable place to work, your project won&rsquo;t be successful. The difference
-between a good space for the team and a bad space for the team is immediate and dramatic.</p></blockquote>
-
-<p>Joel Spolsky has been blogging a lot about the office setups at <a href="http://www.joelonsoftware.com/articles/BionicOffice.html">FogBugz</a></p>
-
-<p><a href="http://www.joelonsoftware.com/articles/BionicOffice.html"><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/fog-bugz.jpg" title="The beautiful FogBugz office" ></a></p>
-
-<p>While defining its agile culture, <a href="http://fr.slideshare.net/JoakimSunden/agile-at-spotify">Spotify too designed custom offices</a></p>
-
-<p><a href="http://fr.slideshare.net/JoakimSunden/agile-at-spotify"><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify.jpg" title="Spotify offices" ></a></p>
-
-<h2>How does it work ?</h2>
-
-<p>Let&rsquo;s review a few office design practices to understand how they work :</p>
-
-<h3>The team room or space</h3>
-
-<p>Having a delimited room helps to build a real team. First, by isolating from noises, it helps the team to focus on its work and current topics. Second, by providing a visual barrier to cross before anyone can disturb the team. Finally, it allows the team to organize its own visual management.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-team-room.jpg" title="Team private work place at spotify" ></p>
-
-<h3>Private team gathering area</h3>
-
-<p>An area where the team (and only the team) can meet at any time is great to do on the spot meetings (without the hassle of finding a room). This area should be comfortable and provide a relaxed and creative atmosphere (which is very important to conduct efficient retrospectives). It can also be used to take breaks and lunches, fostering team spirit again.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-gathering-area.jpg" title="Team gathering area with writable walls and a wall screen at spotify" ></p>
-
-<h3>Writable walls</h3>
-
-<p>It&rsquo;s pretty easy to cover the walls with whiteboard stickers so that there is plenty of room for discussing design and otherwise keeping important things visible for everyone.</p>
-
-<h3>Laptops, Wifi and movable desks</h3>
-
-<p>Lean manufacturing favors simple, versatile and configurable machines over powerful specialised ones, which are often pretty long to setup. In software, we don&rsquo;t rely on machines as much as factories do, but there might be something to take here. Using laptops, a good Wifi and movable desks, it is pretty easy to reconfigure your office as it best fits the team at a particular moment. This way a team can easily adapt to personal preferences and turnover.</p>
-
-<h3>Wall screens</h3>
-
-<p>Agile and Lean thinkings both heavily use visual management. Having a lot of wall screens dedicated to displaying team relevant information in the team space brings a lot of value. To get the maximum benefit, these wall screens should be fully configurable and movable by the team.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/wall-screens.jpg" title="Our own wall screens at work" ></p>
-
-<h3>Team budget</h3>
-
-<p>Eventually, in order to make sure the team can always work as efficiently as possible, it should have some money to spend for its workspace. It could be used to buy any of the upper, but also anything else that might help the team at a particular point in time. Without such a budget, teams have to make a request to the office department to get anything, often to no avail, or with extra long delays.</p>
-
-<h2>Distributed teams</h2>
-
-<p>Distributed teams bring their own challenges &hellip; and workplaces needs.</p>
-
-<h3>Remote team space</h3>
-
-<p>If your team is split between 2 places (as our team is at <a href="http://www.murex.com">Murex</a>) then obviously, each site should have its own delimited space, with its own gathering area.</p>
-
-<h3>Constant visio connection</h3>
-
-<p>Connecting gathering areas through visio is a great way to build the distributed team. It prevents loosing time when a meeting is required. It also builds the team by showing what&rsquo;s happening on the other side and by making it possible to take distributed lunches and breaks !</p>
-
-<p><a href="http://www.infoq.com/presentations/distributed-team-agile"><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/distributed-lunch.jpg" title="A team sharing food remotely between offices" ></a></p>
-
-<h3>Distributed whiteboards</h3>
-
-<p>I never had the chance to work with one of these, but I often missed a whiteboard when working remotely &hellip; Any input on this subject would be welcome !</p>
-
-<h2>Lego offices</h2>
-
-<p>Here is another extract from Kent Beck&rsquo;s &ldquo;XP Embrace Change&rdquo;</p>
-
-<blockquote><p>The courage value finds its expression in the XP attitude toward facilities. If the corporate attitude
-toward facilities is at odds with the team&rsquo;s attitude, the team wins. If the computers are in the
-wrong place, they are moved. If the partitions are in the way, they are taken down. If the lights are
-too bright, they are taken out. If the phones are too loud, one day, mysteriously, they are all found
-to have cotton stuffed in the bells.</p></blockquote>
-
-<p>Improving the office is a cheap way to make a software organization more efficient. For another reference, here is what Tom DeMarco &amp; Tim Lister wrote in <a href="http://www.amazon.com/gp/product/0321934113/ref=s9_simh_gw_g14_i3_r?pf_rd_m=ATVPDKIKX0DER&amp;pf_rd_s=desktop-1&amp;pf_rd_r=1K2KEWBRQK6F1R26D5D2&amp;pf_rd_t=36701&amp;pf_rd_p=2079475242&amp;pf_rd_i=desktop">Peopleware</a></p>
-
-<blockquote><p>Police-mentality planners design workplaces the way they would design prisons: optimized for containment at minimal cost. We have unthinkingly yielded to them on the subject of workplace
-design, yet for most organizations with productivity problems, there is no more fruitful area for improvement than the workplace. As long as workers are crowded into noisy, sterile, disruptive space, it&rsquo;s not worth improving anything but the <strong>workplace</strong>.</p></blockquote>
-
-<p>Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables, movable walls and easy to fix wall monitors are all things that would make this possible.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-17-recipes-for-an-agile-workspace/lego-office.jpg" title="A miniature office in Legos" ></p>
 ]]></content>
   </entry>
   

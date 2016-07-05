@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: code - Philippe Bourgau's blog</title>
+  <title>Docker Compose trick : How to have an overridable environment variable in development mode ? - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Category: code">
+  <meta name="description" content="How using a combination of docker-compose.override.yml and .env files made it easy to customize environment variables in docker">
 
   
-  <meta name="keywords" content="blog, programming, ruby, coffeescript, c#, java, agile, extreme programming, xp, kanban, scrum, tdd, testing, unit testing">
+  <meta name="keywords" content="Docker, Docker Compose, Heroku, Environment Variable, Rails">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.netblog/categories/code/">
+  <link rel="canonical" href="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -94,36 +94,175 @@
     <div id="main">
       <div id="content">
 	<div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Code</h1>
+    
+      <h1 class="entry-title">Docker Compose Trick : How to Have an Overridable Environment Variable in Development Mode ?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-07-04T03:55:00+00:00" pubdate data-updated="true">Jul 4<span>th</span>, 2016</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>I have recently been playing with <a href="https://www.docker.com/">Docker</a> and <a href="https://docs.docker.com/compose/">Docker Compose</a> while starting <a href="https://github.com/philou/planning-poker">my new side project</a>. I&rsquo;ve fallen into a situation where my production container uses a value for an environment variable, but while developing, I&rsquo;ll need both a different default and the ability to override this value.</p>
 
-  
-  <h2>2014</h2>
+<p>I&rsquo;m using <a href="http://rubyonrails.org/">Rails</a> and found various references about how to deploy Rails app using Docker, but in the end, I decided to use <a href="http://www.heroku.com">Heroku</a> which handles a lot of ops for me. Rails uses the RAILS_ENV environment variable to know if it&rsquo;s going to run in development, test or production mode. The <a href="https://hub.docker.com/r/heroku/ruby/">heroku/ruby</a> image sets <code>RAILS_ENV=production</code>, but we usually want to use <code>RAILS_ENV=development</code> locally. I could have overridden RAILS_ENV in a docker-compose.override.yml file, but that would prevent me from running my app in production locally.</p>
 
-<article>
-  
-<h1><a href="/the-holy-code-antipattern/">The Holy Code Antipattern</a></h1>
-<time datetime="2014-08-10T08:42:00+00:00" pubdate><span class='month'>Aug</span> <span class='day'>10</span> <span class='year'>2014</span></time>
+<h2>The trick</h2>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/antipattern/'>antipattern</a>, <a class='category' href='/blog/categories/code/'>code</a>, <a class='category' href='/blog/categories/management/'>management</a></span>
-</footer>
+<p>I eventually fixed my issue with combination of 2 files.</p>
+
+<h3>docker-compose.override.yml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span><span class='line'><span class="nn">...</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<h3>.env</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>The logs</h3>
+
+<p>My app starts in development mode by default :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ </span>docker-compose up web
+</span><span class='line'>Starting planningpoker_herokuPostgresql_1
+</span><span class='line'>Recreating planningpoker_web_1
+</span><span class='line'>Attaching to planningpoker_web_1
+</span><span class='line'>web_1               | Puma starting in single mode...
+</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
+</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
+</span><span class='line'>web_1               | * Environment: development
+</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
+</span><span class='line'>web_1               | Use Ctrl-C to stop
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But I can still override RAILS_ENV to test for example :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>docker-compose up web
+</span><span class='line'>planningpoker_herokuPostgresql_1 is up-to-date
+</span><span class='line'>Recreating planningpoker_web_1
+</span><span class='line'>Attaching to planningpoker_web_1
+</span><span class='line'>web_1               | Puma starting in single mode...
+</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
+</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
+</span><span class='line'>web_1               | * Environment: <span class="nb">test</span>
+</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
+</span><span class='line'>web_1               | Use Ctrl-C to stop
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-07-04T03:55:00+00:00" pubdate data-updated="true">Jul 4<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/docker/'>docker</a>, <a class='category' href='/blog/categories/heroku/'>heroku</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/5-years-of-blogging-about-software/" title="Previous Post: 5 Years of Blogging About Software">&laquo; 5 Years of Blogging About Software</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -241,7 +380,10 @@
       var disqus_shortname = 'philippe-bourgau';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/';
+        var disqus_url = 'http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

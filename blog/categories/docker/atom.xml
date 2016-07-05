@@ -4,7 +4,7 @@
   <title><![CDATA[Category: docker | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-06-28T04:41:34+00:00</updated>
+  <updated>2016-07-05T03:51:34+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Docker Compose trick : How to have an overridable environment variable in development mode ?]]></title>
+    <link href="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/"/>
+    <updated>2016-07-04T03:55:00+00:00</updated>
+    <id>http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode</id>
+    <content type="html"><![CDATA[<p>I have recently been playing with <a href="https://www.docker.com/">Docker</a> and <a href="https://docs.docker.com/compose/">Docker Compose</a> while starting <a href="https://github.com/philou/planning-poker">my new side project</a>. I&rsquo;ve fallen into a situation where my production container uses a value for an environment variable, but while developing, I&rsquo;ll need both a different default and the ability to override this value.</p>
+
+<p>I&rsquo;m using <a href="http://rubyonrails.org/">Rails</a> and found various references about how to deploy Rails app using Docker, but in the end, I decided to use <a href="http://www.heroku.com">Heroku</a> which handles a lot of ops for me. Rails uses the RAILS_ENV environment variable to know if it&rsquo;s going to run in development, test or production mode. The <a href="https://hub.docker.com/r/heroku/ruby/">heroku/ruby</a> image sets <code>RAILS_ENV=production</code>, but we usually want to use <code>RAILS_ENV=development</code> locally. I could have overridden RAILS_ENV in a docker-compose.override.yml file, but that would prevent me from running my app in production locally.</p>
+
+<h2>The trick</h2>
+
+<p>I eventually fixed my issue with combination of 2 files.</p>
+
+<h3>docker-compose.override.yml</h3>
+
+<p>```yaml
+web:
+  &hellip;
+  environment:</p>
+
+<pre><code>RAILS_ENV: "${RAILS_ENV}"
+</code></pre>
+
+<p>&hellip;
+```</p>
+
+<h3>.env</h3>
+
+<p><code>bash
+RAILS_ENV=development
+</code></p>
+
+<h3>The logs</h3>
+
+<p>My app starts in development mode by default :</p>
+
+<p><code>bash
+philou@philou-UX31E:~/code/planning-poker$ docker-compose up web
+Starting planningpoker_herokuPostgresql_1
+Recreating planningpoker_web_1
+Attaching to planningpoker_web_1
+web_1               | Puma starting in single mode...
+web_1               | * Version 3.4.0 (ruby 2.2.3-p173), codename: Owl Bowl Brawl
+web_1               | * Min threads: 5, max threads: 5
+web_1               | * Environment: development
+web_1               | * Listening on tcp://0.0.0.0:8080
+web_1               | Use Ctrl-C to stop
+</code></p>
+
+<p>But I can still override RAILS_ENV to test for example :</p>
+
+<p><code>bash
+philou@philou-UX31E:~/code/planning-poker$ RAILS_ENV=test docker-compose up web
+planningpoker_herokuPostgresql_1 is up-to-date
+Recreating planningpoker_web_1
+Attaching to planningpoker_web_1
+web_1               | Puma starting in single mode...
+web_1               | * Version 3.4.0 (ruby 2.2.3-p173), codename: Owl Bowl Brawl
+web_1               | * Min threads: 5, max threads: 5
+web_1               | * Environment: test
+web_1               | * Listening on tcp://0.0.0.0:8080
+web_1               | Use Ctrl-C to stop
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fixing the 'TLS-enabled daemon' docker error on Ubuntu]]></title>
