@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-07-05T03:51:34+00:00</updated>
+  <updated>2016-07-13T05:39:56+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,253 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to boot a new Rails project with Docker and Heroku]]></title>
+    <link href="http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku/"/>
+    <updated>2016-07-13T04:55:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku</id>
+    <content type="html"><![CDATA[<p>A few years ago, I used <a href="http://www.heroku.com">Heroku</a> to deploy my <a href="https://github.com/philou/mes-courses">side-project</a>. It provides great service, but I remember that updates to the Heroku Stack was a nightmare &hellip; Versions of the OS (and nearly everything) changed. The migration was a matter of days, and while doing a side-project, this was difficult. At the time, I remember thinking that using branches and VMs would have been the solution.</p>
+
+<p>Now that I started to use Heroku again, I decided to use <a href="http://www.docker.com">Docker</a> from the beginning. More specifically, I am expecting :</p>
+
+<ul>
+<li>to have a minimal setup on my host machine</li>
+<li>to use the same infrastructure in dev than in production</li>
+<li>to simplify switching to a new machine</li>
+<li>to simplify the migration to the next Heroku stack</li>
+</ul>
+
+
+<p>As an added benefit, if ever someone else joins me in my side-project, it will be a matter of minutes before we can all work on the same infrastructure !</p>
+
+<p>Heroku provides a <a href="https://devcenter.heroku.com/articles/local-development-with-docker">tutorial</a> about how to deploy an existing <a href="http://rubyonrails.org/">Rails</a> app to heroku using containers. Unfortunately, I did yet have an existing rails app &hellip; So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.</p>
+
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg" title="The 3 logos of Rails, Docker and Heroku" ></p>
+
+<h2>1. Install the required software</h2>
+
+<p>I installed only 4 things on my host machine
+&ndash; Docker <a href="https://docs.docker.com/engine/installation/">instructions</a>
+&ndash; Docker Compose <a href="https://docs.docker.com/compose/install/">instructions</a>
+&ndash; Heroku Toolbelt <a href="https://toolbelt.heroku.com/">instructions</a>
+&ndash; Heroku container plugin <code>heroku plugins:install heroku-container-tools</code></p>
+
+<p>That&rsquo;s all I changed to my host machine.</p>
+
+<h2>2. Setup docker</h2>
+
+<p>First, let&rsquo;s create a new dir and step into it. Run :
+<code>bash
+mkdir docker-rails-heroku
+cd docker-rails-heroku
+</code>
+To prepare the Heroku setup, create a <code>Procfile</code>
+<code>
+web: bundle exec puma -C config/puma.rb
+</code>
+and <code>app.json</code>
+```json
+{
+  &ldquo;name&rdquo;: &ldquo;Docker Rails Heroku&rdquo;,
+  &ldquo;description&rdquo;: &ldquo;An example app.json for container-deploy&rdquo;,
+  &ldquo;image&rdquo;: &ldquo;heroku/ruby&rdquo;,
+  &ldquo;addons&rdquo;: [</p>
+
+<pre><code>"heroku-postgresql"
+</code></pre>
+
+<p>  ]
+}
+<code>
+To generate docker files for Heroku, run :
+</code>bash
+heroku container:init
+```
+You want to run Rails in dev mode locally, so we need to override Heroku&rsquo;s default env (<a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Check my previous post for details</a>)</p>
+
+<p>Create an <code>.env</code> file
+<code>
+RAILS_ENV=development
+</code>
+and <code>docker-compose.override.yml</code>
+```yaml
+web:
+  volumes:</p>
+
+<pre><code>- '.:/app/user'
+</code></pre>
+
+<p>  environment:</p>
+
+<pre><code>RAILS_ENV: "${RAILS_ENV}"
+</code></pre>
+
+<p>shell:
+  environment:</p>
+
+<pre><code>RAILS_ENV: "${RAILS_ENV}"
+</code></pre>
+
+<p>```</p>
+
+<h2>3. Create the Rails app</h2>
+
+<p>It&rsquo;s now time to follow <a href="https://docs.docker.com/compose/rails/">the official docker-compose rails tutorial</a> to bootstrap the rails app and directories :</p>
+
+<p>Change <code>Dockerfile</code> to
+```</p>
+
+<h1>FROM heroku/ruby</h1>
+
+<p>FROM ruby:2.2.0
+RUN apt-get update -qq &amp;&amp; apt-get install -y build-essential libpq-dev nodejs
+RUN mkdir /myapp
+WORKDIR /myapp
+ADD Gemfile /myapp/Gemfile
+ADD Gemfile.lock /myapp/Gemfile.lock
+RUN bundle install
+ADD . /myapp
+```</p>
+
+<p>Create a bootstrap <code>Gemfile</code> with the content
+<code>ruby
+source 'https://rubygems.org'
+gem 'rails', '4.2.0'
+</code>
+Bundle install within the container requires a existing <code>Gemfile.lock</code>
+```bash</p>
+
+<h1>Create an empty Gemfile.lock</h1>
+
+<p>touch Gemfile.lock
+```</p>
+
+<p>It&rsquo;s now time to build your docker container to be able to run rails and generate your source files. Run the following :
+```bash</p>
+
+<h1>Build your containers</h1>
+
+<p>docker-compose build</p>
+
+<h1>Run rails within the shell container and generate rails files</h1>
+
+<p>docker-compose run shell bundle exec rails new . &mdash;force &mdash;database=postgresql &mdash;skip-bundle
+```</p>
+
+<p>Unfortunately, rails is ran as root inside the container. We can change ownership and rights with this command :
+```bash</p>
+
+<h1>Change ownership</h1>
+
+<p>sudo chown -R $USER:$USER .</p>
+
+<h1>Change rights</h1>
+
+<p>sudo chmod -R ug+rw .
+```</p>
+
+<h2>4. Make it Heroku ready</h2>
+
+<p>Now that the rails files are generated, It&rsquo;s time to replace the bootstrap settings with real Heroku Dockerfile</p>
+
+<p>Revert <code>Dockerfile</code> to simply :
+<code>
+FROM heroku/ruby
+</code></p>
+
+<p>Heroku uses <a href="http://puma.io/">Puma</a> so we need to add it to our <code>Gemfile</code>
+```ruby</p>
+
+<h1>Use Puma as the app server</h1>
+
+<p>gem &lsquo;puma&rsquo;, &lsquo;~> 3.0&rsquo;
+<code>
+We also need to add a config file for Puma. Create</code>config/puma.rb<code>with this content (you can check [heroku doc](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#adding-puma-to-your-application) for details)
+</code>ruby
+workers Integer(ENV[&lsquo;WEB_CONCURRENCY&rsquo;] || 2)
+threads_count = Integer(ENV[&lsquo;RAILS_MAX_THREADS&rsquo;] || 5)
+threads threads_count, threads_count</p>
+
+<p>preload_app!</p>
+
+<p>rackup      DefaultRackup
+port        ENV[&lsquo;PORT&rsquo;]     || 3000
+environment ENV[&lsquo;RACK_ENV&rsquo;] || &lsquo;development&rsquo;</p>
+
+<p>on_worker_boot do
+  # Worker specific setup for Rails 4.1+
+  # See: <a href="https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot">https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot</a>
+  ActiveRecord::Base.establish_connection
+end
+```</p>
+
+<p>It should now be possible to rebuild the container, and run the app :
+```bash</p>
+
+<h1>Rebuild the containers</h1>
+
+<p>docker-compose build</p>
+
+<h1>Start the rails app using the web container</h1>
+
+<p>docker-compose up web
+```
+The app should be accessible at <a href="http://0.0.0.0:8080">http://0.0.0.0:8080</a></p>
+
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg" title="The default homepage for a new Rails application" ></p>
+
+<h2>5. Deploying to heroku</h2>
+
+<p>We&rsquo;re almost ready to deploy to heroku.</p>
+
+<p>First, we need to exclude development files from our image. For this, we need to create a <code>.dockerignore</code> file with the content
+<code>
+.git*
+db/*.sqlite3
+db/*.sqlite3-journal
+log/*
+tmp/*
+Dockerfile
+.env
+docker-compose.yml
+docker-compose.override.yml
+README.rdoc
+</code>
+It&rsquo;s then classic Heroku deploy commands :</p>
+
+<p>```bash</p>
+
+<h1>create an Heroku app</h1>
+
+<p>heroku apps:create &lt;your-app-name></p>
+
+<h1>And deploy to it</h1>
+
+<p>heroku container:release &mdash;app &lt;your-app-name>
+```</p>
+
+<p>Your app should be accessible on line at <a href="https://">https://</a>&lt;your-app-name>.herokuapp.com/</p>
+
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg" title="The typical error message when you deploy a new Rails app to heroku" ></p>
+
+<p>Rails does not provide a default homepage in production. But you can check the logs with</p>
+
+<p><code>bash
+heroku logs --app &lt;your-app-name&gt;
+</code></p>
+
+<h2>6. Running commands</h2>
+
+<p>When in development mode, you might want to run rails or other commands on your source code again. The shell container exists just for that, run <code>docker-compose run shell ...</code>.
+```bash</p>
+
+<h1>For example, to update your bundle</h1>
+
+<p>docker-compose run shell bundle update
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I organized my javascript assets in Rails]]></title>
@@ -233,46 +480,6 @@ MyApp::Engine.send(:include, MyApp::EngineExtras)
 
 
 <p>At the moment, I still have an issue I did not manage to fix neatly : how can we include namespaces in spec and cucumber step files without polluting the global namespace ?</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails url_helpers mixup when using rails engines]]></title>
-    <link href="http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin/"/>
-    <updated>2012-08-09T00:00:00+00:00</updated>
-    <id>http://philippe.bourgau.net/rails-urlhelpers-mixup-when-using-rails-engin</id>
-    <content type="html"><![CDATA[<p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
-
-
-<ul>
-<li>I had to use special (javascript heavy) google analytics code through all cross app links, and that sometimes failed (somewhere in the combinaison of&nbsp;heroku, rails, and analytics)</li>
-<li>It was difficult to share the theme between the apps : on one side, templates, partials and css, on the other, rows in a database</li>
-<li>It was difficult to share session state between the two apps (login for example)</li>
-</ul>
-
-
-<p>As my blog is very basic, and as I am the only one editing the styles, I decided to embed a blog engine inside my app. I selected and tried a few&nbsp;engines : <a href="https://github.com/jipiboily/monologue">Monologue</a>, <a href="https://github.com/KatanaCode/blogit">Blogit</a>, <a href="http://refinerycms.com/">RefineryCMS</a> and to roll my own. Refinery looks way too complex to integrate regarding my basic needs. Monologue is not&nbsp;design to integrate with <a href="https://github.com/plataformatec/devise/">devise</a> users (which I already use) and I would prefer to contribute to an existing gem rather than to write the nth rails blog engine ...</p>
-
-
-<p>After a few experiments, I settled on blogit. Unfortunately, I had really strange issues with links within blogit pages : all links were prefixed with "/blog" and blogit&nbsp;links where like "/blog/blogit?controller=posts&amp;action=new". Hacking around in the rails console showed me that doing consecultively :</p>
-
-
-<p>
-```ruby
-include Blogit::Engine.routes.url_helpers
-include Rails.application.routes.url_helpers
-```
-</p>
-
-
-<p>resulted in the same behaviour. After a long debugging session, I eventually discovered that I had a helper in my application which explicitly required&nbsp;Rails.application.routes.url_helpers. This was causing the conflict. I changed my code to avoid this inclusion, and that fixed the links ...</p>
-
-
-<p>... nearly. Now rendering the application template for a blog page failed with a "message not understood" for the main app's xxx_path methods. Hopefully, I had&nbsp;found <a href="http://www.candland.net/2012/04/17/rails-routes-used-in-an-isolated-engine/">a fix</a> for this error earlier on the web. Now everything was working like a charm.</p>
-
-
-<p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
 
 ]]></content>
   </entry>

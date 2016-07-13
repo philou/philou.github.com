@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-07-05T03:51:34+00:00</updated>
+  <updated>2016-07-13T05:39:56+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,337 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to boot a new Rails project with Docker and Heroku]]></title>
+    <link href="http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku/"/>
+    <updated>2016-07-13T04:55:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku</id>
+    <category term="docker" /><category term="heroku" /><category term="rails" />
+    <content type="html"><![CDATA[<p>A few years ago, I used <a href="http://www.heroku.com">Heroku</a> to deploy my <a href="https://github.com/philou/mes-courses">side-project</a>. It provides great service, but I remember that updates to the Heroku Stack was a nightmare &hellip; Versions of the OS (and nearly everything) changed. The migration was a matter of days, and while doing a side-project, this was difficult. At the time, I remember thinking that using branches and VMs would have been the solution.</p>
+
+<p>Now that I started to use Heroku again, I decided to use <a href="http://www.docker.com">Docker</a> from the beginning. More specifically, I am expecting :</p>
+
+<ul>
+<li>to have a minimal setup on my host machine</li>
+<li>to use the same infrastructure in dev than in production</li>
+<li>to simplify switching to a new machine</li>
+<li>to simplify the migration to the next Heroku stack</li>
+</ul>
+
+
+<p>As an added benefit, if ever someone else joins me in my side-project, it will be a matter of minutes before we can all work on the same infrastructure !</p>
+
+<p>Heroku provides a <a href="https://devcenter.heroku.com/articles/local-development-with-docker">tutorial</a> about how to deploy an existing <a href="http://rubyonrails.org/">Rails</a> app to heroku using containers. Unfortunately, I did yet have an existing rails app &hellip; So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg" title="The 3 logos of Rails, Docker and Heroku" ></p>
+
+<h2>1. Install the required software</h2>
+
+<p>I installed only 4 things on my host machine
+&ndash; Docker <a href="https://docs.docker.com/engine/installation/">instructions</a>
+&ndash; Docker Compose <a href="https://docs.docker.com/compose/install/">instructions</a>
+&ndash; Heroku Toolbelt <a href="https://toolbelt.heroku.com/">instructions</a>
+&ndash; Heroku container plugin <code>heroku plugins:install heroku-container-tools</code></p>
+
+<p>That&rsquo;s all I changed to my host machine.</p>
+
+<h2>2. Setup docker</h2>
+
+<p>First, let&rsquo;s create a new dir and step into it. Run :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir docker-rails-heroku
+</span><span class='line'><span class="nb">cd </span>docker-rails-heroku
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To prepare the Heroku setup, create a <code>Procfile</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>web: bundle <span class="nb">exec </span>puma -C config/puma.rb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and <code>app.json</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Docker Rails Heroku&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;An example app.json for container-deploy&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;heroku/ruby&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;addons&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="s2">&quot;heroku-postgresql&quot;</span>
+</span><span class='line'>  <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To generate docker files for Heroku, run :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku container:init
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You want to run Rails in dev mode locally, so we need to override Heroku&rsquo;s default env (<a href="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Check my previous post for details</a>)</p>
+
+<p>Create an <code>.env</code> file</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and <code>docker-compose.override.yml</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/app/user&#39;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Create the Rails app</h2>
+
+<p>It&rsquo;s now time to follow <a href="https://docs.docker.com/compose/rails/">the official docker-compose rails tutorial</a> to bootstrap the rails app and directories :</p>
+
+<p>Change <code>Dockerfile</code> to</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># FROM heroku/ruby</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">FROM ruby:2.2.0</span>
+</span><span class='line'><span class="l-Scalar-Plain">RUN apt-get update -qq &amp;&amp; apt-get install -y build-essential libpq-dev nodejs</span>
+</span><span class='line'><span class="l-Scalar-Plain">RUN mkdir /myapp</span>
+</span><span class='line'><span class="l-Scalar-Plain">WORKDIR /myapp</span>
+</span><span class='line'><span class="l-Scalar-Plain">ADD Gemfile /myapp/Gemfile</span>
+</span><span class='line'><span class="l-Scalar-Plain">ADD Gemfile.lock /myapp/Gemfile.lock</span>
+</span><span class='line'><span class="l-Scalar-Plain">RUN bundle install</span>
+</span><span class='line'><span class="l-Scalar-Plain">ADD . /myapp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create a bootstrap <code>Gemfile</code> with the content</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.2.0&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bundle install within the container requires a existing <code>Gemfile.lock</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Create an empty Gemfile.lock</span>
+</span><span class='line'>touch Gemfile.lock
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s now time to build your docker container to be able to run rails and generate your source files. Run the following :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Build your containers</span>
+</span><span class='line'>docker-compose build
+</span><span class='line'>
+</span><span class='line'><span class="c"># Run rails within the shell container and generate rails files</span>
+</span><span class='line'>docker-compose run shell bundle <span class="nb">exec </span>rails new . --force --database<span class="o">=</span>postgresql --skip-bundle
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unfortunately, rails is ran as root inside the container. We can change ownership and rights with this command :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Change ownership</span>
+</span><span class='line'>sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> .
+</span><span class='line'>
+</span><span class='line'><span class="c"># Change rights</span>
+</span><span class='line'>sudo chmod -R ug+rw .
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. Make it Heroku ready</h2>
+
+<p>Now that the rails files are generated, It&rsquo;s time to replace the bootstrap settings with real Heroku Dockerfile</p>
+
+<p>Revert <code>Dockerfile</code> to simply :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>FROM heroku/ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Heroku uses <a href="http://puma.io/">Puma</a> so we need to add it to our <code>Gemfile</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Use Puma as the app server</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We also need to add a config file for Puma. Create <code>config/puma.rb</code> with this content (you can check <a href="https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#adding-puma-to-your-application">heroku doc</a> for details)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">workers</span> <span class="nb">Integer</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;WEB_CONCURRENCY&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'><span class="n">threads_count</span> <span class="o">=</span> <span class="nb">Integer</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RAILS_MAX_THREADS&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="n">threads</span> <span class="n">threads_count</span><span class="p">,</span> <span class="n">threads_count</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">preload_app!</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rackup</span>      <span class="no">DefaultRackup</span>
+</span><span class='line'><span class="n">port</span>        <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PORT&#39;</span><span class="o">]</span>     <span class="o">||</span> <span class="mi">3000</span>
+</span><span class='line'><span class="n">environment</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RACK_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;development&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">on_worker_boot</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># Worker specific setup for Rails 4.1+</span>
+</span><span class='line'>  <span class="c1"># See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot</span>
+</span><span class='line'>  <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It should now be possible to rebuild the container, and run the app :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Rebuild the containers</span>
+</span><span class='line'>docker-compose build
+</span><span class='line'>
+</span><span class='line'><span class="c"># Start the rails app using the web container</span>
+</span><span class='line'>docker-compose up web
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The app should be accessible at <a href="http://0.0.0.0:8080">http://0.0.0.0:8080</a></p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg" title="The default homepage for a new Rails application" ></p>
+
+<h2>5. Deploying to heroku</h2>
+
+<p>We&rsquo;re almost ready to deploy to heroku.</p>
+
+<p>First, we need to exclude development files from our image. For this, we need to create a <code>.dockerignore</code> file with the content</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.git*
+</span><span class='line'>db/*.sqlite3
+</span><span class='line'>db/*.sqlite3-journal
+</span><span class='line'>log/*
+</span><span class='line'>tmp/*
+</span><span class='line'>Dockerfile
+</span><span class='line'>.env
+</span><span class='line'>docker-compose.yml
+</span><span class='line'>docker-compose.override.yml
+</span><span class='line'>README.rdoc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s then classic Heroku deploy commands :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># create an Heroku app</span>
+</span><span class='line'>heroku apps:create &lt;your-app-name&gt;
+</span><span class='line'>
+</span><span class='line'><span class="c"># And deploy to it</span>
+</span><span class='line'>heroku container:release --app &lt;your-app-name&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Your app should be accessible on line at <a href="https://">https://</a>&lt;your-app-name>.herokuapp.com/</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg" title="The typical error message when you deploy a new Rails app to heroku" ></p>
+
+<p>Rails does not provide a default homepage in production. But you can check the logs with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku logs --app &lt;your-app-name&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>6. Running commands</h2>
+
+<p>When in development mode, you might want to run rails or other commands on your source code again. The shell container exists just for that, run <code>docker-compose run shell ...</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># For example, to update your bundle</span>
+</span><span class='line'>docker-compose run shell bundle update
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Docker Compose trick : How to have an overridable environment variable in development mode ?]]></title>
@@ -1269,59 +1600,6 @@ The team also agreed on the practice of asking for help at the good person when 
 <p>I personally found this book to be just great ! It&rsquo;s short and focused, pragmatic, and a pretty easy read. If you liked <a href="http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2">Scrum and XP from the trenches</a> I think you should read it. More generally, I think it&rsquo;s very useful for anyone involved in the development process who would like to push agility a little further.</p>
 
 <p>There&rsquo;s a catch though, it&rsquo;s in french ! I guess I could take the time to translate it, tell me if you are interested.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How Long Can Your Inner Drive Last ?]]></title>
-    <link href="http://philippe.bourgau.net/how-long-can-your-inner-drive-last/"/>
-    <updated>2016-02-25T06:41:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-long-can-your-inner-drive-last</id>
-    <category term="lean-startup" /><category term="side-project" /><category term="software" />
-    <content type="html"><![CDATA[<p>Any software project (job, startup or side project) will require some time before one can get real feedback from real users.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-25-how-long-can-your-inner-drive-last/exhausted-runner.jpg" title="An exhausted runner" ></p>
-
-<h2>The hard truth</h2>
-
-<p>Your inner drive will only last up to some point. Without feedback, your motivation will die, and this will kill your project.</p>
-
-<h2>How to deal with it ?</h2>
-
-<h3>Know it before you start</h3>
-
-<p>From my own past experiences, I could find that my inner drive has usually disappeared after 2 years (I don&rsquo;t want a word about the time I actually wasted to discover this &hellip;). You too can try to estimate how long you can keep on without much feedback, go through your previous experiences to get an idea.</p>
-
-<p>Once you have an idea of how long you can keep on without much feedback, you&rsquo;re in a much better place to decide to embark on a new project.</p>
-
-<h3>Don&rsquo;t drown in the code</h3>
-
-<p>I once started a <a href="http://philippe.bourgau.net/rip-mes-courses-dot-fr/">side project</a> partly because I was fed up with the poor technologies I was asked to use at work. My project was some kind of salvation. The drawback of this situation is that I tended to dive into code way too early ! Building a real product takes time, and that&rsquo;s a sure way to get late feedback.</p>
-
-<h3>Use Lean Startup techniques</h3>
-
-<p><a href="http://www.amazon.com/UX-Lean-Startups-Experience-Research/dp/1449334911"><img class="center" src="http://philippe.bourgau.net/imgs/2016-02-25-how-long-can-your-inner-drive-last/ux-for-lean-startups.jpg" title="The cover of the book 'UX For Lean Startups'" ></a></p>
-
-<p><a href="http://theleanstartup.com/">Lean Startup</a> is all about getting constant user feedback, even before having any user. I especially liked the book <a href="http://www.amazon.com/UX-Lean-Startups-Experience-Research/dp/1449334911">UX for Lean Startups</a> that explains all the ways to get feedback from the cheapest (interviews) to the most expensive (HTML mockups) without actually coding anything</p>
-
-<h3>Watch out for the Duke Nukem Forever syndrome</h3>
-
-<p>Be very careful of endeavors that promise an Eldorado after long hard work that should last months or years. Products need to ship early with as fewest features, not late with many features. If you embark on such project, you&rsquo;re pretty likely to :</p>
-
-<ul>
-<li>burn out before the end</li>
-<li>deliver something that is already outdated the day it goes live</li>
-<li>never deliver anything</li>
-</ul>
-
-
-<p>If you&rsquo;re already on such a project, I strongly suggest quitting.</p>
-
-<h2>End word</h2>
-
-<p>Maybe getting real feedback from real users takes time, but getting very early feedback from future users is almost always possible.</p>
-
-<p>Keep going, get some feedback !</p>
 ]]></content>
   </entry>
   
