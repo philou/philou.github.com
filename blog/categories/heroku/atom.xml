@@ -4,7 +4,7 @@
   <title><![CDATA[Category: heroku | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/heroku/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-07-13T05:39:56+00:00</updated>
+  <updated>2016-07-20T07:10:07+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,172 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?]]></title>
+    <link href="http://philippe.bourgau.net/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/"/>
+    <updated>2016-07-20T06:12:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/philou/planning_poker">My current side project</a> is an online tool to do remote planning pokers. I followed my <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous tutorial</a> to setup Rails, Docker and Heroku.</p>
+
+<p>Naturally, as a BDD proponent, I tried to install <a href="https://cucumber.io">cucumber</a> to write my first scenario.</p>
+
+<p>Here is the result of my first cucumber run :</p>
+
+<p><code>bash
+$ docker-compose run shell bundle exec cucumber
+rails aborted!
+PG::ConnectionBad: could not translate host name "postgres://postgres:@herokuPostgresql:5432/postgres" to address: Name or service not known
+...
+</code></p>
+
+<p>It turned out that I had taken instructions from a <a href="https://blog.codeship.com/deploying-docker-rails-app/">blog article on codeship</a> that mistakenly used <code>host:</code> instead of <code>url:</code> in their <code>config/database.yml</code></p>
+
+<p>After fixing that in my database.yml file, things where only slightly working better :</p>
+
+<p><code>bash
+$ docker-compose run shell bundle exec cucumber
+rails aborted!
+ActiveRecord::StatementInvalid: PG::ObjectInUse: ERROR:  cannot drop the currently open database
+: DROP DATABASE IF EXISTS "postgres"
+</code></p>
+
+<p>The thing is the config was still using the same database for all environments. That&rsquo;s not exactly what I wanted. I updated my <code>config/database.yml</code> :</p>
+
+<p>```yaml
+default: &amp;default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  timeout: 5000
+  username: postgres
+  port: 5432
+  host: herokuPostgresql</p>
+
+<p>development:
+  &lt;&lt;: *default
+  database: planning_poker_development</p>
+
+<p>test: &amp;test
+  &lt;&lt;: *default
+  database: planning_poker_test</p>
+
+<p>production:
+  &lt;&lt;: *default
+  url: &lt;%= ENV[&lsquo;DATABASE_URL&rsquo;] %>
+```</p>
+
+<p>Victory ! Cucumber is running</p>
+
+<p>```bash
+$ docker-compose run shell bundle exec cucumber
+Using the default profile&hellip;
+0 scenarios
+0 steps
+0m0.000s
+Run options: &mdash;seed 45959</p>
+
+<h1>Running:</h1>
+
+<p>Finished in 0.002395s, 0.0000 runs/s, 0.0000 assertions/s.</p>
+
+<p>0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
+```</p>
+
+<h2>Fixing rake db:create</h2>
+
+<p>By searching through the web, I found that people were having similar issues with rake db:create. I tried to run it and here is what I got :</p>
+
+<p><code>bash
+$ docker-compose run shell bundle exec rake db:create
+Database 'postgres' already exists
+Database 'planning_poker_test' already exists
+</code></p>
+
+<p>Why is it trying to create the postgres database ? It turns out that the DATABASE_URL takes precedence over what is defined in my <code>config/database.yml</code>. I need to unset this variable locally. I already have the <code>docker-compose.override.yml</code> for that :</p>
+
+<p>```yaml
+web:
+  environment:</p>
+
+<pre><code>DATABASE_URL:
+</code></pre>
+
+<p>  &hellip;</p>
+
+<p>shell:
+  environment:</p>
+
+<pre><code>DATABASE_URL:
+</code></pre>
+
+<p>  &hellip;
+```</p>
+
+<p>Rake db:create works just fine now :</p>
+
+<p><code>bash
+$ docker-compose run shell bundle exec rake db:create
+Database 'planning_poker_development' already exists
+Database 'planning_poker_test' already exists
+</code></p>
+
+<h2>Starting a psql session</h2>
+
+<p>During all my trouble-shootings, I tried to connect to the Postgresql server to make sure that the databases where created and ready. Here is how I managed to do that :</p>
+
+<h3>1. Install psql client</h3>
+
+<p>On my Ubuntu machine, that was a simple <code>sudo apt-get install postgresql-client-9.4</code>.</p>
+
+<h3>2. Finding the server port</h3>
+
+<p>The port can be found through <code>config/database.yml</code> or through <code>docker ps</code>. Let&rsquo;s use the later, as we&rsquo;ll need it to find the server IP as well.</p>
+
+<p><code>bash
+$ docker ps
+CONTAINER ID        IMAGE            COMMAND                  CREATED             STATUS              PORTS           NAMES
+b58ce42d2b2b        postgres         "/docker-entrypoint.s"   46 hours ago        Up 46 hours         5432/tcp        planningpoker_herokuPostgresql_1
+</code></p>
+
+<p>Here the port is clearly 5432.</p>
+
+<h3>3. Finding the server IP</h3>
+
+<p>Using the container id we got on previous <code>docker ps</code> command, we can use <code>docker inspect</code> to get further details :</p>
+
+<p>```bash
+$ docker inspect b58ce42d2b2b | grep IPAddress</p>
+
+<pre><code>        "SecondaryIPAddresses": null,
+        "IPAddress": "172.17.0.2",
+                "IPAddress": "172.17.0.2",
+</code></pre>
+
+<p>```</p>
+
+<h3>4. Connecting to the database</h3>
+
+<p>Connecting is now just a matter of filling the command line.</p>
+
+<p>```sql
+$ psql -U postgres -p 5432 -d planning_poker_development -h 172.17.0.2
+planning_poker_development=# select * from schema_migrations;</p>
+
+<h2> version</h2>
+
+<p>(0 rows)
+```</p>
+
+<h3>5. Installing psql client directly in the shell</h3>
+
+<p>It should be possible to install the psql client in the shell container automatically, but I must admit I did not try this yet. It should just a matter of adding this to the <code>Dockerfile</code></p>
+
+<p><code>
+RUN apt-get install postgresql-client-&lt;version&gt;
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to boot a new Rails project with Docker and Heroku]]></title>
@@ -257,6 +423,15 @@ heroku logs --app &lt;your-app-name&gt;
 
 <p>docker-compose run shell bundle update
 ```</p>
+
+<h3>EDIT 2016-07-20</h3>
+
+<p>For the moment, there&rsquo;s a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again &hellip; I&rsquo;ll have a look into this later and see if I can fix that.</p>
+
+<p><code>bash
+docker-compose run shell bundle update
+docker-compose build
+</code></p>
 ]]></content>
   </entry>
   
@@ -361,49 +536,6 @@ web_1               | Use Ctrl-C to stop
 <p><code>sh
 heroku pgbackups:restore DATABASE `heroku pgbackups:url --app my-app-prod` --app my-app-integ --confirm my-app-integ
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I set up a trustico rapid ssl certificate on heroku ssl endpoint]]></title>
-    <link href="http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate/"/>
-    <updated>2012-12-13T00:00:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-i-set-up-a-trustico-rapid-ssl-certificate</id>
-    <content type="html"><![CDATA[<p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
-
-
-<ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application
-```sh
-heroku addons:add ssl:endpoint
-```
-</li><li>Upload your certificate
-```sh
-heroku certs:add server.crt private.key
-```
-</li><li>Run the following and verify that you have an ssl endpoint with an explicit trusted &quot;True&quot; value
-```sh
-heroku certs
-```
-</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li>
-<li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li>
-<li>Wait until dns are updated to check that it is working.</li>
-</ol>
-
-
-<p> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></p>
-
-
-<p>EDIT 10/10/2013</p>
-
-<p>Any certificate will eventually expire, and need to be renewed. The process for this (at Trustico at least) is to generate a completly new certificate. To install this new certificate on heroku, start by combining the new certificate files as you did the first time, and then use</p>
-
-<p><code>
-heroku certs:update server.crt private.key
-</code></p>
-
-<p>instead of heroku certs:add. This should be enough, there is no need to update any dns entry.</p>
-
-<p>To make sure the new certificate is used, visit the heroku ssl endpoint directly (get it by running heroku certs) and then visit your ssl site to check the certificate infos from your browser.</p>
 ]]></content>
   </entry>
   

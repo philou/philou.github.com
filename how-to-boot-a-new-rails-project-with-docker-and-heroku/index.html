@@ -443,6 +443,17 @@
 </span><span class='line'>docker-compose run shell bundle update
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>EDIT 2016-07-20</h3>
+
+<p>For the moment, there&rsquo;s a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again &hellip; I&rsquo;ll have a look into this later and see if I can fix that.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>docker-compose run shell bundle update
+</span><span class='line'>docker-compose build
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -494,6 +505,8 @@
       
         <a class="basic-alignment left" href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/" title="Previous Post: Docker Compose trick : How to have an overridable environment variable in development mode ?">&laquo; Docker Compose trick : How to have an overridable environment variable in development mode ?</a>
       
+      
+        <a class="basic-alignment right" href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/" title="Next Post: How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?">How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ? &raquo;</a>
       
     </p>
   </footer>
@@ -568,6 +581,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to boot a new Rails project with Docker and Heroku</a>
       </li>
     
@@ -581,10 +598,6 @@
     
       <li class="post">
         <a href="/the-size-of-code/">The Size Of Code</a>
-      </li>
-    
-      <li class="post">
-        <a href="/legacy-code-coverall-day/">Legacy Code Coverall Day</a>
       </li>
     
   </ul>

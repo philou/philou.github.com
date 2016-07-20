@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-07-13T05:39:56+00:00</updated>
+  <updated>2016-07-20T07:10:07+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,235 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?]]></title>
+    <link href="http://philippe.bourgau.net/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/"/>
+    <updated>2016-07-20T06:12:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development</id>
+    <category term="docker" /><category term="heroku" /><category term="postgre" /><category term="rails" />
+    <content type="html"><![CDATA[<p><a href="https://github.com/philou/planning_poker">My current side project</a> is an online tool to do remote planning pokers. I followed my <a href="http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous tutorial</a> to setup Rails, Docker and Heroku.</p>
+
+<p>Naturally, as a BDD proponent, I tried to install <a href="https://cucumber.io">cucumber</a> to write my first scenario.</p>
+
+<p>Here is the result of my first cucumber run :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
+</span><span class='line'>rails aborted!
+</span><span class='line'>PG::ConnectionBad: could not translate host name <span class="s2">&quot;postgres://postgres:@herokuPostgresql:5432/postgres&quot;</span> to address: Name or service not known
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It turned out that I had taken instructions from a <a href="https://blog.codeship.com/deploying-docker-rails-app/">blog article on codeship</a> that mistakenly used <code>host:</code> instead of <code>url:</code> in their <code>config/database.yml</code></p>
+
+<p>After fixing that in my database.yml file, things where only slightly working better :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
+</span><span class='line'>rails aborted!
+</span><span class='line'>ActiveRecord::StatementInvalid: PG::ObjectInUse: ERROR:  cannot drop the currently open database
+</span><span class='line'>: DROP DATABASE IF EXISTS <span class="s2">&quot;postgres&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The thing is the config was still using the same database for all environments. That&rsquo;s not exactly what I wanted. I updated my <code>config/database.yml</code> :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="nl">&amp;default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">unicode</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgres</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5432</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">herokuPostgresql</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">planning_poker_development</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span> <span class="nl">&amp;test</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">planning_poker_test</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&#39;DATABASE_URL&#39;] %&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Victory ! Cucumber is running</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
+</span><span class='line'>Using the default profile...
+</span><span class='line'>0 scenarios
+</span><span class='line'>0 steps
+</span><span class='line'>0m0.000s
+</span><span class='line'>Run options: --seed 45959
+</span><span class='line'>
+</span><span class='line'><span class="c"># Running:</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Finished in 0.002395s, 0.0000 runs/s, 0.0000 assertions/s.
+</span><span class='line'>
+</span><span class='line'>0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fixing rake db:create</h2>
+
+<p>By searching through the web, I found that people were having similar issues with rake db:create. I tried to run it and here is what I got :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>Database <span class="s1">&#39;postgres&#39;</span> already exists
+</span><span class='line'>Database <span class="s1">&#39;planning_poker_test&#39;</span> already exists
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why is it trying to create the postgres database ? It turns out that the DATABASE_URL takes precedence over what is defined in my <code>config/database.yml</code>. I need to unset this variable locally. I already have the <code>docker-compose.override.yml</code> for that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">DATABASE_URL</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">DATABASE_URL</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Rake db:create works just fine now :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>Database <span class="s1">&#39;planning_poker_development&#39;</span> already exists
+</span><span class='line'>Database <span class="s1">&#39;planning_poker_test&#39;</span> already exists
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Starting a psql session</h2>
+
+<p>During all my trouble-shootings, I tried to connect to the Postgresql server to make sure that the databases where created and ready. Here is how I managed to do that :</p>
+
+<h3>1. Install psql client</h3>
+
+<p>On my Ubuntu machine, that was a simple <code>sudo apt-get install postgresql-client-9.4</code>.</p>
+
+<h3>2. Finding the server port</h3>
+
+<p>The port can be found through <code>config/database.yml</code> or through <code>docker ps</code>. Let&rsquo;s use the later, as we&rsquo;ll need it to find the server IP as well.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker ps
+</span><span class='line'>CONTAINER ID        IMAGE            COMMAND                  CREATED             STATUS              PORTS           NAMES
+</span><span class='line'>b58ce42d2b2b        postgres         <span class="s2">&quot;/docker-entrypoint.s&quot;</span>   46 hours ago        Up 46 hours         5432/tcp        planningpoker_herokuPostgresql_1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here the port is clearly 5432.</p>
+
+<h3>3. Finding the server IP</h3>
+
+<p>Using the container id we got on previous <code>docker ps</code> command, we can use <code>docker inspect</code> to get further details :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker inspect b58ce42d2b2b | grep IPAddress
+</span><span class='line'>            <span class="s2">&quot;SecondaryIPAddresses&quot;</span>: null,
+</span><span class='line'>            <span class="s2">&quot;IPAddress&quot;</span>: <span class="s2">&quot;172.17.0.2&quot;</span>,
+</span><span class='line'>                    <span class="s2">&quot;IPAddress&quot;</span>: <span class="s2">&quot;172.17.0.2&quot;</span>,
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4. Connecting to the database</h3>
+
+<p>Connecting is now just a matter of filling the command line.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="err">$</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5432</span> <span class="o">-</span><span class="n">d</span> <span class="n">planning_poker_development</span> <span class="o">-</span><span class="n">h</span> <span class="mi">172</span><span class="p">.</span><span class="mi">17</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span>
+</span><span class='line'><span class="n">planning_poker_development</span><span class="o">=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">schema_migrations</span><span class="p">;</span>
+</span><span class='line'> <span class="k">version</span>
+</span><span class='line'><span class="c1">---------</span>
+</span><span class='line'><span class="p">(</span><span class="mi">0</span> <span class="k">rows</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>5. Installing psql client directly in the shell</h3>
+
+<p>It should be possible to install the psql client in the shell container automatically, but I must admit I did not try this yet. It should just a matter of adding this to the <code>Dockerfile</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">postgresql</span><span class="o">-</span><span class="n">client</span><span class="o">-&lt;</span><span class="k">version</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to boot a new Rails project with Docker and Heroku]]></title>
@@ -339,6 +568,17 @@
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># For example, to update your bundle</span>
 </span><span class='line'>docker-compose run shell bundle update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>EDIT 2016-07-20</h3>
+
+<p>For the moment, there&rsquo;s a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again &hellip; I&rsquo;ll have a look into this later and see if I can fix that.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>docker-compose run shell bundle update
+</span><span class='line'>docker-compose build
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
@@ -1498,108 +1738,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 <p><a href="http://philippe.bourgau.net/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.png"><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.jpg" title="Screenshot of our vacation dashboard" ></a></p>
 
 <p>It&rsquo;s been 6 months, and it&rsquo;s been working like a charm. I think it made everything simpler once we had a clear rule about when vacations were OK or not.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Are Most Agile Teams Doing Continuous Improvement The Silly Way ?]]></title>
-    <link href="http://philippe.bourgau.net/are-most-agile-teams-doing-continuous-improvement-the-silly-way/"/>
-    <updated>2016-03-06T07:33:00+00:00</updated>
-    <id>http://philippe.bourgau.net/are-most-agile-teams-doing-continuous-improvement-the-silly-way</id>
-    <category term="agile" /><category term="book" /><category term="lean" />
-    <content type="html"><![CDATA[<p>A few weeks ago, as I was looking the internet for Lean principles to improve our way of working, I fell upon this book <a href="leanagilecamp.fr">Petit guide de management lean a l&#8217;usage des équipes agiles</a> (NB: the book is in French, the title means &lsquo;Little lean management guide at the usage of agile teams&rsquo;). It made me think and I thought it deserved a blog post.</p>
-
-<p><a href="http://leanagilecamp.fr"><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/cover.svg" title="The book cover" ></a></p>
-
-<p>It explains that agility can be though of as a set of practices and principles, shared through a huge community. This makes it a great production system, where improvement are mostly brought by gut feeling retrospectives and trial of other teams practices. At the contrary, Lean is very light framework for continuous improvement, relying on a more systematic waste elimination.</p>
-
-<p>After this introduction, the bulk of the book is composed of a set of 9 detailed real life stories demonstrating the lean way of bringing improvements. Are is a summary of 3 of these :</p>
-
-<h2><a href="http://leanagilecamp.fr/guide.html#sc%C3%A8ne-de-crime-la-cat%C3%A9gorie-myst%C3%A8re-du-projet-condor">Unknown Category at Project Condor</a></h2>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/condor.jpg" title="Issue indicators" ></p>
-
-<p>The team maintains a virtual call center of poor quality, resulting in lots of incidents in production. Here is how they deal with the situation :</p>
-
-<ol>
-<li>They start by showing the issues, by categorizing them from the logs, they discover that they are mainly related to training, network, but surprisingly, the majority (30%) cannot be categorized and fall in the &lsquo;unknown&rsquo; category.</li>
-<li>By improving logging, the unknown category falls to 5% ! Fixing network timeout issues then makes the client a lot happier.</li>
-<li><p>Eventually, they go to client&rsquo;s site while monitoring the logs at the same time. They discover that remaining issues are explained by</p>
-
-<ul>
-<li>some users are using a double click to hack the system and jump ahead of the queue</li>
-<li>the hang up and hang off buttons being too close, which results in operator misleadingly ending their communication</li>
-<li>calls to wrong numbers being logged as incidents</li>
-</ul>
-</li>
-</ol>
-
-
-<p>The authors conclude that while uncomfortable, going to the clients increased motivation for everyone, fixed issues and made the client happier.</p>
-
-<h2><a href="http://leanagilecamp.fr/guide.html#sc%C3%A8ne-de-crime-tous-coupables">All Guilty !</a></h2>
-
-<p>An author is called to help a team which is working on unifying reimbursement systems after a merge. The project is late and the product is unreliable.</p>
-
-<p>The first step he takes is to visualize a target (next batch in 3 months) and the flow</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/target.jpg" title="Details of the 3 months target" ></p>
-
-<p>The flow whiteboard shows that tasks get stuck when in need of clarifications from business analysts. Tension between people is already increasing. They Team decides to visualize this with &lsquo;blocker&rsquo; post-its.</p>
-
-<p>After an inquire with the BAs, it turns out that they don&rsquo;t see the waiting tasks the issue management software.</p>
-
-<p>The final step is to agree all together (developers and BAs) on an uniform way of defining and following blocking issues</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/blockers.jpg" title="The shared blocked issues follow up wall board" ></p>
-
-<p>Tickets are discussed at the stand-up, and unblocked issues are also visualized. As a result in only 2 weeks, the process fluidifies, and the tensions decrease.</p>
-
-<p>The authors conclude that cross functional teams work better</p>
-
-<h2><a href="http://leanagilecamp.fr/guide.html#sc%C3%A8ne-de-crime-joue-la-courte-et-pr%C3%A9cise">PDCA</a></h2>
-
-<p>This story starts in a rather typical way : the client would like the team to go faster.</p>
-
-<p>The team engages into a series of <a href="https://en.wikipedia.org/wiki/PDCA">Plan Do Check Act</a> cycles.</p>
-
-<h3>Hypothesis 1 : There must be some obvious waste</h3>
-
-<p>The team decides to log any waste occurring for 2 weeks. Even with discipline, only 2 hours are spotted during the 60 man.days of the sprint</p>
-
-<h3>Hypothesis 2 : Too much refactoring or too much test writing</h3>
-
-<p>For a few weeks, the authors keeps a daily log of the team activities during after every stand-up meeting.</p>
-
-<p>It turns out that writing tests accounts for 5,5% of the time, refactoring for only 2% but programming for 40% !</p>
-
-<h3>Hypothesis 3 : if there is something to improve, it must be in programming.</h3>
-
-<p>For 20 half days, the author embarks on the tedious task of keeping a very detailed log of activities while taking the role of <a href="https://en.wikipedia.org/wiki/Pair_programming#Remote_pair_programming">navigator</a> in pair programming sessions.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/log.jpg" title="The detailed log of programming activities" >
-<img class="center" src="http://philippe.bourgau.net/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/activities.jpg" title="Ratio of different programming activities" ></p>
-
-<p>They clearly understand that most time is taken not in writing tests, doing refactoring or writing complicated code, but in understanding existing code, third-parties and APIs</p>
-
-<h3>Aftermath</h3>
-
-<p>First, they avoided loosing time on improving the wrong thing
-The team also agreed on the practice of asking for help at the good person when starting stories. Doing that, they got a nearly 100% speed boost !</p>
-
-<h2>The rest of the book</h2>
-
-<p>The book highlights a lot of other continuous improvement practices. For example :</p>
-
-<ul>
-<li>The &lsquo;problem box&rsquo; where team members can log any waste they are going through during their work. This made me think of my <a href="http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7/">Plan For Technical Debt</a></li>
-<li>Individual improvement follow up : a single team member is responsible to drive an improvement to its conclusion, in order to make sure that it is not forgotten</li>
-</ul>
-
-
-<p>I personally found this book to be just great ! It&rsquo;s short and focused, pragmatic, and a pretty easy read. If you liked <a href="http://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2">Scrum and XP from the trenches</a> I think you should read it. More generally, I think it&rsquo;s very useful for anyone involved in the development process who would like to push agility a little further.</p>
-
-<p>There&rsquo;s a catch though, it&rsquo;s in french ! I guess I could take the time to translate it, tell me if you are interested.</p>
 ]]></content>
   </entry>
   
