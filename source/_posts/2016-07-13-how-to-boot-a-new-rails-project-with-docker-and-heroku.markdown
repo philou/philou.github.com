@@ -216,3 +216,12 @@ When in development mode, you might want to run rails or other commands on your 
 # For example, to update your bundle
 docker-compose run shell bundle update
 ```
+
+### EDIT 2016-07-20
+
+For the moment, there's a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again ... I'll have a look into this later and see if I can fix that.
+
+```bash
+docker-compose run shell bundle update
+docker-compose build
+```
