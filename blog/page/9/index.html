@@ -101,6 +101,128 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/i-just-replaced-feedburner-with-mailchimp/">I Just Replaced Feedburner With MailChimp</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-08T06:36:00+00:00" pubdate data-updated="true">Oct 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Until now, I had been using <a href="http://www.feedburner.com">Feedburner</a> to manage the email subscriptions to my <a href="https://www.mes-courses.fr/blog">blog on mes-courses.fr</a>. <del>It had been working fine</del> I thought it had been working fine until a friend of mine asked me if I was still working on it, since it had been a time since she did not receive any email !</p>
+
+<p>It turned out that feedburner had not been forwarding emails for 6 months and that it had gone unnoticed &hellip; I had already had this issue before, and it was because my rss was not well formed according to feedburner (something related to unicode encoding I think). So to summarise :</p>
+
+<ul>
+<li>I lost trust in feedburner to forward my posts correctly</li>
+<li>Feedburner is not maintained by Google anymore</li>
+<li>They have been persistant rumors about Google shutting down Feedburner completly especially since the Reader shut down</li>
+</ul>
+
+
+<p>I started looking for alternatives. I tried <a href="http://www.nouri.sh">Nourish</a> and <a href="http://www.mailchimp.com">MailChimp</a> I did not manage to make Nourish work like I wanted, but I found MailChimp an intuitive and well documented product.</p>
+
+<p>The setup with MailChimp was a lot longer than with Feedburner, but the result is great. I feed a lot more confident about these emails being delivered now.</p>
+
+<p>There are a few points I still miss though :</p>
+
+<ul>
+<li>The social forward does not seem to work the same easy way, it looks like if MailChimp pushes the email content to your networks, but not a direct link to your blog</li>
+<li>MailChimp does not track non-email subscribers to your rss. I&rsquo;ll have to check my analytics to see how to do it.</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/rspec-matchers-combinators-2-spec-combos-gem/">RSpec Matchers Combinators 2 : Spec_combos Gem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-25T21:29:00+00:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;spec_combos&#39;</span><span class="p">,</span> <span class="ss">:group</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">all_</span><span class="p">{</span><span class="n">and_</span><span class="p">(</span><span class="n">be_odd</span><span class="p">,</span> <span class="n">be_instance_of</span><span class="p">(</span><span class="no">Fixnum</span><span class="p">))}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It outputs the following error :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>Failure/Error: expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</span><span class='line'>  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:
+</span><span class='line'>    [1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+</span><span class='line'>      expected odd? to return true, got false
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I hope this might help !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a></h1>
     
     
@@ -701,102 +823,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/be-careful-not-to-bundle-fakeweb-in-production/">Be Careful Not to Bundle FakeWeb in Production</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-03T06:31:00+00:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For testing purpose, I added <a href="https://github.com/chrisk/fakeweb">FakeWeb</a> to my app. Later, I deployed it to a staging env on heroku to find out that my scrapper started to fail with some strange Net::HTTPForbidden were occuring after about 90 minutes of scrapping, with no clear reason. It turned that I had mistakenly added FakeWeb to all environments, and that just removing it fixed the issue !</p>
-
-<p>As it is working now, I didn&rsquo;t take the time to dig deeper into it &hellip;</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/matching-meta-tags-with-capybara-2/">Matching Meta Tags With Capybara 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-01T20:20:00+00:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To match meta tags, I had to resort to the following :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -868,6 +894,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/when-the-boy-scout-rule-fails/">When the Boy Scout Rule Fails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/when-the-boy-scout-rule-fails/">When The Boy Scout Rule Fails</a>
+      </li>
+    
+      <li class="post">
         <a href="/is-there-any-room-for-the-not-passionate-developer/">Is There Any Room For The Not-Passionate Developer ?</a>
       </li>
     
@@ -877,14 +911,6 @@
     
       <li class="post">
         <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to boot a new Rails project with Docker and Heroku</a>
-      </li>
-    
-      <li class="post">
-        <a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Docker Compose trick : How to have an overridable environment variable in development mode ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-years-of-blogging-about-software/">5 Years of Blogging About Software</a>
       </li>
     
   </ul>

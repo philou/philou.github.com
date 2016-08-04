@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="A programming blog. Particularly about agile development, real world walkthrough, tutorials, side project entrepreneurship and open source software.">
+
+  
+  <meta name="keywords" content="blog, programming, ruby, coffeescript, c#, java, agile, extreme programming, xp, kanban, scrum, tdd, testing, unit testing">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/blog/page/14/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/storexplore">Storexplore</a></li>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/using-gems-instead-of-rails-plugins-on-heroku/">Using Gems Instead of Rails Plugins on Heroku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-22T00:00:00+00:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you&#8217;ve got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules &#8230; You are left with 2 choices :</p>
+
+
+<ul>
+<li>Expand the submodule as classical files in your main git repository</li>
+<li>Use the extension or plugin as a gem (if possible)</li>
+</ul>
+
+
+<p><p>When I can, I&rsquo;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake radiant:extensions:tags:install
+</span></code></pre></td></tr></table></div></figure>
+<p />I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
+<p>in &lt;railsapproot&gt;/lib/tasks/gems.rake<br />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;#Gem.searcher.find(&#39;radiant-tags-extension&#39;).full_gem_path}/lib/tasks/*.rake&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">ext</span><span class="o">|</span> <span class="nb">load</span> <span class="n">ext</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/there-can-be-only-one-css-stylesheet-per-medi/">There Can Be Only One Css Stylesheet Per Media</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-21T00:00:00+00:00" pubdate data-updated="true">Sep 21<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I thought it was a good idea to specify a media in my stylesheet link : <br />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/tags.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;tags stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>but when I tried to add another stylesheet, it was ignored ! <br />
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/common.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;main stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/tags.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;tags stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>It worked by removing the media attribute. It seems that only one <br />stylesheet per media is taken into account.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/13/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/when-the-boy-scout-rule-fails/">When the Boy Scout Rule Fails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/when-the-boy-scout-rule-fails/">When The Boy Scout Rule Fails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/is-there-any-room-for-the-not-passionate-developer/">Is There Any Room For The Not-Passionate Developer ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to boot a new Rails project with Docker and Heroku</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend&#8217;s blogs</h1>
+  <ul>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain&#8217;s blog (french)</a></li>
+    <li><img class="logo link" src="http://tpierrain.blogspot.fr/favicon.ico" /><a href="http://tpierrain.blogspot.fr/">Thomas&#8217; blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="http://blog.foldlabs.com/images/feed-icon.svg" /><a href="http://blog.foldlabs.com/">Foldlabs&#8217;s blog</a></li>
+    <li><img class="logo link" src="http://blogs.codes-sources.com/favicon.ico" /><a href="http://blogs.codes-sources.com/pierrick/default.aspx">Pierrick&#8217;s blog (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

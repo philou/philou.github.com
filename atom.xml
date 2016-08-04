@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-08-01T04:34:50+00:00</updated>
+  <updated>2016-08-04T06:27:33+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,121 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[When the Boy Scout Rule Fails]]></title>
+    <link href="http://philippe.bourgau.net/when-the-boy-scout-rule-fails/"/>
+    <updated>2016-08-02T05:38:00+00:00</updated>
+    <id>http://philippe.bourgau.net/when-the-boy-scout-rule-fails</id>
+    <category term="refactoring" /><category term="software" /><category term="technical debt" />
+    <content type="html"><![CDATA[<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg" title="An illustration of the boy scout rule" ></p>
+
+<p>Here goes the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">boy scout rule</a> :</p>
+
+<blockquote><p>Always check a module in cleaner than when you checked it out.</p></blockquote>
+
+<p>Unfortunately, this alone does not guarantee to keep the technical debt under control. What can we do then ?</p>
+
+<h2>Why the boy scout rule is not enough</h2>
+
+<p>I can easily think of a few issues that are not covered by the boy scout rule.</p>
+
+<h3>It only deals with local problems</h3>
+
+<p>In it&rsquo;s statement, the boy scout rule is local and does not address large scale design or architecture issues. Applying the boy scout rule keeps files well written, using with clear and understandable code. From a larger perspective though, it does very little or slow improvement to the overall design.</p>
+
+<p>These large scale refactorings are very difficult to deal with using the boy scout rule alone. It could be done but would require to share the refactoring goal with all the team, and then track its progress, while at the same time dealing with all the other subjects of the project. That&rsquo;s starting to sound like multitasking to me.</p>
+
+<h3>It&rsquo;s skill dependent</h3>
+
+<p>Another point about the boy scout rule (and to be fair, about any refactoring technique) is that programmers will be able to clean the code only as much as their skills allow them to !</p>
+
+<p>Imagine what would happen when a new master developer arrives in a team of juniors, he&rsquo;d spot a lot of technical debt and would suggest improvements and ways to clean the code. Code that was thought of as very clean would suddenly be downgraded to junk !</p>
+
+<p>The point here is that the boy scout rule cannot guarantee that you have no technical debt, because you don&rsquo;t know how much you have !</p>
+
+<p>That&rsquo;s where the debt metaphor reaches its limits and flips to some productivity investment. By investing time to perform some newly discovered refactoring, you could get a productivity boost !</p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design"><img class="center" src="http://philippe.bourgau.net/imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg" title="The cover of &#34;Domain Driven Design&#34;" alt="The cover of &#34;Domain Driven Design&#34;"></a></p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design">Domain-Driven Design: Tackling Complexity in the Heart of Software</a>, Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a &lsquo;breakthrough&rsquo;. These breakthroughs often promote existing code to technical debt &hellip;</p>
+
+<h3>It&rsquo;s context dependent</h3>
+
+<p>Developers alone are not the only one responsible for creating technical debt. Changes to the environment also do.</p>
+
+<p>For example, if the market conditions change, and that new expectations for the product are slowly becoming the norm, your old perfectly working system becomes legacy and technical debt. As an example, let&rsquo;s examine what happened to the capital markets software industry in response to the 2008 crisis.</p>
+
+<ul>
+<li>The sector became a lot more regulated</li>
+<li>Risk control is moving from nightly batches to real time</li>
+<li>The demand for complex (and risky) contracts decreased</li>
+<li>As a consequence, trading on simpler contracts exploded</li>
+</ul>
+
+
+<p>All these elements combined invalidated existing architectures !</p>
+
+<p>New technologies also create technical debt. Think the switch from mainframe to the web.</p>
+
+<h2>What do we need then ?</h2>
+
+<p>Should we stop using the boy scout rule ? Surely not, it would be a total non-sense. Submitting clean and readable code is a must.</p>
+
+<p>But it is not enough. If you have spotted some large scale refactoring that could bring some improvement, we should do what a fund manager would do :</p>
+
+<ol>
+<li>Estimate the return on investment</li>
+<li>If it is good enough, do it now</li>
+</ol>
+
+
+<p>Obviously, large refactorings should also be split into smaller <del>value adding</del> cost reducing items. But then what ?</p>
+
+<p><a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development"><img class="center" src="http://philippe.bourgau.net/imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg" title="The cover of &#34;The Nature of Software Development&#34;" alt="The cover of &#34;The Nature of Software Development&#34;"></a></p>
+
+<p>In <a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development">The Nature of Software Development</a> Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you&rsquo;ve got that, there&rsquo;s no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.</p>
+
+<p>Frankly, I think that&rsquo;s easier said than done. I can <em>think</em> of two ways :</p>
+
+<ul>
+<li>As Ron Jefferies tends to say, have a jelled-cross-functional team discuss and prioritize collectively</li>
+<li>As <a href="http://reinertsenassociates.com/technical-debt-adding-math-metaphor/">Don Reintersen</a> advocates, use an <a href="http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7/">economical framework</a> to estimate the return on investment</li>
+</ul>
+
+
+<p>At least that&rsquo;s a starting point !</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[When The Boy Scout Rule Fails]]></title>
+    <link href="http://philippe.bourgau.net/when-the-boy-scout-rule-fails/"/>
+    <updated>2016-08-02T00:00:00+00:00</updated>
+    <id>http://philippe.bourgau.net/when-the-boy-scout-rule-fails</id>
+    
+    <content type="html"><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>2016-08-02-when-the-boy-scout-rule-fails.html</title>
+
+</head>
+
+<body>
+
+Unable to find image &#8216;pbourgau/docker-grip-export:latest&#8217; locally
+Pulling repository docker.io/pbourgau/docker-grip-export
+docker: Error: image pbourgau/docker-grip-export:latest not found.
+See &#8216;docker run &#8211;help&#8217;.
+
+</body>
+</html>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Is There Any Room For The Not-Passionate Developer ?]]></title>
@@ -884,7 +999,7 @@ wavelength as the people [at Microsoft].</p></blockquote>
     <link href="http://philippe.bourgau.net/the-size-of-code/"/>
     <updated>2016-06-08T04:45:00+00:00</updated>
     <id>http://philippe.bourgau.net/the-size-of-code</id>
-    <category term="joke" /><category term="programming" /><category term="technical-debt" />
+    <category term="joke" /><category term="programming" /><category term="technical debt" />
     <content type="html"><![CDATA[<p>The CFO&rsquo;s debt is visible in his balance sheet. The CTO&rsquo;s technical debt is invisible. What about making it visible ?</p>
 
 <p>Developers have an intuitive sense of the technical debt in some parts of the system. But few have an accurate estimation of its full extent. Even the size of a code base is difficult to grasp. In the same way, the size of the code is just a number. But the fact are there : between 10 000 and 10 000 000 lines of code, the rules aren&rsquo;t the same, but it&rsquo;s only invisible data on hard drives &hellip;</p>
@@ -927,7 +1042,7 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     <link href="http://philippe.bourgau.net/legacy-code-coverall-day/"/>
     <updated>2016-06-06T04:16:00+00:00</updated>
     <id>http://philippe.bourgau.net/legacy-code-coverall-day</id>
-    <category term="joke" /><category term="programming" /><category term="technical-debt" />
+    <category term="joke" /><category term="programming" /><category term="technical debt" />
     <content type="html"><![CDATA[<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-06-06-legacy-code-coverall-day/miners.jpg" title="Miners going to work in Coveralls" ></p>
 
 <p>Some days, coding feels like speleology or mining &hellip; Dealing with weird and undocumented old logic can even some time be <a href="https://www.quora.com/How-do-you-keep-your-sanity-while-working-on-a-Super-Dirty-Rotten-Spaghetti-codebase">damaging to the mind</a> ! I think we should go to work wearing the adequate protection !</p>
@@ -943,7 +1058,7 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     <link href="http://philippe.bourgau.net/anti-ugly-code-glasses/"/>
     <updated>2016-06-02T04:33:00+00:00</updated>
     <id>http://philippe.bourgau.net/anti-ugly-code-glasses</id>
-    <category term="joke" /><category term="programming" /><category term="technical-debt" />
+    <category term="joke" /><category term="programming" /><category term="technical debt" />
     <content type="html"><![CDATA[<p>I think I found a way to fix the dirty code problem once and for all &hellip;</p>
 
 <p>In <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a> Zaphod Beeblebrox has some anti panic glasses. They feature some special danger detection mechanism that turns them opaque black to save their bearer from panicking.</p>
@@ -1664,118 +1779,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 <h2>Last word</h2>
 
 <p>I&rsquo;m pretty sure we could make this more simple in an environment with more end to end feedback (start-up or pizza teams) but we feel that our current alternative is a lot better than having the manager deciding everything on his own.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Make hiring everyone's business]]></title>
-    <link href="http://philippe.bourgau.net/make-hiring-everyones-business/"/>
-    <updated>2016-03-21T21:05:00+00:00</updated>
-    <id>http://philippe.bourgau.net/make-hiring-everyones-business</id>
-    <category term="hiring" /><category term="management30" /><category term="selforganizing" />
-    <content type="html"><![CDATA[<p>Let me tell you a typical hiring story. A bit more than 10 years ago, I was contractor at a bank on a C++ front office application. The system had initially been well engineer, but it had been <del>stuffed together</del> merged with another system that had a completely different architecture. Ha, and there were no automated tests. As you&rsquo;d guess, we had quite our dose of bugs, and maintaining this application was not easy.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-21-make-hiring-everyones-business/now-hiring.jpg" title="A 'Now Hiring' sign" ></p>
-
-<p>The manager wanted to hire a C++ programmer to beef up the team. Along with the division&rsquo;s architect he was conducting interviews to find just that guy. A few weeks later, he found a known C++ &amp; Windows local expert. A few weeks later, the team unanimously declared that we could not work with him because he was both pretentious and incompetent.</p>
-
-<p>I&rsquo;m pretty sure every developer already witnessed a similar story.</p>
-
-<h2>Managers do the hiring</h2>
-
-<p>This is the usual practice. The motivation is that managers have more experience so they should be better at it, and also that it alleviates developers from non-programming work. As we saw in the introduction story, there are issues with this approach too :</p>
-
-<ul>
-<li>it&rsquo;s pretty bad for the team &lsquo;fit&rsquo; : there is no team building here. You often end up with a collection of individual working at the same place rather than with a real team.</li>
-<li>during these interviews, the candidate only interacts with a particular type of profiles, who can tell how he&rsquo;ll be doing with more junior team members for example ?</li>
-<li>as usual, this administrative work removes some programming from the manager&rsquo;s time. That&rsquo;s often not a good bargain</li>
-<li>it decreases the team sense of control, as it is being &lsquo;forced&rsquo; to work with someone they did not choose. This makes it harder for them to take responsibility of what they are trying to achieve.</li>
-</ul>
-
-
-<h2>How we self organized hiring</h2>
-
-<p>As I already explained in a <a href="http://philippe.bourgau.net/stop-feeling-like-a-kid-everytime-you-ask-a-day-off/">previous post</a> we engaged in various self delegation initiative by doing a <a href="https://management30.com/product/workouts/delegation-employee-engagement/">delegation board</a>. During this meeting, we identified hiring as something that could be self delegated.</p>
-
-<p>In order to fix that, we started a workshop for 1 hour per day with a sub group of the team. We started with a brainstorming, then we voted, and finally presented our proposition to the rest of the team, which actually validated it. The whole thing lasted for one week (5 hours).</p>
-
-<p><a href="http://dilbert.com"><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-21-make-hiring-everyones-business/dilbert.jpg" title="A Dilbert cartoon about hiring based on internet profile" ></a></p>
-
-<h2>What we decided for hiring</h2>
-
-<p>Here is the process we have decided to follow to handle hiring team members</p>
-
-<ol>
-<li>First, everyone in the team is responsible to speak up when he thinks we need to hire someone, during our retrospectives for example</li>
-<li>To handle new applications, we have prepared an online interview. It contains open questions and online coding exercises, on <a href="http://www.cyber-dojo.org/">cyber-dojo</a>, which allows us to track all the candidates iterations</li>
-<li>We do a round robin to find out who will follow the candidate through the hiring process. This means taking notes, organizing interviews, keeping the rest of the team up to date.</li>
-<li>When a candidate passes the online interview, we will receive him for an technical and general interview with 2 people from the team.</li>
-<li>All the team will then meet the candidate for a coffee break, in order to know if he will fit in the team</li>
-<li>We&rsquo;ll then play the <a href="https://rework.withgoogle.com/print/guides/6053596147744768/">Google hiring committee</a> until we reach a consensus</li>
-<li>When in doubt, we&rsquo;ll do extra interviews, and repeat</li>
-</ol>
-
-
-<p>That&rsquo;s just what we came up with, if you start this road, you might well come up with a very different process.</p>
-
-<h2>One more thing</h2>
-
-<p>It&rsquo;s great to have a selective hiring, but you&rsquo;ll also need to improve the input of the hiring pipeline, but that&rsquo;s <a href="http://philippe.bourgau.net/great-developers-are-free/">another story</a> &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Scrum teams do not need A Scrum Master]]></title>
-    <link href="http://philippe.bourgau.net/scrum-teams-do-not-need-a-scrum-master/"/>
-    <updated>2016-03-15T05:41:00+00:00</updated>
-    <id>http://philippe.bourgau.net/scrum-teams-do-not-need-a-scrum-master</id>
-    <category term="agile" /><category term="management" /><category term="management30" /><category term="selforganizing" />
-    <content type="html"><![CDATA[<p>We don&rsquo;t have an official scrum master in our team anymore. We now have 7 ! A different team member assumes the full scrum master role at every sprint.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-15-scrum-teams-do-not-need-a-scrum-master/round-robin.jpg" title="A fat round robin bird" ></p>
-
-<h2>Why did we switch to Scrum Master round robin ?</h2>
-
-<p>It all started with our <a href="https://management30.com/product/delegation-poker/">delegation poker</a> (see <a href="http://philippe.bourgau.net/stop-feeling-like-a-kid-everytime-you-ask-a-day-off/">previous post</a>). We noticed that there were still quite some activities that I (the manager) was the only one to do. We hoped that by sharing these activities throughout the team, we would :</p>
-
-<ul>
-<li>increase everyone&rsquo;s motivation by showing a bigger picture</li>
-<li>leave me more time for programming</li>
-<li>learn new skills to everyone</li>
-</ul>
-
-
-<h2>How did we do it ?</h2>
-
-<p>Before our <a href="https://management30.com/product/workouts/delegation-employee-engagement/">delegation board meeting</a>, we had prepared all the activities we are regularly doing. We found quite a few recurrent non programming tasks that traditionally eschewed to the team lead (me in that case). The initial plan was to find ways to delegate these activities to the team during the meeting, but it would have took way too much time.</p>
-
-<p>Having identified all these activities, I individually suggested at everyone in the team to do a round robin scrum master role, which would handle all these activities for a sprint. I was happily surprise by the quasi complete buy-in from all the team. Before I announced it to the team, I did 2 things :</p>
-
-<h3>List all the activities of the scrum master.</h3>
-
-<p>Here is a subset :</p>
-
-<ul>
-<li>attend other teams meetings</li>
-<li>make sure there are enough workable stories for the next planning session with the product owner</li>
-<li>prepare and animate a retrospective</li>
-<li>animate the demo</li>
-</ul>
-
-
-<h3>Make this more fun !</h3>
-
-<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Having <a href="https://twitter.com/hashtag/fun?src=hash">#fun</a> <a href="https://twitter.com/hashtag/geeky?src=hash">#geeky</a> <a href="https://twitter.com/hashtag/work?src=hash">#work</a> <a href="https://twitter.com/hashtag/environment?src=hash">#environment</a> Our scrummaster is <a href="https://twitter.com/hashtag/DarthVader?src=hash">#DarthVader</a> or <a href="https://twitter.com/hashtag/Yuda?src=hash">#Yuda</a> <a href="https://twitter.com/hashtag/starwars?src=hash">#starwars</a> at <a href="https://twitter.com/Work_at_Murex">@Work_at_Murex</a> <a href="https://twitter.com/pbourgau">@pbourgau</a> <a href="https://t.co/CbZXCYwBge">pic.twitter.com/CbZXCYwBge</a></p>&mdash; Ahmad Atwi (@ahmadatwi) <a href="https://twitter.com/ahmadatwi/status/694190926684618753">1 février 2016</a></blockquote>
-
-
-<script async src="http://philippe.bourgau.net//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<p>I bought totems for the scrum master. The team chose to keep Yoda in Paris and send Darth Vador in <a href="https://twitter.com/ahmadatwi">Ahmad</a> suitcase back in Beirut.</p>
-
-<h2>What did we get ?</h2>
-
-<p>After a few sprints of this, the feedback I got is that people like the increased involvement in the big picture (<a href="http://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&amp;qid=1458076848&amp;sr=8-1&amp;keywords=daniel+pink+drive">Daniel Pink told us that already</a>). On my part, it allowed to increase my programming time to nearly 7 uninterrupted days per sprint (10 days). I&rsquo;m quite happy with this ! As for the third goal, learning new skills, I guess we&rsquo;ll need a bit more time to figure this out.</p>
 ]]></content>
   </entry>
   

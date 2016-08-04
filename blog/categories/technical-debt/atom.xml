@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: technical-debt | Philippe Bourgau's blog]]></title>
+  <title><![CDATA[Category: technical debt | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/technical-debt/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-08-01T04:34:50+00:00</updated>
+  <updated>2016-08-04T06:27:33+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[When the Boy Scout Rule Fails]]></title>
+    <link href="http://philippe.bourgau.net/when-the-boy-scout-rule-fails/"/>
+    <updated>2016-08-02T05:38:00+00:00</updated>
+    <id>http://philippe.bourgau.net/when-the-boy-scout-rule-fails</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg" title="An illustration of the boy scout rule" ></p>
+
+<p>Here goes the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">boy scout rule</a> :</p>
+
+<blockquote><p>Always check a module in cleaner than when you checked it out.</p></blockquote>
+
+<p>Unfortunately, this alone does not guarantee to keep the technical debt under control. What can we do then ?</p>
+
+<h2>Why the boy scout rule is not enough</h2>
+
+<p>I can easily think of a few issues that are not covered by the boy scout rule.</p>
+
+<h3>It only deals with local problems</h3>
+
+<p>In it&rsquo;s statement, the boy scout rule is local and does not address large scale design or architecture issues. Applying the boy scout rule keeps files well written, using with clear and understandable code. From a larger perspective though, it does very little or slow improvement to the overall design.</p>
+
+<p>These large scale refactorings are very difficult to deal with using the boy scout rule alone. It could be done but would require to share the refactoring goal with all the team, and then track its progress, while at the same time dealing with all the other subjects of the project. That&rsquo;s starting to sound like multitasking to me.</p>
+
+<h3>It&rsquo;s skill dependent</h3>
+
+<p>Another point about the boy scout rule (and to be fair, about any refactoring technique) is that programmers will be able to clean the code only as much as their skills allow them to !</p>
+
+<p>Imagine what would happen when a new master developer arrives in a team of juniors, he&rsquo;d spot a lot of technical debt and would suggest improvements and ways to clean the code. Code that was thought of as very clean would suddenly be downgraded to junk !</p>
+
+<p>The point here is that the boy scout rule cannot guarantee that you have no technical debt, because you don&rsquo;t know how much you have !</p>
+
+<p>That&rsquo;s where the debt metaphor reaches its limits and flips to some productivity investment. By investing time to perform some newly discovered refactoring, you could get a productivity boost !</p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design"><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg" title="The cover of &ldquo;Domain Driven Design&rdquo;" ></a></p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design">Domain-Driven Design: Tackling Complexity in the Heart of Software</a>, Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a &lsquo;breakthrough&rsquo;. These breakthroughs often promote existing code to technical debt &hellip;</p>
+
+<h3>It&rsquo;s context dependent</h3>
+
+<p>Developers alone are not the only one responsible for creating technical debt. Changes to the environment also do.</p>
+
+<p>For example, if the market conditions change, and that new expectations for the product are slowly becoming the norm, your old perfectly working system becomes legacy and technical debt. As an example, let&rsquo;s examine what happened to the capital markets software industry in response to the 2008 crisis.</p>
+
+<ul>
+<li>The sector became a lot more regulated</li>
+<li>Risk control is moving from nightly batches to real time</li>
+<li>The demand for complex (and risky) contracts decreased</li>
+<li>As a consequence, trading on simpler contracts exploded</li>
+</ul>
+
+
+<p>All these elements combined invalidated existing architectures !</p>
+
+<p>New technologies also create technical debt. Think the switch from mainframe to the web.</p>
+
+<h2>What do we need then ?</h2>
+
+<p>Should we stop using the boy scout rule ? Surely not, it would be a total non-sense. Submitting clean and readable code is a must.</p>
+
+<p>But it is not enough. If you have spotted some large scale refactoring that could bring some improvement, we should do what a fund manager would do :</p>
+
+<ol>
+<li>Estimate the return on investment</li>
+<li>If it is good enough, do it now</li>
+</ol>
+
+
+<p>Obviously, large refactorings should also be split into smaller <del>value adding</del> cost reducing items. But then what ?</p>
+
+<p><a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development"><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg" title="The cover of &ldquo;The Nature of Software Development&rdquo;" ></a></p>
+
+<p>In <a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development">The Nature of Software Development</a> Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you&rsquo;ve got that, there&rsquo;s no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.</p>
+
+<p>Frankly, I think that&rsquo;s easier said than done. I can <em>think</em> of two ways :</p>
+
+<ul>
+<li>As Ron Jefferies tends to say, have a jelled-cross-functional team discuss and prioritize collectively</li>
+<li>As <a href="http://reinertsenassociates.com/technical-debt-adding-math-metaphor/">Don Reintersen</a> advocates, use an <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">economical framework</a> to estimate the return on investment</li>
+</ul>
+
+
+<p>At least that&rsquo;s a starting point !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[The Size Of Code]]></title>
@@ -88,6 +173,41 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 <p>Let&rsquo;s build anti ugly-code glasses ! We&rsquo;d just need an IDE or editor plugin, connect it to <a href="http://www.sonarqube.org/">Sonar</a> in order to get the quality of the current file, and if too bad, shut the glasses black !</p>
 
 <p>Finally the killer feature for augmented reality glasses !</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The technical debt ponzi scheme]]></title>
+    <link href="http://philippe.bourgau.net/the-technical-debt-ponzi-scheme/"/>
+    <updated>2015-10-01T19:34:00+00:00</updated>
+    <id>http://philippe.bourgau.net/the-technical-debt-ponzi-scheme</id>
+    <content type="html"><![CDATA[<p>Madoff would have been better off managing software projects than investing on Wall Street !</p>
+
+<p><img class="center" src="/imgs/2015-10-01-the-technical-debt-ponzi-scheme/bernie.jpg" title="&ldquo;Madoff&rsquo;s photo in jail&rdquo;" ></p>
+
+<p>Whereas in finance, a Ponzi scheme is a sure road to jail, it seems to be the de-facto standard in software development.</p>
+
+<p>A few months ago, I read <a href="http://www.amazon.com/Managing-Software-Debt-Inevitable-Development/dp/0321554132/ref=sr_1_2?ie=UTF8&amp;qid=1443728175&amp;sr=8-2&amp;keywords=managing+technical+debt">Managing Software Debt</a>, hoping to find methods about how to manage technical debt with some hard numbers (instead I found some good practices to avoid it, but that&rsquo;s another story). At no place did I read that taking more debt to pay the interests of existing debt was a good practice though &hellip;</p>
+
+<p>Thinking of it, I can remember of such <a href="https://en.wikipedia.org/wiki/Ponzi_scheme">Ponzi Schemes</a> in nearly every organization I worked in. Here are a few typical manifestations I saw :</p>
+
+<ul>
+<li>writing bogus code to compensate for some other bogus code</li>
+<li>creating tools to workaround existing technical debt. Ex:
+
+<ul>
+<li>exotic build tools to build some code riddled with cyclic dependencies that no sane build tool can build</li>
+<li>in house tools that do 10% of what standard (open source) tools can do on code following main standards</li>
+</ul>
+</li>
+</ul>
+
+
+<p>If this goes on for too long, you can end up in a technical debt death spiral : you know debt is out of control, so taking debt becomes the only way of actually getting anything done. &ldquo;Let&rsquo;s win this client now, because we won&rsquo;t be able to later &hellip;&rdquo;. It&rsquo;s like running to one&rsquo;s own ruin.</p>
+
+<p><img class="center" src="/imgs/2015-10-01-the-technical-debt-ponzi-scheme/road-wall.jpg" title="&ldquo;A road going straight in a wall&rdquo;" ></p>
+
+<p>If your organization is in this stage, you might think at the <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">&lsquo;time horizon&rsquo;</a> of your product, and discover that fixing the technical debt sometimes brings more value than getting this new client !</p>
 ]]></content>
   </entry>
   
