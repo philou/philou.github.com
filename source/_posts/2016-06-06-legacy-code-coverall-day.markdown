@@ -6,7 +6,7 @@ comments: true
 categories:
  - joke
  - programming
- - technical-debt
+ - technical debt
 keywords: "Coverall for developers, Legacy code day"
 description: "A joke about developers wearing coveralls to protect against legacy code"
 ---

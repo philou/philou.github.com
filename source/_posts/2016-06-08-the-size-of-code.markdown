@@ -6,7 +6,7 @@ comments: true
 categories:
  - joke
  - programming
- - technical-debt
+ - technical debt
 keywords: "Programming, Technical Debt, Lines of Code"
 description: "Crazy ideas to demonstrate the size of your code base to non developers"
 ---

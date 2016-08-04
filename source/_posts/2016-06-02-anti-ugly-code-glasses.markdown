@@ -6,7 +6,7 @@ comments: true
 categories:
  - joke
  - programming
- - technical-debt
+ - technical debt
 keywords: "Glasses, Programming, Software, Legacy Code"
 description: "A joke about glasses that hide dirty code"
 ---
