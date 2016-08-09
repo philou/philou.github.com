@@ -101,6 +101,88 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/the-holy-code-antipattern/">The Holy Code Antipattern</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-10T08:42:00+00:00" pubdate data-updated="true">Aug 10<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I&rsquo;ve encountered this situation in different disguise in different companies, I now assume it&rsquo;s a widely applied antipattern.</p>
+
+<h3>Context</h3>
+
+<p>A team of programmers inherits a piece of code from one of their bosses. They find it really difficult to maintain : it is difficult to understand, fix, and change.</p>
+
+<h3>The Antipattern</h3>
+
+<p><img class="center" src="/imgs/2014-08-10-the-holy-code-antipattern/grenade.jpg" title="A picture from the Monty Python's Holy Grail movie featuring the holy hand grenade of antioch" ></p>
+
+<p>As this piece of code seems too complex to be maintained by a team of simple programmers, as the boss, just forbid them :</p>
+
+<ul>
+<li>to refactor any part of it</li>
+<li>to rewrite it from scratch</li>
+<li>to use something else instead</li>
+</ul>
+
+
+<h3>Consequences</h3>
+
+<ul>
+<li>This often limits the number of bugs that appear in this library, but &hellip;</li>
+<li>It slows down development, because of the micro management required to enforce this pattern</li>
+<li>It frustrates programmers, and it is likely that the best ones will leave</li>
+<li>It prevents better design</li>
+<li>Even worse, in the long run, it prevents great domain driven design to emerge from merciless refactoring</li>
+<li>In the end, it makes the whole organization less performant</li>
+</ul>
+
+
+<h3>Examples</h3>
+
+<ul>
+<li><p>Your boss wrote something a few years ago, if the domain is more or less complex, the resulting code <em>is</em> complicated. The subject eventually got the reputation of being &lsquo;touchy&rsquo;. Your boss is the only person who effectively manages to change anything in there. He&rsquo;s a bit afraid that by trying to improve it, the whole thing might just break down and become a bug nest. So, now that he has some authority, he forbids anyone to touch it. If a change is finally required, he&rsquo;ll micro manage it !</p></li>
+<li><p>Your big boss spent some over time on writing an uber-meta-generic-engine to solve <del>the universe and</del> everything. After seeing many developpers fixing the same kind of bugs over and over, he decides that it&rsquo;s time to remove the dust from his compiler and that he starts building something that should solve the root cause of all these. In the spirit of the <a href="http://en.wikipedia.org/wiki/Second-system_effect">second system effect</a>, he adds all bells and whistle to his beloved project, trying to incorporate a solution to every different issue he has seen during the last decade. This code grows and grows in total isolation of any real working software. When he eventually thinks it is ready, he justs drops the whole thing to your team, that is now responsible to integrate and use this thing in the running system. He&rsquo;s micro managing the whole thing, and you don&rsquo;t have any choice but to comply and succeed. This usually generates gazillions of bugs, makes projects really late and ruins the developpers&#8217; lives.</p></li>
+</ul>
+
+
+<h3>Alternatives</h3>
+
+<ul>
+<li>Use collective code ownership so that knowledge about the code is shared by design</li>
+<li>Trust programmers to design and architecture the system</li>
+<li>Use constant refactoring to let tailor made domain driven designs emerge from the system</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/rip-mes-courses-dot-fr/">RIP mes-courses.fr</a></h1>
     
     
@@ -945,64 +1027,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/auchandirect-scrapi-an-unofficial-api-ruby-gem/">Auchandirect-ScrAPI : An Unofficial API Ruby Gem</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-21T06:31:00+00:00" pubdate data-updated="true">Mar 21<span>st</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://mashable.com/2011/01/04/brand-open-api-developers/">Every brands should provide an API for developpers</a> &hellip; unfortunately, it far from the truth right now. A few years ago, when I started my mes-courses.fr side project, I would have loved to find a french online grocery providing an open API. I had to resort to scrapping <em>(that&rsquo;s how I learnt that heavily relying on scrapping for a 15hr/week side project is not a good fit &hellip; but that&rsquo;s another story)</em>.</p>
-
-<p>As I am taking mes-courses.fr down, I have extracted the whole unofficial API I had built around <a href="http://www.auchandirect.fr">http://www.auchandirect.fr</a> (I&rsquo;m talking to you french hackers !) into an open source Ruby Gem. Briefly :</p>
-
-<ul>
-<li>It walks the whole store, from categories to items</li>
-<li>Given valid credentials, it can fill and save a cart</li>
-<li>It&rsquo;s <a href="http://choosealicense.com/licenses/lgpl-v3/">LGPL</a> : anyone can use it as long as they give back any improvement to the community</li>
-<li>It&rsquo;s using <a href="https://github.com/philou/storexplore">Storexplore</a>, another of my mes-courses.fr rip-off open source Ruby Gem</li>
-<li>It&rsquo;s tested on <a href="https://travis-ci.org/philou/auchandirect-scrAPI">Travis</a> and I&rsquo;m currently trying to make it daily tested with <a href="http://traviscron.pythonanywhere.com/">Traviscron</a></li>
-</ul>
-
-
-<p>There&rsquo;s mainly one thing it <em>cannot</em> do :</p>
-
-<ul>
-<li>It cannot procede to any payment or ordering</li>
-</ul>
-
-
-<p>It&rsquo;s available on <a href="https://github.com/philou/auchandirect-scrAPI">Github</a></p>
-
-<p>Happy scrapping !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1074,6 +1098,10 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-grow-a-culture-book/">How to Grow a Culture Book</a>
+      </li>
+    
+      <li class="post">
         <a href="/when-the-boy-scout-rule-fails/">When the Boy Scout Rule Fails</a>
       </li>
     
@@ -1087,10 +1115,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     
       <li class="post">
         <a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to boot a new Rails project with Docker and Heroku</a>
       </li>
     
   </ul>
