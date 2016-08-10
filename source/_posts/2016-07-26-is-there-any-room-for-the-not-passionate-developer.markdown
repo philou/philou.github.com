@@ -44,7 +44,7 @@ But then, how do passionate people manage to remain productive when working more
 
 In [Pragmatic Thinking and Learning: Refactor Your Wetware (Pragmatic Programmers)](https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050) (which is a great book BTW), Andy Hunt explains that our R-mode works in the background, and needs time away from the task at hand to come up with "out of the box" creative solutions.
 
-XP argues for a [sustainable pace](http://www.sustainablepace.net/what-is-sustainable-pace), but at the same time, Uncle Bob says that we should put in 80 hours of work per week to remain 'professional' (I guess that's from [The Clean Coder](https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=sr_1_2?ie=UTF8&qid=1470026034&sr=8-2&keywords=the+clean+code) if I remember correctly).
+XP argues for a [sustainable pace](http://www.sustainablepace.net/what-is-sustainable-pace), but at the same time, Uncle Bob says that we should put in 60 hours (40 for employer, and 20 for yourself) of work per week to become and remain 'professionals' (I guess that's from [The Clean Coder](https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=sr_1_2?ie=UTF8&qid=1470026034&sr=8-2&keywords=the+clean+code) if I remember correctly).
 
 On my side, 6 to 8 solid hours of pair-programming on the same subject is the most I can do before becoming a [Net Negative Producing Programmer](http://c2.com/cgi/wiki?NetNegativeProducingProgrammer). But I can do more programming per day if I work on a side project at the same time though !
 
