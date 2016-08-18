@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: business value | Philippe Bourgau's blog]]></title>
+  <title><![CDATA[Category: business-value | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/business-value/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-08-11T03:52:20+00:00</updated>
+  <updated>2016-08-18T07:15:38+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,113 +14,98 @@
 
   
   <entry>
-    <title type="html"><![CDATA[My Dream Lean Software Development Tool (Lean Software Development part 9)]]></title>
-    <link href="http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9/"/>
-    <updated>2015-12-14T20:49:00+00:00</updated>
-    <id>http://philippe.bourgau.net/my-dream-lean-software-development-tool-lean-software-development-part-9</id>
-    <content type="html"><![CDATA[<p>Current software project tracking tools suck !</p>
+    <title type="html"><![CDATA[How to measure your speed with your business value ? (Lean Software Development Part 3)]]></title>
+    <link href="http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/"/>
+    <updated>2014-10-16T07:07:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3</id>
+    <content type="html"><![CDATA[<p>There is a french idiom that basicaly is</p>
 
-<p>{% img center /imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/it-sucks.jpg A stamp that writes &ldquo;SUCKS&rdquo; %}</p>
+<blockquote><p>No use to run, all that is needed is to start on time &hellip;</p></blockquote>
 
-<p>By writing <a href="/the-flow-book-summary-lean-software-development_part_1/">this series of posts</a>, I realized that they should help us to prioritize rather than just serving as a nice GUIs on top of a ticket database.</p>
+<p>an agile engineer would add</p>
 
-<p>Let&rsquo;s take the story of developer Joe as an example. Joe is working for Megacorp, where he makes a good living, but feels like a small cog in the machine. He has lost the thrill of programming &hellip; He&rsquo;s still staying informed about latest trends in software world, but his job involves aging technologies. He knows that if he wants to remain in the course, he has to change gears. One day, he decides to do something <em>now</em>, and starts a side project in the hope of someday making a living out of it.</p>
+<blockquote><p>&hellip; and to go in the good direction</p></blockquote>
 
-<p>He does not have a large amount of money to invest in his project, so he decides to bootstrap his product using <a href="http://theleanstartup.com/">Lean Startup</a>. He reads and understands that there is a lot of different kind of activities to do if he wants to realize his dream : experiments, marketing, sales, design, coding &hellip;</p>
-
-<p>Unfortunately, he&rsquo;s so tired of programming boring stuff that he contracted the developer bias : he starves to code cool things again ! He knows the rest is important, he tries to do some of it, but he just doesn&rsquo;t realize how <em>much</em> needs to be done. So, without realising it, he wastes a lot of time coding something that people eventually don&rsquo;t buy. After 1 or 2 years of hard work, a working product but no users, he eventually quits, quite depressed &hellip;</p>
-
-<p>I guess you don&rsquo;t want to be Joe ! I know you&rsquo;ll think it won&rsquo;t happen to you &hellip; believe me, it can, <a href="rip-mes-courses-dot-fr/">I learned it the hard way</a> !</p>
-
-<p>Now suppose you had a tool that estimates the expected values of all different tasks :</p>
+<p>Indeed, velocity or mean cycle time as speed measures have their shortcomings :</p>
 
 <ul>
-<li>By applying <a href="https://en.wikipedia.org/wiki/Monte_Carlo_method">Monte Carlo simulations</a> to probabilistic value and size ranges, it could compute which features we should work on first. As a side effect, this could give us some release date estimates for a feature, depending on its position in the backlog.</li>
-<li>By having explicit experiment tasks with target value or size ranges, it could compute the value of information and prioritize experiments versus other tasks.</li>
-<li>Crossing informations from IDEs, VCS, Quality Trackers and CIs, it could detect technical debt items (aka. productivity opportunities), compute their values in the long run, and prioritize them with other tasks.</li>
-<li>If we found a way to integrate marketing, sales and design tasks, any kind of activity could be stored in the backlog, valued and prioritized.</li>
+<li>Can be falsified by story point inflation !</li>
+<li>Does not tell the team or its product owner whether they are working on the right thing.</li>
 </ul>
 
 
-<p>Here is what the backlog could look like :</p>
+<p>Wouldn&rsquo;t it be great if we could track the business value we are creating instead ? Wouldn&rsquo;t it be more motivating for developpers to know how they are contributing to the bottom line ? Wouldn&rsquo;t it help various people to align inside the organization ?</p>
 
-<p>{% img center /imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/mockup.jpg A mockup of the backlog view of such a product %}</p>
+<h2>How to track and prioritize based on your business value</h2>
 
-<p>All different kind of activities (developments, marketing, experiments, refactorings) would fit in the backlog. The system would estimate the value of every task for Joe, advising him what to work on first. It would make it obvious just how much market experiments are important when starting ! With such a tool, he is a lot more likely to build his new life.</p>
+<p>From <a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1413953773&amp;sr=8-1&amp;keywords=product+development+flow">Reinertsen&rsquo;s Flow book</a>, we learned that the cost of delay is the main driver of the value creation : the faster you deliver a feature, less you spend the cost of delay of that feature, the more value you are creating for your company. <a href="http://scaledagileframework.com/wsjf/">This article</a> suggests that the cost of delay can be computed with the following formula :</p>
 
-<p>The good thing with such a tool is that it could be built by feeding itself. <a href="https://en.wikipedia.org/wiki/Eating_your_own_dog_food">Eating its own dog&rsquo;s food</a> has always been the nice thing about writing software tools.</p>
+<blockquote><p>cost of delay = f(user business value) + g(time criticality) + h(risk reduction opportunity)</p></blockquote>
 
-<p>I&rsquo;d like to know, what do you think of the idea ? Would you use such a tool ? Is it worth me spending my nights building it ?</p>
+<p><a href="http://fr.slideshare.net/jchyip/estimating-cost-of-delay/27">This other article</a> suggests that they are different types of tasks that corresponds to the different terms of the formula above.</p>
 
-<p>This was 9th and last part of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 8 was <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I'll measure the lean startup value of information in my next side project (Lean Software Development Part 8)]]></title>
-    <link href="http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/"/>
-    <updated>2015-12-07T21:19:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8</id>
-    <content type="html"><![CDATA[<p>There must be a way to know the real money value of <a href="http://theleanstartup.com/">Lean Startup</a> &lsquo;knowledge&rsquo;.</p>
+<p>{% img center /imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/task-types.jpeg &ldquo;Different kind of tasks&rdquo; %}</p>
 
-<p>{% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/knowledge-money.jpg A brain or some money ? %}</p>
+<p>Here is how we could link the 2 articles :</p>
 
-<p>Lean Startup is about gathering &lsquo;knowledge&rsquo; through experiments instead of building things. <a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_3?ie=UTF8&amp;qid=1450068976&amp;sr=8-3&amp;keywords=lean+product+development">Flow book</a> suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.</p>
-
-<p>The overall plan would be :</p>
-
-<ol>
-<li>Start with a rough business plan, but assume that all that&rsquo;s in it has got 1 chance out of 10 of being right</li>
-<li>Design experiments to precise the likelyhood of what&rsquo;s in the business plan</li>
-<li>Compute the value of each experiment as the difference of the expected bottom line after and before running it (This should be possible if relying on the business plan for other parameters)</li>
-<li>Work on the task with the highest expected value, be it an experiment, a development, a sales task, or whatever</li>
-<li>Adapt you business plan with any new information</li>
-<li>Repeat</li>
-<li>If it becomes obvious that the expected final earnings are too low, pivot</li>
-</ol>
+<ul>
+<li>Stories with deadlines : either through legal or market constraints, not doing this will put you out of business (&lsquo;time criticality&rsquo; in the formula)</li>
+<li>Stories that influence the bottom line : by increasing the sales figures when delivered, or decreasing them when not delivered, which is kind of the same (&lsquo;user business value&rsquo; in the formula)</li>
+<li>Risk reduction tasks : by mitigating risk or streamlining the process, these tasks actually improve the bottom line of other stories (&lsquo;risk reduction opportunity&rsquo; in the formula)</li>
+</ul>
 
 
-<p>Flow explains that all the principles are pretty robust to bad inputs and errors. In short, the final estimations of earnings are still a lot better than without using any specific method. In the case of Lean Startup, it means that a false business plan is a good enough starting point.</p>
+<p>The later type of task will be detailed in other articles. Let&rsquo;s focus on the two others.</p>
 
-<h2>How to assess the likelyhood of a figure ?</h2>
+<h2>The case of the deadlined feature ?</h2>
 
-<p>By default let&rsquo;s assume the value of a feature is somewhere between 0 and your highest estimate. As we&rsquo;ll go through experiments we&rsquo;ll be able to narrow this value range and have a more accurate estimate for the real value.</p>
+<p>First, I&rsquo;d say its business value is 0, until it&rsquo;s too late. You should not be working on it too soon, but you should not be working on it too late neither !</p>
 
-<p>To keep things simple we could assume that the probability of value is uniformaly distributed within this range. From what I read in <a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">Waltzing With Bears</a>, here would be a more realistic probability distribution.</p>
+<p>In his book <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1413954965&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> James Shore details in great details how an agile team can commit to deliverables (I really recommend this part, I might even write a post about it). He explains that in order to commit, teams should multiply their estimates by 4, or by 1.8 if they are very rigourous in their application of all the XP practices.</p>
 
-<p>{% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/Demarco-probability.png The curve of the probability of value according to DeMarco %}</p>
+<p>So a rule to handle such a task could be to</p>
 
-<h2>How to estimate the value of an experiment ?</h2>
-
-<p>I&rsquo;m not going to go into the details here, because the logic is exactly the same as with technical experiments (which <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">I already wrote about</a>)</p>
-
-<p>Since then though, I read <a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">Waltzing With Bears</a> which presents a way of doing Monte Carlo simulations in order to estimate risks on your project. I guess the same thing could be used for value, which would save us from a lot of complex math.</p>
-
-<p><a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">{% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/waltzing-with-bears.jpg Cover of &lsquo;Waltzing With Bears&rsquo; %}</a></p>
-
-<h2>When to stop doing experiments ?</h2>
-
-<p>Isn&rsquo;t all this overkill ? One could argue that the point of Lean Startup should be to build just enough knowledge ! In fact, this value of information concept naturaly helps to find out when running the experiment is not worth it compared to actually doing the real thing.</p>
-
-<p>BTW, a tool doing all this for your automaticaly would be great, wouldn&rsquo;t it ?</p>
-
-<h2>What I&rsquo;ll do for my next bootstrap side project</h2>
-
-<ol>
-<li>Start with a target hourly earning rate.</li>
-<li>Collect a list of projects I&rsquo;d be interested in.</li>
-<li>Pick a project and write a business goal for it.</li>
-<li>Assign likelyhoods and ranges on every figure in the business plan.</li>
-<li>Design experiments to improve the figures.</li>
-<li>Create tasks to actually build and sell the product.</li>
-<li>Compute values for each of these tasks.</li>
-<li>Work the most valueable first.</li>
-<li>If the figures prove that I will not make my target wage with this project, I&rsquo;ll pivot, and restart from 2.</li>
-<li>Otherwise, I&rsquo;ll repeat from 4.</li>
-</ol>
+<ul>
+<li>estimate it</li>
+<li>multiply that estimate by 4</li>
+<li>substract this time from the deadline</li>
+<li>prioritize it so that it can be started at that date, but not earlier</li>
+<li>don&rsquo;t expect to be creating any value by completing these stories</li>
+</ul>
 
 
-<p>This was part 8 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 7 was <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">A Plan for Technical Debt</a>, Part 9 will be <a href="/my-dream-lean-software-development-tool-lean-software-development-part-9/">My Dream Lean Software Development Tool</a>.</p>
+<h2>What&rsquo;s the business value of other typical user stories</h2>
+
+<p><a href="http://scaledagileframework.com/wsjf/">This article</a> suggests that in this case the cost of delay is equal to the business value of the feature for the user. But how can we have an idea of its actual user business value ?</p>
+
+<p>Before actually selling and getting the money, it&rsquo;s just an estimation. With the good information, some people will make better estimates than others, never the less, it&rsquo;s still an estimate. Let&rsquo;s try a &ldquo;Business Value Poker&rdquo; ! Here are a few ideas about how to conduct this:</p>
+
+<ul>
+<li>Estimate business value at the same time as you estimate the complexity of a story</li>
+<li>Create some business value $ poker estimate cards, write an app for this, or bring in some Poker Chips to estimate the value</li>
+<li>Invite some business people (sales, marketting &hellip;) to the meeting to get real knowledge (being organized as a feature team will help)</li>
+</ul>
+
+
+<p><a href="https://gigaom.com/2012/05/16/social-gaming-to-gambling-states-inch-forward/poker-chips-by-sanzar-murzin/">{% img center /imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/all-in.jpg &ldquo;Hands pushing poker chips for an all-in&rdquo; %}</a></p>
+
+<p>At the end, when you have the estimated cost of delay and duration of every task, you can directly prioritize using the WSJF (Weighted Shortest Job First) :</p>
+
+<blockquote><p>WSJF = Cost of Delay / Duration</p></blockquote>
+
+<p>Just do the tasks by decreasing order of WSJF.</p>
+
+<p>At the end of the sprint, just as we track the story points we completed with the velocity, we could track the business value we created, that would be our business value speed. If you have access to real sales numbers, it might be interesting to see if it&rsquo;s possible to correlate the figures.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>The more I learn about Lean principles, the more I find our current Issues Tracking Systems (I&rsquo;m used to Jira) limited. They seem to be databases with a nice UI, whereas what we need are tools to help us to make better decisions out of the multitude of items &hellip; How come they do not provide something as simple as the WSJF ?</p>
+
+<h2>Edit 12/09/2014</h2>
+
+<p>I got some pretty positive feedback from practicing these business value pokers. Inviting the product owner forced him to explain in details why he believed some features were more valuable than others. On the opposite, it allowed the developpers to hightlight how some seemingly unimportant stories were critical to a long term goal. In the end, everyone, including the product owner, is asking for more. It&rsquo;s a good practice that helps introducing the business value / cost of delay concept.</p>
+
+<p>This was part 3 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 2 was <a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a>, Part 4 will be <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>.</p>
 ]]></content>
   </entry>
   

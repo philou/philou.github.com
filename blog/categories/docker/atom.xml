@@ -4,7 +4,7 @@
   <title><![CDATA[Category: docker | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-08-11T03:52:20+00:00</updated>
+  <updated>2016-08-18T07:15:38+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to prepare a new Ruby env in 3 minutes using Docker]]></title>
+    <link href="http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/"/>
+    <updated>2016-08-17T05:21:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker</id>
+    <content type="html"><![CDATA[<p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
+
+<p>I turned out to be dead simple. The <code>Dockerfile</code> is a one liner</p>
+
+<p><code>bash
+FROM ruby:2.3
+</code></p>
+
+<p>I also created a <code>docker-compose.yml</code> to record the shared volume and a bundle path inside it.</p>
+
+<p>```yaml
+rubybox:
+  build: .
+  command: bash
+  working_dir: /usr/src/app
+  environment:</p>
+
+<pre><code>BUNDLE_PATH: 'vendor/bundle'
+</code></pre>
+
+<p>  volumes:</p>
+
+<pre><code>- '.:/usr/src/app'
+</code></pre>
+
+<p>```</p>
+
+<p>Without the custom bundle path, bundled gems would be installed elsewhere in the container, and lost at every restart.</p>
+
+<p>To use the Rubybox, just type <code>docker-compose run rubybox</code> and you&rsquo;ll get a shell from within your ruby machine, where you can do everything you want.</p>
+
+<p>In fact, I found the thing so useful, that I created the <a href="https://github.com/philou/rubybox">Rubybox</a> git repo to simplify cloning and reusing. I&rsquo;ve already cloned it at least 3 times since then !</p>
+
+<p><code>bash
+git clone git@github.com:philou/rubybox.git
+cd rubybox
+docker-compose run rubybox
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?]]></title>

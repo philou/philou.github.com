@@ -101,6 +101,270 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What Optimization Should We Work on (Lean Software Development Part 5)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-26T20:30:00+00:00" pubdate data-updated="true">Mar 26<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At work, we are building a risk aggregation system. As it&rsquo;s dealing with a large bunch of numbers, it&rsquo;s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
+
+<p>That&rsquo;s were we are now doing.</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" title="A turtle with a rocket on the back" ></p>
+
+<h1>How do we choose which optimization to work on ?</h1>
+
+<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage &hellip;</p>
+
+<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
+
+<h2>Let&rsquo;s walk through an example</h2>
+
+<h3>I. List the optimizations you are thinking of</h3>
+
+<p>Let&rsquo;s suppose we are thinking of the following 3 optimizations for our engine</p>
+
+<ul>
+<li>Create better data structures to speed up the reconciliation algorithm</li>
+<li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
+<li>Minimize boxing and unboxing</li>
+</ul>
+
+
+<h3>II. Poker estimate the story points and speedup</h3>
+
+<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
+As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
+We will then just have to work on the stories with the highest speedup rate first.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title                   </th>
+<th> Story Points  </th>
+<th> /10    </th>
+<th> /2     </th>
+<th> -10%    </th>
+<th> ~  </th>
+<th> +10%   </th>
+<th> x2      </th>
+<th> x10     </th>
+<th> Expected Speedup ratio* </th>
+<th> Speedup rate / story point**</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structures     </td>
+<td> 13        </td>
+<td>        </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 4 votes</td>
+<td> 5 votes </td>
+<td>         </td>
+<td> x 1.533                 </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> 13        </td>
+<td>    </td>
+<td> 1 vote </td>
+<td> 1 vote      </td>
+<td> 2 votes</td>
+<td> 1 vote </td>
+<td> 2 votes </td>
+<td> 2 votes </td>
+<td> x 1.799                 </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> 8     </td>
+<td>    </td>
+<td>        </td>
+<td>             </td>
+<td>        </td>
+<td> 9 votes</td>
+<td>         </td>
+<td>         </td>
+<td> x 1.1                   </td>
+<td> x 1.012</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br>
+<sup><em>** Speedup rate is &ldquo;speedup<sup>(1/ story points)</sup>&rdquo;</em></sup></p>
+
+<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
+
+<ol>
+<li>Algorithm</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ol>
+
+
+<h3>III. And what about the risks ?</h3>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" title="A danger zone panel" ></p>
+
+<p>This poker estimation tells us something else &hellip;</p>
+
+<blockquote><p>We don&rsquo;t have a clue about the speedup we will get by trying to optimize the algorithm !</p></blockquote>
+
+<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Story points </th>
+<th> Expected Speedup rate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Algorithm spike : measure out of context CPU cache optimization speedup </td>
+<td> 2 </td>
+<td>   ?</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>In order to compute the expected speedup rate, let&rsquo;s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
+
+<p>They are computed by splitting the votes in 2 :</p>
+
+<ul>
+<li><em>low_speedup = 0.846</em></li>
+<li><em>high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike succeeds</h4>
+
+<p>We&rsquo;ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
+
+<ul>
+<li><em>spike_high_speedup = high_speedup = 3.827</em></li>
+</ul>
+
+
+<h4>If the spike fails</h4>
+
+<p>We&rsquo;ll also start by working on the spike. Afterwards, instead of the algorithm story, we&rsquo;ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
+
+<ul>
+<li><em>average_speedup_rate = (1.033 * 1.011)<sup>&frac12;</sup> = 1.022</em></li>
+<li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
+</ul>
+
+
+<h4>Spike speedup rate</h4>
+
+<p>We can now compute the average expected speedup rate for the full period &lsquo;spike &amp; algorithm&rsquo; stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
+
+<ul>
+<li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>&frac12;</sup> = 2.253</em></li>
+<li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
+</ul>
+
+
+<h3>IV. Putting it all together</h3>
+
+<p>Here are all the speedup rate for the different stories.</p>
+
+<table>
+<thead>
+<tr>
+<th>Title </th>
+<th> Speedup rate / story point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Structure  </td>
+<td> x 1.033</td>
+</tr>
+<tr>
+<td>Algorithm           </td>
+<td> x 1.046</td>
+</tr>
+<tr>
+<td>Boxing                  </td>
+<td> x 1.012</td>
+</tr>
+<tr>
+<td>Algorithm spike         </td>
+<td> x 1.056</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Finally, here is the optimal order through which we should perform the stories :</p>
+
+<ul>
+<li>Algorithm spike</li>
+<li>Algorithm (only if the spike proved it would work)</li>
+<li>Data Structures</li>
+<li>Boxing</li>
+</ul>
+
+
+<h2>Summary</h2>
+
+<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
+
+<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" title="Formula for a spike speedup rate" ></p>
+
+<p>I think most experienced engineers would have come to the same conclusion by gut feeling &hellip;</p>
+
+<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
+
+<p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/setting-up-octopress-with-vagrant-and-rbenv/">Setting Up Octopress With Vagrant and Rbenv</a></h1>
     
     
@@ -3108,88 +3372,6 @@ We tried the following, in that order :</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/the-holy-code-antipattern/">The Holy Code Antipattern</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-08-10T08:42:00+00:00" pubdate data-updated="true">Aug 10<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I&rsquo;ve encountered this situation in different disguise in different companies, I now assume it&rsquo;s a widely applied antipattern.</p>
-
-<h3>Context</h3>
-
-<p>A team of programmers inherits a piece of code from one of their bosses. They find it really difficult to maintain : it is difficult to understand, fix, and change.</p>
-
-<h3>The Antipattern</h3>
-
-<p><img class="center" src="/imgs/2014-08-10-the-holy-code-antipattern/grenade.jpg" title="A picture from the Monty Python's Holy Grail movie featuring the holy hand grenade of antioch" ></p>
-
-<p>As this piece of code seems too complex to be maintained by a team of simple programmers, as the boss, just forbid them :</p>
-
-<ul>
-<li>to refactor any part of it</li>
-<li>to rewrite it from scratch</li>
-<li>to use something else instead</li>
-</ul>
-
-
-<h3>Consequences</h3>
-
-<ul>
-<li>This often limits the number of bugs that appear in this library, but &hellip;</li>
-<li>It slows down development, because of the micro management required to enforce this pattern</li>
-<li>It frustrates programmers, and it is likely that the best ones will leave</li>
-<li>It prevents better design</li>
-<li>Even worse, in the long run, it prevents great domain driven design to emerge from merciless refactoring</li>
-<li>In the end, it makes the whole organization less performant</li>
-</ul>
-
-
-<h3>Examples</h3>
-
-<ul>
-<li><p>Your boss wrote something a few years ago, if the domain is more or less complex, the resulting code <em>is</em> complicated. The subject eventually got the reputation of being &lsquo;touchy&rsquo;. Your boss is the only person who effectively manages to change anything in there. He&rsquo;s a bit afraid that by trying to improve it, the whole thing might just break down and become a bug nest. So, now that he has some authority, he forbids anyone to touch it. If a change is finally required, he&rsquo;ll micro manage it !</p></li>
-<li><p>Your big boss spent some over time on writing an uber-meta-generic-engine to solve <del>the universe and</del> everything. After seeing many developpers fixing the same kind of bugs over and over, he decides that it&rsquo;s time to remove the dust from his compiler and that he starts building something that should solve the root cause of all these. In the spirit of the <a href="http://en.wikipedia.org/wiki/Second-system_effect">second system effect</a>, he adds all bells and whistle to his beloved project, trying to incorporate a solution to every different issue he has seen during the last decade. This code grows and grows in total isolation of any real working software. When he eventually thinks it is ready, he justs drops the whole thing to your team, that is now responsible to integrate and use this thing in the running system. He&rsquo;s micro managing the whole thing, and you don&rsquo;t have any choice but to comply and succeed. This usually generates gazillions of bugs, makes projects really late and ruins the developpers&#8217; lives.</p></li>
-</ul>
-
-
-<h3>Alternatives</h3>
-
-<ul>
-<li>Use collective code ownership so that knowledge about the code is shared by design</li>
-<li>Trust programmers to design and architecture the system</li>
-<li>Use constant refactoring to let tailor made domain driven designs emerge from the system</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -3261,6 +3443,10 @@ We tried the following, in that order :</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">How to prepare a new Ruby env in 3 minutes using Docker</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-grow-a-culture-book/">How to Grow a Culture Book</a>
       </li>
     
@@ -3274,10 +3460,6 @@ We tried the following, in that order :</p>
     
       <li class="post">
         <a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to boot a new Rails project with Docker and Heroku</a>
       </li>
     
   </ul>

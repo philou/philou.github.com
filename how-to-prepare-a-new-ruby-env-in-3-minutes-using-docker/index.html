@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: career - Philippe Bourgau's blog</title>
+  <title>How to prepare a new Ruby env in 3 minutes using Docker - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Category: career">
+  <meta name="description" content="A quick description about how to use the rubybox github repo to setup a ruby dev env in 3 minutes">
 
   
-  <meta name="keywords" content="blog, programming, ruby, coffeescript, c#, java, agile, extreme programming, xp, kanban, scrum, tdd, testing, unit testing">
+  <meta name="keywords" content="Ruby, Ruby VM, Ruby Container, Ruby Docker, Docker">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.netblog/categories/career/">
+  <link rel="canonical" href="http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -94,78 +94,138 @@
     <div id="main">
       <div id="content">
 	<div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Career</h1>
+    
+      <h1 class="entry-title">How to Prepare a New Ruby Env in 3 Minutes Using Docker</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-08-17T05:21:00+00:00" pubdate data-updated="true">Aug 17<span>th</span>, 2016</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
 
-  
-  <h2>2016</h2>
+<p>I turned out to be dead simple. The <code>Dockerfile</code> is a one liner</p>
 
-<article>
-  
-<h1><a href="/is-there-any-room-for-the-not-passionate-developer/">Is There Any Room For The Not-Passionate Developer ?</a></h1>
-<time datetime="2016-07-26T06:53:00+00:00" pubdate><span class='month'>Jul</span> <span class='day'>26</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/career/'>career</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/software/'>software</a></span>
-</footer>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>FROM ruby:2.3
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
+<p>I also created a <code>docker-compose.yml</code> to record the shared volume and a bundle path inside it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rubybox</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">build</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">.</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">command</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">bash</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">working_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/usr/src/app</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">BUNDLE_PATH</span><span class="p-Indicator">:</span> <span class="s">&#39;vendor/bundle&#39;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/usr/src/app&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Without the custom bundle path, bundled gems would be installed elsewhere in the container, and lost at every restart.</p>
 
-<article>
-  
-<h1><a href="/5-years-of-blogging-about-software/">5 Years of Blogging About Software</a></h1>
-<time datetime="2016-06-27T04:04:00+00:00" pubdate><span class='month'>Jun</span> <span class='day'>27</span> <span class='year'>2016</span></time>
+<p>To use the Rubybox, just type <code>docker-compose run rubybox</code> and you&rsquo;ll get a shell from within your ruby machine, where you can do everything you want.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/blogging/'>blogging</a>, <a class='category' href='/blog/categories/career/'>career</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/software/'>software</a></span>
-</footer>
+<p>In fact, I found the thing so useful, that I created the <a href="https://github.com/philou/rubybox">Rubybox</a> git repo to simplify cloning and reusing. I&rsquo;ve already cloned it at least 3 times since then !</p>
 
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/how-to-keep-up-with-software-technologies/">How To Keep Up With Software Technologies</a></h1>
-<time datetime="2016-05-30T04:31:00+00:00" pubdate><span class='month'>May</span> <span class='day'>30</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/book/'>book</a>, <a class='category' href='/blog/categories/career/'>career</a>, <a class='category' href='/blog/categories/programming/'>programming</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/how-we-decentralized-our-companys-training-program/">How We Decentralized Our Company's Training Program</a></h1>
-<time datetime="2016-04-18T05:31:00+00:00" pubdate><span class='month'>Apr</span> <span class='day'>18</span> <span class='year'>2016</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/career/'>career</a>, <a class='category' href='/blog/categories/management/'>management</a>, <a class='category' href='/blog/categories/management30/'>management30</a>, <a class='category' href='/blog/categories/selforganizing/'>selforganizing</a></span>
-</footer>
-
-
-</article>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:philou/rubybox.git
+</span><span class='line'><span class="nb">cd </span>rubybox
+</span><span class='line'>docker-compose run rubybox
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-08-17T05:21:00+00:00" pubdate data-updated="true">Aug 17<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/docker/'>docker</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/software/'>software</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/how-to-grow-a-culture-book/" title="Previous Post: How to Grow a Culture Book">&laquo; How to Grow a Culture Book</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -283,7 +343,10 @@
       var disqus_shortname = 'philippe-bourgau';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/';
+        var disqus_url = 'http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

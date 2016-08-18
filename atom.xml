@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-08-11T03:51:50+00:00</updated>
+  <updated>2016-08-18T07:15:15+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to prepare a new Ruby env in 3 minutes using Docker]]></title>
+    <link href="http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/"/>
+    <updated>2016-08-17T05:21:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker</id>
+    <category term="docker" /><category term="ruby" /><category term="software" />
+    <content type="html"><![CDATA[<p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
+
+<p>I turned out to be dead simple. The <code>Dockerfile</code> is a one liner</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>FROM ruby:2.3
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I also created a <code>docker-compose.yml</code> to record the shared volume and a bundle path inside it.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rubybox</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">build</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">.</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">command</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">bash</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">working_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/usr/src/app</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">BUNDLE_PATH</span><span class="p-Indicator">:</span> <span class="s">&#39;vendor/bundle&#39;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/usr/src/app&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Without the custom bundle path, bundled gems would be installed elsewhere in the container, and lost at every restart.</p>
+
+<p>To use the Rubybox, just type <code>docker-compose run rubybox</code> and you&rsquo;ll get a shell from within your ruby machine, where you can do everything you want.</p>
+
+<p>In fact, I found the thing so useful, that I created the <a href="https://github.com/philou/rubybox">Rubybox</a> git repo to simplify cloning and reusing. I&rsquo;ve already cloned it at least 3 times since then !</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:philou/rubybox.git
+</span><span class='line'><span class="nb">cd </span>rubybox
+</span><span class='line'>docker-compose run rubybox
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Grow a Culture Book]]></title>
@@ -1726,90 +1779,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 <p><a href="https://leanpub.com/funretrospectives"><img class="center" src="http://philippe.bourgau.net/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/FunRetrospectives.jpg" title="The cover of Fun Retrospectives" ></a></p>
 
 <p>One last thing : in order to improve this collection, we&rsquo;d like to have your feedback on existing activities, or your own new templates for other activities.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to deal with the incentive system in an agile team ?]]></title>
-    <link href="http://philippe.bourgau.net/how-to-deal-with-the-incentive-system-in-an-agile-team/"/>
-    <updated>2016-03-30T05:10:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-deal-with-the-incentive-system-in-an-agile-team</id>
-    <category term="company-bonus" /><category term="management30" /><category term="selforganizing" />
-    <content type="html"><![CDATA[<p>For an organization, there&rsquo;s something schizophrenic about valuing team work, wanting agility but sticking to individual objectives and assessments.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/schizophrenic-smiley.jpg" title="A schizophrenic :(: smiley" ></p>
-
-<p>As highlighted in <a href="http://www.amazon.com/Built-Last-Successful-Visionary-Essentials/dp/0060516402/ref=sr_1_1?ie=UTF8&amp;qid=1459922545&amp;sr=8-1&amp;keywords=build+to+last">Build To Last</a> genuine company values must permeate all aspects of the organization. Being agile also means putting teamwork first and that is quite incompatible with typical individual management by objectives and bonuses.</p>
-
-<p>This is nothing new, many have already written about the subject</p>
-
-<ul>
-<li>Joel Spolsky : <a href="http://www.joelonsoftware.com/articles/fog0000000070.html">Incentive Pay Considered Harmful</a></li>
-<li>Daniel Pink : <a href="http://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&amp;qid=1459665370&amp;sr=8-1&amp;keywords=drive+daniel+pink">Drive : The Surprising Truth About What Motivates Us</a></li>
-<li>Alfie Kohn : <a href="http://www.amazon.com/Punished-Rewards-Trouble-Incentive-Praise/dp/0618001816/ref=sr_1_1?ie=UTF8&amp;qid=1459665424&amp;sr=8-1&amp;keywords=punished+by+rewards">Punished by Rewards: The Trouble with Gold Stars, Incentive Plans, A&rsquo;s, Praise, and Other Bribes</a></li>
-<li>Jurgen Appelo : <a href="http://noop.nl/2013/01/the-bonus-system.html">The Bonus System</a></li>
-</ul>
-
-
-<p>The problem is you usually don&rsquo;t have the choice ! Whether your team wants to or not, the chances are that your company already has a mandatory individual bonus scheme in place.</p>
-
-<h2>Our delegation initiative</h2>
-
-<p>As you might remember if you read my <a href="http://philippe.bourgau.net/stop-feeling-like-a-kid-everytime-you-ask-a-day-off/">previous articles</a>, our team decided to move to more self organization. After identifying the end of year evaluation as something that could be further delegated, we embarked on brainstorming sessions about how to do it.</p>
-
-<p>We discussed quite some options during our workshops. Things like :</p>
-
-<ul>
-<li>What is the goal of the annual evaluation ?</li>
-<li>Should some people have a central role in the process ?</li>
-<li>Should we encourage efforts or results ?</li>
-<li>Should evaluations be public or private ?</li>
-<li>What&rsquo;s at stack at the annual evaluation ?</li>
-<li>Should individual learning plans be part of the evaluation ?</li>
-</ul>
-
-
-<h2>What we came up with</h2>
-
-<p>As a guiding principle, we agreed to value efforts rather than results. Sometimes, results are independent of efforts, and through efforts, it is always possible to get the best of any situation, even if the best is not a good result in itself.</p>
-
-<h3>Throughout the year</h3>
-
-<p>We are all sharing the same team objectives :</p>
-
-<ul>
-<li>&ldquo;the team finishes the prioritized epics&rdquo; : we do regular epics prioritization sessions with our product owner and add the main epics to everyone&rsquo;s objectives</li>
-<li>&ldquo;work on the same subject as the whole team&rdquo; : we have an overspecialization matrix that uses correlation to make sure that everyone touches the same parts of the system as the rest of the team</li>
-</ul>
-
-
-<p>Every 2 months, we are doing <a href="http://philippe.bourgau.net/feedback-on-360-degrees-feedback-session/">360° feedback sessions</a>, for everyone to give continuous feedback to others.</p>
-
-<p>Optionally, we setup <a href="https://management30.com/product/workouts/intrinsic-motivation/kudo-box/">Kudo boxes</a> to give and receive thanks from others.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/kudo.jpg" title="A kudo card" ></p>
-
-<h3>At the end of the year</h3>
-
-<p>When the time of the official end of year evaluation comes, we do 360°, 1 to 1 rating on the following topics.</p>
-
-<ul>
-<li> commitment &amp; courage (doing not so fun work, find difficult compromises, say the truth, strive for quality work)</li>
-<li> helping others (giving a training, providing coaching, help others, do some evangelization)</li>
-<li> self improvement (taking feedback into account, improve technical skills, work on soft skills)</li>
-<li> team player (build friendly environment, contribute to team improvement, positive attitude, use a non violent communication)</li>
-</ul>
-
-
-<p>Grades are signed, and anyone can ask someone else for a discussion about his grades.</p>
-
-<p>Overall, everyone gets an average grade, which we use to suggest a company grade (below, achieved, exceeded) to the HR system. It then gets homogenized with the rest of the company, but this is then out of our control.</p>
-
-<p>One thing that made this possible is also that after taking a close look at the company grade system, we saw that not so much was at stake &hellip; Provided we make sure everyone has what it takes to do the job, anyone can get an achieved evaluation by doing enough efforts. Getting an exceeded is like a bonus for a particular good year.</p>
-
-<h2>Last word</h2>
-
-<p>I&rsquo;m pretty sure we could make this more simple in an environment with more end to end feedback (start-up or pizza teams) but we feel that our current alternative is a lot better than having the manager deciding everything on his own.</p>
 ]]></content>
   </entry>
   
