@@ -13,6 +13,7 @@ keywords: "storexplore, ruby gems, ruby, gem, scraping, api, online stores, tuto
 Transform online stores into APIs !
 
 ## Why
+
 Once upon a time, I wanted to create online groceries with great user experience ! That's how I started [mes-courses.fr](https://github.com/philou/mes-courses). Unfortunately, most online groceries don't have APIs, so I resorted to scrapping. Scrapping comes with its (long) list of problems aswell !
 
 * Scrapping code is a mess
