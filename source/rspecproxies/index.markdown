@@ -10,7 +10,7 @@ keywords: "rspecproxies, ruby gems, ruby, gem, testing, rspec, test mock, test p
 ---
 [Download as zip](https://github.com/philou/rspecproxies/zipball/master) | [Download as tar.gz](https://github.com/philou/rspecproxies/tarball/master) | [View on github](https://github.com/philou/rspecproxies)
 
-Special [RSpec](http://rspec.info) extensions to simplify mocking by providing proxies.
+Simplify [RSpec](http://rspec.info) mocking with test proxies !
 
 ## Why ?
 
