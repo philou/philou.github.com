@@ -125,14 +125,7 @@
 
   <div class="entry-content"><p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
 
-<p>I turned out to be dead simple. The <code>Dockerfile</code> is a one liner</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>FROM ruby:2.3
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I also created a <code>docker-compose.yml</code> to record the shared volume and a bundle path inside it.</p>
+<p>I turned out to be dead simple. All that is needed is a <code>docker-compose.yml</code> file to define the container, record the shared volume and set a bundle path inside it :</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -143,7 +136,7 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rubybox</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">build</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">.</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ruby:2.3</span>
 </span><span class='line'>  <span class="l-Scalar-Plain">command</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">bash</span>
 </span><span class='line'>  <span class="l-Scalar-Plain">working_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/usr/src/app</span>
 </span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
