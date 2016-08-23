@@ -12,17 +12,11 @@ description: "A quick description about how to use the rubybox github repo to se
 ---
 One or two weeks ago, I registered to the [Paris Ruby Workshop Meetup](http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/) and needed a Ruby env. I have been using [Vagrant](https://www.vagrantup.com/) quite a lot to isolate my different dev envs from each other and from my main machine. As I've been digging more into [Docker](http://www.docker.com) lately, I thought I'd simply use Docker and Docker Compose instead.
 
-I turned out to be dead simple. The ```Dockerfile``` is a one liner
-
-```bash
-FROM ruby:2.3
-```
-
-I also created a ```docker-compose.yml``` to record the shared volume and a bundle path inside it.
+I turned out to be dead simple. All that is needed is a ```docker-compose.yml``` file to define the container, record the shared volume and set a bundle path inside it :
 
 ```yaml
 rubybox:
-  build: .
+  image: ruby:2.3
   command: bash
   working_dir: /usr/src/app
   environment:
