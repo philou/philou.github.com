@@ -4,9 +4,9 @@ title: "The Agile Change Management Viral Hack"
 date: 2015-05-23 05:51
 comments: true
 categories:
- - Agile
- - Testing
- - Coaching
+ - agile
+ - testing
+ - coaching
 keywords: "Agile coaching, BDD, Behaviour Driven Development"
 description: "Quick description of a tip to spread BDD throughout your organization"
 ---
