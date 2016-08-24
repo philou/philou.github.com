@@ -100,6 +100,150 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/">RSpecProxies Now Supports . To Receive(xxx)&#8230; Syntax</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-08-23T04:47:00+00:00" pubdate data-updated="true">Aug 23<span>rd</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="center" src="/imgs/2016-08-23-rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/test_probes.jpg" title="Hardware test probes" ></p>
+
+<p>Pure mocks are dangerous. They let defect go through, give a false sense of security and are difficult to maintain.</p>
+
+<p>I&rsquo;ve already talked about it <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">before</a> but since then, <a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">DHH announced that he was quitting TDD</a>, the <a href="http://martinfowler.com/articles/is-tdd-dead/">Is TDD Dead ?</a> debate took place, and the conclusion is that <a href="https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists">mockist are dead</a>.</p>
+
+<p>They are still times when mocks feel much simpler than any other things. For example, imagine your process leaks and crashes after 10 hours, the fix is to pass an option to a thirdparty, how would you test this in a fast test ? That&rsquo;s exactly the kind of situation where using test proxies saves you from mocks. A test proxy defers everything to the real object but also features unintrusive hooks and probes that you can use in your test. If you want a code example, check <a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split">this commit</a>, where I refactored a rails controller test from mocks to a RSpecProxies (v0.1).</p>
+
+<p>I created RSpecProxies <a href="/my-new-gem-for-creating-rspec-proxies/">a while ago</a>, a while ago, and it&rsquo;s syntax made it alien to the RSpec work, it needed an update. <a href="http://rspec.info">RSpec</a> now supports basic proxying with partial stubs, spies, the <code>and_call_original</code> and the <code>and_wrap_original</code> methods. <a href="https://github.com/philou/rspecproxies">RSpecProxies 1.0</a> is a collection of hooks built on top of these to make proxying easier, with a syntax that will be familiar to RSpec users.</p>
+
+<h2>Before original hook</h2>
+
+<p>This hook is triggered before a call a method. Suppose you want to simulate a bad connection :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;can simulate unreliable connection&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="n">allow</span><span class="p">(</span><span class="no">Resource</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:get</span><span class="p">)</span><span class="o">.</span><span class="n">and_before_calling_original</span> <span class="p">{</span> <span class="o">|*</span><span class="n">args</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="no">RuntimeError</span><span class="o">.</span><span class="n">new</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">resources</span> <span class="o">=</span> <span class="no">Resource</span><span class="o">.</span><span class="n">get_at_least</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">resources</span><span class="o">.</span><span class="n">size</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>After original hooks</h2>
+
+<p>RSpecProxies provides the same kind of hook after the call :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;can check that the correct data is used (using and_after_calling_original&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">user</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>  <span class="n">allow</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">and_after_calling_original</span> <span class="p">{</span> <span class="o">|</span><span class="n">result</span><span class="o">|</span> <span class="n">user</span> <span class="o">=</span> <span class="n">result</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">created_at</span><span class="o">.</span><span class="n">to_s</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here we are capturing the return value to use it later in the test. For this special purpose, RSpecProxies also provides 2 other helpers :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Store the latest result in @user of self</span>
+</span><span class='line'><span class="n">allow</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">and_capture_result_into</span><span class="p">(</span><span class="nb">self</span><span class="p">,</span> <span class="ss">:user</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Collect all results in the users array</span>
+</span><span class='line'><span class="n">users</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="n">allow</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">and_collect_results_into</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Proxy chains</h2>
+
+<p>RSpec mocks provides the <code>message_chain</code> feature to do build chains of stubs. RSpecProxy provides a very similar proxy chain concept. The main difference is that it creates proxies along the way, and not pure stubs. Pure stubs assume that you are mocking everything, but as our goal is to mock as little as possible, using proxies makes more sense.</p>
+
+<p>When using a mockist approach, the message chain is a bad smell because it makes your tests very brittle by depending on a lot of implementation. In contrast, proxy chains are meant to be used where they are the simplest way to inject what you need, without creating havoc.</p>
+
+<p>For example, suppose you want to display the progress of a very slow background task. You could mock a lot of your objects to have a fast test, of if you wanted to avoid all the bad side effects of mocking, you could run the background task in your test, and have a slow test &hellip; Or, you could use a chain of proxies :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;can override a deep getter&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">allow</span><span class="p">(</span><span class="no">RenderingTask</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">proxy_message_chain</span><span class="p">(</span><span class="s2">&quot;load.completion_ratio&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">e</span><span class="o">|</span> <span class="n">e</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2523</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">show</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here the simplest thing to do is just to override a small getter, because from a functionnal point of view, that&rsquo;s exactly what we want to test.</p>
+
+<h2>Last word</h2>
+
+<p>The code is on <a href="https://github.com/philou/rspecproxies">github</a>, v1.0.0 is on <a href="https://rubygems.org/gems/rspecproxies/versions/0.1.0">rubygems</a>, it requires Ruby v2.2.5 and RSpec v3.5, the license is MIT, help in any form are welcome !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">How to Prepare a New Ruby Env in 3 Minutes Using Docker</a></h1>
     
     
@@ -1430,48 +1574,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/legacy-code-coverall-day/">Legacy Code Coverall Day</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-06-06T04:16:00+00:00" pubdate data-updated="true">Jun 6<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="center" src="/imgs/2016-06-06-legacy-code-coverall-day/miners.jpg" title="Miners going to work in Coveralls" ></p>
-
-<p>Some days, coding feels like speleology or mining &hellip; Dealing with weird and undocumented old logic can even some time be <a href="https://www.quora.com/How-do-you-keep-your-sanity-while-working-on-a-Super-Dirty-Rotten-Spaghetti-codebase">damaging to the mind</a> ! I think we should go to work wearing the adequate protection !</p>
-
-<p>OK, maybe we cannot start to go to work wearing a coverall everyday, but let&rsquo;s say very 21st of June is now legacy code day, the day when every developer maintaining legacy code comes to work dressed like that !</p>
-
-<p>Obviously, that&rsquo;s a joke, but it could attract the attention of other non-coding people on the state of <em>their</em> codebase and amount of <em>their</em> technical debt.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1548,6 +1650,10 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/">RSpecProxies now supports .to receive(xxx)&#8230; syntax</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">How to prepare a new Ruby env in 3 minutes using Docker</a>
       </li>
     
@@ -1561,10 +1667,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     
       <li class="post">
         <a href="/is-there-any-room-for-the-not-passionate-developer/">Is There Any Room For The Not-Passionate Developer ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?</a>
       </li>
     
   </ul>

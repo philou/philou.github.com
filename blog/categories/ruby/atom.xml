@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-08-23T04:06:28+00:00</updated>
+  <updated>2016-08-24T04:39:57+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[RSpecProxies now supports .to receive(xxx)... syntax]]></title>
+    <link href="http://philippe.bourgau.net/rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/"/>
+    <updated>2016-08-23T04:47:00+00:00</updated>
+    <id>http://philippe.bourgau.net/rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax</id>
+    <content type="html"><![CDATA[<p><img class="center" src="/imgs/2016-08-23-rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/test_probes.jpg" title="Hardware test probes" ></p>
+
+<p>Pure mocks are dangerous. They let defect go through, give a false sense of security and are difficult to maintain.</p>
+
+<p>I&rsquo;ve already talked about it <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">before</a> but since then, <a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">DHH announced that he was quitting TDD</a>, the <a href="http://martinfowler.com/articles/is-tdd-dead/">Is TDD Dead ?</a> debate took place, and the conclusion is that <a href="https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists">mockist are dead</a>.</p>
+
+<p>They are still times when mocks feel much simpler than any other things. For example, imagine your process leaks and crashes after 10 hours, the fix is to pass an option to a thirdparty, how would you test this in a fast test ? That&rsquo;s exactly the kind of situation where using test proxies saves you from mocks. A test proxy defers everything to the real object but also features unintrusive hooks and probes that you can use in your test. If you want a code example, check <a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split">this commit</a>, where I refactored a rails controller test from mocks to a RSpecProxies (v0.1).</p>
+
+<p>I created RSpecProxies <a href="/my-new-gem-for-creating-rspec-proxies/">a while ago</a>, a while ago, and it&rsquo;s syntax made it alien to the RSpec work, it needed an update. <a href="http://rspec.info">RSpec</a> now supports basic proxying with partial stubs, spies, the <code>and_call_original</code> and the <code>and_wrap_original</code> methods. <a href="https://github.com/philou/rspecproxies">RSpecProxies 1.0</a> is a collection of hooks built on top of these to make proxying easier, with a syntax that will be familiar to RSpec users.</p>
+
+<h2>Before original hook</h2>
+
+<p>This hook is triggered before a call a method. Suppose you want to simulate a bad connection :</p>
+
+<p>```ruby
+it &lsquo;can simulate unreliable connection&rsquo; do
+  i = 0
+  allow(Resource).to receive(:get).and_before_calling_original { |*args|</p>
+
+<pre><code>i += 1
+raise RuntimeError.new if i % 3 == 0
+</code></pre>
+
+<p>  }</p>
+
+<p>  resources = Resource.get_at_least(10)</p>
+
+<p>  expect(resources.size).to eq(10)
+end
+```</p>
+
+<h2>After original hooks</h2>
+
+<p>RSpecProxies provides the same kind of hook after the call :</p>
+
+<p>``` ruby
+it &lsquo;can check that the correct data is used (using and_after_calling_original&rsquo; do
+  user = nil
+  allow(User).to receive(:load).and_after_calling_original { |result| user = result }</p>
+
+<p>  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)</p>
+
+<p>  expect(response).to include(user.created_at.to_s)
+end
+```</p>
+
+<p>Here we are capturing the return value to use it later in the test. For this special purpose, RSpecProxies also provides 2 other helpers :</p>
+
+<p>``` ruby</p>
+
+<h1>Store the latest result in @user of self</h1>
+
+<p>allow(User).to receive(:load).and_capture_result_into(self, :user)</p>
+
+<h1>Collect all results in the users array</h1>
+
+<p>users = []
+allow(User).to receive(:load).and_collect_results_into(users)
+```</p>
+
+<h2>Proxy chains</h2>
+
+<p>RSpec mocks provides the <code>message_chain</code> feature to do build chains of stubs. RSpecProxy provides a very similar proxy chain concept. The main difference is that it creates proxies along the way, and not pure stubs. Pure stubs assume that you are mocking everything, but as our goal is to mock as little as possible, using proxies makes more sense.</p>
+
+<p>When using a mockist approach, the message chain is a bad smell because it makes your tests very brittle by depending on a lot of implementation. In contrast, proxy chains are meant to be used where they are the simplest way to inject what you need, without creating havoc.</p>
+
+<p>For example, suppose you want to display the progress of a very slow background task. You could mock a lot of your objects to have a fast test, of if you wanted to avoid all the bad side effects of mocking, you could run the background task in your test, and have a slow test &hellip; Or, you could use a chain of proxies :</p>
+
+<p>``` ruby
+it &lsquo;can override a deep getter&rsquo; do
+  allow(RenderingTask).to proxy_message_chain(&ldquo;load.completion_ratio&rdquo;) { |e| e.and_return(0.2523) }</p>
+
+<p>  controller.show</p>
+
+<p>  expect(response).to include(&lsquo;25%&rsquo;)
+end
+```</p>
+
+<p>Here the simplest thing to do is just to override a small getter, because from a functionnal point of view, that&rsquo;s exactly what we want to test.</p>
+
+<h2>Last word</h2>
+
+<p>The code is on <a href="https://github.com/philou/rspecproxies">github</a>, v1.0.0 is on <a href="https://rubygems.org/gems/rspecproxies/versions/0.1.0">rubygems</a>, it requires Ruby v2.2.5 and RSpec v3.5, the license is MIT, help in any form are welcome !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to prepare a new Ruby env in 3 minutes using Docker]]></title>
@@ -60,7 +151,7 @@ docker-compose run rubybox
     <id>http://philippe.bourgau.net/most-common-ways-to-speed-up-an-algorithm</id>
     <content type="html"><![CDATA[<p>Algorithms are <em>hard</em>, and making them fast is even harder &hellip; But there are shortcuts that work quite often !</p>
 
-<p>{% img center /imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg A street panel called Short Cut Road %}</p>
+<p><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg" title="A street panel called Short Cut Road" ></p>
 
 <h2>The Challenge</h2>
 
@@ -116,7 +207,7 @@ Again, this reduces the complexity from O(2) to O(1). Every language has variant
 
 <p>This is called <a href="https://en.wikipedia.org/wiki/Memoization">memoization</a>. Some algorithms (especially recursive algorithms) repeatedly compute the same thing again and again. Spotting this pattern is an opportunity to move an algorithm out of exponential complexity. For example, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijsktra&rsquo;s algorithm</a> for finding the shortest path in a graph uses this technique to go from O(e<sup>n</sup>) to O(n<sup>2</sup>) complexity. If you suspect this could be helpful, your best friend is logging to trace actual parameters and results.</p>
 
-<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif">{% img center /imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif Dijsktra&rsquo;s path finding algorithm animated (from Wikipedia) %}</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif"><img class="center" src="/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif" title="Dijsktra&rsquo;s path finding algorithm animated (from Wikipedia)" ></a></p>
 
 <p>A word of caution : using memoization with mutable inputs or outputs will harm your mental health.</p>
 
@@ -197,7 +288,7 @@ end
 
 <p>We have been trying to hire such a profile for the last year &hellip; The position is hopefully filled now. During that year, we have tried to mine <a href="https://github.com/">github</a> for candidates. Here is how we did it.</p>
 
-<p>{% img center /imgs/2015-08-19-mining-github-for-new-hires/github.png Github&rsquo;s banner %}</p>
+<p><img class="center" src="/imgs/2015-08-19-mining-github-for-new-hires/github.png" title="Github&rsquo;s banner" ></p>
 
 <p>Software engineers, especially experienced, are known to be hard to find. Over the past months, we had steadily been improving our hiring process :</p>
 
@@ -303,7 +394,7 @@ puts french_contributors
     <id>http://philippe.bourgau.net/setting-up-octopress-with-vagrant-and-rbenv</id>
     <content type="html"><![CDATA[<p>I recently got hands on an abandonned laptop that was better than the one I was currently using for my personnal hackings, so I decided to switch to this one. I felt this was the time to learn Vagrant and save me some time later on. I settled on creating a <a href="https://www.vagrantup.com/">Vagrant</a> environment for this <a href="http://octopress.org/">Octopress</a> blogging. That proved a lot longer than I thought it would.</p>
 
-<p>{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png Vagrant logo + Octopress logo%}</p>
+<p><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png" title="Vagrant logo + Octopress logo" ></p>
 
 <p>If you want to jump to the solution, just have a look at this <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b">git change</a>. Here is the slightly longer version.</p>
 
@@ -416,115 +507,9 @@ vagrant reload
 
 <p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
 
-<p><a href="http://docker.io">{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png The Docker logo%}</a></p>
+<p><a href="http://docker.io"><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png" title="The Docker logo" ></a></p>
 
 <p>Next steps will be to use <a href="http://docker.io">Docker</a> providers and Dockerfile to factorize provisioning and speedup up VM startup.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks]]></title>
-    <link href="http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/"/>
-    <updated>2014-06-12T06:28:00+00:00</updated>
-    <id>http://philippe.bourgau.net/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks</id>
-    <content type="html"><![CDATA[<p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
-
-<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
-
-<h3>Use pronouns to reference previously introduced items</h3>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the tool 'screwdriver'
-When this tool is used
-</code></p>
-
-<p>steps.rb</p>
-
-<p>```ruby
-A_TOOL = NameOrPronounTransform(&lsquo;tool&rsquo;, &lsquo;hammer&rsquo;)</p>
-
-<p>Given /^(#{A_TOOL})$/ do |tool|
-  &hellip;
-end
-```</p>
-
-<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
-
-<p>steps.rb</p>
-
-<p>```ruby
-GivenEither /^the dog named &ldquo;(.*)&rdquo;$)$/,</p>
-
-<pre><code>        /^the following dogs$/ do |dogs_table|
-</code></pre>
-
-<p>  &hellip;
-end
-```</p>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the dog "Rolphy"
-...
-Given the following dogs
-  | Rex  |
-  | King |
-  | Volt |
-</code></p>
-
-<h3>Add default values to the hashes of a table</h3>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the following dogs
-  | names | color |
-  | Rex   | white |
-  | King  | Sand  |
-</code></p>
-
-<p>steps.rb</p>
-
-<p>```ruby
-Given /^the following dogs$$/ do |dogs|
-  hashes = dogs.hashes_with_defaults(&lsquo;names&rsquo;, &lsquo;tail&rsquo; => &lsquo;wagging&rsquo;, &lsquo;smell&rsquo; => &lsquo;not nice&rsquo;)</p>
-
-<h1>hashes.each do |hash|</h1>
-
-<h1>expect(hash[&lsquo;smell&rsquo;]).to eq(&lsquo;not nice&rsquo;)</h1>
-
-<h1>end</h1>
-
-<p>  &hellip;
-end
-```</p>
-
-<h3>Define named lists from a table</h3>
-
-<p>foo.feature</p>
-
-<p><code>gherkin
-Given the following dishes
-  | Spaghetti Bolognaise | =&gt; | Spaghetti | Bolognaise sauce |       |         |
-  | Burger               | =&gt; | Bread     | Meat             | Salad | Ketchup |
-</code></p>
-
-<p>steps.rb</p>
-
-<p>```ruby
-Given /^the following dishes$$/ do |dishes|
-  name_2_dishes = dishes.hash_2_lists</p>
-
-<h1>expect(name_2_dishes[&lsquo;Burger&rsquo;]).to eq([&lsquo;Bread&rsquo;,&lsquo;Meat&rsquo;,&lsquo;Salad&rsquo;,&lsquo;Ketchup&rsquo;])</h1>
-
-<p>  &hellip;
-end
-```</p>
-
-<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
 ]]></content>
   </entry>
   
