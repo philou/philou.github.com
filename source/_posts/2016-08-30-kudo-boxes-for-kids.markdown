@@ -25,7 +25,7 @@ It's a nice and easy way to express gratitude for any good stuff our kids do. Th
 
 First, we now have very joyful kudo reading sessions : our kids rush to the boxes to check for new cards. The second most noticeable change we observed is that they are both participating more in the house chores ! For example, as soon as we start cooking, they might spontaneously dress the table up. Or they might bring tools to help us as best as they can when we are tending to the garden.
 
-To summaries, it seems it brought a lot of joy and love in the house.
+To summarize, it seems it brought a lot of joy and love in the house.
 
 ## How we started ?
 
