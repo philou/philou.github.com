@@ -9,6 +9,7 @@ categories:
 - ruby
 - rspec
 - testing
+- mocking
 ---
 From [Martin Fowler's point of view](http://martinfowler.com/articles/mocksArentStubs.html), I must have been a mockist. With using mocks extensively comes quite a few advantages :
 
