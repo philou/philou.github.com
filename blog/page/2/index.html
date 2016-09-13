@@ -100,6 +100,122 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Docker Compose Trick : How to Have an Overridable Environment Variable in Development Mode ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-07-04T03:55:00+00:00" pubdate data-updated="true">Jul 4<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I have recently been playing with <a href="https://www.docker.com/">Docker</a> and <a href="https://docs.docker.com/compose/">Docker Compose</a> while starting <a href="https://github.com/philou/planning-poker">my new side project</a>. I&rsquo;ve fallen into a situation where my production container uses a value for an environment variable, but while developing, I&rsquo;ll need both a different default and the ability to override this value.</p>
+
+<p>I&rsquo;m using <a href="http://rubyonrails.org/">Rails</a> and found various references about how to deploy Rails app using Docker, but in the end, I decided to use <a href="http://www.heroku.com">Heroku</a> which handles a lot of ops for me. Rails uses the RAILS_ENV environment variable to know if it&rsquo;s going to run in development, test or production mode. The <a href="https://hub.docker.com/r/heroku/ruby/">heroku/ruby</a> image sets <code>RAILS_ENV=production</code>, but we usually want to use <code>RAILS_ENV=development</code> locally. I could have overridden RAILS_ENV in a docker-compose.override.yml file, but that would prevent me from running my app in production locally.</p>
+
+<h2>The trick</h2>
+
+<p>I eventually fixed my issue with combination of 2 files.</p>
+
+<h3>docker-compose.override.yml</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span><span class='line'><span class="nn">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>.env</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>The logs</h3>
+
+<p>My app starts in development mode by default :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ </span>docker-compose up web
+</span><span class='line'>Starting planningpoker_herokuPostgresql_1
+</span><span class='line'>Recreating planningpoker_web_1
+</span><span class='line'>Attaching to planningpoker_web_1
+</span><span class='line'>web_1               | Puma starting in single mode...
+</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
+</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
+</span><span class='line'>web_1               | * Environment: development
+</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
+</span><span class='line'>web_1               | Use Ctrl-C to stop
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But I can still override RAILS_ENV to test for example :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>docker-compose up web
+</span><span class='line'>planningpoker_herokuPostgresql_1 is up-to-date
+</span><span class='line'>Recreating planningpoker_web_1
+</span><span class='line'>Attaching to planningpoker_web_1
+</span><span class='line'>web_1               | Puma starting in single mode...
+</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
+</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
+</span><span class='line'>web_1               | * Environment: <span class="nb">test</span>
+</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
+</span><span class='line'>web_1               | Use Ctrl-C to stop
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/5-years-of-blogging-about-software/">5 Years of Blogging About Software</a></h1>
     
     
@@ -905,99 +1021,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/5-books-about-data-driven-lean-software-development/">5 Books About Data Driven Lean Software Development</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-04-29T05:25:00+00:00" pubdate data-updated="true">Apr 29<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In french, we say &ldquo;Le cordonnier est toujours le plus mal chaussé&rdquo; which I found an English equivalent in &ldquo;the shoemaker’s son always goes barefoot&rdquo;. I believe this is nowhere more true than in the software industry !</p>
-
-<p>&ldquo;Software is eating the world&rdquo; they say. Software is now able to do things that only humans used to be. So why the hell are we driving our projects as if we were a horde of amateur hitch hikers ?</p>
-
-<h2>What does it mean to be data driven ?</h2>
-
-<p>Being data driven would allow us to answer questions such as :</p>
-
-<ul>
-<li>How much is the feature we delivered last week contributing to the bottom line ?</li>
-<li>How much is the feature we are currently developing expected to contribute to the bottom line ?</li>
-<li>What are the estimated cost <em>and value</em> of increasing our test coverage of 1% ?</li>
-<li>What are the estimated interests and nominal amounts of our current technical debt ?</li>
-<li>Which is the most valuable : improving our build system or building this new feature ?</li>
-</ul>
-
-
-<p>Most projects I&rsquo;ve worked in have absolutely no clue about the answers to these questions. The decision is left to experts, to the one with most influence, or simply to the developer, who can do how he thinks is best &hellip;</p>
-
-<h2>The books</h2>
-
-<p>Hopefully, some people are thinking differently, they believe it is possible to quantify all this, they even explain how !</p>
-
-<h3><a href="http://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172/ref=sr_1_1?ie=UTF8&amp;qid=1461906957&amp;sr=8-1&amp;keywords=running+lean">Running Lean: Iterate from Plan A to a Plan That Works</a> by <a href="https://ashmaurya.com/">Ash Maurya</a></h3>
-
-<p><a href="http://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172/ref=sr_1_1?ie=UTF8&amp;qid=1461906957&amp;sr=8-1&amp;keywords=running+lean"><img class="center" src="/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/running_lean.jpg" title="The cover of the Running Lean book" ></a></p>
-
-<p>Details a very practical guide about the lean startup process, which is a very good starting point to any kind of lean software development.</p>
-
-<h3><a href="http://www.amazon.com/Kanban-Successful-Evolutionary-Technology-Business/dp/0984521402/ref=sr_1_1?ie=UTF8&amp;qid=1461906998&amp;sr=8-1&amp;keywords=kanban+anderson">Kanban: Successful Evolutionary Change for Your Technology Business</a> by <a href="http://www.djaa.com/">David J. Anderson</a></h3>
-
-<p><a href="http://www.amazon.com/Kanban-Successful-Evolutionary-Technology-Business/dp/0984521402/ref=sr_1_1?ie=UTF8&amp;qid=1461906998&amp;sr=8-1&amp;keywords=kanban+anderson"><img class="center" src="/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/kanban.jpg" title="The cover of the Kanban book" ></a></p>
-
-<p>This book explains with real world examples how to use Kanban board to control your work queues and improve your flow of work, a real basic for any lean product development.</p>
-
-<h3><a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1461907905&amp;sr=8-1&amp;keywords=principles+of+product+development+flow">The Principles of Product Development Flow: Second Generation Lean Product Development</a> by <a href="http://reinertsenassociates.com/">Donald G. Reinertsen</a></h3>
-
-<p><a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1461907905&amp;sr=8-1&amp;keywords=principles+of+product+development+flow"><img class="center" src="/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/flow.jpg" title="The cover of the Flow book" ></a></p>
-
-<p>This book is rather theoretical, but it links all subjects together : lean startup, risk management, Kanban, and economics. I guess it&rsquo;s a must read on the subject.</p>
-
-<h3><a href="http://www.amazon.com/How-Measure-Anything-Intangibles-Business/dp/1118539273/ref=sr_1_1?ie=UTF8&amp;qid=1461908177&amp;sr=8-1&amp;keywords=how+to+measure+anything">How to Measure Anything: Finding the Value of Intangibles in Business</a> by <a href="http://www.hubbardresearch.com/">Douglas W. Hubbard</a></h3>
-
-<p><a href="http://www.amazon.com/How-Measure-Anything-Intangibles-Business/dp/1118539273/ref=sr_1_1?ie=UTF8&amp;qid=1461908177&amp;sr=8-1&amp;keywords=how+to+measure+anything"><img class="center" src="/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/how_to_measure_anything.jpg" title="The cover of How to measure anything" ></a></p>
-
-<p>If the flow book gives a big picture view of what you want, this one explains how you can actually measure all the aspects of your product development in $ value.</p>
-
-<h3><a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_sc_1?ie=UTF8&amp;qid=1461908398&amp;sr=8-1-spell&amp;keywords=walzting+with+bears">Waltzing With Bears: Managing Risk on Software Projects</a> by <a href="http://www.systemsguild.com/">Tom DeMarco and Timothy Lister</a></h3>
-
-<p><a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_sc_1?ie=UTF8&amp;qid=1461908398&amp;sr=8-1-spell&amp;keywords=walzting+with+bears"><img class="center" src="/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/waltzing_with_bears.jpg" title="The cover of Waltzing with bears" ></a></p>
-
-<p>Although this book is getting old, and is a bit outdated when compared to agile development practices, it provides real world examples of how scientific measurement can be applied to software product development.</p>
-
-<h2>An opportunity</h2>
-
-<p>Reading these books was a real eye opener for me. The software development world is plagued with cargo cult and supposed best practices. We follow advises, but most often without verifying if they actually work ! I believe that by applying the techniques in these books, we could create standard ways to measure the values of productivity, technical debt, quality, testing &hellip;</p>
-
-<p>I see real opportunities to avoid a lot of useless argument between proponents of A and B, but also to communicate better with all stakeholders and finally, to reduce stress for all of us.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1076,6 +1099,10 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">How NOT to use mocks, my talk at Paris.rb</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-use-hackernews-and-reddit-for-blogging/">How to use Hackernews and Reddit for blogging</a>
       </li>
     
@@ -1089,10 +1116,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     
       <li class="post">
         <a href="/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">How to prepare a new Ruby env in 3 minutes using Docker</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-grow-a-culture-book/">How to Grow a Culture Book</a>
       </li>
     
   </ul>

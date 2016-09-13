@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mocking | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/mocking/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-09-06T04:49:12+00:00</updated>
+  <updated>2016-09-13T20:15:00+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How NOT to use mocks, my talk at Paris.rb]]></title>
+    <link href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/"/>
+    <updated>2016-09-13T04:03:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb</id>
+    <content type="html"><![CDATA[<p>As I already <a href="/blog/categories/mocking/">wrote about</a>, mocks can be trecherous &hellip; I gave a talk about how to avoid them last tuesday at <a href="http://www.meetup.com/fr-FR/parisrb/">Paris.rb meetup</a>. Here are the <a href="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing">slides</a>.</p>
+
+<p>It talks about testing, mocking, but also <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design</a> and <a href="https://wincent.com/blog/proxies-with-rr">test proxies à la RR</a> (but for rspec).</p>
+
+<iframe src="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="790" height="470" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+
+
+<p><p/>
+Check the speaker&rsquo;s comments for all the details.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RSpecProxies now supports .to receive(xxx)... syntax]]></title>
@@ -159,6 +178,72 @@ end
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Hitting the middle ground between classicist and mockist TDD]]></title>
+    <link href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/"/>
+    <updated>2013-06-18T08:55:00+00:00</updated>
+    <id>http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd</id>
+    <content type="html"><![CDATA[<p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler&rsquo;s point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
+
+<ul>
+<li>test failures often pinpoint the falsy code</li>
+<li>easier test organisation mimicking that of the code</li>
+<li>faster tests</li>
+<li>simpler test initialization</li>
+</ul>
+
+
+<p>Mocks also have their own problems, but mostly :</p>
+
+<ul>
+<li>especialy with dynamicaly typed languages, a mock for class A might not implement the same methods than the real class A, but the test might be passing though ! This ampers refactoring with a longer feedback loop and mock setup rewriting</li>
+</ul>
+
+
+<p>That&rsquo;s what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
+
+<ul>
+<li>extensive use of factories (with <a href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>) to simplify setup</li>
+<li>use of an <a href="http://www.sqlite.org/inmemorydb.html">in memory sqlite database</a> to get a fast full working db</li>
+<li>implement fully functional fakes for some parts of the system</li>
+<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown&rsquo;s thoughts on mocks</a>
+
+<ul>
+<li>when a test is too slow</li>
+<li>to cut off a dependency to a subsystem that is not available in a unit test</li>
+<li>to simplify overly long test data setup</li>
+</ul>
+</li>
+<li>use of test proxies (as in <a href="https://github.com/rr/rr">rr</a>) to inject specific behaviour or to perform specific checks without modifying the rest of the program.</li>
+</ul>
+
+
+<p>Here is how I implemented this with rspec :</p>
+
+<script src="https://gist.github.com/philou/5894144.js"></script>
+
+
+<p>With all this in place, it is most of the time possible to write straightforward tests. For example here, only real objects are used. @order gets its value when Order.create! is called.</p>
+
+<p>```ruby
+it &ldquo;should create an order with the cart&rdquo; do
+  capture_result_from(Order, :create!, into: :order)</p>
+
+<p>  check_in_cart</p>
+
+<p>  @order.should_not be_nil
+  @order.cart.should == @cart
+end
+```</p>
+
+<p>Maybe I should swith to rr &hellip;</p>
+
+<p><strong>EDIT 20/08/2014:</strong></p>
+
+<p>I eventually moved this code into its own gem, it&rsquo;s <a href="https://github.com/philou/rspecproxies">on github</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[stub_model and mock_model]]></title>
     <link href="http://philippe.bourgau.net/stubmodel-and-mockmodel/"/>
     <updated>2012-04-16T00:00:00+00:00</updated>
@@ -167,71 +252,6 @@ end
 
 
 <p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to mock an out of process COM server with C#]]></title>
-    <link href="http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with/"/>
-    <updated>2012-02-14T00:00:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with</id>
-    <content type="html"><![CDATA[<p>I am currently working to replace a legacy command line front end on a COM out of process server.</p>
-
-
-<p>This server is written in C++ and communicates with the front end through COM. For our new front end project, we wanted a standalone integration test harness to run end to end tests. I thought it would have been great to use a mock library (like <a href="http://code.google.com/p/moq/">moq</a>) to validate the interaction between the front end and the COM server.</p>
-
-
-<p>After searching the web, I tried ServicedComponent but I did not manage to make it work ... I then found <a href="http://support.microsoft.com/kb/977996">How to develop and out-of-process COM component by using Visual C#</a>&nbsp;in microsoft knowledge base. It is a full blown COM server completly written in C#.</p>
-
-
-<p>After downloading it, the first thing I tried was to return a mock instead of a concrete object in the class factory</p>
-
-
-<p>
-```c#
-   // CSSimpleObject.cs
-   internal class CSSimpleObjectClassFactory : IClassFactory
-   {
-      public int CreateInstance(IntPtr pUnkOuter, ref Guid riid, out IntPtr ppvObject)
-      {
-         ...
-         if (riid == new Guid(CSSimpleObject.ClassId) ||
-            riid == new Guid(COMNative.IID_IDispatch) ||
-            riid == new Guid(COMNative.IID_IUnknown))
-         {
-            // Create the instance of the .NET object
-            var simpleObject = new Mock&lt;CSSimpleObject&gt; {CallBase = true};
-            simpleObject.SetupGet(x =&gt; x.FloatProperty).Returns(666);
-            simpleObject.Setup(x =&gt; x.HelloWorld()).Returns("Hello, you got pwned !!!");
-
-            ppvObject = Marshal.GetComInterfaceForObject(
-               simpleObject.Object, typeof(ICSSimpleObject));
-            }
-            ...
-```
-</p>
-
-
-<p>Launching&nbsp;CSExeCOMClient.vbs test program told me that it worked.</p>
-
-
-<p>So here is how I eventually integrated this in our test harness :</p>
-
-
-<ul>
-<li>I ran tlbimp.exe on the real COM server I wanted to mock</li>
-<li>In CSSimpleObject.cs, I returned a Mock on the interface of the COM component I wanted to mock</li>
-<li>In&nbsp;CSSimpleObject.cs, I removed SimpleObjectsXXX types</li>
-<li>To skip registration and to keep access on the returned mock, I started this mock COM server in a new thread at the begining of each test</li>
-<li>I tested our new front end in a new process, to make sure we would go through out-of-process COM communication</li>
-</ul>
-
-
-<p>Edit:</p>
-
-
-<p>We discovered a problem with this technique when we did not manage to implement events correctly. The problem is with COM and not with the mocking framework because it does not work with a real implementation neither</p>
 
 ]]></content>
   </entry>
