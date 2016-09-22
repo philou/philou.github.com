@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-09-13T20:15:00+00:00</updated>
+  <updated>2016-09-22T17:53:22+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,68 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Flavors of TDD]]></title>
+    <link href="http://philippe.bourgau.net/flavours-of-tdd/"/>
+    <updated>2016-09-20T20:54:00+00:00</updated>
+    <id>http://philippe.bourgau.net/flavours-of-tdd</id>
+    <category term="programming" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<p>During the years doing some coding dojos with the same circle of people, I came up with my own style of practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. Lately, I had the chance to do a pair programming session with someone I did not know. That made me realize that they are in fact even more ways to practice TDD than I thought.</p>
+
+<h2>Mockist vs Classisist</h2>
+
+<p>A lot has already been written (and discussed) about these two approaches. I myself have already <a href="http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">blogged</a> about the subject, I even gave a <a href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/">talk</a> about it. From my own point of view, I believe that the inconvenients of making mocking the default far outweights the benefits. I&rsquo;m not saying that mocks aren&rsquo;t useful from time to time, but rather that they should remain the exception.</p>
+
+<h2>Top-Down vs Bottom-Up</h2>
+
+<p>That&rsquo;s the reason why I wrote this post. This is the main difference I found between my style and my pair&rsquo;s. Let me explain.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg" title="Top-Down vs Bottom-Up" ></p>
+
+<h3>Top-Down</h3>
+
+<p>Doing TDD top-down means starting with high level end to end tests, implementing the minimum to make it work, refactor and repeat. A bit like BDD, the point is to focus on the expected behavior, and avoid writing useless things. The bad point is that the refactoring part can get pretty difficult. On real life code, strictly following top-down would mean writing a feature test first, passing it with a quick and dirty implementation, to then spend hours trying to refactor all that mess &hellip; good luck !</p>
+
+<p>Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#">Conway&rsquo;s Game of Life</a> using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders &hellip;). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-20-flavours-of-tdd/glider.gif" title="Conway's game of life gliders" ></p>
+
+<h3>Bottom-Up</h3>
+
+<p>At the other side of the spectrum, you can do bottom-up TDD. This means unit testing and implementing all the small bricks you think you&rsquo;ll need to provide the expected overall feature. The idea is to avoid tunnels and to get fast feedback on what you are coding. The bad side is that you might be coding something that will end up being unnecessary. Be careful, if you find yourself spending a lot of time building up utility classes, you might be doing too much bottom-up implementation.</p>
+
+<p>The <a href="http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals">Numerals to Romans Kata</a> is a good exercise to fail at bottom-up. Every time I did this exercise during a coding dojo, people new to it would start to come up with complicated ways to do it (often involving complex array manipulation). Compared to that, applying disciplined bottom-up TDD brings a <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Roman-Numeral-Converter">brutally effective solution for Numerals to Romans</a>.</p>
+
+<h2>Mixed approach</h2>
+
+<p>Both approaches have their pros and cons. I really believe developers who are serious about TDD should master both, and learn when to apply each. In fact, as often, the best approach lies somewhere in the middle. Here&rsquo;s my recipe :</p>
+
+<ol>
+<li>Start with a high level feature test</li>
+<li>try to make it pass &hellip;</li>
+<li>&hellip; (usually) fail</li>
+<li>rollback or shelve your test and draft implementation</li>
+<li>build a brick</li>
+<li>unshelve</li>
+<li>try to make it pass &hellip;</li>
+<li>&hellip; and so one until the high level test finally passes.</li>
+</ol>
+
+
+<p>In fact, it&rsquo;s a lot like the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> for building features instead of refactoring.</p>
+
+<h2>Practice in dojos</h2>
+
+<p>It&rsquo;s possible to intentionally practice this in coding dojos as well. Most kata should be OK, as long as the group agrees to fix it using this particular approach up front.</p>
+
+<p>If during the dojo, you&rsquo;ve just written a test, suddenly realize that it won&rsquo;t be easy to get it passing, and that you&rsquo;ve got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat &hellip; Eventually, you&rsquo;ll have all the bricks to make it easy to pass your test.</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
+
+<p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How NOT to use mocks, my talk at Paris.rb]]></title>
@@ -1656,99 +1718,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 <h2>Shipping above all else</h2>
 
 <p>My point is that every developer or organization containing developers should put shipping value as their absolute priority, and things should get a lot simpler.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pair Programming, From Pain Zone To Skill Zone]]></title>
-    <link href="http://philippe.bourgau.net/pair-programming-from-pain-zone-to-skill-zone/"/>
-    <updated>2016-05-06T04:04:00+00:00</updated>
-    <id>http://philippe.bourgau.net/pair-programming-from-pain-zone-to-skill-zone</id>
-    <category term="agile" /><category term="coaching" /><category term="pair programming" />
-    <content type="html"><![CDATA[<p>We&rsquo;re doing pair programming almost all the the time in our team. A few weeks ago, we went to <a href="http://www.devoxx.fr/">Devoxx</a> Paris, and 2 team mates used pair programming at a hands on session : they finished way before the others and had the time to take a 30 minute break. Pair programming delivers more &hellip; when it works.</p>
-
-<h2>Flavors of Pair Programming</h2>
-
-<p>Throughout our experience, we have identified some situations where it does or does not work :</p>
-
-<table>
-<thead>
-<tr>
-<th>Pain Zone         </th>
-<th> Skill Zone</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Wandering buddies </td>
-<td> Mates</td>
-</tr>
-<tr>
-<td>Expert / Novice   </td>
-<td> Mentor &amp; Apprentice</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<h2>The Pain Zone</h2>
-
-<p>Pair programming can be painful. It can feel like a waste of time or extremely frustrating. Here are the typical situations and how to fix them.</p>
-
-<h3>The Wandering Buddies</h3>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/going_nowhere.jpg" title="A 'going nowhere' sign" ></p>
-
-<p>That&rsquo;s what you&rsquo;d get if you asked to newcomers straight out of school to pair program on existing source code on day 1. They&rsquo;d be dabbling here and there, without going anywhere. Each one would try to get the keyboard to try his way, but in the end, no general direction would be followed.</p>
-
-<p>The cure in this case (as often) is to stop and think. At least one in the pair needs to lean how to pair program. It&rsquo;s not difficult, that&rsquo;s just :</p>
-
-<ul>
-<li>Discuss and agree on a general plan first</li>
-<li>Keep a todo list</li>
-<li>Track your advancement on your todo list while you don&rsquo;t have the keyboard</li>
-<li>Stop and discuss from time to time</li>
-</ul>
-
-
-<p>By starting that, the pair will quickly move into the &lsquo;mates&rsquo; state.</p>
-
-<h3>The Export / The Novice</h3>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/race.jpg" title="A race where Usain Bolt leave everyone meters behind" ></p>
-
-<p>That&rsquo;s when a &lsquo;lone wolf kind of&rsquo; expert pairs with a junior. The expert picks the keyboard, dashes through the tasks, doesn&rsquo;t make sure his pair follows (which usually means it does not).</p>
-
-<p>Regular pair programming means a change in job responsibilities for such expert programmers. If they were expert doers before, they should now become expert mentors or coaches. That&rsquo;s quite a difference. To them, it means that their goal must be to make his pair finish the task &hellip; It can be very frustrating at first. Nevertheless, the overall skill level in teams doing that increases so fast that&rsquo;s it&rsquo;s very fulfilling for the team as a whole.</p>
-
-<h2>The Skill Zone</h2>
-
-<p>The is where we want to be. When it happens, pair programming feels productive, interesting and fulfilling. Contrary to what is often thought, this can happen whatever the skill levels of the 2 programmers.</p>
-
-<h3>The Mates</h3>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/to-do-list.jpg" title="A Todo list" ></p>
-
-<p>The programmers have equivalent skills on the subject at hand. They organized in a way that they are both learning from each other. By having to verbalize what and why they are doing things, by challenging each others assumptions and by sometimes doing differently than what they&rsquo;d alone.</p>
-
-<h3>The Mentor &amp; The Apprentice</h3>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/help.jpg" title="People helping each other to climb a mountain" ></p>
-
-<p>Other times, there can be a real difference in skills for what the pair is attempting to do. In this situation, the goal of the most knowledgeable is to train his pair, who&rsquo;s goal is to learn. The task becomes some kind of exercise on which to practice.</p>
-
-<p>During a typical pairing session, a pair might switch many times between mentor and mates states. Each one in the pair might assume the mentor&rsquo;s role for different aspect of the work. At the end of the day, everyone should feel as if they had learned and accomplished good work.</p>
-
-<h2>Last Word of Caution</h2>
-
-<p>Pair programming is exhausting. Don&rsquo;t expect to be able to do 40 hours of pair programming per week. After 6 hours in a day, one usually starts to get a lot less efficient.</p>
-
-<p>Both juniors and experienced programmers also need some time by their own, to experiment things by themselves or to complete a simple task without having worry about explaining everything.</p>
-
-<p>These are the reasons why <a href="http://www.extremeprogramming.org/">XP</a> stresses having a sustainable pace and leaving space for <a href="http://www.jamesshore.com/Agile-Book/slack.html">Slack time</a></p>
 ]]></content>
   </entry>
   

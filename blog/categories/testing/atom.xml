@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-09-13T20:15:00+00:00</updated>
+  <updated>2016-09-22T17:53:22+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Flavors of TDD]]></title>
+    <link href="http://philippe.bourgau.net/flavours-of-tdd/"/>
+    <updated>2016-09-20T20:54:00+00:00</updated>
+    <id>http://philippe.bourgau.net/flavours-of-tdd</id>
+    <content type="html"><![CDATA[<p>During the years doing some coding dojos with the same circle of people, I came up with my own style of practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. Lately, I had the chance to do a pair programming session with someone I did not know. That made me realize that they are in fact even more ways to practice TDD than I thought.</p>
+
+<h2>Mockist vs Classisist</h2>
+
+<p>A lot has already been written (and discussed) about these two approaches. I myself have already <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">blogged</a> about the subject, I even gave a <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">talk</a> about it. From my own point of view, I believe that the inconvenients of making mocking the default far outweights the benefits. I&rsquo;m not saying that mocks aren&rsquo;t useful from time to time, but rather that they should remain the exception.</p>
+
+<h2>Top-Down vs Bottom-Up</h2>
+
+<p>That&rsquo;s the reason why I wrote this post. This is the main difference I found between my style and my pair&rsquo;s. Let me explain.</p>
+
+<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg" title="Top-Down vs Bottom-Up" ></p>
+
+<h3>Top-Down</h3>
+
+<p>Doing TDD top-down means starting with high level end to end tests, implementing the minimum to make it work, refactor and repeat. A bit like BDD, the point is to focus on the expected behavior, and avoid writing useless things. The bad point is that the refactoring part can get pretty difficult. On real life code, strictly following top-down would mean writing a feature test first, passing it with a quick and dirty implementation, to then spend hours trying to refactor all that mess &hellip; good luck !</p>
+
+<p>Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#">Conway&rsquo;s Game of Life</a> using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders &hellip;). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.</p>
+
+<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/glider.gif" title="Conway&rsquo;s game of life gliders" ></p>
+
+<h3>Bottom-Up</h3>
+
+<p>At the other side of the spectrum, you can do bottom-up TDD. This means unit testing and implementing all the small bricks you think you&rsquo;ll need to provide the expected overall feature. The idea is to avoid tunnels and to get fast feedback on what you are coding. The bad side is that you might be coding something that will end up being unnecessary. Be careful, if you find yourself spending a lot of time building up utility classes, you might be doing too much bottom-up implementation.</p>
+
+<p>The <a href="http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals">Numerals to Romans Kata</a> is a good exercise to fail at bottom-up. Every time I did this exercise during a coding dojo, people new to it would start to come up with complicated ways to do it (often involving complex array manipulation). Compared to that, applying disciplined bottom-up TDD brings a <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Roman-Numeral-Converter">brutally effective solution for Numerals to Romans</a>.</p>
+
+<h2>Mixed approach</h2>
+
+<p>Both approaches have their pros and cons. I really believe developers who are serious about TDD should master both, and learn when to apply each. In fact, as often, the best approach lies somewhere in the middle. Here&rsquo;s my recipe :</p>
+
+<ol>
+<li>Start with a high level feature test</li>
+<li>try to make it pass &hellip;</li>
+<li>&hellip; (usually) fail</li>
+<li>rollback or shelve your test and draft implementation</li>
+<li>build a brick</li>
+<li>unshelve</li>
+<li>try to make it pass &hellip;</li>
+<li>&hellip; and so one until the high level test finally passes.</li>
+</ol>
+
+
+<p>In fact, it&rsquo;s a lot like the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> for building features instead of refactoring.</p>
+
+<h2>Practice in dojos</h2>
+
+<p>It&rsquo;s possible to intentionally practice this in coding dojos as well. Most kata should be OK, as long as the group agrees to fix it using this particular approach up front.</p>
+
+<p>If during the dojo, you&rsquo;ve just written a test, suddenly realize that it won&rsquo;t be easy to get it passing, and that you&rsquo;ve got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat &hellip; Eventually, you&rsquo;ll have all the bricks to make it easy to pass your test.</p>
+
+<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
+
+<p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How NOT to use mocks, my talk at Paris.rb]]></title>
@@ -231,59 +292,6 @@ Given there are too many bugs
 When you can help
 Then DO IT !
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Performance is a feature]]></title>
-    <link href="http://philippe.bourgau.net/performance-is-a-feature/"/>
-    <updated>2015-01-19T06:46:00+00:00</updated>
-    <id>http://philippe.bourgau.net/performance-is-a-feature</id>
-    <content type="html"><![CDATA[<p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
-
-<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
-
-<h1>What&rsquo;s in it for us ?</h1>
-
-<p>If performance is indead a feature, then it can be managed like any feature :</p>
-
-<ul>
-<li><p>It should result from use cases</p>
-
-<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
-<li><p>It can be split into user stories</p></li>
-</ul>
-
-
-<blockquote><ul>
-<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
-<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>They can be prioritized against other stories</li>
-</ul>
-
-
-<blockquote><ul>
-<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
-<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>The performance on these use cases should be automatically tested and non regressed</li>
-</ul>
-
-
-<blockquote><ul>
-<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
-<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
-</ul>
-</blockquote>
-
-<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
 ]]></content>
   </entry>
   

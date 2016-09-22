@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-09-13T20:15:00+00:00</updated>
+  <updated>2016-09-22T17:53:22+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Flavors of TDD]]></title>
+    <link href="http://philippe.bourgau.net/flavours-of-tdd/"/>
+    <updated>2016-09-20T20:54:00+00:00</updated>
+    <id>http://philippe.bourgau.net/flavours-of-tdd</id>
+    <content type="html"><![CDATA[<p>During the years doing some coding dojos with the same circle of people, I came up with my own style of practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. Lately, I had the chance to do a pair programming session with someone I did not know. That made me realize that they are in fact even more ways to practice TDD than I thought.</p>
+
+<h2>Mockist vs Classisist</h2>
+
+<p>A lot has already been written (and discussed) about these two approaches. I myself have already <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">blogged</a> about the subject, I even gave a <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">talk</a> about it. From my own point of view, I believe that the inconvenients of making mocking the default far outweights the benefits. I&rsquo;m not saying that mocks aren&rsquo;t useful from time to time, but rather that they should remain the exception.</p>
+
+<h2>Top-Down vs Bottom-Up</h2>
+
+<p>That&rsquo;s the reason why I wrote this post. This is the main difference I found between my style and my pair&rsquo;s. Let me explain.</p>
+
+<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg" title="Top-Down vs Bottom-Up" ></p>
+
+<h3>Top-Down</h3>
+
+<p>Doing TDD top-down means starting with high level end to end tests, implementing the minimum to make it work, refactor and repeat. A bit like BDD, the point is to focus on the expected behavior, and avoid writing useless things. The bad point is that the refactoring part can get pretty difficult. On real life code, strictly following top-down would mean writing a feature test first, passing it with a quick and dirty implementation, to then spend hours trying to refactor all that mess &hellip; good luck !</p>
+
+<p>Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#">Conway&rsquo;s Game of Life</a> using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders &hellip;). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.</p>
+
+<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/glider.gif" title="Conway&rsquo;s game of life gliders" ></p>
+
+<h3>Bottom-Up</h3>
+
+<p>At the other side of the spectrum, you can do bottom-up TDD. This means unit testing and implementing all the small bricks you think you&rsquo;ll need to provide the expected overall feature. The idea is to avoid tunnels and to get fast feedback on what you are coding. The bad side is that you might be coding something that will end up being unnecessary. Be careful, if you find yourself spending a lot of time building up utility classes, you might be doing too much bottom-up implementation.</p>
+
+<p>The <a href="http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals">Numerals to Romans Kata</a> is a good exercise to fail at bottom-up. Every time I did this exercise during a coding dojo, people new to it would start to come up with complicated ways to do it (often involving complex array manipulation). Compared to that, applying disciplined bottom-up TDD brings a <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Roman-Numeral-Converter">brutally effective solution for Numerals to Romans</a>.</p>
+
+<h2>Mixed approach</h2>
+
+<p>Both approaches have their pros and cons. I really believe developers who are serious about TDD should master both, and learn when to apply each. In fact, as often, the best approach lies somewhere in the middle. Here&rsquo;s my recipe :</p>
+
+<ol>
+<li>Start with a high level feature test</li>
+<li>try to make it pass &hellip;</li>
+<li>&hellip; (usually) fail</li>
+<li>rollback or shelve your test and draft implementation</li>
+<li>build a brick</li>
+<li>unshelve</li>
+<li>try to make it pass &hellip;</li>
+<li>&hellip; and so one until the high level test finally passes.</li>
+</ol>
+
+
+<p>In fact, it&rsquo;s a lot like the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> for building features instead of refactoring.</p>
+
+<h2>Practice in dojos</h2>
+
+<p>It&rsquo;s possible to intentionally practice this in coding dojos as well. Most kata should be OK, as long as the group agrees to fix it using this particular approach up front.</p>
+
+<p>If during the dojo, you&rsquo;ve just written a test, suddenly realize that it won&rsquo;t be easy to get it passing, and that you&rsquo;ve got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat &hellip; Eventually, you&rsquo;ll have all the bricks to make it easy to pass your test.</p>
+
+<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
+
+<p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Is There Any Room For The Not-Passionate Developer ?]]></title>
@@ -179,75 +240,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 <p>Let&rsquo;s build anti ugly-code glasses ! We&rsquo;d just need an IDE or editor plugin, connect it to <a href="http://www.sonarqube.org/">Sonar</a> in order to get the quality of the current file, and if too bad, shut the glasses black !</p>
 
 <p>Finally the killer feature for augmented reality glasses !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How To Keep Up With Software Technologies]]></title>
-    <link href="http://philippe.bourgau.net/how-to-keep-up-with-software-technologies/"/>
-    <updated>2016-05-30T04:31:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-keep-up-with-software-technologies</id>
-    <content type="html"><![CDATA[<p>Since I started to program professionally 15 years ago, a lot of things have changes. A lot of technologies appeared and became mainstream while others fell out of fashion.</p>
-
-<p>As software developers, it is really challenging to stay fit and productive in new technologies. I cannot obviously say that I am an expert in all new technologies, but I can say that I can get up to speed in a pretty short time in nearly all.</p>
-
-<p>If there is a single reason for that I strongly believe it is because &ldquo;I studied my classics&rdquo; !</p>
-
-<p><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/outdated.jpg" title="An outdated computed covered in spider webs" ></p>
-
-<h2>How does it work</h2>
-
-<p>At the same time I started to program all day long for my living, I also started to read a lot of programming books on my spare time. This allowed me to learn at night and practice at day, setting everything in my brain.</p>
-
-<p>This might come as a surprise, but I never read a lot of books about the technologies I was using. I&rsquo;d rather study fundamental programming books. These contain a lot of transportable knowledge, unlike in most books about a particular technology.</p>
-
-<p>I believe this is a pretty good use of time since it made me a better programmer and also greatly reduced the time I need to master most new technologies. I can now easily relate them to some more general concept I learned before.</p>
-
-<p>For example, I never read a book about UI. By the time I had to do some UI programming, I had absolutely no issue getting up to speed on the topic. I had already seen quite some UI code examples in other books, I knew that most UI frameworks are built from a set of Object Oriented patterns. Coming from a different perspective, I was even able to suggest improvements to the code that UI experts had not thought of.</p>
-
-<p>That&rsquo;s not to say that I never read books about a particular technology, sometimes, that&rsquo;s just what you need to start something new. But when I do, I usually find them quite easy to read and digest. And I tend to skip things I intuitively understand and use them as cookbooks containing recipes for particular problems rather than end to end walk-through.</p>
-
-<h2>My books</h2>
-
-<h3><a href="http://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X/ref=sr_1_1?ie=UTF8&amp;qid=1464666382&amp;sr=8-1&amp;keywords=the+pragmatic+programmer">The Pragmatic Programmer: From Journeyman to Master</a></h3>
-
-<p><a href="http://www.amazon.com/Pragmatic-Programmer-Journeyman-Master/dp/020161622X/ref=sr_1_1?ie=UTF8&amp;qid=1464666382&amp;sr=8-1&amp;keywords=the+pragmatic+programmer"><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/the-pragmatic-programmer.jpg" title="Cover of the pragmatic programmer book" ></a></p>
-
-<p>As a young programmer this book made me understand that my job was not only about writing code, but about building maintainable systems. It provided me with tools to do so, 10 years later, I can still remember &ldquo;The power of plain text&rdquo;. This is also the book that made me have a first look into Ruby :).</p>
-
-<h3><a href="http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?ie=UTF8&amp;qid=1464666776&amp;sr=8-1&amp;keywords=refactoring+improving+the+design+of+existing+code">Refactoring: Improving the Design of Existing Code</a></h3>
-
-<p><a href="http://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?ie=UTF8&amp;qid=1464666776&amp;sr=8-1&amp;keywords=refactoring+improving+the+design+of+existing+code"><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/refactoring.jpg" title="Cover of the refactoring book" ></a></p>
-
-<p>Here is the theory behind all automated IDE refactorings. Reading this book had a profound influence on my coding style. The examples made me understand the difference between readable and unreadable code &hellip; It&rsquo;s also the foundation for any kind of incremental design and architecture. That&rsquo;s the book that got me started with TDD.</p>
-
-<h3><a href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1464666833&amp;sr=8-1&amp;keywords=domain+driven+design+eric+evans">Domain-Driven Design: Tackling Complexity in the Heart of Software</a></h3>
-
-<p><a href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1464666833&amp;sr=8-1&amp;keywords=domain+driven+design+eric+evans"><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/ddd.jpg" title="Cover of the DDD book" ></a></p>
-
-<p>This book teaches good object oriented programming. Some say it is tough to read, but it&rsquo;s definitely worth doing so. Among other things, it explains how to use functional programming concept in your object oriented project, by separating Value Objects and Entities for example.</p>
-
-<h3><a href="http://www.amazon.com/Programming-Language-Brian-W-Kernighan/dp/0131103628/ref=pd_sim_14_2?ie=UTF8&amp;dpID=41qX6YdIJ7L&amp;dpSrc=sims&amp;preST=_AC_UL160_SR122%2C160_&amp;refRID=035C81Y95A0A1C6K25F6">The C Programming Language</a></h3>
-
-<p><a href="http://www.amazon.com/Programming-Language-Brian-W-Kernighan/dp/0131103628/ref=pd_sim_14_2?ie=UTF8&amp;dpID=41qX6YdIJ7L&amp;dpSrc=sims&amp;preST=_AC_UL160_SR122%2C160_&amp;refRID=035C81Y95A0A1C6K25F6"><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/c.jpg" title="Cover of the C book" ></a></p>
-
-<p>With around 250 pages, it&rsquo;s pretty difficult to find a programming book with a greater value/page ratio. This one will teach you all there is to learn about C, and help you understand everything that was built on top of C (and that&rsquo;s quite a lot &hellip;)</p>
-
-<h3><a href="http://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1464666981&amp;sr=1-1&amp;keywords=sicp">Structure and Interpretation of Computer Programs</a></h3>
-
-<p><a href="http://www.amazon.com/Structure-Interpretation-Computer-Programs-Engineering/dp/0262510871/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1464666981&amp;sr=1-1&amp;keywords=sicp"><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/sicp.jpg" title="Cover of the SICP book" ></a></p>
-
-<p>Compared to C, Lisp is at the other side of the language spectrum. Learning C and Lisp gives the ability to put nearly anything in contrast to these 2 languages. Lisp is dynamic, functional and meta. It can be morphed into nearly anything and SICP teaches how to do so. There&rsquo;s a Lisp practice that is invaluable to any programmer : use your language to express your problem as simply as possible. SICP teaches that.</p>
-
-<h3><a href="http://www.amazon.com/Programming-Erlang-Concurrent-Pragmatic-Programmers/dp/193778553X/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1464667113&amp;sr=1-2&amp;keywords=erlang+programming">Programming Erlang: Software for a Concurrent World</a></h3>
-
-<p><a href="http://www.amazon.com/Programming-Erlang-Concurrent-Pragmatic-Programmers/dp/193778553X/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1464667113&amp;sr=1-2&amp;keywords=erlang+programming"><img class="center" src="/imgs/2016-05-30-how-to-keep-up-with-software-technologies/erlang.jpg" title="Cover of the Erlang book" ></a></p>
-
-<p>Neither the C book nor SICP deals with distribution and concurrency. That&rsquo;s what this book does. I had never programmed distributed systems before reading this book. After I read it, I learned how to code for distribution in a maintainable way. The lessons taught by Erlang are applicable in many languages.</p>
-
-<h2>Not the best books</h2>
-
-<p>I did not and will never read all programming books available. There might be newer books that treat the same subjects better, but these books are the ones that taught me the most about our craft. My point is that learning fundamentals and things far away from our daily technologies will teach us more.</p>
 ]]></content>
   </entry>
   
