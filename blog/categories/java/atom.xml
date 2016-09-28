@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-09-22T17:53:22+00:00</updated>
+  <updated>2016-09-28T20:01:23+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Top 5 talks I attended at JavaOne 2016 (Part 1)]]></title>
+    <link href="http://philippe.bourgau.net/top-5-talks-i-attented-at-java-one-2016-part-1/"/>
+    <updated>2016-09-28T19:20:00+00:00</updated>
+    <id>http://philippe.bourgau.net/top-5-talks-i-attented-at-java-one-2016-part-1</id>
+    <content type="html"><![CDATA[<p>With a few other colleagues, I had the chance to be sent to San Francisco last week to attend the <a href="https://www.oracle.com/javaone/index.html">JavaOne 2016</a> conferences by my <a href="http://www.murex.com">company</a>.</p>
+
+<p><a href="/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall.jpg"><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall-small.jpg" title="Photo of the JavaOne exhibition hall" ></a></p>
+
+<p>Here is super short list of the conferences I attended which I found really interesting</p>
+
+<h2>Preventing errors before they happen</h2>
+
+<p><a href="https://ece.uwaterloo.ca/~wdietl/">Werner Dietl</a> &amp; <a href="https://homes.cs.washington.edu/~mernst/">Michael Ernst</a></p>
+
+<p>Since Java 6, it is possible to pass custom annotation processors to javac. Since Java 8, it is possible to add annotations to types. The guys behind the <a href="http://checkerframework.org">Checker Framework</a> used this to create custom pluggable type systems for your Java programs. These type systems enforce properties on your program, and will emit warnings or errors at compile time otherwise.</p>
+
+<p>Here are a few example :</p>
+
+<ul>
+<li>declare <code>@Immutable MyObject myObject</code> to make sure that myObject won&rsquo;t be muted</li>
+<li>declare <code>@NonNull MyObject myObject</code> to make sure that myObject is never null</li>
+</ul>
+
+
+<p><a href="/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems.jpg"><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems-small.jpg" title="Architecture of the type checker" ></a></p>
+
+<p>Under the hood, the compiler behaves as if <code>@Immutable MyObject</code> and <code>MyObject</code> where completely separate types, and it knows and tracks specific ways of converting between the two. The framework provides a simple API to define your own type systems. They did a live demo showing how to quickly define things like <code>@Regex String</code>, <code>@Encrypted String</code> or <code>@Untainted String</code> (which forbids user input strings to avoid SQL injections).</p>
+
+<p>The talk was really interesting, the framework seems lightweight and to integrate well with the typical tool stack. I definitely will give it a try the next time I have a bit of slack time.</p>
+
+<p>Here are <a href="http://types.cs.washington.edu/checker-framework/2016-javaone/2016-09-19%20CF%20@%20JavaOne.pdf">the slides</a> and a <a href="https://www.youtube.com/watch?v=kb6nz85jbuQ">previous session of the presentation</a></p>
+
+<h2>Keeping Your CI/CD Pipeline as Fast as It Needs to Be</h2>
+
+<p><a href="https://twitter.com/abrahammarin?lang=fr">Abraham Marin-Perez</a></p>
+
+<p>Continuous Delivery and Microservices are what you need to do, aren&rsquo;t they ? Well, when actually trying to setup a CI / CD pipeline for all your code, things quickly get complicated pretty fast ! The speaker presented how to deal with this complexity by using metrics from your VCS and build servers to draw an annotated graph of your build pipeline.</p>
+
+<p><a href="/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline.jpg"><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline-small.jpg" title="Graph of the build pipeline" ></a></p>
+
+<ul>
+<li>He used the build time to set the size of every node : the longer, the larger</li>
+<li>The color for the change rate : the more often it was built the warmer the color</li>
+</ul>
+
+
+<p>It was then possible to determine other metrics such as :</p>
+
+<ul>
+<li>the impact time of every node : build time + build time of all the dependencies</li>
+<li>the weighted impact time : impact time * change rate</li>
+<li>the overall average impact time : sum of all the weighted impact times</li>
+<li>the overall max impact time : max of all the impact times</li>
+</ul>
+
+
+<p>Using this and your SLAs it is possible to define policies for your build times such as &ldquo;the max build time should not be more than X&rdquo;. If you want to speed up your build, you can set a target build time and analyzing the graph should help you to understand what architecture changes you need to make to your system in order to meet this build time (this sounds a lot like <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">Toyota&rsquo;s Improvement Kata</a> &hellip;)</p>
+
+<p>I loved this talk ! I found the speaker captivating, he presented novel ideas which is not always the case.</p>
+
+<p>Here are <a href="http://www.slideshare.net/AbrahamMarinPerez/keeping-your-cicd-pipeline-as-fast-as-it-needs-to-be">the slides</a>, and <a href="https://www.youtube.com/watch?v=8JxoKJng_eQ">the same presentation at Devoxx UK</a>.</p>
+
+<h2>To Be Continued</h2>
+
+<p>I promised 5, and that&rsquo;s only 2 talks ! Stay tuned, I&rsquo;ll write about the 3 others in the coming weeks.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Actors and Green Threads in Java Demystified]]></title>
