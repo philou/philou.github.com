@@ -100,6 +100,155 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/from-zero-to-pair-programming-hero/">From Zero to Pair Programming Hero</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-27T06:31:00+00:00" pubdate data-updated="true">Jan 27<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In my team at <a href="http://www.murex.com">Murex</a>, we&rsquo;ve been doing Pair programming 75% of our time for the past 9 months now.</p>
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.JPG"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.resized.JPG" title="Photo of all the team doing pair programming" ></a></p>
+
+<p>Before I explain how we got there, let&rsquo;s summarize our observations :</p>
+
+<ul>
+<li>No immediate productivity drop</li>
+<li>Pair programming is really tiring</li>
+<li>Quality expectations throughout the team soared up</li>
+<li>As a result, the quality actually increased a lot</li>
+<li>But existing technical debt suddenly became incompatible with the team&rsquo;s own quality criterion. We went on to pay it back, which slowed us down for a while</li>
+<li>Productivity is regularly going up as the technical debt is reduced</li>
+<li>It helped us to define shared coding conventions</li>
+<li>Pair programming is not for everyone. It has likely precipitated the departure of one team member</li>
+<li>It certainly helped the team to <a href="http://www.hans-eric.com/2007/08/13/is-your-team-jelled/">jell</a></li>
+<li>Newcomers can submit code on day 1</li>
+<li>The skills of everyone increase a lot quicker than before</li>
+<li><em>Bonus</em> : it improves personal skills of all the team members</li>
+</ul>
+
+
+<p>If you are interested in how we got there, read on, here is our story :</p>
+
+<h2>Best Effort Code Reviews</h2>
+
+<p>At the beginning, only experienced team members were reviewing the submitted code, and making remarks for improvement over our default review system : <a href="http://smartbear.com/product/collaborator/overview/">Code Collaborator</a>.</p>
+
+<p>This practice revealed tedious, especially with large change lists. As it was not systematic, reviewers constantly had to remind to the reviewees to act on the remarks, which hindered empowerment.</p>
+
+<h2>Systematic Code Reviews</h2>
+
+<p>Observing this during a <a href="/how-we-introduced-efficient-agile-retrospectives/">retrospective</a>, we decided to do add code review to our <a href="https://www.scrum.org/Resources/Scrum-Glossary/Definition-of-Done">Definition Of Done</a>. Inspired by <a href="http://producingoss.com/en/setting-tone.html#code-review">best practices in the Open Source world</a>, we created a ruby review script that automatically creates Code Collaborator reviews based on the <a href="www.perforce.com">Perforce</a> submits. Everyone was made observer of any code change, and everyone was to participate in the reviews.</p>
+
+<p>At first, to make this practice stick, a few benevolent review champions had to comment all the submitted code; once the habit was taken, everyone participated in the reviews.</p>
+
+<p>Code Collaborator spamming was certainly an issue, but using Code Collaborator System Tray App helped each of us to keep up to date with the remaining reviews to do.</p>
+
+<p><em>Bonus</em> : As everyone was doing reviews, and that reviews of small changes are easier, submits became smaller.</p>
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.png"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.resized.png" title="A screenshot of our code collaborator installation" ></a></p>
+
+<p>This was certainly an improvement, but it remained time consuming. We believed we could do better.</p>
+
+<h2>Pair Programming</h2>
+
+<p>After 1 or 2 months of systematic code reviews, during a retrospective (again) nearly all the team members decided to give <a href="http://blogs.sourceallies.com/2011/03/pair-programming-101/">pair programming</a> a try.</p>
+
+<p>We felt the difference after the very first day : pair programming is intense, but the results are great. We never turned back.</p>
+
+<p>With pair programming in place, we had to settle a pair switching frequency. We started with the full story, tried a one day rotation, and eventually settled on &ldquo;MIN(1 week, the story)&rdquo;.</p>
+
+<p>This is not set in stone and is team dependent. It may vary depending on the learning curve required to work on a story. We might bring it down later maybe.</p>
+
+<h2>Remote Pair Programming</h2>
+
+<p>Ahmad, a Murex guy from Beirut joined the team a few months ago. We did not want to change our way of working, and decided to try remote pair programming.</p>
+
+<h3>Initial Setup</h3>
+
+<p>At the beginning, we were using <a href="http://products.office.com/en-us/Lync/lync-2013-video-conferencing-meeting-software">Lync</a> (Microsoft&rsquo;s chat system) with webcams, headphones and screen sharing. It works, but Lync&rsquo;s screen sharing does not allow seamless remote control between Paris and Beirut. Here is how we coped with this :</p>
+
+<ul>
+<li>Only exceptionally use Lync&rsquo;s &ldquo;Give Control&rdquo; feature : it lags too much</li>
+<li>Do small submits, and switch control at submits</li>
+<li>When you cannot submit soon, shelve the code on perforce (you would just pull your buddy&rsquo;s repo with git), and switch control</li>
+</ul>
+
+
+<p>As a result, Ahmad became productive a lot more quickly. We are not 2 sub teams focusing on their own area of expertise, but 1 single distributed team sharing everything.</p>
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.jpg"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.resized.jpg" title="My remote pair programming setup" ></a></p>
+
+<h3>Improved Setup</h3>
+
+<p>Remote pair programming as such is workable, but does not feel as easy as being collocated. Here are a few best practices we are now using to improve the experience :</p>
+
+<ul>
+<li>Keep your pair&rsquo;s video constantly visible : either on your laptop of in a corner of you main screen, but it&rsquo;s important to see his facial expression all the time</li>
+<li>In order to allow eye contact, place your cam next to the window containing the video of your pair.</li>
+<li>Using 2 cameras, <a href="http://download.manycam.com/">ManyCams</a> and a small whiteboard allows to share drawings !</li>
+</ul>
+
+
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.jpg"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.resized.jpg" title="A screenshot of my pair programming environment" ></a></p>
+
+<ul>
+<li>We started using the <a href="http://pomodorotechnique.com/">Pomodoro technique</a> for control switching. <a href="http://www.marinaratimer.com/">MarinaraTimer</a> provides an online and shareable timer.</li>
+<li>We also started maintaining a todo list with an online shareable editor such as <a href="http://collabedit.com/">CollabEdit</a> or <a href="https://docs.google.com/">Google Docs</a>.</li>
+</ul>
+
+
+<h3>Future Setup</h3>
+
+<p>We are currently welcoming a new engineer in Beirut, and as we will be doing more remote pair programming, we&rsquo;ll need to make this more seamless. Control sharing and lag through Lync remain the main issues. We don&rsquo;t have a solution for that yet, but here are the fixes we are looking into</p>
+
+<ul>
+<li><a href="http://www.saros-project.org/">Saros</a> is an <a href="https://eclipse.org/">Eclipse</a> plugin for remote concurrent and real time editing of files. Many people can edit the files at the same time. We are waiting for the <a href="https://www.jetbrains.com/idea/">Intellij</a> version that is still under development</li>
+</ul>
+
+
+<p><a href="http://www.saros-project.org/screenshots"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/saros.resized.png" title="A screenshot from Eclipse with Saros plugin" ></a></p>
+
+<ul>
+<li><a href="https://floobits.com/">Floobits</a> is a commercial equivalent of saros. We tried it and it seems great. It&rsquo;s not cheap though, especially with in-house servers.</li>
+<li><a href="https://screenhero.com/">Screenhero</a> is a commercial low-lag, multi cursor screen sharing tool. Unfortunately, it currently does not work behind a proxy, and so we were not able to evaluate it yet.</li>
+</ul>
+
+
+<h2>Final thoughts</h2>
+
+<p>I believe that collocated, and remote, pair programming are becoming key skills for a modern software engineer.</p>
+
+<p>I hope this will help teams envisioning pair programming. We&rsquo;d love to read about your best practices as well !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/can-agile-teams-commit/">Can Agile Teams Commit?</a></h1>
     
     
@@ -2244,174 +2393,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/cucumber-tricks-gem-my-favorite-gherkin-and-cucumber-tricks/">Cucumber_tricks Gem : My Favorite Gherkin and Cucumber Tricks</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-12T06:28:00+00:00" pubdate data-updated="true">Jun 12<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just compiled my Gherkin and Cucumber goodies into a gem. It&rsquo;s called <a href="https://rubygems.org/gems/cucumber_tricks">cucumber_tricks</a> and the source code can be found on <a href="https://github.com/philou/cucumber_tricks">github</a>. It&rsquo;s also tested on <a href="https://travis-ci.org/philou/cucumber_tricks">travis</a> and documented in details on <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a>.</p>
-
-<p>The goal of all these tricks is to be able to write more natural english scenarios. Here is an extract from the readme of the gem, which explains what it can do :</p>
-
-<h3>Use pronouns to reference previously introduced items</h3>
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the tool &#39;screwdriver&#39;</span>
-</span><span class='line'><span class="k">When </span><span class="nf">this tool is used</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">A_TOOL</span> <span class="o">=</span> <span class="no">NameOrPronounTransform</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="s1">&#39;hammer&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">Given</span> <span class="sr">/^(</span><span class="si">#{</span><span class="no">A_TOOL</span><span class="si">}</span><span class="sr">)$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">tool</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Use the same step implementation to handle an inline arg as a 1-cell table</h3>
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">GivenEither</span> <span class="sr">/^the dog named &quot;(.*)&quot;$)$/</span><span class="p">,</span>
-</span><span class='line'>            <span class="sr">/^the following dogs$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs_table</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the dog &quot;</span><span class="s">Rolphy</span><span class="nf">&quot;</span>
-</span><span class='line'><span class="nf">...</span>
-</span><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">  |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k"> |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Volt</span><span class="k"> |</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Add default values to the hashes of a table</h3>
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dogs</span>
-</span><span class='line'><span class="k">  |</span><span class="s"> names</span><span class="k"> |</span><span class="s"> color</span><span class="k"> |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Rex</span><span class="k">   |</span><span class="s"> white</span><span class="k"> |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> King</span><span class="k">  |</span><span class="s"> Sand</span><span class="k">  |</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dogs$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dogs</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">hashes</span> <span class="o">=</span> <span class="n">dogs</span><span class="o">.</span><span class="n">hashes_with_defaults</span><span class="p">(</span><span class="s1">&#39;names&#39;</span><span class="p">,</span> <span class="s1">&#39;tail&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;wagging&#39;</span><span class="p">,</span> <span class="s1">&#39;smell&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;not nice&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#  hashes.each do |hash|</span>
-</span><span class='line'><span class="c1">#    expect(hash[&#39;smell&#39;]).to eq(&#39;not nice&#39;)</span>
-</span><span class='line'><span class="c1">#  end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Define named lists from a table</h3>
-
-<p>foo.feature</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Given </span><span class="nf">the following dishes</span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Spaghetti Bolognaise</span><span class="k"> |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Spaghetti</span><span class="k"> |</span><span class="s"> Bolognaise sauce</span><span class="k"> |       |         |</span><span class="nf"></span>
-</span><span class='line'><span class="k">  |</span><span class="s"> Burger</span><span class="k">               |</span><span class="s"> =&gt;</span><span class="k"> |</span><span class="s"> Bread</span><span class="k">     |</span><span class="s"> Meat</span><span class="k">             |</span><span class="s"> Salad</span><span class="k"> |</span><span class="s"> Ketchup</span><span class="k"> |</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>steps.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span> <span class="sr">/^the following dishes$$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">dishes</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">name_2_dishes</span> <span class="o">=</span> <span class="n">dishes</span><span class="o">.</span><span class="n">hash_2_lists</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">#  expect(name_2_dishes[&#39;Burger&#39;]).to eq([&#39;Bread&#39;,&#39;Meat&#39;,&#39;Salad&#39;,&#39;Ketchup&#39;])</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Visit <a href="https://www.relishapp.com/philou/cucumber-tricks/docs">relish</a> for more detailed documentation.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -2490,6 +2471,10 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 talks I attended at JavaOne 2016 (Part 2)</a>
+      </li>
+    
+      <li class="post">
         <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Top 5 talks I attended at JavaOne 2016 (Part 1)</a>
       </li>
     
@@ -2503,10 +2488,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
     
       <li class="post">
         <a href="/how-to-use-hackernews-and-reddit-for-blogging/">How to use Hackernews and Reddit for blogging</a>
-      </li>
-    
-      <li class="post">
-        <a href="/kudo-boxes-for-kids/">Kudo Boxes for Kids</a>
       </li>
     
   </ul>

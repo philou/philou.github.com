@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-09-28T20:01:23+00:00</updated>
+  <updated>2016-10-03T20:10:38+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Top 5 talks I attended at JavaOne 2016 (Part 2)]]></title>
+    <link href="http://philippe.bourgau.net/top-5-talks-i-attended-at-javaone-2016-part-2/"/>
+    <updated>2016-09-28T20:02:00+00:00</updated>
+    <id>http://philippe.bourgau.net/top-5-talks-i-attended-at-javaone-2016-part-2</id>
+    <category term="java" /><category term="programming" />
+    <content type="html"><![CDATA[<p>This is my second post relating the talks I attended at JavaOne 2016. <a href="http://philippe.bourgau.net/top-5-talks-i-attented-at-java-one-2016-part-1/">Here</a> is the beginning of the story. Here we go.</p>
+
+<h2>Euphoria Despite the Despair</h2>
+
+<p><a href="https://twitter.com/holly_cummins">Holly Cummins</a></p>
+
+<p>Our jobs aren&rsquo;t always fun &hellip; and that&rsquo;s in fact an issue ! Studies show that people who have fun at work are 31% more productive ! The talk was organized in 3 parts :</p>
+
+<ol>
+<li>What is fun ?</li>
+<li>How to remove the parts that are not fun ?</li>
+<li>How to add even more fun ?</li>
+</ol>
+
+
+<p>She defined what she called the funtinuum, which is that fun is a function of engagement and interaction. Basically, you won&rsquo;t have fun if you are doing nothing, or if no one cares about your work. That aligns well with <a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&amp;qid=1475123675&amp;sr=8-1&amp;keywords=daniel+pink+drive">Daniel Pink&rsquo;s drivers of motivation</a> : Autonomy, Mastery and Purpose.</p>
+
+<p>If something is not fun, it&rsquo;s because it does not require engagement or interaction. It&rsquo;s either boring or no one cares, or both. If that&rsquo;s the case, it&rsquo;s probably some kind of waste in some sense &hellip; Removing un-fun activities would mean removing waste. It&rsquo;s interesting to note how this sounds like <a href="https://en.wikipedia.org/wiki/Muda_(Japanese_term">lean Muda</a>) ! She gave examples such as :</p>
+
+<ul>
+<li>automate stuff</li>
+<li>pair programming transforms criticism into collaboration (bonus: it gives excuse to skip meetings)</li>
+<li>go <a href="https://twitter.com/search?q=%23NoEstimates">#NoEstimates</a> because estimating is painful and useless</li>
+<li>YAGNI defers useless things until they really add value</li>
+<li>Organize to skip meetings and other boring stuff</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Last step is to add fun to the workplace. She warned that adding fun before removing the un-fun stuff would feel fake and would make things worse &hellip;</p>
+
+<iframe src="http://philippe.bourgau.net//www.slideshare.net/slideshow/embed_code/key/DMpHQcMebTVGsz?startSlide=148" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p>To add fun, she suggested using things like :</p>
+
+<ul>
+<li>gamification (there was actually another great talk about gamification)</li>
+<li>build a hacking contest instead of a security training</li>
+<li>Install a <a href="https://sirenofshame.com/">Siren of Shame</a> for whoever breaks the build</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Here are <a href="http://www.slideshare.net/HollyCummins/software-developers-guide-to-fun-in-the-workplace-euphoria-despite-the-despair">the slides</a></p>
+
+<h2>Java 9: The Quest for Very Large Heaps</h2>
+
+<p>Bernard Traversat, Antoine Chambille</p>
+
+<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc-small.jpg" title="Slide of the memory regions in G1" ></a></p>
+
+<p>This talk might not be of interest for all, but it is for us <a href="http://murex.com">at work</a>. It went through the improvement to come to Java 9&rsquo;s G1 garbage collector. To summarize, to scale to very large heaps, it will split the memory into regions. Objects should be allocated on different regions depending on their specificities, which might help to build NUMA aware applications. Having the heap split up in smaller chunks enables the GC to run in parallel, which can speed up the old generation GC by up to 50 times !</p>
+
+<p><a href="http://www.java9countdown.xyz/">Java 9 is scheduled for march 2017</a></p>
+
+<h2>Agility and Robustness: Clojure + spec</h2>
+
+<p><a href="https://twitter.com/stuarthalloway">Stuart Halloway</a></p>
+
+<p>I haven&rsquo;t been touching Clojure for a while but I gave the language a try a few years ago. I had heard about Clojure spec but hadn&rsquo;t taken the time to look at it in details. As I understood it all, Spec is like some sort of <a href="https://en.wikipedia.org/wiki/Design_by_contract">Design by Contract</a> on steroïds ! Clojure is not statically typed, but you can now assign spec metadata to values. A spec is roughly a predicate. By defining specs for the inputs and outputs of functions, it is possible to verify at runtime that the function is behaving correctly.</p>
+
+<p>As did Bertrand Meyer in the classic <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_1?ie=UTF8&amp;qid=1475211259&amp;sr=8-1&amp;keywords=object+oriented+software+construction+meyer">OOSC2</a>, who advised to use contracts during development only, Stuart explained that we should care about developer vs production time instead of compile vs runtime. From this point of view, it is not of great importance whether the compiler or the continuously running test suite finds an issue.</p>
+
+<p>But specs are a lot more than predicates ! They can be used to :</p>
+
+<ul>
+<li>enable assertions at runtime</li>
+<li>generate documentation</li>
+<li>generate test cases</li>
+<li>generate precise call logs</li>
+<li>get precise error messages</li>
+<li>explore a function and see how it can be called</li>
+</ul>
+
+
+<p>He went on to compare the virtues of Clojure spec with static typing (à la Java) and example based testing :</p>
+
+<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/clojure-spec.jpg" title="Slide comparing Clojure spec with example based testing and static typing" ></p>
+
+<p>Although I don&rsquo;t believe that generative testing can ever replace example based testing altogether, it certainly can help.</p>
+
+<p>All in all, the presentation was insanely great and engaging. It made me seriously think of going into Clojure programming again !</p>
+
+<p>Here are <a href="https://t.co/0FBl2l473N">the slides</a> and the <a href="https://www.youtube.com/watch?v=VNTQ-M_uSo8">the same talk at Strangeloop</a></p>
+
+<h2>Conclusion</h2>
+
+<p>Overall, JavaOne was great ! If I had the opportunity, I&rsquo;d go back every year ! There was a lot of other great talks I did not write about in these 2 posts, for example :</p>
+
+<ul>
+<li>Development Horror Stories was a lot of fun, especially the winning story !</li>
+<li>Hacking Hiring was full of good advises</li>
+<li>Managing Open Source Contributions in Large Organizations was full of good ideas</li>
+<li>Increasing Code Quality with Gamification was very inspiring</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Top 5 talks I attended at JavaOne 2016 (Part 1)]]></title>
@@ -79,7 +185,7 @@
 
 <h2>To Be Continued</h2>
 
-<p>I promised 5, and that&rsquo;s only 2 talks ! Stay tuned, I&rsquo;ll write about the 3 others in the coming weeks.</p>
+<p>I promised 5, and that&rsquo;s only 2 talks ! Stay tuned, I&rsquo;ll write about the 3 others in the coming weeks. <a href="http://philippe.bourgau.net/top-5-talks-i-attented-at-javaone-2016-part-2/">Here they are</a>.</p>
 ]]></content>
   </entry>
   
@@ -1616,136 +1722,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 
 <iframe class="center" width="560" height="315" src="https://www.youtube.com/embed/9LfmrkyP81M" frameborder="0" allowfullscreen></iframe>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I fixed the unknown language Pygments error in Octopress]]></title>
-    <link href="http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress/"/>
-    <updated>2016-05-13T03:54:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-i-fixed-the-unknown-language-pygments-error-in-octopress</id>
-    <category term="blogging" /><category term="octopress" /><category term="software" />
-    <content type="html"><![CDATA[<p>Last time I tried to insert a code snippet in my <a href="http://octopress.org/">Octopress</a> blog, I was hurt by the following error :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant@ae4a04cebb73:/vagrant$ bundle exec rake generate
-</span><span class='line'>## Generating Site with Jekyll
-</span><span class='line'>unchanged sass/screen.scss
-</span><span class='line'>Configuration from /vagrant/_config.yml
-</span><span class='line'>Building site: source -&gt; public
-</span><span class='line'>/vagrant/plugins/pygments_code.rb:27:in `rescue in pygments': Pygments can't parse unknown language: ruby. (RuntimeError)
-</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:24:in `pygments'
-</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:14:in `highlight'
-</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:37:in `block in render_code_block'
-</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `gsub'
-</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
-</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
-</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `each'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `pre_render'
-</span><span class='line'>  from /vagrant/plugins/post_filters.rb:166:in `do_layout'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/post.rb:195:in `render'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:200:in `block in render'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `each'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `render'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
-</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
-</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `load'
-</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `&lt;main&gt;'
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I had been switching to <a href="https://www.docker.com/">Docker</a> in <a href="https://www.vagrantup.com/">Vagrant</a> to host my Octopress installation, but that did not seem related &hellip;</p>
-
-<h2>Plan A : Upgrade Octopress</h2>
-
-<p>It turned out it was related to my migration to Vagrant and Docker.xs This kind of nasty error often comes from obsolete environment. <a href="https://github.com/imathis/octopress/issues/1173">Internet confirmed</a> confirmed it :</p>
-
-<ul>
-<li>Ubuntu now uses Python3 instead of Python2</li>
-<li>Octopress2 uses an old version of Pygments</li>
-<li>That version of Pygments requires Python2</li>
-</ul>
-
-
-<p>I thought that I did not want to play <a href="http://philippe.bourgau.net/ruby-thirdparties-best-practices/">this game</a> against open source libs, so I set out to update. Octopress 3 has been released. It&rsquo;s not yet documented yet, and there is no official upgrade guide, but some guys have done it :</p>
-
-<ul>
-<li><a href="http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/">http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/</a></li>
-<li><a href="http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/">http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/</a></li>
-<li><a href="https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/">https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/</a></li>
-</ul>
-
-
-<p>I tried it &hellip; but I stopped before the end. It&rsquo;s kind of working, but fundamental features like category archives required too much Jekylling for me at the time. And themes are still an issue &hellip; I mean, stock theme uses a clean and simple gem based update workflow, but most other themes rely on a tricky git clone-merge update workflow.</p>
-
-<h2>Plan B : Find a hosted blog engine for hackers</h2>
-
-<p>I found quite a few options :</p>
-
-<ul>
-<li><a href="http://medium.com">Medium</a> Looks cool, but there is no simple migration tool, and I&rsquo;ve been burned by postero.us shutting down, I want to keep control on my content</li>
-<li><a href="https://posthaven.com/">Posthaven</a> Having loved postero.us, this one seems cool, It&rsquo;s just I&rsquo;m not sure the guys are keeping the motivation to increase their feature list with their current business model</li>
-<li><a href="http://ghost.org">Ghost</a> Looked great, but too expensive for me (19$ per month)</li>
-<li><a href="http://codrspace.com">Codrspace</a> This is a special blogging platform for coders, but it seems it has not been updated for a long time</li>
-<li><a href="https://logdown.com/">LogDown</a> This also is a special blogging platform for hackers. It seemed great and had everything I was looking for &hellip; I was ready to spend the 50$ per year for it as it could save me a lot of hassle. Unfortunately, I could not find a way to forward the categories of a post as <a href="https://twitter.com/pbourgau">Twitter</a> hashtags as I&rsquo;ve been doing with Octopress and <a href="https://feedburner.google.com">Feedburner</a></li>
-</ul>
-
-
-<p>In the end, I was rather disappointed by the alternatives, even though I was ready to pay for them.</p>
-
-<h2>Plan C : Fix the error in Octopress 2</h2>
-
-<p>Eventually, the fix was rather easy. People had fixed it by patching mentos.py file in the pygments.rb gem to run Python 2 instead of the stock Python. That&rsquo;s not great because it means that I&rsquo;d have to redo the patch every time I updated my gems, or rebuilt my workspace. Here is what I added to my Vagrantfile instead :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get -y install python2.7
-</span><span class='line'>sudo ln -sf /usr/bin/python2.7 /usr/bin/python</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="https://github.com/philou/philou.github.com/commit/ae14c511b682295ed7fdcb3b1a818926f803dd3a">Here</a> is the commit on my Github repo.</p>
-
-<h2>Conclusion</h2>
-
-<p>I&rsquo;m sticking with Octopress2 for the moment. Maybe I&rsquo;ll re-try to migrate to Octopress3 later on, when an official migration tool or <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">guide</a> is available. Meanwhile, I&rsquo;m still dreaming of my perfect blogging platform :</p>
-
-<ul>
-<li>Open source</li>
-<li>Static HTML generation</li>
-<li>Self or SAAS hosted</li>
-<li>Great integration with social media and the web</li>
-<li>Easy to maintain</li>
-<li>Plugable themes</li>
-</ul>
-
-
-<p>I&rsquo;m looking for my next side project at the moment, that could be a useful one ! Anyone interested ?</p>
 ]]></content>
   </entry>
   
