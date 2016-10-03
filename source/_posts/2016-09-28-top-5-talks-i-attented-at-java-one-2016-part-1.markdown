@@ -60,4 +60,4 @@ Here are [the slides](http://www.slideshare.net/AbrahamMarinPerez/keeping-your-c
 
 ## To Be Continued
 
-I promised 5, and that's only 2 talks ! Stay tuned, I'll write about the 3 others in the coming weeks. [Here they are](/top-5-talks-i-attented-at-javaone-2016-part-2/).
+I promised 5, and that's only 2 talks ! Stay tuned, I'll write about the 3 others in the coming weeks. [Here they are](/top-5-talks-i-attended-at-javaone-2016-part-2/).
