@@ -100,6 +100,184 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/3-more-great-talks-from-javaone-2016/">3 More Great Talks From JavaOne 2016</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-14T04:05:00+00:00" pubdate data-updated="true">Oct 14<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After the top <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">5 talks I attended at JavaOne</a> here are more !</p>
+
+<h2>Managing Open Source Contributions in Large Organizations</h2>
+
+<p><a href="http://www.jamesward.com/presos">James Ward</a></p>
+
+<p>This talk was very interesting for companies or organizations that want to use Open Source in some way without ignoring the risks.</p>
+
+<p>After an introduction listing the benefits of contributing to open source, James explained the associated risks :</p>
+
+<ul>
+<li>Security (evil contributions or information leaks)</li>
+<li>Quality (bad contributions, increased maintenance or showing a bad image)</li>
+<li>Legal (responsibility in case of patent infringing contribution, ownership of a contribution, licenses)</li>
+</ul>
+
+
+<p>He then explained that there are 3 ways to deal with the issue :</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Strategy </th>
+<th> Description </th>
+<th> Pros </th>
+<th> Cons </th>
+<th> Popularity </th>
+<th> Examples </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> Do nothing </td>
+<td> Devs just contribute without saying it </td>
+<td> Easy, Gets it done </td>
+<td> Need to stay under the radar, Risks for all parties are ignores </td>
+<td> +++++ </td>
+<td> Most open source code on <a href="https://github.com">Github</a> is shared in this manner |</td>
+</tr>
+<tr>
+<td></td>
+<td> Join a foundation </td>
+<td> Joining an existing open source foundation, with a framework </td>
+<td> Everything out of the box (infra, governance), builds trust </td>
+<td> Rules can be heavy, Ownership is given to the foundation </td>
+<td> +++ </td>
+<td> <a href="https://www.linkedin.com/">Linkedin</a> put <a href="https://kafka.apache.org/">Kafka</a> in the <a href="https://www.apache.org/">Apache Foundation</a> |</td>
+</tr>
+<tr>
+<td></td>
+<td> Build tools </td>
+<td> Use your own tools to mitigate the main risks associated with the &lsquo;Do nothing&rsquo; strategy </td>
+<td> Built on top of Github, Keep control, Keeps things easy </td>
+<td> Need to develop, test and operate the tools </td>
+<td> + </td>
+<td> Demo of a tool plugged into Github to enforce a contributor license agreement for anyone pushing a pull request |</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><a href="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA.jpg"><img class="center" src="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA-small.jpg" title="Slide with a Github capture for Contributor License Agreement" ></a></p>
+
+<p>The &lsquo;build tools&rsquo; strategy looks promising, even if it is not yet widely used !</p>
+
+<p>Here is <a href="https://www.youtube.com/watch?v=X71HrW6vC_0">the talk</a> and <a href="http://presos.jamesward.com/managing_open_source_contributions_in_large_orgs/index.html#/">the slides</a> on the authors website.</p>
+
+<h2>Java Performance Analysis in Linux with Flame Graphs</h2>
+
+<p><a href="http://www.brendangregg.com/">Brendan Gregg</a></p>
+
+<p>This is what a flame graph looks like :</p>
+
+<p><a href="http://www.brendangregg.com/FlameGraphs/cpu-mixedmode-vertx.svg"><img class="center" src="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/flamegraph.png" title="An example of a Java flame graph" ></a></p>
+
+<p>Technically, it&rsquo;s just an SVG with some Javascript. It shows the performance big picture. It aggregates data from Linux and JVM profilers. Vertically, you can see the call stacks in your system. The larger a block, the more time is taken inside a function (or in a sub call). The top border is where the CPU time is actually taken. If you want to speed up your system, speed up the wider zones at the top of the graph.</p>
+
+<p>At <a href="https://www.netflix.com">Netflix</a>, the speaker is a performance engineer, and his job is to build tools to help other teams discover performance issues. This is how they use Flame Graphs :</p>
+
+<ul>
+<li>Compare 2 flame graphs at different times to see what changed</li>
+<li>Do a <a href="http://martinfowler.com/bliki/CanaryRelease.html">canary release</a> and compare the new flame graph before finishing the deployment</li>
+<li>Taking continuous flame graphs on running services helps identify JVM behavior like JIT or GC</li>
+<li>They use different color themes to highlight different things</li>
+<li>They also use them to identify CPU cache misses</li>
+</ul>
+
+
+<p>By the way, I also thought this was a great example of using an innovative visualization to manage tons of data.</p>
+
+<p>I could find neither the video nor the slides of the talk, but I managed to find a lot of <a href="https://www.google.fr/search?safe=active&amp;client=ubuntu&amp;espv=2&amp;biw=1600&amp;bih=810&amp;tbm=vid&amp;q=Flame+Graphs&amp;oq=Flame+Graphs&amp;gs_l=serp.3...1396.1396.0.1616.1.1.0.0.0.0.59.59.1.1.0....0...1c.1.64.serp..0.0.0.z-3ygDHx4-Q">others talks about Flame Graphs</a>, as well as extra material on <a href="http://www.brendangregg.com/flamegraphs.html">the speaker&rsquo;s homepage</a>.</p>
+
+<h2>Increasing Code Quality with Gamification</h2>
+
+<p><a href="https://twitter.com/alex90_ch">Alexander Chatzizacharias</a></p>
+
+<p>You might be wondering why we should care about gamification ?</p>
+
+<ul>
+<li>Worldwide 11.2 billion hours are spent playing every week !</li>
+<li>People love to play because it makes them feel awesome</li>
+<li>Games are good teachers</li>
+<li>At work we are the ones who need to make others successful</li>
+<li>But only 32% of workers are engaged in their work !</li>
+</ul>
+
+
+<p>Games rely on 4 main dynamics :</p>
+
+<ul>
+<li>Competition (be very careful of closed economics which can be very bad for teams)</li>
+<li>Peer pressure (Public stats push teams and individual to conform to the norm)</li>
+<li>Progression (regular recognition of new skills is motivating)</li>
+<li>Rewards (Badges, Level ups, Monkey Money, real money &hellip;)</li>
+</ul>
+
+
+<p>He went on to demonstrate two games that are based on Jenkins and Sonar that aim at better code quality :</p>
+
+<ul>
+<li>One mobile app developed during a 24h Hackathon at CGI which might be open sourced at some point</li>
+<li>Another one called &lsquo;Dev Cube&rsquo; created at an university, where you get to decorate you virtual cubicle</li>
+</ul>
+
+
+<p><a href="https://www.youtube.com/watch?v=hfT2_HxOQdk"><img class="center" src="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/quincy-adams.jpg" title="The speaker demoing his code quality game" ></a></p>
+
+<p>At the end of the talk, he gave the following recommendations :</p>
+
+<ul>
+<li>Understand the needs of all to respond to everyone&rsquo;s personal goals</li>
+<li>Don&rsquo;t assign things to do, that&rsquo;s not fun, give rewards instead</li>
+<li>Keep managers out of the picture</li>
+<li>To keep it going, you need regular improvements, special events and new rules</li>
+<li>KISS !</li>
+</ul>
+
+
+<p>Playing at work might not be unproductive in the end !</p>
+
+<p>The same <a href="https://www.youtube.com/watch?v=hfT2_HxOQdk">talk given at NLJug</a>, unfortunately, it&rsquo;s in Dutch, and I did not find the slides anywhere either.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 Talks I Attended at JavaOne 2016 (Part 2)</a></h1>
     
     
@@ -220,6 +398,10 @@
 <li>Increasing Code Quality with Gamification was very inspiring</li>
 </ul>
 
+
+<h2>Edit 17 October 2016</h2>
+
+<p>I summarized 3 others JavaOne talks <a href="/3-more-great-talks-from-javaone-2016/">here</a>.</p>
 </div>
   
   
@@ -891,118 +1073,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/when-the-boy-scout-rule-fails/">When the Boy Scout Rule Fails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-08-02T05:38:00+00:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg" title="An illustration of the boy scout rule" ></p>
-
-<p>Here goes the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">boy scout rule</a> :</p>
-
-<blockquote><p>Always check a module in cleaner than when you checked it out.</p></blockquote>
-
-<p>Unfortunately, this alone does not guarantee to keep the technical debt under control. What can we do then ?</p>
-
-<h2>Why the boy scout rule is not enough</h2>
-
-<p>I can easily think of a few issues that are not covered by the boy scout rule.</p>
-
-<h3>It only deals with local problems</h3>
-
-<p>In it&rsquo;s statement, the boy scout rule is local and does not address large scale design or architecture issues. Applying the boy scout rule keeps files well written, using with clear and understandable code. From a larger perspective though, it does very little or slow improvement to the overall design.</p>
-
-<p>These large scale refactorings are very difficult to deal with using the boy scout rule alone. It could be done but would require to share the refactoring goal with all the team, and then track its progress, while at the same time dealing with all the other subjects of the project. That&rsquo;s starting to sound like multitasking to me.</p>
-
-<h3>It&rsquo;s skill dependent</h3>
-
-<p>Another point about the boy scout rule (and to be fair, about any refactoring technique) is that programmers will be able to clean the code only as much as their skills allow them to !</p>
-
-<p>Imagine what would happen when a new master developer arrives in a team of juniors, he&rsquo;d spot a lot of technical debt and would suggest improvements and ways to clean the code. Code that was thought of as very clean would suddenly be downgraded to junk !</p>
-
-<p>The point here is that the boy scout rule cannot guarantee that you have no technical debt, because you don&rsquo;t know how much you have !</p>
-
-<p>That&rsquo;s where the debt metaphor reaches its limits and flips to some productivity investment. By investing time to perform some newly discovered refactoring, you could get a productivity boost !</p>
-
-<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design"><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg" title="The cover of &#34;Domain Driven Design&#34;" alt="The cover of &#34;Domain Driven Design&#34;"></a></p>
-
-<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design">Domain-Driven Design: Tackling Complexity in the Heart of Software</a>, Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a &lsquo;breakthrough&rsquo;. These breakthroughs often promote existing code to technical debt &hellip;</p>
-
-<h3>It&rsquo;s context dependent</h3>
-
-<p>Developers alone are not the only one responsible for creating technical debt. Changes to the environment also do.</p>
-
-<p>For example, if the market conditions change, and that new expectations for the product are slowly becoming the norm, your old perfectly working system becomes legacy and technical debt. As an example, let&rsquo;s examine what happened to the capital markets software industry in response to the 2008 crisis.</p>
-
-<ul>
-<li>The sector became a lot more regulated</li>
-<li>Risk control is moving from nightly batches to real time</li>
-<li>The demand for complex (and risky) contracts decreased</li>
-<li>As a consequence, trading on simpler contracts exploded</li>
-</ul>
-
-
-<p>All these elements combined invalidated existing architectures !</p>
-
-<p>New technologies also create technical debt. Think the switch from mainframe to the web.</p>
-
-<h2>What do we need then ?</h2>
-
-<p>Should we stop using the boy scout rule ? Surely not, it would be a total non-sense. Submitting clean and readable code is a must.</p>
-
-<p>But it is not enough. If you have spotted some large scale refactoring that could bring some improvement, we should do what a fund manager would do :</p>
-
-<ol>
-<li>Estimate the return on investment</li>
-<li>If it is good enough, do it now</li>
-</ol>
-
-
-<p>Obviously, large refactorings should also be split into smaller <del>value adding</del> cost reducing items. But then what ?</p>
-
-<p><a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development"><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg" title="The cover of &#34;The Nature of Software Development&#34;" alt="The cover of &#34;The Nature of Software Development&#34;"></a></p>
-
-<p>In <a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development">The Nature of Software Development</a> Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you&rsquo;ve got that, there&rsquo;s no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.</p>
-
-<p>Frankly, I think that&rsquo;s easier said than done. I can <em>think</em> of two ways :</p>
-
-<ul>
-<li>As Ron Jefferies tends to say, have a jelled-cross-functional team discuss and prioritize collectively</li>
-<li>As <a href="http://reinertsenassociates.com/technical-debt-adding-math-metaphor/">Don Reintersen</a> advocates, use an <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">economical framework</a> to estimate the return on investment</li>
-</ul>
-
-
-<p>At least that&rsquo;s a starting point !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1079,6 +1149,10 @@ Check the speaker&rsquo;s comments for all the details.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/3-more-great-talks-from-javaone-2016/">3 More Great Talks From JavaOne 2016</a>
+      </li>
+    
+      <li class="post">
         <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 talks I attended at JavaOne 2016 (Part 2)</a>
       </li>
     
@@ -1092,10 +1166,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
     
       <li class="post">
         <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">How NOT to use mocks, my talk at Paris.rb</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-use-hackernews-and-reddit-for-blogging/">How to use Hackernews and Reddit for blogging</a>
       </li>
     
   </ul>
