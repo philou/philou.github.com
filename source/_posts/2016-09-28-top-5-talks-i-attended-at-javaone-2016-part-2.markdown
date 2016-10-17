@@ -6,7 +6,8 @@ comments: true
 categories:
  - java
  - programming
-keywords: "Java, JavaOne, JavaOne 2016, Programming, Software"
+ - clojure
+keywords: "Java, JavaOne, JavaOne 2016, Programming, Software, Clojure, Clojure.spec"
 description: "Summary of the best talks I had the chance to assist at JavaOne 2016"
 ---
 This is my second post relating the talks I attended at JavaOne 2016. [Here](/top-5-talks-i-attented-at-java-one-2016-part-1/) is the beginning of the story. Here we go.
@@ -90,3 +91,7 @@ Overall, JavaOne was great ! If I had the opportunity, I'd go back every year ! 
 * Hacking Hiring was full of good advises
 * Managing Open Source Contributions in Large Organizations was full of good ideas
 * Increasing Code Quality with Gamification was very inspiring
+
+## Edit 17 October 2016
+
+I summarized 3 others JavaOne talks [here](/3-more-great-talks-from-javaone-2016/).
