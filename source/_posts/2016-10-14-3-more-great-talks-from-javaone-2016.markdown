@@ -27,17 +27,17 @@ After an introduction listing the benefits of contributing to open source, James
 
 He then explained that there are 3 ways to deal with the issue :
 
-| Strategy | Description | Pros | Cons | Popularity | Examples |
-|----------|-------------|------|------|------------|----------|
-| Do nothing | Devs just contribute without saying it | Easy, Gets it done | Need to stay under the radar, Risks for all parties are ignores | +++++ | Most open source code on [Github](https://github.com) is shared in this manner |
-| Join a foundation | Joining an existing open source foundation, with a framework | Everything out of the box (infra, governance), builds trust | Rules can be heavy, Ownership is given to the foundation | +++ | [Linkedin](https://www.linkedin.com/) put [Kafka](https://kafka.apache.org/) in the [Apache Foundation](https://www.apache.org/) |
-| Build tools | Use your own tools to mitigate the main risks associated with the 'Do nothing' strategy | Built on top of Github, Keep control, Keeps things easy | Need to develop, test and operate the tools | + | Demo of a tool plugged into Github to enforce a contributor license agreement for anyone pushing a pull request |
+ Strategy | Description | Pros | Cons | Popularity | Examples |
+----------|-------------|------|------|------------|----------|
+ Do nothing | Devs just contribute without saying it | Easy, Gets it done | Need to stay under the radar, Risks for all parties are ignores | +++++ | Most open source code on [Github](https://github.com) is shared in this manner |
+ Join a foundation | Joining an existing open source foundation, with a framework | Everything out of the box (infra, governance), builds trust | Rules can be heavy, Ownership is given to the foundation | +++ | [Linkedin](https://www.linkedin.com/) put [Kafka](https://kafka.apache.org/) in the [Apache Foundation](https://www.apache.org/) |
+ Build tools | Use your own tools to mitigate the main risks associated with the 'Do nothing' strategy | Built on top of Github, Keep control, Keeps things easy | Need to develop, test and operate the tools | + | Demo of a tool plugged into Github to enforce a contributor license agreement for anyone pushing a pull request |
 
 [{% img center /imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA-small.jpg Slide with a Github capture for Contributor License Agreement %}](/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA.jpg)
 
 The 'build tools' strategy looks promising, even if it is not yet widely used !
 
-Here is [the talk](https://www.youtube.com/watch?v=X71HrW6vC_0) and [the slides](http://presos.jamesward.com/managing_open_source_contributions_in_large_orgs/index.html#/) on the authors website.
+Here are [the talk](https://www.youtube.com/watch?v=X71HrW6vC_0) and [the slides](http://presos.jamesward.com/managing_open_source_contributions_in_large_orgs/index.html#/) on the authors website.
 
 ## Java Performance Analysis in Linux with Flame Graphs
 
