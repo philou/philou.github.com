@@ -1,0 +1,410 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ReXP : Remote eXtreme Programming - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="A bried about a talk about Remote eXtreme Programming one of my colleagues gave at Agile Tour Beirut, plus ideas for tools to support it">
+
+  
+  <meta name="keywords" content="eXtreme Programming, Remote eXtreme Programming, Remote Programming, Agile Software, Beirut, Agile Tour Beirut">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/rexp-remote-extreme-programming/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">ReXP : Remote eXtreme Programming</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-18T04:27:00+00:00" pubdate data-updated="true">Oct 18<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>My colleague <a href="https://ahmadatwi.me/">Ahmad</a> from Beirut gave a talk at <a href="http://www.agiletourbeirut.org/">Agile Tour Beirut</a> on saturday about how we adopted <a href="http://www.extremeprogramming.org/">XP</a> to a distributed team <a href="http://www.murex.com">at work</a>. I gave him a hand and played the remote guy during the talk.</p>
+
+<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">If Marvel wants to create coding superheroes I propose <a href="https://twitter.com/ahmadatwi">@ahmadatwi</a> and <a href="https://twitter.com/pbourgau">@pbourgau</a> from <a href="https://twitter.com/Work_at_Murex">@Work_at_Murex</a>. &quot;Ballsy&quot; pres at <a href="https://twitter.com/hashtag/Agiletourbeirut?src=hash">#Agiletourbeirut</a> <a href="https://t.co/SkVMPPGcrq">pic.twitter.com/SkVMPPGcrq</a></p>&mdash; Xavier René-Corail (@XCorail) <a href="https://twitter.com/XCorail/status/787223833405161473">15 octobre 2016</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>With me through Skype, we did a first demo of remote pair programming on FizzBuzz using <a href="https://www.jetbrains.com/idea/">IDEA</a> and <a href="https://floobits.com">Floobits</a></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5nKyfeq9CY0" frameborder="0" allowfullscreen></iframe>
+
+
+<p>We then did a demo of <a href="/trellospectives-remote-retrospectives-with-trello/">remote retrospectives</a> using <a href="https://trello.com/">Trello</a></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NCRM3rvb8WA" frameborder="0" allowfullscreen></iframe>
+
+
+<h2>When should I use ReXP</h2>
+
+<p>The conclusion is that :</p>
+
+<ul>
+<li>If people are spread over 2 or a few cities, and that they are enough at every place to build a teams, just build different teams at every location</li>
+<li>If people are spread over a lot of places, maybe involving many time zones, then the open source, pull request based workflow seems the best</li>
+<li>Otherwise, if there are not enough people to build 2 teams, that they are spread over only a few locations, that the time difference is not too big, then stretching XP to Remote will work best</li>
+</ul>
+
+
+<p>As it is said that &ldquo;nothing beats XP for small collocated teams&rdquo;, I guess &ldquo;nothing beats ReXP for small almost collocated teams&rdquo;.</p>
+
+<h2>Tools to make it better</h2>
+
+<p>As Ahmad said in his talk, tools already exist. We could add that more would be welcome :</p>
+
+<ul>
+<li>Floobits or <a href="http://www.saros-project.org/">Saros</a> help tremendously for remote pairing, but maybe cloud based IDEs like <a href="http://www.eclipse.org/che/">Eclipse Che</a> or <a href="https://c9.io/">Cloud 9</a> will make all these tools useless !</li>
+<li>Trello works well for remote retrospectives, but some great activities like the <a href="https://en.wikipedia.org/wiki/5_Whys">5 whys</a> are still difficult to do with Trello. I&rsquo;m sure new tools could do better.</li>
+<li>I&rsquo;m currently building a <a href="https://github.com/philou/planning-poker">remote planning poker app</a></li>
+<li>My other colleague <a href="https://twitter.com/mc_moe">Morgan</a> wants to build a virtual stand up token to make it flow</li>
+</ul>
+
+
+<p>Finally, here are the slides :</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/vfbIUiRZNHqHo1" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/aatwi/extreme-practices-agiletourbeirut-2016" title="Extreme Practices - AgileTourBeirut - 2016" target="_blank">Extreme Practices &ndash; AgileTourBeirut &ndash; 2016</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/aatwi">Ahmad Atwi</a></strong> </div></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-18T04:27:00+00:00" pubdate data-updated="true">Oct 18<span>th</span>, 2016</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/remote/'>remote</a>, <a class='category' href='/blog/categories/rexp/'>rexp</a>, <a class='category' href='/blog/categories/xp/'>xp</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/rexp-remote-extreme-programming/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/rexp-remote-extreme-programming/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/3-more-great-talks-from-javaone-2016/" title="Previous Post: 3 More Great Talks From JavaOne 2016">&laquo; 3 More Great Talks From JavaOne 2016</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Innovative Co-Maker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/rexp-remote-extreme-programming/">ReXP : Remote eXtreme Programming</a>
+      </li>
+    
+      <li class="post">
+        <a href="/3-more-great-talks-from-javaone-2016/">3 More Great Talks From JavaOne 2016</a>
+      </li>
+    
+      <li class="post">
+        <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 talks I attended at JavaOne 2016 (Part 2)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Top 5 talks I attended at JavaOne 2016 (Part 1)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/flavours-of-tdd/">Flavors of TDD</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2016 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/rexp-remote-extreme-programming/';
+        var disqus_url = 'http://philippe.bourgau.net/rexp-remote-extreme-programming/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
