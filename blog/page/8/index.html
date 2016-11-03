@@ -100,6 +100,79 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow Book Summary (Lean Software Development Part 1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-29T06:25:00+00:00" pubdate data-updated="true">Aug 29<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few weeks ago, I read <a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009">The principles of product development flow</a> from Donald G. Reinertsen.</p>
+
+<p><img class="center" src="/imgs/2014-08-29-the-flow-book-summary-lean-software-development_part_1/flow_book_cover.jpg" title="The cover of the book" ></p>
+
+<p>I read it both for work and for my side projects, and I think it will be useful for both. The book is about lean product development, and is in fact a collection of 175 lean principles that one can study and understand in order to make better decisions when developing new products. The principles are divided into the following 8 categories</p>
+
+<ol>
+<li>Economics</li>
+<li>Queues</li>
+<li>Variability</li>
+<li>Batch sise</li>
+<li>WIP constraints</li>
+<li>Cadence, synchronization and flow control</li>
+<li>Fast feedback</li>
+<li>Decentralized control</li>
+</ol>
+
+
+<p>I really loved the book. I have not been thrilled like that by a book since <a href="http://www.threeriversinstitute.org/">Kent Beck</a>&rsquo;s <a href="http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416">1st edition of Extreme Programming Explained</a>. Where Kent Beck described some values, principles and practices that work. D.G. Reinertsen has the ambition to help us to quantify these practices in order not move from belief based to fact based decisions. For this, he gives us the keys to creating an economical framework with which we should be able to convert any change option to its economical cost</p>
+
+<p><img class="center" src="/imgs/2014-08-29-the-flow-book-summary-lean-software-development_part_1/xp_book_cover.jpg" title="The cover of the book &#34;Extreme Programming Explained&#34;" alt="The cover of the book &#34;Extreme Programming Explained&#34;"></p>
+
+<p>Lately, I&rsquo;ve been thinking of an economical framework of my own, that I could use on the projects I am currently involved in. This post is the first of a series about this :</p>
+
+<ol>
+<li><a href="/the-flow-book-summary-lean-software-development_part_1">The Flow book summary</a></li>
+<li><a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a></li>
+<li><a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value ?</a></li>
+<li><a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a></li>
+<li><a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What optimization should we work on ?</a></li>
+<li><a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a></li>
+<li><a href="/a-plan-for-technical-debt-lean-software-development-part-7/">A Plan for Technical Debt</a></li>
+<li><a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a></li>
+<li><a href="/my-dream-lean-software-development-tool-lean-software-development-part-9/">My Dream Lean Software Development Tool</a></li>
+</ol>
+
+
+<p>Next part will feature an explanation of the XP practices with the lean principles. Stay tuned.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/the-holy-code-antipattern/">The Holy Code Antipattern</a></h1>
     
     
@@ -978,54 +1051,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/automatic-travis-daily-build-with-heroku-scheduler/">Automatic Travis Daily Build With Heroku Scheduler</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-24T06:31:00+00:00" pubdate data-updated="true">Mar 24<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As <a href="/auchandirect-scrapi-an-unofficial-api-ruby-gem/">I just released</a> <a href="https://github.com/philou/auchandirect-scrAPI">auchandirect-scrAPI</a>, and that it relies on scrapping, I needed a daily build.</p>
-
-<p>The <a href="https://travis-ci.org">Travis</a> team <a href="https://github.com/travis-ci/travis-ci/issues/582">is already working</a> on this, and I found a small utility app called <a href="http://traviscron.pythonanywhere.com/">TravisCron</a> where anyone can register his repo for an automatic build.</p>
-
-<p>Unfortunately, the feature is not yet ready in Travis, and the TravisCron guys did not yet activate my repo. After having a look at the <a href="https://github.com/FiloSottile/travis-cron">TravisCron source code</a> and the <a href="https://github.com/travis-ci/travis.rb">Travis API</a>, I found out that it is really simple to do the same thing on my own.</p>
-
-<p>That&rsquo;s how I created <a href="https://github.com/philou/daily-travis">daily-travis</a>. It&rsquo;s a tiny Rake task, ready to be pushed and automaticaly scheduled on heroku that will restart the latest build when run.</p>
-
-<p>Details are in the <a href="https://github.com/philou/daily-travis/blob/master/README.md">README</a></p>
-
-<p>@Travis : Thanks again for your service.</p>
-
-<p><img class="center" src="/imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg" title="I love Travis logo" ></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -1104,6 +1129,10 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-kill-scrum-zombies/">How to kill Scrum Zombies ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">Continuously Deliver a Rails App to your DigitalOcean Box using Docker</a>
       </li>
     
@@ -1117,10 +1146,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     
       <li class="post">
         <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 talks I attended at JavaOne 2016 (Part 2)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Top 5 talks I attended at JavaOne 2016 (Part 1)</a>
       </li>
     
   </ul>

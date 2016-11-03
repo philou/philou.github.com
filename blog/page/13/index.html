@@ -100,6 +100,131 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/rails-autoload-good-practices/">Rails Autoload Good Practices</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T00:00:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I started using rails autoload to load files in my lib folder of <a href="http://www.mes-courses.fr">http://www.mes-courses.fr</a>. Before that, I had been using hand written require statements, and later hand written autoload statements. Rails autoload are by far the best approach for this. It has a few pitfalls though. Here are the best practices I discovered so far.</p>
+
+
+
+
+<ul>
+<li>Use autoload to load files in your lib folder. In config/application.rb
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">autoload_paths</span> <span class="o">+=</span> <span class="sx">%W(</span><span class="si">#{</span><span class="n">config</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="sx">/lib)</span>
+</span></code></pre></td></tr></table></div></figure>
+</li>
+<li>Inside the lib folder, organize your files with directories and use corresponding modules to create logic namespaces</li>
+<li>Don&#8217;t declare the namespaces in a single line like this :
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">MyApp::Utils</span>
+</span><span class='line'> <span class="k">class</span> <span class="nc">FileHelper</span>
+</span><span class='line'> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'> <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+If ever this file is autoloaded first, you will get an error like &#8220;undefined constant MyApp&#8221;, it gets more likely with deeper namespace structure. Prefer the following nested declaration :
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">MyApp</span>
+</span><span class='line'> <span class="k">module</span> <span class="nn">Utils</span>
+</span><span class='line'>   <span class="k">class</span> <span class="nc">FileHelper</span>
+</span><span class='line'>     <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+</li>
+
+<li>Doing &#8220;include MyApp::Utils&#8221; to include the have access to Utils members (ie &#8220;using namespace&#8221; in C++) will not work as well as with explicit requires. So if it does not work well, prefer to use &#8220;FileHelper = MyApp::Utils::FileHelper&#8221;</li>
+<li>Whenever you are using a base class, I found out that autoload does not always manage to load the base class correctly, in this case, explicitly requiring the base class fixes the issue.</li>
+
+<li>If ever you try to monkey patch one of your class directly (in a test for example), the real class might not get autoloaded since it is already declared in the monkey path :
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">MyApp</span><span class="o">::</span><span class="no">Engine</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">describe</span> <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Engine</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>    <span class="vi">@engine</span> <span class="o">=</span> <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>   <span class="k">end</span>
+</span><span class='line'>   <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+This might trigger an error like &#8220;wrong number of arguments for MyApp::Engine.new&#8221;. Knowing MyApp::Engine from the spec file, rails does not try to autoload the other part ! Here is how I fixed this
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">MyApp::EngineExtras</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="ss">MyApp</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:include</span><span class="p">,</span> <span class="ss">MyApp</span><span class="p">:</span><span class="ss">:EngineExtras</span><span class="p">)</span>
+</span><span class='line'><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+</li>
+
+
+</ul>
+
+
+<p>This works as expected.</p>
+
+
+<p>At the moment, I still have an issue I did not manage to fix neatly : how can we include namespaces in spec and cucumber step files without polluting the global namespace ?</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/rails-urlhelpers-mixup-when-using-rails-engin/">Rails Url_helpers Mixup When Using Rails Engines</a></h1>
     
     
@@ -840,87 +965,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/scaling-agile/">Scaling Agile</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-19T00:00:00+00:00" pubdate data-updated="true">Jan 19<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have worked in small agile teams, and it does indeed work a lot better than the classical waterfall &amp; hierarchic environment. When speaking with other people who have been through the same experience,&nbsp;we started to wonder how could this be scaled to a big organization ?</p>
-
-
-<p>I read two good books on the subject from Craig Larman and Bas Vodde:</p>
-
-
-<ul>
-<li>
-<div><span><a href="http://www.amazon.com/Scaling-Lean-Agile-Development-Organizational/dp/0321480961/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-1">Scaling Lean &amp; Agile Development: Thinking and Organizational Tools for Large-Scale Scrum</a></span></div>
-</li>
-<li>
-<div><span><a href="http://www.amazon.com/Practices-Scaling-Lean-Agile-Development/dp/0321636406/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-2">Practices for Scaling Lean &amp; Agile Development: Large, Multisite, and Offshore Product Development with Large-Scale Scrum</a></span></div>
-</li>
-</ul>
-
-
-<p>There made a lot of good points and techniques, but it&nbsp;still sounded a bit theorical. Later&nbsp;I read <a href="http://producingoss.com/">&#8220;Producing Open Source Software&#8221;</a>&nbsp;from Karl Fogel. At first,&nbsp;it did not seem to&nbsp;have any link with scaling agile, but successfull open source projects have to&nbsp;handle distributed developpment&nbsp;and&nbsp;high turnover, so I thought that maybe large&nbsp;agile organizations have something to learn from open source developpment mechanics. Why wouldn&#8217;t these technics that are successful at sharing code between companies be used internaly to share code between teams ?</p>
-
-
-<p>At the same time, at work, I learnt the hard way that I should avoid to work for a &#8220;library, framework, engine &#8230;&#8221; team. It&#8217;s both frustrating and&nbsp;unrewarding :</p>
-
-
-<ul>
-<li>
-<div>You never really understand what you are working for, what is the final goal</div>
-</li>
-<li>
-<div>You are always doing a poor job at priorizing requests from different sponsors</div>
-</li>
-<li>
-<div>You are doing too much on some areas, but too few on others</div>
-</li>
-</ul>
-
-
-<p>Agile &amp; incremental development and architecture solves this the nice&nbsp;way, by extract framework and libraries from running software ! Successful open source projects often start&nbsp;like that&nbsp;(<a href="http://rubyonrails.org/">Rails</a> being the cannonical example).</p>
-
-
-<p>So why couldn&#8217;t we just let libraries and framework emerge&nbsp;the same way inside a company ? Why don&#8217;t we maintain these projects as we would maintain an open source project : as a side product of&nbsp;our main output ?</p>
-
-
-<p>Craig Larman and Bas Vodde speak of feature teams, 20% free time, communities : all this fits nicely with this idea. Suppose we could&nbsp;have 20%&nbsp;of our time to work on what we like, any developper could take&nbsp;this time to extract a library from his team&#8217;s codebase and promote it as a company library, he could become dictator in chief as long as he wishes to. Other teams could reuse it and submit patches. All of the time proven open source developpment best practices could be used.</p>
-
-
-<p>Edit: <a href="http://zachholman.com/talk/how-github-uses-github-to-build-github/">Github builds Github</a> with something a lot like this !</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -999,6 +1043,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-kill-scrum-zombies/">How to kill Scrum Zombies ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">Continuously Deliver a Rails App to your DigitalOcean Box using Docker</a>
       </li>
     
@@ -1012,10 +1060,6 @@
     
       <li class="post">
         <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 talks I attended at JavaOne 2016 (Part 2)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Top 5 talks I attended at JavaOne 2016 (Part 1)</a>
       </li>
     
   </ul>
