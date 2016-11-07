@@ -97,4 +97,4 @@ At the end of the talk, he gave the following recommendations :
 
 Playing at work might not be unproductive in the end !
 
-The same [talk given at NLJug](https://www.youtube.com/watch?v=hfT2_HxOQdk), unfortunately, it's in Dutch, and I did not find the slides anywhere either.
+The same [talk given at NLJug](https://www.youtube.com/watch?v=hfT2_HxOQdk), unfortunately, it's in Dutch. English slides are [here](https://static.rainfocus.com/oracle/oow16/sess/14625567983370011wPS/ppt/increasing%20code%20quality%20with%20gamification.pdf) though.
