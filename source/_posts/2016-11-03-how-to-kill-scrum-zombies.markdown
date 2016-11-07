@@ -46,12 +46,14 @@ Different people might react differently to the same information. When a team me
 
 ### A dash of turnover
 
-Too much turnover can be fatal to a team, but not having any will bring other kind of problems too. Newcomers will challenge the statusquo, and the "this is how it's done here" motto won't be enough for them. That's just what's needed to trigger a sane re-examination of the current practices. Oh ... and turnover between teams is fine too ! If your company is large enough, you don't need to hire or fire people to create turnover, just encourage them to move to other teams !
+Too much turnover can be fatal to a team, but not having any will bring other kind of problems too. Newcomers will challenge the status-quo, and the "this is how it's done here" motto won't be enough for them. That's just what's needed to trigger a sane re-examination of the current practices. Oh ... and turnover between teams is fine too ! If your company is large enough, you don't need to hire or fire people to create turnover, just encourage them to move to other teams !
 
 ## The tricky part of complexity
 
-The most counterintuitive thing with complex systems is that they make planning very difficult. By focusing too much on your main goal, you might get there later ! By keeping no free time to explore other, seemingly unrelated, topics you might miss out opportunities that would remove a lot of the work to get there !
+By leaving time for other things than just cranking out stories, life will come back into the project, and zombies should go away. But wait, there's even more !
 
-Again, that's a case for small goals : in the face of complexity the tunnel effect becomes a tunnel maze effect.
+Software projects are pretty complex beasts. One of the most counter-intuitive thing with these complex system is that they make planning very difficult. Focusing too much on your main goal might be slowing you down !
 
 {% img center /imgs/2016-11-03-how-to-kill-scrum-zombies/large-tunnels-in-a-mine.jpg Crossroad of large tunnels in a mine %}
+
+In the face of complexity your project landscape is like a maze of tunnels ! Who said you're choosing the best ones ? By keeping free time to explore other, seemingly unrelated, topics you might discover opportunities that will remove a lot of the work to get to your final destination !
