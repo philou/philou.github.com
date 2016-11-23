@@ -46,3 +46,5 @@ As Ahmad said in his talk, tools already exist. We could add that more would be 
 Finally, here are the slides :
 
 <iframe src="//www.slideshare.net/slideshow/embed_code/key/vfbIUiRZNHqHo1" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/aatwi/extreme-practices-agiletourbeirut-2016" title="Extreme Practices - AgileTourBeirut - 2016" target="_blank">Extreme Practices - AgileTourBeirut - 2016</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/aatwi">Ahmad Atwi</a></strong> </div>
+
+EDIT 2016/11/23 : [the full video](https://www.youtube.com/watch?v=oJsukJhxt7E) is now on YouTube
