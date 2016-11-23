@@ -100,6 +100,1325 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming Works ? (Lean Software Development Part 2)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-29T07:03:00+00:00" pubdate data-updated="true">Aug 29<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;ve been programming for quite some time now, in different teams, using various methodologies. I also had the luck to do XP for at least 3 different projects. To me the conclusion is obvious, <a href="http://www.extremeprogramming.org/">XP</a> delivers more. Even better, programmers working with XP seem to be happier. The only thing I&rsquo;ve seen that works better than XP, is fine tunning it once the team has mastered the main principles.</p>
+
+<p><img class="center" src="/imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/lean-extreme.jpg" title="&#34;An extreme diet pill bottle&#34;" alt="&#34;An extreme diet pill bottle&#34;"></p>
+
+<p><a href="http://en.wikipedia.org/wiki/Extreme_programming#History">XP was first put in place</a> at the Chrysler C3 project for SmallTalk performance issues. After being called for performance issues, <a href="http://www.threeriversinstitute.org/">Kent Beck</a> discovered that these were only the tip of the iceberg, everything was going astray. As the expert in the room, people started to ask him how to organize. I remember reading some time ago that without having thought about it before, he gathered all the most efficient programming techniques he knew together into a new process. XP was born.</p>
+
+<p>So the question is : what did Kent Beck put in XP so that it works so well ? Let&rsquo;s go through the Flow book and its 175 lean product development principles, to see if we get some explanations.</p>
+
+<p><img class="center" src="/imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/circles.jpg" title="Concentric circles featuring the 12 core xp practices&#34;" alt="Concentric circles featuring the 12 core xp practices&#34;"></p>
+
+<p>Going through <a href="http://c2.com/cgi/wiki?ExtremeProgrammingCorePractices">the 12 core XP practices</a>, the main Scrum ceremonies and a few common additions, I&rsquo;ll try to explain why they work through the Flow book&rsquo;s principles.</p>
+
+<h2>Whole Team</h2>
+
+<p>This is the same thing as Pizza Team, Feature team, Cross Functional Team. It just means put everyone involved in the creation of the product in the same room (On site customer, sales, product people, programmers, quality controllers, operation people &hellip;).</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B17 </td>
+<td> Proximity </td>
+<td> Proximity enables small batch sizes </td>
+<td> 129</td>
+</tr>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>W13 </td>
+<td> Skill overlap </td>
+<td> Cross-train resources at adjacent processes </td>
+<td> 156</td>
+</tr>
+<tr>
+<td>F24 </td>
+<td> Alternate routes </td>
+<td> Develop and maintain alternate routes around points of congestion </td>
+<td> 201</td>
+</tr>
+<tr>
+<td>F25 </td>
+<td> Flexible resources </td>
+<td> Use flexible resources to absord variation </td>
+<td> 202</td>
+</tr>
+<tr>
+<td>FF14 </td>
+<td> Locality of feedback </td>
+<td> Whenever possible, make the feedback local </td>
+<td> 226</td>
+</tr>
+<tr>
+<td>FF19 </td>
+<td> Colocation </td>
+<td> Colocation improves almost all aspects of communication </td>
+<td> 230</td>
+</tr>
+<tr>
+<td>FF23 </td>
+<td> Overlapping measurement </td>
+<td> To align behaviors, reward people for the work of others </td>
+<td> 233</td>
+</tr>
+<tr>
+<td>D7 </td>
+<td> Alignment </td>
+<td> There is more value created with overall alignment than local execellence </td>
+<td> 252</td>
+</tr>
+<tr>
+<td>D13 </td>
+<td> Peer-level coordination </td>
+<td> Tactical coordination should be local </td>
+<td> 257</td>
+</tr>
+<tr>
+<td>D18 </td>
+<td> Response frequency </td>
+<td> We can&rsquo;t respond faster than our (internal) response frequency </td>
+<td> 261</td>
+</tr>
+<tr>
+<td>D22 </td>
+<td> Face-to-face communication </td>
+<td> Exploit the speed and bandwidth of face-to-face communications </td>
+<td> 263</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Planning Game</h2>
+
+<p>The work is split into user stories. The customer then estimates the business value of each story, before the programmers poker estimate the required work for them. The game is then to maximize the scheduled business value creation for the coming iteration (1 to 3 weeks).</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E4 </td>
+<td> Economic value-added </td>
+<td> The value added by an activity is the change in the economic value of the work product </td>
+<td> 32</td>
+</tr>
+<tr>
+<td>E7 </td>
+<td> Imperfection </td>
+<td> Even imperfect answers improve decision making </td>
+<td> 36</td>
+</tr>
+<tr>
+<td>E9 </td>
+<td> Continuous economic tradeoffs </td>
+<td> Economic choices must be made continuously </td>
+<td> 37</td>
+</tr>
+<tr>
+<td>E10 </td>
+<td> Perishability I </td>
+<td> Many economic choices are more valuable when made quickly </td>
+<td> 38</td>
+</tr>
+<tr>
+<td>E14 </td>
+<td> Market I </td>
+<td> Ensure decision makers feel both cost and benefit </td>
+<td> 42</td>
+</tr>
+<tr>
+<td>E15 </td>
+<td> Optimium decision timing </td>
+<td> Every decision has its optimum economic timing </td>
+<td> 44</td>
+</tr>
+<tr>
+<td>Q10 </td>
+<td> Queueing discipline </td>
+<td> Queue cost is affected by the sequence in which we handle the jobs in the queue </td>
+<td> 69</td>
+</tr>
+<tr>
+<td>Q13 </td>
+<td> Queue size control I </td>
+<td> Don&rsquo;t control capacity utilization, control queue size </td>
+<td> 75</td>
+</tr>
+<tr>
+<td>Q14 </td>
+<td> Queue size control II </td>
+<td> Don&rsquo;t control the cycle time, control queue size </td>
+<td> 76</td>
+</tr>
+<tr>
+<td>V5 </td>
+<td> Variability pooling </td>
+<td> Overall variation decreases when uncorrelated random tasks are combined </td>
+<td> 95</td>
+</tr>
+<tr>
+<td>V6 </td>
+<td> Short-term forcasting </td>
+<td> Forecasting becomes exponentially easier at short time-horizons </td>
+<td> 96</td>
+</tr>
+<tr>
+<td>B18 </td>
+<td> Run length </td>
+<td> Short run lengths reduce queues </td>
+<td> 130</td>
+</tr>
+<tr>
+<td>B20 </td>
+<td> Batch content </td>
+<td> Sequence first that which adds value most cheaply </td>
+<td> 131</td>
+</tr>
+<tr>
+<td>W1 </td>
+<td> WIP constraints </td>
+<td> Constrain WIP to control cycle time and flow </td>
+<td> 145</td>
+</tr>
+<tr>
+<td>W3 </td>
+<td>  global constraints  </td>
+<td> Use global constraints for predictable and permanent bottlenecks </td>
+<td> 147</td>
+</tr>
+<tr>
+<td>W6 </td>
+<td> Demand blocking </td>
+<td> Block all demand when WIP reaches its upper limit </td>
+<td> 151</td>
+</tr>
+<tr>
+<td>W8 </td>
+<td> Flexible requirements </td>
+<td> Control WIP by shedding requirements </td>
+<td> 152</td>
+</tr>
+<tr>
+<td>W19 </td>
+<td> Adaptive WIP constraints </td>
+<td> Adjust WIP constraints as capacity changes </td>
+<td> 162</td>
+</tr>
+<tr>
+<td>F5 </td>
+<td> Periodic resynchronization </td>
+<td> Use a regular cadence to limit the accumulation of variance </td>
+<td> 177</td>
+</tr>
+<tr>
+<td>F7 </td>
+<td> The cadence reliability </td>
+<td> Use cadence to make waiting times predictable </td>
+<td> 179</td>
+</tr>
+<tr>
+<td>F9 </td>
+<td> Cadenced meetings </td>
+<td> Schedule frequent meetings using a predictable cadence </td>
+<td> 180</td>
+</tr>
+<tr>
+<td>F18 </td>
+<td> The local priority </td>
+<td> Priorities are inherently local </td>
+<td> 196</td>
+</tr>
+<tr>
+<td>FF10 </td>
+<td> Agility I </td>
+<td> We don&rsquo;t need long planning horizons when we have a short turning radius </td>
+<td> 222</td>
+</tr>
+<tr>
+<td>FF21 </td>
+<td> Hurry-up-and-wait </td>
+<td> Large queues make it hard to create urgency </td>
+<td> 232</td>
+</tr>
+<tr>
+<td>D4 </td>
+<td> Opportunity </td>
+<td> Adjust the plan for unplanned obstacles and opportunities </td>
+<td> 249</td>
+</tr>
+<tr>
+<td>D14 </td>
+<td> Flexible plans </td>
+<td> Use simple modular plans </td>
+<td> 258</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Small Releases</h2>
+
+<p>Make a lot of small releases.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q2 </td>
+<td> Queueing waste </td>
+<td> Queues are the root cause of the majority of economic waste in product development </td>
+<td> 56</td>
+</tr>
+<tr>
+<td>V8 </td>
+<td> Repetition </td>
+<td> Repetition reduces variation </td>
+<td> 99</td>
+</tr>
+<tr>
+<td>B1-8 </td>
+<td> Batch size </td>
+<td> Reducing batch size reduces cycle time, variability in flow, risk, overhead and accelerates feedback, while large batches reduces efficiency, lower motivation and urgency and cause exponential cost and schedule growth  </td>
+<td> 112-117</td>
+</tr>
+<tr>
+<td>F8 </td>
+<td> Cadenced batch size enabling </td>
+<td> Use a regular cadence to enable small batch size </td>
+<td> 179</td>
+</tr>
+<tr>
+<td>FF7 </td>
+<td> Queue reduction by feedback </td>
+<td> Fast feedback enables smaller queues </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF8 </td>
+<td> Fast-learning </td>
+<td> Use fast feedback to make learning faster and more efficient </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF11 </td>
+<td> Batch size feedback </td>
+<td> Small batches yield fast feedback </td>
+<td> 223</td>
+</tr>
+<tr>
+<td>FF20 </td>
+<td> Empowerment by feedback </td>
+<td> Fast feedback gives a sense of control </td>
+<td> 231</td>
+</tr>
+<tr>
+<td>FF21 </td>
+<td> Hurry-up-and-wait </td>
+<td> Large queues make it hard to create urgency </td>
+<td> 232</td>
+</tr>
+<tr>
+<td>D23 </td>
+<td> Trust </td>
+<td> Trust is built through experience </td>
+<td> 264</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Customer Tests</h2>
+
+<p>The customer assists the programmers into writing automated use case tests.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V16 </td>
+<td> Variability displacements </td>
+<td> Move variability to the process stage where its cost is lowest </td>
+<td> 107</td>
+</tr>
+<tr>
+<td>B17 </td>
+<td> Proximity </td>
+<td> Proximity enables small batch sizes </td>
+<td> 129</td>
+</tr>
+<tr>
+<td>F30 </td>
+<td> Flow conditioning </td>
+<td> Reduce variability before a bottleneck </td>
+<td> 208</td>
+</tr>
+<tr>
+<td>FF7 </td>
+<td> Queue reduction by feedback </td>
+<td> Fast feedback enables smaller queues </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF8 </td>
+<td> Fast-learning </td>
+<td> Use fast feedback to make learning faster and more efficient </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF11 </td>
+<td> Batch size feedback </td>
+<td> Small batches yield fast feedback </td>
+<td> 223</td>
+</tr>
+<tr>
+<td>FF14 </td>
+<td> Locality of feedback </td>
+<td> Whenever possible, make the feedback local </td>
+<td> 226</td>
+</tr>
+<tr>
+<td>FF19 </td>
+<td> Colocation </td>
+<td> Colocation improves almost all aspects of communication </td>
+<td> 230</td>
+</tr>
+<tr>
+<td>FF20 </td>
+<td> Empowerment by feedback </td>
+<td> Fast feedback gives a sense of control </td>
+<td> 231</td>
+</tr>
+<tr>
+<td>D8 </td>
+<td> Mission </td>
+<td> Specify the end state, its purpose and the minimum possible constraints </td>
+<td> 252</td>
+</tr>
+<tr>
+<td>D16 </td>
+<td> Early contact </td>
+<td> Make early and meaningful contact with the problem </td>
+<td> 259</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Collective Code Ownership</h2>
+
+<p>Every programmer is responsible to evolve and maintain all the source code, and not just his part.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q7 </td>
+<td> Queuing structure </td>
+<td> Serve pooled demand with reliable high-capacity servers </td>
+<td> 64</td>
+</tr>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>F25 </td>
+<td> Flexible resources </td>
+<td> Use flexible resources to absord variation </td>
+<td> 202</td>
+</tr>
+<tr>
+<td>FF23 </td>
+<td> Overlapping measurement </td>
+<td> To align behaviors, reward people for the work of others </td>
+<td> 233</td>
+</tr>
+<tr>
+<td>D1 </td>
+<td> Perishablility II </td>
+<td> Decentralize control for problems and opportunities that age poorly </td>
+<td> 246</td>
+</tr>
+<tr>
+<td>D4 </td>
+<td> Virtual centralization </td>
+<td> Be able to quickly reorganize decentralized resources to create centralized power </td>
+<td> 250</td>
+</tr>
+<tr>
+<td>D5 </td>
+<td> Inefficiency </td>
+<td> The inefficiency of decentralization (as opposed to silos) can cost less than the value of faster reponse time </td>
+<td> 251</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Coding Standards</h2>
+
+<p>All programmers agree on coding conventions for all the source code they write.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>F25 </td>
+<td> Flexible resources </td>
+<td> Use flexible resources to absord variation </td>
+<td> 202</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Sustainable Pace</h2>
+
+<p>As the value created by a knowledge work does not increase linearly with the time spent, it&rsquo;s wiser to work a number of hours that both maximizes the work done while allowing the team to keep on going forever if needed.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E5 </td>
+<td> Inactivity </td>
+<td> Watch the work product, not the worker </td>
+<td> 33</td>
+</tr>
+<tr>
+<td>Q3 </td>
+<td> Queueing capacity utilization </td>
+<td> Capacity utilization increases queues exponentially </td>
+<td> 59</td>
+</tr>
+<tr>
+<td>B9 </td>
+<td> Batch size death spiral </td>
+<td> Large batches lead to even large batches </td>
+<td> 118</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Metaphor</h2>
+
+<p>Whether an actual metaphor or an ubiquitous language, the idea is to build a shared customer oriented architecture and design of the system.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>F25 </td>
+<td> Flexible resources </td>
+<td> Use flexible resources to absord variation </td>
+<td> 202</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Continuous Integration</h2>
+
+<p>All the code of all the team is merged, tested, packaged and deployed very frequently (many times per day)</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q2 </td>
+<td> Queueing waste </td>
+<td> Queues are the root cause of the majority fo economic waste in product development </td>
+<td> 56</td>
+</tr>
+<tr>
+<td>V8 </td>
+<td> Repetition </td>
+<td> Repetition reduces variation </td>
+<td> 99</td>
+</tr>
+<tr>
+<td>B1-8 </td>
+<td> Batch size </td>
+<td> Reducing batch size reduces cycle time, variability in flow, risk, overhead and accelerates feedback, while large batches reduces efficiency, lower motivation and urgency and cause exponential cost and schedule growth  </td>
+<td> 112-117</td>
+</tr>
+<tr>
+<td>B12 </td>
+<td> Low transaction cost </td>
+<td> Reducing the transaction cost per batch lowers overall costs </td>
+<td> 123</td>
+</tr>
+<tr>
+<td>B16 </td>
+<td> Transport batches </td>
+<td> The most important batch is the transport batch </td>
+<td> 128</td>
+</tr>
+<tr>
+<td>B19 </td>
+<td> Infrastructure </td>
+<td> Good infrastructure enables small batches </td>
+<td> 130</td>
+</tr>
+<tr>
+<td>F29 </td>
+<td> Resource centralization </td>
+<td> Correctly managed, centralized resources can reduce queues </td>
+<td> 206</td>
+</tr>
+<tr>
+<td>FF7 </td>
+<td> Queue reduction by feedback </td>
+<td> Fast feedback enables smaller queues </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF11 </td>
+<td> Batch size feedback </td>
+<td> Small batches yield fast feedback </td>
+<td> 223</td>
+</tr>
+<tr>
+<td>FF16 </td>
+<td> Multiple control loops </td>
+<td> Embed fast control loops inside slow loops </td>
+<td> 228</td>
+</tr>
+<tr>
+<td>FF21 </td>
+<td> Hurry-up-and-wait </td>
+<td> Large queues make it hard to create urgency </td>
+<td> 232</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Test Driven Development</h2>
+
+<p>Programmers write failing tests (both customer and unit tests) before actual real code</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V15 </td>
+<td> Iteration speed </td>
+<td> it is usually better to improve iteration speed than defect rate </td>
+<td> 106</td>
+</tr>
+<tr>
+<td>V16 </td>
+<td> Variability displacements </td>
+<td> move variability to the process stage where its cost is lowest </td>
+<td> 107</td>
+</tr>
+<tr>
+<td>B1-8 </td>
+<td> Batch size </td>
+<td> Reducing batch size reduces cycle time, variability in flow, risk, overhead and accelerates feedback, while large batches reduces efficiency, lower motivation and urgency and cause exponential cost and schedule growth  </td>
+<td> 112-117</td>
+</tr>
+<tr>
+<td>F30 </td>
+<td> Flow conditioning </td>
+<td> Reduce variability before a bottleneck </td>
+<td> 208</td>
+</tr>
+<tr>
+<td>FF7 </td>
+<td> Queue reduction by feedback </td>
+<td> Fast feedback enables smaller queues </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF8 </td>
+<td> The fast-learning principle </td>
+<td> Use fast feedback to make learning faster and more efficient </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF11 </td>
+<td> The batch size principle of feedback </td>
+<td> Small batches yield fast feedback </td>
+<td> 223</td>
+</tr>
+<tr>
+<td>FF14 </td>
+<td> The locality principle of feedback </td>
+<td> Whenever possible, make the feedback local </td>
+<td> 226</td>
+</tr>
+<tr>
+<td>FF16 </td>
+<td> The principle of multiple control loops </td>
+<td> Embed fast control loops inside slow loops </td>
+<td> 228</td>
+</tr>
+<tr>
+<td>FF20 </td>
+<td> The empowerment principle of feedback </td>
+<td> Fast feedback gives a sense of control </td>
+<td> 231</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Refactoring</h2>
+
+<p>Programmers improve the design of the system continuously, meaning in very frequent baby steps. This removes the need for a big design up front.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E13 </td>
+<td> The first decision rule principle </td>
+<td> Use decision rules to decentralize economic control </td>
+<td> 41</td>
+</tr>
+<tr>
+<td>V9 </td>
+<td> The reuse principle </td>
+<td> Reuse reduces variability </td>
+<td> 100</td>
+</tr>
+<tr>
+<td>B9 </td>
+<td> The batch size death spiral principle </td>
+<td> Large batches lead to even large batches </td>
+<td> 118</td>
+</tr>
+<tr>
+<td>B19 </td>
+<td> The infrastructure principle </td>
+<td> Good infrastructure enables small batches </td>
+<td> 130</td>
+</tr>
+<tr>
+<td>F28 </td>
+<td> The principle of preplanned flexibility </td>
+<td> For fast responses, preplan and invest in flexibility </td>
+<td> 205</td>
+</tr>
+<tr>
+<td>D12 </td>
+<td> The second agility principle </td>
+<td> Develop the ability to quickly shift focus </td>
+<td> 255</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Simple Design</h2>
+
+<p>Do the simplest thing that could possibly work. No need to write things that don&rsquo;t add business value yet. (Note that simple does not mean easy)</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E19 </td>
+<td> Insurance </td>
+<td> Don&rsquo;t pay more for insurance than the expected loss </td>
+<td> 49</td>
+</tr>
+<tr>
+<td>V12 </td>
+<td> Variability consequences </td>
+<td> Reducing consequences is usually the best way to reduce the cost of variability </td>
+<td> 103</td>
+</tr>
+<tr>
+<td>B9 </td>
+<td> Batch size death spiral </td>
+<td> Large batches lead to even large batches </td>
+<td> 118</td>
+</tr>
+<tr>
+<td>B15 </td>
+<td> Fluidity </td>
+<td> Loose coupling between product subsystems enables small batches </td>
+<td> 126</td>
+</tr>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>F25 </td>
+<td> Flexible resources </td>
+<td> Use flexible resources to absorb variation </td>
+<td> 202</td>
+</tr>
+<tr>
+<td>D12 </td>
+<td> Agility II </td>
+<td> Develop the ability to quickly shift focus </td>
+<td> 255</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Pair Programming</h2>
+
+<p>Programmers sit at the same computer in pairs to write code. One write the code, and the other comments. The keyboard changes hands very frequently.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B13 </td>
+<td> Batch size diseconomies </td>
+<td> Batch size reduction saves much more than you think </td>
+<td> 124</td>
+</tr>
+<tr>
+<td>B21 </td>
+<td> Batch size I </td>
+<td> Reduce the batch size before you attack bottlenecks </td>
+<td> 133</td>
+</tr>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>W13 </td>
+<td> Skill overlap </td>
+<td> Cross-train resources at adjacent processes </td>
+<td> 156</td>
+</tr>
+<tr>
+<td>F25 </td>
+<td> Flexible resources </td>
+<td> Use flexible resources to absord variation </td>
+<td> 202</td>
+</tr>
+<tr>
+<td>F30 </td>
+<td> Flow conditioning </td>
+<td> Reduce variability before a bottleneck </td>
+<td> 208</td>
+</tr>
+<tr>
+<td>FF14 </td>
+<td> Locality of feedback </td>
+<td> Whenever possible, make the feedback local </td>
+<td> 226</td>
+</tr>
+<tr>
+<td>FF16 </td>
+<td> Multiple control loops </td>
+<td> Embed fast control loops inside slow loops </td>
+<td> 228</td>
+</tr>
+<tr>
+<td>FF19 </td>
+<td> Colocation </td>
+<td> Colocation improves almost all aspects of communication </td>
+<td> 230</td>
+</tr>
+<tr>
+<td>FF20 </td>
+<td> Empowerment by feedback </td>
+<td> Fast feedback gives a sense of control </td>
+<td> 231</td>
+</tr>
+<tr>
+<td>D13 </td>
+<td> Peer-level coordination </td>
+<td> Tactical coordination should be local </td>
+<td> 257</td>
+</tr>
+<tr>
+<td>D22 </td>
+<td> Face-to-face communication </td>
+<td> Exploit the speed and bandwidth of face-to-face communications </td>
+<td> 263</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Spikes</h2>
+
+<p>Programmers conduct time boxed experiment to gain insights</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V2 </td>
+<td> Asymmetric payoffs </td>
+<td> Payoff asymmetries enable variability to create economic value </td>
+<td> 88</td>
+</tr>
+<tr>
+<td>V7 </td>
+<td> Small experiments </td>
+<td> Many small experiments produce less variation than one big one </td>
+<td> 98</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Slack Time</h2>
+
+<p>Keep some buffer time at the end of the iteration where team members can either close the remaining stories or work on improvements.</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V11 </td>
+<td> Buffer </td>
+<td> Buffers trade money for variability reduction </td>
+<td> 101</td>
+</tr>
+<tr>
+<td>B9 </td>
+<td> Batch size death spiral </td>
+<td> Large batches lead to even large batches </td>
+<td> 118</td>
+</tr>
+<tr>
+<td>B19 </td>
+<td> Infrastructure </td>
+<td> Good infrastructure enables small batches </td>
+<td> 130</td>
+</tr>
+<tr>
+<td>F6 </td>
+<td> Ccadence capacity margin </td>
+<td> Provide sufficient capacity margin to enable cadence </td>
+<td> 178</td>
+</tr>
+<tr>
+<td>D12 </td>
+<td> Agility II </td>
+<td> Develop the ability to quickly shift focus </td>
+<td> 255</td>
+</tr>
+<tr>
+<td>D15 </td>
+<td> Tactical reserves </td>
+<td> Decentralize a portion of reserves </td>
+<td> 258</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Daily Stand Up Meeting</h2>
+
+<p>The whole team starts every working day by a quick synchronization meeting</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B3 </td>
+<td> Batch size feedback </td>
+<td> Reducing batch size accelerate feedback </td>
+<td> 113</td>
+</tr>
+<tr>
+<td>W12 </td>
+<td> T-Shaped resources </td>
+<td> Develop people who are deep in one area and broad in many </td>
+<td> 155</td>
+</tr>
+<tr>
+<td>W20 </td>
+<td> Expansion control </td>
+<td> Prevent uncontrolled expansion of work </td>
+<td> 163</td>
+</tr>
+<tr>
+<td>F5 </td>
+<td> Periodic resynchronization </td>
+<td> Use a regular cadence to limit the accumulation of variance </td>
+<td> 177</td>
+</tr>
+<tr>
+<td>F9 </td>
+<td> Cadenced meetings </td>
+<td> Schedule frequent meetings using a predictable cadence </td>
+<td> 180</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Retrospective meeting</h2>
+
+<p>At the end of every iteration, the team meets for a retrospective, discussing what they did in order to improve</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B9 </td>
+<td> Batch size death spiral </td>
+<td> Large batches lead to even large batches </td>
+<td> 118</td>
+</tr>
+<tr>
+<td>B19 </td>
+<td> Infrastructure </td>
+<td> Good infrastructure enables small batches </td>
+<td> 130</td>
+</tr>
+<tr>
+<td>F9 </td>
+<td> Cadenced meetings </td>
+<td> Schedule frequent meetings using a predictable cadence </td>
+<td> 180</td>
+</tr>
+<tr>
+<td>FF8 </td>
+<td> Fast-learning </td>
+<td> Use fast feedback to make learning faster and more efficient </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF20 </td>
+<td> Empowerment by feedback </td>
+<td> Fast feedback gives a sense of control </td>
+<td> 231</td>
+</tr>
+<tr>
+<td>D21 </td>
+<td> Regenerative initiative </td>
+<td> Cultivating initiative enables us to use initiative </td>
+<td> 263</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Demos</h2>
+
+<p>At the end of every iteration, the team demonstrates what it did to the customer</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E14 </td>
+<td> Market I </td>
+<td> Ensure decision makers feel both cost and benefit </td>
+<td> 42</td>
+</tr>
+<tr>
+<td>B3 </td>
+<td> Batch size feedback </td>
+<td> Reducing batch size accelerate feedback </td>
+<td> 113</td>
+</tr>
+<tr>
+<td>B9 </td>
+<td> Batch size death spiral </td>
+<td> Large batches lead to even large batches </td>
+<td> 118</td>
+</tr>
+<tr>
+<td>F9 </td>
+<td> Cadenced meetings </td>
+<td> Schedule frequent meetings using a predictable cadence </td>
+<td> 180</td>
+</tr>
+<tr>
+<td>FF7 </td>
+<td> Queue reduction by feedback </td>
+<td> Fast feedback enables smaller queues </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF8 </td>
+<td> Fast-learning </td>
+<td> Use fast feedback to make learning faster and more efficient </td>
+<td> 220</td>
+</tr>
+<tr>
+<td>FF20 </td>
+<td> Empowerment by feedback </td>
+<td> Fast feedback gives a sense of control </td>
+<td> 231</td>
+</tr>
+<tr>
+<td>FF21 </td>
+<td> Hurry-up-and-wait </td>
+<td> Large queues make it hard to create urgency </td>
+<td> 232</td>
+</tr>
+<tr>
+<td>FF23 </td>
+<td> Overlapping measurement </td>
+<td> To align behaviors, reward people for the work of others </td>
+<td> 233</td>
+</tr>
+<tr>
+<td>D23 </td>
+<td> Trust </td>
+<td> Trust is built through experience </td>
+<td> 264</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Visual Whiteboard</h2>
+
+<p>Display the stories of the current sprint on the wall in a 3 columns whiteboard (TODO, DOING, DONE)</p>
+
+<table>
+<thead>
+<tr>
+<th>Ref </th>
+<th> The principle of &hellip; </th>
+<th> Summary </th>
+<th> page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W23 </td>
+<td> Visual WIP </td>
+<td> Make WIP continuously visible </td>
+<td> 166</td>
+</tr>
+<tr>
+<td>F27 </td>
+<td> Local transparency </td>
+<td> Make tasks and resources reciprocally visible at adjacent processes </td>
+<td> 204</td>
+</tr>
+<tr>
+<td>D17 </td>
+<td> Decentralized information </td>
+<td> For decentralized decisions, disseminate key information widely </td>
+<td> 260</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Conclusion</h2>
+
+<p>Whaoo that&rsquo;s a lot ! I did not expect to find so many principles underlying XP (I even removed principles that were not self explanatory). For the XP practitioner that I am, writing this blog post helped me to deepen understanding of it. As XPers know, XP is quite opiniated, it&rsquo;s both a strength and a weakness if you try to apply it outside of its zone of comfort. This explains why some lean subjects are simply not addressed by XP.</p>
+
+<p>To summarize, here is where XP hits the ground :</p>
+
+<ul>
+<li>In spite of its image of &lsquo;a process for nerdy programmers&rsquo; XP turns out to be a quite evolved lean method !</li>
+<li>XP anihilates batch size and feedback time</li>
+<li>Pair programming is well explained</li>
+</ul>
+
+
+<p>And here is where to look at when you&rsquo;ll need to upgrade XP</p>
+
+<ul>
+<li>Better tradeoffs might be found with a real quantitative economical framework</li>
+<li>Synchronization principles might help working with other teams</li>
+</ul>
+
+
+<p>Kent Beck could not have read the Flow book when he invented XP, but it seems he just had a bit of advance on the rest of us &hellip;</p>
+
+<p>This was part 2 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 1 was <a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary</a>, Part 3 will be <a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value ?</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow Book Summary (Lean Software Development Part 1)</a></h1>
     
     
@@ -955,102 +2274,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-we-introduced-efficient-agile-retrospectives/">How We Introduced Efficient Agile Retrospectives</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-22T06:13:00+00:00" pubdate data-updated="true">Apr 22<span>nd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>6 months ago, our team started to run systematic iteration retrospectives. Within these 6 months, our team became more agile than ever. Running efficient retrospectives is what makes good teams great, it is what truly makes a team agile. Here is our story.</p>
-
-<p>At the begining, we started with a standard retrospective format inspired from <a href="http://www.amazon.com/The-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1398141097&amp;sr=8-1&amp;keywords=the+art+of+agile+development">The Art Of Agile Development</a> (A truly great book by the way). As I was used to running retrospectives, I did the first one. This is how it goes :</p>
-
-<ul>
-<li>Repeat Norm&rsquo;s Kerth&rsquo;s prime directive to everyone (5 minutes) :</li>
-</ul>
-
-
-<blockquote><p>Regardless of what we discover today, we understand and truly believe that everyone did the best job they could, given what they knew at the time, their skills and abilities, the resources available, and the situation at hand.</p></blockquote>
-
-<p>If the message is awkward, the animator can explain that the point is to avoid counter productive blaming (even if it is unlikely to happen in your setting &hellip;)</p>
-
-<ul>
-<li>Do some kind of brainstorming (10 minutes) :</li>
-</ul>
-
-
-<p>One his own, everyone writes what went well on green post-its, and what did not went so well on blue post-its. Everybody sticks them up on the flipchart.</p>
-
-<ul>
-<li>Group insights togethers (15 minutes) :</li>
-</ul>
-
-
-<p>The animator reads every post-it aloud, asking team members for details, and tries to group notes together. When everyone is ok with the groups, dot vote : every team member gets 3 points, that he can assign as he wishes on any group. Here is what the board should look like at this point.</p>
-
-<p><img class="center" src="/imgs/2014-04-22-how-we-introduced-efficient-agile-retrospectives/insights.jpg" title="Photo of the flipchart with gathered insights" ></p>
-
-<ul>
-<li>Find actions to improve the process (30 minutes) :</li>
-</ul>
-
-
-<p>Pick up the 3 most voted issues, give everyone 5 minutes to think of useful actions to fix these. Then take another 5 minutes so that people can discuss their solutions in pairs, and another 5 minutes to do the same in groups of 4. Eventually, as the animator reports on the flipchart, do the same altogether. Make sure that the solutions are <strong>doable</strong> within the next sprint, if not discuss and split them until they are. Again, dot vote for the prefered actions.</p>
-
-<p><img class="center" src="/imgs/2014-04-22-how-we-introduced-efficient-agile-retrospectives/actions.jpg" title="Photo of the flipchart with agreed actions" ></p>
-
-<ul>
-<li>Do it :</li>
-</ul>
-
-
-<p>As soon as the retrospective is finished, the animator must enter the actions in the coming sprint backlog. These actions are not user stories, but they <strong>must</strong> be done. If there are not, the team cannot be agile as they will be no continuous improvement. Don&rsquo;t assign any story points to these items, but let the velocity auto adjust for a given amount of improvements during every sprint.</p>
-
-<p>After the first one, every team member animated such a retrospective, one after the other. When everyone was at ease with this, we changed the format. We bought <a href="http://www.amazon.com/Agile-Retrospectives-Making-Teams-Great/dp/0977616649/ref=pd_sim_b_1?ie=UTF8&amp;refRID=0QA643CPNSQE9E0GSG5E">Agile Retrospectives: Making Good Teams Great</a> and everyone was responsible for designing his own retrospective session when his turn came. This allows different and various insights.</p>
-
-<p>To conclude, here are a few retrospectives hints and guidelines</p>
-
-<ul>
-<li>Everyone&rsquo;s voice should be equal, everyone should feel free to talk</li>
-<li>Don&rsquo;t worry if good ideas are not selected the first time, they&rsquo;ll come back</li>
-<li>At the begining of every retrospective, review what happened about what was decided during the previous one</li>
-<li>Use sticky flipcharts and stick them on the wall as you go through the different activities</li>
-<li>Prepare flipcharts in advances to make the retrospective run more smoothly</li>
-<li>Use colored post its to highlight different aspects (good things, bad things or whatever)</li>
-<li>Use markers to write on post its (how can one read it from the back of the room otherwise ?)</li>
-</ul>
-
-
-<p>If you haven&rsquo;t yet, you have no excuses not to start now !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -1129,6 +2352,10 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/video-for-our-talk-extreme-practices-is-on-youtube/">Video for our talk &#8216;Extreme Practices&#8217; is on YouTube</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-kill-scrum-zombies/">How to kill Scrum Zombies ?</a>
       </li>
     
@@ -1142,10 +2369,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     
       <li class="post">
         <a href="/3-more-great-talks-from-javaone-2016/">3 More Great Talks From JavaOne 2016</a>
-      </li>
-    
-      <li class="post">
-        <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 talks I attended at JavaOne 2016 (Part 2)</a>
       </li>
     
   </ul>
