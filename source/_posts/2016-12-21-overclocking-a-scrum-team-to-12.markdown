@@ -65,7 +65,7 @@ Here is what you don't want :
 * people out of sync with the daily production constraints
 * a never ending 'research' topic
 
-Here is a simple solution in the context I describe : add someone in the product team, and do some 2 month round robin on hard subjects. This should leave plenty of time to study something different, but so much time that one looses connection with the rest of the team. Plus it brings a bit of diversity in every one's daily work. One issue I can think of is that working on isolation might leave someone on a bad track, regularly presenting what was done to the rest of the team might alleviate this concern.
+Here is a simple solution in the context I describe : add someone in the product team, and do some 2 month round robin on hard subjects. This should leave plenty of time to study something different, but not so much time that one looses connection with the rest of the team. Plus it brings a bit of diversity in every one's daily work. One issue I can think of is that working on isolation might leave someone on a bad track, regularly presenting what was done to the rest of the team might alleviate this concern.
 
 ## A final word
 
