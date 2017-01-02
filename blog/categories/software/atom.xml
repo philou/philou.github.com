@@ -4,7 +4,7 @@
   <title><![CDATA[Category: software | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/software/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2016-12-23T05:10:16+00:00</updated>
+  <updated>2017-01-02T05:24:18+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,108 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I got my feet wet with machine learning with 'The First 20 Hours']]></title>
+    <link href="http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/"/>
+    <updated>2016-12-29T21:09:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours</id>
+    <content type="html"><![CDATA[<p>I&rsquo;m currently wrapping up an alpha of a unit testing <a href="https://github.com/philou/complexity-assert">ruby gem</a> that allows to assert the complexity of a piece of code. It&rsquo;s the result of an experiment to learn some <a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> skills in 20 hours &hellip; not bad for a first a try at Data Science ! This is the story of this experiment.</p>
+
+<h2>How it all started ?</h2>
+
+<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img class="center" src="/imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg" title="The cover of the book &lsquo;The First 20 Hours&rsquo;" ></a></p>
+
+<p>A few months ago, I read <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours">The First 20 Hours</a>. The book describes a technique to get up to speed and learn some practical skills on any particular subject in only 20 hours. As examples, the author details how he managed to teach himself a pretty decent level of Yoga, Ukulele, Wind Surfing, Programming, Go and touch typing.</p>
+
+<p>I decided to give it a try. In order to get a boost, I found a few motivated people at work to do it with me. I started by presenting them the technique described in the book, and asked everyone what they wanted to learn. After a quick vote, we set out to learn more about Machine Learning.</p>
+
+<h2>The technique</h2>
+
+<p>The method is meant to allow anyone to learn necessary skills to accomplish a specific task in about 20 hours. I my case, I could expect to get a basic understanding of the Machine Learning concepts, as well as some practical skills to do something involving Machine Learning. Here are the details of the technique :</p>
+
+<ol>
+<li>H0 : Deep dive in the main concepts and theory of machine learning</li>
+<li>H6 : Define an ambitious and practical goal or skill level to achieve by the end, and an outline of how to get there</li>
+<li>H6 to H20 : Learn by doing</li>
+</ol>
+
+
+<p>As you see, the technique is pretty simple !</p>
+
+<h2>How did it work ?</h2>
+
+<h3>For the group</h3>
+
+<p>The plan for the group was :</p>
+
+<ul>
+<li>to meet weekly for 2 hours</li>
+<li>to share what we learned at the end of every session</li>
+<li>to bound by similar goals</li>
+</ul>
+
+
+<p>At first, people were enthusiastic about learning something like machine learning. After a while, I started to get the following remarks :</p>
+
+<ul>
+<li>&ldquo;I don&rsquo;t really see the point of doing this together rather than independently&rdquo;</li>
+<li>&ldquo;I&rsquo;m feeling a bit lost by not having a concrete goal and a plan from H0&rdquo;</li>
+<li>&ldquo;I picked up a target that&rsquo;s too large for me&rdquo;</li>
+</ul>
+
+
+<p>The learning curve must have proven too steep, because as time went by, a lot of people droped out, and we ended up being only 2 !</p>
+
+<h3>For me</h3>
+
+<p>The first phase was the toughest. As the author had warned in his book, &ldquo;You&rsquo;ll get deep above your head in theory and concepts you don&rsquo;t know&rdquo;, &ldquo;You&rsquo;ll feel lost&rdquo;. He had some reassuring words though : &ldquo;The steeper the learning curve, the more you&rsquo;ll be learning !&rdquo; I actually like this feeling of unknown things to learn, and that&rsquo;s why I stuck to it.</p>
+
+<p>I took me 8 hours, and not 6 to get a good overall grasp of Machine Learning techniques. The theory was just too wide and interesting and I could not cut the learning after just 6 hours :&ndash;). I studied <a href="https://xyclade.github.io/MachineLearning/#cross-validation">Machine Learning for developers</a> plus a few other pages for details on specific points. I took and kept notes about what I learned. I chose my subject &ldquo;unit testing algorithm complexity&rdquo; for the following reasons :</p>
+
+<ul>
+<li>I could imagine some utility</li>
+<li>I had been writing benchmarks at work for 3 years, and I knew the practice well enough</li>
+<li>It&rsquo;s pretty easy to generate data for this subject : just run your algorithm !</li>
+<li>It seems a good first step, doable with basic Machine Learning techniques like linear regression</li>
+<li>It seems small enough to get something working in 12 hours</li>
+<li>I could use ruby, which I find both fast and pleasant to program</li>
+</ul>
+
+
+<p>This is the plan I set out :</p>
+
+<ol>
+<li>Generate data with a linear algorithm (O(n))</li>
+<li>Run linear regression on the data</li>
+<li>Compute the the <a href="https://xyclade.github.io/MachineLearning/#root-mean-squared-error-rmse">RMSE</a> of the model</li>
+<li>Deal with Garbage Collection in order to make reduce its noise</li>
+<li>Deal with interpreter warm-up for the same reason</li>
+<li>Generate data for a constant (O(1)) algorithm and build a model for it</li>
+<li>Find a way to identify if an algorithm is constant or linear from it&rsquo;s execution timings</li>
+<li>Generate data for a quadratic (O(2)) algorithm and build a model for it</li>
+<li>Identify if an algorithm is constant, linear or quadratic</li>
+<li>Package all this in an <a href="http://rspec.info/">RSpec</a> library</li>
+</ol>
+
+
+<p>It started well, and I made good progress. Unfortunately, as people dropped out of the group and I got more urgent things to do at work, I had to pause my project for a while. It&rsquo;s only been since last week that I got some time during my holidays to finish this off. I&rsquo;m currently at H18, and I&rsquo;ve completed all steps from 1 to 9.</p>
+
+<p>As I said the project is still in early alpha. They is a lot of points in which it could be improved (more complexities, faster, more reliable &hellip;). Even though I did not tackle the more advanced machine learning techniques, I now understand the overall process of ML : explore to get an intuitive grasp of the data, try out a model, see what happens, and repeat &hellip; I feel that learning these more advanced techniques would be easier now.</p>
+
+<h2>My opinion on the method</h2>
+
+<p>Overall, I found the experiment really effective, it&rsquo;s possible to learn quite a lot by focusing on it for 20 hours. A word of warning though : you need to be really motivated and ready to stick through difficulties.</p>
+
+<p>It&rsquo;s also been very pleasant. I&rsquo;ve always loved to learn new things, so I might be a little biased on that aspect. I liked the first part when I felt that there was a lot to learn in a large subject I knew almost nothing about. I loved the second part too, although this might be more related to machine learning, because I felt like exploring an unknown (data set) and trying to understand it.</p>
+
+<p>I&rsquo;ve never been afraid to learn something, doing this experiment taught me I can learn anything fast ! I&rsquo;ll definitely re-use it again.</p>
+
+<p>One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first &lsquo;explore&rsquo; phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The &lsquo;guide&rsquo; could also help the others through the first phase.</p>
+
+<p>Stay tuned, I&rsquo;ll present my gem in a following post.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Overclocking a Scrum Team to 12]]></title>
@@ -255,97 +357,6 @@ docker-compose run rubybox
 
 
 <p>At least that&rsquo;s a starting point !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Is There Any Room For The Not-Passionate Developer ?]]></title>
-    <link href="http://philippe.bourgau.net/is-there-any-room-for-the-not-passionate-developer/"/>
-    <updated>2016-07-26T06:53:00+00:00</updated>
-    <id>http://philippe.bourgau.net/is-there-any-room-for-the-not-passionate-developer</id>
-    <content type="html"><![CDATA[<p><a href="https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic-ebook/dp/B00AYQNR5U/ref=sr_1_1?ie=UTF8&amp;qid=1470025727&amp;sr=8-1&amp;keywords=the+passionate+programmer"><img class="center" src="/imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/passionate-programmer.jpg" title="The cover of The Passionate Programmer book" ></a></p>
-
-<p>In <a href="https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?ie=UTF8&amp;qid=1469597091&amp;sr=8-1&amp;keywords=rework">Rework</a>, <a href="https://basecamp.com/">Basecamp</a> guys David Heinemeier Hansson and Jason Fried advise to <a href="https://signalvnoise.com/posts/902-fire-the-workaholics">&ldquo;Fire the workaholics&rdquo;</a>, while in <a href="https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296/ref=sr_1_1?ie=UTF8&amp;qid=1469801854&amp;sr=8-1&amp;keywords=zero+to+one">Zero to One</a> Peter Thiel argues that great working conditions (as described within Google for example) result from 10x technological advantages, not the other way round.</p>
-
-<p>Back in 1983, Bill Gates said :</p>
-
-<blockquote><p>You have to think it’s a fun industry. You’ve got to go home at night and open your
-mail and find computer magazines or else you’re not going to be on the same
-wavelength as the people [at Microsoft].</p></blockquote>
-
-<p>Where do we stand now ? Do you need to live and breath programming to remain a good developer ?</p>
-
-<h2>What about the 40h per week rule ?</h2>
-
-<p><img class="center" src="/imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/productivity.jpg" title="A graph of the productivity when working overtime" ></p>
-
-<p>Studies have repeatedly demonstrated that 40h per week is the most productive work load, but in <a href="https://www.amazon.com/Outliers-Story-Success-Malcolm-Gladwell/dp/0316017930">Outliers, the Story of Success</a> Malcolm Gladwell explains that getting fast to the 10000 hours of practice is a required road to success. As my Aïkido professor says, the more you practice, the better you get &hellip;</p>
-
-<p>In <a href="https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1469801992&amp;sr=1-1&amp;keywords=soft+skills+the+software+developer%27s+life+manual">Soft Skills: The software developer&rsquo;s life manual</a> John Somnez also makes the point for hard work, that while he long believed that smart work would be enough, it&rsquo;s only when he put more in that he managed to drastically change his career.</p>
-
-<p>During an <a href="http://calacanis.com/2008/03/07/how-to-save-money-running-a-startup-17-really-good-tips/">argument</a>, DHH argued in favor of work life balance whereas Jason Calacanis said that working in a startup had to be an all-in activity. In the end, they agreed that what matters is passion.</p>
-
-<p>From my own experience, whenever I work on something I am passionate about :</p>
-
-<ul>
-<li>I am more productive</li>
-<li>I feel energized rather than dulled by the work</li>
-</ul>
-
-
-<p>When I look around me, all the great developers I know are passionate and putting in more than 40 hours per week in programming. I also noticed that passion and efforts have always been pretty good indicators of future skills.</p>
-
-<p>But then, how do passionate people manage to remain productive when working more than 40 hours per week ?</p>
-
-<h2>What about the under the shower idea ?</h2>
-
-<p>In <a href="https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050">Pragmatic Thinking and Learning: Refactor Your Wetware (Pragmatic Programmers)</a> (which is a great book BTW), Andy Hunt explains that our R-mode works in the background, and needs time away from the task at hand to come up with &ldquo;out of the box&rdquo; creative solutions.</p>
-
-<p>XP argues for a <a href="http://www.sustainablepace.net/what-is-sustainable-pace">sustainable pace</a>, but at the same time, Uncle Bob says that we should put in 60 hours (40 for employer, and 20 for yourself) of work per week to become and remain &lsquo;professionals&rsquo; (I guess that&rsquo;s from <a href="https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=sr_1_2?ie=UTF8&amp;qid=1470026034&amp;sr=8-2&amp;keywords=the+clean+code">The Clean Coder</a> if I remember correctly).</p>
-
-<p>On my side, 6 to 8 solid hours of pair-programming on the same subject is the most I can do before becoming a <a href="http://c2.com/cgi/wiki?NetNegativeProducingProgrammer">Net Negative Producing Programmer</a>. But I can do more programming per day if I work on a side project at the same time though !</p>
-
-<p>I guess that&rsquo;s how passionate people do it, they have different topics outside of their main work :</p>
-
-<ul>
-<li>they read books about programming</li>
-<li>they have their own <a href="http://www.sideprojectbook.com/">side projects</a></li>
-<li>they read articles about programming</li>
-<li>they might maintain a programming blog</li>
-<li>they might attend, organize or speak at meetup</li>
-</ul>
-
-
-<p>Most of the time, this does not make for more work, but rather for more learning. If I&rsquo;ve noticed that all the great programmers around me are passionate and strive to improve at their craft, I&rsquo;ve also noticed that overworked workaholics usually aren&rsquo;t very productive.</p>
-
-<h2>Special challenges for mums and dads</h2>
-
-<p>I think that Bill Gates 1983 statement still holds. If you are not passionate about programming, you&rsquo;ll have a hard time remaining and succeeding as a programmer in the long run.</p>
-
-<p>The great thing about all this passion is that we can experience an energized work environment, always bubbling with change and novelty. On the flip side, keeping up with all is not always easy.</p>
-
-<p>As we developers gain more experience, we tend to loose patience with everything that just feels as a pain in the ass, and will want :</p>
-
-<ul>
-<li>Powerful languages and technologies</li>
-<li>An efficient working environment</li>
-<li>Smart colleagues</li>
-</ul>
-
-
-<p>Unfortunately, that might also be the moment in your life when you become a parent, and you&rsquo;ll want  a stable income to sustain your family and some time to spend with your kids.</p>
-
-<p>That is when things get tricky. Neither can you jump ship for the next cool and risky startup where you&rsquo;ll do great things, nor can you find enough time moonlighting to improve your skills &hellip; To add pain to injury, even with 10 years of experience in various languages and technologies, most companies won&rsquo;t look at your resume unless it contains good keywords &hellip; It looks like the developer&rsquo;s version of  <a href="https://www.amazon.com/Innovators-Dilemma-Revolutionary-Change-Business/dp/0062060244/ref=sr_1_sc_1?ie=UTF8&amp;qid=1470024448&amp;sr=8-1-spell&amp;keywords=the+innovator%27s+dilemns">The Innovator&rsquo;s Dilemna</a> !</p>
-
-<p>Lack of passion and parenthood might partially explain why people stop being developers after a while. I can quickly think of 2 bad consequences of this :</p>
-
-<ul>
-<li>We tend to reinvent the wheel quite a lot (I&rsquo;m looking at you, .js frameworks &hellip;)</li>
-<li>We might be meta ignoring (ignoring that we ignore) people skills that could make us all more efficient</li>
-</ul>
-
-
-<p><em><a href="http://www.inside.com.tw/2016/08/05/is-there-any-room-for-the-not-passionate-developer">Chinese translation</a></em></p>
 ]]></content>
   </entry>
   
