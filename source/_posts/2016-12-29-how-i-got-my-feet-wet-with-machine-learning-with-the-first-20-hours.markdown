@@ -11,7 +11,7 @@ description: "The story of how I learned basic machine learning skills in 20 hou
 ---
 I'm currently wrapping up an alpha of a unit testing [ruby gem](https://github.com/philou/complexity-assert) that allows to assert the complexity of a piece of code. It's the result of an experiment to learn some [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) skills in 20 hours ... not bad for a first a try at Data Science ! This is the story of this experiment.
 
-# How it all started ?
+## How it all started ?
 
 [{% img center /imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg The cover of the book 'The First 20 Hours' %}](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours)
 
@@ -19,7 +19,7 @@ A few months ago, I read [The First 20 Hours](https://www.amazon.com/First-20-Ho
 
 I decided to give it a try. In order to get a boost, I found a few motivated people at work to do it with me. I started by presenting them the technique described in the book, and asked everyone what they wanted to learn. After a quick vote, we set out to learn more about Machine Learning.
 
-# The technique
+## The technique
 
 The method is meant to allow anyone to learn necessary skills to accomplish a specific task in about 20 hours. I my case, I could expect to get a basic understanding of the Machine Learning concepts, as well as some practical skills to do something involving Machine Learning. Here are the details of the technique :
 
@@ -29,9 +29,9 @@ The method is meant to allow anyone to learn necessary skills to accomplish a sp
 
 As you see, the technique is pretty simple !
 
-# How did it work ?
+## How did it work ?
 
-## For the group
+### For the group
 
 The plan for the group was :
 
@@ -47,7 +47,7 @@ At first, people were enthusiastic about learning something like machine learnin
 
 The learning curve must have proven too steep, because as time went by, a lot of people droped out, and we ended up being only 2 !
 
-## For me
+### For me
 
 The first phase was the toughest. As the author had warned in his book, "You'll get deep above your head in theory and concepts you don't know", "You'll feel lost". He had some reassuring words though : "The steeper the learning curve, the more you'll be learning !" I actually like this feeling of unknown things to learn, and that's why I stuck to it.
 
@@ -77,7 +77,7 @@ It started well, and I made good progress. Unfortunately, as people dropped out 
 
 As I said the project is still in early alpha. They is a lot of points in which it could be improved (more complexities, faster, more reliable ...). Even though I did not tackle the more advanced machine learning techniques, I now understand the overall process of ML : explore to get an intuitive grasp of the data, try out a model, see what happens, and repeat ... I feel that learning these more advanced techniques would be easier now.
 
-# My opinion on the method
+## My opinion on the method
 
 Overall, I found the experiment really effective, it's possible to learn quite a lot by focusing on it for 20 hours. A word of warning though : you need to be really motivated and ready to stick through difficulties.
 
