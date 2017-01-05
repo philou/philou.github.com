@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Radiant v0.9.1 incompatibility with radiant-tags-extension ~> 1.6.2 - Philippe Bourgau's blog</title>
+  <title>Verify the Big O Complexity of Ruby Code in RSpec - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="A programming blog. Particularly about agile development, real world walkthrough, tutorials, side project entrepreneurship and open source software.">
+  <meta name="description" content="An introduction to 'complexity_assert', an experimental ruby open source unit testing gem that I wrote, which uses linear regression asserts the &hellip;">
 
   
-  <meta name="keywords" content="Radiant, radiant-tags-extension, Radiant v0.9.1, radiant-tags-extension ~> 1.6.2, incompatibility">
+  <meta name="keywords" content="Ruby, Software, Performance, RSpec, Machine Learning, Linear Regression, Ruby Gem, Programming, Open Source">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/radiant-v091-incompatibility-with-radiant-tag/">
+  <link rel="canonical" href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -97,7 +97,7 @@
   
   <header>
     
-      <h1 class="entry-title">Radiant v0.9.1 Incompatibility With Radiant-tags-extension ~> 1.6.2</h1>
+      <h1 class="entry-title">Verify the Big O Complexity of Ruby Code in RSpec</h1>
     
     
       <p class="meta">
@@ -113,15 +113,96 @@
   
 
 
-<time datetime="2011-09-28T00:00:00+00:00" pubdate data-updated="true">Sep 28<span>th</span>, 2011</time>
+<time datetime="2017-01-04T17:48:00+00:00" pubdate data-updated="true">Jan 4<span>th</span>, 2017</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I was getting  an &quot;undefined method &#39;find_by_path&#39;&quot; error when using &lt;r:related_by_tags&gt;.<br /> I rolled back to radiant-tags-extension v1.6.1 and it was fixed.</p>
+<div class="entry-content"><p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
 
+<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
+
+<h2>How does it work ?</h2>
+
+<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
+
+<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># An adapter class to fit the code to measure in complexity assert</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ProductsOrdersMatching</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Generate some arguments of a particular size</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">generate_args</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</span><span class='line'>        <span class="c1"># Let&#39;s assume we have 10 times less products than orders</span>
+</span><span class='line'>        <span class="o">[</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">build_a_product</span><span class="p">()</span> <span class="p">},</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">build_an_order</span><span class="p">()</span> <span class="p">}</span> <span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Run the code on which we want to assert performance</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">orders</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">match_products_with_orders</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">orders</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s2">&quot;Products and Orders Matching&quot;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;performs linearly&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="c1"># Verify that the code runs in time proportional to the size of its arguments</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="no">ProductOrdersMatching</span><span class="o">.</span><span class="n">new</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_linear</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
+
+<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
+
+<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
+
+<h2>Did you say experiment ?</h2>
+
+<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
+
+<ul>
+<li>Allow the assertion to specify the sizes</li>
+<li>Allow the assertion to specify the warm-up and run rounds</li>
+<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
+<li>Find ways to make the whole thing faster</li>
+<li>O(lnx) : pre-treat with exp()</li>
+<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
+<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
+<li>Estimate how much the assert is deterministic</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
 </div>
 
 
@@ -144,12 +225,12 @@
   
 
 
-<time datetime="2011-09-28T00:00:00+00:00" pubdate data-updated="true">Sep 28<span>th</span>, 2011</time>
+<time datetime="2017-01-04T17:48:00+00:00" pubdate data-updated="true">Jan 4<span>th</span>, 2017</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/radiant/'>radiant</a>, <a class='category' href='/blog/categories/radiant-tags-extension/'>radiant-tags-extension</a>
+    <a class='category' href='/blog/categories/open-source/'>open-source</a>, <a class='category' href='/blog/categories/performance/'>performance</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -158,7 +239,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/radiant-v091-incompatibility-with-radiant-tag/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/radiant-v091-incompatibility-with-radiant-tag/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -171,10 +252,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/using-gems-instead-of-rails-plugins-on-heroku/" title="Previous Post: Using gems instead of rails plugins on heroku">&laquo; Using gems instead of rails plugins on heroku</a>
+        <a class="basic-alignment left" href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/" title="Previous Post: How I got my feet wet with machine learning with 'The First 20 Hours'">&laquo; How I got my feet wet with machine learning with 'The First 20 Hours'</a>
       
-      
-        <a class="basic-alignment right" href="/making-c-properties-first-class-objects/" title="Next Post: Making C# properties first class objects">Making C# properties first class objects &raquo;</a>
       
     </p>
   </footer>
@@ -313,8 +392,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/radiant-v091-incompatibility-with-radiant-tag/';
-        var disqus_url = 'http://philippe.bourgau.net/radiant-v091-incompatibility-with-radiant-tag/';
+        var disqus_identifier = 'http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/';
+        var disqus_url = 'http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/';
         var disqus_script = 'embed.js';
       
     (function () {

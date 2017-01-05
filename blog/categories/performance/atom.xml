@@ -4,7 +4,7 @@
   <title><![CDATA[Category: performance | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/performance/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-01-02T05:24:18+00:00</updated>
+  <updated>2017-01-05T05:57:25+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Verify the Big O Complexity of Ruby Code in RSpec]]></title>
+    <link href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/"/>
+    <updated>2017-01-04T17:48:00+00:00</updated>
+    <id>http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec</id>
+    <content type="html"><![CDATA[<p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
+
+<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
+
+<h2>How does it work ?</h2>
+
+<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
+
+<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
+
+<p>``` ruby</p>
+
+<h1>An adapter class to fit the code to measure in complexity assert</h1>
+
+<p>class ProductsOrdersMatching</p>
+
+<pre><code># Generate some arguments of a particular size
+def generate_args(size)
+    # Let's assume we have 10 times less products than orders
+    [ Array.new(size / 10) { build_a_product() }, Array.new(size) { build_an_order() } ]
+end
+
+# Run the code on which we want to assert performance
+def run(products, orders)
+    match_products_with_orders(products, orders)
+end
+</code></pre>
+
+<p>end</p>
+
+<p>describe &ldquo;Products and Orders Matching&rdquo; do</p>
+
+<pre><code>it "performs linearly" do
+    # Verify that the code runs in time proportional to the size of its arguments
+    expect(ProductOrdersMatching.new).to be_linear()
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
+
+<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
+
+<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
+
+<h2>Did you say experiment ?</h2>
+
+<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
+
+<ul>
+<li>Allow the assertion to specify the sizes</li>
+<li>Allow the assertion to specify the warm-up and run rounds</li>
+<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
+<li>Find ways to make the whole thing faster</li>
+<li>O(lnx) : pre-treat with exp()</li>
+<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
+<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
+<li>Estimate how much the assert is deterministic</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[3 More Great Talks From JavaOne 2016]]></title>
@@ -591,59 +664,6 @@ We will then just have to work on the stories with the highest speedup rate firs
 <p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
 
 <p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Performance is a feature]]></title>
-    <link href="http://philippe.bourgau.net/performance-is-a-feature/"/>
-    <updated>2015-01-19T06:46:00+00:00</updated>
-    <id>http://philippe.bourgau.net/performance-is-a-feature</id>
-    <content type="html"><![CDATA[<p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
-
-<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
-
-<h1>What&rsquo;s in it for us ?</h1>
-
-<p>If performance is indead a feature, then it can be managed like any feature :</p>
-
-<ul>
-<li><p>It should result from use cases</p>
-
-<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
-<li><p>It can be split into user stories</p></li>
-</ul>
-
-
-<blockquote><ul>
-<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
-<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>They can be prioritized against other stories</li>
-</ul>
-
-
-<blockquote><ul>
-<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
-<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>The performance on these use cases should be automatically tested and non regressed</li>
-</ul>
-
-
-<blockquote><ul>
-<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
-<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
-</ul>
-</blockquote>
-
-<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
 ]]></content>
   </entry>
   

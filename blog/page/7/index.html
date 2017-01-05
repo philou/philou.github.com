@@ -100,6 +100,247 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/actors-and-green-threads-in-java-demystified/">Actors and Green Threads in Java Demystified</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-08-15T13:17:00+00:00" pubdate data-updated="true">Aug 15<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After finishing my <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a>, one of the things that most surprised me, is how simple it was to prototype the <a href="https://en.wikipedia.org/wiki/Actor_model">Actor Model</a> in Java using <a href="https://en.wikipedia.org/wiki/Green_threads">Green Threads</a>.</p>
+
+<h2>The Code</h2>
+
+<p>First, here is the base class for all actors.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Actor</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ExecutorService</span> <span class="n">threadPool</span><span class="o">;</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ConcurrentLinkedQueue</span><span class="o">&lt;</span><span class="n">Runnable</span><span class="o">&gt;</span> <span class="n">mailbox</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcurrentLinkedQueue</span><span class="o">&lt;&gt;();</span>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">stoped</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">Actor</span><span class="o">(</span><span class="n">ExecutorService</span> <span class="n">threadPool</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">threadPool</span> <span class="o">=</span> <span class="n">threadPool</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">stoped</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="k">return</span><span class="o">;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">Runnable</span> <span class="n">nextMessage</span> <span class="o">=</span> <span class="n">mailbox</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">nextMessage</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">nextMessage</span><span class="o">.</span><span class="na">run</span><span class="o">();</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>        <span class="n">submitContinuation</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">submitContinuation</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">stop</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">stoped</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">send</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">runnable</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">mailbox</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">runnable</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">submitContinuation</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">threadPool</span><span class="o">.</span><span class="na">submit</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, I simply used Runnable as the type of the messages.</p>
+
+<p>The Actor itself is Runnable, meaning that it can be submitted to the thread pool. When executed :</p>
+
+<ol>
+<li>it tries to handle a message from the mailbox if there is one.</li>
+<li>It then re-submits the actor itself</li>
+</ol>
+
+
+<p>This ensures that only one thread is executing messages on an actor at a given time, and it also avoids spawning new thread for every new actor.</p>
+
+<p>As an example, here is how I used this to make an actor of an existing InProcessChatRoom class.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ChatRoom</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kt">void</span> <span class="nf">broadcast</span><span class="o">(</span><span class="n">Output</span> <span class="n">client</span><span class="o">,</span> <span class="n">String</span> <span class="n">message</span><span class="o">);</span>
+</span><span class='line'>    <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">InProcessChatRoom</span> <span class="kd">implements</span> <span class="n">ChatRoom</span> <span class="o">{</span>
+</span><span class='line'>  <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ChatRoomActor</span> <span class="kd">extends</span> <span class="n">Actor</span> <span class="kd">implements</span> <span class="n">ChatRoom</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">private</span> <span class="kd">final</span> <span class="n">ChatRoom</span> <span class="n">realChatroom</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kd">public</span> <span class="nf">ChatRoomActor</span><span class="o">(</span><span class="n">ChatRoom</span> <span class="n">realChatroom</span><span class="o">,</span> <span class="n">ExecutorService</span> <span class="n">threadPool</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">super</span><span class="o">(</span><span class="n">threadPool</span><span class="o">);</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">.</span><span class="na">realChatroom</span> <span class="o">=</span> <span class="n">realChatroom</span><span class="o">;</span>
+</span><span class='line'>        <span class="n">start</span><span class="o">();</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nd">@Override</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">broadcast</span><span class="o">(</span><span class="kd">final</span> <span class="n">Output</span> <span class="n">client</span><span class="o">,</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>            <span class="nd">@Override</span>
+</span><span class='line'>            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>                <span class="n">realChatroom</span><span class="o">.</span><span class="na">broadcast</span><span class="o">(</span><span class="n">client</span><span class="o">,</span> <span class="n">message</span><span class="o">);</span>
+</span><span class='line'>            <span class="o">}</span>
+</span><span class='line'>        <span class="o">});</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>    <span class="o">...</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ChatRoomActor is in fact some kind of proxy to use from other actors to send messages to the chat room.</p>
+
+<p>As with any implementation of the Actors Model, the neet thing is the separation of threading and logic. That makes it so much simpler ! (You can get more detail about the complexity I am talking about by taking a look at the <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a>)</p>
+
+<h2>Performances</h2>
+
+<p>Here is a performance summary of this implementation compared to others on a &ldquo;throughput vs clients&rdquo; benchmark of the style &ldquo;Enter while others are talking&rdquo;</p>
+
+<p><a href="https://github.com/philou/concurrency-kata"><img class="center" src="https://raw.githubusercontent.com/philou/concurrency-kata/master/enter-while-others-are-talking.png" title="Result graphs of benchmark enter while others are talking" ></a></p>
+
+<p>Results can be disappointing compared to other implementations but the example itself is a bit misleading. The chatroom does exclusively message passing, there is not much computation to parallelize, in a different setting, the results would have been completely different.</p>
+
+<h2>Limitations</h2>
+
+<p>As you can see, this implementation is just a quick prototype, nothing production ready. Here are the main limitations I can think of right now :</p>
+
+<ul>
+<li>It uses <a href="https://en.wikipedia.org/wiki/Busy_waiting">Busy Waiting</a> for the next message, meaning that it consumes unnecessary resources, and that more important messages to other Actors might be delayed</li>
+<li>Usually, actor messages are selected on their type rather than on their order of arrival, this is not the case here</li>
+<li>The usage of the Runnable interface as base message type, though handy, opens the door to inter-thread calls that might violate the model altogether</li>
+<li>There is absolutely no support of out of process actors until the messages are Serializable</li>
+</ul>
+
+
+<h2>Going Further</h2>
+
+<p>I started this <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a> as a training material about concurrency for colleagues at <a href="http://www.murex.com">work</a>. In the spirit of the coding kata, it&rsquo;s a git repo you can walk, explore and experiment with.</p>
+
+<p>So if you want to learn more about different models of concurrency, you are welcome to have a look at the How-To section in the <a href="https://github.com/philou/concurrency-kata">README</a> file.</p>
+
+<p>On my part, although it was a lot more work than I would have guessed at the beginning, I barely scratch the surface of the subject ! I could now :</p>
+
+<ul>
+<li>extract the <a href="https://fr.wikipedia.org/wiki/Communicating_sequential_processes">CSP</a> or Actor implementation and make them more robust</li>
+<li>practice and present the whole kata as a 2 hours live coding session</li>
+<li>prepare a hands-on training about concurrency</li>
+</ul>
+
+
+<p>So, if you are willing to do any of the above you are welcome to contribute !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You Don&#8217;t Have to Ask Your Boss for a Fast Build (Lean Software Development Part 6)</a></h1>
     
     
@@ -2082,86 +2323,6 @@ Here is what we&rsquo;ll ship.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/performance-is-a-feature/">Performance Is a Feature</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-01-19T06:46:00+00:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
-
-<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
-
-<h1>What&rsquo;s in it for us ?</h1>
-
-<p>If performance is indead a feature, then it can be managed like any feature :</p>
-
-<ul>
-<li><p>It should result from use cases</p>
-
-<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
-<li><p>It can be split into user stories</p></li>
-</ul>
-
-
-<blockquote><ul>
-<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
-<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>They can be prioritized against other stories</li>
-</ul>
-
-
-<blockquote><ul>
-<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
-<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
-</ul>
-</blockquote>
-
-<ul>
-<li>The performance on these use cases should be automatically tested and non regressed</li>
-</ul>
-
-
-<blockquote><ul>
-<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
-<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
-</ul>
-</blockquote>
-
-<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -2241,6 +2402,10 @@ Here is what we&rsquo;ll ship.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">Verify the Big O Complexity of Ruby Code in RSpec</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">How I got my feet wet with machine learning with &#8216;The First 20 Hours&#8217;</a>
       </li>
     
@@ -2254,10 +2419,6 @@ Here is what we&rsquo;ll ship.</p>
     
       <li class="post">
         <a href="/how-to-kill-scrum-zombies/">How to kill Scrum Zombies ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">Continuously Deliver a Rails App to your DigitalOcean Box using Docker</a>
       </li>
     
   </ul>

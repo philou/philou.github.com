@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-01-02T05:24:18+00:00</updated>
+  <updated>2017-01-05T05:57:25+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Verify the Big O Complexity of Ruby Code in RSpec]]></title>
+    <link href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/"/>
+    <updated>2017-01-04T17:48:00+00:00</updated>
+    <id>http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec</id>
+    <category term="open-source" /><category term="performance" /><category term="rspec" /><category term="ruby" />
+    <content type="html"><![CDATA[<p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
+
+<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
+
+<h2>How does it work ?</h2>
+
+<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
+
+<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># An adapter class to fit the code to measure in complexity assert</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ProductsOrdersMatching</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Generate some arguments of a particular size</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">generate_args</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</span><span class='line'>        <span class="c1"># Let&#39;s assume we have 10 times less products than orders</span>
+</span><span class='line'>        <span class="o">[</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">build_a_product</span><span class="p">()</span> <span class="p">},</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">build_an_order</span><span class="p">()</span> <span class="p">}</span> <span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Run the code on which we want to assert performance</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">orders</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">match_products_with_orders</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">orders</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s2">&quot;Products and Orders Matching&quot;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;performs linearly&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="c1"># Verify that the code runs in time proportional to the size of its arguments</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="no">ProductOrdersMatching</span><span class="o">.</span><span class="n">new</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_linear</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
+
+<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
+
+<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
+
+<h2>Did you say experiment ?</h2>
+
+<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
+
+<ul>
+<li>Allow the assertion to specify the sizes</li>
+<li>Allow the assertion to specify the warm-up and run rounds</li>
+<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
+<li>Find ways to make the whole thing faster</li>
+<li>O(lnx) : pre-treat with exp()</li>
+<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
+<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
+<li>Estimate how much the assert is deterministic</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How I got my feet wet with machine learning with 'The First 20 Hours']]></title>
@@ -112,7 +204,7 @@
 
 <p>One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first &lsquo;explore&rsquo; phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The &lsquo;guide&rsquo; could also help the others through the first phase.</p>
 
-<p>Stay tuned, I&rsquo;ll present my gem in a following post.</p>
+<p>Stay tuned, I&rsquo;ll present my gem in <a href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/">a following post</a></p>
 ]]></content>
   </entry>
   
@@ -1543,348 +1635,6 @@ wavelength as the people [at Microsoft].</p></blockquote>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">postgresql</span><span class="o">-</span><span class="n">client</span><span class="o">-&lt;</span><span class="k">version</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to boot a new Rails project with Docker and Heroku]]></title>
-    <link href="http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku/"/>
-    <updated>2016-07-13T04:55:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku</id>
-    <category term="docker" /><category term="heroku" /><category term="rails" />
-    <content type="html"><![CDATA[<p>A few years ago, I used <a href="http://www.heroku.com">Heroku</a> to deploy my <a href="https://github.com/philou/mes-courses">side-project</a>. It provides great service, but I remember that updates to the Heroku Stack was a nightmare &hellip; Versions of the OS (and nearly everything) changed. The migration was a matter of days, and while doing a side-project, this was difficult. At the time, I remember thinking that using branches and VMs would have been the solution.</p>
-
-<p>Now that I started to use Heroku again, I decided to use <a href="http://www.docker.com">Docker</a> from the beginning. More specifically, I am expecting :</p>
-
-<ul>
-<li>to have a minimal setup on my host machine</li>
-<li>to use the same infrastructure in dev than in production</li>
-<li>to simplify switching to a new machine</li>
-<li>to simplify the migration to the next Heroku stack</li>
-</ul>
-
-
-<p>As an added benefit, if ever someone else joins me in my side-project, it will be a matter of minutes before we can all work on the same infrastructure !</p>
-
-<p>Heroku provides a <a href="https://devcenter.heroku.com/articles/local-development-with-docker">tutorial</a> about how to deploy an existing <a href="http://rubyonrails.org/">Rails</a> app to heroku using containers. Unfortunately, I did yet have an existing rails app &hellip; So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg" title="The 3 logos of Rails, Docker and Heroku" ></p>
-
-<h2>1. Install the required software</h2>
-
-<p>I installed only 4 things on my host machine
-&ndash; Docker <a href="https://docs.docker.com/engine/installation/">instructions</a>
-&ndash; Docker Compose <a href="https://docs.docker.com/compose/install/">instructions</a>
-&ndash; Heroku Toolbelt <a href="https://toolbelt.heroku.com/">instructions</a>
-&ndash; Heroku container plugin <code>heroku plugins:install heroku-container-tools</code></p>
-
-<p>That&rsquo;s all I changed to my host machine.</p>
-
-<h2>2. Setup docker</h2>
-
-<p>First, let&rsquo;s create a new dir and step into it. Run :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir docker-rails-heroku
-</span><span class='line'><span class="nb">cd </span>docker-rails-heroku
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To prepare the Heroku setup, create a <code>Procfile</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>web: bundle <span class="nb">exec </span>puma -C config/puma.rb
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and <code>app.json</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Docker Rails Heroku&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;An example app.json for container-deploy&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;heroku/ruby&quot;</span><span class="p">,</span>
-</span><span class='line'>  <span class="nt">&quot;addons&quot;</span><span class="p">:</span> <span class="p">[</span>
-</span><span class='line'>    <span class="s2">&quot;heroku-postgresql&quot;</span>
-</span><span class='line'>  <span class="p">]</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To generate docker files for Heroku, run :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku container:init
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>You want to run Rails in dev mode locally, so we need to override Heroku&rsquo;s default env (<a href="http://philippe.bourgau.net/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Check my previous post for details</a>)</p>
-
-<p>Create an <code>.env</code> file</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>and <code>docker-compose.override.yml</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/app/user&#39;</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>3. Create the Rails app</h2>
-
-<p>It&rsquo;s now time to follow <a href="https://docs.docker.com/compose/rails/">the official docker-compose rails tutorial</a> to bootstrap the rails app and directories :</p>
-
-<p>Change <code>Dockerfile</code> to</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># FROM heroku/ruby</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">FROM ruby:2.2.0</span>
-</span><span class='line'><span class="l-Scalar-Plain">RUN apt-get update -qq &amp;&amp; apt-get install -y build-essential libpq-dev nodejs</span>
-</span><span class='line'><span class="l-Scalar-Plain">RUN mkdir /myapp</span>
-</span><span class='line'><span class="l-Scalar-Plain">WORKDIR /myapp</span>
-</span><span class='line'><span class="l-Scalar-Plain">ADD Gemfile /myapp/Gemfile</span>
-</span><span class='line'><span class="l-Scalar-Plain">ADD Gemfile.lock /myapp/Gemfile.lock</span>
-</span><span class='line'><span class="l-Scalar-Plain">RUN bundle install</span>
-</span><span class='line'><span class="l-Scalar-Plain">ADD . /myapp</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Create a bootstrap <code>Gemfile</code> with the content</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.2.0&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Bundle install within the container requires a existing <code>Gemfile.lock</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Create an empty Gemfile.lock</span>
-</span><span class='line'>touch Gemfile.lock
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&rsquo;s now time to build your docker container to be able to run rails and generate your source files. Run the following :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Build your containers</span>
-</span><span class='line'>docker-compose build
-</span><span class='line'>
-</span><span class='line'><span class="c"># Run rails within the shell container and generate rails files</span>
-</span><span class='line'>docker-compose run shell bundle <span class="nb">exec </span>rails new . --force --database<span class="o">=</span>postgresql --skip-bundle
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Unfortunately, rails is ran as root inside the container. We can change ownership and rights with this command :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Change ownership</span>
-</span><span class='line'>sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> .
-</span><span class='line'>
-</span><span class='line'><span class="c"># Change rights</span>
-</span><span class='line'>sudo chmod -R ug+rw .
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>4. Make it Heroku ready</h2>
-
-<p>Now that the rails files are generated, It&rsquo;s time to replace the bootstrap settings with real Heroku Dockerfile</p>
-
-<p>Revert <code>Dockerfile</code> to simply :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>FROM heroku/ruby
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Heroku uses <a href="http://puma.io/">Puma</a> so we need to add it to our <code>Gemfile</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Use Puma as the app server</span>
-</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>We also need to add a config file for Puma. Create <code>config/puma.rb</code> with this content (you can check <a href="https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#adding-puma-to-your-application">heroku doc</a> for details)</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">workers</span> <span class="nb">Integer</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;WEB_CONCURRENCY&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">2</span><span class="p">)</span>
-</span><span class='line'><span class="n">threads_count</span> <span class="o">=</span> <span class="nb">Integer</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RAILS_MAX_THREADS&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">5</span><span class="p">)</span>
-</span><span class='line'><span class="n">threads</span> <span class="n">threads_count</span><span class="p">,</span> <span class="n">threads_count</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">preload_app!</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">rackup</span>      <span class="no">DefaultRackup</span>
-</span><span class='line'><span class="n">port</span>        <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PORT&#39;</span><span class="o">]</span>     <span class="o">||</span> <span class="mi">3000</span>
-</span><span class='line'><span class="n">environment</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RACK_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;development&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">on_worker_boot</span> <span class="k">do</span>
-</span><span class='line'>  <span class="c1"># Worker specific setup for Rails 4.1+</span>
-</span><span class='line'>  <span class="c1"># See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot</span>
-</span><span class='line'>  <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It should now be possible to rebuild the container, and run the app :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Rebuild the containers</span>
-</span><span class='line'>docker-compose build
-</span><span class='line'>
-</span><span class='line'><span class="c"># Start the rails app using the web container</span>
-</span><span class='line'>docker-compose up web
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The app should be accessible at <a href="http://0.0.0.0:8080">http://0.0.0.0:8080</a></p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg" title="The default homepage for a new Rails application" ></p>
-
-<h2>5. Deploying to heroku</h2>
-
-<p>We&rsquo;re almost ready to deploy to heroku.</p>
-
-<p>First, we need to exclude development files from our image. For this, we need to create a <code>.dockerignore</code> file with the content</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>.git*
-</span><span class='line'>db/*.sqlite3
-</span><span class='line'>db/*.sqlite3-journal
-</span><span class='line'>log/*
-</span><span class='line'>tmp/*
-</span><span class='line'>Dockerfile
-</span><span class='line'>.env
-</span><span class='line'>docker-compose.yml
-</span><span class='line'>docker-compose.override.yml
-</span><span class='line'>README.rdoc
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&rsquo;s then classic Heroku deploy commands :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># create an Heroku app</span>
-</span><span class='line'>heroku apps:create &lt;your-app-name&gt;
-</span><span class='line'>
-</span><span class='line'><span class="c"># And deploy to it</span>
-</span><span class='line'>heroku container:release --app &lt;your-app-name&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Your app should be accessible on line at <a href="https://">https://</a>&lt;your-app-name>.herokuapp.com/</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg" title="The typical error message when you deploy a new Rails app to heroku" ></p>
-
-<p>Rails does not provide a default homepage in production. But you can check the logs with</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku logs --app &lt;your-app-name&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>6. Running commands</h2>
-
-<p>When in development mode, you might want to run rails or other commands on your source code again. The shell container exists just for that, run <code>docker-compose run shell ...</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># For example, to update your bundle</span>
-</span><span class='line'>docker-compose run shell bundle update
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>EDIT 2016-07-20</h3>
-
-<p>For the moment, there&rsquo;s a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again &hellip; I&rsquo;ll have a look into this later and see if I can fix that.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>docker-compose run shell bundle update
-</span><span class='line'>docker-compose build
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

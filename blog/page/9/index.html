@@ -100,6 +100,95 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/better-error-messages-when-testing-html-views/">Better Error Messages When Testing Html Views</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-18T21:14:00+00:00" pubdate data-updated="true">May 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When testing html views, either from <a href="http://rspec.info/">RSpec</a> or from <a href="http://rspec.info/">Cucumber</a>, <a href="http://fr.wikipedia.org/wiki/XPath">XPath</a> can be really helpful to quickly find expected elements.</p>
+
+<p>Unfortunately, a bit like regular expressions, when you start to use xpath to solve a problem, you often end up with 2 problems &hellip; Part of the reason is that xpaths tend to be cryptic. In the case of testing, error messages coming from unmatched xpath are even more crytic !</p>
+
+<p>That&rsquo;s why I had the idea for <a href="https://github.com/philou/xpath-specs">xpath-specs</a> : a small gem that allows to associate a description with an xpath, to nest xpaths together, all this to simplify tests and assertion failure reporting.</p>
+
+<p>For example, with an assertion like this :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">html</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">contain_a</span><span class="p">(</span><span class="n">dish_with_name</span><span class="p">(</span><span class="s2">&quot;Grilled Lobster&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here is the kind of failure message one can get :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">contain</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
+</span><span class='line'>       <span class="n">it</span> <span class="n">found</span> <span class="n">a</span> <span class="n">dish</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="p">)</span> <span class="p">:</span>
+</span><span class='line'>          <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;&lt;</span><span class="n">td</span><span class="o">&gt;</span><span class="no">Pizza</span><span class="o">&lt;</span><span class="sr">/td&gt;...&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+</span><span class='line'>       <span class="n">but</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">dish</span> <span class="n">that</span> <span class="n">is</span> <span class="n">named</span> <span class="no">Grilled</span> <span class="no">Lobster</span> <span class="p">(</span><span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s1">&#39;dish-panel&#39;</span><span class="o">]//</span><span class="n">tr</span><span class="o">[</span><span class="n">td</span><span class="o">[</span><span class="n">contains</span><span class="p">(</span><span class="o">.</span><span class="n">,</span><span class="s1">&#39;#{name}&#39;</span><span class="p">)</span><span class="o">]]</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>And here is the required setup :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># spec/support/knows_page_parts.rb</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">module</span> <span class="nn">KnowsPageParts</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">dish</span>
+</span><span class='line'>    <span class="ss">Xpath</span><span class="p">:</span><span class="ss">:Specs</span><span class="o">::</span><span class="no">PagePart</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;a dish&quot;</span><span class="p">,</span> <span class="s2">&quot;//table[@id=&#39;dish-panel&#39;]//tr&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">dish_with_name</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">dish</span><span class="o">.</span><span class="n">that</span><span class="p">(</span><span class="s2">&quot;is named </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;[td[contains(.,&#39;</span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&#39;)]]&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Have a look at the <a href="https://github.com/philou/xpath-specs">readme</a> for more details.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/coding-as-a-living-can-be-dangerous-to-your-health/">Coding as a Living Can Be Dangerous to Your Health</a></h1>
     
     
@@ -684,152 +773,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/online-store-scrapping-dsl-gem/">Online Store Scrapping DSL Gem</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-21T06:50:00+00:00" pubdate data-updated="true">Jan 21<span>st</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
-
-<p>As explained in the Readme, it allows one to declare a store this way :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">Storexplore</span><span class="p">:</span><span class="ss">:define_api</span> <span class="s1">&#39;dummy-store.com&#39;</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">attributes</span> <span class="k">do</span>
-</span><span class='line'>      <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">categories</span> <span class="s1">&#39;a.category&#39;</span> <span class="k">do</span>
-</span><span class='line'>      <span class="n">attributes</span> <span class="k">do</span>
-</span><span class='line'>        <span class="p">{</span> <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s2">&quot;h1&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">items</span> <span class="s1">&#39;a.item&#39;</span> <span class="k">do</span>
-</span><span class='line'>        <span class="n">attributes</span> <span class="k">do</span>
-</span><span class='line'>          <span class="p">{</span>
-</span><span class='line'>            <span class="ss">:name</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;h1&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:brand</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#brand&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:price</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#price&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">to_f</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:image</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#image&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span>
-</span><span class='line'>            <span class="ss">:remote_id</span> <span class="o">=&gt;</span> <span class="n">page</span><span class="o">.</span><span class="n">get_one</span><span class="p">(</span><span class="s1">&#39;#remote_id&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-</span><span class='line'>          <span class="p">}</span>
-</span><span class='line'>        <span class="k">end</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>And to use it like that :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Api</span><span class="o">.</span><span class="n">browse</span><span class="p">(</span><span class="s1">&#39;http://www.dummy-store.com&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;category: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;attributes: </span><span class="si">#{</span><span class="n">category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">category</span><span class="o">.</span><span class="n">categories</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">sub_category</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  category: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;  attributes: </span><span class="si">#{</span><span class="n">sub_category</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">sub_category</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    item: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;    attributes: </span><span class="si">#{</span><span class="n">item</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I tried my best to make this library high quality :</p>
-
-<ul>
-<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
-<li>Real world features like constant memory usage have been added to fix production bugs</li>
-<li>Documented with samples and rdoc</li>
-<li>Extensive automated testing</li>
-</ul>
-
-
-<p>Let&rsquo;s hope it will be usefull for some.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/10/">&larr; Older</a>
@@ -909,6 +852,10 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">Verify the Big O Complexity of Ruby Code in RSpec</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">How I got my feet wet with machine learning with &#8216;The First 20 Hours&#8217;</a>
       </li>
     
@@ -922,10 +869,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     
       <li class="post">
         <a href="/how-to-kill-scrum-zombies/">How to kill Scrum Zombies ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">Continuously Deliver a Rails App to your DigitalOcean Box using Docker</a>
       </li>
     
   </ul>

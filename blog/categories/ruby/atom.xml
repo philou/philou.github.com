@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-01-02T05:24:18+00:00</updated>
+  <updated>2017-01-05T05:57:25+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Verify the Big O Complexity of Ruby Code in RSpec]]></title>
+    <link href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/"/>
+    <updated>2017-01-04T17:48:00+00:00</updated>
+    <id>http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec</id>
+    <content type="html"><![CDATA[<p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
+
+<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
+
+<h2>How does it work ?</h2>
+
+<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
+
+<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
+
+<p>``` ruby</p>
+
+<h1>An adapter class to fit the code to measure in complexity assert</h1>
+
+<p>class ProductsOrdersMatching</p>
+
+<pre><code># Generate some arguments of a particular size
+def generate_args(size)
+    # Let's assume we have 10 times less products than orders
+    [ Array.new(size / 10) { build_a_product() }, Array.new(size) { build_an_order() } ]
+end
+
+# Run the code on which we want to assert performance
+def run(products, orders)
+    match_products_with_orders(products, orders)
+end
+</code></pre>
+
+<p>end</p>
+
+<p>describe &ldquo;Products and Orders Matching&rdquo; do</p>
+
+<pre><code>it "performs linearly" do
+    # Verify that the code runs in time proportional to the size of its arguments
+    expect(ProductOrdersMatching.new).to be_linear()
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
+
+<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
+
+<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
+
+<h2>Did you say experiment ?</h2>
+
+<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
+
+<ul>
+<li>Allow the assertion to specify the sizes</li>
+<li>Allow the assertion to specify the warm-up and run rounds</li>
+<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
+<li>Find ways to make the whole thing faster</li>
+<li>O(lnx) : pre-treat with exp()</li>
+<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
+<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
+<li>Estimate how much the assert is deterministic</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How NOT to use mocks, my talk at Paris.rb]]></title>
@@ -295,114 +368,6 @@ end
 <p>Case 1. is not really an issue since however the code will be written, it will run fast enough. If you&rsquo;re in case 3, there&rsquo;s no shortcut, you&rsquo;ll have to dig deep into algorithms and optimization, this happens rather rarely though. This leaves us with case 2, which I just wrote about.</p>
 
 <p>Interestingly, <a href="http://www.murex.com">my current job</a> is deep into case 3 ! We&rsquo;re building a risk engine for corporate markets and are borrowing a lot of techniques from database science &hellip; which is, you can guess, rather algorithmic !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mining GitHub For New Hires]]></title>
-    <link href="http://philippe.bourgau.net/mining-github-for-new-hires/"/>
-    <updated>2015-08-19T05:30:00+00:00</updated>
-    <id>http://philippe.bourgau.net/mining-github-for-new-hires</id>
-    <content type="html"><![CDATA[<h2>In search of an experienced software engineer</h2>
-
-<p>We have been trying to hire such a profile for the last year &hellip; The position is hopefully filled now. During that year, we have tried to mine <a href="https://github.com/">github</a> for candidates. Here is how we did it.</p>
-
-<p><img class="center" src="/imgs/2015-08-19-mining-github-for-new-hires/github.png" title="Github&rsquo;s banner" ></p>
-
-<p>Software engineers, especially experienced, are known to be hard to find. Over the past months, we had steadily been improving our hiring process :</p>
-
-<ul>
-<li>By regularly rewriting and optimizing our job post</li>
-<li>By posting it on Twitter</li>
-<li>By defining a precise interview template</li>
-</ul>
-
-
-<p>We went from very few applications to :</p>
-
-<ul>
-<li>More applications</li>
-<li>More experienced candidates</li>
-<li>Regular interviews</li>
-<li>Effective interviews</li>
-</ul>
-
-
-<p>Unfortunately, we were still not interviewing candidates as skilled as we would have liked to. We were convinced that we were offering a great job : the project is very interesting, and the team is a dream to work in.</p>
-
-<h2>How could we reach more great devs ?</h2>
-
-<p>Someday, I played with <a href="https://github.com/">github</a>&rsquo;s Rest Api and I managed to write a short ruby script that finds the contributors to a given project that are living near Paris (France).</p>
-
-<p>```ruby
-require &lsquo;rubygems&rsquo;
-require &lsquo;rest_client&rsquo;
-require &lsquo;json&rsquo;</p>
-
-<p>RestClient.proxy = &ldquo;<a href="http://proxy:3128">http://proxy:3128</a>&rdquo;</p>
-
-<p>def github_get(resource)
-  JSON.parse(RestClient.get(&ldquo;<a href="https://api.github.com#">https://api.github.com#</a>{resource}&rdquo;, params: {</p>
-
-<pre><code>                          access_token: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-                          per_page: 200}))
-</code></pre>
-
-<p>end</p>
-
-<p>repo = ARGV[0]</p>
-
-<p>puts &ldquo;searching for #{repo} contributors in France&rdquo;</p>
-
-<p>contributors = github_get(&ldquo;/repos/#{repo}/contributors&rdquo;)
-logins_locations = contributors.map do |user|
-  begin</p>
-
-<pre><code>login = user['login']
-location = github_get("/users/#{login}")['location']
-{login: login, location: location}
-</code></pre>
-
-<p>  rescue Exception => e</p>
-
-<pre><code>puts "could not see details of #{login} #{e}"
-{login: login }
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>puts &ldquo;Here are all the contributors&rdquo;
-puts logins_locations
-french_contributors = logins_locations.select do |login_location|
-  location = login_location[:location]
-  location != nil and</p>
-
-<pre><code>(location.downcase.include?('france') or
- location.downcase.include?('paris'))
-</code></pre>
-
-<p>end</p>
-
-<p>puts &ldquo;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&rdquo;
-puts &ldquo;Here are all the frenchcontributors&rdquo;
-puts french_contributors
-```</p>
-
-<h2>What&rsquo;s next ?</h2>
-
-<p>We eventually filled the position before following our github experiment. We might continue some day though ! Here is a list of improvements I thought of :</p>
-
-<ul>
-<li>Gather a list of projects that overlap with what we are building</li>
-<li>Search for repositories using some keyword or regular expression</li>
-<li>List github users that contributed to such projects, that live near us and that know java</li>
-<li>Use more complex algorithms to find best candidates (<a href="http://www.hackdiary.com/2010/02/10/algorithmic-recruitment-with-github/">Algorithmic Recruitment With GitHub</a>)</li>
-<li>Spend more time socializing on GitHub (<a href="http://www.sourcecon.com/news/2014/01/21/the-complete-guide-to-recruiting-and-sourcing-candidates-on-github/">The Complete Guide To Recruiting And Sourcing Candidates On GitHub</a>)</li>
-</ul>
-
-
-<p>It really looks like if software is eating recruitment &hellip;</p>
 ]]></content>
   </entry>
   
