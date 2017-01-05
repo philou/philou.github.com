@@ -87,4 +87,4 @@ I've never been afraid to learn something, doing this experiment taught me I can
 
 One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first 'explore' phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The 'guide' could also help the others through the first phase.
 
-Stay tuned, I'll present my gem in a following post.
+Stay tuned, I'll present my gem in [a following post](/verify-the-big-o-complexity-of-ruby-code-in-rspec/)
