@@ -100,6 +100,261 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to Setup Rails, Docker, PostgreSQL (and Heroku) for Local Development ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-07-20T06:12:00+00:00" pubdate data-updated="true">Jul 20<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://github.com/philou/planning_poker">My current side project</a> is an online tool to do remote planning pokers. I followed my <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous tutorial</a> to setup Rails, Docker and Heroku.</p>
+
+<p>Naturally, as a BDD proponent, I tried to install <a href="https://cucumber.io">cucumber</a> to write my first scenario.</p>
+
+<p>Here is the result of my first cucumber run :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
+</span><span class='line'>rails aborted!
+</span><span class='line'>PG::ConnectionBad: could not translate host name <span class="s2">&quot;postgres://postgres:@herokuPostgresql:5432/postgres&quot;</span> to address: Name or service not known
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It turned out that I had taken instructions from a <a href="https://blog.codeship.com/deploying-docker-rails-app/">blog article on codeship</a> that mistakenly used <code>host:</code> instead of <code>url:</code> in their <code>config/database.yml</code></p>
+
+<p>After fixing that in my database.yml file, things where only slightly working better :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
+</span><span class='line'>rails aborted!
+</span><span class='line'>ActiveRecord::StatementInvalid: PG::ObjectInUse: ERROR:  cannot drop the currently open database
+</span><span class='line'>: DROP DATABASE IF EXISTS <span class="s2">&quot;postgres&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The thing is the config was still using the same database for all environments. That&rsquo;s not exactly what I wanted. I updated my <code>config/database.yml</code> :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="nl">&amp;default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">unicode</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgres</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5432</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">herokuPostgresql</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">planning_poker_development</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span> <span class="nl">&amp;test</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">planning_poker_test</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&#39;DATABASE_URL&#39;] %&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Victory ! Cucumber is running</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
+</span><span class='line'>Using the default profile...
+</span><span class='line'>0 scenarios
+</span><span class='line'>0 steps
+</span><span class='line'>0m0.000s
+</span><span class='line'>Run options: --seed 45959
+</span><span class='line'>
+</span><span class='line'><span class="c"># Running:</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Finished in 0.002395s, 0.0000 runs/s, 0.0000 assertions/s.
+</span><span class='line'>
+</span><span class='line'>0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fixing rake db:create</h2>
+
+<p>By searching through the web, I found that people were having similar issues with rake db:create. I tried to run it and here is what I got :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>Database <span class="s1">&#39;postgres&#39;</span> already exists
+</span><span class='line'>Database <span class="s1">&#39;planning_poker_test&#39;</span> already exists
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Why is it trying to create the postgres database ? It turns out that the DATABASE_URL takes precedence over what is defined in my <code>config/database.yml</code>. I need to unset this variable locally. I already have the <code>docker-compose.override.yml</code> for that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">DATABASE_URL</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">DATABASE_URL</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Rake db:create works just fine now :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>rake db:create
+</span><span class='line'>Database <span class="s1">&#39;planning_poker_development&#39;</span> already exists
+</span><span class='line'>Database <span class="s1">&#39;planning_poker_test&#39;</span> already exists
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Starting a psql session</h2>
+
+<p>During all my trouble-shootings, I tried to connect to the Postgresql server to make sure that the databases where created and ready. Here is how I managed to do that :</p>
+
+<h3>1. Install psql client</h3>
+
+<p>On my Ubuntu machine, that was a simple <code>sudo apt-get install postgresql-client-9.4</code>.</p>
+
+<h3>2. Finding the server port</h3>
+
+<p>The port can be found through <code>config/database.yml</code> or through <code>docker ps</code>. Let&rsquo;s use the later, as we&rsquo;ll need it to find the server IP as well.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker ps
+</span><span class='line'>CONTAINER ID        IMAGE            COMMAND                  CREATED             STATUS              PORTS           NAMES
+</span><span class='line'>b58ce42d2b2b        postgres         <span class="s2">&quot;/docker-entrypoint.s&quot;</span>   46 hours ago        Up 46 hours         5432/tcp        planningpoker_herokuPostgresql_1
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here the port is clearly 5432.</p>
+
+<h3>3. Finding the server IP</h3>
+
+<p>Using the container id we got on previous <code>docker ps</code> command, we can use <code>docker inspect</code> to get further details :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker inspect b58ce42d2b2b | grep IPAddress
+</span><span class='line'>            <span class="s2">&quot;SecondaryIPAddresses&quot;</span>: null,
+</span><span class='line'>            <span class="s2">&quot;IPAddress&quot;</span>: <span class="s2">&quot;172.17.0.2&quot;</span>,
+</span><span class='line'>                    <span class="s2">&quot;IPAddress&quot;</span>: <span class="s2">&quot;172.17.0.2&quot;</span>,
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>4. Connecting to the database</h3>
+
+<p>Connecting is now just a matter of filling the command line.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="err">$</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5432</span> <span class="o">-</span><span class="n">d</span> <span class="n">planning_poker_development</span> <span class="o">-</span><span class="n">h</span> <span class="mi">172</span><span class="p">.</span><span class="mi">17</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span>
+</span><span class='line'><span class="n">planning_poker_development</span><span class="o">=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">schema_migrations</span><span class="p">;</span>
+</span><span class='line'> <span class="k">version</span>
+</span><span class='line'><span class="c1">---------</span>
+</span><span class='line'><span class="p">(</span><span class="mi">0</span> <span class="k">rows</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>5. Installing psql client directly in the shell</h3>
+
+<p>It should be possible to install the psql client in the shell container automatically, but I must admit I did not try this yet. It should just a matter of adding this to the <code>Dockerfile</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">postgresql</span><span class="o">-</span><span class="n">client</span><span class="o">-&lt;</span><span class="k">version</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to Boot a New Rails Project With Docker and Heroku</a></h1>
     
     
@@ -1202,74 +1457,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/real-developers-ship/">Real Developers Ship</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-05-11T04:33:00+00:00" pubdate data-updated="true">May 11<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you are a developer and you are not shipping, you&rsquo;re in the danger zone. I believe it&rsquo;s mostly your fault, and it&rsquo;s time to act.</p>
-
-<p><img class="center" src="/imgs/2016-05-11-real-developers-ship/deliver.jpg" title="A delivery key on a keyboard" ></p>
-
-<h2>Nothing new</h2>
-
-<p>It&rsquo;s been told before. Famous blogs have said the same thing :</p>
-
-<ul>
-<li>In Hacker News <a href="https://news.ycombinator.com/item?id=290121">Real Programmers ship</a> without any explanation, as if it meant it all.</li>
-<li>In Coding Horror <a href="http://blog.codinghorror.com/version-1-sucks-but-ship-it-anyway/">Version 1 Sucks, But Ship It Anyway</a> Jeff Atwood stresses the benefits of shipping early.</li>
-<li>In Coding Horror again <a href="http://blog.codinghorror.com/shipping-isnt-enough/">Shipping Is Not Enough</a> Jeff Atwood goes one step further and explains that we need to create software that is going to be used.</li>
-<li>In his <a href="http://removingalldoubt.com/post/2006/09/19/Fatherly-Advice-To-New-Programmers.aspx">fatherly advice to new programmers</a> Chuck Jazdzewski&rsquo;s says &ldquo;You don&rsquo;t get paid to program, you get paid to ship.&rdquo;</li>
-</ul>
-
-
-<h2>What does it really mean ?</h2>
-
-<p>If you are not shipping, are you really developing something ? Maybe it&rsquo;s more some kind of research project, or maybe you are just there for learning ? <em>Real Developers know what they are in for.</em></p>
-
-<p>If you are not shipping because the quality is too bad, that&rsquo;s because you&rsquo;ve been developing poor quality software &hellip; <em>Real developers write quality software.</em> (BTW, shipping bug fixes is not shipping)</p>
-
-<p>If you are not shipping because you don&rsquo;t have yet enough features, that&rsquo;s because your MVP is not small enough (despite the current Skateboard metaphor, <a href="https://www.youtube.com/watch?v=rgETWBKCRSQ">this</a> is not an MVP). <em>So Real developers follow lean (startup) principles.</em></p>
-
-<p>If you are not shipping because it&rsquo;s much work, that&rsquo;s because you did not automate delivery. <em>Real developers use continuous delivery.</em></p>
-
-<p>If you are not shipping because someone else said so, maybe it&rsquo;s time to convince her. <em>Real developers know how to deal with people.</em></p>
-
-<p>If you are not shipping because you are in a shitty environment &hellip; <em>Real developers work on their skills to be able to quit when needed.</em></p>
-
-<h2>Shipping above all else</h2>
-
-<p>My point is that every developer or organization containing developers should put shipping value as their absolute priority, and things should get a lot simpler.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1349,6 +1536,10 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/what-happens-to-non-enthusiast-programmers-in-the-long-run/">What Happens to Non-Enthusiast Programmers in the Long Run ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">Verify the Big O Complexity of Ruby Code in RSpec</a>
       </li>
     
@@ -1362,10 +1553,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     
       <li class="post">
         <a href="/video-for-our-talk-extreme-practices-is-on-youtube/">Video for our talk &#8216;Extreme Practices&#8217; is on YouTube</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-kill-scrum-zombies/">How to kill Scrum Zombies ?</a>
       </li>
     
   </ul>
