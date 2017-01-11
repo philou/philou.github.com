@@ -79,4 +79,6 @@ Lack of passion and parenthood might partially explain why people stop being dev
 * We tend to reinvent the wheel quite a lot (I'm looking at you, .js frameworks ...)
 * We might be meta ignoring (ignoring that we ignore) people skills that could make us all more efficient
 
+*EDIT 2017/01/11 Thanks for all your valuable comments, [here is a follow up](/what-happens-to-non-enthusiast-programmers-in-the-long-run/)*
+
 *[Chinese translation](http://www.inside.com.tw/2016/08/05/is-there-any-room-for-the-not-passionate-developer)*
