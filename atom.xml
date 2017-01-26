@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-01-19T05:03:43+00:00</updated>
+  <updated>2017-01-26T05:02:19+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,78 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite]]></title>
+    <link href="http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/"/>
+    <updated>2017-01-25T07:53:00+00:00</updated>
+    <id>http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite</id>
+    <category term="cucumber" /><category term="rails" /><category term="rspec" /><category term="ruby" /><category term="sqlite" /><category term="testing" />
+    <content type="html"><![CDATA[<p>Here is the story : you have a <a href="http://rubyonrails.org/">Rails 5</a> app that uses <a href="http://rspec.info/">RSpec</a>, but your RSpec suite is getting slower and slower to run. You&rsquo;ve already considered some solutions :</p>
+
+<ul>
+<li>Use <a href="https://sqlite.org/">SQLite</a> in memory for your test env.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sqlite3</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="s">&quot;:memory:&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s the most straightforward thing to do, but unfortunately, if you are sharing your test env with <a href="https://cucumber.io/">Cucumber</a>, you might want to use a production like DB with Cucumber (<a href="https://www.postgresql.org/">PostgreSQL</a> or whatever). So unless you are ready to setup a new env for cucumber (which I tried and don&rsquo;t recommend) you&rsquo;re stuck.</p>
+
+<ul>
+<li>Use mocks. That&rsquo;s surely going to work, it&rsquo;s going to make your test hell of a lot faster ! It will also make your tests a lot more fragile and more expensive to maintain &hellip; If you want to read more about why I think mocks are a bad idea, just have a look at <a href="http://philippe.bourgau.net/blog/categories/mocking/">these posts</a>.</li>
+</ul>
+
+
+<h2>The hack</h2>
+
+<p>Here is a third alternative, I&rsquo;ve <a href="http://philippe.bourgau.net/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">already written about it</a>, but here it comes updated and tested for Rails 5 :</p>
+
+<ol>
+<li>Don&rsquo;t change anything to your <code>config/database.yml</code></li>
+<li>Obviously, you&rsquo;ll need to add <code>sqlite3</code> to your <code>Gemfile</code></li>
+<li>At the beginning of your <code>spec/rails_helper.rb</code>, replace</li>
+</ol>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Checks for pending migration and applies them before tests are run.</span>
+</span><span class='line'><span class="c1"># If you are not using ActiveRecord, you can remove this line.</span>
+</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Migration</span><span class="o">.</span><span class="n">maintain_test_schema!</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># In order to keep the same RAILS_ENV for rspec and cucumber,</span>
+</span><span class='line'><span class="c1"># patch the connection to use sqlite in memory when running rspec</span>
+</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Schema</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'><span class="nb">load</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="s2">/db/schema.rb&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it ! Run your specs &hellip; not bad for a 5 minutes investment !</p>
+
+<h2>One more thing &hellip;</h2>
+
+<p>If you need even more speed, you can now run your specs in parallel in different processes ! Each in-memory SQLite DB is bound to its process, so unlike a real PostgreSQL dev DB, you won&rsquo;t get any conflicts between your tests ;&ndash;)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A Plain English Introduction To Paxos Protocol]]></title>
@@ -1465,92 +1537,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
 
 
 <p>Next step would be to add a dash of design, a few war stories, export it as a PDF, and use it outside to advertise the team and the company.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[When the Boy Scout Rule Fails]]></title>
-    <link href="http://philippe.bourgau.net/when-the-boy-scout-rule-fails/"/>
-    <updated>2016-08-02T05:38:00+00:00</updated>
-    <id>http://philippe.bourgau.net/when-the-boy-scout-rule-fails</id>
-    <category term="refactoring" /><category term="software" /><category term="technical debt" />
-    <content type="html"><![CDATA[<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg" title="An illustration of the boy scout rule" ></p>
-
-<p>Here goes the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">boy scout rule</a> :</p>
-
-<blockquote><p>Always check a module in cleaner than when you checked it out.</p></blockquote>
-
-<p>Unfortunately, this alone does not guarantee to keep the technical debt under control. What can we do then ?</p>
-
-<h2>Why the boy scout rule is not enough</h2>
-
-<p>I can easily think of a few issues that are not covered by the boy scout rule.</p>
-
-<h3>It only deals with local problems</h3>
-
-<p>In it&rsquo;s statement, the boy scout rule is local and does not address large scale design or architecture issues. Applying the boy scout rule keeps files well written, using with clear and understandable code. From a larger perspective though, it does very little or slow improvement to the overall design.</p>
-
-<p>These large scale refactorings are very difficult to deal with using the boy scout rule alone. It could be done but would require to share the refactoring goal with all the team, and then track its progress, while at the same time dealing with all the other subjects of the project. That&rsquo;s starting to sound like multitasking to me.</p>
-
-<h3>It&rsquo;s skill dependent</h3>
-
-<p>Another point about the boy scout rule (and to be fair, about any refactoring technique) is that programmers will be able to clean the code only as much as their skills allow them to !</p>
-
-<p>Imagine what would happen when a new master developer arrives in a team of juniors, he&rsquo;d spot a lot of technical debt and would suggest improvements and ways to clean the code. Code that was thought of as very clean would suddenly be downgraded to junk !</p>
-
-<p>The point here is that the boy scout rule cannot guarantee that you have no technical debt, because you don&rsquo;t know how much you have !</p>
-
-<p>That&rsquo;s where the debt metaphor reaches its limits and flips to some productivity investment. By investing time to perform some newly discovered refactoring, you could get a productivity boost !</p>
-
-<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design"><img class="center" src="http://philippe.bourgau.net/imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg" title="The cover of &#34;Domain Driven Design&#34;" alt="The cover of &#34;Domain Driven Design&#34;"></a></p>
-
-<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design">Domain-Driven Design: Tackling Complexity in the Heart of Software</a>, Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a &lsquo;breakthrough&rsquo;. These breakthroughs often promote existing code to technical debt &hellip;</p>
-
-<h3>It&rsquo;s context dependent</h3>
-
-<p>Developers alone are not the only one responsible for creating technical debt. Changes to the environment also do.</p>
-
-<p>For example, if the market conditions change, and that new expectations for the product are slowly becoming the norm, your old perfectly working system becomes legacy and technical debt. As an example, let&rsquo;s examine what happened to the capital markets software industry in response to the 2008 crisis.</p>
-
-<ul>
-<li>The sector became a lot more regulated</li>
-<li>Risk control is moving from nightly batches to real time</li>
-<li>The demand for complex (and risky) contracts decreased</li>
-<li>As a consequence, trading on simpler contracts exploded</li>
-</ul>
-
-
-<p>All these elements combined invalidated existing architectures !</p>
-
-<p>New technologies also create technical debt. Think the switch from mainframe to the web.</p>
-
-<h2>What do we need then ?</h2>
-
-<p>Should we stop using the boy scout rule ? Surely not, it would be a total non-sense. Submitting clean and readable code is a must.</p>
-
-<p>But it is not enough. If you have spotted some large scale refactoring that could bring some improvement, we should do what a fund manager would do :</p>
-
-<ol>
-<li>Estimate the return on investment</li>
-<li>If it is good enough, do it now</li>
-</ol>
-
-
-<p>Obviously, large refactorings should also be split into smaller <del>value adding</del> cost reducing items. But then what ?</p>
-
-<p><a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development"><img class="center" src="http://philippe.bourgau.net/imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg" title="The cover of &#34;The Nature of Software Development&#34;" alt="The cover of &#34;The Nature of Software Development&#34;"></a></p>
-
-<p>In <a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development">The Nature of Software Development</a> Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you&rsquo;ve got that, there&rsquo;s no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.</p>
-
-<p>Frankly, I think that&rsquo;s easier said than done. I can <em>think</em> of two ways :</p>
-
-<ul>
-<li>As Ron Jefferies tends to say, have a jelled-cross-functional team discuss and prioritize collectively</li>
-<li>As <a href="http://reinertsenassociates.com/technical-debt-adding-math-metaphor/">Don Reintersen</a> advocates, use an <a href="http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7/">economical framework</a> to estimate the return on investment</li>
-</ul>
-
-
-<p>At least that&rsquo;s a starting point !</p>
 ]]></content>
   </entry>
   

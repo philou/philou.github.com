@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sqlite | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/sqlite/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2017-01-26T05:02:43+00:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite]]></title>
+    <link href="http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/"/>
+    <updated>2017-01-25T07:53:00+00:00</updated>
+    <id>http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite</id>
+    <content type="html"><![CDATA[<p>Here is the story : you have a <a href="http://rubyonrails.org/">Rails 5</a> app that uses <a href="http://rspec.info/">RSpec</a>, but your RSpec suite is getting slower and slower to run. You&rsquo;ve already considered some solutions :</p>
+
+<ul>
+<li>Use <a href="https://sqlite.org/">SQLite</a> in memory for your test env.</li>
+</ul>
+
+
+<p><code>yaml
+test:
+  adapter: sqlite3
+  database: ":memory:"
+</code></p>
+
+<p>That&rsquo;s the most straightforward thing to do, but unfortunately, if you are sharing your test env with <a href="https://cucumber.io/">Cucumber</a>, you might want to use a production like DB with Cucumber (<a href="https://www.postgresql.org/">PostgreSQL</a> or whatever). So unless you are ready to setup a new env for cucumber (which I tried and don&rsquo;t recommend) you&rsquo;re stuck.</p>
+
+<ul>
+<li>Use mocks. That&rsquo;s surely going to work, it&rsquo;s going to make your test hell of a lot faster ! It will also make your tests a lot more fragile and more expensive to maintain &hellip; If you want to read more about why I think mocks are a bad idea, just have a look at <a href="/blog/categories/mocking/">these posts</a>.</li>
+</ul>
+
+
+<h2>The hack</h2>
+
+<p>Here is a third alternative, I&rsquo;ve <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">already written about it</a>, but here it comes updated and tested for Rails 5 :</p>
+
+<ol>
+<li>Don&rsquo;t change anything to your <code>config/database.yml</code></li>
+<li>Obviously, you&rsquo;ll need to add <code>sqlite3</code> to your <code>Gemfile</code></li>
+<li>At the beginning of your <code>spec/rails_helper.rb</code>, replace</li>
+</ol>
+
+
+<p>``` ruby</p>
+
+<h1>Checks for pending migration and applies them before tests are run.</h1>
+
+<h1>If you are not using ActiveRecord, you can remove this line.</h1>
+
+<p>ActiveRecord::Migration.maintain_test_schema!
+```</p>
+
+<p>with</p>
+
+<p>``` ruby</p>
+
+<h1>In order to keep the same RAILS_ENV for rspec and cucumber,</h1>
+
+<h1>patch the connection to use sqlite in memory when running rspec</h1>
+
+<p>ActiveRecord::Base.establish_connection(adapter: &lsquo;sqlite3&rsquo;, database: &lsquo;:memory:&rsquo;)
+ActiveRecord::Schema.verbose = false
+load &ldquo;#{Rails.root.to_s}/db/schema.rb&rdquo;
+```</p>
+
+<p>That&rsquo;s it ! Run your specs &hellip; not bad for a 5 minutes investment !</p>
+
+<h2>One more thing &hellip;</h2>
+
+<p>If you need even more speed, you can now run your specs in parallel in different processes ! Each in-memory SQLite DB is bound to its process, so unlike a real PostgreSQL dev DB, you won&rsquo;t get any conflicts between your tests ;&ndash;)</p>
+]]></content>
+  </entry>
+  
+</feed>
