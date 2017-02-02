@@ -100,6 +100,226 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/setting-up-octopress-with-vagrant-and-rbenv/">Setting Up Octopress With Vagrant and Rbenv</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-03-20T05:33:00+00:00" pubdate data-updated="true">Mar 20<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently got hands on an abandonned laptop that was better than the one I was currently using for my personnal hackings, so I decided to switch to this one. I felt this was the time to learn Vagrant and save me some time later on. I settled on creating a <a href="https://www.vagrantup.com/">Vagrant</a> environment for this <a href="http://octopress.org/">Octopress</a> blogging. That proved a lot longer than I thought it would.</p>
+
+<p><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png" title="Vagrant logo + Octopress logo" ></p>
+
+<p>If you want to jump to the solution, just have a look at this <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b">git change</a>. Here is the slightly longer version.</p>
+
+<ul>
+<li><p>Add a Vagrantfile and setup a VM. There are explainations about how to do this all over the web, that was easy.</p></li>
+<li><p>Provision your VM. That proved a lot more complex. There are a lot of examples using variants of <a href="https://www.chef.io/">Chef</a>, but the steep learning curve for Chef seemed unneccessarily complex compared to what I wanted to do. Eventually, I figured it out using simple shell provisioning.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">inline</span><span class="p">:</span> <span class="o">&lt;&lt;-</span><span class="no">SHELL</span>
+</span><span class='line'><span class="sh">    echo &quot;Updating package definitions&quot;</span>
+</span><span class='line'><span class="sh">    sudo apt-get update</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    echo &quot;Installing git and build tools&quot;</span>
+</span><span class='line'><span class="sh">    sudo apt-get -y install git autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev</span>
+</span><span class='line'><span class="no">  SHELL</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provision</span> <span class="s2">&quot;shell&quot;</span><span class="p">,</span> <span class="ss">privileged</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">inline</span><span class="p">:</span> <span class="o">&lt;&lt;-</span><span class="no">SHELL</span>
+</span><span class='line'><span class="sh">    git config --global user.name &quot;john.doe&quot;</span>
+</span><span class='line'><span class="sh">    git config --global user.email &quot;john.doe@mail.com&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;$HOME/.rbenv&quot; ]; then</span>
+</span><span class='line'><span class="sh">      echo &quot;Installing rbenv and ruby-build&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      git clone https://github.com/sstephenson/rbenv.git ~/.rbenv</span>
+</span><span class='line'><span class="sh">      git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      echo &#39;export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;&#39; &gt;&gt; ~/.bashrc</span>
+</span><span class='line'><span class="sh">      echo &#39;eval &quot;$(rbenv init -)&quot;&#39; &gt;&gt; ~/.bashrc</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    else</span>
+</span><span class='line'><span class="sh">      echo &quot;Updating rbenv and ruby-build&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      cd ~/.rbenv</span>
+</span><span class='line'><span class="sh">      git pull</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      cd ~/.rbenv/plugins/ruby-build</span>
+</span><span class='line'><span class="sh">      git pull</span>
+</span><span class='line'><span class="sh">    fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    export PATH=&quot;$HOME/.rbenv/bin:$PATH&quot;</span>
+</span><span class='line'><span class="sh">    eval &quot;$(rbenv init -)&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;$HOME/.rbenv/versions/2.2.0&quot; ]; then</span>
+</span><span class='line'><span class="sh">      echo &quot;Installing ruby&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      rbenv install 2.2.0</span>
+</span><span class='line'><span class="sh">      rbenv global 2.2.0</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      gem update --system</span>
+</span><span class='line'><span class="sh">      gem update</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      gem install bundler</span>
+</span><span class='line'><span class="sh">      bundle config path vendor/bundle</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">      rbenv rehash</span>
+</span><span class='line'><span class="sh">    fi</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    cd /vagrant</span>
+</span><span class='line'><span class="sh">    bundle install</span>
+</span><span class='line'>
+</span><span class='line'><span class="sh">    if [ ! -d &quot;/vagrant/_deploy&quot; ]; then</span>
+</span><span class='line'><span class="sh">      bundle exec rake setup_github_pages[&quot;git@github.com:philou/philou.github.com&quot;]</span>
+</span><span class='line'><span class="sh">      git checkout . # Revert github deploy url to my domain</span>
+</span><span class='line'><span class="sh">      cd _deploy</span>
+</span><span class='line'><span class="sh">      git pull origin master # pull to avoid non fast forward push</span>
+</span><span class='line'><span class="sh">      cd ..</span>
+</span><span class='line'><span class="sh">    fi</span>
+</span><span class='line'><span class="no">  SHELL</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p>Setup port forwarding. That should have been simple &hellip; after forwarding port 4000 to 4000, I could still not manage to access my blog preview from the host machine. After searching throughout the web for a long time, I eventually fixed it with by adding <code>--host 0.0.0.0</code> to the rackup command line in <a href="https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b/Rakefile">Octopress Rackfile</a></p></li>
+<li><p>Setup ssh forwarding. In order to be able to deploy to github pages with my local ssh keys, I added the following to my Vagrantfile.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="c1"># The path to the private key to use to SSH into the guest machine. By</span>
+</span><span class='line'>  <span class="c1"># default this is the insecure private key that ships with Vagrant, since</span>
+</span><span class='line'>  <span class="c1"># that is what public boxes use. If you make your own custom box with a</span>
+</span><span class='line'>  <span class="c1"># custom SSH key, this should point to that private key.</span>
+</span><span class='line'>  <span class="c1"># You can also specify multiple private keys by setting this to be an array.</span>
+</span><span class='line'>  <span class="c1"># This is useful, for example, if you use the default private key to</span>
+</span><span class='line'>  <span class="c1"># bootstrap the machine, but replace it with perhaps a more secure key later.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">private_key_path</span> <span class="o">=</span> <span class="s2">&quot;~/.ssh/id_rsa&quot;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1">#  If true, agent forwarding over SSH connections is enabled. Defaults to false.</span>
+</span><span class='line'>  <span class="n">config</span><span class="o">.</span><span class="n">ssh</span><span class="o">.</span><span class="n">forward_agent</span> <span class="o">=</span> <span class="kp">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Fix virtual box synced folder. When I tried to pimp my favicon up, changing the png in the host machine did not update it on the guest ! I lost almost 3 hours figuring this out &hellip; searching google, I eventually found that <a href="http://docs.vagrantup.com/v2/synced-folders/virtualbox.html">Virtual Box synced folders can have issues</a>, and that <a href="http://stackoverflow.com/questions/18933547/vagrant-virtualbox-shared-folder-out-of-sync-when-there-are-many-file-related">installing the guest additions is recommended</a>. For this, just enter the following in the command line from your project&rsquo;s working dir :</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">vagrant</span> <span class="n">plugin</span> <span class="n">install</span> <span class="n">vagrant</span><span class="o">-</span><span class="n">vbguest</span>
+</span><span class='line'><span class="n">vagrant</span> <span class="n">reload</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I&rsquo;ll tell you if this does not do the trick.</p>
+
+<p>I admit it was a lot longer than I expected it to be, but at least now it&rsquo;s repeatable !</p>
+
+<p><a href="http://docker.io"><img class="center" src="/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png" title="The Docker logo" ></a></p>
+
+<p>Next steps will be to use <a href="http://docker.io">Docker</a> providers and Dockerfile to factorize provisioning and speedup up VM startup.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the Business Value of Your Spikes and Take High Payoff Risks (Lean Software Development Part 4)</a></h1>
     
     
@@ -2969,177 +3189,6 @@ We tried the following, in that order :</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rip-mes-courses-dot-fr/">RIP mes-courses.fr</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-06-27T06:33:00+00:00" pubdate data-updated="true">Jun 27<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Rest In Peace <a href="https://dl.dropboxusercontent.com/u/206938/mes-courses.fr/archives/index.html">mes-courses.fr</a>. Here is what it looked like :</p>
-
-<p><img class="center" src="/imgs/2014-06-27-rip-mes-courses-dot-fr/screenshot.png" title="Screen shot of the home page of mes-courses.fr" ></p>
-
-<p>I wanted to create a really fast on-line grocery front-end, where people could shop for the week in only 5 minutes. It supported shopping recipes instead of individual items but I also envisioned to allow automatic menus recommendations, and automatic item preference selection. I started 4 years ago, and this is my last doing on the subject :). If you&rsquo;re thinking about starting your own side project, this post is for you.</p>
-
-<h3>Here are the lessons I learned</h3>
-
-<ul>
-<li>As a professional programmer, I largely underestimated the non programming time required for a serious side project. It represents more than half the time you&rsquo;ll spend on your project (marketing, discussing with people, mock ups and prototypes)</li>
-<li>When I started, I kind of estimated the time it would take me to build a first prototype. Again I ridiculously underestimated this :
-
-<ul>
-<li>because of the previous point</li>
-<li>because on a side project, you&rsquo;ll be on your own to handle any infra issue</li>
-<li>because you don&rsquo;t have 8 hours per day to spend to your project (As a professional developer, dad of 2, I only managed to get 10 to 15 hours per week)</li>
-</ul>
-</li>
-<li><a href="/programming-as-an-exponential-problem/">A small project does not require as much infrastructure as a big one</a>. I lost some time doing things as I do when working on projects with more than 100K lines of code. So next time :
-
-<ul>
-<li>I&rsquo;ll stick to end to end cucumber tests for as long as possible</li>
-<li>I&rsquo;ll use an economical framework like described in <a href="http://www.amazon.fr/The-Principles-Product-Development-Flow/dp/1935401009">Donald G. Reinertsen&rsquo;s Flow book</a> to prioritize improvements vs features</li>
-</ul>
-</li>
-<li>Eventually, what killed me was that I could not go around the &ldquo;experiment &ndash;> adapt&rdquo; loop fast enough. The project was just too big for my time
-
-<ul>
-<li>I&rsquo;ll try to select a subject a project that suits my constraints of time and money</li>
-<li>This will be one of the first hypotheses that I&rsquo;m willing to verify</li>
-<li>Web marketing and HTML design are more important than coding skills to run experiments : I&rsquo;m learning both</li>
-</ul>
-</li>
-<li>Scrapping is a time hog. I won&rsquo;t start any side project involving scrapping anymore.</li>
-<li>Using on-line services always saved me a lot of time. They are a lot more reliable than anything I could setup. Mainly, this was :
-
-<ul>
-<li>Mailing services</li>
-<li>Cloud deployment</li>
-</ul>
-</li>
-<li>Go the standard way. Again, anytime I did something a bit weird, it turned out to cost me some time
-
-<ul>
-<li>Use standard open source software, stick to the latest version</li>
-<li>Use standard and wide spread technology</li>
-</ul>
-</li>
-<li>Automated testing and deployment saved me some time from the start. Especially with the small amount of time that I could spend on my project, it was really easy to forget details and to make mistakes.
-
-<ul>
-<li><a href="https://github.com/philou/mes-courses/blob/master/lib/mes_courses/deployment.rb">Here</a> is the <a href="https://www.heroku.com/">Heroku</a> deployment script I used to test and deploy in a single shell call</li>
-<li>And <a href="https://github.com/philou/mes-courses/blob/master/lib/mes_courses/utils/scheduled_tasks.rb">here</a> is a Heroku workaround to run some cron tasks weekly, this allowed me to run some scrapping tests every week on Heroku</li>
-</ul>
-</li>
-<li>It took all my time ! Next time I start a side project, I&rsquo;ll be prepared to
-
-<ul>
-<li>Spend all my free time on it (my time was divided between day-job, family, side project)</li>
-<li>Spend all my learning time (books, on-line trainings &hellip;) for it</li>
-<li>Choose something that I am passionate about !</li>
-<li>Choose a different kind of project to fit my constraints
-
-<ul>
-<li>Joining an existing open source project would let me focus on technical work at my own pace</li>
-<li>Volunteer for a not for profit project might be less time intensive while allowing some fulfilment</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>I did my project alone, and it was hard to keep my motivation high on the long run. Next time :
-
-<ul>
-<li>I&rsquo;ll join someone else</li>
-<li>I&rsquo;ll <a href="/my-own-side-project-best-practices-after-reading-the-side-project-book/">time box my project</a> before a pivot or starting something completely different</li>
-</ul>
-</li>
-<li>I did not manage to get anything done before I settled a regular daily rhythm. I used to work from 5:30am to 7:30am, I first tried in the evening, but after a day&rsquo;s work, I was too tired to be really productive.</li>
-<li>When I could afford it, paying for things or services really saved me some time. I&rsquo;m thinking of
-
-<ul>
-<li>A fast computer</li>
-<li>Some paying on-line services</li>
-</ul>
-</li>
-</ul>
-
-
-<p>It is sure that doing a side project seriously is a heavy time investment, but there&rsquo;s also a lot of benefits !</p>
-
-<p><img class="center" src="/imgs/2014-06-27-rip-mes-courses-dot-fr/side-projects-are-important.gif" title="Side projects are important blackboard" ></p>
-
-<h3>Here is what I gained</h3>
-
-<ul>
-<li>Real experience with new technologies. For me, this included
-
-<ul>
-<li>Ruby on Rails</li>
-<li>Coffeescript</li>
-<li>HTML scrapping</li>
-<li>Dev-ops practices with Heroku</li>
-<li>Web design with HTML and CSS</li>
-</ul>
-</li>
-<li>I also learned a lot of non technical skills in which I was completely inexperienced
-
-<ul>
-<li>Web marketing</li>
-<li>Blogging</li>
-<li>Mailing</li>
-</ul>
-</li>
-<li>Trying to bootstrap a for profit side project is like running a micro company, it&rsquo;s a good opportunity to understand how a company is ran. This can help you to become a better professional during your day-job.</li>
-<li>Having control on everything is a good situation to use Lean techniques.
-
-<ul>
-<li><a href="http://www.amazon.com/The-Lean-Startup-Entrepreneurs-Continuous/dp/0307887898/ref=sr_1_1?ie=UTF8&amp;qid=1404024050&amp;sr=8-1&amp;keywords=lean+startup">Lean Start-up</a></li>
-<li><a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?ie=UTF8&amp;qid=1404024094&amp;sr=8-1&amp;keywords=reinersten">Lean product development (Donald G. Reinertsen)</a></li>
-</ul>
-</li>
-<li>Failing allowed me to actually understand Lean Start up ! The ideas are easy to understand in theory, the practice is a very different thing. It should help me for my next project.</li>
-<li>Resolving real problems on my own was a very good source for valuable blog articles.</li>
-<li>I collaborated with very clever people on open source libraries
-
-<ul>
-<li>By fixing some bugs in some libraries I was using</li>
-<li>By releasing some parts of my code as open source libraries</li>
-</ul>
-</li>
-</ul>
-
-
-<p>Next time, I hope I&rsquo;ll get more euros as well !</p>
-
-<p>You&rsquo;ve got nothing to loose from trying ! Just do it. Give yourself 1 year to get some small success, and then continue or repeat with something else !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -3219,6 +3268,10 @@ We tried the following, in that order :</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">How I fixed &#8216;devicemapper&#8217; error when deploying my Docker app</a>
+      </li>
+    
+      <li class="post">
         <a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite</a>
       </li>
     
@@ -3232,10 +3285,6 @@ We tried the following, in that order :</p>
     
       <li class="post">
         <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">Verify the Big O Complexity of Ruby Code in RSpec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">How I got my feet wet with machine learning with &#8216;The First 20 Hours&#8217;</a>
       </li>
     
   </ul>
