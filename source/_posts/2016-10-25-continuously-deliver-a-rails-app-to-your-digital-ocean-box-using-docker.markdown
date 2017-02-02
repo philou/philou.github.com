@@ -32,7 +32,7 @@ The first 2 steps (Docker & CI) worked really out of the box after following the
 
 ### Setup SSH on the DigitalOcean box
 
-I started by creating a [one-click DigitalOcean box](https://cloud.digitalocean.com/droplets/new?size=2gb&region=nyc3&appId=20423249&type=applications) with Docker pre-installed. That's the moment where I had to setup SSH in order to make CircleCI deploy to my box. DigitalOcean has a [guide for this](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets), but here is how id did it :
+I started by creating a [one-click DigitalOcean box](https://cloud.digitalocean.com/droplets/new?size=2gb&region=nyc3&appId=20423249&type=applications) with Docker pre-installed. That's the moment where I had to setup SSH in order to make CircleCI deploy to my box. DigitalOcean has a [guide for this](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets), but here is how I did it :
 
 1. Create a special user on my dev machine ```adduser digitaloceanssh```
 2. Log as this user ```su digitaloceanssh```, and generated ssh keys for it ```ssh-keygen```
