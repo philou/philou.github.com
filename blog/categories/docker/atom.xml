@@ -4,7 +4,7 @@
   <title><![CDATA[Category: docker | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-02-08T18:05:09+00:00</updated>
+  <updated>2017-02-10T08:27:06+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -41,7 +41,7 @@
 
 <p>After searching the internet a bit, I found <a href="https://github.com/docker/docker/issues/6325">this issue</a> which made me understand that my server had ran out of disk space because of old versions of my docker images. I tried to remove them, but the commands were failing. After some more search, I found <a href="https://github.com/docker/docker/issues/26015">this other issue</a> and came to the conclusion that there was no solution except resetting docker completely. Hopefully, Digital Ocean has a button for rebuilding the VM.</p>
 
-<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg">{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg A screenshot of the rebuild screen on digitalocean %}</a></p>
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg" title="A screenshot of the rebuild screen on digitalocean" ></a></p>
 
 <p>Once the VM was rebuilt, the first thing that I did was to try to connect from my shell on my local machine. I had to clean up my known host file, but that was simple enough.</p>
 
@@ -66,7 +66,7 @@ bash: line 1: 18576 Killed
 
 <p>After some more Google searching, I discovered that this time, the VM was running out of memory ! The fast fix was to upgrade the VM (at the extra cost of 5$ / month).</p>
 
-<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg">{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg A screenshot of the resize screen on digitalocean %}</a></p>
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg" title="A screenshot of the resize screen on digitalocean" ></a></p>
 
 <p>After increasing the memory (and disk space) of the VM, deployment went like a charm. Others have fixed the same issue for free by <a href="https://www.digitalocean.com/community/questions/npm-gets-killed-no-matter-what">adding a swap partition to the VM</a>.</p>
 
@@ -113,7 +113,7 @@ bash: line 1: 18576 Killed
 </ol>
 
 
-<p>{% img center /imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg The logos of Docker, CircleCI and DigitalOcean %}</p>
+<p><img class="center" src="/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg" title="The logos of Docker, CircleCI and DigitalOcean" ></p>
 
 <h2>What did I need to do to make it work</h2>
 
@@ -412,7 +412,7 @@ RUN apt-get install postgresql-client-&lt;version&gt;
 
 <p>Heroku provides a <a href="https://devcenter.heroku.com/articles/local-development-with-docker">tutorial</a> about how to deploy an existing <a href="http://rubyonrails.org/">Rails</a> app to heroku using containers. Unfortunately, I did yet have an existing rails app &hellip; So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.</p>
 
-<p>{% img center /imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg The 3 logos of Rails, Docker and Heroku %}</p>
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg" title="The 3 logos of Rails, Docker and Heroku" ></p>
 
 <h2>1. Install the required software</h2>
 
@@ -584,7 +584,7 @@ end
 ```
 The app should be accessible at <a href="http://0.0.0.0:8080">http://0.0.0.0:8080</a></p>
 
-<p>{% img center /imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg The default homepage for a new Rails application %}</p>
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg" title="The default homepage for a new Rails application" ></p>
 
 <h2>5. Deploying to heroku</h2>
 
@@ -618,7 +618,7 @@ It&rsquo;s then classic Heroku deploy commands :</p>
 
 <p>Your app should be accessible on line at <a href="https://">https://</a>&lt;your-app-name>.herokuapp.com/</p>
 
-<p>{% img center /imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg The typical error message when you deploy a new Rails app to heroku %}</p>
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg" title="The typical error message when you deploy a new Rails app to heroku" ></p>
 
 <p>Rails does not provide a default homepage in production. But you can check the logs with</p>
 
