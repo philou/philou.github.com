@@ -4,7 +4,7 @@
   <title><![CDATA[Category: continuous-integration | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/continuous-integration/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-02-10T08:27:06+00:00</updated>
+  <updated>2017-02-17T07:49:26+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How I finally use Docker on small open source side projects]]></title>
+    <link href="http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects/"/>
+    <updated>2017-02-16T19:37:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects</id>
+    <content type="html"><![CDATA[<p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
+
+<p><img class="center" src="/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
+
+<h2>The Docker love phase</h2>
+
+<p>At first everything seemed great about Docker. I&rsquo;d used it on toy projects and it proved great to quickly setup cheap and fast virtual machines. I even created the <a href="https://github.com/philou/rubybox">Rubybox</a> project on Github to clone new ruby VMs in a matter of seconds. I also used Docker to host my <a href="http://octopress.org/">Octopress</a> environment to write this blog. As a long time Linux user, my dev machines have repeatedly been suffering from pollution : after some time, they get plagued with all the stuff I installed to do my various dev experiments, and at some point, re-install seems easier than cleaning up all the mess. If I could use containers for all my projects, Docker would be a cure for this.</p>
+
+<p>Going through all these successes, when I started my planning poker app, I decided to go all into Docker, development, CI and deployment. You can read the log of how I did that in <a href="http://philippe.bourgau.net/blog/categories/docker/">these posts</a>. Fast forward a bit of searching, experimenting and deploying, all was setup : my dev env was in containers, my CI was running in containers in <a href="https://circleci.com/gh/philou/planning-poker/tree/master">CircleCI</a> and the app was pushed to containers on <a href="https://www.digitalocean.com/">DgitalOcean</a>.</p>
+
+<h2>Reality strikes back</h2>
+
+<p>At first, everything seemed to be working fine. Even if there were a few glitches that I would have to fix down the road like :</p>
+
+<ul>
+<li>Whenever I wanted to update my app&rsquo;s dependencies, I had to run <code>bundle update</code> twice, and not incrementally. Surely, I would manage to fix that with a bit of time</li>
+<li>Obviously, the CI was slower, because it had to build the containers before deploying them to <a href="https://hub.docker.com/">Docker Hub</a>, but that was the price to pay in order to know exactly what was running on the server &hellip; right ?</li>
+<li>And &hellip; <a href="https://github.com/guard/guard">Guard</a> notifications did not appear on my desktop. I was accessing my dev env through ssh, so I would have to fix that, just a few hours and it should be working</li>
+</ul>
+
+
+<p>After a while, I got used to my work environment and became almost as productive as I used to be &hellip; but you know, shit happens !</p>
+
+<ul>
+<li>I had to install <a href="http://phantomjs.org/">PhantomJS</a> on my CI, and if that comes out of the box on <a href="https://travis-ci.org/">TravisCI</a>, you&rsquo;re all alone in your own containers. Installing this on the Debian container proved unnecessarily complex, but I figured it out</li>
+<li>Then all of a sudden, my CI started to break &hellip; You can read a summary of what I did to fix it <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">here</a>. Long story short : I had forgotten to clean up old docker images, and after enough deployments, the server ran out of space, and that corrupted the docker cache somehow. I eventually re-installed and upgraded the deployment VM. That made me lose quite some time though.</li>
+<li>Finally, as I started to play with <a href="https://github.com/rails/actioncable">ActionCable</a>, I could not get the web-socket notifications through my dev host. There must be some settings and configuration to make this work, for sure, but it&rsquo;s supposed to work out of the box.</li>
+</ul>
+
+
+<p>Eventually, this last issue convinced me to change my setup. All these usages of Docker where definitely worth it from a learning point of view, but as my focus moved to actually building the app, it was time to take pragmatic decisions.</p>
+
+<h2>My use of Docker now</h2>
+
+<p>There were 2 main ideas driving my changes to my dev env for this open source side project :</p>
+
+<ol>
+<li>Use the thing most people do</li>
+<li>Use commercially supported services &amp; tools</li>
+</ol>
+
+
+<p>These should avoid losing my time instead of being productive. My setup is now almost boring ! To summarize I now use <a href="https://travis-ci.org/philou/planning-poker">TravisCI</a>, <a href="https://philous-planning-poker.herokuapp.com/">Heroku</a>, and <a href="https://github.com/rbenv/rbenv">rbenv</a> on my physical machine. I kept Docker where it really shines : all the local servers required for development are managed by <a href="https://docs.docker.com/compose/">Docker Compose</a>. Here is my <a href="https://github.com/philou/planning-poker/blob/master/docker-compose.yml"><code>docker-compose.yml</code></a></p>
+
+<p>```yaml
+db:
+  image: postgres:9.4.5
+  volumes:</p>
+
+<pre><code>- planning-poker-postgres:/var/lib/postgresql/data
+</code></pre>
+
+<p>  ports:</p>
+
+<pre><code>- "5432:5432"
+</code></pre>
+
+<p>redis:
+  image: redis:3.2-alpine
+  volumes:</p>
+
+<pre><code>- planning-poker-redis:/var/lib/redis/data
+</code></pre>
+
+<p>  ports:</p>
+
+<pre><code>- "6379:6379"
+</code></pre>
+
+<p>```</p>
+
+<p>This saves me from installing <a href="https://www.postgresql.org/">Postgresql</a> or <a href="https://redis.io/">Redis</a> on my dev machine, and I can start all the services required for app with a single <code>docker-compose up</code> command !</p>
+
+<h2>My future uses of Docker</h2>
+
+<p>More generally, in the near future, here is when I&rsquo;ll use docker</p>
+
+<ul>
+<li>As I just said, to manage local servers</li>
+<li>To boot quick and cheap VMs (check <a href="https://github.com/philou/rubybox">rubybox</a>)</li>
+<li>To handle CI and deployment of large or non-standard systems, where Docker can provide a lot of benefits in terms of price, scaling or configurability</li>
+</ul>
+
+
+<p>Docker came from the deployment world, and this is where it is so great. As of today though, even if it is usable as dev VM, it is still not up to a standard dev machine. Despite that, all the issues I ran into could be fixed, and I&rsquo;m pretty sure they&rsquo;ll be some day.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Continuously Deliver a Rails App to your DigitalOcean Box using Docker]]></title>
