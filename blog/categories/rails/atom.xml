@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rails | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-02-17T07:49:26+00:00</updated>
+  <updated>2017-02-24T05:10:36+00:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,13 +14,178 @@
 
   
   <entry>
+    <title type="html"><![CDATA[How to subscribe to an ActionCable channel on a specific page with custom data ?]]></title>
+    <link href="http://philippe.bourgau.net/how-to-subscribe-to-an-actioncable-channel-on-a-specific-page-with-custom-data/"/>
+    <updated>2017-02-23T05:25:00+00:00</updated>
+    <id>http://philippe.bourgau.net/how-to-subscribe-to-an-actioncable-channel-on-a-specific-page-with-custom-data</id>
+    <content type="html"><![CDATA[<p>In my spare time, I&rsquo;m writing a <a href="https://github.com/philou/planning-poker">Planning Poker App</a>. As a reminder, planning poker is a group estimation technique designed to eliminate influence bias. Participants keeps their estimates secret until everyone unveils them at the same time (See <a href="https://en.wikipedia.org/wiki/Planning_poker">Wikipedia</a> for more details).</p>
+
+<p>The driving idea behind my app is for team members to connect together and share a view of the current vote happening in their team. Each team has an animator, who is responsible to start new votes. This is the aspect I&rsquo;ve been working on during the last few days. I want all team members to be notified that a new vote started by displaying a countdown on their page.</p>
+
+<p>I am building the app with <a href="http://rubyonrails.org/">Rails 5</a> but I did not have a clear idea of what technology to use to build this feature. After some googling, I found that ActionCable provides just the kind of broadcasting I am looking for (Have a look at the <a href="http://edgeguides.rubyonrails.org/action_cable_overview.html">ActionCable Rails guide</a> for more details).</p>
+
+<h2>A Specific Page</h2>
+
+<p>The Rails guide is pretty clear, as usual I would say, but all the examples show subscriptions at any page load. As explained above, I only want participants to subscribe to their own team&rsquo;s votes : until they have joined a team, it is not possible to subscribe to a particular channel.</p>
+
+<p>As my app is currently behaving, once identified, participants get to a specific team page. I wanted to use this page as the starting point to my subscription. After some more googling about page specific JavaScript in Rails, I found <a href="http://brandonhilkert.com/blog/organizing-javascript-in-rails-application-with-turbolinks/">this page</a> from Brandon Hilkert that explains how to do this cleanly. The idea is to add the controller and action names to the body tag, and to filter out js code at page load. This is what I ended up doing :</p>
+
+<p>First, I adapted the app layout to keep track of the controller and action names in the HTML body :
+``` html</p>
+
+<!-- app/layouts/application.html.erb -->
+
+
+<p>&lt;!DOCTYPE html>
+<html>
+  &hellip;
+  <body class="<%= controller_name %> &lt;%= action_name %>&ldquo;></p>
+
+<pre><code>...
+</code></pre>
+
+<p>  </body>
+</html>
+```</p>
+
+<p>Then I replaced the default channel subscription with a function :
+``` coffeescript</p>
+
+<h1>app/assets/javascripts/channels/team.coffee</h1>
+
+<p>window.App.Channels ||= {}
+window.App.Channels.Team ||= {}</p>
+
+<p>App.Channels.Team.subscribe = &ndash;>
+  App.cable.subscriptions.create &ldquo;TeamChannel&rdquo;,</p>
+
+<pre><code>received: (data) -&gt;
+  # Do something with this data
+</code></pre>
+
+<p>```</p>
+
+<p>As a reminder, here is what the server side channel would look like :
+``` ruby
+class TeamChannel &lt; ApplicationCable::Channel
+  def subscribed</p>
+
+<pre><code>stream_from "team_channel"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Finally, I called this subscribe function from some page specific Javascript :
+``` coffeescript</p>
+
+<h1>app/assets/team_members.coffee</h1>
+
+<p>$(document).on &ldquo;turbolinks:load&rdquo;, &ndash;>
+  return unless $(&ldquo;.team_members.show&rdquo;).length > 0</p>
+
+<p>  App.Channels.Team.subscribe()
+```</p>
+
+<p>That&rsquo;s it. By playing around in your browser&rsquo;s js console, you should be able to test it.</p>
+
+<h2>Custom Data</h2>
+
+<p>That&rsquo;s just half of the story. The code above subscribes on a specific page, but it does not specify any particular team channel to subscribe to. This means that all participants would receive notifications from all teams !</p>
+
+<p>In his article about unobtrusive JavaScript in Rails, Brandon Hilkert also suggests using HTML data attributes to pass parameters to the a JavaScript button event handler. There&rsquo;s no button in our case, but we can still use the same technique. Let&rsquo;s add data specific attributes to the HTML body.</p>
+
+<p>To subscribe to specific team channel, the plan is to add the team name to the HTML body tag through a data attribute, then to capture and use this team name when subscribing.</p>
+
+<p>Again, let&rsquo;s enhance the layout :
+``` html</p>
+
+<!-- app/layouts/application.html.erb -->
+
+
+<p>&lt;!DOCTYPE html>
+<html>
+  &hellip;
+  <body class="<%= controller_name %> &lt;%= action_name %>&ldquo; &lt;%= yield :extra_body_attributes %> ></p>
+
+<pre><code>...
+</code></pre>
+
+<p>  </body>
+</html>
+```</p>
+
+<p>I had to adapt my views. In the team members show view (the one doing the subscription), I added an extra data attribute for the team name :</p>
+
+<p>``` html</p>
+
+<!-- app/views/team_members/show.html.erb -->
+
+
+<p>&lt;% provide(:extra_body_attributes, raw(&ldquo;data-team-name=\&rdquo;#{@team.name}\&ldquo;&rdquo;)) %></p>
+
+<p>&hellip;
+```</p>
+
+<p>With this done, it is possible to capture the team name from the page load event and feed it to the subscribe method :
+``` coffeescript</p>
+
+<h1>app/assets/team_members.coffee</h1>
+
+<p>$(document).on &ldquo;turbolinks:load&rdquo;, &ndash;>
+  return unless $(&ldquo;.team_members.show&rdquo;).length > 0</p>
+
+<p>  App.Channels.Team.subscribe($(&lsquo;body&rsquo;).data(&lsquo;team-name&rsquo;))
+```</p>
+
+<p>I then used the team name to subscribe to a specific channel :
+``` coffeescript</p>
+
+<h1>app/assets/javascripts/channels/team.coffee</h1>
+
+<p>window.App.Channels ||= {}
+window.App.Channels.Team ||= {}</p>
+
+<p>App.Channels.Team.subscribe = (teamName) &ndash;>
+  App.cable.subscriptions.create {channel: &ldquo;TeamChannel&rdquo;, team_name: teamName},</p>
+
+<pre><code>received: (data) -&gt;
+  # Do something with this data
+</code></pre>
+
+<p>```</p>
+
+<p>The last piece is to actually start a specific channel :
+``` ruby
+class TeamChannel &lt; ApplicationCable::Channel
+  def subscribed</p>
+
+<pre><code>stream_from "team_channel_#{params[:team_name]}"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Same as before, hack a bit with your browser&rsquo;s console, you should be able to check that it&rsquo;s working.</p>
+
+<h2>Last thoughts</h2>
+
+<p>This is not exhaustive, depending on your situation, there might be other things you&rsquo;ll need to do, like unsubscriptions for example.</p>
+
+<p>I&rsquo;d also like to give a word of feedback about ActionCable after this first look at it. Overall, it worked great both in development and production. Everything seemed to work almost out of the box &hellip; Except testing : I did not manage to write robust unit tests around it. There is <a href="https://github.com/rails/rails/pull/23211">pull request</a> for that that should be merged in Rails 5.~ sometimes soon. For the moment, I&rsquo;m sticking to large scale cucumber tests.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[How I finally use Docker on small open source side projects]]></title>
     <link href="http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects/"/>
     <updated>2017-02-16T19:37:00+00:00</updated>
     <id>http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects</id>
     <content type="html"><![CDATA[<p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
 
-<p><img class="center" src="/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
+<p>{% img center /imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg The Docker logo next to a silver bullet %}</p>
 
 <h2>The Docker love phase</h2>
 
@@ -199,7 +364,7 @@ load &ldquo;#{Rails.root.to_s}/db/schema.rb&rdquo;
 </ol>
 
 
-<p><img class="center" src="/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg" title="The logos of Docker, CircleCI and DigitalOcean" ></p>
+<p>{% img center /imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg The logos of Docker, CircleCI and DigitalOcean %}</p>
 
 <h2>What did I need to do to make it work</h2>
 
@@ -433,262 +598,6 @@ planning_poker_development=# select * from schema_migrations;</p>
 
 <p><code>
 RUN apt-get install postgresql-client-&lt;version&gt;
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to boot a new Rails project with Docker and Heroku]]></title>
-    <link href="http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku/"/>
-    <updated>2016-07-13T04:55:00+00:00</updated>
-    <id>http://philippe.bourgau.net/how-to-boot-a-new-rails-project-with-docker-and-heroku</id>
-    <content type="html"><![CDATA[<p>A few years ago, I used <a href="http://www.heroku.com">Heroku</a> to deploy my <a href="https://github.com/philou/mes-courses">side-project</a>. It provides great service, but I remember that updates to the Heroku Stack was a nightmare &hellip; Versions of the OS (and nearly everything) changed. The migration was a matter of days, and while doing a side-project, this was difficult. At the time, I remember thinking that using branches and VMs would have been the solution.</p>
-
-<p>Now that I started to use Heroku again, I decided to use <a href="http://www.docker.com">Docker</a> from the beginning. More specifically, I am expecting :</p>
-
-<ul>
-<li>to have a minimal setup on my host machine</li>
-<li>to use the same infrastructure in dev than in production</li>
-<li>to simplify switching to a new machine</li>
-<li>to simplify the migration to the next Heroku stack</li>
-</ul>
-
-
-<p>As an added benefit, if ever someone else joins me in my side-project, it will be a matter of minutes before we can all work on the same infrastructure !</p>
-
-<p>Heroku provides a <a href="https://devcenter.heroku.com/articles/local-development-with-docker">tutorial</a> about how to deploy an existing <a href="http://rubyonrails.org/">Rails</a> app to heroku using containers. Unfortunately, I did yet have an existing rails app &hellip; So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.</p>
-
-<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg" title="The 3 logos of Rails, Docker and Heroku" ></p>
-
-<h2>1. Install the required software</h2>
-
-<p>I installed only 4 things on my host machine
-&ndash; Docker <a href="https://docs.docker.com/engine/installation/">instructions</a>
-&ndash; Docker Compose <a href="https://docs.docker.com/compose/install/">instructions</a>
-&ndash; Heroku Toolbelt <a href="https://toolbelt.heroku.com/">instructions</a>
-&ndash; Heroku container plugin <code>heroku plugins:install heroku-container-tools</code></p>
-
-<p>That&rsquo;s all I changed to my host machine.</p>
-
-<h2>2. Setup docker</h2>
-
-<p>First, let&rsquo;s create a new dir and step into it. Run :
-<code>bash
-mkdir docker-rails-heroku
-cd docker-rails-heroku
-</code>
-To prepare the Heroku setup, create a <code>Procfile</code>
-<code>
-web: bundle exec puma -C config/puma.rb
-</code>
-and <code>app.json</code>
-```json
-{
-  &ldquo;name&rdquo;: &ldquo;Docker Rails Heroku&rdquo;,
-  &ldquo;description&rdquo;: &ldquo;An example app.json for container-deploy&rdquo;,
-  &ldquo;image&rdquo;: &ldquo;heroku/ruby&rdquo;,
-  &ldquo;addons&rdquo;: [</p>
-
-<pre><code>"heroku-postgresql"
-</code></pre>
-
-<p>  ]
-}
-<code>
-To generate docker files for Heroku, run :
-</code>bash
-heroku container:init
-```
-You want to run Rails in dev mode locally, so we need to override Heroku&rsquo;s default env (<a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Check my previous post for details</a>)</p>
-
-<p>Create an <code>.env</code> file
-<code>
-RAILS_ENV=development
-</code>
-and <code>docker-compose.override.yml</code>
-```yaml
-web:
-  volumes:</p>
-
-<pre><code>- '.:/app/user'
-</code></pre>
-
-<p>  environment:</p>
-
-<pre><code>RAILS_ENV: "${RAILS_ENV}"
-</code></pre>
-
-<p>shell:
-  environment:</p>
-
-<pre><code>RAILS_ENV: "${RAILS_ENV}"
-</code></pre>
-
-<p>```</p>
-
-<h2>3. Create the Rails app</h2>
-
-<p>It&rsquo;s now time to follow <a href="https://docs.docker.com/compose/rails/">the official docker-compose rails tutorial</a> to bootstrap the rails app and directories :</p>
-
-<p>Change <code>Dockerfile</code> to
-```</p>
-
-<h1>FROM heroku/ruby</h1>
-
-<p>FROM ruby:2.2.0
-RUN apt-get update -qq &amp;&amp; apt-get install -y build-essential libpq-dev nodejs
-RUN mkdir /myapp
-WORKDIR /myapp
-ADD Gemfile /myapp/Gemfile
-ADD Gemfile.lock /myapp/Gemfile.lock
-RUN bundle install
-ADD . /myapp
-```</p>
-
-<p>Create a bootstrap <code>Gemfile</code> with the content
-<code>ruby
-source 'https://rubygems.org'
-gem 'rails', '4.2.0'
-</code>
-Bundle install within the container requires a existing <code>Gemfile.lock</code>
-```bash</p>
-
-<h1>Create an empty Gemfile.lock</h1>
-
-<p>touch Gemfile.lock
-```</p>
-
-<p>It&rsquo;s now time to build your docker container to be able to run rails and generate your source files. Run the following :
-```bash</p>
-
-<h1>Build your containers</h1>
-
-<p>docker-compose build</p>
-
-<h1>Run rails within the shell container and generate rails files</h1>
-
-<p>docker-compose run shell bundle exec rails new . &mdash;force &mdash;database=postgresql &mdash;skip-bundle
-```</p>
-
-<p>Unfortunately, rails is ran as root inside the container. We can change ownership and rights with this command :
-```bash</p>
-
-<h1>Change ownership</h1>
-
-<p>sudo chown -R $USER:$USER .</p>
-
-<h1>Change rights</h1>
-
-<p>sudo chmod -R ug+rw .
-```</p>
-
-<h2>4. Make it Heroku ready</h2>
-
-<p>Now that the rails files are generated, It&rsquo;s time to replace the bootstrap settings with real Heroku Dockerfile</p>
-
-<p>Revert <code>Dockerfile</code> to simply :
-<code>
-FROM heroku/ruby
-</code></p>
-
-<p>Heroku uses <a href="http://puma.io/">Puma</a> so we need to add it to our <code>Gemfile</code>
-```ruby</p>
-
-<h1>Use Puma as the app server</h1>
-
-<p>gem &lsquo;puma&rsquo;, &lsquo;~> 3.0&rsquo;
-<code>
-We also need to add a config file for Puma. Create</code>config/puma.rb<code>with this content (you can check [heroku doc](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#adding-puma-to-your-application) for details)
-</code>ruby
-workers Integer(ENV[&lsquo;WEB_CONCURRENCY&rsquo;] || 2)
-threads_count = Integer(ENV[&lsquo;RAILS_MAX_THREADS&rsquo;] || 5)
-threads threads_count, threads_count</p>
-
-<p>preload_app!</p>
-
-<p>rackup      DefaultRackup
-port        ENV[&lsquo;PORT&rsquo;]     || 3000
-environment ENV[&lsquo;RACK_ENV&rsquo;] || &lsquo;development&rsquo;</p>
-
-<p>on_worker_boot do
-  # Worker specific setup for Rails 4.1+
-  # See: <a href="https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot">https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot</a>
-  ActiveRecord::Base.establish_connection
-end
-```</p>
-
-<p>It should now be possible to rebuild the container, and run the app :
-```bash</p>
-
-<h1>Rebuild the containers</h1>
-
-<p>docker-compose build</p>
-
-<h1>Start the rails app using the web container</h1>
-
-<p>docker-compose up web
-```
-The app should be accessible at <a href="http://0.0.0.0:8080">http://0.0.0.0:8080</a></p>
-
-<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg" title="The default homepage for a new Rails application" ></p>
-
-<h2>5. Deploying to heroku</h2>
-
-<p>We&rsquo;re almost ready to deploy to heroku.</p>
-
-<p>First, we need to exclude development files from our image. For this, we need to create a <code>.dockerignore</code> file with the content
-<code>
-.git*
-db/*.sqlite3
-db/*.sqlite3-journal
-log/*
-tmp/*
-Dockerfile
-.env
-docker-compose.yml
-docker-compose.override.yml
-README.rdoc
-</code>
-It&rsquo;s then classic Heroku deploy commands :</p>
-
-<p>```bash</p>
-
-<h1>create an Heroku app</h1>
-
-<p>heroku apps:create &lt;your-app-name></p>
-
-<h1>And deploy to it</h1>
-
-<p>heroku container:release &mdash;app &lt;your-app-name>
-```</p>
-
-<p>Your app should be accessible on line at <a href="https://">https://</a>&lt;your-app-name>.herokuapp.com/</p>
-
-<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg" title="The typical error message when you deploy a new Rails app to heroku" ></p>
-
-<p>Rails does not provide a default homepage in production. But you can check the logs with</p>
-
-<p><code>bash
-heroku logs --app &lt;your-app-name&gt;
-</code></p>
-
-<h2>6. Running commands</h2>
-
-<p>When in development mode, you might want to run rails or other commands on your source code again. The shell container exists just for that, run <code>docker-compose run shell ...</code>.
-```bash</p>
-
-<h1>For example, to update your bundle</h1>
-
-<p>docker-compose run shell bundle update
-```</p>
-
-<h3>EDIT 2016-07-20</h3>
-
-<p>For the moment, there&rsquo;s a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again &hellip; I&rsquo;ll have a look into this later and see if I can fix that.</p>
-
-<p><code>bash
-docker-compose run shell bundle update
-docker-compose build
 </code></p>
 ]]></content>
   </entry>
