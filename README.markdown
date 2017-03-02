@@ -24,7 +24,7 @@ We love to see people contributing to Octopress, whether it's a bug report, feat
 ## License
 (The MIT License)
 
-Copyright © 2009-2013 Brandon Mathis
+Copyright © 2009-2013, 2017 Brandon Mathis
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the ‘Software’), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -36,3 +36,21 @@ THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 #### If you want to be awesome.
 - Proudly display the 'Powered by Octopress' credit in the footer.
 - Add your site to the Wiki so we can watch the community grow.
+
+#### To setup on a new machine
+
+```bash
+git clone git@github.com:philou/philou.github.com
+cd philou.github.com
+
+# install dependencies
+bundle install
+
+# setup github pages deployment
+mkdir _deploy
+cd _deploy
+git init .
+git remote add -t master origin git@github.com:philou/philou.github.com
+git pull origin master
+cd ..
+```
