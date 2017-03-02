@@ -4,7 +4,7 @@
   <title><![CDATA[Category: docker | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-02-24T05:10:36+00:00</updated>
+  <updated>2017-03-02T06:07:12+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -16,11 +16,11 @@
   <entry>
     <title type="html"><![CDATA[How I finally use Docker on small open source side projects]]></title>
     <link href="http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects/"/>
-    <updated>2017-02-16T19:37:00+00:00</updated>
+    <updated>2017-02-16T19:37:00+01:00</updated>
     <id>http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects</id>
     <content type="html"><![CDATA[<p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
 
-<p>{% img center /imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg The Docker logo next to a silver bullet %}</p>
+<p><img class="center" src="/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
 
 <h2>The Docker love phase</h2>
 
@@ -109,7 +109,7 @@ db:
   <entry>
     <title type="html"><![CDATA[How I fixed 'devicemapper' error when deploying my Docker app]]></title>
     <link href="http://philippe.bourgau.net/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/"/>
-    <updated>2017-02-01T17:41:00+00:00</updated>
+    <updated>2017-02-01T17:41:00+01:00</updated>
     <id>http://philippe.bourgau.net/how-i-fixed-devicemapper-error-when-deploying-my-docker-app</id>
     <content type="html"><![CDATA[<p>A few months ago, I started continuously deploying my <a href="https://github.com/philou/planning-poker">latest side project</a> to a <a href="https://cloud.digitalocean.com">Digital Ocean</a> box. If you are interested, <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">here</a> is the full story of how I did it. All was going pretty well until last week, when the builds unexpectedly started to fail. I wasn&rsquo;t getting the same error at every build, but it was always the <a href="https://www.docker.com/">Docker</a> deployment that failed. Here are the kind of errors I got :</p>
 
@@ -134,7 +134,7 @@ db:
 
 <p>After searching the internet a bit, I found <a href="https://github.com/docker/docker/issues/6325">this issue</a> which made me understand that my server had ran out of disk space because of old versions of my docker images. I tried to remove them, but the commands were failing. After some more search, I found <a href="https://github.com/docker/docker/issues/26015">this other issue</a> and came to the conclusion that there was no solution except resetting docker completely. Hopefully, Digital Ocean has a button for rebuilding the VM.</p>
 
-<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg">{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg A screenshot of the rebuild screen on digitalocean %}</a></p>
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg" title="A screenshot of the rebuild screen on digitalocean" ></a></p>
 
 <p>Once the VM was rebuilt, the first thing that I did was to try to connect from my shell on my local machine. I had to clean up my known host file, but that was simple enough.</p>
 
@@ -159,7 +159,7 @@ bash: line 1: 18576 Killed
 
 <p>After some more Google searching, I discovered that this time, the VM was running out of memory ! The fast fix was to upgrade the VM (at the extra cost of 5$ / month).</p>
 
-<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg">{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg A screenshot of the resize screen on digitalocean %}</a></p>
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg" title="A screenshot of the resize screen on digitalocean" ></a></p>
 
 <p>After increasing the memory (and disk space) of the VM, deployment went like a charm. Others have fixed the same issue for free by <a href="https://www.digitalocean.com/community/questions/npm-gets-killed-no-matter-what">adding a swap partition to the VM</a>.</p>
 
@@ -182,7 +182,7 @@ bash: line 1: 18576 Killed
   <entry>
     <title type="html"><![CDATA[Continuously Deliver a Rails App to your DigitalOcean Box using Docker]]></title>
     <link href="http://philippe.bourgau.net/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/"/>
-    <updated>2016-10-25T20:39:00+00:00</updated>
+    <updated>2016-10-25T20:39:00+02:00</updated>
     <id>http://philippe.bourgau.net/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker</id>
     <content type="html"><![CDATA[<p>I decided to use <a href="https://github.com/philou/planning-poker">my latest side project</a> as an occasion to learn <a href="https://www.docker.com/">Docker</a>. I first used <a href="https://www.heroku.com/">Heroku</a> as a platform for deployment (see <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous post</a>). It works fine but I discovered the following shortcomings :</p>
 
@@ -206,7 +206,7 @@ bash: line 1: 18576 Killed
 </ol>
 
 
-<p>{% img center /imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg The logos of Docker, CircleCI and DigitalOcean %}</p>
+<p><img class="center" src="/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg" title="The logos of Docker, CircleCI and DigitalOcean" ></p>
 
 <h2>What did I need to do to make it work</h2>
 
@@ -281,7 +281,7 @@ bash: line 1: 18576 Killed
   <entry>
     <title type="html"><![CDATA[How to prepare a new Ruby env in 3 minutes using Docker]]></title>
     <link href="http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/"/>
-    <updated>2016-08-17T05:21:00+00:00</updated>
+    <updated>2016-08-17T05:21:00+02:00</updated>
     <id>http://philippe.bourgau.net/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker</id>
     <content type="html"><![CDATA[<p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
 
@@ -321,7 +321,7 @@ docker-compose run rubybox
   <entry>
     <title type="html"><![CDATA[How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?]]></title>
     <link href="http://philippe.bourgau.net/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/"/>
-    <updated>2016-07-20T06:12:00+00:00</updated>
+    <updated>2016-07-20T06:12:00+02:00</updated>
     <id>http://philippe.bourgau.net/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/philou/planning_poker">My current side project</a> is an online tool to do remote planning pokers. I followed my <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous tutorial</a> to setup Rails, Docker and Heroku.</p>
 
