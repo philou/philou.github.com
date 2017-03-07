@@ -8,9 +8,13 @@ categories:
  - kanban
  - selforganizing
  - jira
+ - personal-productivity
 keywords: "Personnal Kanban, Jira, Kanban, Work In Progress Limit, TODO-List, Organization, Self Organization"
 description: "Why I moved from todo lists to personnal kanban, and how I did it using JIRA"
 ---
+EDIT 2017-03-03 : This article is old, I am now using an [improved Jira Personnal Kanban](/my-ultimate-jira-personal-kanban/).
+
+
 Not long ago, I wrote that [Real Programmers have TODO lists](/real-programmers-have-todo-lists/) ... I was wrong, I now work without a TODO list ! So either I'm not a real programmer anymore, or I'm actually using TODO List v.2.0. Read on !
 
 ## Motivations

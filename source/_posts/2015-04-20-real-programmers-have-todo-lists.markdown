@@ -5,9 +5,15 @@ date: 2015-04-20 05:42
 comments: true
 categories:
  - programming
+ - personal-productivity
 keywords: "programming, todo list, effectiveness"
 description: "An article describing why and how to use a todo list when programming"
 ---
+
+EDIT 2017-03-03 : This article is old, I am now using an [improved Jira Personnal Kanban](/my-ultimate-jira-personal-kanban/).
+
+~~EDIT 2015-08-18 : This article is old, [I am now using Personnal Kanban instead of TODO lists](/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/).~~
+
 Productive programmers maintain a todo list. No Exception.
 
 {% img center /imgs/2015-04-20-real-programmers-have-todo-lists/programmer.jpg A programmer concentrating on his code %}
@@ -70,5 +76,3 @@ Here is a list of tools you can use to set up a todo list :
 - Any other todo list tool that suits you !
 
 If you are not already using a todo list, start now and become more productive ! No excuse !
-
-EDIT 2015-08-18 : [I am now using Personnal Kanban instead of TODO lists](/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/).
