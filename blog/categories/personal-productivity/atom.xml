@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: personal-productivity | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/personal-productivity/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2017-03-08T06:40:17+01:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My Ultimate Jira Personal Kanban]]></title>
+    <link href="http://philippe.bourgau.net/my-ultimate-jira-personal-kanban/"/>
+    <updated>2017-03-03T06:46:00+01:00</updated>
+    <id>http://philippe.bourgau.net/my-ultimate-jira-personal-kanban</id>
+    <content type="html"><![CDATA[<p>A few years ago, I <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">wrote</a> about how I started to use <a href="https://www.atlassian.com/software/jira">Jira</a> as my <a href="http://www.personalkanban.com/pk/">personal Kanban</a> board <a href="https://twitter.com/work_at_murex">at work</a>. A lot of things have changed since then, which brought me to update my board and make it even more productive !</p>
+
+<h2>The context</h2>
+
+<p>During the almost 18 months since I wrote this first post, a lot of things have changed in my daily work (hopefully : I&rsquo;m not doing the same thing again and again !). Essentially, I got involved in more projects, some of which involve people from all around the company and some of which don&rsquo;t require any code to be written. For example, I&rsquo;m now engaged in our Agile Community of Practice, where I sometimes contribute content.</p>
+
+<p>Here are the consequences on my work :</p>
+
+<ul>
+<li>I have more tasks to deal with, not necessarily more work, but still more tasks</li>
+<li>I have more sources of tasks : tasks can come from any of the projects I am involved in</li>
+<li>I have more tasks depending on other people, and that are in a <code>WAITING</code> state meanwhile</li>
+</ul>
+
+
+<p>I had to adapt my personal Kanban to this new workload.</p>
+
+<h2>The changes</h2>
+
+<p>As I explained in <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">the previous description of my Jira Personal Kanban</a>, I am using a custom project and Kanban board to aggregate all my tasks from various projects, in order to see everything in a single unique place. Here are the changes I&rsquo;ve made since, so if you haven&rsquo;t yet, it might be a good idea to read <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">that previous version</a> first.</p>
+
+<h3>Quick filters</h3>
+
+<p>In his post <a href="http://paulgraham.com/makersschedule.html">Maker&rsquo;s Schedule, Manager&rsquo;s Schedule</a> Paul Graham explained the challenge of having a lot of non-programming work to do everyday for programmers. He then advises to use slots for different activities during the day, in order to keep uninterrupted chunks of time to do creative work. To apply this technique, I reserved &lsquo;Unbookable except for X&rsquo; slots in my calendar everyday.</p>
+
+<p>I had previously been using Swim-lanes to track work from different projects. This turned out not to scale very well to more projects : it made the board messy, and I kept being distracted by all these other tasks. I ditched all the Swim-lanes (not exactly, I kept one for urgent issues only). Instead of Swim-lanes for tracking projects, I now use Quick Filters. I created such filters as <code>With Project X</code> and <code>Without Project X</code>. During the day, when I want to focus on Project X, I use quick filters to only show tasks related to it.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/quick-filters.jpg" alt="Quick filters screen capture" /></p>
+
+<h3>Day markers</h3>
+
+<p>I have a daily routine of checking what&rsquo;s on my plate and deciding what I&rsquo;d like to achieve during the day (picking the right time to do this is an art in itself). In order to keep track of this, I use special day marker tasks : as <code>^^^ TODAY ^^^</code>, <code>^^^ TOMORROW ^^^</code> and <code>^^^ THIS WEEK ^^^</code>. This tasks are always in my <code>TODO</code> column, and will never be completed. I move them around to mark what I expect to finish at different time horizon. Ex : everything above <code>^^^ TODAY ^^^</code> should be finished before the end of the day.</p>
+
+<p>Again, this helps me to focus on today&rsquo;s activities, and to do just enough prioritization.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/day-markers.jpg" alt="Day marker tasks screen capture" /></p>
+
+<p>One last thing here, you&rsquo;ll have noticed the Epic for these special tasks. It&rsquo;s a way to identify them in JQL queries.</p>
+
+<h3>WAITING flag</h3>
+
+<p>Quite often, you have tasks waiting for someone else. That&rsquo;s surely not the most efficient situation, but once you leave the comfort of your focused dev team, handoffs are often the norm (at least until the lean principles spread in every part of the business). Status of waiting tasks is worth checking regularly, but very certainly not many times per day !</p>
+
+<p>Again, leaving them in my board created useless distraction. I have now taken the habit of renaming the tasks I&rsquo;m waiting for with a <code>[WAITING] ...</code> prefix. On top of that, I created 2 quick filters <code>WAITING</code> and <code>Without WAITING</code> to quickly check and then forget about waiting tasks.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/waiting-tasks.jpg" alt="Waiting tasks screen capture" /></p>
+
+<h3>Watching tasks I&rsquo;m not the assignee of</h3>
+
+<p>On some occasions, we might be two of us working on the same task, or I might want to keep an eye on a task to know if something is needed from me. As there is only a single possible assignee in Jira, I changed my global filters to also include tasks with a custom label <code>pbourgau-watch</code>. Any time I want to add a task in my board, I just add this label to it.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/pbourgau-watch.jpg" alt="Screen capture of a task description I'm not the assignee of" /></p>
+
+<h3>Getting the Lean reports back</h3>
+
+<p>In order not to have too many old tasks in my board, I used to filter out old items in the global filter. This did the job, but at the cost of invalidating the lean reports (cumulative flow and control charts). In order to get these back, I removed this constraint from the global filter, and created yet another quick filter <code>Without Old</code> which I almost always keep on.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/control-chart.jpg" alt="Control chart screen capture" /></p>
+
+<h2>Scripts</h2>
+
+<h4>Global Filter</h4>
+
+<p>```sql
+project in (POP, POPABTODO, &ldquo;Development Engineering Program&rdquo;, COPA)
+AND type != Epic
+AND (Assignee = pbourgau OR</p>
+
+<pre><code>Co-Assignees in (pbourgau) OR 
+mentors in (pbourgau) OR
+labels in (pbourgau-watch))
+</code></pre>
+
+<p>ORDER BY Rank ASC
+```</p>
+
+<h4>Quick Filters</h4>
+
+<p>```sql
+&mdash; With &ldquo;Project X&rdquo; + Day marker tasks (Epic link &hellip;) + tasks containing &ldquo;BRANDING&rdquo;
+project = &ldquo;Project X&rdquo; or &ldquo;Epic Link&rdquo; = POPABTODO-410 or summary ~ &ldquo;BRANDING&rdquo;</p>
+
+<p>&mdash; Without &ldquo;Project X&rdquo;
+project != &ldquo;Project X&rdquo; and summary  !~ &ldquo;BRANDING&rdquo;</p>
+
+<p>&mdash; Without Old
+status not in (DONE,CLOSED) OR updated >= -14d</p>
+
+<p>&mdash; WAITING
+summary ~ &lsquo;WAITING&rsquo;</p>
+
+<p>&mdash; Without WAITING
+summary !~ &lsquo;WAITING&rsquo;
+```</p>
+
+<h4>Things that did not change</h4>
+
+<p>I still use a WIP limit on the In Progress column, display the Epic in on the cards and special use custom color coding for tasks :</p>
+
+<p>```sql
+&mdash; Tasks with an imminent due date become red
+duedate &lt;= 1d or priority = &ldquo;1-Very High&rdquo;</p>
+
+<p>&mdash; Tasks with a due date are orange
+duedate is not EMPTY
+```</p>
+
+<h2>The result</h2>
+
+<p>Overall, this is how my board looks like :</p>
+
+<p><a href="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board.jpg"><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board-small.jpg" alt="Full board screen capture" /></a></p>
+
+<p>I guess I&rsquo;m a kind of personal productivity geek &hellip; but I believe it&rsquo;s a skill of utter importance for developers, especially when they get a bit of experience and are not fed ready made tasks to do.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira]]></title>
+    <link href="http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/"/>
+    <updated>2015-08-17T05:46:00+02:00</updated>
+    <id>http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira</id>
+    <content type="html"><![CDATA[<p>EDIT 2017-03-03 : This article is old, I am now using an <a href="/my-ultimate-jira-personal-kanban/">improved Jira Personnal Kanban</a>.</p>
+
+<p>Not long ago, I wrote that <a href="/real-programmers-have-todo-lists/">Real Programmers have TODO lists</a> &hellip; I was wrong, I now work without a TODO list ! So either I&rsquo;m not a real programmer anymore, or I&rsquo;m actually using TODO List v.2.0. Read on !</p>
+
+<h2>Motivations</h2>
+
+<p>My work has become quite varied lately. On top of programming and pairing, I am also doing quite some coaching within the team. For the whole Murex programmers community, I&rsquo;m organizing <a href="https://github.com/murex/murex-coding-dojo">Coding Dojos</a>, <a href="http://www.brownbaglunch.fr/">Brown Bag Lunches</a> and Technical Talk Video Sessions. Finaly, like all of us, I have to cope with my share of organization overhead.</p>
+
+<p>Multitasking was starting to kill me. I was feeling exhausted at the end of the day, with the certainty that I was not getting much done &hellip;</p>
+
+<h2>Personnal Kanban To The Rescue</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> is a method to organize your work relying on <a href="http://www.personalkanban.com/pk/featured/why-limit-work-in-progress/#sthash.QFI0D8l5.dpbs">Work In Progress limits</a> : it minimizes multitasking and encourages prioritization.</p>
+
+<p>As its name suggests it, <a href="http://personalkanban.com">Personal Kanban</a> is simply applying Kanban to your own tasks. It turns out that :</p>
+
+<ul>
+<li>My team tasks are already in <a href="https://www.atlassian.com/software/jira">JIRA</a></li>
+<li>Some guys have already tried to <a href="https://jira.atlassian.com/browse/JRA-13472">use JIRA as a todo list</a></li>
+<li>JIRA supports Kanban boards with WIP limits and all</li>
+</ul>
+
+
+<h2>The Kanban Board</h2>
+
+<p>In our team, <a href="http://bilal.eltayara.net">TAYARA Bilal</a> had already experimented the approach and asked to JIRA admins to create us a custom project for our todo lists. I piggybacked on it and created my own kanban board. Here is what it looks like.</p>
+
+<p><img class="center" src="/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/board.png" title="Screenshot of the full JIRA board" ></p>
+
+<h3>Mixing Project Stories And Personnal Tasks</h3>
+
+<p>JIRA allows creating a kanban board that spans many projects ! You can simply choose multiple projects when you setup the board for the first time, or you can edit your board filter like this :</p>
+
+<p><code>sql
+project in (POPIMDB, POPABTODO) ...
+</code></p>
+
+<p>This makes it possible to see <em>all</em> of my work at a glance on the same board.</p>
+
+<h3>Work In Progress Limit</h3>
+
+<p><img class="center" src="/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/wip.png" title="Zoom on the wip constraints of the JIRA column" ></p>
+
+<p>JIRA allows WIP limits, warning me with a red background when I am multitasking or when I am getting late on my tasks</p>
+
+<h3>Color Conventions</h3>
+
+<p><img class="center" src="/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/color-cards.png" title="Different colors of JIRA cards" ></p>
+
+<p>JIRA makes it possible to assign different colors to cards, for example</p>
+
+<ul>
+<li>Red for tasks that are due soon</li>
+<li>orange for cards that are due some time</li>
+<li>light brown for project stories</li>
+<li>green for other programming tasks</li>
+<li>blue for other tasks</li>
+</ul>
+
+
+<h3>Swimlanes</h3>
+
+<p><img class="center" src="/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/swimlanes.png" title="Closup on a JIRA swimlane" ></p>
+
+<p>JIRA has swimlanes, separating project from personal tasks</p>
+
+<h3>Reports</h3>
+
+<p>An extra bonus with JIRA Kanban board is that they have reports ! Here is my cumulative flow diagram for my first week of usage :</p>
+
+<p><img class="center" src="/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/cumulative-flow.png" title="A screenshot of the JIRA cumulative flow diagram" ></p>
+
+<h3>Configuration</h3>
+
+<p>Here is the JQL query I used to configure it this way.</p>
+
+<p>```sql
+&mdash; board filter
+project in (POPIMDB, POPABTODO) AND (Assignee = pbourgau OR Co-Assignees in (pbourgau) OR mentors in (pbourgau)) AND (status != CLOSED OR updated >= -1d) ORDER BY Rank ASC</p>
+
+<p>&mdash; Swimlanes
+priority = &ldquo;1-Very High&rdquo; &mdash; Expedite
+project in (&ldquo;POP IMDB&rdquo;) and (labels not in (SLACK) OR labels is EMPTY) &mdash; IMDB Stories
+&mdash; and a blank filter for Other Tasks</p>
+
+<p>&mdash; Card Colours
+duedate &lt;= 7d or priority = &ldquo;1-Very High&rdquo; &mdash; red
+duedate is not EMPTY &mdash; orange
+labels in (SLACK) &mdash; green
+type = Task &mdash; blue
+&mdash; and an empty filter for light brown
+```</p>
+
+<h2>The End Result</h2>
+
+<p>By setting a WIP limit of 3 on the &ldquo;In Progress&rdquo; column, the following naturally happened :</p>
+
+<ul>
+<li>Once I have started a programming task, I now defer any other activity in the TODO column until I am finished. (HINT: If you get invited to meetings all the time, lock your agenda with &lsquo;Unbookable&rsquo; days when you start programming)</li>
+<li>It actually pushed me into finishing the <a href="https://github.com/philou/concurrency-kata">concurrency-kata</a> training I had started long ago.</li>
+</ul>
+
+
+<p>I also set a high WIP limit (around 10) on the TODO column, this way, I get a kind of warning that next time I finish a programming task, I should take some time off to prune the column.</p>
+
+<p>The overall result is that I do lot less multitasking. I get the feeling of doing steadier, more efficient work.</p>
+
+<p>If you are suffering from multitasking and decide to give it a try, I&rsquo;d love to read about your experience !</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Real Programmers Have Todo Lists]]></title>
+    <link href="http://philippe.bourgau.net/real-programmers-have-todo-lists/"/>
+    <updated>2015-04-20T05:42:00+02:00</updated>
+    <id>http://philippe.bourgau.net/real-programmers-have-todo-lists</id>
+    <content type="html"><![CDATA[<p>EDIT 2017-03-03 : This article is old, I am now using an <a href="/my-ultimate-jira-personal-kanban/">improved Jira Personnal Kanban</a>.</p>
+
+<p><del>EDIT 2015-08-18 : This article is old, <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">I am now using Personnal Kanban instead of TODO lists</a>.</del></p>
+
+<p>Productive programmers maintain a todo list. No Exception.</p>
+
+<p><img class="center" src="/imgs/2015-04-20-real-programmers-have-todo-lists/programmer.jpg" title="A programmer concentrating on his code" ></p>
+
+<h2>Why is it so important</h2>
+
+<p>As programmers, here is the typical internal discussion we have all day long :</p>
+
+<blockquote><p>- Why the hell am I doing this again ?<br>
+&hellip; hard thinking &hellip;<br>
+- Yes ! I remember now :<br>
+- Encapsulate this field<br>
+- In order to move it to another class<br>
+- In order to move this other function there too<br>
+- In order to be able to remove that other static variable<br>
+- In order to refactor the login module<br>
+- In order to remove the dependency between the custom search query generator and the login module<br>
+- In order to refactor the query generator<br>
+- In order to be able to optimize it<br>
+- In order to speed up the whole website !</p></blockquote>
+
+<p>Phew, now that&rsquo;s a list ! A 9 frame stack, all in our heads, and that&rsquo;s only a simple example. Knowing that us humans usually have around 7 &lsquo;registers&rsquo; in our brains, this makes a lot of clutter to remember.</p>
+
+<p>Maintaining all this in a todo list frees us some brainpower !</p>
+
+<h2>What happens when you use a todo list</h2>
+
+<p>Quite a lot in fact :</p>
+
+<p><img class="center" src="/imgs/2015-04-20-real-programmers-have-todo-lists/check.gif" title="A tick in a check box" ></p>
+
+<ul>
+<li>It&rsquo;s satisfying to check something as done !</li>
+<li>Our programming gets better, because we can fully concentrate on it</li>
+<li>We have a clear idea about what&rsquo;s done, what&rsquo;s still to be done, and why we are doing it</li>
+<li>We avoid getting lost in things that don&rsquo;t really need to be done</li>
+<li>We can make better choices about what to do, what to postpone, and what not to do</li>
+<li>We can make more accurate estimates about the time it will take to finish the job</li>
+</ul>
+
+
+<p>In the end, all this makes you feel less stressed and more productive !</p>
+
+<h2>How to do it</h2>
+
+<p>There are many ways to maintain a todo list. Which to choose is not as important as having one. Here are my 2 design principles for a todo list system :</p>
+
+<ul>
+<li>It goes in finer details than a typical bug tracking software</li>
+<li>It should help you to concentrate on the few items you can do in the coming hours</li>
+</ul>
+
+
+<p>For example, I am now using a simple TODAY &hellip; TOMORROW &hellip; LATER &hellip; scheme. I tend to avoid deep hierarchies as it gets in the way of my second principle. I like to keep DONE items visible to keep track of what I did for up to 1 day.</p>
+
+<p><img class="center" src="/imgs/2015-04-20-real-programmers-have-todo-lists/org-mode.jpg" title="A screen shot of my org-mode todo list" ></p>
+
+<p>Here is a list of tools you can use to set up a todo list :</p>
+
+<ul>
+<li>Any text editor using a simple format convention will do</li>
+<li><a href="http://www.dropbox.com">Dropbox</a> or any other synchronization tool can be helpful to access it from different places</li>
+<li><a href="http://orgmode.org/">Org Mode</a> of <a href="https://www.gnu.org/software/emacs/">Emacs</a> has built-in support for todo lists. It&rsquo;s a simple text file, but with color highlighting and shortcuts</li>
+<li><a href="https://keep.google.com/">Google Keep</a> might do just fine for you</li>
+<li><a href="https://docs.google.com">Google Docs</a> can also be useful, especially if you need to share your todo list with others (when pair programming for example)</li>
+<li><a href="https://trello.com">Trello</a> is also a good one, it can even be used as a personal kanban board</li>
+<li>Any other todo list tool that suits you !</li>
+</ul>
+
+
+<p>If you are not already using a todo list, start now and become more productive ! No excuse !</p>
+]]></content>
+  </entry>
+  
+</feed>

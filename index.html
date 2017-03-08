@@ -30,6 +30,7 @@
   <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
 
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
@@ -94,6 +95,178 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-03-03T06:46:00+01:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few years ago, I <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">wrote</a> about how I started to use <a href="https://www.atlassian.com/software/jira">Jira</a> as my <a href="http://www.personalkanban.com/pk/">personal Kanban</a> board <a href="https://twitter.com/work_at_murex">at work</a>. A lot of things have changed since then, which brought me to update my board and make it even more productive !</p>
+
+<h2>The context</h2>
+
+<p>During the almost 18 months since I wrote this first post, a lot of things have changed in my daily work (hopefully : I&rsquo;m not doing the same thing again and again !). Essentially, I got involved in more projects, some of which involve people from all around the company and some of which don&rsquo;t require any code to be written. For example, I&rsquo;m now engaged in our Agile Community of Practice, where I sometimes contribute content.</p>
+
+<p>Here are the consequences on my work :</p>
+
+<ul>
+<li>I have more tasks to deal with, not necessarily more work, but still more tasks</li>
+<li>I have more sources of tasks : tasks can come from any of the projects I am involved in</li>
+<li>I have more tasks depending on other people, and that are in a <code>WAITING</code> state meanwhile</li>
+</ul>
+
+
+<p>I had to adapt my personal Kanban to this new workload.</p>
+
+<h2>The changes</h2>
+
+<p>As I explained in <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">the previous description of my Jira Personal Kanban</a>, I am using a custom project and Kanban board to aggregate all my tasks from various projects, in order to see everything in a single unique place. Here are the changes I&rsquo;ve made since, so if you haven&rsquo;t yet, it might be a good idea to read <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">that previous version</a> first.</p>
+
+<h3>Quick filters</h3>
+
+<p>In his post <a href="http://paulgraham.com/makersschedule.html">Maker&rsquo;s Schedule, Manager&rsquo;s Schedule</a> Paul Graham explained the challenge of having a lot of non-programming work to do everyday for programmers. He then advises to use slots for different activities during the day, in order to keep uninterrupted chunks of time to do creative work. To apply this technique, I reserved &lsquo;Unbookable except for X&rsquo; slots in my calendar everyday.</p>
+
+<p>I had previously been using Swim-lanes to track work from different projects. This turned out not to scale very well to more projects : it made the board messy, and I kept being distracted by all these other tasks. I ditched all the Swim-lanes (not exactly, I kept one for urgent issues only). Instead of Swim-lanes for tracking projects, I now use Quick Filters. I created such filters as <code>With Project X</code> and <code>Without Project X</code>. During the day, when I want to focus on Project X, I use quick filters to only show tasks related to it.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/quick-filters.jpg" alt="Quick filters screen capture" /></p>
+
+<h3>Day markers</h3>
+
+<p>I have a daily routine of checking what&rsquo;s on my plate and deciding what I&rsquo;d like to achieve during the day (picking the right time to do this is an art in itself). In order to keep track of this, I use special day marker tasks : as <code>^^^ TODAY ^^^</code>, <code>^^^ TOMORROW ^^^</code> and <code>^^^ THIS WEEK ^^^</code>. This tasks are always in my <code>TODO</code> column, and will never be completed. I move them around to mark what I expect to finish at different time horizon. Ex : everything above <code>^^^ TODAY ^^^</code> should be finished before the end of the day.</p>
+
+<p>Again, this helps me to focus on today&rsquo;s activities, and to do just enough prioritization.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/day-markers.jpg" alt="Day marker tasks screen capture" /></p>
+
+<p>One last thing here, you&rsquo;ll have noticed the Epic for these special tasks. It&rsquo;s a way to identify them in JQL queries.</p>
+
+<h3>WAITING flag</h3>
+
+<p>Quite often, you have tasks waiting for someone else. That&rsquo;s surely not the most efficient situation, but once you leave the comfort of your focused dev team, handoffs are often the norm (at least until the lean principles spread in every part of the business). Status of waiting tasks is worth checking regularly, but very certainly not many times per day !</p>
+
+<p>Again, leaving them in my board created useless distraction. I have now taken the habit of renaming the tasks I&rsquo;m waiting for with a <code>[WAITING] ...</code> prefix. On top of that, I created 2 quick filters <code>WAITING</code> and <code>Without WAITING</code> to quickly check and then forget about waiting tasks.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/waiting-tasks.jpg" alt="Waiting tasks screen capture" /></p>
+
+<h3>Watching tasks I&rsquo;m not the assignee of</h3>
+
+<p>On some occasions, we might be two of us working on the same task, or I might want to keep an eye on a task to know if something is needed from me. As there is only a single possible assignee in Jira, I changed my global filters to also include tasks with a custom label <code>pbourgau-watch</code>. Any time I want to add a task in my board, I just add this label to it.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/pbourgau-watch.jpg" alt="Screen capture of a task description I'm not the assignee of" /></p>
+
+<h3>Getting the Lean reports back</h3>
+
+<p>In order not to have too many old tasks in my board, I used to filter out old items in the global filter. This did the job, but at the cost of invalidating the lean reports (cumulative flow and control charts). In order to get these back, I removed this constraint from the global filter, and created yet another quick filter <code>Without Old</code> which I almost always keep on.</p>
+
+<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/control-chart.jpg" alt="Control chart screen capture" /></p>
+
+<h2>Scripts</h2>
+
+<h4>Global Filter</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">project</span> <span class="k">in</span> <span class="p">(</span><span class="n">POP</span><span class="p">,</span> <span class="n">POPABTODO</span><span class="p">,</span> <span class="ss">&quot;Development Engineering Program&quot;</span><span class="p">,</span> <span class="n">COPA</span><span class="p">)</span>
+</span><span class='line'><span class="k">AND</span> <span class="k">type</span> <span class="o">!=</span> <span class="n">Epic</span>
+</span><span class='line'><span class="k">AND</span> <span class="p">(</span><span class="n">Assignee</span> <span class="o">=</span> <span class="n">pbourgau</span> <span class="k">OR</span>
+</span><span class='line'>    <span class="n">Co</span><span class="o">-</span><span class="n">Assignees</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="p">)</span> <span class="k">OR</span>
+</span><span class='line'>    <span class="n">mentors</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="p">)</span> <span class="k">OR</span>
+</span><span class='line'>    <span class="n">labels</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="o">-</span><span class="n">watch</span><span class="p">))</span>
+</span><span class='line'><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Rank</span> <span class="k">ASC</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Quick Filters</h4>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- With &quot;Project X&quot; + Day marker tasks (Epic link ...) + tasks containing &quot;BRANDING&quot;</span>
+</span><span class='line'><span class="n">project</span> <span class="o">=</span> <span class="ss">&quot;Project X&quot;</span> <span class="k">or</span> <span class="ss">&quot;Epic Link&quot;</span> <span class="o">=</span> <span class="n">POPABTODO</span><span class="o">-</span><span class="mi">410</span> <span class="k">or</span> <span class="n">summary</span> <span class="o">~</span> <span class="ss">&quot;BRANDING&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- Without &quot;Project X&quot;</span>
+</span><span class='line'><span class="n">project</span> <span class="o">!=</span> <span class="ss">&quot;Project X&quot;</span> <span class="k">and</span> <span class="n">summary</span>  <span class="o">!~</span> <span class="ss">&quot;BRANDING&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- Without Old</span>
+</span><span class='line'><span class="n">status</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span><span class="n">DONE</span><span class="p">,</span><span class="n">CLOSED</span><span class="p">)</span> <span class="k">OR</span> <span class="n">updated</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">14</span><span class="n">d</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- WAITING</span>
+</span><span class='line'><span class="n">summary</span> <span class="o">~</span> <span class="s1">&#39;WAITING&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- Without WAITING</span>
+</span><span class='line'><span class="n">summary</span> <span class="o">!~</span> <span class="s1">&#39;WAITING&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Things that did not change</h4>
+
+<p>I still use a WIP limit on the In Progress column, display the Epic in on the cards and special use custom color coding for tasks :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- Tasks with an imminent due date become red</span>
+</span><span class='line'><span class="n">duedate</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="n">d</span> <span class="k">or</span> <span class="n">priority</span> <span class="o">=</span> <span class="ss">&quot;1-Very High&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">-- Tasks with a due date are orange</span>
+</span><span class='line'><span class="n">duedate</span> <span class="k">is</span> <span class="k">not</span> <span class="n">EMPTY</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>The result</h2>
+
+<p>Overall, this is how my board looks like :</p>
+
+<p><a href="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board.jpg"><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board-small.jpg" alt="Full board screen capture" /></a></p>
+
+<p>I guess I&rsquo;m a kind of personal productivity geek &hellip; but I believe it&rsquo;s a skill of utter importance for developers, especially when they get a bit of experience and are not fed ready made tasks to do.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1287,112 +1460,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/overclocking-a-scrum-team-to-12/">Overclocking a Scrum Team to 12</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-12-21T04:57:00+01:00" pubdate data-updated="true">Dec 21<span>st</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>From <a href="https://en.wikipedia.org/wiki/Overclocking">Wikipedia</a> :</em></p>
-
-<blockquote><p>Overclocking is configuration of computer hardware components to operate faster than certified by the original manufacturer &hellip;</p></blockquote>
-
-<p>It is said that Scrum teams work best at 7 people, and that they break at about 10. The trouble is that sometimes there is just too much work for 7 people, but no enough for a full Scrum of Scrums. What if there was a simple way to hack this number up to 12 ?</p>
-
-<p><img class="center" src="/imgs/2016-12-21-overclocking-a-scrum-team-to-12/overclocking.jpg" title="An overclocked motherboard working with extra fans and cellar tape" ></p>
-
-<h2>An Idea</h2>
-
-<h3>The Surgical Team</h3>
-
-<p>In his classic <a href="https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1482298579&amp;sr=1-1&amp;keywords=the+mythical+man+month">The Mythical Man Month</a> Fred Brooks presents an idea to organize software development the way surgeons work. The master performs the surgery while the rest of his team (intern or junior surgeon and the nurses) are there to support him. Fred Brook imagined an organization where master developers could be the only ones with access to the production code, while other more junior developers would have the task to provide them with tools and technical libraries.</p>
-
-<p>I admit that this idea sounds out-of-fashion in contrast with modern agile teams of generalists &hellip; Still &hellip;</p>
-
-<h3>Tools</h3>
-
-<p>At work, we are working on a pretty technical and complex product which requires some time getting into both the code and the domain. We took a few interns during the past years, and a bit like Fred Brooks, we came to the conclusion that internships yield more results when focused on building supporting tools rather than joining the team and working on production code.</p>
-
-<p>We&rsquo;ve also been doing <a href="http://philippe.bourgau.net/how-we-introduced-efficient-agile-retrospectives/">retrospectives</a> for 3 years now, we&rsquo;ve stolen a lot of best practices from the industry and the team is working a lot better than it used to. The pending side of this is that nowadays, the opportunities for improvement that we discover are a lot more specific, and they often need us to take some time to build new tools to support our work.</p>
-
-<h3>The Agile Surgical Team</h3>
-
-<p>Agile method such as Scrum or XP are all about creating real teams instead of a collection of individual. That means that if we wanted to adopt the surgical team idea, we could use teams instead of individuals : a team of experts, and a tooling team of apprentice developers !</p>
-
-<p>Why not, there&rsquo;s not nothing really new here, but the challenge is to run such a tooling team efficiently !</p>
-
-<ul>
-<li>3 people or less : there&rsquo;s <a href="http://pm.stackexchange.com/a/10075">evidence in the industry</a> that micro teams can self organize in an ad-hoc manner</li>
-<li>Mandate ScrumBan, Continuous Delivery and Devops : on site customer makes this possible, it should reduce project management overhead to almost nothing, and enforce quality</li>
-<li>A sandbox for junior developers : there&rsquo;s no risk of messing up production code here, the domain (tools for software developers) is straightforward and the fast feedback provides a great environment for learning</li>
-</ul>
-
-
-<p>Obviously, for this to work, you&rsquo;ll also need to have enough tooling work to do for a 3 people team. That&rsquo;s usually the case, the CI alone can take quite some time (see Jez Humble&rsquo;s talk <a href="https://www.youtube.com/watch?v=2zYxWEZ0gYg">Why Agile Doesn&rsquo;t Work</a>) and any team will have its own custom tools to do. For example, in our team, we built our own benchmark framework and we could benefit a lot from <a href="http://www.saros-project.org/">Saros</a> on IntelliJ.</p>
-
-<p><a href="https://www.youtube.com/watch?v=2zYxWEZ0gYg"><img class="center" src="/imgs/2016-12-21-overclocking-a-scrum-team-to-12/why-agile-doesnt-work.jpg" title="The slide in Jez Humble's Why Agile Doesn't Work about the time taken for CI" ></a></p>
-
-<h2>Not quite there yet</h2>
-
-<p>I promised to scale up to 12. Let&rsquo;s do the maths :</p>
-
-<ul>
-<li>3 people in the tooling team</li>
-<li>8 people in the product team if we push Scrum a bit</li>
-</ul>
-
-
-<p>That&rsquo;s only 11, 1 is missing. This one is more specific to each team&rsquo;s context.</p>
-
-<p>As I said earlier, the product we are building is pretty technical and complex. Sometimes, we simply don&rsquo;t know how we are going to do something. We need to try different ways before finding out the good one. The typical agile way of doing that is by conducting time-boxed <a href="http://agiledictionary.com/209/spike/">spikes</a>. Spikes are fine for code and design related issues but way too short to deal with hard R&amp;D problems. These need a lot of uninterrupted time for research and experiments, so it&rsquo;s not really possible to split them in backlog stories that any one can work on either &hellip;</p>
-
-<h3>The R&amp;D Role</h3>
-
-<p>Here is what you want : some uninterrupted time to learn and experiment different ways to do something difficult.</p>
-
-<p>Here is what you don&rsquo;t want :</p>
-
-<ul>
-<li>specialists in the team</li>
-<li>people out of sync with the daily production constraints</li>
-<li>a never ending &lsquo;research&rsquo; topic</li>
-</ul>
-
-
-<p>Here is a simple solution in the context I describe : add someone in the product team, and do some 2 month round robin on hard subjects. This should leave plenty of time to study something different, but not so much time that one looses connection with the rest of the team. Plus it brings a bit of diversity in every one&rsquo;s daily work. One issue I can think of is that working on isolation might leave someone on a bad track, regularly presenting what was done to the rest of the team might alleviate this concern.</p>
-
-<h2>A final word</h2>
-
-<p>Obviously, this has a smell of specialization, we&rsquo;re bending Scrum principles a bit. So take it for what it is : just like overclocking, it&rsquo;s a hack to get a bit of extra juice before investing in something a lot more expensive (<a href="https://www.agilealliance.org/glossary/scrum-of-scrums/">Scrum of Scrums</a>, <a href="http://less.works/">Less</a> or whatever).</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1470,6 +1537,10 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-subscribe-to-an-actioncable-channel-on-a-specific-page-with-custom-data/">How to subscribe to an ActionCable channel on a specific page with custom data ?</a>
       </li>
     
@@ -1483,10 +1554,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
     
       <li class="post">
         <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">How I fixed &#8216;devicemapper&#8217; error when deploying my Docker app</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite</a>
       </li>
     
   </ul>

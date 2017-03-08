@@ -30,6 +30,7 @@
   <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
 <link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
 
 <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
@@ -94,6 +95,94 @@
       <div id="content">
 	<div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/windows-licker-like-with-c/">Windows Licker Like With C#</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-07T00:00:00+01:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a>&nbsp;they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a>&nbsp;to pilot a gui running in&nbsp;test thread. Next time I started a new project, I&nbsp;wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
+
+
+<p>Here is the user test code I wanted to be able to write (inside a <a href="http://www.specflow.org">SpecFlow</a> step) :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="na">[Given(@&quot;TheUserEntersHisEmail&quot;&quot;(.*)&quot;&quot;&quot;)]</span>
+</span><span class='line'><span class="k">public</span> <span class="k">void</span> <span class="nf">GivenTheUserEntersHisEmail</span><span class="p">(</span><span class="kt">string</span> <span class="n">email</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">User</span><span class="p">.</span><span class="n">Enters</span><span class="p">(</span><span class="n">ScenarioContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">UserForm</span><span class="p">().</span><span class="n">EmailTextBox</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>Here UserForm is an extension method I added to the ScenarioContext that is responsible for returning the current user form.</p>
+
+
+<p>As you have noticed, the various gui components must be&nbsp;exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
+
+
+<p>Eventually, I had to write the User class, and it turned out to be really simple :</p>
+
+
+<p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">static</span> <span class="k">class</span> <span class="nc">User</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="k">internal</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Enters</span><span class="p">(</span><span class="n">TextBox</span> <span class="n">textBox</span><span class="p">,</span> <span class="kt">string</span> <span class="n">text</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="n">textBox</span><span class="p">.</span><span class="n">Invoke</span><span class="p">(</span><span class="k">new</span> <span class="n">MethodInvoker</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="n">textBox</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">text</span><span class="p">));</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</p>
+
+
+<p>That&#8217;s it, all that was needed was to ask the thread of the control to update the text !</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -949,53 +1038,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/using-stock-ruby-with-rbenv/">Using Stock Ruby With Rbenv</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-01-26T00:00:00+01:00" pubdate data-updated="true">Jan 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>While migrating to ruby 1.9, I started using rbenv. I was wondering how it would handle my stock ubuntu ruby 1.8. It works out of the box with the rbenv &#8220;system&#8221; version. I just have to run</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rbenv global system
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<div>to come back to my stock ruby. Great !</div>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -1075,6 +1117,10 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-subscribe-to-an-actioncable-channel-on-a-specific-page-with-custom-data/">How to subscribe to an ActionCable channel on a specific page with custom data ?</a>
       </li>
     
@@ -1088,10 +1134,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">How I fixed &#8216;devicemapper&#8217; error when deploying my Docker app</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite</a>
       </li>
     
   </ul>
