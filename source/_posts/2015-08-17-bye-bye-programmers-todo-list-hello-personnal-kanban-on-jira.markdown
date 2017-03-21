@@ -6,7 +6,6 @@ comments: true
 categories:
  - programming
  - kanban
- - selforganizing
  - jira
  - personal-productivity
 keywords: "Personnal Kanban, Jira, Kanban, Work In Progress Limit, TODO-List, Organization, Self Organization"

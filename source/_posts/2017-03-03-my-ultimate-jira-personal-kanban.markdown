@@ -5,7 +5,6 @@ date: 2017-03-03 06:46
 comments: true
 categories:
  - kanban
- - selforganizing
  - jira
  - personal-productivity
 keywords: "Personal Kanban, Jira, Kanban, Work In Progress Limit, TODO-List, Organization, Self Organization, Personal Productivity"
