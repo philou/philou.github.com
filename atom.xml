@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-03-08T06:40:17+01:00</updated>
+  <updated>2017-03-21T18:25:13+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,11 +14,242 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Almost 15 years of using Design By Contract]]></title>
+    <link href="http://philippe.bourgau.net/almost-15-years-of-using-design-by-contract/"/>
+    <updated>2017-03-14T18:57:00+01:00</updated>
+    <id>http://philippe.bourgau.net/almost-15-years-of-using-design-by-contract</id>
+    <category term="contracts" /><category term="ddd" /><category term="functional-programming" /><category term="programming" />
+    <content type="html"><![CDATA[<p>I first read about Design By Contract in 2002, in <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer">Object Oriented Software Construction 2</a>. As soon as I read it, I was convinced, today, I still believe it&rsquo;s a great and fundamental technique. That&rsquo;s why, I almost never write a contract ! Let me explain.</p>
+
+<h2>Phase 1 : DbC ignorance</h2>
+
+<p>I started to code professionally in 2001. This was a time where design and quality software meant <a href="https://en.wikipedia.org/wiki/IBM_Rational_Rose_XDE">Rational Rose</a> (a UML design and code generation tool) while I, at the contrary, was just <a href="https://en.wikipedia.org/wiki/Cowboy_coding">Cow Boy Coding</a> my way out of any problem I was given.</p>
+
+<p>I wasn&rsquo;t really doing Object Oriented programming, but rather imperative programming, using objects as structs, getters, setters, and classes as a way to organize the code &hellip; In this context, my design skills were improving slowly, and I was at the risk of falling in love with a local-optimum practice that would prevent me from growing further.</p>
+
+<p>That&rsquo;s why I started to read books such as the <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1490074343&amp;sr=1-1&amp;keywords=design+patterns">Gang Of Four Design Patterns</a>, or <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer">OOSC2</a>.</p>
+
+<h2>Phase 2 : DbC enlightenment</h2>
+
+<p><a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer"><img src="../imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg" alt="The cover of the Object Oriented Software Construction 2" /></a></p>
+
+<p>Reading this book was a profound experience to me. My programming changed fundamentally before and after reading it. The chapter about contracts, taught me what objects are.</p>
+
+<p>One the one hand, Pre and Post conditions can be used in any kind of programming and are just a kind of C <code>assert</code> macro on steroids. Class invariant, on the other hand, is a completely different kind of beast. The invariant of a class is a predicate about an instance of this class that should always be true. For example : field X should never be null, or the value of field N should always be greater than 0.</p>
+
+<p>In some way, grasping the concept of invariant is close to understanding what a class is.</p>
+
+<h2>Phase 3 : DbC everywhere</h2>
+
+<p>That&rsquo;s when I started to write contracts everywhere. I was writing C++ code at the time, and my code must have looked something like that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">MonkeyWrench</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">_isStarted</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;*</span> <span class="n">_movingParts</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">protected</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">invariant</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="n">_isStarted</span> <span class="o">==</span> <span class="p">(</span><span class="n">_movingParts</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">));</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">MonkeyWrench</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">_isStarted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">_movingParts</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isStarted</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">start</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">_movingParts</span> <span class="o">=</span> <span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;&amp;</span> <span class="n">movingParts</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_movingParts</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I definitely over-abused contracts, it made the code unreadable. Plus sometimes, I was using excessively long and intricate assertions which made the problem even worse.</p>
+
+<p>Hopefully, overusing contracts also taught me a lot in a short time. Here are some of the lessons I learned :</p>
+
+<ul>
+<li>DbC is not very well supported, it&rsquo;s never something built in the language, and edge cases like inheriting an invariant or conditions can become messy pretty fast.</li>
+<li>Checking for intricate contracts at every method call can be pretty slow.</li>
+<li>Checking everything beforehand is not always the simplest thing to do, at times, throwing an exception on failure just does a better job.</li>
+<li>It happened that removing the contract made the code do just what I wanted. It&rsquo;s easy to write unnecessary strict contracts.</li>
+<li><a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">Command Query Separation Principle</a> is great ! Having &lsquo;const&rsquo; or &lsquo;pure&rsquo; queries that don&rsquo;t change anything make writing contracts a lot simpler.</li>
+<li>Preconditions on queries are painful. When possible, returning a sensible &lsquo;null value&rsquo; works better, nothing is worse than getting an error when trying to call a const query from the interactive debugger.</li>
+<li>Finally, the more immutable a class is, the simpler the invariant. With a lot of mutable fields, you might resort to have the invariant check that fields are synchronized as expected. If fields are immutable, this simply vanishes.</li>
+</ul>
+
+
+<h2>Phase 4 : DbC hangover</h2>
+
+<p>At the same time I discovered all these small subtleties about contracts, I fell upon Martin Fowler&rsquo;s book <a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1490074424&amp;sr=1-1&amp;keywords=refactoring+improving+the+design+of+existing+code">Refactoring, improving the design of existing code</a> and started to use Unit Tests extensively. This lead me to the following conclusions :</p>
+
+<ul>
+<li>Tests are more efficient at producing quality software</li>
+<li>Contracts can be an hindrance when trying to do baby steps refactorings as described in Martin Fowler&rsquo;s book</li>
+</ul>
+
+
+<p>On top of that, as DbC is not natively supported by languages, no documentation is generated, meaning that most of the time, the callers still have to look into the code. As a result, I was using contracts less and less often.</p>
+
+<h2>Phase 5 : DbC Zen</h2>
+
+<p>Looking back, I might not be writing a lot of <code>asserts</code> in my code, but I am still thinking in terms of contracts all the time. In fact, there are a ton of ways to use DbC without writing assertions :</p>
+
+<ul>
+<li>Use as much immutability as possible. An immutable class does not need to check its invariant all the time, just throwing from the constructor if arguments are not valid is enough.</li>
+<li>Use conventions as much as possible, for example, constructor arguments should be set for all the life of the object (cf <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1490074450&amp;sr=1-1&amp;keywords=growing+object+oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a> which describes the different ways to inject something in an object)</li>
+<li>Looking back at my DbC assertions, most relate to null values. Again conventions work better ! At work, we simply forbid passing null values around. If something can be null, it means it&rsquo;s optional, Java has an <code>Optional&lt;T&gt;</code> class for just that (I&rsquo;m pretty sure it is possible to do something even better with C++ templates). In this case, if the contract is broken, NullReferenceException will eventually be our assertion.</li>
+<li>Replace as many pre &amp; post conditions with invariants on the callee, the arguments or the return objects as possible. It makes sense as it&rsquo;s just making sure we are using &lsquo;valid&rsquo; objects everywhere. Again, if these objects are immutable, it makes the whole thing even simpler !</li>
+<li>To take further benefit of the invariant of immutable objects, introduce new types. For example, instead of changing an object&rsquo;s state through a command with associated involved contracts, split the class in 2 and make the method a query returning an immutable object, potentially making the initial class immutable as well. Remember, immutable classes mean almost no assertions !</li>
+<li>Use your language. Ex, instead of asserting that 2 lists remain of the same length, refactor to a list of pairs ! (I know that&rsquo;s an obvious example, but you get the point)</li>
+<li>If you are using a statically typed language, use types ! For example, I remember at one project I worked on, we had an bug involving a duration : somewhere in the code milliseconds got mistaken for seconds &hellip; We fixed that by replacing the <code>integer</code> by <code>TimeSpan</code> all over the place. Again, that&rsquo;s so obvious !</li>
+<li>Eventually, when all else fails, or when it&rsquo;s just too much overhead, use the simple asserts provided by your language or common libraries.</li>
+</ul>
+
+
+<p>To come back at the previous code section, this how it could be written without assertions :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">MovingMonkeyWrench</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;</span> <span class="n">_parts</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">MovingMonkeyWrench</span><span class="p">()</span> <span class="o">:</span> <span class="n">_parts</span><span class="p">(...)</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;&amp;</span> <span class="n">parts</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">_parts</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">MonkeyWrench</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">MovingMonkeyWrench</span> <span class="n">start</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">MovingMonkeyWrench</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Details are omitted, but it&rsquo;s easy to see how shorter the code is.</p>
+
+<h2>Conclusion</h2>
+
+<p>When applying all the techniques above, you&rsquo;ll see that cases for explicit assertions are rare. Less assertions also workarounds the issues coming from the poor support for DbC : no documentation and intricate cases.</p>
+
+<p>In the end, assertions made my code more &lsquo;functional&rsquo;. I&rsquo;m not alone to have done the same journey, and if you are interested you should read Eric Evans&#8217; <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1490082811&amp;sr=1-1&amp;keywords=domain+driven+design">DDD</a> book where he presents things like immutable value objects and specification objects.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[My Ultimate Jira Personal Kanban]]></title>
     <link href="http://philippe.bourgau.net/my-ultimate-jira-personal-kanban/"/>
     <updated>2017-03-03T06:46:00+01:00</updated>
     <id>http://philippe.bourgau.net/my-ultimate-jira-personal-kanban</id>
-    <category term="jira" /><category term="kanban" /><category term="personal-productivity" /><category term="selforganizing" />
+    <category term="jira" /><category term="kanban" /><category term="personal-productivity" />
     <content type="html"><![CDATA[<p>A few years ago, I <a href="http://philippe.bourgau.net/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">wrote</a> about how I started to use <a href="https://www.atlassian.com/software/jira">Jira</a> as my <a href="http://www.personalkanban.com/pk/">personal Kanban</a> board <a href="https://twitter.com/work_at_murex">at work</a>. A lot of things have changed since then, which brought me to update my board and make it even more productive !</p>
 
 <h2>The context</h2>
@@ -1815,26 +2046,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 <p><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
 
 <p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How NOT to use mocks, my talk at Paris.rb]]></title>
-    <link href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/"/>
-    <updated>2016-09-13T04:03:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb</id>
-    <category term="mocking" /><category term="ruby" /><category term="testing" />
-    <content type="html"><![CDATA[<p>As I already <a href="http://philippe.bourgau.net/blog/categories/mocking/">wrote about</a>, mocks can be trecherous &hellip; I gave a talk about how to avoid them last tuesday at <a href="http://www.meetup.com/fr-FR/parisrb/">Paris.rb meetup</a>. Here are the <a href="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing">slides</a>.</p>
-
-<p>It talks about testing, mocking, but also <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design</a> and <a href="https://wincent.com/blog/proxies-with-rr">test proxies à la RR</a> (but for rspec).</p>
-
-<iframe src="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="790" height="470" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-
-
-
-<p><p/>
-Check the speaker&rsquo;s comments for all the details.</p>
 ]]></content>
   </entry>
   

@@ -101,6 +101,52 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">How NOT to Use Mocks, My Talk at Paris.rb</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-09-13T04:03:00+02:00" pubdate data-updated="true">Sep 13<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I already <a href="/blog/categories/mocking/">wrote about</a>, mocks can be trecherous &hellip; I gave a talk about how to avoid them last tuesday at <a href="http://www.meetup.com/fr-FR/parisrb/">Paris.rb meetup</a>. Here are the <a href="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing">slides</a>.</p>
+
+<p>It talks about testing, mocking, but also <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design</a> and <a href="https://wincent.com/blog/proxies-with-rr">test proxies à la RR</a> (but for rspec).</p>
+
+<iframe src="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="790" height="470" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+
+
+<p><p/>
+Check the speaker&rsquo;s comments for all the details.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-use-hackernews-and-reddit-for-blogging/">How to Use Hackernews and Reddit for Blogging</a></h1>
     
     
@@ -1385,122 +1431,6 @@ wavelength as the people [at Microsoft].</p></blockquote>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Docker Compose Trick : How to Have an Overridable Environment Variable in Development Mode ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-07-04T03:55:00+02:00" pubdate data-updated="true">Jul 4<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have recently been playing with <a href="https://www.docker.com/">Docker</a> and <a href="https://docs.docker.com/compose/">Docker Compose</a> while starting <a href="https://github.com/philou/planning-poker">my new side project</a>. I&rsquo;ve fallen into a situation where my production container uses a value for an environment variable, but while developing, I&rsquo;ll need both a different default and the ability to override this value.</p>
-
-<p>I&rsquo;m using <a href="http://rubyonrails.org/">Rails</a> and found various references about how to deploy Rails app using Docker, but in the end, I decided to use <a href="http://www.heroku.com">Heroku</a> which handles a lot of ops for me. Rails uses the RAILS_ENV environment variable to know if it&rsquo;s going to run in development, test or production mode. The <a href="https://hub.docker.com/r/heroku/ruby/">heroku/ruby</a> image sets <code>RAILS_ENV=production</code>, but we usually want to use <code>RAILS_ENV=development</code> locally. I could have overridden RAILS_ENV in a docker-compose.override.yml file, but that would prevent me from running my app in production locally.</p>
-
-<h2>The trick</h2>
-
-<p>I eventually fixed my issue with combination of 2 files.</p>
-
-<h3>docker-compose.override.yml</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
-</span><span class='line'><span class="nn">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>.env</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>The logs</h3>
-
-<p>My app starts in development mode by default :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ </span>docker-compose up web
-</span><span class='line'>Starting planningpoker_herokuPostgresql_1
-</span><span class='line'>Recreating planningpoker_web_1
-</span><span class='line'>Attaching to planningpoker_web_1
-</span><span class='line'>web_1               | Puma starting in single mode...
-</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
-</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
-</span><span class='line'>web_1               | * Environment: development
-</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
-</span><span class='line'>web_1               | Use Ctrl-C to stop
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>But I can still override RAILS_ENV to test for example :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>philou@philou-UX31E:~/code/planning-poker<span class="nv">$ RAILS_ENV</span><span class="o">=</span><span class="nb">test </span>docker-compose up web
-</span><span class='line'>planningpoker_herokuPostgresql_1 is up-to-date
-</span><span class='line'>Recreating planningpoker_web_1
-</span><span class='line'>Attaching to planningpoker_web_1
-</span><span class='line'>web_1               | Puma starting in single mode...
-</span><span class='line'>web_1               | * Version 3.4.0 <span class="o">(</span>ruby 2.2.3-p173<span class="o">)</span>, codename: Owl Bowl Brawl
-</span><span class='line'>web_1               | * Min threads: 5, max threads: 5
-</span><span class='line'>web_1               | * Environment: <span class="nb">test</span>
-</span><span class='line'>web_1               | * Listening on tcp://0.0.0.0:8080
-</span><span class='line'>web_1               | Use Ctrl-C to stop
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1580,6 +1510,10 @@ wavelength as the people [at Microsoft].</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/almost-15-years-of-using-design-by-contract/">Almost 15 years of using Design By Contract</a>
+      </li>
+    
+      <li class="post">
         <a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a>
       </li>
     
@@ -1593,10 +1527,6 @@ wavelength as the people [at Microsoft].</p></blockquote>
     
       <li class="post">
         <a href="/developer-are-you-losing-your-rat-race/">Developer ! Are you losing your rat race ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">How I fixed &#8216;devicemapper&#8217; error when deploying my Docker app</a>
       </li>
     
   </ul>
