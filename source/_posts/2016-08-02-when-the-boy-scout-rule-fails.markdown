@@ -10,7 +10,7 @@ categories:
 keywords: "Technical debt, Boy Scout Rule, Software, Refactoring, Programming"
 description: "A discussion about the boy scout rule and what is needed to deal with large scale refactorings"
 ---
-{% img center /imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg An illustration of the boy scout rule %}
+![An illustration of the boy scout rule](../imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg)<div class="image-credits">[Original Tweet](http://bit.ly/2osQoyg) by Marteen van Leeuwen</div>
 
 Here goes the [boy scout rule](http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule) :
 
