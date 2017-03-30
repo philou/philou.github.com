@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-03-30T06:26:08+02:00</updated>
+  <updated>2017-03-30T06:59:38+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to mock your browser's timezone with Jasmine and MomentJS]]></title>
+    <link href="http://philippe.bourgau.net/how-to-mock-your-browsers-timezone-with-jasmine-and-momentjs/"/>
+    <updated>2017-03-30T06:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-to-mock-your-browsers-timezone-with-jasmine-and-momentjs</id>
+    <content type="html"><![CDATA[<p>Last week, I&rsquo;ve been working at adding a distributed countdown to my <a href="https://github.com/philou/planning-poker">Online Planning Poker App</a>. As our team works from Paris and Beirut, I wanted to unit test that it would work well through different timezones. I found a surprisingly simple solution.</p>
+
+<h2>What Google told me</h2>
+
+<p>I first searched Google to see how to do it. I found 2 answers that looked promising :</p>
+
+<ul>
+<li><a href="https://balanceiskey.github.io/2016/01/27/mocking-timezones.html">You can use moment-timezone to mock timezones in Jasmine</a> which I unfortunately did not manage to use</li>
+<li><a href="http://stackoverflow.com/questions/12220717/how-to-mock-the-browsers-timezone">How to mock the browser&rsquo;s timezone?</a> which seemed a bit of hack</li>
+</ul>
+
+
+<p>Known results for such a simple situation were disappointing !</p>
+
+<h2>What I ended up with</h2>
+
+<p>After a good deal of dabbling around, I eventually found a pretty simple solution using <a href="https://jasmine.github.io/">Jasmine</a> and <a href="https://momentjs.com/timezone/">Moment Timezone</a> :</p>
+
+<p><code>javascript
+jasmine.clock().install();
+...
+jasmine.clock().mockDate(moment.tz("2017-03-23 10:00:00", "Europe/Paris").toDate())
+</code></p>
+
+<p>Obviously, the drawback is that it implies setting both the timezone <em>and the time</em>. This should be ok in most of unit tests though, but might be an issue in some cases.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite]]></title>
@@ -269,92 +302,6 @@ end
 <h2>Last word</h2>
 
 <p>The code is on <a href="https://github.com/philou/rspecproxies">github</a>, v1.0.0 is on <a href="https://rubygems.org/gems/rspecproxies/versions/0.1.0">rubygems</a>, it requires Ruby v2.2.5 and RSpec v3.5, the license is MIT, help in any form are welcome !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How We Started Exploratory Testing]]></title>
-    <link href="http://philippe.bourgau.net/how-we-started-exploratory-testing/"/>
-    <updated>2016-01-08T18:18:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-we-started-exploratory-testing</id>
-    <content type="html"><![CDATA[<p>Manual testing is important. Here is how we got to love exploratory testing.</p>
-
-<p><img class="center" src="/imgs/2016-01-08-how-we-started-exploratory-testing/explore.jpg" title="A map and a telescope for exploration" ></p>
-
-<h2>Initial situation</h2>
-
-<p><a href="http://www.murex.com">At work</a> we are building a risk computation engine for the financial markets. It uses a DSL to describe the exact computations to estimate the risk on the data it knows. This in itself is already complex enough to justify the heavy investment in automated testing we did.</p>
-
-<p>With 90% of automated test coverage, Cucumber scenarios to verify quality, everything should just work &hellip; shouldn&rsquo;t it ?</p>
-
-<h2>First try at exploratory testing</h2>
-
-<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1452279644&amp;sr=8-1&amp;keywords=the+art+of+agile+development"><img class="center" src="/imgs/2016-01-08-how-we-started-exploratory-testing/art-of-agile-development.jpg" title="The cover of the Art Of Agile Development" ></a></p>
-
-<p>In <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1452279644&amp;sr=8-1&amp;keywords=the+art+of+agile+development">The art of agile development</a>, James Shore details the practice of exploratory testing as a great way of both :</p>
-
-<ul>
-<li>improving the quality of the product by finding bugs</li>
-<li>improving the process</li>
-</ul>
-
-
-<p>That&rsquo;s why we gave it a try. Here is the recipe for an exploratory session :</p>
-
-<ol>
-<li>Book 1 hour for the full team to do exploratory testing</li>
-<li>Prepare a downloadable zip with all the material required to run and test your software</li>
-<li>Ask everyone to pick a particular aspect of the system to test during this session</li>
-<li>Record bugs when you find one</li>
-<li>Spend 30 minutes just after the session to filter duplicate bugs and make sure they are well described</li>
-</ol>
-
-
-<p>Obviously, we also added our special sauce</p>
-
-<ol>
-<li>We were to do exploratory testing in pairs, as we do programming, to find more bugs</li>
-<li>We gamified it by granting a price to the pair that finds the most bugs. Do you remember how I brought <a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/">fruits for sale in the office</a> ? It turns out we are slowly earning money with the fruits &hellip; enough for the price to be 5 fruits each for the wining pair !</li>
-</ol>
-
-
-<p>This transformed developers into ferocious testers ! I guarantee that with such incentives you&rsquo;ll find bugs &hellip; as we did.</p>
-
-<p><a href="/how-to-setup-a-weekly-fruit-basket-in-no-time/"><img class="center" src="/imgs/2016-01-08-how-we-started-exploratory-testing/fruits-basket.jpg" title="Our weekly fruit basket at work" ></a></p>
-
-<h2>Doing it systematically</h2>
-
-<p>We took some time to fix all these bugs during a few sprints. And did another exploratory testing session a few months after &hellip;</p>
-
-<p>As we were still finding bugs in the second session, we decided to make them part of the every sprint. As we got better at testing, a lot of bugs started to get uncovered ! So much that we had to change something.</p>
-
-<h2>Improving our process</h2>
-
-<p>We meet in retrospective and here is what we decided :</p>
-
-<ol>
-<li>Fix all bugs before working on any other story (obviously, automated tests are added in the process)</li>
-<li>Classify what exactly is a bug. For example, for us, a bug is something that used to work or silently returns bad results or corrupts the data</li>
-<li>Add exploratory testing by another pair to our definition of done</li>
-</ol>
-
-
-<p>The number of bugs we find during exploratory testing sessions is starting to decrease. We hope that we&rsquo;ll soon be able to do exploratory testing on the fly, as part of our daily work and to completely remove the specific sessions.</p>
-
-<h2>Benefits</h2>
-
-<p>Exploratory testing brought us a lot.</p>
-
-<ul>
-<li>Obviously, the product is a lot more solid</li>
-<li>We are surely saving time that would have been lost if the bugs had been uncovered by the users</li>
-<li>Fixing the bugs forced us to fix some technical debt : bugs often came from areas of the code that we were not so proud or confident of</li>
-</ul>
-
-
-<p>Exploratory testing is a nobrainer. All teams should do it.</p>
-
-<p>So, in the end, as in the old days, we are back to regular manual testing &hellip; but only for exploration.</p>
 ]]></content>
   </entry>
   
