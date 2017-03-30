@@ -1163,8 +1163,8 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># In order to keep the same RAILS_ENV for rspec and cucumber,</span>
-</span><span class='line'><span class="c1"># patch the connection to use sqlite in memory when running rspec</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># In order to keep the same RAILS_ENV for rspec and cucumber, and to make rspec</span>
+</span><span class='line'><span class="c1"># faster, patch the connection to use sqlite in memory when running rspec</span>
 </span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
 </span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Schema</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kp">false</span>
 </span><span class='line'><span class="nb">load</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="s2">/db/schema.rb&quot;</span>
@@ -1172,6 +1172,29 @@
 
 
 <p>That&rsquo;s it ! Run your specs &hellip; not bad for a 5 minutes investment !</p>
+
+<h4>Rails 5.1 (2017-03-29 Edit)</h4>
+
+<p>My fresh hack started to fail on Rails 5.1 ! If <code>schema.rb</code> is generated with the Postgres adapter, it is now incompatible with this injected Sqlite adapter. Here is a patch that removes the glitches :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># In order to keep the same RAILS_ENV for rspec and cucumber, and to make rspec</span>
+</span><span class='line'><span class="c1"># faster, patch the connection to use sqlite in memory when running rspec</span>
+</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Schema</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'><span class="c1"># load db agnostic schema by default. Needed to remove the &quot;, id: :serial&quot; from</span>
+</span><span class='line'><span class="c1"># the table definitions to make it load on sqlite</span>
+</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="sb">`cat </span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="sb">/db/schema.rb | sed &#39;s/,[^:]*: :serial\//g&#39;`</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I admit this is getting a bit crappy, and I don&rsquo;t know how long it is going to work &hellip;</p>
 
 <h2>One more thing &hellip;</h2>
 

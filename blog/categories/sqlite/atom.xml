@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sqlite | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/sqlite/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-03-21T18:25:13+01:00</updated>
+  <updated>2017-03-30T06:26:08+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -62,9 +62,9 @@ test:
 
 <p>``` ruby</p>
 
-<h1>In order to keep the same RAILS_ENV for rspec and cucumber,</h1>
+<h1>In order to keep the same RAILS_ENV for rspec and cucumber, and to make rspec</h1>
 
-<h1>patch the connection to use sqlite in memory when running rspec</h1>
+<h1>faster, patch the connection to use sqlite in memory when running rspec</h1>
 
 <p>ActiveRecord::Base.establish_connection(adapter: &lsquo;sqlite3&rsquo;, database: &lsquo;:memory:&rsquo;)
 ActiveRecord::Schema.verbose = false
@@ -72,6 +72,28 @@ load &ldquo;#{Rails.root.to_s}/db/schema.rb&rdquo;
 ```</p>
 
 <p>That&rsquo;s it ! Run your specs &hellip; not bad for a 5 minutes investment !</p>
+
+<h4>Rails 5.1 (2017-03-29 Edit)</h4>
+
+<p>My fresh hack started to fail on Rails 5.1 ! If <code>schema.rb</code> is generated with the Postgres adapter, it is now incompatible with this injected Sqlite adapter. Here is a patch that removes the glitches :</p>
+
+<p>```ruby</p>
+
+<h1>In order to keep the same RAILS_ENV for rspec and cucumber, and to make rspec</h1>
+
+<h1>faster, patch the connection to use sqlite in memory when running rspec</h1>
+
+<p>ActiveRecord::Base.establish_connection(adapter: &lsquo;sqlite3&rsquo;, database: &lsquo;:memory:&rsquo;)
+ActiveRecord::Schema.verbose = false</p>
+
+<h1>load db agnostic schema by default. Needed to remove the &ldquo;, id: :serial&rdquo; from</h1>
+
+<h1>the table definitions to make it load on sqlite</h1>
+
+<p>eval(<code>cat #{Rails.root.to_s}/db/schema.rb | sed 's/,[^:]*: :serial\//g'</code>)
+```</p>
+
+<p>I admit this is getting a bit crappy, and I don&rsquo;t know how long it is going to work &hellip;</p>
 
 <h2>One more thing &hellip;</h2>
 
