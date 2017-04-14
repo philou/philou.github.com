@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-03-30T06:59:38+02:00</updated>
+  <updated>2017-04-14T06:42:07+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A seamless way to keep track of technical debt in your source code]]></title>
+    <link href="http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/"/>
+    <updated>2017-04-12T08:48:00+02:00</updated>
+    <id>http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code</id>
+    <content type="html"><![CDATA[<p>I eventually stumbled upon a way to keep track of technical debt in source code that is both straightforward and already built-in most tools : simple <code>TODO</code> comments !</p>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/todo-comment.jpg" alt="Photo of a screen displaying source code with #TODO comments" /></p>
+
+<h2>How it happened ?</h2>
+
+<p>Some time ago, we tried to add <a href="/a-plan-for-technical-debt-lean-software-development-part-7/"><code>@TechnicalDebt</code></a> annotations in our source code. Unfortunately, after a few month, we came to the logical conclusion that it was too complex to be effective :</p>
+
+<ul>
+<li>It involved too much ceremony, which frightened people</li>
+<li>It made people uneasy to change anything around the annotation instead of sending a call to action</li>
+<li>As a result, it was always out of date</li>
+</ul>
+
+
+<p>After a bit of discussion with my colleagues, we decided to replace all these annotations with simple <code>TODO</code> comments.</p>
+
+<p>When the refactoring to do seems fairly obvious (but also premature) we&rsquo;ll use a straightforward <code>//TODO (example) introduce a factory</code> message. Next time a pairs gets to work on this part of the code, they get the silent opinion of their peers to help them decide what to do about this piece of the code. Other times, the code might be smelly, yet without us knowing what to do about it yet, in this case, we agreed to use <code>//TODO SMELL (example) responsibilities are not clear in this class</code> which is still a <code>TODO</code> comment, but not a clear call to action.</p>
+
+<p>When I started my <a href="https://github.com/philou/planning-poker">current side project</a>, I naturally started to use them. They display nicely in <a href="https://codeclimate.com/github/philou/planning-poker/issues">CodeClimate</a>.</p>
+
+<h3>The pros</h3>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/codeclimate.jpg" alt="Screenshot of the CodeClimate issue dashboard displaying TODO comments" /></p>
+
+<p>The great thing about <code>TODO</code> comments is that, as a very old programming trick, they are already supported out of the box by most tools <a href="https://www.jetbrains.com/">IntelliJ</a>, <a href="https://www.sonarqube.org/">SonarQube</a>, <a href="http://rubyonrails.org/">Rails</a>, <a href="https://codeclimate.com">CodeClimate</a> and I guess many others. Only one day after I refactored to <code>TODO</code> comments, a team mate fixed one that had appeared in his IDE&rsquo;s TODO tab !</p>
+
+<h3>The cons</h3>
+
+<p>Some tools, IDEs in particular, tend to assume that you should fix all your <code>TODOs</code> before you commit anything. That&rsquo;s not exactly how we are using them to track lasting technical debt. So that&rsquo;s one thing you need to keep in mind.</p>
+
+<p>Tools like Sonar on the other hand, assign a fixed remediation cost to any <code>TODO</code> you have in the code, which is usually not the case at all !</p>
+
+<h2>How to set it up in your project</h2>
+
+<p>As you might guess, this is pretty easy. Just start adding <code>TODO</code> comments in your code &hellip;</p>
+
+<h3>Teamwise</h3>
+
+<p>It is worth first validating the practice with your colleagues though. There are many ways to do that, depending on your team&rsquo;s work habits :</p>
+
+<ul>
+<li>Use your team <a href="https://slack.com/">Slack</a> (or whatever chat room you use) to share a link to this post (for example) and create a yes/no poll</li>
+<li>Or if you think you need it, create some wiki page explaining the practice and detailing its rationals in your context, add a yes/no poll, and finally share this page with your team</li>
+<li>Eventually, if you think that this topic deserves it, setup a meeting with everyone and discuss the point. It might be worth sharing information about the practice beforehand to make the meeting more efficient. You can end the vote with a <a href="http://www.plays-in-business.com/thumb-voting/">thumb vote</a> (up : yes, down : no, side : whatever)</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg" alt="Thumbs voting positions" /><div class="image-credits">Photo from <a href="http://www.plays-in-business.com/thumb-voting/">Plays in Business</a></div></p>
+
+<p>Don&rsquo;t wait for unanimity to start the practice, majority is enough ! Make sure that people who voted the other way will follow the team practice in the end though. Remember that whatever the answer, discussing team practices is good.</p>
+
+<p>Once all the team agreed on using (or not) <code>TODO</code> comments, mention the practice in your team&rsquo;s coding conventions or working agreements (which I strongly recommend to have written somewhere). If you don&rsquo;t have any yet, create some !</p>
+
+<h3>Toolswise</h3>
+
+<p>Most tools will handle <code>TODO</code> out of the box.</p>
+
+<ul>
+<li>Rails comes with a <code>rake notes</code> task to list <code>TODO</code> comments.</li>
+<li>CodeClimate and SonarQube both lists <code>TODOs</code> as issues in their default config</li>
+<li>Most IDEs have a &lsquo;TODO&rsquo; tab which will display the <code>TODO</code> comments in the project</li>
+<li>Otherwise, good old grep will very happily find <code>TODO</code> comments in your code</li>
+</ul>
+
+
+<p>Some tools might require small tweaks to improve the experience :</p>
+
+<ul>
+<li>In IntelliJ, in the commit window, uncheck the &lsquo;Check TODO&rsquo; checkbox to avoid getting a warning at every commit</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/intellij-commit.jpg" alt="IntelliJ's commit window, with its 'Check TODO' check box" /></p>
+
+<ul>
+<li>SonarQube uses the same fixed remediation cost for every TODO comment. It&rsquo;s up to you to adapt this remediation cost to your context.</li>
+</ul>
+
+
+<h2>What&rsquo;s next ?</h2>
+
+<p><code>TODO</code> comments are a good starting point to track technical debt. Once you start using them, there are a few things you can do :</p>
+
+<p>First, remember to fix some regularly. Very old <code>TODO</code> comments are technical debt of their own ! Using code quality dashboards like SonarQube or CodeClimate help to continuously improve your code.</p>
+
+<p>If your tools allow it, you might consider setting up a simpler <code>//SMELL ...</code> instead of <code>//TODO SMELL ...</code> or whatever other special comment that might be useful in your context.</p>
+
+<p>Finally, there is a lean continuous improvement practice which consists of logging problems as they occur. Doing this could help your team to decide which technical debt hotspots are the most important to fix. When appropriate, link the problems with the <code>TODO</code> comments. After a few weeks of this, walking through all the problems during a retrospective should shed light on what parts of the code are causing the most troubles.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Almost 15 years of using Design By Contract]]></title>
@@ -473,115 +570,6 @@ public:</p>
 <p>Playing at work might not be unproductive in the end !</p>
 
 <p>The same <a href="https://www.youtube.com/watch?v=hfT2_HxOQdk">talk given at NLJug</a>, unfortunately, it&rsquo;s in Dutch. English slides are <a href="https://static.rainfocus.com/oracle/oow16/sess/14625567983370011wPS/ppt/increasing%20code%20quality%20with%20gamification.pdf">here</a> though.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Top 5 talks I attended at JavaOne 2016 (Part 2)]]></title>
-    <link href="http://philippe.bourgau.net/top-5-talks-i-attended-at-javaone-2016-part-2/"/>
-    <updated>2016-09-28T20:02:00+02:00</updated>
-    <id>http://philippe.bourgau.net/top-5-talks-i-attended-at-javaone-2016-part-2</id>
-    <content type="html"><![CDATA[<p>This is my second post relating the talks I attended at JavaOne 2016. <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Here</a> is the beginning of the story. Here we go.</p>
-
-<h2>Euphoria Despite the Despair</h2>
-
-<p><a href="https://twitter.com/holly_cummins">Holly Cummins</a></p>
-
-<p>Our jobs aren&rsquo;t always fun &hellip; and that&rsquo;s in fact an issue ! Studies show that people who have fun at work are 31% more productive ! The talk was organized in 3 parts :</p>
-
-<ol>
-<li>What is fun ?</li>
-<li>How to remove the parts that are not fun ?</li>
-<li>How to add even more fun ?</li>
-</ol>
-
-
-<p>She defined what she called the funtinuum, which is that fun is a function of engagement and interaction. Basically, you won&rsquo;t have fun if you are doing nothing, or if no one cares about your work. That aligns well with <a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&amp;qid=1475123675&amp;sr=8-1&amp;keywords=daniel+pink+drive">Daniel Pink&rsquo;s drivers of motivation</a> : Autonomy, Mastery and Purpose.</p>
-
-<p>If something is not fun, it&rsquo;s because it does not require engagement or interaction. It&rsquo;s either boring or no one cares, or both. If that&rsquo;s the case, it&rsquo;s probably some kind of waste in some sense &hellip; Removing un-fun activities would mean removing waste. It&rsquo;s interesting to note how this sounds like <a href="https://en.wikipedia.org/wiki/Muda_(Japanese_term">lean Muda</a>) ! She gave examples such as :</p>
-
-<ul>
-<li>automate stuff</li>
-<li>pair programming transforms criticism into collaboration (bonus: it gives excuse to skip meetings)</li>
-<li>go <a href="https://twitter.com/search?q=%23NoEstimates">#NoEstimates</a> because estimating is painful and useless</li>
-<li>YAGNI defers useless things until they really add value</li>
-<li>Organize to skip meetings and other boring stuff</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>Last step is to add fun to the workplace. She warned that adding fun before removing the un-fun stuff would feel fake and would make things worse &hellip;</p>
-
-<iframe src="http://philippe.bourgau.net//www.slideshare.net/slideshow/embed_code/key/DMpHQcMebTVGsz?startSlide=148" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p>To add fun, she suggested using things like :</p>
-
-<ul>
-<li>gamification (there was actually another great talk about gamification)</li>
-<li>build a hacking contest instead of a security training</li>
-<li>Install a <a href="https://sirenofshame.com/">Siren of Shame</a> for whoever breaks the build</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>Here are <a href="http://www.slideshare.net/HollyCummins/software-developers-guide-to-fun-in-the-workplace-euphoria-despite-the-despair">the slides</a></p>
-
-<h2>Java 9: The Quest for Very Large Heaps</h2>
-
-<p>Bernard Traversat, Antoine Chambille</p>
-
-<p><a href="/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc.jpg"><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc-small.jpg" title="Slide of the memory regions in G1" ></a></p>
-
-<p>This talk might not be of interest for all, but it is for us <a href="http://murex.com">at work</a>. It went through the improvement to come to Java 9&rsquo;s G1 garbage collector. To summarize, to scale to very large heaps, it will split the memory into regions. Objects should be allocated on different regions depending on their specificities, which might help to build NUMA aware applications. Having the heap split up in smaller chunks enables the GC to run in parallel, which can speed up the old generation GC by up to 50 times !</p>
-
-<p><a href="http://www.java9countdown.xyz/">Java 9 is scheduled for march 2017</a></p>
-
-<h2>Agility and Robustness: Clojure + spec</h2>
-
-<p><a href="https://twitter.com/stuarthalloway">Stuart Halloway</a></p>
-
-<p>I haven&rsquo;t been touching Clojure for a while but I gave the language a try a few years ago. I had heard about Clojure spec but hadn&rsquo;t taken the time to look at it in details. As I understood it all, Spec is like some sort of <a href="https://en.wikipedia.org/wiki/Design_by_contract">Design by Contract</a> on steroïds ! Clojure is not statically typed, but you can now assign spec metadata to values. A spec is roughly a predicate. By defining specs for the inputs and outputs of functions, it is possible to verify at runtime that the function is behaving correctly.</p>
-
-<p>As did Bertrand Meyer in the classic <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_1?ie=UTF8&amp;qid=1475211259&amp;sr=8-1&amp;keywords=object+oriented+software+construction+meyer">OOSC2</a>, who advised to use contracts during development only, Stuart explained that we should care about developer vs production time instead of compile vs runtime. From this point of view, it is not of great importance whether the compiler or the continuously running test suite finds an issue.</p>
-
-<p>But specs are a lot more than predicates ! They can be used to :</p>
-
-<ul>
-<li>enable assertions at runtime</li>
-<li>generate documentation</li>
-<li>generate test cases</li>
-<li>generate precise call logs</li>
-<li>get precise error messages</li>
-<li>explore a function and see how it can be called</li>
-</ul>
-
-
-<p>He went on to compare the virtues of Clojure spec with static typing (à la Java) and example based testing :</p>
-
-<p><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/clojure-spec.jpg" title="Slide comparing Clojure spec with example based testing and static typing" ></p>
-
-<p>Although I don&rsquo;t believe that generative testing can ever replace example based testing altogether, it certainly can help.</p>
-
-<p>All in all, the presentation was insanely great and engaging. It made me seriously think of going into Clojure programming again !</p>
-
-<p>Here are <a href="https://t.co/0FBl2l473N">the slides</a> and the <a href="https://www.youtube.com/watch?v=VNTQ-M_uSo8">the same talk at Strangeloop</a></p>
-
-<h2>Conclusion</h2>
-
-<p>Overall, JavaOne was great ! If I had the opportunity, I&rsquo;d go back every year ! There was a lot of other great talks I did not write about in these 2 posts, for example :</p>
-
-<ul>
-<li>Development Horror Stories was a lot of fun, especially the winning story !</li>
-<li>Hacking Hiring was full of good advises</li>
-<li>Managing Open Source Contributions in Large Organizations was full of good ideas</li>
-<li>Increasing Code Quality with Gamification was very inspiring</li>
-</ul>
-
-
-<h2>Edit 17 October 2016</h2>
-
-<p>I summarized 3 others JavaOne talks <a href="/3-more-great-talks-from-javaone-2016/">here</a>.</p>
 ]]></content>
   </entry>
   

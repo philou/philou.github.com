@@ -4,7 +4,7 @@
   <title><![CDATA[Category: lean | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/lean/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-03-30T06:59:38+02:00</updated>
+  <updated>2017-04-14T06:42:07+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A seamless way to keep track of technical debt in your source code]]></title>
+    <link href="http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/"/>
+    <updated>2017-04-12T08:48:00+02:00</updated>
+    <id>http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code</id>
+    <content type="html"><![CDATA[<p>I eventually stumbled upon a way to keep track of technical debt in source code that is both straightforward and already built-in most tools : simple <code>TODO</code> comments !</p>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/todo-comment.jpg" alt="Photo of a screen displaying source code with #TODO comments" /></p>
+
+<h2>How it happened ?</h2>
+
+<p>Some time ago, we tried to add <a href="/a-plan-for-technical-debt-lean-software-development-part-7/"><code>@TechnicalDebt</code></a> annotations in our source code. Unfortunately, after a few month, we came to the logical conclusion that it was too complex to be effective :</p>
+
+<ul>
+<li>It involved too much ceremony, which frightened people</li>
+<li>It made people uneasy to change anything around the annotation instead of sending a call to action</li>
+<li>As a result, it was always out of date</li>
+</ul>
+
+
+<p>After a bit of discussion with my colleagues, we decided to replace all these annotations with simple <code>TODO</code> comments.</p>
+
+<p>When the refactoring to do seems fairly obvious (but also premature) we&rsquo;ll use a straightforward <code>//TODO (example) introduce a factory</code> message. Next time a pairs gets to work on this part of the code, they get the silent opinion of their peers to help them decide what to do about this piece of the code. Other times, the code might be smelly, yet without us knowing what to do about it yet, in this case, we agreed to use <code>//TODO SMELL (example) responsibilities are not clear in this class</code> which is still a <code>TODO</code> comment, but not a clear call to action.</p>
+
+<p>When I started my <a href="https://github.com/philou/planning-poker">current side project</a>, I naturally started to use them. They display nicely in <a href="https://codeclimate.com/github/philou/planning-poker/issues">CodeClimate</a>.</p>
+
+<h3>The pros</h3>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/codeclimate.jpg" alt="Screenshot of the CodeClimate issue dashboard displaying TODO comments" /></p>
+
+<p>The great thing about <code>TODO</code> comments is that, as a very old programming trick, they are already supported out of the box by most tools <a href="https://www.jetbrains.com/">IntelliJ</a>, <a href="https://www.sonarqube.org/">SonarQube</a>, <a href="http://rubyonrails.org/">Rails</a>, <a href="https://codeclimate.com">CodeClimate</a> and I guess many others. Only one day after I refactored to <code>TODO</code> comments, a team mate fixed one that had appeared in his IDE&rsquo;s TODO tab !</p>
+
+<h3>The cons</h3>
+
+<p>Some tools, IDEs in particular, tend to assume that you should fix all your <code>TODOs</code> before you commit anything. That&rsquo;s not exactly how we are using them to track lasting technical debt. So that&rsquo;s one thing you need to keep in mind.</p>
+
+<p>Tools like Sonar on the other hand, assign a fixed remediation cost to any <code>TODO</code> you have in the code, which is usually not the case at all !</p>
+
+<h2>How to set it up in your project</h2>
+
+<p>As you might guess, this is pretty easy. Just start adding <code>TODO</code> comments in your code &hellip;</p>
+
+<h3>Teamwise</h3>
+
+<p>It is worth first validating the practice with your colleagues though. There are many ways to do that, depending on your team&rsquo;s work habits :</p>
+
+<ul>
+<li>Use your team <a href="https://slack.com/">Slack</a> (or whatever chat room you use) to share a link to this post (for example) and create a yes/no poll</li>
+<li>Or if you think you need it, create some wiki page explaining the practice and detailing its rationals in your context, add a yes/no poll, and finally share this page with your team</li>
+<li>Eventually, if you think that this topic deserves it, setup a meeting with everyone and discuss the point. It might be worth sharing information about the practice beforehand to make the meeting more efficient. You can end the vote with a <a href="http://www.plays-in-business.com/thumb-voting/">thumb vote</a> (up : yes, down : no, side : whatever)</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg" alt="Thumbs voting positions" /><div class="image-credits">Photo from <a href="http://www.plays-in-business.com/thumb-voting/">Plays in Business</a></div></p>
+
+<p>Don&rsquo;t wait for unanimity to start the practice, majority is enough ! Make sure that people who voted the other way will follow the team practice in the end though. Remember that whatever the answer, discussing team practices is good.</p>
+
+<p>Once all the team agreed on using (or not) <code>TODO</code> comments, mention the practice in your team&rsquo;s coding conventions or working agreements (which I strongly recommend to have written somewhere). If you don&rsquo;t have any yet, create some !</p>
+
+<h3>Toolswise</h3>
+
+<p>Most tools will handle <code>TODO</code> out of the box.</p>
+
+<ul>
+<li>Rails comes with a <code>rake notes</code> task to list <code>TODO</code> comments.</li>
+<li>CodeClimate and SonarQube both lists <code>TODOs</code> as issues in their default config</li>
+<li>Most IDEs have a &lsquo;TODO&rsquo; tab which will display the <code>TODO</code> comments in the project</li>
+<li>Otherwise, good old grep will very happily find <code>TODO</code> comments in your code</li>
+</ul>
+
+
+<p>Some tools might require small tweaks to improve the experience :</p>
+
+<ul>
+<li>In IntelliJ, in the commit window, uncheck the &lsquo;Check TODO&rsquo; checkbox to avoid getting a warning at every commit</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/intellij-commit.jpg" alt="IntelliJ's commit window, with its 'Check TODO' check box" /></p>
+
+<ul>
+<li>SonarQube uses the same fixed remediation cost for every TODO comment. It&rsquo;s up to you to adapt this remediation cost to your context.</li>
+</ul>
+
+
+<h2>What&rsquo;s next ?</h2>
+
+<p><code>TODO</code> comments are a good starting point to track technical debt. Once you start using them, there are a few things you can do :</p>
+
+<p>First, remember to fix some regularly. Very old <code>TODO</code> comments are technical debt of their own ! Using code quality dashboards like SonarQube or CodeClimate help to continuously improve your code.</p>
+
+<p>If your tools allow it, you might consider setting up a simpler <code>//SMELL ...</code> instead of <code>//TODO SMELL ...</code> or whatever other special comment that might be useful in your context.</p>
+
+<p>Finally, there is a lean continuous improvement practice which consists of logging problems as they occur. Doing this could help your team to decide which technical debt hotspots are the most important to fix. When appropriate, link the problems with the <code>TODO</code> comments. After a few weeks of this, walking through all the problems during a retrospective should shed light on what parts of the code are causing the most troubles.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[5 Books About Data Driven Lean Software Development]]></title>
@@ -315,74 +412,6 @@ design, yet for most organizations with productivity problems, there is no more 
 <p>I&rsquo;d like to know, what do you think of the idea ? Would you use such a tool ? Is it worth me spending my nights building it ?</p>
 
 <p>This was 9th and last part of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 8 was <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I'll measure the lean startup value of information in my next side project (Lean Software Development Part 8)]]></title>
-    <link href="http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/"/>
-    <updated>2015-12-07T21:19:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8</id>
-    <content type="html"><![CDATA[<p>There must be a way to know the real money value of <a href="http://theleanstartup.com/">Lean Startup</a> &lsquo;knowledge&rsquo;.</p>
-
-<p><img class="center" src="/imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/knowledge-money.jpg" title="A brain or some money ?" ></p>
-
-<p>Lean Startup is about gathering &lsquo;knowledge&rsquo; through experiments instead of building things. <a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_3?ie=UTF8&amp;qid=1450068976&amp;sr=8-3&amp;keywords=lean+product+development">Flow book</a> suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.</p>
-
-<p>The overall plan would be :</p>
-
-<ol>
-<li>Start with a rough business plan, but assume that all that&rsquo;s in it has got 1 chance out of 10 of being right</li>
-<li>Design experiments to precise the likelyhood of what&rsquo;s in the business plan</li>
-<li>Compute the value of each experiment as the difference of the expected bottom line after and before running it (This should be possible if relying on the business plan for other parameters)</li>
-<li>Work on the task with the highest expected value, be it an experiment, a development, a sales task, or whatever</li>
-<li>Adapt you business plan with any new information</li>
-<li>Repeat</li>
-<li>If it becomes obvious that the expected final earnings are too low, pivot</li>
-</ol>
-
-
-<p>Flow explains that all the principles are pretty robust to bad inputs and errors. In short, the final estimations of earnings are still a lot better than without using any specific method. In the case of Lean Startup, it means that a false business plan is a good enough starting point.</p>
-
-<h2>How to assess the likelyhood of a figure ?</h2>
-
-<p>By default let&rsquo;s assume the value of a feature is somewhere between 0 and your highest estimate. As we&rsquo;ll go through experiments we&rsquo;ll be able to narrow this value range and have a more accurate estimate for the real value.</p>
-
-<p>To keep things simple we could assume that the probability of value is uniformaly distributed within this range. From what I read in <a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">Waltzing With Bears</a>, here would be a more realistic probability distribution.</p>
-
-<p><img class="center" src="/imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/Demarco-probability.png" title="The curve of the probability of value according to DeMarco" ></p>
-
-<h2>How to estimate the value of an experiment ?</h2>
-
-<p>I&rsquo;m not going to go into the details here, because the logic is exactly the same as with technical experiments (which <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">I already wrote about</a>)</p>
-
-<p>Since then though, I read <a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears">Waltzing With Bears</a> which presents a way of doing Monte Carlo simulations in order to estimate risks on your project. I guess the same thing could be used for value, which would save us from a lot of complex math.</p>
-
-<p><a href="http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&amp;qid=1449901015&amp;sr=8-1&amp;keywords=waltzing+with+bears"><img class="center" src="/imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/waltzing-with-bears.jpg" title="Cover of &lsquo;Waltzing With Bears&rsquo;" ></a></p>
-
-<h2>When to stop doing experiments ?</h2>
-
-<p>Isn&rsquo;t all this overkill ? One could argue that the point of Lean Startup should be to build just enough knowledge ! In fact, this value of information concept naturaly helps to find out when running the experiment is not worth it compared to actually doing the real thing.</p>
-
-<p>BTW, a tool doing all this for your automaticaly would be great, wouldn&rsquo;t it ?</p>
-
-<h2>What I&rsquo;ll do for my next bootstrap side project</h2>
-
-<ol>
-<li>Start with a target hourly earning rate.</li>
-<li>Collect a list of projects I&rsquo;d be interested in.</li>
-<li>Pick a project and write a business goal for it.</li>
-<li>Assign likelyhoods and ranges on every figure in the business plan.</li>
-<li>Design experiments to improve the figures.</li>
-<li>Create tasks to actually build and sell the product.</li>
-<li>Compute values for each of these tasks.</li>
-<li>Work the most valueable first.</li>
-<li>If the figures prove that I will not make my target wage with this project, I&rsquo;ll pivot, and restart from 2.</li>
-<li>Otherwise, I&rsquo;ll repeat from 4.</li>
-</ol>
-
-
-<p>This was part 8 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 7 was <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">A Plan for Technical Debt</a>, Part 9 will be <a href="/my-dream-lean-software-development-tool-lean-software-development-part-9/">My Dream Lean Software Development Tool</a>.</p>
 ]]></content>
   </entry>
   

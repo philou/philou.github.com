@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-03-30T06:59:38+02:00</updated>
+  <updated>2017-04-14T06:42:07+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,104 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A seamless way to keep track of technical debt in your source code]]></title>
+    <link href="http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/"/>
+    <updated>2017-04-12T08:48:00+02:00</updated>
+    <id>http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code</id>
+    <category term="lean" /><category term="programming" /><category term="technical debt" />
+    <content type="html"><![CDATA[<p>I eventually stumbled upon a way to keep track of technical debt in source code that is both straightforward and already built-in most tools : simple <code>TODO</code> comments !</p>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/todo-comment.jpg" alt="Photo of a screen displaying source code with #TODO comments" /></p>
+
+<h2>How it happened ?</h2>
+
+<p>Some time ago, we tried to add <a href="http://philippe.bourgau.net/a-plan-for-technical-debt-lean-software-development-part-7/"><code>@TechnicalDebt</code></a> annotations in our source code. Unfortunately, after a few month, we came to the logical conclusion that it was too complex to be effective :</p>
+
+<ul>
+<li>It involved too much ceremony, which frightened people</li>
+<li>It made people uneasy to change anything around the annotation instead of sending a call to action</li>
+<li>As a result, it was always out of date</li>
+</ul>
+
+
+<p>After a bit of discussion with my colleagues, we decided to replace all these annotations with simple <code>TODO</code> comments.</p>
+
+<p>When the refactoring to do seems fairly obvious (but also premature) we&rsquo;ll use a straightforward <code>//TODO (example) introduce a factory</code> message. Next time a pairs gets to work on this part of the code, they get the silent opinion of their peers to help them decide what to do about this piece of the code. Other times, the code might be smelly, yet without us knowing what to do about it yet, in this case, we agreed to use <code>//TODO SMELL (example) responsibilities are not clear in this class</code> which is still a <code>TODO</code> comment, but not a clear call to action.</p>
+
+<p>When I started my <a href="https://github.com/philou/planning-poker">current side project</a>, I naturally started to use them. They display nicely in <a href="https://codeclimate.com/github/philou/planning-poker/issues">CodeClimate</a>.</p>
+
+<h3>The pros</h3>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/codeclimate.jpg" alt="Screenshot of the CodeClimate issue dashboard displaying TODO comments" /></p>
+
+<p>The great thing about <code>TODO</code> comments is that, as a very old programming trick, they are already supported out of the box by most tools <a href="https://www.jetbrains.com/">IntelliJ</a>, <a href="https://www.sonarqube.org/">SonarQube</a>, <a href="http://rubyonrails.org/">Rails</a>, <a href="https://codeclimate.com">CodeClimate</a> and I guess many others. Only one day after I refactored to <code>TODO</code> comments, a team mate fixed one that had appeared in his IDE&rsquo;s TODO tab !</p>
+
+<h3>The cons</h3>
+
+<p>Some tools, IDEs in particular, tend to assume that you should fix all your <code>TODOs</code> before you commit anything. That&rsquo;s not exactly how we are using them to track lasting technical debt. So that&rsquo;s one thing you need to keep in mind.</p>
+
+<p>Tools like Sonar on the other hand, assign a fixed remediation cost to any <code>TODO</code> you have in the code, which is usually not the case at all !</p>
+
+<h2>How to set it up in your project</h2>
+
+<p>As you might guess, this is pretty easy. Just start adding <code>TODO</code> comments in your code &hellip;</p>
+
+<h3>Teamwise</h3>
+
+<p>It is worth first validating the practice with your colleagues though. There are many ways to do that, depending on your team&rsquo;s work habits :</p>
+
+<ul>
+<li>Use your team <a href="https://slack.com/">Slack</a> (or whatever chat room you use) to share a link to this post (for example) and create a yes/no poll</li>
+<li>Or if you think you need it, create some wiki page explaining the practice and detailing its rationals in your context, add a yes/no poll, and finally share this page with your team</li>
+<li>Eventually, if you think that this topic deserves it, setup a meeting with everyone and discuss the point. It might be worth sharing information about the practice beforehand to make the meeting more efficient. You can end the vote with a <a href="http://www.plays-in-business.com/thumb-voting/">thumb vote</a> (up : yes, down : no, side : whatever)</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg" alt="Thumbs voting positions" /><div class="image-credits">Photo from <a href="http://www.plays-in-business.com/thumb-voting/">Plays in Business</a></div></p>
+
+<p>Don&rsquo;t wait for unanimity to start the practice, majority is enough ! Make sure that people who voted the other way will follow the team practice in the end though. Remember that whatever the answer, discussing team practices is good.</p>
+
+<p>Once all the team agreed on using (or not) <code>TODO</code> comments, mention the practice in your team&rsquo;s coding conventions or working agreements (which I strongly recommend to have written somewhere). If you don&rsquo;t have any yet, create some !</p>
+
+<h3>Toolswise</h3>
+
+<p>Most tools will handle <code>TODO</code> out of the box.</p>
+
+<ul>
+<li>Rails comes with a <code>rake notes</code> task to list <code>TODO</code> comments.</li>
+<li>CodeClimate and SonarQube both lists <code>TODOs</code> as issues in their default config</li>
+<li>Most IDEs have a &lsquo;TODO&rsquo; tab which will display the <code>TODO</code> comments in the project</li>
+<li>Otherwise, good old grep will very happily find <code>TODO</code> comments in your code</li>
+</ul>
+
+
+<p>Some tools might require small tweaks to improve the experience :</p>
+
+<ul>
+<li>In IntelliJ, in the commit window, uncheck the &lsquo;Check TODO&rsquo; checkbox to avoid getting a warning at every commit</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/intellij-commit.jpg" alt="IntelliJ's commit window, with its 'Check TODO' check box" /></p>
+
+<ul>
+<li>SonarQube uses the same fixed remediation cost for every TODO comment. It&rsquo;s up to you to adapt this remediation cost to your context.</li>
+</ul>
+
+
+<h2>What&rsquo;s next ?</h2>
+
+<p><code>TODO</code> comments are a good starting point to track technical debt. Once you start using them, there are a few things you can do :</p>
+
+<p>First, remember to fix some regularly. Very old <code>TODO</code> comments are technical debt of their own ! Using code quality dashboards like SonarQube or CodeClimate help to continuously improve your code.</p>
+
+<p>If your tools allow it, you might consider setting up a simpler <code>//SMELL ...</code> instead of <code>//TODO SMELL ...</code> or whatever other special comment that might be useful in your context.</p>
+
+<p>Finally, there is a lean continuous improvement practice which consists of logging problems as they occur. Doing this could help your team to decide which technical debt hotspots are the most important to fix. When appropriate, link the problems with the <code>TODO</code> comments. After a few weeks of this, walking through all the problems during a retrospective should shed light on what parts of the code are causing the most troubles.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to mock your browser's timezone with Jasmine and MomentJS]]></title>
@@ -1974,76 +2072,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 <h2>Edit 17 October 2016</h2>
 
 <p>I summarized 3 others JavaOne talks <a href="http://philippe.bourgau.net/3-more-great-talks-from-javaone-2016/">here</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Top 5 talks I attended at JavaOne 2016 (Part 1)]]></title>
-    <link href="http://philippe.bourgau.net/top-5-talks-i-attented-at-java-one-2016-part-1/"/>
-    <updated>2016-09-28T19:20:00+02:00</updated>
-    <id>http://philippe.bourgau.net/top-5-talks-i-attented-at-java-one-2016-part-1</id>
-    <category term="java" /><category term="programming" />
-    <content type="html"><![CDATA[<p>With a few other colleagues, I had the chance to be sent to San Francisco last week to attend the <a href="https://www.oracle.com/javaone/index.html">JavaOne 2016</a> conferences by my <a href="http://www.murex.com">company</a>.</p>
-
-<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall-small.jpg" title="Photo of the JavaOne exhibition hall" ></a></p>
-
-<p>Here is super short list of the conferences I attended which I found really interesting</p>
-
-<h2>Preventing errors before they happen</h2>
-
-<p><a href="https://ece.uwaterloo.ca/~wdietl/">Werner Dietl</a> &amp; <a href="https://homes.cs.washington.edu/~mernst/">Michael Ernst</a></p>
-
-<p>Since Java 6, it is possible to pass custom annotation processors to javac. Since Java 8, it is possible to add annotations to types. The guys behind the <a href="http://checkerframework.org">Checker Framework</a> used this to create custom pluggable type systems for your Java programs. These type systems enforce properties on your program, and will emit warnings or errors at compile time otherwise.</p>
-
-<p>Here are a few example :</p>
-
-<ul>
-<li>declare <code>@Immutable MyObject myObject</code> to make sure that myObject won&rsquo;t be muted</li>
-<li>declare <code>@NonNull MyObject myObject</code> to make sure that myObject is never null</li>
-</ul>
-
-
-<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems-small.jpg" title="Architecture of the type checker" ></a></p>
-
-<p>Under the hood, the compiler behaves as if <code>@Immutable MyObject</code> and <code>MyObject</code> where completely separate types, and it knows and tracks specific ways of converting between the two. The framework provides a simple API to define your own type systems. They did a live demo showing how to quickly define things like <code>@Regex String</code>, <code>@Encrypted String</code> or <code>@Untainted String</code> (which forbids user input strings to avoid SQL injections).</p>
-
-<p>The talk was really interesting, the framework seems lightweight and to integrate well with the typical tool stack. I definitely will give it a try the next time I have a bit of slack time.</p>
-
-<p>Here are <a href="http://types.cs.washington.edu/checker-framework/2016-javaone/2016-09-19%20CF%20@%20JavaOne.pdf">the slides</a> and a <a href="https://www.youtube.com/watch?v=kb6nz85jbuQ">previous session of the presentation</a></p>
-
-<h2>Keeping Your CI/CD Pipeline as Fast as It Needs to Be</h2>
-
-<p><a href="https://twitter.com/abrahammarin?lang=fr">Abraham Marin-Perez</a></p>
-
-<p>Continuous Delivery and Microservices are what you need to do, aren&rsquo;t they ? Well, when actually trying to setup a CI / CD pipeline for all your code, things quickly get complicated pretty fast ! The speaker presented how to deal with this complexity by using metrics from your VCS and build servers to draw an annotated graph of your build pipeline.</p>
-
-<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline-small.jpg" title="Graph of the build pipeline" ></a></p>
-
-<ul>
-<li>He used the build time to set the size of every node : the longer, the larger</li>
-<li>The color for the change rate : the more often it was built the warmer the color</li>
-</ul>
-
-
-<p>It was then possible to determine other metrics such as :</p>
-
-<ul>
-<li>the impact time of every node : build time + build time of all the dependencies</li>
-<li>the weighted impact time : impact time * change rate</li>
-<li>the overall average impact time : sum of all the weighted impact times</li>
-<li>the overall max impact time : max of all the impact times</li>
-</ul>
-
-
-<p>Using this and your SLAs it is possible to define policies for your build times such as &ldquo;the max build time should not be more than X&rdquo;. If you want to speed up your build, you can set a target build time and analyzing the graph should help you to understand what architecture changes you need to make to your system in order to meet this build time (this sounds a lot like <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">Toyota&rsquo;s Improvement Kata</a> &hellip;)</p>
-
-<p>I loved this talk ! I found the speaker captivating, he presented novel ideas which is not always the case.</p>
-
-<p>Here are <a href="http://www.slideshare.net/AbrahamMarinPerez/keeping-your-cicd-pipeline-as-fast-as-it-needs-to-be">the slides</a>, and <a href="https://www.youtube.com/watch?v=8JxoKJng_eQ">the same presentation at Devoxx UK</a>.</p>
-
-<h2>To Be Continued</h2>
-
-<p>I promised 5, and that&rsquo;s only 2 talks ! Stay tuned, I&rsquo;ll write about the 3 others in the coming weeks. <a href="http://philippe.bourgau.net/top-5-talks-i-attended-at-javaone-2016-part-2/">Here they are</a>.</p>
 ]]></content>
   </entry>
   
