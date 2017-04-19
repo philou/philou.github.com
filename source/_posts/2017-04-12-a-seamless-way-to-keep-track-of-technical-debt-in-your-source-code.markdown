@@ -84,3 +84,12 @@ First, remember to fix some regularly. Very old `TODO` comments are technical de
 If your tools allow it, you might consider setting up a simpler `//SMELL ...` instead of `//TODO SMELL ...` or whatever other special comment that might be useful in your context.
 
 Finally, there is a lean continuous improvement practice which consists of logging problems as they occur. Doing this could help your team to decide which technical debt hotspots are the most important to fix. When appropriate, link the problems with the `TODO` comments. After a few weeks of this, walking through all the problems during a retrospective should shed light on what parts of the code are causing the most troubles.
+
+## Edit 2017-04-19
+
+Thanks a lot for your comments ! People have suggested a ton of great improvements over my basic setup :
+
+* plugins to other tools that also support `TODO` comments
+* activating automatic sync between issues in CodeClimate and your issue tracking system
+* using custom comments markers
+* adding an 'X' to your comment every time you are bothered by the technical debt, tools can configured to assign a higher severity to issues with a lot of 'X'
