@@ -101,6 +101,162 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-i-fixed-the-unknown-language-pygments-error-in-octopress/">How I Fixed the Unknown Language Pygments Error in Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-05-13T03:54:00+02:00" pubdate data-updated="true">May 13<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last time I tried to insert a code snippet in my <a href="http://octopress.org/">Octopress</a> blog, I was hurt by the following error :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant@ae4a04cebb73:/vagrant$ bundle exec rake generate
+</span><span class='line'>## Generating Site with Jekyll
+</span><span class='line'>unchanged sass/screen.scss
+</span><span class='line'>Configuration from /vagrant/_config.yml
+</span><span class='line'>Building site: source -&gt; public
+</span><span class='line'>/vagrant/plugins/pygments_code.rb:27:in `rescue in pygments': Pygments can't parse unknown language: ruby. (RuntimeError)
+</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:24:in `pygments'
+</span><span class='line'>  from /vagrant/plugins/pygments_code.rb:14:in `highlight'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:37:in `block in render_code_block'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `gsub'
+</span><span class='line'>  from /vagrant/plugins/backtick_code_block.rb:13:in `render_code_block'
+</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:12:in `pre_filter'
+</span><span class='line'>  from /vagrant/plugins/octopress_filters.rb:28:in `pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:112:in `block in pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `each'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:111:in `pre_render'
+</span><span class='line'>  from /vagrant/plugins/post_filters.rb:166:in `do_layout'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/post.rb:195:in `render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:200:in `block in render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `each'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:199:in `render'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/lib/jekyll/site.rb:41:in `process'
+</span><span class='line'>  from /vagrant/vendor/bundle/gems/jekyll-0.12.1/bin/jekyll:264:in `&lt;top (required)&gt;'
+</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `load'
+</span><span class='line'>  from /vagrant/vendor/bundle/bin/jekyll:22:in `&lt;main&gt;'
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I had been switching to <a href="https://www.docker.com/">Docker</a> in <a href="https://www.vagrantup.com/">Vagrant</a> to host my Octopress installation, but that did not seem related &hellip;</p>
+
+<h2>Plan A : Upgrade Octopress</h2>
+
+<p>It turned out it was related to my migration to Vagrant and Docker.xs This kind of nasty error often comes from obsolete environment. <a href="https://github.com/imathis/octopress/issues/1173">Internet confirmed</a> confirmed it :</p>
+
+<ul>
+<li>Ubuntu now uses Python3 instead of Python2</li>
+<li>Octopress2 uses an old version of Pygments</li>
+<li>That version of Pygments requires Python2</li>
+</ul>
+
+
+<p>I thought that I did not want to play <a href="/ruby-thirdparties-best-practices/">this game</a> against open source libs, so I set out to update. Octopress 3 has been released. It&rsquo;s not yet documented yet, and there is no official upgrade guide, but some guys have done it :</p>
+
+<ul>
+<li><a href="http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/">http://samwize.com/2015/09/30/migrating-octopress-2-to-octopress-3/</a></li>
+<li><a href="http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/">http://dgmstuart.github.io/blog/2016/01/22/migrating-from-octopress-2-to-3/</a></li>
+<li><a href="https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/">https://www.justinrummel.com/migrating-from-octopress-2-to-octopress-3/</a></li>
+</ul>
+
+
+<p>I tried it &hellip; but I stopped before the end. It&rsquo;s kind of working, but fundamental features like category archives required too much Jekylling for me at the time. And themes are still an issue &hellip; I mean, stock theme uses a clean and simple gem based update workflow, but most other themes rely on a tricky git clone-merge update workflow.</p>
+
+<h2>Plan B : Find a hosted blog engine for hackers</h2>
+
+<p>I found quite a few options :</p>
+
+<ul>
+<li><a href="http://medium.com">Medium</a> Looks cool, but there is no simple migration tool, and I&rsquo;ve been burned by postero.us shutting down, I want to keep control on my content</li>
+<li><a href="https://posthaven.com/">Posthaven</a> Having loved postero.us, this one seems cool, It&rsquo;s just I&rsquo;m not sure the guys are keeping the motivation to increase their feature list with their current business model</li>
+<li><a href="http://ghost.org">Ghost</a> Looked great, but too expensive for me (19$ per month)</li>
+<li><a href="http://codrspace.com">Codrspace</a> This is a special blogging platform for coders, but it seems it has not been updated for a long time</li>
+<li><a href="https://logdown.com/">LogDown</a> This also is a special blogging platform for hackers. It seemed great and had everything I was looking for &hellip; I was ready to spend the 50$ per year for it as it could save me a lot of hassle. Unfortunately, I could not find a way to forward the categories of a post as <a href="https://twitter.com/pbourgau">Twitter</a> hashtags as I&rsquo;ve been doing with Octopress and <a href="https://feedburner.google.com">Feedburner</a></li>
+</ul>
+
+
+<p>In the end, I was rather disappointed by the alternatives, even though I was ready to pay for them.</p>
+
+<h2>Plan C : Fix the error in Octopress 2</h2>
+
+<p>Eventually, the fix was rather easy. People had fixed it by patching mentos.py file in the pygments.rb gem to run Python 2 instead of the stock Python. That&rsquo;s not great because it means that I&rsquo;d have to redo the patch every time I updated my gems, or rebuilt my workspace. Here is what I added to my Vagrantfile instead :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get -y install python2.7
+</span><span class='line'>sudo ln -sf /usr/bin/python2.7 /usr/bin/python</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://github.com/philou/philou.github.com/commit/ae14c511b682295ed7fdcb3b1a818926f803dd3a">Here</a> is the commit on my Github repo.</p>
+
+<h2>Conclusion</h2>
+
+<p>I&rsquo;m sticking with Octopress2 for the moment. Maybe I&rsquo;ll re-try to migrate to Octopress3 later on, when an official migration tool or <a href="http://octopress.org/2015/01/15/octopress-3.0-is-coming/">guide</a> is available. Meanwhile, I&rsquo;m still dreaming of my perfect blogging platform :</p>
+
+<ul>
+<li>Open source</li>
+<li>Static HTML generation</li>
+<li>Self or SAAS hosted</li>
+<li>Great integration with social media and the web</li>
+<li>Easy to maintain</li>
+<li>Plugable themes</li>
+</ul>
+
+
+<p>I&rsquo;m looking for my next side project at the moment, that could be a useful one ! Anyone interested ?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/real-developers-ship/">Real Developers Ship</a></h1>
     
     
@@ -904,84 +1060,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/stop-feeling-like-a-kid-everytime-you-ask-a-day-off/">Stop Feeling Like a Kid Every Time You Ask a Day Off</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-03-12T06:35:00+01:00" pubdate data-updated="true">Mar 12<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Most companies don&rsquo;t have <a href="https://management30.com/product/workouts/performance-management/">unlimited vacations</a>. Most likely, if you are an employee, your days off need to be validated by your boss. If you are like me, this feels like pulling teeth &hellip; Every time I have to ask for a day off, I feel like a kid asking for an extra candy</p>
-
-<p>That&rsquo;s not the only issue with how we traditionally deal with vacations :</p>
-
-<ul>
-<li>The boss has to make sure that there are always enough people at the office to handle emergencies</li>
-<li>If the boss is himself away, getting a day off at the last moment becomes difficult</li>
-</ul>
-
-
-<h2>Our Delegation Board</h2>
-
-<p>Our team at work is already rather agile : we&rsquo;re using a blend of XP and Scrumban, we follow solid engineering practices and we are always trying to improve to deliver more value to our users. After reading <a href="http://www.amazon.com/Management-3-0-Developers-Developing-Addison-Wesley/dp/0321712471/ref=sr_1_1?ie=UTF8&amp;qid=1457988177&amp;sr=8-1&amp;keywords=management+3.0">Management 3.0</a> and <a href="https://management30.com/product/workouts/">Management Workouts</a> I was convinced that I needed to move the team towards even more self organization.</p>
-
-<p>We started by doing <a href="https://management30.com/product/delegation-poker/">delegation poker</a>, we created a <a href="https://management30.com/product/workouts/delegation-employee-engagement/">delegation board</a>, and set out to move all cards we could to the right side of the board.</p>
-
-<p><a href="/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/delegation-board-large.jpg"><img class="center" src="/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/delegation-board.jpg" title="Our trello delegation board" ></a></p>
-
-<p>We spotted the following topics that could be more self organized</p>
-
-<ul>
-<li>vacations</li>
-<li>hiring</li>
-<li>business objectives and end of year evaluations</li>
-<li>various recurring scrum related activities</li>
-<li>self development objectives</li>
-</ul>
-
-
-<h2>Vacations</h2>
-
-<p>We decided to tackle vacations first, because it seemed easy. We did a quick brainstorming, and here is what we came up with :</p>
-
-<ul>
-<li>We cannot change the company policy, so I&rsquo;ll still have to officially validate everyone&rsquo;s vacations in the system but &hellip;</li>
-<li>I&rsquo;ll validate anything asked !</li>
-<li>Our internal system allows to check the other team member&rsquo;s vacations, so everyone in the team is responsible to check that there will always be at least 2 people at work before taking a day off</li>
-</ul>
-
-
-<p><a href="/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.png"><img class="center" src="/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.jpg" title="Screenshot of our vacation dashboard" ></a></p>
-
-<p>It&rsquo;s been 6 months, and it&rsquo;s been working like a charm. I think it made everything simpler once we had a clear rule about when vacations were OK or not.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1061,6 +1139,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-get-your-team-to-do-code-reviews/">How to get your team to do code reviews</a>
+      </li>
+    
+      <li class="post">
         <a href="/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/">A seamless way to keep track of technical debt in your source code</a>
       </li>
     
@@ -1074,10 +1156,6 @@
     
       <li class="post">
         <a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-subscribe-to-an-actioncable-channel-on-a-specific-page-with-custom-data/">How to subscribe to an ActionCable channel on a specific page with custom data ?</a>
       </li>
     
   </ul>
