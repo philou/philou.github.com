@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-04-21T09:57:21+02:00</updated>
+  <updated>2017-04-26T05:58:38+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,120 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental architecture, a cure against architecture astronauts]]></title>
+    <link href="http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/"/>
+    <updated>2017-04-24T06:52:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts</id>
+    <category term="agile" /><category term="architecture" /><category term="extreme programming" /><category term="software" />
+    <content type="html"><![CDATA[<p>Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a>. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding &hellip;</p>
+
+<p>When I was asked to re-engineer the &lsquo;wizards UI&rsquo;, I paused my coding to design something clean from scratch. It worked quite well at first : the overall code was a lot simpler and contained a lot less duplication than before. Seeing this new shiny UI, product people asked for new features. Unfortunately, I hadn&rsquo;t thought of them when designing this little framework. I was almost back at my initial situation.</p>
+
+<p>That&rsquo;s how I started to look for another way to design software. At about the same time the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming">eXtreme Programming book</a> fell into my hands. That&rsquo;s where I discovered the idea of incremental design and architecture.</p>
+
+<p><a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg" alt="Front cover of the first edition of the XP book" /></a></p>
+
+<h2>What is Incremental Archi</h2>
+
+<p>Let&rsquo;s start with the antithesis of incremental architecture :</p>
+
+<h3>Astronaut Architecture</h3>
+
+<p>The term &ldquo;Architecture Astronaut&rdquo; was coined by <a href="https://www.joelonsoftware.com">Joel Spolsky</a> back in 2001. If you haven&rsquo;t read this <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">classic post</a> yet, I strongly encourage you to do so. Basically, he explains that we should not be impressed by architects going over their heads talking about too abstract stuff.</p>
+
+<p>Incremental is the exact opposite of astronaut architecture</p>
+
+<h3>Two Schools to Software Architecture</h3>
+
+<p>Traditional architecture is about taking up-front choices that will be difficult to change. Incremental architecture is about preparing for non-stop change and taking decisions as late as possible.</p>
+
+<p>The idea in incremental architecture is really simple : keep your code simple, clean and automatically tested in order to be able to simply adapt your code and architecture when definitely needed.</p>
+
+<h3>Pros and Cons of incremental architecture</h3>
+
+<p>The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I&rsquo;m not alone, <a href="http://www.jamesshore.com/Agile-Book/incremental_design.html">James Shore</a> (who wrote the more on the subject) also shares my view:</p>
+
+<blockquote><p>Common thought is that distributed processing, persistence, internationalization, security, and transaction structure are so complex that you must consider them from the start of your project. I disagree; I&rsquo;ve dealt with all of them incrementally.</p>
+
+<p>Two issues that remain difficult to change are choice of programming language and platform. I wouldn&rsquo;t want to make those decisions incrementally!</p></blockquote>
+
+<p>I would add published APIs to this list.</p>
+
+<p>Granted, there are situations that incremental architecture alone cannot handle, what about its good points then ?</p>
+
+<p>In all the other cases (and that means most of the time), here is what you get :</p>
+
+<ul>
+<li>As you won&rsquo;t need to deal with future use cases, you&rsquo;ll do less work</li>
+<li>That in turn, will keep your code simpler, decreasing time to release new features</li>
+<li>As change is built-in, you&rsquo;ll be able to improve your architecture in ways you could not have imagined from the start !</li>
+</ul>
+
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1493096137&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg" alt="Front cover of the Art of Agile Software Development book" /></a></p>
+
+<p>If you cannot see how this could possibly work ? Read on !</p>
+
+<h2>How to do it</h2>
+
+<h3>eXtreme Programming</h3>
+
+<p>As I said earlier, incremental architecture emerged from eXtreme Programming. It won&rsquo;t come as a surprise that in order to work well incremental architecture requires the XP practices to be in place. In particular, the code base should be automatically tested, the continuous integration cycle should take less than 10 minutes, the design should be simple. The team should be good at doing refactoring.</p>
+
+<p>Don&rsquo;t expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !</p>
+
+<p><a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1493096197&amp;sr=1-1&amp;keywords=fowler+refactoring"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg" alt="Front cover of the Martin Fowler's refactoring book" /></a></p>
+
+<h3>Architecture Vision</h3>
+
+<p>At work, where our team consists of 9 developers, it&rsquo;s not always that simple to coordinate and all pull in the same direction. That&rsquo;s why we find it useful to share a very long term architecture vision (<a href="https://www.thoughtworks.com/insights/blog/enabling-incremental-design-and-evolutionary-architecture">Enabling Incremental Design and Evolutionary Architecture</a>). This will help people to make coherent decisions when hesitating between 2 alternate designs.</p>
+
+<p>The vision can be the result of the work of a pair, or a mob brainstorming or whatever. Building this vision is typically an activity where experienced programmers can contribute a lot of value.</p>
+
+<p>Once this vision is shared and understood by the team, every time a pair has to work on a story, they can orient the design towards it. But always as little as possible to finish the work at hand, remember the XP motos <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS (Keep It Simple &amp; Stupid)</a> &amp; <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI (You Ain&rsquo;t Gonna Need It</a>.</p>
+
+<p>One final word &hellip; a vision is just that : a vision ! It might turn out true, or false, be ready to change it as circumstances change.</p>
+
+<h3>Spikes</h3>
+
+<p>At times, even with a story in your hands and a long term architecture sketch on the whiteboard, you might have difficulties to know how to change your design to fulfill both.</p>
+
+<p>As always in XP, in case of uncertainty, use <a href="http://agiledictionary.com/209/spike/">Spikes</a> ! Spikes are short time-boxed experiments of throwaway code, which goal is to answer a specific design question.</p>
+
+<h3>How to mitigate the risks</h3>
+
+<p>What about these topics that don&rsquo;t yield to incremental architecture ? What if you discover late that you need to change your platform ? Or your API ?</p>
+
+<p>Obviously, you should think about these questions up-front. Hopefully, there are usually not that difficult to answer. But, over time, Non-Functional-Requirements and technologies change. Large and long living systems are particularly likely to need to change to a new platform someday.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix had the answer</a> : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg" alt="Ken Thompson and Dennis Ritchie, the creators of Unix" /></a><div class="image-credits">Photo from <a href="https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg">WikiMedia</a></div></p>
+
+<p>The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road &hellip; without the safety !</p>
+
+<h3>The Architect</h3>
+
+<p>Good news : no more PowerPoints and a lot more coding with the team ! Here is what&rsquo;s expected from an incremental architect :</p>
+
+<ul>
+<li>To code with the team. As Bertrand Meyer once said &ldquo;<a href="http://stal.blogspot.fr/2008/08/architect-always-implements.html">Bubbles (aka. diagrams) don&rsquo;t crash</a>&rdquo;, it&rsquo;s plain too easy, and wrong, to mandate architecture without living with the consequences</li>
+<li>To come up with more ideas when drafting the long term vision</li>
+<li>To keep an eye on the &lsquo;long term&rsquo; while being the navigator in pair programming</li>
+<li>In the second edition of the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&amp;qid=1493096057&amp;sr=8-1&amp;keywords=extreme+programming">XP book</a> Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team</li>
+<li>To delegate as much as possible to the team. However smart the architect, the team as a whole is smarter ! Delegating architecture increases motivation and the quality of the outcome.</li>
+</ul>
+
+
+<h2>End of the story</h2>
+
+<p>I&rsquo;ve been practicing incremental architecture and design for a long time now. It made my life a lot simpler ! Most architecture questions become backlog items to prioritize.</p>
+
+<p>One last advice : be prepared to re-read <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky&rsquo;s article</a> whenever you get caught up in architecture meetings &hellip;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to get your team to do code reviews]]></title>
@@ -1946,154 +2060,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 <p> <div style="margin-bottom:5px"> <strong> <a href="http://philippe.bourgau.net//www.slideshare.net/aatwi/extreme-practices-agiletourbeirut-2016" title="Extreme Practices - AgileTourBeirut - 2016" target="_blank">Extreme Practices &ndash; AgileTourBeirut &ndash; 2016</a> </strong> from <strong><a target="_blank" href="http://philippe.bourgau.net//www.slideshare.net/aatwi">Ahmad Atwi</a></strong> </div></p>
 
 <p>EDIT 2016/11/23 : <a href="https://www.youtube.com/watch?v=oJsukJhxt7E">the full video</a> is now on YouTube</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[3 More Great Talks From JavaOne 2016]]></title>
-    <link href="http://philippe.bourgau.net/3-more-great-talks-from-javaone-2016/"/>
-    <updated>2016-10-14T04:05:00+02:00</updated>
-    <id>http://philippe.bourgau.net/3-more-great-talks-from-javaone-2016</id>
-    <category term="java" /><category term="open-source" /><category term="performance" /><category term="programming" />
-    <content type="html"><![CDATA[<p>After the top <a href="http://philippe.bourgau.net/top-5-talks-i-attented-at-java-one-2016-part-1/">5 talks I attended at JavaOne</a> here are more !</p>
-
-<h2>Managing Open Source Contributions in Large Organizations</h2>
-
-<p><a href="http://www.jamesward.com/presos">James Ward</a></p>
-
-<p>This talk was very interesting for companies or organizations that want to use Open Source in some way without ignoring the risks.</p>
-
-<p>After an introduction listing the benefits of contributing to open source, James explained the associated risks :</p>
-
-<ul>
-<li>Security (evil contributions or information leaks)</li>
-<li>Quality (bad contributions, increased maintenance or showing a bad image)</li>
-<li>Legal (responsibility in case of patent infringing contribution, ownership of a contribution, licenses)</li>
-</ul>
-
-
-<p>He then explained that there are 3 ways to deal with the issue :</p>
-
-<table>
-<thead>
-<tr>
-<th> Strategy </th>
-<th> Description </th>
-<th> Pros </th>
-<th> Cons </th>
-<th> Popularity </th>
-<th> Examples </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> Do nothing </td>
-<td> Devs just contribute without saying it </td>
-<td> Easy, Gets it done </td>
-<td> Need to stay under the radar, Risks for all parties are ignores </td>
-<td> +++++ </td>
-<td> Most open source code on <a href="https://github.com">Github</a> is shared in this manner |</td>
-</tr>
-<tr>
-<td> Join a foundation </td>
-<td> Joining an existing open source foundation, with a framework </td>
-<td> Everything out of the box (infra, governance), builds trust </td>
-<td> Rules can be heavy, Ownership is given to the foundation </td>
-<td> +++ </td>
-<td> <a href="https://www.linkedin.com/">Linkedin</a> put <a href="https://kafka.apache.org/">Kafka</a> in the <a href="https://www.apache.org/">Apache Foundation</a> |</td>
-</tr>
-<tr>
-<td> Build tools </td>
-<td> Use your own tools to mitigate the main risks associated with the &lsquo;Do nothing&rsquo; strategy </td>
-<td> Built on top of Github, Keep control, Keeps things easy </td>
-<td> Need to develop, test and operate the tools </td>
-<td> + </td>
-<td> Demo of a tool plugged into Github to enforce a contributor license agreement for anyone pushing a pull request |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p><a href="http://philippe.bourgau.net/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA.jpg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA-small.jpg" title="Slide with a Github capture for Contributor License Agreement" ></a></p>
-
-<p>The &lsquo;build tools&rsquo; strategy looks promising, even if it is not yet widely used !</p>
-
-<p>Here are <a href="https://www.youtube.com/watch?v=X71HrW6vC_0">the talk</a> and <a href="http://presos.jamesward.com/managing_open_source_contributions_in_large_orgs/index.html#/">the slides</a> on the authors website.</p>
-
-<h2>Java Performance Analysis in Linux with Flame Graphs</h2>
-
-<p><a href="http://www.brendangregg.com/">Brendan Gregg</a></p>
-
-<p>This is what a flame graph looks like :</p>
-
-<p><a href="http://www.brendangregg.com/FlameGraphs/cpu-mixedmode-vertx.svg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/flamegraph.png" title="An example of a Java flame graph" ></a></p>
-
-<p>Technically, it&rsquo;s just an SVG with some Javascript. It shows the performance big picture. It aggregates data from Linux and JVM profilers. Vertically, you can see the call stacks in your system. The larger a block, the more time is taken inside a function (or in a sub call). The top border is where the CPU time is actually taken. If you want to speed up your system, speed up the wider zones at the top of the graph.</p>
-
-<p>At <a href="https://www.netflix.com">Netflix</a>, the speaker is a performance engineer, and his job is to build tools to help other teams discover performance issues. This is how they use Flame Graphs :</p>
-
-<ul>
-<li>Compare 2 flame graphs at different times to see what changed</li>
-<li>Do a <a href="http://martinfowler.com/bliki/CanaryRelease.html">canary release</a> and compare the new flame graph before finishing the deployment</li>
-<li>Taking continuous flame graphs on running services helps identify JVM behavior like JIT or GC</li>
-<li>They use different color themes to highlight different things</li>
-<li>They also use them to identify CPU cache misses</li>
-</ul>
-
-
-<p>By the way, I also thought this was a great example of using an innovative visualization to manage tons of data.</p>
-
-<p>I could find neither the video nor the slides of the talk, but I managed to find a lot of <a href="https://www.google.fr/search?safe=active&amp;client=ubuntu&amp;espv=2&amp;biw=1600&amp;bih=810&amp;tbm=vid&amp;q=Flame+Graphs&amp;oq=Flame+Graphs&amp;gs_l=serp.3...1396.1396.0.1616.1.1.0.0.0.0.59.59.1.1.0....0...1c.1.64.serp..0.0.0.z-3ygDHx4-Q">others talks about Flame Graphs</a>, as well as extra material on <a href="http://www.brendangregg.com/flamegraphs.html">the speaker&rsquo;s homepage</a>.</p>
-
-<h2>Increasing Code Quality with Gamification</h2>
-
-<p><a href="https://twitter.com/alex90_ch">Alexander Chatzizacharias</a></p>
-
-<p>You might be wondering why we should care about gamification ?</p>
-
-<ul>
-<li>Worldwide 11.2 billion hours are spent playing every week !</li>
-<li>People love to play because it makes them feel awesome</li>
-<li>Games are good teachers</li>
-<li>At work we are the ones who need to make others successful</li>
-<li>But only 32% of workers are engaged in their work !</li>
-</ul>
-
-
-<p>Games rely on 4 main dynamics :</p>
-
-<ul>
-<li>Competition (be very careful of closed economics which can be very bad for teams)</li>
-<li>Peer pressure (Public stats push teams and individual to conform to the norm)</li>
-<li>Progression (regular recognition of new skills is motivating)</li>
-<li>Rewards (Badges, Level ups, Monkey Money, real money &hellip;)</li>
-</ul>
-
-
-<p>He went on to demonstrate two games that are based on Jenkins and Sonar that aim at better code quality :</p>
-
-<ul>
-<li>One mobile app developed during a 24h Hackathon at CGI which might be open sourced at some point</li>
-<li>Another one called &lsquo;Dev Cube&rsquo; created at an university, where you get to decorate you virtual cubicle</li>
-</ul>
-
-
-<p><a href="https://www.youtube.com/watch?v=hfT2_HxOQdk"><img class="center" src="http://philippe.bourgau.net/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/quincy-adams.jpg" title="The speaker demoing his code quality game" ></a></p>
-
-<p>At the end of the talk, he gave the following recommendations :</p>
-
-<ul>
-<li>Understand the needs of all to respond to everyone&rsquo;s personal goals</li>
-<li>Don&rsquo;t assign things to do, that&rsquo;s not fun, give rewards instead</li>
-<li>Keep managers out of the picture</li>
-<li>To keep it going, you need regular improvements, special events and new rules</li>
-<li>KISS !</li>
-</ul>
-
-
-<p>Playing at work might not be unproductive in the end !</p>
-
-<p>The same <a href="https://www.youtube.com/watch?v=hfT2_HxOQdk">talk given at NLJug</a>, unfortunately, it&rsquo;s in Dutch. English slides are <a href="https://static.rainfocus.com/oracle/oow16/sess/14625567983370011wPS/ppt/increasing%20code%20quality%20with%20gamification.pdf">here</a> though.</p>
 ]]></content>
   </entry>
   

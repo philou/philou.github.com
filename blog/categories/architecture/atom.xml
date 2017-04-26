@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: architecture | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/architecture/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2017-04-26T05:58:38+02:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental architecture, a cure against architecture astronauts]]></title>
+    <link href="http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/"/>
+    <updated>2017-04-24T06:52:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts</id>
+    <content type="html"><![CDATA[<p>Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a>. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding &hellip;</p>
+
+<p>When I was asked to re-engineer the &lsquo;wizards UI&rsquo;, I paused my coding to design something clean from scratch. It worked quite well at first : the overall code was a lot simpler and contained a lot less duplication than before. Seeing this new shiny UI, product people asked for new features. Unfortunately, I hadn&rsquo;t thought of them when designing this little framework. I was almost back at my initial situation.</p>
+
+<p>That&rsquo;s how I started to look for another way to design software. At about the same time the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming">eXtreme Programming book</a> fell into my hands. That&rsquo;s where I discovered the idea of incremental design and architecture.</p>
+
+<p><a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg" alt="Front cover of the first edition of the XP book" /></a></p>
+
+<h2>What is Incremental Archi</h2>
+
+<p>Let&rsquo;s start with the antithesis of incremental architecture :</p>
+
+<h3>Astronaut Architecture</h3>
+
+<p>The term &ldquo;Architecture Astronaut&rdquo; was coined by <a href="https://www.joelonsoftware.com">Joel Spolsky</a> back in 2001. If you haven&rsquo;t read this <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">classic post</a> yet, I strongly encourage you to do so. Basically, he explains that we should not be impressed by architects going over their heads talking about too abstract stuff.</p>
+
+<p>Incremental is the exact opposite of astronaut architecture</p>
+
+<h3>Two Schools to Software Architecture</h3>
+
+<p>Traditional architecture is about taking up-front choices that will be difficult to change. Incremental architecture is about preparing for non-stop change and taking decisions as late as possible.</p>
+
+<p>The idea in incremental architecture is really simple : keep your code simple, clean and automatically tested in order to be able to simply adapt your code and architecture when definitely needed.</p>
+
+<h3>Pros and Cons of incremental architecture</h3>
+
+<p>The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I&rsquo;m not alone, <a href="http://www.jamesshore.com/Agile-Book/incremental_design.html">James Shore</a> (who wrote the more on the subject) also shares my view:</p>
+
+<blockquote><p>Common thought is that distributed processing, persistence, internationalization, security, and transaction structure are so complex that you must consider them from the start of your project. I disagree; I&rsquo;ve dealt with all of them incrementally.</p>
+
+<p>Two issues that remain difficult to change are choice of programming language and platform. I wouldn&rsquo;t want to make those decisions incrementally!</p></blockquote>
+
+<p>I would add published APIs to this list.</p>
+
+<p>Granted, there are situations that incremental architecture alone cannot handle, what about its good points then ?</p>
+
+<p>In all the other cases (and that means most of the time), here is what you get :</p>
+
+<ul>
+<li>As you won&rsquo;t need to deal with future use cases, you&rsquo;ll do less work</li>
+<li>That in turn, will keep your code simpler, decreasing time to release new features</li>
+<li>As change is built-in, you&rsquo;ll be able to improve your architecture in ways you could not have imagined from the start !</li>
+</ul>
+
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1493096137&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg" alt="Front cover of the Art of Agile Software Development book" /></a></p>
+
+<p>If you cannot see how this could possibly work ? Read on !</p>
+
+<h2>How to do it</h2>
+
+<h3>eXtreme Programming</h3>
+
+<p>As I said earlier, incremental architecture emerged from eXtreme Programming. It won&rsquo;t come as a surprise that in order to work well incremental architecture requires the XP practices to be in place. In particular, the code base should be automatically tested, the continuous integration cycle should take less than 10 minutes, the design should be simple. The team should be good at doing refactoring.</p>
+
+<p>Don&rsquo;t expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !</p>
+
+<p><a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1493096197&amp;sr=1-1&amp;keywords=fowler+refactoring"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg" alt="Front cover of the Martin Fowler's refactoring book" /></a></p>
+
+<h3>Architecture Vision</h3>
+
+<p>At work, where our team consists of 9 developers, it&rsquo;s not always that simple to coordinate and all pull in the same direction. That&rsquo;s why we find it useful to share a very long term architecture vision (<a href="https://www.thoughtworks.com/insights/blog/enabling-incremental-design-and-evolutionary-architecture">Enabling Incremental Design and Evolutionary Architecture</a>). This will help people to make coherent decisions when hesitating between 2 alternate designs.</p>
+
+<p>The vision can be the result of the work of a pair, or a mob brainstorming or whatever. Building this vision is typically an activity where experienced programmers can contribute a lot of value.</p>
+
+<p>Once this vision is shared and understood by the team, every time a pair has to work on a story, they can orient the design towards it. But always as little as possible to finish the work at hand, remember the XP motos <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS (Keep It Simple &amp; Stupid)</a> &amp; <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI (You Ain&rsquo;t Gonna Need It</a>.</p>
+
+<p>One final word &hellip; a vision is just that : a vision ! It might turn out true, or false, be ready to change it as circumstances change.</p>
+
+<h3>Spikes</h3>
+
+<p>At times, even with a story in your hands and a long term architecture sketch on the whiteboard, you might have difficulties to know how to change your design to fulfill both.</p>
+
+<p>As always in XP, in case of uncertainty, use <a href="http://agiledictionary.com/209/spike/">Spikes</a> ! Spikes are short time-boxed experiments of throwaway code, which goal is to answer a specific design question.</p>
+
+<h3>How to mitigate the risks</h3>
+
+<p>What about these topics that don&rsquo;t yield to incremental architecture ? What if you discover late that you need to change your platform ? Or your API ?</p>
+
+<p>Obviously, you should think about these questions up-front. Hopefully, there are usually not that difficult to answer. But, over time, Non-Functional-Requirements and technologies change. Large and long living systems are particularly likely to need to change to a new platform someday.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix had the answer</a> : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg" alt="Ken Thompson and Dennis Ritchie, the creators of Unix" /></a><div class="image-credits">Photo from <a href="https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg">WikiMedia</a></div></p>
+
+<p>The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road &hellip; without the safety !</p>
+
+<h3>The Architect</h3>
+
+<p>Good news : no more PowerPoints and a lot more coding with the team ! Here is what&rsquo;s expected from an incremental architect :</p>
+
+<ul>
+<li>To code with the team. As Bertrand Meyer once said &ldquo;<a href="http://stal.blogspot.fr/2008/08/architect-always-implements.html">Bubbles (aka. diagrams) don&rsquo;t crash</a>&rdquo;, it&rsquo;s plain too easy, and wrong, to mandate architecture without living with the consequences</li>
+<li>To come up with more ideas when drafting the long term vision</li>
+<li>To keep an eye on the &lsquo;long term&rsquo; while being the navigator in pair programming</li>
+<li>In the second edition of the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&amp;qid=1493096057&amp;sr=8-1&amp;keywords=extreme+programming">XP book</a> Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team</li>
+<li>To delegate as much as possible to the team. However smart the architect, the team as a whole is smarter ! Delegating architecture increases motivation and the quality of the outcome.</li>
+</ul>
+
+
+<h2>End of the story</h2>
+
+<p>I&rsquo;ve been practicing incremental architecture and design for a long time now. It made my life a lot simpler ! Most architecture questions become backlog items to prioritize.</p>
+
+<p>One last advice : be prepared to re-read <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky&rsquo;s article</a> whenever you get caught up in architecture meetings &hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>
