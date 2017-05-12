@@ -101,6 +101,58 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/1-rule-for-monitoring-emails/">#1 Rule for Monitoring Emails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-22T00:00:00+01:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just spent a few hours debugging my rails app on heroku to understand why the hell I did not systematicaly receive the monitoring emails that my app was sending &#8230;</p>
+
+
+<p>My app was actually rendering the email template.</p>
+
+
+<p>Wether the mail came through actually dependend on the mail content !</p>
+
+
+<p>It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from &#8216;ovh&#8217; and then forwarding emails to my gmail account, it was handy to apply automatic labels.</p>
+
+
+<p>Here is the #1 rule : always send your monitoring emails directly to the final recepient ! There will be less risk that some messages get lost.&nbsp;</p>
+
+
+<p>I changed the recipient to my gmail address, updated my label filter, and everything is back to normal (a lot of time lost for nothing).</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/the-poor-mans-memory-profiling/">The Poor Man&#8217;s Memory Profiling</a></h1>
     
     
@@ -708,74 +760,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rails-urlhelpers-mixup-when-using-rails-engin/">Rails Url_helpers Mixup When Using Rails Engines</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-09T00:00:00+02:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I just tried to integrate the <a href="https://github.com/KatanaCode/blogit">blogit</a> rails engine directly inside <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. Up till now, I was using a separated <a href="http://radiantcms.org/">radiant</a> app&nbsp;to deal with the blog part. It was working fine, but I had a few problems:</p>
-
-
-<ul>
-<li>I had to use special (javascript heavy) google analytics code through all cross app links, and that sometimes failed (somewhere in the combinaison of&nbsp;heroku, rails, and analytics)</li>
-<li>It was difficult to share the theme between the apps : on one side, templates, partials and css, on the other, rows in a database</li>
-<li>It was difficult to share session state between the two apps (login for example)</li>
-</ul>
-
-
-<p>As my blog is very basic, and as I am the only one editing the styles, I decided to embed a blog engine inside my app. I selected and tried a few&nbsp;engines : <a href="https://github.com/jipiboily/monologue">Monologue</a>, <a href="https://github.com/KatanaCode/blogit">Blogit</a>, <a href="http://refinerycms.com/">RefineryCMS</a> and to roll my own. Refinery looks way too complex to integrate regarding my basic needs. Monologue is not&nbsp;design to integrate with <a href="https://github.com/plataformatec/devise/">devise</a> users (which I already use) and I would prefer to contribute to an existing gem rather than to write the nth rails blog engine &#8230;</p>
-
-
-<p>After a few experiments, I settled on blogit. Unfortunately, I had really strange issues with links within blogit pages : all links were prefixed with &#8220;/blog&#8221; and blogit&nbsp;links where like &#8220;/blog/blogit?controller=posts&amp;action=new&#8221;. Hacking around in the rails console showed me that doing consecultively :</p>
-
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="kp">include</span> <span class="ss">Blogit</span><span class="p">:</span><span class="ss">:Engine</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span><span class='line'><span class="kp">include</span> <span class="no">Rails</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">url_helpers</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>resulted in the same behaviour. After a long debugging session, I eventually discovered that I had a helper in my application which explicitly required&nbsp;Rails.application.routes.url_helpers. This was causing the conflict. I changed my code to avoid this inclusion, and that fixed the links &#8230;</p>
-
-
-<p>&#8230; nearly. Now rendering the application template for a blog page failed with a &#8220;message not understood&#8221; for the main app&#8217;s xxx_path methods. Hopefully, I had&nbsp;found <a href="http://www.candland.net/2012/04/17/rails-routes-used-in-an-isolated-engine/">a fix</a> for this error earlier on the web. Now everything was working like a charm.</p>
-
-
-<p>To conclude, I was convinced by blogit, and I am going to use it to migrate my blog. I already have a few ideas for improvements I will have to do (<a href="http://disqus.com/">disqus</a> comments&nbsp;and archive helper for example).</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -855,6 +839,10 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/most-scrum-teams-are-not-agile/">Most Scrum teams are not agile</a>
+      </li>
+    
+      <li class="post">
         <a href="/a-straightforward-way-to-scale-to-more-than-1-scrum-team/">A Straightforward Way to Scale to More Than 1 Scrum Team</a>
       </li>
     
@@ -868,10 +856,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/">A seamless way to keep track of technical debt in your source code</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-mock-your-browsers-timezone-with-jasmine-and-momentjs/">How to mock your browser&#8217;s timezone with Jasmine and MomentJS</a>
       </li>
     
   </ul>

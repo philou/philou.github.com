@@ -101,6 +101,78 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">How to Prepare a New Ruby Env in 3 Minutes Using Docker</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-08-17T05:21:00+02:00" pubdate data-updated="true">Aug 17<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
+
+<p>I turned out to be dead simple. All that is needed is a <code>docker-compose.yml</code> file to define the container, record the shared volume and set a bundle path inside it :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rubybox</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ruby:2.3</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">command</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">bash</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">working_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/usr/src/app</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">BUNDLE_PATH</span><span class="p-Indicator">:</span> <span class="s">&#39;vendor/bundle&#39;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/usr/src/app&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Without the custom bundle path, bundled gems would be installed elsewhere in the container, and lost at every restart.</p>
+
+<p>To use the Rubybox, just type <code>docker-compose run rubybox</code> and you&rsquo;ll get a shell from within your ruby machine, where you can do everything you want.</p>
+
+<p>In fact, I found the thing so useful, that I created the <a href="https://github.com/philou/rubybox">Rubybox</a> git repo to simplify cloning and reusing. I&rsquo;ve already cloned it at least 3 times since then !</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:philou/rubybox.git
+</span><span class='line'><span class="nb">cd </span>rubybox
+</span><span class='line'>docker-compose run rubybox
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-grow-a-culture-book/">How to Grow a Culture Book</a></h1>
     
     
@@ -1403,54 +1475,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/anti-ugly-code-glasses/">Anti Ugly-Code Glasses</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-06-02T04:33:00+02:00" pubdate data-updated="true">Jun 2<span>nd</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I think I found a way to fix the dirty code problem once and for all &hellip;</p>
-
-<p>In <a href="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy">The Hitchhiker&rsquo;s Guide to the Galaxy</a> Zaphod Beeblebrox has some anti panic glasses. They feature some special danger detection mechanism that turns them opaque black to save their bearer from panicking.</p>
-
-<p><img class="center" src="/imgs/2016-06-02-anti-ugly-code-glasses/zaphod.jpg" title="Zaphod Beeblebrox" ></p>
-
-<p><em>(It turns out that Zaphod has two heads &hellip;)</em></p>
-
-<p>In 2016, it&rsquo;s shocking that some many hours are lost by poor developers reading ugly code.</p>
-
-<p>Let&rsquo;s build anti ugly-code glasses ! We&rsquo;d just need an IDE or editor plugin, connect it to <a href="http://www.sonarqube.org/">Sonar</a> in order to get the quality of the current file, and if too bad, shut the glasses black !</p>
-
-<p>Finally the killer feature for augmented reality glasses !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1530,6 +1554,10 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/most-scrum-teams-are-not-agile/">Most Scrum teams are not agile</a>
+      </li>
+    
+      <li class="post">
         <a href="/a-straightforward-way-to-scale-to-more-than-1-scrum-team/">A Straightforward Way to Scale to More Than 1 Scrum Team</a>
       </li>
     
@@ -1543,10 +1571,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     
       <li class="post">
         <a href="/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/">A seamless way to keep track of technical debt in your source code</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-mock-your-browsers-timezone-with-jasmine-and-momentjs/">How to mock your browser&#8217;s timezone with Jasmine and MomentJS</a>
       </li>
     
   </ul>
