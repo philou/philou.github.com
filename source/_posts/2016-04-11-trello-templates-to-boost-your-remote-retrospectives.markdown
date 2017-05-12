@@ -7,6 +7,7 @@ categories:
  - retrospectives
  - remote
  - trello
+ - continuous improvement
 keywords: "Remote Retrospectives, Trello Retrospectives, Agile Retrospectives"
 description: "An update on new template for trello based agile retrospectives"
 ---

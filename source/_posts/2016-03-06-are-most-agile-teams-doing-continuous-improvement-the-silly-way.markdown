@@ -7,6 +7,7 @@ categories:
  - lean
  - agile
  - book
+ - continuous improvement
 keywords: "book, lean software development, lean software, agile, agile software development"
 description: "A summary / review of the book 'Petit guide de management lean a l'usage des équipes agiles'"
 ---

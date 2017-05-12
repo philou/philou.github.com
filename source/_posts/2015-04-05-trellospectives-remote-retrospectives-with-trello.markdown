@@ -6,6 +6,8 @@ comments: true
 categories:
  - agile
  - remote
+ - retrospectives
+ - continuous improvement
 keywords: "Remote Retrospective, Retrospective, Remote Work, Distributed Teams, Agile Retrospectives, Trello"
 description: "The story of an agile team adapting their retrospectives for remote work"
 ---

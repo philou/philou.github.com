@@ -7,6 +7,7 @@ categories:
  - agile
  - retrospectives
  - scrum
+ - continuous improvement
 keywords: "agile, retrospectives, agile retrospectives, scrum retrospectives, how to"
 description: "The story explaining how our team went from no retrospectives to efficient self organized agile retrospectives"
 ---
