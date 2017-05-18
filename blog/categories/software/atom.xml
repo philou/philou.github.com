@@ -4,7 +4,7 @@
   <title><![CDATA[Category: software | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/software/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-05-12T06:29:13+02:00</updated>
+  <updated>2017-05-18T07:01:54+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,154 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[From apprentice to master, how to learn TDD (Test Driven Development)]]></title>
+    <link href="http://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/"/>
+    <updated>2017-05-15T06:53:00+02:00</updated>
+    <id>http://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development</id>
+    <content type="html"><![CDATA[<p>I started to learn <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> a long time ago. Since then, even though I&rsquo;m still not a master, it&rsquo;s been my most useful programming skill, by far. TDD is the first trick every new programmer should learn. It made my whole career as a developer easier.</p>
+
+<p>I&rsquo;ve been working as a professional software engineer for more than 15 years, including around 10 years in the trading industry. Only once did I need to work on week ends or late into the night to fix emergency issues. I believe I largely owe this work-life balance to the high test coverage that TDD ensures by design.</p>
+
+<p>TDD also enables safe refactoring. Refactoring enables <a href="/incremental-architecture-a-cure-against-architecture-astronauts/">incremental design</a> which lets you decide late. Deciding late is how you make your customers happy by accepting late changes. Deciding late is how take up-front design easy, and improve your code as you go. Deciding late is how you build trustful and harmonious relationships with the stakeholders of your project.</p>
+
+<p>Finally, writing tests before the code is both easier and more fun. Among compilation errors and never ending customer demands, the recurring green barre tastes like pure candy to the poor programmer !</p>
+
+<p><img src="../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/road.jpg" alt="A long winding road" /><div class="image-credits">From <a href="https://fr.pinterest.com/explore/winding-road/">Pinterest winding road catalog</a></div></p>
+
+<h2>The TDD Road</h2>
+
+<p>Here are the steps I took to learn TDD.</p>
+
+<h3>Learn the principles</h3>
+
+<p>The principles of Test Driven Development are fairly basic. 5 minutes is enough to know them forever :</p>
+
+<ol>
+<li>Write a failing test</li>
+<li>Make it pass by doing the simplest thing possible</li>
+<li>Refactor your code while keeping the tests passing</li>
+<li>Repeat until your acceptance test is green</li>
+</ol>
+
+
+<p>TDD newbies might ask a few questions like :</p>
+
+<ul>
+<li>Is making the code compile in step 1 or 2 ? Honestly, that does not matter. Write the test as if you had the code, then make it compile, make sure it fails, and continue.</li>
+<li>How much should I refactor ? It often takes a good amount of experimentation to find your good balance. If you don&rsquo;t refactor enough, you going to drown in dirty code. If you refactor too much, you&rsquo;re going to waste your time (<a href="https://martinfowler.com/bliki/Yagni.html">YAGNI</a>). As a rule of thumb, <a href="https://martinfowler.com/bliki/BeckDesignRules.html">Kent Beck&rsquo;s</a> rules on simple design are a very good starting point :</li>
+</ul>
+
+
+<p><a href="https://martinfowler.com/bliki/BeckDesignRules.html"><img src="../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/beck-rules.jpg" alt="A visual graph of Kent Beck's rules of simple design" /></a><div class="image-credits"><a href="https://martinfowler.com/bliki/BeckDesignRules.html">From Martin Fowler : Beck Design Rules</a></div></p>
+
+<h3>Find your tools</h3>
+
+<p>Back in 2003, after reading <a href="TODO">Martin Fowler</a>&rsquo;s <a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080119&amp;sr=1-1&amp;keywords=martin+fowler+refactoring">Refactoring: Improving the Design of Existing Code</a> book, I decided to give TDD a serious try. I was using C++ at work but we did not even have a nightly build. I had to download and setup <a href="https://en.wikipedia.org/wiki/CppUnit">CppUnit</a> on my own. As solo endeavor, this was a required step to get into TDD.</p>
+
+<p>Find and setup a tool. Which one should be rather obvious, if your team already uses a unit test framework, stick to it, otherwise, pick the most standard for your language, ex : <a href="http://junit.org/">JUnit</a> for <a href="https://www.java.com">Java</a> (you might as well start searching for a new job where they use a unit testing tool).</p>
+
+<h3>Train at a TDD coding dojo</h3>
+
+<p><a href="http://codingdojo.org/">Coding dojos</a> were first invented as a tool to <a href="http://www.peterprovost.org/blog/2012/05/02/kata-the-only-way-to-learn-tdd/">learn TDD</a>. They were started by two french eXtreme Programmers <a href="https://ut7.fr/">Emmanuel Gaillot</a> and <a href="http://institut-agile.fr/">Laurent Bossavit</a>. It happens that I live in Paris, and that Emmanuel came to work as a contractor at the same company I was. I learned that he was organizing a weekly coding dojo open to any developer. That&rsquo;s how I started attending coding dojos. Looking back, the TDD skills I learned at the coding dojo are just enormous !</p>
+
+<p>If you are serious about learning TDD, attend coding dojos. Whether you find one in your city (ask <a href="https://www.meetup.com/">meetup.com</a>) or in your company does not really matter. If you cannot find any, just start one at work ! Send a public call for interested people (use wiki, mail, posters or whatever), book a room and start hacking ! <a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&amp;qid=1494908749&amp;sr=8-1&amp;keywords=coding+dojo">Emily Bache&rsquo;s Coding Dojo Handbook</a> seems a very good reference about how to start a coding dojo (Disclaimer : I did not read the book, I only know it by reputation.)</p>
+
+<p><a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&amp;qid=1494908749&amp;sr=8-1&amp;keywords=coding+dojo"><img src="../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/coding-dojo.jpg" alt="Cover of The Coding Dojo Handbook" /></a></p>
+
+<h3>Use it</h3>
+
+<p>If you&rsquo;re a professional programmer, you must be spending most of your time writing code. Take this opportunity to use TDD. You&rsquo;ll be slowed down a bit at the beginning, but as both your code and your skills improve, you&rsquo;ll get your time back manyfold.</p>
+
+<p>I remember one of my first professional use of TDD was to write a small parser. A few weeks later I was asked to make it faster. Having tests around it made it easy to optimize it without breaking it.</p>
+
+<h3>Deliberate practice</h3>
+
+<p>In <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1494910468&amp;sr=1-1&amp;keywords=the+first+20+hours">The first 20 hours</a>, Josh Kaufman explains that deliberately practicing specific topics is a more time effective way of learning than simply crunching hours of practice.</p>
+
+<p>My friend <a href="https://twitter.com/tpierrain">Thomas Pierrain</a> is used to regularly practice short 30 minutes katas to sharpen his programming skills. Katas can be found at <a href="http://codingdojo.org/KataCatalogue/">codingdojo.org</a>, at <a href="http://cyber-dojo.org/">cyber-dojo.org</a> or in <a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&amp;qid=1494908749&amp;sr=8-1&amp;keywords=coding+dojo">The Coding Dojo Handbook</a>.</p>
+
+<h3>Read</h3>
+
+<p>Meanwhile I was doing all this, I also spent a lot of time reading on the subject. At the time, there was a lot of things about TDD in the <a href="http://wiki.c2.com/">C2 Wiki</a>, so I spent a lot of time there. Since then, I stumbled upon a few books that helped me to understand some aspects of TDD :</p>
+
+<ul>
+<li>Kent Beck&rsquo;s classic <a href="https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080564&amp;sr=1-1&amp;keywords=tdd+by+example">TDD by example</a> remains a great reference for beginners</li>
+<li>I got very useful advices from <a href="https://www.amazon.com/Test-Driven-Development-Practical-Guide/dp/0131016490/ref=sr_1_3?s=books&amp;ie=UTF8&amp;qid=1494911486&amp;sr=1-3&amp;keywords=test+driven+practical+guide">TDD, a practical guide</a> especially the section about UI testing, which really saved me at some point</li>
+<li>Finally, <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided By Tests</a> is now a classic about what is called &ldquo;The London school of testing&rdquo;, which uses mocks as a design tool. Definitely a must read.</li>
+</ul>
+
+
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/growing.jpg" alt="Cover of GOOSGT" /></a></p>
+
+<h3>Practice advanced topics</h3>
+
+<p>The TDD road goes on forever, testing has a lot of tricky topics. Once you&rsquo;ve mastered the basics, it&rsquo;s quite interesting to explore and practice more complex subjects. Here are a few things worth trying out :</p>
+
+<ul>
+<li>Use automated IDE refactorings to keep the code compiling all the way through a kata</li>
+<li>Do the same kata twice, using <a href="/flavours-of-tdd/">top-down and bottom-up</a> styles</li>
+<li>Do refactoring katas to learn how to work with legacy code</li>
+<li>Do UI katas, to learn how to test the UI</li>
+<li>Learn how to deal with DB</li>
+<li>Learn how to handle remote services</li>
+</ul>
+
+
+<p>If needed, invent your own katas to deliberately practice these topics and others.</p>
+
+<h2>The pitfalls</h2>
+
+<p>As any road worth walking, the TDD path is not linear and smooth. Before fully mastering TDD, you&rsquo;ll regularly wonder if you&rsquo;re on the right track. As any practice, TDD has pitfalls. I&rsquo;ve fell into some quite a few times. I guess that&rsquo;s part of the learning process.</p>
+
+<h3>Emerging Design</h3>
+
+<p>There&rsquo;s always been a lot of misunderstanding around this topic.</p>
+
+<p>Bad smells in your code make your tests harder to write. If adding a test is painful, that&rsquo;s an indication that something could be improved in your design. It&rsquo;s then up to you to know what. Once you&rsquo;ve figured out what you want to change, use your existing tests to refactor your design first. Only then, add this new test.</p>
+
+<p>As you can see, the tests will give you more feedback about the design of your code, but they won&rsquo;t tell you what to do. That&rsquo;s where your coding skills will help. This is particularly true about algorithms. Don&rsquo;t expect a good algorithm to magically appear as you do the simplest-thing-that-could-possibly-work &hellip;</p>
+
+<p>As with any rules, there are exceptions. At times, you&rsquo;ll walk into a problem which emerging design is great. For example, I&rsquo;ve done the <a href="http://agilekatas.co.uk/katas/RomanNumerals-Kata">Arab to Romans</a> kata many times, and that repeatedly doing the simplest-thing-that-could-possibly-work yields a good solution.</p>
+
+<h3>Mocks</h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Mock_object">Mocks</a> are useful at times, but be careful not to overuse them. I already <a href="http://localhost:4000/blog/categories/mocking/">wrote about mocks</a>. Too much mocking makes your test suite brittle, ineffective and difficult to maintain ! I&rsquo;ve been bitten hard by this one on a personal <a href="https://github.com/philou/mes-courses">side project</a>, the day I decided to get rid of all the mocks, I shrank the test code size by 25%. Since then I learned about alternate techniques such as :</p>
+
+<ul>
+<li><a href="http://www.natpryce.com/articles/000714.html">Test data builders</a> which allow to easily build test data</li>
+<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value objects</a> that are immutable and don&rsquo;t need mocking</li>
+<li><a href="/my-new-gem-for-creating-rspec-proxies/">test spies and proxies</a> as a way to mock and track calls while still calling the real code</li>
+<li><a href="http://localhost:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">in-memory fake implementations</a> which make the tests independent and fast without unmaintainable proliferation of mock setup</li>
+</ul>
+
+
+<p>As an indicator, less than 5% of my tests use mocks.</p>
+
+<h3>Metrics</h3>
+
+<p>In his <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">keynote at RailsConf 2014</a> DHH explains the danger of testing metrics.</p>
+
+<p><a href="https://www.youtube.com/watch?v=9LfmrkyP81M"><img src="../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/dhh.jpg" alt="DHH's keynote at RailsConf 2014" /></a></p>
+
+<p>By using TDD correctly, you should get a high code coverage as a side effect. If you get below 80%, you must be doing something wrong. The other metric you should keep an eye on is the total build time. Original <a href="http://www.extremeprogramming.org/">eXtreme Programming</a> had the <a href="http://www.jamesshore.com/Agile-Book/ten_minute_build.html">10 minutes build rule</a> which states that if your build + tests takes more than 10 minutes, you should refactor it.</p>
+
+<p>That&rsquo;s it ! Things like 100% test coverage or test ratio are complete nonsense.</p>
+
+<h2>Pushing it even further</h2>
+
+<p>My promise, at the beginning of this post, was that Test Driven Development would make your life as a developer easier. Now let&rsquo;s imagine that your whole team or company was using TDD. It&rsquo;s a foundation on which to build a sustainable agile organization.</p>
+
+<p>The mastery of automated testing at organization scale is a key element to continuous delivery, making releasing software a non-event, and as stress-free as possible.</p>
+
+<p>Full adoption of TDD can yield to <a href="/incremental-architecture-a-cure-against-architecture-astronauts/">incremental architecture</a> which delivers features faster, by skipping the conflictual arguments about supposed future needs.</p>
+
+<p>Finally, TDD can simplify your processes and tooling. Team-wide TDD results in a steady flow of features on top of which it is easier to create simple and effective processes and tools.</p>
+
+<p>The road is long, sinuous and at times rocky, but so are the rewards.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Incremental architecture, a cure against architecture astronauts]]></title>
@@ -435,108 +583,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
 
 <p>To me, the sad truth is that if you want to make a career as a professional developer in France, you&rsquo;d better be ready to spend some of your free time practicing !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I got my feet wet with machine learning with 'The First 20 Hours']]></title>
-    <link href="http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/"/>
-    <updated>2016-12-29T21:09:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours</id>
-    <content type="html"><![CDATA[<p>I&rsquo;m currently wrapping up an alpha of a unit testing <a href="https://github.com/philou/complexity-assert">ruby gem</a> that allows to assert the complexity of a piece of code. It&rsquo;s the result of an experiment to learn some <a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> skills in 20 hours &hellip; not bad for a first a try at Data Science ! This is the story of this experiment.</p>
-
-<h2>How it all started ?</h2>
-
-<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img class="center" src="/imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg" title="The cover of the book &lsquo;The First 20 Hours&rsquo;" ></a></p>
-
-<p>A few months ago, I read <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours">The First 20 Hours</a>. The book describes a technique to get up to speed and learn some practical skills on any particular subject in only 20 hours. As examples, the author details how he managed to teach himself a pretty decent level of Yoga, Ukulele, Wind Surfing, Programming, Go and touch typing.</p>
-
-<p>I decided to give it a try. In order to get a boost, I found a few motivated people at work to do it with me. I started by presenting them the technique described in the book, and asked everyone what they wanted to learn. After a quick vote, we set out to learn more about Machine Learning.</p>
-
-<h2>The technique</h2>
-
-<p>The method is meant to allow anyone to learn necessary skills to accomplish a specific task in about 20 hours. I my case, I could expect to get a basic understanding of the Machine Learning concepts, as well as some practical skills to do something involving Machine Learning. Here are the details of the technique :</p>
-
-<ol>
-<li>H0 : Deep dive in the main concepts and theory of machine learning</li>
-<li>H6 : Define an ambitious and practical goal or skill level to achieve by the end, and an outline of how to get there</li>
-<li>H6 to H20 : Learn by doing</li>
-</ol>
-
-
-<p>As you see, the technique is pretty simple !</p>
-
-<h2>How did it work ?</h2>
-
-<h3>For the group</h3>
-
-<p>The plan for the group was :</p>
-
-<ul>
-<li>to meet weekly for 2 hours</li>
-<li>to share what we learned at the end of every session</li>
-<li>to bound by similar goals</li>
-</ul>
-
-
-<p>At first, people were enthusiastic about learning something like machine learning. After a while, I started to get the following remarks :</p>
-
-<ul>
-<li>&ldquo;I don&rsquo;t really see the point of doing this together rather than independently&rdquo;</li>
-<li>&ldquo;I&rsquo;m feeling a bit lost by not having a concrete goal and a plan from H0&rdquo;</li>
-<li>&ldquo;I picked up a target that&rsquo;s too large for me&rdquo;</li>
-</ul>
-
-
-<p>The learning curve must have proven too steep, because as time went by, a lot of people droped out, and we ended up being only 2 !</p>
-
-<h3>For me</h3>
-
-<p>The first phase was the toughest. As the author had warned in his book, &ldquo;You&rsquo;ll get deep above your head in theory and concepts you don&rsquo;t know&rdquo;, &ldquo;You&rsquo;ll feel lost&rdquo;. He had some reassuring words though : &ldquo;The steeper the learning curve, the more you&rsquo;ll be learning !&rdquo; I actually like this feeling of unknown things to learn, and that&rsquo;s why I stuck to it.</p>
-
-<p>I took me 8 hours, and not 6 to get a good overall grasp of Machine Learning techniques. The theory was just too wide and interesting and I could not cut the learning after just 6 hours :&ndash;). I studied <a href="https://xyclade.github.io/MachineLearning/#cross-validation">Machine Learning for developers</a> plus a few other pages for details on specific points. I took and kept notes about what I learned. I chose my subject &ldquo;unit testing algorithm complexity&rdquo; for the following reasons :</p>
-
-<ul>
-<li>I could imagine some utility</li>
-<li>I had been writing benchmarks at work for 3 years, and I knew the practice well enough</li>
-<li>It&rsquo;s pretty easy to generate data for this subject : just run your algorithm !</li>
-<li>It seems a good first step, doable with basic Machine Learning techniques like linear regression</li>
-<li>It seems small enough to get something working in 12 hours</li>
-<li>I could use ruby, which I find both fast and pleasant to program</li>
-</ul>
-
-
-<p>This is the plan I set out :</p>
-
-<ol>
-<li>Generate data with a linear algorithm (O(n))</li>
-<li>Run linear regression on the data</li>
-<li>Compute the the <a href="https://xyclade.github.io/MachineLearning/#root-mean-squared-error-rmse">RMSE</a> of the model</li>
-<li>Deal with Garbage Collection in order to make reduce its noise</li>
-<li>Deal with interpreter warm-up for the same reason</li>
-<li>Generate data for a constant (O(1)) algorithm and build a model for it</li>
-<li>Find a way to identify if an algorithm is constant or linear from it&rsquo;s execution timings</li>
-<li>Generate data for a quadratic (O(2)) algorithm and build a model for it</li>
-<li>Identify if an algorithm is constant, linear or quadratic</li>
-<li>Package all this in an <a href="http://rspec.info/">RSpec</a> library</li>
-</ol>
-
-
-<p>It started well, and I made good progress. Unfortunately, as people dropped out of the group and I got more urgent things to do at work, I had to pause my project for a while. It&rsquo;s only been since last week that I got some time during my holidays to finish this off. I&rsquo;m currently at H18, and I&rsquo;ve completed all steps from 1 to 9.</p>
-
-<p>As I said the project is still in early alpha. They is a lot of points in which it could be improved (more complexities, faster, more reliable &hellip;). Even though I did not tackle the more advanced machine learning techniques, I now understand the overall process of ML : explore to get an intuitive grasp of the data, try out a model, see what happens, and repeat &hellip; I feel that learning these more advanced techniques would be easier now.</p>
-
-<h2>My opinion on the method</h2>
-
-<p>Overall, I found the experiment really effective, it&rsquo;s possible to learn quite a lot by focusing on it for 20 hours. A word of warning though : you need to be really motivated and ready to stick through difficulties.</p>
-
-<p>It&rsquo;s also been very pleasant. I&rsquo;ve always loved to learn new things, so I might be a little biased on that aspect. I liked the first part when I felt that there was a lot to learn in a large subject I knew almost nothing about. I loved the second part too, although this might be more related to machine learning, because I felt like exploring an unknown (data set) and trying to understand it.</p>
-
-<p>I&rsquo;ve never been afraid to learn something, doing this experiment taught me I can learn anything fast ! I&rsquo;ll definitely re-use it again.</p>
-
-<p>One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first &lsquo;explore&rsquo; phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The &lsquo;guide&rsquo; could also help the others through the first phase.</p>
-
-<p>Stay tuned, I&rsquo;ll present my gem in <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">a following post</a></p>
 ]]></content>
   </entry>
   
