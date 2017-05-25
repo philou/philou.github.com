@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-05-18T07:01:54+02:00</updated>
+  <updated>2017-05-25T08:06:03+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[20 Bad Excuses For Not Writing Unit Tests]]></title>
+    <link href="http://philippe.bourgau.net/20-bad-excuses-for-not-writing-unit-tests/"/>
+    <updated>2017-05-23T06:08:00+02:00</updated>
+    <id>http://philippe.bourgau.net/20-bad-excuses-for-not-writing-unit-tests</id>
+    <content type="html"><![CDATA[<blockquote><p>I guess we always find excuses to keep on with our bad habits, don&rsquo;t we ? <em><a href="http://www.goodreads.com/quotes/797048-i-guess-we-always-find-excuses-to-keep-on-with">Stephen King</a></em></p></blockquote>
+
+<ol>
+<li>I don&rsquo;t have the time. <em>But you&rsquo;ll have the time to fix the bugs &hellip;</em></li>
+<li>I don&rsquo;t know how to write tests. <em>No problem, anyone can <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">learn</a>.</em></li>
+<li>I&rsquo;m sure the code is working now. <em><a href="https://www.brainyquote.com/quotes/quotes/e/edsgerdijk204340.html">The competent programmer is fully aware of the limited size of his own skull &hellip;</a></em></li>
+<li>This code is not testable. <em>Learn or refactor.</em></li>
+<li>It&rsquo;s (UI|DB) code, we don&rsquo;t test it. <em>Because it never crashes ?</em></li>
+<li>Because I need to refactor first &hellip; and I need tests to refactor ! <em>Damn, you&rsquo;ve fallen into the test deadlock !</em></li>
+<li>It&rsquo;s multithreaded code, it&rsquo;s impossible to test. <em>Because it&rsquo;s fully tederministic ?</em></li>
+<li>The QA department is already testing the code. <em>Is that working well ?</em></li>
+<li>I should not test my own code, I&rsquo;ll be biased. <em>Start testing other people&rsquo;s code right now then !</em></li>
+<li>I&rsquo;m a programmer, not a tester. <em><a href="https://softwareengineering.stackexchange.com/questions/159572/as-a-professional-developer-is-it-acceptable-to-not-write-unit-tests">Professional programmers write tests</a>.</em></li>
+</ol>
+
+
+<p><img src="../imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/stronger_than_excuses_quote.jpg" alt="A quote 'Be Stronger Than Your Excuses'" /><div class="image-credits">From <a href="https://todayiwillbefit.com/2013/10/30/excuses-suck-top-10-bad-excuses-to-not-exercise/">todayiwillbefit.com</a></div></p>
+
+<ol>
+<li>I&rsquo;m using a REPL, it replaces unit tests. <em>Sure, and you&rsquo;re running your REPL buffers on the CI ? and keeping your them for the next time someone modifies your code.</em></li>
+<li>My type system is strong enough to replace tests. <em>Does it detect when you use &lsquo;+&rsquo; instead of &lsquo;*&rsquo; ?</em></li>
+<li>We don&rsquo;t have the tooling to write unit tests. <em><a href="https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks">Get one</a>.</em></li>
+<li>Tests aren&rsquo;t run automatically anyway. <em><a href="https://en.wikipedia.org/wiki/Comparison_of_continuous_integration_software">Install a Continuous Integration Server</a>.</em></li>
+<li>I&rsquo;m domain expert developer, writing tests is not my job. <em>Creating bugs isn&rsquo;t either !</em></li>
+<li>We&rsquo;d rather switch to the <a href="http://www.paulgraham.com/avg.html">Blub language</a> first ! <em>You&rsquo;re right, let&rsquo;s do neither then !</em></li>
+<li>We don&rsquo;t test legacy code. <em>Specifically because it is <a href="https://en.wikipedia.org/wiki/Legacy_code">legacy code</a>.</em></li>
+<li>Adding tests for every production code we write is insane ! <em>As shipping untested code is unprofessional.</em></li>
+<li>I find more issues doing manual testing. <em><a href="/how-we-started-exploratory-testing/">Exploratory Testing</a> is a valuable testing, even more so on top of automated tests.</em></li>
+<li>Because my teammates don&rsquo;t run them. <em>Time for a <a href="/most-scrum-teams-are-not-agile/">retrospective</a>.</em></li>
+</ol>
+
+
+<p><img src="../imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[From apprentice to master, how to learn TDD (Test Driven Development)]]></title>
@@ -340,25 +381,6 @@ ActiveRecord::Schema.verbose = false</p>
 <p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
 
 <p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How NOT to use mocks, my talk at Paris.rb]]></title>
-    <link href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/"/>
-    <updated>2016-09-13T04:03:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb</id>
-    <content type="html"><![CDATA[<p>As I already <a href="/blog/categories/mocking/">wrote about</a>, mocks can be trecherous &hellip; I gave a talk about how to avoid them last tuesday at <a href="http://www.meetup.com/fr-FR/parisrb/">Paris.rb meetup</a>. Here are the <a href="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing">slides</a>.</p>
-
-<p>It talks about testing, mocking, but also <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design</a> and <a href="https://wincent.com/blog/proxies-with-rr">test proxies à la RR</a> (but for rspec).</p>
-
-<iframe src="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="790" height="470" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-
-
-
-<p><p/>
-Check the speaker&rsquo;s comments for all the details.</p>
 ]]></content>
   </entry>
   
