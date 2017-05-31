@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-05-25T08:06:03+02:00</updated>
+  <updated>2017-05-31T07:16:20+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,195 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Speed up the TDD feedback loop with better assertion messages]]></title>
+    <link href="http://philippe.bourgau.net/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/"/>
+    <updated>2017-05-29T06:37:00+02:00</updated>
+    <id>http://philippe.bourgau.net/speed-up-the-tdd-feedback-loop-with-better-assertion-messages</id>
+    <category term="software" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<p>There is a rather widespread <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> practice to have a <a href="https://softwareengineering.stackexchange.com/questions/7823/is-it-ok-to-have-multiple-asserts-in-a-single-unit-test">single assertion per test</a>. The goal is to have faster feedback loop while coding. When a test fails, it can be for a single reason, making the diagnostic faster.</p>
+
+<p>The same goes with the test names. When a test fails, a readable test name in the report simplifies the diagnostic. Some testing frameworks allow the use of plain strings as test names. In others, people use <a href="https://en.wikipedia.org/wiki/Naming_convention_(programming">underscores</a>#Multiple-word_identifiers) instead of <a href="https://en.wikipedia.org/wiki/Camel_case">CamelCase</a> in test names.</p>
+
+<p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/rubymine.jpg" alt="RubyMine test report" /></p>
+
+<h2>A 4th step in TDD: Fail, <em>Fail better</em>, Pass, Refactor</h2>
+
+<h3>First, make it fail</h3>
+
+<p>Everyone knows that Test Driven Development starts by making the test fail. Let me illustrate why.</p>
+
+<p>A few years ago, I was working on a <a href="https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29">C#</a> project. We were using TDD and <a href="https://github.com/nunit/nunit">NUnit</a>. At some point, while working on a story, I forgot to make my latest test fail. I wrote some code to pass this test, I ran the tests, and they were green. When I was almost done, I tried to plug all the parts together, but nothing was working. I had to start the debugger to understand what was going wrong. At first, I could not understand why the exact thing I had unit tested earlier was now broken. After more investigation I discovered that I had forgotten to make my test public. NUnit only runs public tests &hellip;</p>
+
+<p>If I had made sure my test was failing, I would have spotted straightaway that it was not ran.</p>
+
+<h3>Then make it fail &hellip; better !</h3>
+
+<p>I lived the same kind of story with wrong failures many times. The test fails, but for a bad reason. I move on to implement the code to fix it &hellip; but it still does not pass ! Only then do I check the error message and discover the real thing to fix. Again, it&rsquo;s a transgression to baby steps and to the <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> principle. If the tests is small, that might not be too much of an issue. But it can be if the test is big, or if the real fix deprecates all the premature work.</p>
+
+<h3>Strive for explicit error message</h3>
+
+<p>The idea is to make sure to have good enough error messages before moving on to the &ldquo;pass&rdquo; step.</p>
+
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg" alt="Cover of GOOSGT" /></a></p>
+
+<p>There&rsquo;s nothing groundbreaking about this practice. It&rsquo;s not a step as explicit as the other 3 steps of TDD. The first place I read about this idea was in <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided By Tests</a>.</p>
+
+<h2>How to improve your messages</h2>
+
+<h3>Readable code</h3>
+
+<p>Some test frameworks print out the failed assertion code to the test failure report. Others, especially in dynamic languages, use the assertion code itself to deduce an error message. If your test code is readable enough, your error messages might be as well !</p>
+
+<p>For example, with <a href="https://www.ruby-lang.org">Ruby</a> <a href="http://rspec.info/">RSpec</a> testing framework :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s2">&quot;must have an ending&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="no">Vote</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">team</span><span class="p">:</span> <span class="vi">@daltons</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yield the following error :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="c1">#&lt;Vote ...&gt; to be valid, but got errors: Ending can&#39;t be blank</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Pass in a message argument</h3>
+
+<p>Sometimes, readable code is not enough to provide good messages. All testing frameworks I know provide some way to pass in a custom error message. That&rsquo;s often a cheap and straightforward way to clarify your test reports.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">it</span> <span class="s2">&quot;should not render anything&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">post_create</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="ss">HTTP</span><span class="p">:</span><span class="ss">:Status</span><span class="o">::</span><span class="no">OK</span><span class="o">.</span><span class="n">to_s</span><span class="p">),</span>
+</span><span class='line'>                             <span class="s2">&quot;expected the post to succeed, but got http status </span><span class="si">#{</span><span class="n">response</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yields</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="n">the</span> <span class="n">post</span> <span class="n">to</span> <span class="n">succeed</span><span class="p">,</span> <span class="n">but</span> <span class="n">got</span> <span class="n">http</span> <span class="n">status</span> <span class="mi">204</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Define your own matchers</h3>
+
+<p>The drawback with explicit error message is that they harm code readability. If this becomes too much of an issue, one last solution is the use of <a href="https://objectpartners.com/2013/09/18/the-benefits-of-using-assertthat-over-other-assert-methods-in-unit-tests/">test matchers</a>. A test matcher is a class encapsulating assertion code. The test framework provides a fluent api to bind a matcher with the actual and expected values. Almost all test framework support some flavor of these. If not, or if you want more, there are libraries that do :</p>
+
+<ul>
+<li><a href="http://joel-costigliola.github.io/assertj/index.html">AssertJ</a> is a fluent assertion library for Java. You can easily extend it with your own assertions (ie. matchers)</li>
+<li><a href="http://n-fluent.net/">NFluent</a> is the same thing for .Net.</li>
+</ul>
+
+
+<p>As an example, in a past side project, I defined an <a href="https://github.com/philou/mes-courses/blob/master/spec/support/include_all_matcher.rb">include_all</a> rspec matcher that verifies that many elements are present in a collection. It can be used that way :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">include_all</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;Tomatoes&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">,</span> <span class="s2">&quot;Potatoes&quot;</span><span class="o">]</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It yields error messages like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;Bananas&quot;</span><span class="p">,</span> <span class="s2">&quot;Potatoes&quot;</span><span class="o">]</span> <span class="n">are</span> <span class="n">missing</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A custom matcher is more work, but it provides both readable code and clean error messages.</p>
+
+<h2>Other good points of matchers</h2>
+
+<p>Like any of these 3 tactics, matchers provide better error messages. Explicit error messages, in turn, speed up the diagnostic on regression. In the end, faster diagnostic means easier maintenance.</p>
+
+<p>But there&rsquo;s more awesomness in custom test matchers !</p>
+
+<h3>Adaptive error messages</h3>
+
+<p>In a custom matcher, you have to write code to generate the error message. This means we can add logic there ! It&rsquo;s an opportunity to build more detailed error messages.</p>
+
+<p>This can be particularly useful when testing recursive (tree-like) structures. A few years ago, I wrote an rspec matcher library called <a href="https://github.com/philou/xpath-specs">xpath-specs</a>. It checks html views for the presence of recursive XPath. Instead of printing</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Could</span> <span class="ow">not</span> <span class="n">find</span> <span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s2">&quot;grades&quot;</span><span class="o">]//</span><span class="n">span</span><span class="o">[</span><span class="n">text</span><span class="p">()</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="o">]</span> <span class="k">in</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It will print</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Could</span> <span class="n">find</span> <span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s2">&quot;grades&quot;</span><span class="o">]</span> <span class="n">but</span> <span class="ow">not</span> <span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s2">&quot;grades&quot;</span><span class="o">]//</span><span class="n">span</span><span class="o">[</span><span class="n">text</span><span class="p">()</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="o">]</span> <span class="k">in</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(BTW, I&rsquo;m still wondering if testing views this way is a good idea &hellip;)</p>
+
+<h3>Test code reuse</h3>
+
+<p>One of the purpose of custom test matchers is to be reusable. That&rsquo;s a good place to factorize assertion code. It is both more readable and more organized than extracting an assertion method.</p>
+
+<h3>Better coverage</h3>
+
+<p>I noticed that custom matcher have a psychological effect on test coverage ! A matcher is a place to share assertion code. Adding thorough assertions seems legitimate, contrary to repeating them inline.</p>
+
+<h3>Avoids mocking</h3>
+
+<p>We often resort to mocks instead of side effect tests because it&rsquo;s a lot shorter. A custom matcher encapsulates the assertion code. It makes it OK to use a few assertions to test for side effects, which is usually preferable to mocking.</p>
+
+<p>For example, here is a matcher that checks that our remote service API received the correct calls, without doing any mocking.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">RSpec</span><span class="p">:</span><span class="ss">:Matchers</span><span class="o">.</span><span class="n">define</span> <span class="ss">:have_received_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">cart</span><span class="p">,</span> <span class="n">credentials</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">api</span><span class="o">|</span>
+</span><span class='line'>    <span class="ow">not</span> <span class="n">api</span><span class="o">.</span><span class="n">nil?</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="n">api</span><span class="o">.</span><span class="n">login</span> <span class="o">==</span> <span class="n">credentials</span><span class="o">.</span><span class="n">email</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="n">api</span><span class="o">.</span><span class="n">password</span> <span class="o">==</span> <span class="n">credentials</span><span class="o">.</span><span class="n">password</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="n">cart</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">all?</span> <span class="k">do</span> <span class="o">|</span><span class="n">cart_line</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">cart</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">cart_line</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">remote_id</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">failure_message</span> <span class="k">do</span> <span class="o">|</span><span class="n">api</span><span class="o">|</span>
+</span><span class='line'>    <span class="s2">&quot;expected </span><span class="si">#{</span><span class="n">api</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> to have received order </span><span class="si">#{</span><span class="n">cart</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> from </span><span class="si">#{</span><span class="n">credentials</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Care about error messages</h2>
+
+<p>Providing good error messages is a small effort compared to unit testing in general. At the same time, it speeds up the feedback loop, both while coding and during later maintenance. Imagine how easier it would be to analyze and fix regressions if they all had clear error messages !</p>
+
+<p>Spread the word ! Leave comments in code reviews, demo the practice to your pair buddy. Prepare a team coding dojo about custom assertion matchers. Discuss the issue in a retro !</p>
+
+<p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[20 Bad Excuses For Not Writing Unit Tests]]></title>
@@ -2259,86 +2448,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 <p>One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first &lsquo;explore&rsquo; phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The &lsquo;guide&rsquo; could also help the others through the first phase.</p>
 
 <p>Stay tuned, I&rsquo;ll present my gem in <a href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/">a following post</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Overclocking a Scrum Team to 12]]></title>
-    <link href="http://philippe.bourgau.net/overclocking-a-scrum-team-to-12/"/>
-    <updated>2016-12-21T04:57:00+01:00</updated>
-    <id>http://philippe.bourgau.net/overclocking-a-scrum-team-to-12</id>
-    <category term="agile" /><category term="software" />
-    <content type="html"><![CDATA[<p><em>From <a href="https://en.wikipedia.org/wiki/Overclocking">Wikipedia</a> :</em></p>
-
-<blockquote><p>Overclocking is configuration of computer hardware components to operate faster than certified by the original manufacturer &hellip;</p></blockquote>
-
-<p>It is said that Scrum teams work best at 7 people, and that they break at about 10. The trouble is that sometimes there is just too much work for 7 people, but no enough for a full Scrum of Scrums. What if there was a simple way to hack this number up to 12 ?</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2016-12-21-overclocking-a-scrum-team-to-12/overclocking.jpg" title="An overclocked motherboard working with extra fans and cellar tape" ></p>
-
-<h2>An Idea</h2>
-
-<h3>The Surgical Team</h3>
-
-<p>In his classic <a href="https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1482298579&amp;sr=1-1&amp;keywords=the+mythical+man+month">The Mythical Man Month</a> Fred Brooks presents an idea to organize software development the way surgeons work. The master performs the surgery while the rest of his team (intern or junior surgeon and the nurses) are there to support him. Fred Brook imagined an organization where master developers could be the only ones with access to the production code, while other more junior developers would have the task to provide them with tools and technical libraries.</p>
-
-<p>I admit that this idea sounds out-of-fashion in contrast with modern agile teams of generalists &hellip; Still &hellip;</p>
-
-<h3>Tools</h3>
-
-<p>At work, we are working on a pretty technical and complex product which requires some time getting into both the code and the domain. We took a few interns during the past years, and a bit like Fred Brooks, we came to the conclusion that internships yield more results when focused on building supporting tools rather than joining the team and working on production code.</p>
-
-<p>We&rsquo;ve also been doing <a href="http://philippe.bourgau.net/how-we-introduced-efficient-agile-retrospectives/">retrospectives</a> for 3 years now, we&rsquo;ve stolen a lot of best practices from the industry and the team is working a lot better than it used to. The pending side of this is that nowadays, the opportunities for improvement that we discover are a lot more specific, and they often need us to take some time to build new tools to support our work.</p>
-
-<h3>The Agile Surgical Team</h3>
-
-<p>Agile method such as Scrum or XP are all about creating real teams instead of a collection of individual. That means that if we wanted to adopt the surgical team idea, we could use teams instead of individuals : a team of experts, and a tooling team of apprentice developers !</p>
-
-<p>Why not, there&rsquo;s not nothing really new here, but the challenge is to run such a tooling team efficiently !</p>
-
-<ul>
-<li>3 people or less : there&rsquo;s <a href="http://pm.stackexchange.com/a/10075">evidence in the industry</a> that micro teams can self organize in an ad-hoc manner</li>
-<li>Mandate ScrumBan, Continuous Delivery and Devops : on site customer makes this possible, it should reduce project management overhead to almost nothing, and enforce quality</li>
-<li>A sandbox for junior developers : there&rsquo;s no risk of messing up production code here, the domain (tools for software developers) is straightforward and the fast feedback provides a great environment for learning</li>
-</ul>
-
-
-<p>Obviously, for this to work, you&rsquo;ll also need to have enough tooling work to do for a 3 people team. That&rsquo;s usually the case, the CI alone can take quite some time (see Jez Humble&rsquo;s talk <a href="https://www.youtube.com/watch?v=2zYxWEZ0gYg">Why Agile Doesn&rsquo;t Work</a>) and any team will have its own custom tools to do. For example, in our team, we built our own benchmark framework and we could benefit a lot from <a href="http://www.saros-project.org/">Saros</a> on IntelliJ.</p>
-
-<p><a href="https://www.youtube.com/watch?v=2zYxWEZ0gYg"><img class="center" src="http://philippe.bourgau.net/imgs/2016-12-21-overclocking-a-scrum-team-to-12/why-agile-doesnt-work.jpg" title="The slide in Jez Humble's Why Agile Doesn't Work about the time taken for CI" ></a></p>
-
-<h2>Not quite there yet</h2>
-
-<p>I promised to scale up to 12. Let&rsquo;s do the maths :</p>
-
-<ul>
-<li>3 people in the tooling team</li>
-<li>8 people in the product team if we push Scrum a bit</li>
-</ul>
-
-
-<p>That&rsquo;s only 11, 1 is missing. This one is more specific to each team&rsquo;s context.</p>
-
-<p>As I said earlier, the product we are building is pretty technical and complex. Sometimes, we simply don&rsquo;t know how we are going to do something. We need to try different ways before finding out the good one. The typical agile way of doing that is by conducting time-boxed <a href="http://agiledictionary.com/209/spike/">spikes</a>. Spikes are fine for code and design related issues but way too short to deal with hard R&amp;D problems. These need a lot of uninterrupted time for research and experiments, so it&rsquo;s not really possible to split them in backlog stories that any one can work on either &hellip;</p>
-
-<h3>The R&amp;D Role</h3>
-
-<p>Here is what you want : some uninterrupted time to learn and experiment different ways to do something difficult.</p>
-
-<p>Here is what you don&rsquo;t want :</p>
-
-<ul>
-<li>specialists in the team</li>
-<li>people out of sync with the daily production constraints</li>
-<li>a never ending &lsquo;research&rsquo; topic</li>
-</ul>
-
-
-<p>Here is a simple solution in the context I describe : add someone in the product team, and do some 2 month round robin on hard subjects. This should leave plenty of time to study something different, but not so much time that one looses connection with the rest of the team. Plus it brings a bit of diversity in every one&rsquo;s daily work. One issue I can think of is that working on isolation might leave someone on a bad track, regularly presenting what was done to the rest of the team might alleviate this concern.</p>
-
-<h2>A final word</h2>
-
-<p>Obviously, this has a smell of specialization, we&rsquo;re bending Scrum principles a bit. So take it for what it is : just like overclocking, it&rsquo;s a hack to get a bit of extra juice before investing in something a lot more expensive (<a href="https://www.agilealliance.org/glossary/scrum-of-scrums/">Scrum of Scrums</a>, <a href="http://less.works/">Less</a> or whatever).</p>
 ]]></content>
   </entry>
   

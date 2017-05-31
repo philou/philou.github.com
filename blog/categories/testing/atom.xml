@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-05-25T08:06:03+02:00</updated>
+  <updated>2017-05-31T07:16:20+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,176 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Speed up the TDD feedback loop with better assertion messages]]></title>
+    <link href="http://philippe.bourgau.net/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/"/>
+    <updated>2017-05-29T06:37:00+02:00</updated>
+    <id>http://philippe.bourgau.net/speed-up-the-tdd-feedback-loop-with-better-assertion-messages</id>
+    <content type="html"><![CDATA[<p>There is a rather widespread <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> practice to have a <a href="https://softwareengineering.stackexchange.com/questions/7823/is-it-ok-to-have-multiple-asserts-in-a-single-unit-test">single assertion per test</a>. The goal is to have faster feedback loop while coding. When a test fails, it can be for a single reason, making the diagnostic faster.</p>
+
+<p>The same goes with the test names. When a test fails, a readable test name in the report simplifies the diagnostic. Some testing frameworks allow the use of plain strings as test names. In others, people use <a href="https://en.wikipedia.org/wiki/Naming_convention_(programming">underscores</a>#Multiple-word_identifiers) instead of <a href="https://en.wikipedia.org/wiki/Camel_case">CamelCase</a> in test names.</p>
+
+<p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/rubymine.jpg" alt="RubyMine test report" /></p>
+
+<h2>A 4th step in TDD: Fail, <em>Fail better</em>, Pass, Refactor</h2>
+
+<h3>First, make it fail</h3>
+
+<p>Everyone knows that Test Driven Development starts by making the test fail. Let me illustrate why.</p>
+
+<p>A few years ago, I was working on a <a href="https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29">C#</a> project. We were using TDD and <a href="https://github.com/nunit/nunit">NUnit</a>. At some point, while working on a story, I forgot to make my latest test fail. I wrote some code to pass this test, I ran the tests, and they were green. When I was almost done, I tried to plug all the parts together, but nothing was working. I had to start the debugger to understand what was going wrong. At first, I could not understand why the exact thing I had unit tested earlier was now broken. After more investigation I discovered that I had forgotten to make my test public. NUnit only runs public tests &hellip;</p>
+
+<p>If I had made sure my test was failing, I would have spotted straightaway that it was not ran.</p>
+
+<h3>Then make it fail &hellip; better !</h3>
+
+<p>I lived the same kind of story with wrong failures many times. The test fails, but for a bad reason. I move on to implement the code to fix it &hellip; but it still does not pass ! Only then do I check the error message and discover the real thing to fix. Again, it&rsquo;s a transgression to baby steps and to the <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> principle. If the tests is small, that might not be too much of an issue. But it can be if the test is big, or if the real fix deprecates all the premature work.</p>
+
+<h3>Strive for explicit error message</h3>
+
+<p>The idea is to make sure to have good enough error messages before moving on to the &ldquo;pass&rdquo; step.</p>
+
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg" alt="Cover of GOOSGT" /></a></p>
+
+<p>There&rsquo;s nothing groundbreaking about this practice. It&rsquo;s not a step as explicit as the other 3 steps of TDD. The first place I read about this idea was in <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided By Tests</a>.</p>
+
+<h2>How to improve your messages</h2>
+
+<h3>Readable code</h3>
+
+<p>Some test frameworks print out the failed assertion code to the test failure report. Others, especially in dynamic languages, use the assertion code itself to deduce an error message. If your test code is readable enough, your error messages might be as well !</p>
+
+<p>For example, with <a href="https://www.ruby-lang.org">Ruby</a> <a href="http://rspec.info/">RSpec</a> testing framework :</p>
+
+<p><code>ruby
+it "must have an ending" do
+  expect(Vote.new(team: @daltons)).to be_valid
+end
+</code></p>
+
+<p>Yield the following error :</p>
+
+<p>```
+expected #<Vote ...> to be valid, but got errors: Ending can&rsquo;t be blank</p>
+
+<p>```</p>
+
+<h3>Pass in a message argument</h3>
+
+<p>Sometimes, readable code is not enough to provide good messages. All testing frameworks I know provide some way to pass in a custom error message. That&rsquo;s often a cheap and straightforward way to clarify your test reports.</p>
+
+<p>```ruby
+  it &ldquo;should not render anything&rdquo; do</p>
+
+<pre><code>post_create
+expect(response.code).to eq(HTTP::Status::OK.to_s),
+                         "expected the post to succeed, but got http status #{response.code}"
+</code></pre>
+
+<p>  end
+```</p>
+
+<p>Yields</p>
+
+<p><code>
+expected the post to succeed, but got http status 204
+</code></p>
+
+<h3>Define your own matchers</h3>
+
+<p>The drawback with explicit error message is that they harm code readability. If this becomes too much of an issue, one last solution is the use of <a href="https://objectpartners.com/2013/09/18/the-benefits-of-using-assertthat-over-other-assert-methods-in-unit-tests/">test matchers</a>. A test matcher is a class encapsulating assertion code. The test framework provides a fluent api to bind a matcher with the actual and expected values. Almost all test framework support some flavor of these. If not, or if you want more, there are libraries that do :</p>
+
+<ul>
+<li><a href="http://joel-costigliola.github.io/assertj/index.html">AssertJ</a> is a fluent assertion library for Java. You can easily extend it with your own assertions (ie. matchers)</li>
+<li><a href="http://n-fluent.net/">NFluent</a> is the same thing for .Net.</li>
+</ul>
+
+
+<p>As an example, in a past side project, I defined an <a href="https://github.com/philou/mes-courses/blob/master/spec/support/include_all_matcher.rb">include_all</a> rspec matcher that verifies that many elements are present in a collection. It can be used that way :</p>
+
+<p><code>ruby
+expect(items).to include_all(["Tomatoes", "Bananas", "Potatoes"])
+</code></p>
+
+<p>It yields error messages like</p>
+
+<p><code>
+["Bananas", "Potatoes"] are missing
+</code></p>
+
+<p>A custom matcher is more work, but it provides both readable code and clean error messages.</p>
+
+<h2>Other good points of matchers</h2>
+
+<p>Like any of these 3 tactics, matchers provide better error messages. Explicit error messages, in turn, speed up the diagnostic on regression. In the end, faster diagnostic means easier maintenance.</p>
+
+<p>But there&rsquo;s more awesomness in custom test matchers !</p>
+
+<h3>Adaptive error messages</h3>
+
+<p>In a custom matcher, you have to write code to generate the error message. This means we can add logic there ! It&rsquo;s an opportunity to build more detailed error messages.</p>
+
+<p>This can be particularly useful when testing recursive (tree-like) structures. A few years ago, I wrote an rspec matcher library called <a href="https://github.com/philou/xpath-specs">xpath-specs</a>. It checks html views for the presence of recursive XPath. Instead of printing</p>
+
+<p><code>
+Could not find //table[@id="grades"]//span[text()='Joe'] in ...
+</code></p>
+
+<p>It will print</p>
+
+<p><code>
+Could find //table[@id="grades"] but not //table[@id="grades"]//span[text()='Joe'] in ...
+</code></p>
+
+<p>(BTW, I&rsquo;m still wondering if testing views this way is a good idea &hellip;)</p>
+
+<h3>Test code reuse</h3>
+
+<p>One of the purpose of custom test matchers is to be reusable. That&rsquo;s a good place to factorize assertion code. It is both more readable and more organized than extracting an assertion method.</p>
+
+<h3>Better coverage</h3>
+
+<p>I noticed that custom matcher have a psychological effect on test coverage ! A matcher is a place to share assertion code. Adding thorough assertions seems legitimate, contrary to repeating them inline.</p>
+
+<h3>Avoids mocking</h3>
+
+<p>We often resort to mocks instead of side effect tests because it&rsquo;s a lot shorter. A custom matcher encapsulates the assertion code. It makes it OK to use a few assertions to test for side effects, which is usually preferable to mocking.</p>
+
+<p>For example, here is a matcher that checks that our remote service API received the correct calls, without doing any mocking.</p>
+
+<p>```ruby
+RSpec::Matchers.define :have_received_order do |cart, credentials|
+  match do |api|</p>
+
+<pre><code>not api.nil? and
+api.login == credentials.email and
+api.password == credentials.password and
+cart.lines.all? do |cart_line|
+  cart.content.include?(cart_line.item.remote_id)
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  failure_message do |api|</p>
+
+<pre><code>"expected #{api.inspect} to have received order #{cart.inspect} from #{credentials}"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h2>Care about error messages</h2>
+
+<p>Providing good error messages is a small effort compared to unit testing in general. At the same time, it speeds up the feedback loop, both while coding and during later maintenance. Imagine how easier it would be to analyze and fix regressions if they all had clear error messages !</p>
+
+<p>Spread the word ! Leave comments in code reviews, demo the practice to your pair buddy. Prepare a team coding dojo about custom assertion matchers. Discuss the issue in a retro !</p>
+
+<p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[20 Bad Excuses For Not Writing Unit Tests]]></title>
@@ -320,67 +490,6 @@ ActiveRecord::Schema.verbose = false</p>
 <h2>One more thing &hellip;</h2>
 
 <p>If you need even more speed, you can now run your specs in parallel in different processes ! Each in-memory SQLite DB is bound to its process, so unlike a real PostgreSQL dev DB, you won&rsquo;t get any conflicts between your tests ;&ndash;)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flavors of TDD]]></title>
-    <link href="http://philippe.bourgau.net/flavours-of-tdd/"/>
-    <updated>2016-09-20T20:54:00+02:00</updated>
-    <id>http://philippe.bourgau.net/flavours-of-tdd</id>
-    <content type="html"><![CDATA[<p>During the years doing some coding dojos with the same circle of people, I came up with my own style of practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. Lately, I had the chance to do a pair programming session with someone I did not know. That made me realize that they are in fact even more ways to practice TDD than I thought.</p>
-
-<h2>Mockist vs Classisist</h2>
-
-<p>A lot has already been written (and discussed) about these two approaches. I myself have already <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">blogged</a> about the subject, I even gave a <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">talk</a> about it. From my own point of view, I believe that the inconvenients of making mocking the default far outweights the benefits. I&rsquo;m not saying that mocks aren&rsquo;t useful from time to time, but rather that they should remain the exception.</p>
-
-<h2>Top-Down vs Bottom-Up</h2>
-
-<p>That&rsquo;s the reason why I wrote this post. This is the main difference I found between my style and my pair&rsquo;s. Let me explain.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg" title="Top-Down vs Bottom-Up" ></p>
-
-<h3>Top-Down</h3>
-
-<p>Doing TDD top-down means starting with high level end to end tests, implementing the minimum to make it work, refactor and repeat. A bit like BDD, the point is to focus on the expected behavior, and avoid writing useless things. The bad point is that the refactoring part can get pretty difficult. On real life code, strictly following top-down would mean writing a feature test first, passing it with a quick and dirty implementation, to then spend hours trying to refactor all that mess &hellip; good luck !</p>
-
-<p>Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#">Conway&rsquo;s Game of Life</a> using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders &hellip;). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/glider.gif" title="Conway&rsquo;s game of life gliders" ></p>
-
-<h3>Bottom-Up</h3>
-
-<p>At the other side of the spectrum, you can do bottom-up TDD. This means unit testing and implementing all the small bricks you think you&rsquo;ll need to provide the expected overall feature. The idea is to avoid tunnels and to get fast feedback on what you are coding. The bad side is that you might be coding something that will end up being unnecessary. Be careful, if you find yourself spending a lot of time building up utility classes, you might be doing too much bottom-up implementation.</p>
-
-<p>The <a href="http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals">Numerals to Romans Kata</a> is a good exercise to fail at bottom-up. Every time I did this exercise during a coding dojo, people new to it would start to come up with complicated ways to do it (often involving complex array manipulation). Compared to that, applying disciplined bottom-up TDD brings a <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Roman-Numeral-Converter">brutally effective solution for Numerals to Romans</a>.</p>
-
-<h2>Mixed approach</h2>
-
-<p>Both approaches have their pros and cons. I really believe developers who are serious about TDD should master both, and learn when to apply each. In fact, as often, the best approach lies somewhere in the middle. Here&rsquo;s my recipe :</p>
-
-<ol>
-<li>Start with a high level feature test</li>
-<li>try to make it pass &hellip;</li>
-<li>&hellip; (usually) fail</li>
-<li>rollback or shelve your test and draft implementation</li>
-<li>build a brick</li>
-<li>unshelve</li>
-<li>try to make it pass &hellip;</li>
-<li>&hellip; and so one until the high level test finally passes.</li>
-</ol>
-
-
-<p>In fact, it&rsquo;s a lot like the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> for building features instead of refactoring.</p>
-
-<h2>Practice in dojos</h2>
-
-<p>It&rsquo;s possible to intentionally practice this in coding dojos as well. Most kata should be OK, as long as the group agrees to fix it using this particular approach up front.</p>
-
-<p>If during the dojo, you&rsquo;ve just written a test, suddenly realize that it won&rsquo;t be easy to get it passing, and that you&rsquo;ve got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat &hellip; Eventually, you&rsquo;ll have all the bricks to make it easy to pass your test.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
-
-<p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
 ]]></content>
   </entry>
   
