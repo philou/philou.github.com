@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Planning Poker - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="Rational and usage documentation for an open source planning poker web app">
+
+  
+  <meta name="keywords" content="Agile, Software, Planning Poker, Poker Estimation, Remote, Remote Teams">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/planning-poker/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article role="article">
+  
+  <header>
+    <h1 class="entry-title">Planning Poker</h1>
+    <p class="meta">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-06T06:06:00+02:00" pubdate data-updated="true">Jun 6<span>th</span>, 2017</time></p>
+  </header>
+  
+  <p><a href="https://philous-planning-poker.herokuapp.com/">Try it now</a> | <a href="https://github.com/philou/planning-poker">View on github</a> | <a href="https://github.com/philou/planning-poker/archive/master.zip">Download .zip</a> | <a href="http://philippe.bourgau.net">The author</a></p>
+
+<p>Effective <a href="https://en.wikipedia.org/wiki/Planning_poker">Planning Poker</a> sessions for remote teams.</p>
+
+<p><a href="https://philous-planning-poker.herokuapp.com/"><img src="../imgs/planning-poker/screenshot.jpg" alt="Screenshot of the tool" /></a></p>
+
+<h2>Why</h2>
+
+<p>During my career as a software engineer, I am more and more working in teams that span over many places. At the same time, I am a great proponent of the agile way which favor co-located teams.</p>
+
+<p>I am convinced that teams can be both remote <em>and</em> agile. Provided they have the correct tools.</p>
+
+<p>This app enables remote teams to run effective <a href="https://en.wikipedia.org/wiki/Planning_poker">poker planning</a> sessions. Without it, they would use a video conference to share their estimates through the camera. With this app, a phone call is enough.</p>
+
+<p>In the long run, it could improve the estimation experience for both remote and co-located teams :</p>
+
+<ul>
+<li>It could warn of a &ldquo;risky&rdquo; or &ldquo;unlikely&rdquo; estimations, by analyzing the distribution</li>
+<li>It help to do &ldquo;Risk&rdquo; estimations, which have 2 axes (likelihood and criticality)</li>
+</ul>
+
+
+<h2>Tutorial</h2>
+
+<p>To do a remote planning poker session, you&rsquo;ll all need 3 things :</p>
+
+<ul>
+<li>an internet connection</li>
+<li>be together in a voice teleconference</li>
+<li>know what <a href="https://en.wikipedia.org/wiki/Planning_poker">poker estimation technique</a></li>
+</ul>
+
+
+<p>Once this is ready, you should all go to <a href="https://philous-planning-poker.herokuapp.com/">https://philous-planning-poker.herokuapp.com/</a>.</p>
+
+<ol>
+<li>Type in your team name and pseudo, and enter your team space. The first to enter becomes the animator for the team.</li>
+<li>Discuss together about what you are going to estimate.</li>
+<li>The animator starts a vote.</li>
+<li>Everyone estimates the task in <a href="https://www.mountaingoatsoftware.com/blog/what-are-story-points">story points</a>.</li>
+<li>At the end of the vote, you should all see the distribution of the estimates.</li>
+<li>Discuss the results.</li>
+<li>At any moment, the animator can start a new vote.</li>
+</ol>
+
+
+<h2>FAQ</h2>
+
+<blockquote><p>What if no one is the animator ?</p></blockquote>
+
+<p>You must have entered a team space that is already used and which already has an animator. Pick another team name to fix that.</p>
+
+<blockquote><p>I entered my team name and pseudo, but it seems I am alone !</p></blockquote>
+
+<p>You must have used a different team name. The tool is case sensitive, be sure to use exactly the same team name.</p>
+
+<h2>Open Source</h2>
+
+<p>The tool is open source, under the <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache License 2.0</a>. Among other things, this means that :</p>
+
+<ul>
+<li>you can install it on your own server and run your own instance</li>
+<li>you can contribute improvement to it</li>
+</ul>
+
+
+<p>Check the <a href="https://github.com/philou/planning-poker">source code on Github</a> to learn how to do this.</p>
+
+<h2>Limitations</h2>
+
+<p>Here are the main current limitations of the tool :</p>
+
+<ul>
+<li>The animator is the first person in the team to log in, once someone is animator for a team, he cannot back out of this role</li>
+<li>Each vote lasts for 30 seconds, even if everyone has voted</li>
+<li>The only form of authentication are the team and persons names, this can lead to conflicts</li>
+<li>The tool is not built to scale, new teams and contributors pill up in a Postgres DB but are not garbage collected.</li>
+<li>The main instance runs on a free <a href="https://www.heroku.com/">Heroku</a> app</li>
+</ul>
+
+
+<p>Anyone could fix these if needed.</p>
+
+<h2>Feedback is welcome</h2>
+
+<p>I&rsquo;d appreciate your feedback about this tool. Whether</p>
+
+<ul>
+<li>to tell me what you think of it</li>
+<li>to explain what you&rsquo;d need before to start using it</li>
+<li>to ask any question</li>
+</ul>
+
+
+<p>Leave a comment !</p>
+
+  
+    <footer>
+      <p class="meta">
+        
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-06-06T06:06:00+02:00" pubdate data-updated="true">Jun 6<span>th</span>, 2017</time>
+        
+      </p>
+      
+        <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/planning-poker/index.html" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/planning-poker/index.html" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+      
+    </footer>
+  
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1>About Me</h1>
+  <p>Philippe Bourgau, Happiness and Productivity Hacker</p>
+  <p>Officialy, Developer</p>
+  <p>Currently, developer, architect, manager & agile coach in my risk engine team at <a href="http://www.murex.com">Murex</a>; self proclaimed change agent in the company; serial side project builder at night; devoted family guy.</p>
+  <ul>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin profile</li></a>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="http://philous-planning-poker.herokuapp.com">Philou's Planning Poker</a> : Better poker estimates for remote teams ! (In Progress)</li>
+    <li><a href="/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">Speed up the TDD feedback loop with better assertion messages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/20-bad-excuses-for-not-writing-unit-tests/">20 Bad Excuses For Not Writing Unit Tests</a>
+      </li>
+    
+      <li class="post">
+        <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">From apprentice to master, how to learn TDD (Test Driven Development)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/most-scrum-teams-are-not-agile/">Most Scrum teams are not agile</a>
+      </li>
+    
+      <li class="post">
+        <a href="/a-straightforward-way-to-scale-to-more-than-1-scrum-team/">A Straightforward Way to Scale to More Than 1 Scrum Team</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/planning-poker/index.html';
+        var disqus_url = 'http://philippe.bourgau.net/planning-poker/index.html';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
