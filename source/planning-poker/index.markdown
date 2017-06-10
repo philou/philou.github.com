@@ -45,7 +45,9 @@ Once this is ready, you should all go to [https://philous-planning-poker.herokua
 6. Discuss the results. 
 7. At any moment, the animator can start a new vote.
 
-[//]: # (Here is a video demonstrating how the different contributors interact : TODO video)
+Here is a video demonstrating how the different contributors interact :
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yUTpabukwxE" frameborder="0" allowfullscreen></iframe>
 
 ## FAQ
 
