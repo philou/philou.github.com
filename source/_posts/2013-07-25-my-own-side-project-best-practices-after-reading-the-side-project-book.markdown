@@ -11,7 +11,7 @@ categories:
  - book
 published: true
 ---
-First, i recommend [this book](http://sideprojectbook.com/) to any side project infected person : it's a great motivation boost !
+First, I recommend [this book](http://sideprojectbook.com/) to any side project infected person : it's a great motivation boost !
 
 After reading it, it seems that there are no absolute rules to side projects success. Some did no marketting and just did what they loved, others did à carefull market study before building anything, some did the whole things, others outsourced the code or the design, or even both ... That said, as I read somewhere, it seems that one is more likely to achieve commercial success if he first focusses on the market, then marketting, then the design, and eventually on the features.
 

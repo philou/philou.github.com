@@ -4,7 +4,7 @@ title: "Side Projects Matter"
 date: 2017-06-13 09:13
 comments: true
 categories:
- - side-project
+ - side project
  - software
  - management
 keywords: "Side project, Software side project, Employee side project, Side project policy, Side project friendly policy, Software"

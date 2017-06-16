@@ -7,6 +7,7 @@ categories:
  - software
  - programming
  - career
+ - side project
 keywords: "Software, Programming, Career, Passion for software, experience"
 description: "A reflection on the software industry, on the place it leaves for non-passionate programmers, and the consequences"
 ---
