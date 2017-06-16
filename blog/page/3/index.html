@@ -101,6 +101,135 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">How I Got My Feet Wet With Machine Learning With &#8216;the First 20 Hours&#8217;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-12-29T21:09:00+01:00" pubdate data-updated="true">Dec 29<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m currently wrapping up an alpha of a unit testing <a href="https://github.com/philou/complexity-assert">ruby gem</a> that allows to assert the complexity of a piece of code. It&rsquo;s the result of an experiment to learn some <a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> skills in 20 hours &hellip; not bad for a first a try at Data Science ! This is the story of this experiment.</p>
+
+<h2>How it all started ?</h2>
+
+<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img class="center" src="/imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg" title="The cover of the book 'The First 20 Hours'" ></a></p>
+
+<p>A few months ago, I read <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours">The First 20 Hours</a>. The book describes a technique to get up to speed and learn some practical skills on any particular subject in only 20 hours. As examples, the author details how he managed to teach himself a pretty decent level of Yoga, Ukulele, Wind Surfing, Programming, Go and touch typing.</p>
+
+<p>I decided to give it a try. In order to get a boost, I found a few motivated people at work to do it with me. I started by presenting them the technique described in the book, and asked everyone what they wanted to learn. After a quick vote, we set out to learn more about Machine Learning.</p>
+
+<h2>The technique</h2>
+
+<p>The method is meant to allow anyone to learn necessary skills to accomplish a specific task in about 20 hours. I my case, I could expect to get a basic understanding of the Machine Learning concepts, as well as some practical skills to do something involving Machine Learning. Here are the details of the technique :</p>
+
+<ol>
+<li>H0 : Deep dive in the main concepts and theory of machine learning</li>
+<li>H6 : Define an ambitious and practical goal or skill level to achieve by the end, and an outline of how to get there</li>
+<li>H6 to H20 : Learn by doing</li>
+</ol>
+
+
+<p>As you see, the technique is pretty simple !</p>
+
+<h2>How did it work ?</h2>
+
+<h3>For the group</h3>
+
+<p>The plan for the group was :</p>
+
+<ul>
+<li>to meet weekly for 2 hours</li>
+<li>to share what we learned at the end of every session</li>
+<li>to bound by similar goals</li>
+</ul>
+
+
+<p>At first, people were enthusiastic about learning something like machine learning. After a while, I started to get the following remarks :</p>
+
+<ul>
+<li>&ldquo;I don&rsquo;t really see the point of doing this together rather than independently&rdquo;</li>
+<li>&ldquo;I&rsquo;m feeling a bit lost by not having a concrete goal and a plan from H0&rdquo;</li>
+<li>&ldquo;I picked up a target that&rsquo;s too large for me&rdquo;</li>
+</ul>
+
+
+<p>The learning curve must have proven too steep, because as time went by, a lot of people droped out, and we ended up being only 2 !</p>
+
+<h3>For me</h3>
+
+<p>The first phase was the toughest. As the author had warned in his book, &ldquo;You&rsquo;ll get deep above your head in theory and concepts you don&rsquo;t know&rdquo;, &ldquo;You&rsquo;ll feel lost&rdquo;. He had some reassuring words though : &ldquo;The steeper the learning curve, the more you&rsquo;ll be learning !&rdquo; I actually like this feeling of unknown things to learn, and that&rsquo;s why I stuck to it.</p>
+
+<p>I took me 8 hours, and not 6 to get a good overall grasp of Machine Learning techniques. The theory was just too wide and interesting and I could not cut the learning after just 6 hours :&ndash;). I studied <a href="https://xyclade.github.io/MachineLearning/#cross-validation">Machine Learning for developers</a> plus a few other pages for details on specific points. I took and kept notes about what I learned. I chose my subject &ldquo;unit testing algorithm complexity&rdquo; for the following reasons :</p>
+
+<ul>
+<li>I could imagine some utility</li>
+<li>I had been writing benchmarks at work for 3 years, and I knew the practice well enough</li>
+<li>It&rsquo;s pretty easy to generate data for this subject : just run your algorithm !</li>
+<li>It seems a good first step, doable with basic Machine Learning techniques like linear regression</li>
+<li>It seems small enough to get something working in 12 hours</li>
+<li>I could use ruby, which I find both fast and pleasant to program</li>
+</ul>
+
+
+<p>This is the plan I set out :</p>
+
+<ol>
+<li>Generate data with a linear algorithm (O(n))</li>
+<li>Run linear regression on the data</li>
+<li>Compute the the <a href="https://xyclade.github.io/MachineLearning/#root-mean-squared-error-rmse">RMSE</a> of the model</li>
+<li>Deal with Garbage Collection in order to make reduce its noise</li>
+<li>Deal with interpreter warm-up for the same reason</li>
+<li>Generate data for a constant (O(1)) algorithm and build a model for it</li>
+<li>Find a way to identify if an algorithm is constant or linear from it&rsquo;s execution timings</li>
+<li>Generate data for a quadratic (O(2)) algorithm and build a model for it</li>
+<li>Identify if an algorithm is constant, linear or quadratic</li>
+<li>Package all this in an <a href="http://rspec.info/">RSpec</a> library</li>
+</ol>
+
+
+<p>It started well, and I made good progress. Unfortunately, as people dropped out of the group and I got more urgent things to do at work, I had to pause my project for a while. It&rsquo;s only been since last week that I got some time during my holidays to finish this off. I&rsquo;m currently at H18, and I&rsquo;ve completed all steps from 1 to 9.</p>
+
+<p>As I said the project is still in early alpha. They is a lot of points in which it could be improved (more complexities, faster, more reliable &hellip;). Even though I did not tackle the more advanced machine learning techniques, I now understand the overall process of ML : explore to get an intuitive grasp of the data, try out a model, see what happens, and repeat &hellip; I feel that learning these more advanced techniques would be easier now.</p>
+
+<h2>My opinion on the method</h2>
+
+<p>Overall, I found the experiment really effective, it&rsquo;s possible to learn quite a lot by focusing on it for 20 hours. A word of warning though : you need to be really motivated and ready to stick through difficulties.</p>
+
+<p>It&rsquo;s also been very pleasant. I&rsquo;ve always loved to learn new things, so I might be a little biased on that aspect. I liked the first part when I felt that there was a lot to learn in a large subject I knew almost nothing about. I loved the second part too, although this might be more related to machine learning, because I felt like exploring an unknown (data set) and trying to understand it.</p>
+
+<p>I&rsquo;ve never been afraid to learn something, doing this experiment taught me I can learn anything fast ! I&rsquo;ll definitely re-use it again.</p>
+
+<p>One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first &lsquo;explore&rsquo; phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The &lsquo;guide&rsquo; could also help the others through the first phase.</p>
+
+<p>Stay tuned, I&rsquo;ll present my gem in <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">a following post</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/overclocking-a-scrum-team-to-12/">Overclocking a Scrum Team to 12</a></h1>
     
     
@@ -1031,52 +1160,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">How NOT to Use Mocks, My Talk at Paris.rb</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-09-13T04:03:00+02:00" pubdate data-updated="true">Sep 13<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I already <a href="/blog/categories/mocking/">wrote about</a>, mocks can be trecherous &hellip; I gave a talk about how to avoid them last tuesday at <a href="http://www.meetup.com/fr-FR/parisrb/">Paris.rb meetup</a>. Here are the <a href="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing">slides</a>.</p>
-
-<p>It talks about testing, mocking, but also <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design</a> and <a href="https://wincent.com/blog/proxies-with-rr">test proxies à la RR</a> (but for rspec).</p>
-
-<iframe src="https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/embed?start=false&loop=false&delayms=3000" frameborder="0" width="790" height="470" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-
-
-
-<p><p/>
-Check the speaker&rsquo;s comments for all the details.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1156,6 +1239,10 @@ Check the speaker&rsquo;s comments for all the details.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/side-projects-matter/">Side Projects Matter</a>
+      </li>
+    
+      <li class="post">
         <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">Speed up the TDD feedback loop with better assertion messages</a>
       </li>
     
@@ -1169,10 +1256,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
     
       <li class="post">
         <a href="/most-scrum-teams-are-not-agile/">Most Scrum teams are not agile</a>
-      </li>
-    
-      <li class="post">
-        <a href="/a-straightforward-way-to-scale-to-more-than-1-scrum-team/">A Straightforward Way to Scale to More Than 1 Scrum Team</a>
       </li>
     
   </ul>
