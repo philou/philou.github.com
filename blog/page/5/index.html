@@ -101,6 +101,374 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">How to Boot a New Rails Project With Docker and Heroku</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-07-13T04:55:00+02:00" pubdate data-updated="true">Jul 13<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few years ago, I used <a href="http://www.heroku.com">Heroku</a> to deploy my <a href="https://github.com/philou/mes-courses">side-project</a>. It provides great service, but I remember that updates to the Heroku Stack was a nightmare &hellip; Versions of the OS (and nearly everything) changed. The migration was a matter of days, and while doing a side-project, this was difficult. At the time, I remember thinking that using branches and VMs would have been the solution.</p>
+
+<p>Now that I started to use Heroku again, I decided to use <a href="http://www.docker.com">Docker</a> from the beginning. More specifically, I am expecting :</p>
+
+<ul>
+<li>to have a minimal setup on my host machine</li>
+<li>to use the same infrastructure in dev than in production</li>
+<li>to simplify switching to a new machine</li>
+<li>to simplify the migration to the next Heroku stack</li>
+</ul>
+
+
+<p>As an added benefit, if ever someone else joins me in my side-project, it will be a matter of minutes before we can all work on the same infrastructure !</p>
+
+<p>Heroku provides a <a href="https://devcenter.heroku.com/articles/local-development-with-docker">tutorial</a> about how to deploy an existing <a href="http://rubyonrails.org/">Rails</a> app to heroku using containers. Unfortunately, I did yet have an existing rails app &hellip; So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.</p>
+
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg" title="The 3 logos of Rails, Docker and Heroku" ></p>
+
+<h2>1. Install the required software</h2>
+
+<p>I installed only 4 things on my host machine
+&ndash; Docker <a href="https://docs.docker.com/engine/installation/">instructions</a>
+&ndash; Docker Compose <a href="https://docs.docker.com/compose/install/">instructions</a>
+&ndash; Heroku Toolbelt <a href="https://toolbelt.heroku.com/">instructions</a>
+&ndash; Heroku container plugin <code>heroku plugins:install heroku-container-tools</code></p>
+
+<p>That&rsquo;s all I changed to my host machine.</p>
+
+<h2>2. Setup docker</h2>
+
+<p>First, let&rsquo;s create a new dir and step into it. Run :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir docker-rails-heroku
+</span><span class='line'><span class="nb">cd </span>docker-rails-heroku
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To prepare the Heroku setup, create a <code>Procfile</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>web: bundle <span class="nb">exec </span>puma -C config/puma.rb
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and <code>app.json</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='json'><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Docker Rails Heroku&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;An example app.json for container-deploy&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;heroku/ruby&quot;</span><span class="p">,</span>
+</span><span class='line'>  <span class="nt">&quot;addons&quot;</span><span class="p">:</span> <span class="p">[</span>
+</span><span class='line'>    <span class="s2">&quot;heroku-postgresql&quot;</span>
+</span><span class='line'>  <span class="p">]</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To generate docker files for Heroku, run :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku container:init
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You want to run Rails in dev mode locally, so we need to override Heroku&rsquo;s default env (<a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Check my previous post for details</a>)</p>
+
+<p>Create an <code>.env</code> file</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">RAILS_ENV</span><span class="o">=</span>development
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and <code>docker-compose.override.yml</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/app/user&#39;</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">RAILS_ENV</span><span class="p-Indicator">:</span> <span class="s">&quot;${RAILS_ENV}&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>3. Create the Rails app</h2>
+
+<p>It&rsquo;s now time to follow <a href="https://docs.docker.com/compose/rails/">the official docker-compose rails tutorial</a> to bootstrap the rails app and directories :</p>
+
+<p>Change <code>Dockerfile</code> to</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># FROM heroku/ruby</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">FROM ruby:2.2.0</span>
+</span><span class='line'><span class="l-Scalar-Plain">RUN apt-get update -qq &amp;&amp; apt-get install -y build-essential libpq-dev nodejs</span>
+</span><span class='line'><span class="l-Scalar-Plain">RUN mkdir /myapp</span>
+</span><span class='line'><span class="l-Scalar-Plain">WORKDIR /myapp</span>
+</span><span class='line'><span class="l-Scalar-Plain">ADD Gemfile /myapp/Gemfile</span>
+</span><span class='line'><span class="l-Scalar-Plain">ADD Gemfile.lock /myapp/Gemfile.lock</span>
+</span><span class='line'><span class="l-Scalar-Plain">RUN bundle install</span>
+</span><span class='line'><span class="l-Scalar-Plain">ADD . /myapp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Create a bootstrap <code>Gemfile</code> with the content</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;rails&#39;</span><span class="p">,</span> <span class="s1">&#39;4.2.0&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bundle install within the container requires a existing <code>Gemfile.lock</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Create an empty Gemfile.lock</span>
+</span><span class='line'>touch Gemfile.lock
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s now time to build your docker container to be able to run rails and generate your source files. Run the following :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Build your containers</span>
+</span><span class='line'>docker-compose build
+</span><span class='line'>
+</span><span class='line'><span class="c"># Run rails within the shell container and generate rails files</span>
+</span><span class='line'>docker-compose run shell bundle <span class="nb">exec </span>rails new . --force --database<span class="o">=</span>postgresql --skip-bundle
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unfortunately, rails is ran as root inside the container. We can change ownership and rights with this command :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Change ownership</span>
+</span><span class='line'>sudo chown -R <span class="nv">$USER</span>:<span class="nv">$USER</span> .
+</span><span class='line'>
+</span><span class='line'><span class="c"># Change rights</span>
+</span><span class='line'>sudo chmod -R ug+rw .
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>4. Make it Heroku ready</h2>
+
+<p>Now that the rails files are generated, It&rsquo;s time to replace the bootstrap settings with real Heroku Dockerfile</p>
+
+<p>Revert <code>Dockerfile</code> to simply :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>FROM heroku/ruby
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Heroku uses <a href="http://puma.io/">Puma</a> so we need to add it to our <code>Gemfile</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Use Puma as the app server</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;puma&#39;</span><span class="p">,</span> <span class="s1">&#39;~&gt; 3.0&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We also need to add a config file for Puma. Create <code>config/puma.rb</code> with this content (you can check <a href="https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#adding-puma-to-your-application">heroku doc</a> for details)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">workers</span> <span class="nb">Integer</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;WEB_CONCURRENCY&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'><span class="n">threads_count</span> <span class="o">=</span> <span class="nb">Integer</span><span class="p">(</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RAILS_MAX_THREADS&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'><span class="n">threads</span> <span class="n">threads_count</span><span class="p">,</span> <span class="n">threads_count</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">preload_app!</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">rackup</span>      <span class="no">DefaultRackup</span>
+</span><span class='line'><span class="n">port</span>        <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;PORT&#39;</span><span class="o">]</span>     <span class="o">||</span> <span class="mi">3000</span>
+</span><span class='line'><span class="n">environment</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;RACK_ENV&#39;</span><span class="o">]</span> <span class="o">||</span> <span class="s1">&#39;development&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">on_worker_boot</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># Worker specific setup for Rails 4.1+</span>
+</span><span class='line'>  <span class="c1"># See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot</span>
+</span><span class='line'>  <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It should now be possible to rebuild the container, and run the app :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Rebuild the containers</span>
+</span><span class='line'>docker-compose build
+</span><span class='line'>
+</span><span class='line'><span class="c"># Start the rails app using the web container</span>
+</span><span class='line'>docker-compose up web
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The app should be accessible at <a href="http://0.0.0.0:8080">http://0.0.0.0:8080</a></p>
+
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg" title="The default homepage for a new Rails application" ></p>
+
+<h2>5. Deploying to heroku</h2>
+
+<p>We&rsquo;re almost ready to deploy to heroku.</p>
+
+<p>First, we need to exclude development files from our image. For this, we need to create a <code>.dockerignore</code> file with the content</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>.git*
+</span><span class='line'>db/*.sqlite3
+</span><span class='line'>db/*.sqlite3-journal
+</span><span class='line'>log/*
+</span><span class='line'>tmp/*
+</span><span class='line'>Dockerfile
+</span><span class='line'>.env
+</span><span class='line'>docker-compose.yml
+</span><span class='line'>docker-compose.override.yml
+</span><span class='line'>README.rdoc
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s then classic Heroku deploy commands :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># create an Heroku app</span>
+</span><span class='line'>heroku apps:create &lt;your-app-name&gt;
+</span><span class='line'>
+</span><span class='line'><span class="c"># And deploy to it</span>
+</span><span class='line'>heroku container:release --app &lt;your-app-name&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Your app should be accessible on line at <a href="https://">https://</a>&lt;your-app-name>.herokuapp.com/</p>
+
+<p><img class="center" src="/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg" title="The typical error message when you deploy a new Rails app to heroku" ></p>
+
+<p>Rails does not provide a default homepage in production. But you can check the logs with</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>heroku logs --app &lt;your-app-name&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>6. Running commands</h2>
+
+<p>When in development mode, you might want to run rails or other commands on your source code again. The shell container exists just for that, run <code>docker-compose run shell ...</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># For example, to update your bundle</span>
+</span><span class='line'>docker-compose run shell bundle update
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>EDIT 2016-07-20</h3>
+
+<p>For the moment, there&rsquo;s a catch with bundle install or update commands, as the gems are installed outside the shared volume, only Gemfile.lock will be updated, which required to run docker-compose build again &hellip; I&rsquo;ll have a look into this later and see if I can fix that.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>docker-compose run shell bundle update
+</span><span class='line'>docker-compose build
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/docker-compose-trick-how-to-have-an-overridable-environment-variable-in-development-mode/">Docker Compose Trick : How to Have an Overridable Environment Variable in Development Mode ?</a></h1>
     
     
@@ -903,125 +1271,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/pair-programming-from-pain-zone-to-skill-zone/">Pair Programming, From Pain Zone to Skill Zone</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-05-06T04:04:00+02:00" pubdate data-updated="true">May 6<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We&rsquo;re doing pair programming almost all the the time in our team. A few weeks ago, we went to <a href="http://www.devoxx.fr/">Devoxx</a> Paris, and 2 team mates used pair programming at a hands on session : they finished way before the others and had the time to take a 30 minute break. Pair programming delivers more &hellip; when it works.</p>
-
-<h2>Flavors of Pair Programming</h2>
-
-<p>Throughout our experience, we have identified some situations where it does or does not work :</p>
-
-<table>
-<thead>
-<tr>
-<th>Pain Zone         </th>
-<th> Skill Zone</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Wandering buddies </td>
-<td> Mates</td>
-</tr>
-<tr>
-<td>Expert / Novice   </td>
-<td> Mentor &amp; Apprentice</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<h2>The Pain Zone</h2>
-
-<p>Pair programming can be painful. It can feel like a waste of time or extremely frustrating. Here are the typical situations and how to fix them.</p>
-
-<h3>The Wandering Buddies</h3>
-
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/going_nowhere.jpg" title="A 'going nowhere' sign" ></p>
-
-<p>That&rsquo;s what you&rsquo;d get if you asked to newcomers straight out of school to pair program on existing source code on day 1. They&rsquo;d be dabbling here and there, without going anywhere. Each one would try to get the keyboard to try his way, but in the end, no general direction would be followed.</p>
-
-<p>The cure in this case (as often) is to stop and think. At least one in the pair needs to lean how to pair program. It&rsquo;s not difficult, that&rsquo;s just :</p>
-
-<ul>
-<li>Discuss and agree on a general plan first</li>
-<li>Keep a todo list</li>
-<li>Track your advancement on your todo list while you don&rsquo;t have the keyboard</li>
-<li>Stop and discuss from time to time</li>
-</ul>
-
-
-<p>By starting that, the pair will quickly move into the &lsquo;mates&rsquo; state.</p>
-
-<h3>The Export / The Novice</h3>
-
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/race.jpg" title="A race where Usain Bolt leave everyone meters behind" ></p>
-
-<p>That&rsquo;s when a &lsquo;lone wolf kind of&rsquo; expert pairs with a junior. The expert picks the keyboard, dashes through the tasks, doesn&rsquo;t make sure his pair follows (which usually means it does not).</p>
-
-<p>Regular pair programming means a change in job responsibilities for such expert programmers. If they were expert doers before, they should now become expert mentors or coaches. That&rsquo;s quite a difference. To them, it means that their goal must be to make his pair finish the task &hellip; It can be very frustrating at first. Nevertheless, the overall skill level in teams doing that increases so fast that&rsquo;s it&rsquo;s very fulfilling for the team as a whole.</p>
-
-<h2>The Skill Zone</h2>
-
-<p>The is where we want to be. When it happens, pair programming feels productive, interesting and fulfilling. Contrary to what is often thought, this can happen whatever the skill levels of the 2 programmers.</p>
-
-<h3>The Mates</h3>
-
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/to-do-list.jpg" title="A Todo list" ></p>
-
-<p>The programmers have equivalent skills on the subject at hand. They organized in a way that they are both learning from each other. By having to verbalize what and why they are doing things, by challenging each others assumptions and by sometimes doing differently than what they&rsquo;d alone.</p>
-
-<h3>The Mentor &amp; The Apprentice</h3>
-
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/help.jpg" title="People helping each other to climb a mountain" ></p>
-
-<p>Other times, there can be a real difference in skills for what the pair is attempting to do. In this situation, the goal of the most knowledgeable is to train his pair, who&rsquo;s goal is to learn. The task becomes some kind of exercise on which to practice.</p>
-
-<p>During a typical pairing session, a pair might switch many times between mentor and mates states. Each one in the pair might assume the mentor&rsquo;s role for different aspect of the work. At the end of the day, everyone should feel as if they had learned and accomplished good work.</p>
-
-<h2>Last Word of Caution</h2>
-
-<p>Pair programming is exhausting. Don&rsquo;t expect to be able to do 40 hours of pair programming per week. After 6 hours in a day, one usually starts to get a lot less efficient.</p>
-
-<p>Both juniors and experienced programmers also need some time by their own, to experiment things by themselves or to complete a simple task without having worry about explaining everything.</p>
-
-<p>These are the reasons why <a href="http://www.extremeprogramming.org/">XP</a> stresses having a sustainable pace and leaving space for <a href="http://www.jamesshore.com/Agile-Book/slack.html">Slack time</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1101,6 +1350,10 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/13-tricks-for-successful-side-projects/">13 Tricks for Successful Side Projects</a>
+      </li>
+    
+      <li class="post">
         <a href="/side-projects-matter/">Side Projects Matter</a>
       </li>
     
@@ -1114,10 +1367,6 @@ That&rsquo;s 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind
     
       <li class="post">
         <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">From apprentice to master, how to learn TDD (Test Driven Development)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/most-scrum-teams-are-not-agile/">Most Scrum teams are not agile</a>
       </li>
     
   </ul>

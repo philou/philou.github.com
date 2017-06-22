@@ -101,6 +101,124 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">Verify the Big O Complexity of Ruby Code in RSpec</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-01-04T17:48:00+01:00" pubdate data-updated="true">Jan 4<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
+
+<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
+
+<h2>How does it work ?</h2>
+
+<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
+
+<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># An adapter class to fit the code to measure in complexity assert</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ProductsOrdersMatching</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Generate some arguments of a particular size</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">generate_args</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</span><span class='line'>        <span class="c1"># Let&#39;s assume we have 10 times less products than orders</span>
+</span><span class='line'>        <span class="o">[</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">size</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span> <span class="n">build_a_product</span><span class="p">()</span> <span class="p">},</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="p">{</span> <span class="n">build_an_order</span><span class="p">()</span> <span class="p">}</span> <span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Run the code on which we want to assert performance</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">orders</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">match_products_with_orders</span><span class="p">(</span><span class="n">products</span><span class="p">,</span> <span class="n">orders</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s2">&quot;Products and Orders Matching&quot;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;performs linearly&quot;</span> <span class="k">do</span>
+</span><span class='line'>        <span class="c1"># Verify that the code runs in time proportional to the size of its arguments</span>
+</span><span class='line'>        <span class="n">expect</span><span class="p">(</span><span class="no">ProductOrdersMatching</span><span class="o">.</span><span class="n">new</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_linear</span><span class="p">()</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
+
+<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
+
+<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
+
+<h2>Did you say experiment ?</h2>
+
+<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
+
+<ul>
+<li>Allow the assertion to specify the sizes</li>
+<li>Allow the assertion to specify the warm-up and run rounds</li>
+<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
+<li>Find ways to make the whole thing faster</li>
+<li>O(lnx) : pre-treat with exp()</li>
+<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
+<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
+<li>Estimate how much the assert is deterministic</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">How I Got My Feet Wet With Machine Learning With &#8216;the First 20 Hours&#8217;</a></h1>
     
     
@@ -1072,94 +1190,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/flavours-of-tdd/">Flavors of TDD</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-09-20T20:54:00+02:00" pubdate data-updated="true">Sep 20<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>During the years doing some coding dojos with the same circle of people, I came up with my own style of practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. Lately, I had the chance to do a pair programming session with someone I did not know. That made me realize that they are in fact even more ways to practice TDD than I thought.</p>
-
-<h2>Mockist vs Classisist</h2>
-
-<p>A lot has already been written (and discussed) about these two approaches. I myself have already <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">blogged</a> about the subject, I even gave a <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">talk</a> about it. From my own point of view, I believe that the inconvenients of making mocking the default far outweights the benefits. I&rsquo;m not saying that mocks aren&rsquo;t useful from time to time, but rather that they should remain the exception.</p>
-
-<h2>Top-Down vs Bottom-Up</h2>
-
-<p>That&rsquo;s the reason why I wrote this post. This is the main difference I found between my style and my pair&rsquo;s. Let me explain.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg" title="Top-Down vs Bottom-Up" ></p>
-
-<h3>Top-Down</h3>
-
-<p>Doing TDD top-down means starting with high level end to end tests, implementing the minimum to make it work, refactor and repeat. A bit like BDD, the point is to focus on the expected behavior, and avoid writing useless things. The bad point is that the refactoring part can get pretty difficult. On real life code, strictly following top-down would mean writing a feature test first, passing it with a quick and dirty implementation, to then spend hours trying to refactor all that mess &hellip; good luck !</p>
-
-<p>Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#">Conway&rsquo;s Game of Life</a> using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders &hellip;). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/glider.gif" title="Conway's game of life gliders" ></p>
-
-<h3>Bottom-Up</h3>
-
-<p>At the other side of the spectrum, you can do bottom-up TDD. This means unit testing and implementing all the small bricks you think you&rsquo;ll need to provide the expected overall feature. The idea is to avoid tunnels and to get fast feedback on what you are coding. The bad side is that you might be coding something that will end up being unnecessary. Be careful, if you find yourself spending a lot of time building up utility classes, you might be doing too much bottom-up implementation.</p>
-
-<p>The <a href="http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals">Numerals to Romans Kata</a> is a good exercise to fail at bottom-up. Every time I did this exercise during a coding dojo, people new to it would start to come up with complicated ways to do it (often involving complex array manipulation). Compared to that, applying disciplined bottom-up TDD brings a <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Roman-Numeral-Converter">brutally effective solution for Numerals to Romans</a>.</p>
-
-<h2>Mixed approach</h2>
-
-<p>Both approaches have their pros and cons. I really believe developers who are serious about TDD should master both, and learn when to apply each. In fact, as often, the best approach lies somewhere in the middle. Here&rsquo;s my recipe :</p>
-
-<ol>
-<li>Start with a high level feature test</li>
-<li>try to make it pass &hellip;</li>
-<li>&hellip; (usually) fail</li>
-<li>rollback or shelve your test and draft implementation</li>
-<li>build a brick</li>
-<li>unshelve</li>
-<li>try to make it pass &hellip;</li>
-<li>&hellip; and so one until the high level test finally passes.</li>
-</ol>
-
-
-<p>In fact, it&rsquo;s a lot like the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> for building features instead of refactoring.</p>
-
-<h2>Practice in dojos</h2>
-
-<p>It&rsquo;s possible to intentionally practice this in coding dojos as well. Most kata should be OK, as long as the group agrees to fix it using this particular approach up front.</p>
-
-<p>If during the dojo, you&rsquo;ve just written a test, suddenly realize that it won&rsquo;t be easy to get it passing, and that you&rsquo;ve got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat &hellip; Eventually, you&rsquo;ll have all the bricks to make it easy to pass your test.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
-
-<p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1239,6 +1269,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/13-tricks-for-successful-side-projects/">13 Tricks for Successful Side Projects</a>
+      </li>
+    
+      <li class="post">
         <a href="/side-projects-matter/">Side Projects Matter</a>
       </li>
     
@@ -1252,10 +1286,6 @@
     
       <li class="post">
         <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">From apprentice to master, how to learn TDD (Test Driven Development)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/most-scrum-teams-are-not-agile/">Most Scrum teams are not agile</a>
       </li>
     
   </ul>
