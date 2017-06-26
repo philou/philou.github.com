@@ -17,7 +17,7 @@ description: "A summary of where I stand after 5 years of blogging about softwar
 * I've had the joy of seeing some articles being tweeted many times
 * I received interesting job offers from all over the world
 
-6 months ago, after reading [Soft Skills: The software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?ie=UTF8&qid=1467000033&sr=8-1&keywords=soft+skills), I set up the practice of writing at least one article per week, and here is my (very encouraging) graph of sessions since then:
+6 months ago, after reading [Soft Skills: The software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1467000033&sr=8-1&keywords=soft+skills), I set up the practice of writing at least one article per week, and here is my (very encouraging) graph of sessions since then:
 
 {% img center /imgs/2016-06-27-5-years-of-blogging-about-software/analytics.jpg The steadily increase curve of the sessions on my blog per month %}
 

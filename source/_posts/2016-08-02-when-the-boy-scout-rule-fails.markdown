@@ -38,9 +38,9 @@ The point here is that the boy scout rule cannot guarantee that you have no tech
 
 That's where the debt metaphor reaches its limits and flips to some productivity investment. By investing time to perform some newly discovered refactoring, you could get a productivity boost !
 
-[{% img center /imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg The cover of "Domain Driven Design" %}](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1470200818&sr=8-1&keywords=domain+driven+design)
+[{% img center /imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg The cover of "Domain Driven Design" %}](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470200818&sr=8-1&keywords=domain+driven+design)
 
-[Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1470200818&sr=8-1&keywords=domain+driven+design), Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a 'breakthrough'. These breakthroughs often promote existing code to technical debt ...
+[Domain-Driven Design: Tackling Complexity in the Heart of Software](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470200818&sr=8-1&keywords=domain+driven+design), Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a 'breakthrough'. These breakthroughs often promote existing code to technical debt ...
 
 ### It's context dependent
 
@@ -68,9 +68,9 @@ But it is not enough. If you have spotted some large scale refactoring that coul
 
 Obviously, large refactorings should also be split into smaller ~~value adding~~ cost reducing items. But then what ?
 
-[{% img center /imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg The cover of "The Nature of Software Development" %}](https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&qid=1470290668&sr=8-1&keywords=the+nature+of+software+development)
+[{% img center /imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg The cover of "The Nature of Software Development" %}](https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470290668&sr=8-1&keywords=the+nature+of+software+development)
 
-In [The Nature of Software Development](https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&qid=1470290668&sr=8-1&keywords=the+nature+of+software+development) Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you've got that, there's no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.
+In [The Nature of Software Development](https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470290668&sr=8-1&keywords=the+nature+of+software+development) Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you've got that, there's no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.
 
 Frankly, I think that's easier said than done. I can *think* of two ways :
 

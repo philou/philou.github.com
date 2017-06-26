@@ -18,10 +18,10 @@ comments: true
 <p>I read two good books on the subject from Craig Larman and Bas Vodde:</p>
 <ul>
 <li>
-<div><span><a href="http://www.amazon.com/Scaling-Lean-Agile-Development-Organizational/dp/0321480961/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-1">Scaling Lean &amp; Agile Development: Thinking and Organizational Tools for Large-Scale Scrum</a></span></div>
+<div><span><a href="http://www.amazon.com/Scaling-Lean-Agile-Development-Organizational/dp/0321480961/ref=sr_1_1?tag=pbourgau-20&amp;s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-1">Scaling Lean &amp; Agile Development: Thinking and Organizational Tools for Large-Scale Scrum</a></span></div>
 </li>
 <li>
-<div><span><a href="http://www.amazon.com/Practices-Scaling-Lean-Agile-Development/dp/0321636406/ref=sr_1_2?s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-2">Practices for Scaling Lean &amp; Agile Development: Large, Multisite, and Offshore Product Development with Large-Scale Scrum</a></span></div>
+<div><span><a href="http://www.amazon.com/Practices-Scaling-Lean-Agile-Development/dp/0321636406/ref=sr_1_2?tag=pbourgau-20&amp;s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-2">Practices for Scaling Lean &amp; Agile Development: Large, Multisite, and Offshore Product Development with Large-Scale Scrum</a></span></div>
 </li>
 </ul>
 <p>There made a lot of good points and techniques, but it&nbsp;still sounded a bit theorical. Later&nbsp;I read <a href="http://producingoss.com/">"Producing Open Source Software"</a>&nbsp;from Karl Fogel. At first,&nbsp;it did not seem to&nbsp;have any link with scaling agile, but successfull open source projects have to&nbsp;handle distributed developpment&nbsp;and&nbsp;high turnover, so I thought that maybe large&nbsp;agile organizations have something to learn from open source developpment mechanics. Why wouldn't these technics that are successful at sharing code between companies be used internaly to share code between teams ?</p>

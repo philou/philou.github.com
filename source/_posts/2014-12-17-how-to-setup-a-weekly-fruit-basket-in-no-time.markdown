@@ -11,7 +11,7 @@ description: "My story about how we setup a weekly fruit basket at work, without
 ---
 [{% img center /imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruit.jpg "A multi-fruit sandwich" %}](http://www.groupe-patus.fr/wp-content/uploads/2014/03/07-Beautiful-Fruit-Wallpapers.jpg)
 
-If you're interested in agile software development, just read Kent Beck's [Extreme Programming Explained : Embrace Change 1st edition](http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/B00CF6EJG8/ref=sr_1_1?ie=UTF8&qid=1417609208&sr=8-1&keywords=embrace+change+1st+edition). It's only 200 pages, it was written in 1999, but it's still tremendously relevent, and it's got the highest ratio of information per page on the subject.
+If you're interested in agile software development, just read Kent Beck's [Extreme Programming Explained : Embrace Change 1st edition](http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/B00CF6EJG8/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1417609208&sr=8-1&keywords=embrace+change+1st+edition). It's only 200 pages, it was written in 1999, but it's still tremendously relevent, and it's got the highest ratio of information per page on the subject.
 
 If you actually read it, you'll notice that Kent emphasizes about having food at the office. He claims that it improves the moral and builds team cohesion.
 

@@ -20,7 +20,7 @@ It is said that Scrum teams work best at 7 people, and that they break at about 
 
 ### The Surgical Team
 
-In his classic [The Mythical Man Month](https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959/ref=sr_1_1?s=books&ie=UTF8&qid=1482298579&sr=1-1&keywords=the+mythical+man+month) Fred Brooks presents an idea to organize software development the way surgeons work. The master performs the surgery while the rest of his team (intern or junior surgeon and the nurses) are there to support him. Fred Brook imagined an organization where master developers could be the only ones with access to the production code, while other more junior developers would have the task to provide them with tools and technical libraries.
+In his classic [The Mythical Man Month](https://www.amazon.com/Mythical-Man-Month-Software-Engineering-Anniversary/dp/0201835959/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1482298579&sr=1-1&keywords=the+mythical+man+month) Fred Brooks presents an idea to organize software development the way surgeons work. The master performs the surgery while the rest of his team (intern or junior surgeon and the nurses) are there to support him. Fred Brook imagined an organization where master developers could be the only ones with access to the production code, while other more junior developers would have the task to provide them with tools and technical libraries.
 
 I admit that this idea sounds out-of-fashion in contrast with modern agile teams of generalists ... Still ...
 

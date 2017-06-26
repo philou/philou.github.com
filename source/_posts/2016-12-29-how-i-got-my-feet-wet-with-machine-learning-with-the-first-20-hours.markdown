@@ -13,9 +13,9 @@ I'm currently wrapping up an alpha of a unit testing [ruby gem](https://github.c
 
 ## How it all started ?
 
-[{% img center /imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg The cover of the book 'The First 20 Hours' %}](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours)
+[{% img center /imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg The cover of the book 'The First 20 Hours' %}](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours)
 
-A few months ago, I read [The First 20 Hours](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours). The book describes a technique to get up to speed and learn some practical skills on any particular subject in only 20 hours. As examples, the author details how he managed to teach himself a pretty decent level of Yoga, Ukulele, Wind Surfing, Programming, Go and touch typing.
+A few months ago, I read [The First 20 Hours](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours). The book describes a technique to get up to speed and learn some practical skills on any particular subject in only 20 hours. As examples, the author details how he managed to teach himself a pretty decent level of Yoga, Ukulele, Wind Surfing, Programming, Go and touch typing.
 
 I decided to give it a try. In order to get a boost, I found a few motivated people at work to do it with me. I started by presenting them the technique described in the book, and asked everyone what they wanted to learn. After a quick vote, we set out to learn more about Machine Learning.
 

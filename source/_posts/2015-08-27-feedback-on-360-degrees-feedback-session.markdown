@@ -12,9 +12,9 @@ description: "My quick feedback on our first 360° feedback session, as describe
 ---
 > If you remove your job, you are promoted. (a classic lean quote)
 
-In [Management 3.0](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0), [Jurgen Appelo](http://jurgenappelo.com/) suggests doing full team 360° feedback sessions instead of more traditional manager-collaborator meetings.
+In [Management 3.0](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0), [Jurgen Appelo](http://jurgenappelo.com/) suggests doing full team 360° feedback sessions instead of more traditional manager-collaborator meetings.
 
-[{% img center /imgs/2015-08-27-feedback-on-360-degrees-feedback-session/management30.jpg "The cover of Management 3.0 book" %}](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0)
+[{% img center /imgs/2015-08-27-feedback-on-360-degrees-feedback-session/management30.jpg "The cover of Management 3.0 book" %}](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0)
 
 He argues in favor of this practice in order to :
 

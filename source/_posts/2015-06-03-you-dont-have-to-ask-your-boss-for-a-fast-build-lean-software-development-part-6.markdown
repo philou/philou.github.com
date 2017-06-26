@@ -13,7 +13,7 @@ A slow build costs money. I mean it costs *a whole lot of money all the time !*
 
 Spending some time to speed up the build is like an investment, you'll pay some money now, but then it's only a matter of time until you get a return on investment. Here is the trick, if you manage to get it quickly, no one will even notice that you spent some time making the build faster !
 
-With a bit of maths, you can even get what [Reinertsen](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?ie=UTF8&qid=1432909293&sr=8-1&keywords=reinertsen+flow) calls a "Decentralized Decision Rule", making it possible for anyone in the organization to figure out if he should spend some time on the build or not; without the need to ask the permission to anyone.
+With a bit of maths, you can even get what [Reinertsen](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1432909293&sr=8-1&keywords=reinertsen+flow) calls a "Decentralized Decision Rule", making it possible for anyone in the organization to figure out if he should spend some time on the build or not; without the need to ask the permission to anyone.
 
 [{% img center /imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Balance_ordinaire.jpg A 2-pan balance (From Wikipedia) %}](http://fr.wikipedia.org/wiki/Balance_%28instrument%29)
 

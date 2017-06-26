@@ -11,9 +11,9 @@ categories:
 keywords: "Software, Programming, Career, Passion for software, experience"
 description: "A reflection on the software industry, on the place it leaves for non-passionate programmers, and the consequences"
 ---
-[{% img center /imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/passionate-programmer.jpg The cover of The Passionate Programmer book %}](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic-ebook/dp/B00AYQNR5U/ref=sr_1_1?ie=UTF8&qid=1470025727&sr=8-1&keywords=the+passionate+programmer)
+[{% img center /imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/passionate-programmer.jpg The cover of The Passionate Programmer book %}](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic-ebook/dp/B00AYQNR5U/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470025727&sr=8-1&keywords=the+passionate+programmer)
 
-In [Rework](https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?ie=UTF8&qid=1469597091&sr=8-1&keywords=rework), [Basecamp](https://basecamp.com/) guys David Heinemeier Hansson and Jason Fried advise to ["Fire the workaholics"](https://signalvnoise.com/posts/902-fire-the-workaholics), while in [Zero to One](https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296/ref=sr_1_1?ie=UTF8&qid=1469801854&sr=8-1&keywords=zero+to+one) Peter Thiel argues that great working conditions (as described within Google for example) result from 10x technological advantages, not the other way round.
+In [Rework](https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1469597091&sr=8-1&keywords=rework), [Basecamp](https://basecamp.com/) guys David Heinemeier Hansson and Jason Fried advise to ["Fire the workaholics"](https://signalvnoise.com/posts/902-fire-the-workaholics), while in [Zero to One](https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1469801854&sr=8-1&keywords=zero+to+one) Peter Thiel argues that great working conditions (as described within Google for example) result from 10x technological advantages, not the other way round.
 
 Back in 1983, Bill Gates said :
 > You have to think it’s a fun industry. You’ve got to go home at night and open your
@@ -28,7 +28,7 @@ Where do we stand now ? Do you need to live and breath programming to remain a g
 
 Studies have repeatedly demonstrated that 40h per week is the most productive work load, but in [Outliers, the Story of Success](https://www.amazon.com/Outliers-Story-Success-Malcolm-Gladwell/dp/0316017930) Malcolm Gladwell explains that getting fast to the 10000 hours of practice is a required road to success. As my Aïkido professor says, the more you practice, the better you get ...
 
-In [Soft Skills: The software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?s=books&ie=UTF8&qid=1469801992&sr=1-1&keywords=soft+skills+the+software+developer%27s+life+manual) John Somnez also makes the point for hard work, that while he long believed that smart work would be enough, it's only when he put more in that he managed to drastically change his career.
+In [Soft Skills: The software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1469801992&sr=1-1&keywords=soft+skills+the+software+developer%27s+life+manual) John Somnez also makes the point for hard work, that while he long believed that smart work would be enough, it's only when he put more in that he managed to drastically change his career.
 
 During an [argument](http://calacanis.com/2008/03/07/how-to-save-money-running-a-startup-17-really-good-tips/), DHH argued in favor of work life balance whereas Jason Calacanis said that working in a startup had to be an all-in activity. In the end, they agreed that what matters is passion.
 
@@ -45,7 +45,7 @@ But then, how do passionate people manage to remain productive when working more
 
 In [Pragmatic Thinking and Learning: Refactor Your Wetware (Pragmatic Programmers)](https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050) (which is a great book BTW), Andy Hunt explains that our R-mode works in the background, and needs time away from the task at hand to come up with "out of the box" creative solutions.
 
-XP argues for a [sustainable pace](http://www.sustainablepace.net/what-is-sustainable-pace), but at the same time, Uncle Bob says that we should put in 60 hours (40 for employer, and 20 for yourself) of work per week to become and remain 'professionals' (I guess that's from [The Clean Coder](https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=sr_1_2?ie=UTF8&qid=1470026034&sr=8-2&keywords=the+clean+code) if I remember correctly).
+XP argues for a [sustainable pace](http://www.sustainablepace.net/what-is-sustainable-pace), but at the same time, Uncle Bob says that we should put in 60 hours (40 for employer, and 20 for yourself) of work per week to become and remain 'professionals' (I guess that's from [The Clean Coder](https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1470026034&sr=8-2&keywords=the+clean+code) if I remember correctly).
 
 On my side, 6 to 8 solid hours of pair-programming on the same subject is the most I can do before becoming a [Net Negative Producing Programmer](http://c2.com/cgi/wiki?NetNegativeProducingProgrammer). But I can do more programming per day if I work on a side project at the same time though !
 
@@ -73,7 +73,7 @@ As we developers gain more experience, we tend to loose patience with everything
 
 Unfortunately, that might also be the moment in your life when you become a parent, and you'll want  a stable income to sustain your family and some time to spend with your kids.
 
-That is when things get tricky. Neither can you jump ship for the next cool and risky startup where you'll do great things, nor can you find enough time moonlighting to improve your skills ... To add pain to injury, even with 10 years of experience in various languages and technologies, most companies won't look at your resume unless it contains good keywords ... It looks like the developer's version of  [The Innovator's Dilemna](https://www.amazon.com/Innovators-Dilemma-Revolutionary-Change-Business/dp/0062060244/ref=sr_1_sc_1?ie=UTF8&qid=1470024448&sr=8-1-spell&keywords=the+innovator%27s+dilemns) !
+That is when things get tricky. Neither can you jump ship for the next cool and risky startup where you'll do great things, nor can you find enough time moonlighting to improve your skills ... To add pain to injury, even with 10 years of experience in various languages and technologies, most companies won't look at your resume unless it contains good keywords ... It looks like the developer's version of  [The Innovator's Dilemna](https://www.amazon.com/Innovators-Dilemma-Revolutionary-Change-Business/dp/0062060244/ref=sr_1_sc_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470024448&sr=8-1-spell&keywords=the+innovator%27s+dilemns) !
 
 Lack of passion and parenthood might partially explain why people stop being developers after a while. I can quickly think of 2 bad consequences of this :
 

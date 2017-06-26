@@ -17,11 +17,11 @@ Usually, it did not start that way, people had good intentions, and tried to fol
 
 One of the promises of Scrum is to keep code quality high, in order to be able to adapt to late changes. Without a good retro to update the coding standards, the working agreements, or to spot and organize large scale refactoring, this will not happen.
 
-One of the agile principle [explicitly states](http://agilemanifesto.org/principles.html) the need for motivated team members. In [Drive](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&qid=1494561757&sr=8-1&keywords=pink+drive) Daniel Pink explains that one of the ingredient for motivation is autonomy. As a way to fix recurring problems, effective retrospectives will create autonomy, and enable motivation. Dysfunctional retros will slowly kill both ...
+One of the agile principle [explicitly states](http://agilemanifesto.org/principles.html) the need for motivated team members. In [Drive](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494561757&sr=8-1&keywords=pink+drive) Daniel Pink explains that one of the ingredient for motivation is autonomy. As a way to fix recurring problems, effective retrospectives will create autonomy, and enable motivation. Dysfunctional retros will slowly kill both ...
 
 Although continuous improvement at all levels is one of the most important element in your process, it needs a bit of practice to setup right. After trying different approach in different teams, I compiled a list of the things that worked for me :
 
-[![The cover of the Daniel Pink's "Drive" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg)](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&qid=1494561757&sr=8-1&keywords=pink+drive)
+[![The cover of the Daniel Pink's "Drive" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg)](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494561757&sr=8-1&keywords=pink+drive)
 
 ## How to do successful retrospectives
 
@@ -42,7 +42,7 @@ There can be many reason why people don't speak : habit, organizational culture 
 Here are a few tricks to guide a team there :
 
 * It is said that if someone does not speak in the first 5 minutes of a meeting, he'll remain silent for the rest. That's why [energizers](www.funretrospectives.com/category/energizer/) work. They force everyone to participate to a Fun activity right from the start. [Fun Retrospective](http://www.funretrospectives.com/) contains a lot of engaging energizers.
-* Bring food ! Having food at work was one of Kent Beck's main advises in [eXtreme Programming, Embrace Change](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?s=books&ie=UTF8&qid=1494561932&sr=1-2&keywords=extreme+programming+explained+embrace+change). Food is social and create a more relaxed and safer atmosphere.
+* Bring food ! Having food at work was one of Kent Beck's main advises in [eXtreme Programming, Embrace Change](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494561932&sr=1-2&keywords=extreme+programming+explained+embrace+change). Food is social and create a more relaxed and safer atmosphere.
 * Before you start the meeting, it might be useful to repeat the [Retrospective's Prime Directive](http://www.retrospectives.com/pages/retroPrimeDirective.html).
 
 > Regardless of what we discover, we understand and truly believe that everyone did the best job they could, given what they knew at the time, their skills and abilities, the resources available, and the situation at hand.
@@ -69,7 +69,7 @@ It's also a good habit to book the rooms for extra time after the official retro
 
 Finally, I think it's a good practice to review what happened of the improvements that were selected during last retro. It stresses the importance of doing what was scheduled in retrospective. It also gives a chance to investigate the reason why they were not done !
 
-[![The cover of the "Mikado Method" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg)](https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?s=books&ie=UTF8&qid=1494562230&sr=1-1&keywords=mikado+method)
+[![The cover of the "Mikado Method" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg)](https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494562230&sr=1-1&keywords=mikado+method)
 
 ### Put them in the sprint
 

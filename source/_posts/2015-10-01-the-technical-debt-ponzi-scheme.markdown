@@ -17,7 +17,7 @@ Madoff would have been better off managing software projects than investing on W
 
 Whereas in finance, a Ponzi scheme is a sure road to jail, it seems to be the de-facto standard in software development.
 
-A few months ago, I read [Managing Software Debt](http://www.amazon.com/Managing-Software-Debt-Inevitable-Development/dp/0321554132/ref=sr_1_2?ie=UTF8&qid=1443728175&sr=8-2&keywords=managing+technical+debt), hoping to find methods about how to manage technical debt with some hard numbers (instead I found some good practices to avoid it, but that's another story). At no place did I read that taking more debt to pay the interests of existing debt was a good practice though ...
+A few months ago, I read [Managing Software Debt](http://www.amazon.com/Managing-Software-Debt-Inevitable-Development/dp/0321554132/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1443728175&sr=8-2&keywords=managing+technical+debt), hoping to find methods about how to manage technical debt with some hard numbers (instead I found some good practices to avoid it, but that's another story). At no place did I read that taking more debt to pay the interests of existing debt was a good practice though ...
 
 Thinking of it, I can remember of such [Ponzi Schemes](https://en.wikipedia.org/wiki/Ponzi_scheme) in nearly every organization I worked in. Here are a few typical manifestations I saw :
 

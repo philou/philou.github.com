@@ -73,8 +73,8 @@ It is sure that doing a side project seriously is a heavy time investment, but t
   * Mailing
 * Trying to bootstrap a for profit side project is like running a micro company, it's a good opportunity to understand how a company is ran. This can help you to become a better professional during your day-job.
 * Having control on everything is a good situation to use Lean techniques.
-  * [Lean Start-up](http://www.amazon.com/The-Lean-Startup-Entrepreneurs-Continuous/dp/0307887898/ref=sr_1_1?ie=UTF8&qid=1404024050&sr=8-1&keywords=lean+startup)
-  * [Lean product development (Donald G. Reinertsen)](http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?ie=UTF8&qid=1404024094&sr=8-1&keywords=reinersten)
+  * [Lean Start-up](http://www.amazon.com/The-Lean-Startup-Entrepreneurs-Continuous/dp/0307887898/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1404024050&sr=8-1&keywords=lean+startup)
+  * [Lean product development (Donald G. Reinertsen)](http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1404024094&sr=8-1&keywords=reinersten)
 * Failing allowed me to actually understand Lean Start up ! The ideas are easy to understand in theory, the practice is a very different thing. It should help me for my next project.
 * Resolving real problems on my own was a very good source for valuable blog articles.
 * I collaborated with very clever people on open source libraries

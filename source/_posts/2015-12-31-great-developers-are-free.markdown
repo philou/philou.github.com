@@ -96,6 +96,6 @@ Engineers are absolutely required to take the main role when hiring other engine
 
 ## Endword
 
-As [Tom DeMarco](https://en.wikiquote.org/wiki/Tom_DeMarco) said about quality, in [Peopleware](http://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=sr_1_1?ie=UTF8&qid=1451733851&sr=8-1&keywords=peopleware) :
+As [Tom DeMarco](https://en.wikiquote.org/wiki/Tom_DeMarco) said about quality, in [Peopleware](http://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1451733851&sr=8-1&keywords=peopleware) :
 
 > Great developers are free, but only for those who are willing to pay for them

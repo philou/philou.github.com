@@ -153,6 +153,6 @@ You could easily come up with a [decision rule](/you-dont-have-to-ask-your-boss-
 ## References
 
 * [Identifying and Managing Technical Debt](http://fr.slideshare.net/zazworka/identifying-and-managing-technical-debt)
-* [Managing Technical Debt](http://www.amazon.com/Managing-Software-Debt-Inevitable-Development/dp/0321948610/ref=sr_1_2?ie=UTF8&qid=1433246385&sr=8-2&keywords=managing+technical+debt)
+* [Managing Technical Debt](http://www.amazon.com/Managing-Software-Debt-Inevitable-Development/dp/0321948610/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1433246385&sr=8-2&keywords=managing+technical+debt)
 
 This was part 7 of my [suite of article about Lean Software Development](/the-flow-book-summary-lean-software-development_part_1/), Part 6 was [You don't have to ask your boss for a fast build](/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/), Part 8 will be [How I'll Measure the Lean Startup Value of Information in My Next Side Project](/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/)

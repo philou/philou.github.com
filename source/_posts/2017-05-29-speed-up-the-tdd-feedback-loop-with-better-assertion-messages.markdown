@@ -34,9 +34,9 @@ I lived the same kind of story with wrong failures many times. The test fails, b
 
 The idea is to make sure to have good enough error messages before moving on to the "pass" step.
 
-[![Cover of GOOSGT](../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
+[![Cover of GOOSGT](../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
 
-There's nothing groundbreaking about this practice. It's not a step as explicit as the other 3 steps of TDD. The first place I read about this idea was in [Growing Object Oriented Software Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests).
+There's nothing groundbreaking about this practice. It's not a step as explicit as the other 3 steps of TDD. The first place I read about this idea was in [Growing Object Oriented Software Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests).
 
 ## How to improve your messages
 

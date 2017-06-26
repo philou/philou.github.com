@@ -15,7 +15,7 @@ There must be a way to know the real money value of [Lean Startup](http://thelea
 
 {% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/knowledge-money.jpg A brain or some money ? %}
 
-Lean Startup is about gathering 'knowledge' through experiments instead of building things. [Flow book](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_3?ie=UTF8&qid=1450068976&sr=8-3&keywords=lean+product+development) suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.
+Lean Startup is about gathering 'knowledge' through experiments instead of building things. [Flow book](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&qid=1450068976&sr=8-3&keywords=lean+product+development) suggests that the value of an information is its expected impact on the bottom line. So by combining both, there should be a way to compute a quantitative value for the knowledge.
 
 The overall plan would be :
 
@@ -33,7 +33,7 @@ Flow explains that all the principles are pretty robust to bad inputs and errors
 
 By default let's assume the value of a feature is somewhere between 0 and your highest estimate. As we'll go through experiments we'll be able to narrow this value range and have a more accurate estimate for the real value.
 
-To keep things simple we could assume that the probability of value is uniformaly distributed within this range. From what I read in [Waltzing With Bears](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&qid=1449901015&sr=8-1&keywords=waltzing+with+bears), here would be a more realistic probability distribution.
+To keep things simple we could assume that the probability of value is uniformaly distributed within this range. From what I read in [Waltzing With Bears](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1449901015&sr=8-1&keywords=waltzing+with+bears), here would be a more realistic probability distribution.
 
 {% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/Demarco-probability.png The curve of the probability of value according to DeMarco %}
 
@@ -41,9 +41,9 @@ To keep things simple we could assume that the probability of value is uniformal
 
 I'm not going to go into the details here, because the logic is exactly the same as with technical experiments (which [I already wrote about](/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/))
 
-Since then though, I read [Waltzing With Bears](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&qid=1449901015&sr=8-1&keywords=waltzing+with+bears) which presents a way of doing Monte Carlo simulations in order to estimate risks on your project. I guess the same thing could be used for value, which would save us from a lot of complex math.
+Since then though, I read [Waltzing With Bears](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1449901015&sr=8-1&keywords=waltzing+with+bears) which presents a way of doing Monte Carlo simulations in order to estimate risks on your project. I guess the same thing could be used for value, which would save us from a lot of complex math.
 
-[{% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/waltzing-with-bears.jpg Cover of 'Waltzing With Bears' %}](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?ie=UTF8&qid=1449901015&sr=8-1&keywords=waltzing+with+bears)
+[{% img center /imgs/2015-12-07-how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/waltzing-with-bears.jpg Cover of 'Waltzing With Bears' %}](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1449901015&sr=8-1&keywords=waltzing+with+bears)
 
 ## When to stop doing experiments ?
 

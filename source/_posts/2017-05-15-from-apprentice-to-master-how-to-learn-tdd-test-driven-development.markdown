@@ -43,7 +43,7 @@ TDD newbies might ask a few questions like :
 
 ### Find your tools
 
-Back in 2003, after reading [Martin Fowler](TODO)'s [Refactoring: Improving the Design of Existing Code](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&ie=UTF8&qid=1495080119&sr=1-1&keywords=martin+fowler+refactoring) book, I decided to give TDD a serious try. I was using C++ at work but we did not even have a nightly build. I had to download and setup [CppUnit](https://en.wikipedia.org/wiki/CppUnit) on my own. As solo endeavor, this was a required step to get into TDD.
+Back in 2003, after reading [Martin Fowler](TODO)'s [Refactoring: Improving the Design of Existing Code](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080119&sr=1-1&keywords=martin+fowler+refactoring) book, I decided to give TDD a serious try. I was using C++ at work but we did not even have a nightly build. I had to download and setup [CppUnit](https://en.wikipedia.org/wiki/CppUnit) on my own. As solo endeavor, this was a required step to get into TDD.
 
 Find and setup a tool. Which one should be rather obvious, if your team already uses a unit test framework, stick to it, otherwise, pick the most standard for your language, ex : [JUnit](http://junit.org/) for [Java](https://www.java.com) (you might as well start searching for a new job where they use a unit testing tool).
 
@@ -51,9 +51,9 @@ Find and setup a tool. Which one should be rather obvious, if your team already 
 
 [Coding dojos](http://codingdojo.org/) were first invented as a tool to [learn TDD](http://www.peterprovost.org/blog/2012/05/02/kata-the-only-way-to-learn-tdd/). They were started by two french eXtreme Programmers [Emmanuel Gaillot](https://ut7.fr/) and [Laurent Bossavit](http://institut-agile.fr/). It happens that I live in Paris, and that Emmanuel came to work as a contractor at the same company I was. I learned that he was organizing a weekly coding dojo open to any developer. That's how I started attending coding dojos. Looking back, the TDD skills I learned at the coding dojo are just enormous !
 
-If you are serious about learning TDD, attend coding dojos. Whether you find one in your city (ask [meetup.com](https://www.meetup.com/)) or in your company does not really matter. If you cannot find any, just start one at work ! Send a public call for interested people (use wiki, mail, posters or whatever), book a room and start hacking ! [Emily Bache's Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo) seems a very good reference about how to start a coding dojo (Disclaimer : I did not read the book, I only know it by reputation.)
+If you are serious about learning TDD, attend coding dojos. Whether you find one in your city (ask [meetup.com](https://www.meetup.com/)) or in your company does not really matter. If you cannot find any, just start one at work ! Send a public call for interested people (use wiki, mail, posters or whatever), book a room and start hacking ! [Emily Bache's Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo) seems a very good reference about how to start a coding dojo (Disclaimer : I did not read the book, I only know it by reputation.)
 
-[![Cover of The Coding Dojo Handbook](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo)
+[![Cover of The Coding Dojo Handbook](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo)
 
 ### Use it
 
@@ -63,19 +63,19 @@ I remember one of my first professional use of TDD was to write a small parser. 
 
 ### Deliberate practice
 
-In [The first 20 hours](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?s=books&ie=UTF8&qid=1494910468&sr=1-1&keywords=the+first+20+hours), Josh Kaufman explains that deliberately practicing specific topics is a more time effective way of learning than simply crunching hours of practice.
+In [The first 20 hours](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494910468&sr=1-1&keywords=the+first+20+hours), Josh Kaufman explains that deliberately practicing specific topics is a more time effective way of learning than simply crunching hours of practice.
 
-My friend [Thomas Pierrain](https://twitter.com/tpierrain) is used to regularly practice short 30 minutes katas to sharpen his programming skills. Katas can be found at [codingdojo.org](http://codingdojo.org/KataCatalogue/), at [cyber-dojo.org](http://cyber-dojo.org/) or in [The Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo).
+My friend [Thomas Pierrain](https://twitter.com/tpierrain) is used to regularly practice short 30 minutes katas to sharpen his programming skills. Katas can be found at [codingdojo.org](http://codingdojo.org/KataCatalogue/), at [cyber-dojo.org](http://cyber-dojo.org/) or in [The Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo).
 
 ### Read
 
 Meanwhile I was doing all this, I also spent a lot of time reading on the subject. At the time, there was a lot of things about TDD in the [C2 Wiki](http://wiki.c2.com/), so I spent a lot of time there. Since then, I stumbled upon a few books that helped me to understand some aspects of TDD :
 
-* Kent Beck's classic [TDD by example](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530/ref=sr_1_1?s=books&ie=UTF8&qid=1495080564&sr=1-1&keywords=tdd+by+example) remains a great reference for beginners
-* I got very useful advices from [TDD, a practical guide](https://www.amazon.com/Test-Driven-Development-Practical-Guide/dp/0131016490/ref=sr_1_3?s=books&ie=UTF8&qid=1494911486&sr=1-3&keywords=test+driven+practical+guide) especially the section about UI testing, which really saved me at some point
-* Finally, [Growing Object Oriented Software Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests) is now a classic about what is called "The London school of testing", which uses mocks as a design tool. Definitely a must read.
+* Kent Beck's classic [TDD by example](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080564&sr=1-1&keywords=tdd+by+example) remains a great reference for beginners
+* I got very useful advices from [TDD, a practical guide](https://www.amazon.com/Test-Driven-Development-Practical-Guide/dp/0131016490/ref=sr_1_3?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494911486&sr=1-3&keywords=test+driven+practical+guide) especially the section about UI testing, which really saved me at some point
+* Finally, [Growing Object Oriented Software Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests) is now a classic about what is called "The London school of testing", which uses mocks as a design tool. Definitely a must read.
 
-[![Cover of GOOSGT](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
+[![Cover of GOOSGT](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
 
 ### Practice advanced topics
 

@@ -15,9 +15,9 @@ Back in 2001, when I started to code for a living, fresh out of school, I was ma
 
 When I was asked to re-engineer the 'wizards UI', I paused my coding to design something clean from scratch. It worked quite well at first : the overall code was a lot simpler and contained a lot less duplication than before. Seeing this new shiny UI, product people asked for new features. Unfortunately, I hadn't thought of them when designing this little framework. I was almost back at my initial situation.
 
-That's how I started to look for another way to design software. At about the same time the [eXtreme Programming book](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming) fell into my hands. That's where I discovered the idea of incremental design and architecture.
+That's how I started to look for another way to design software. At about the same time the [eXtreme Programming book](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming) fell into my hands. That's where I discovered the idea of incremental design and architecture.
 
-[![Front cover of the first edition of the XP book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg)](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming)
+[![Front cover of the first edition of the XP book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg)](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming)
 
 ## What is Incremental Archi
 
@@ -53,7 +53,7 @@ In all the other cases (and that means most of the time), here is what you get :
 * That in turn, will keep your code simpler, decreasing time to release new features
 * As change is built-in, you'll be able to improve your architecture in ways you could not have imagined from the start !
 
-[![Front cover of the Art of Agile Software Development book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?s=books&ie=UTF8&qid=1493096137&sr=1-1&keywords=the+art+of+agile+development)
+[![Front cover of the Art of Agile Software Development book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493096137&sr=1-1&keywords=the+art+of+agile+development)
 
 If you cannot see how this could possibly work ? Read on !
 
@@ -65,7 +65,7 @@ As I said earlier, incremental architecture emerged from eXtreme Programming. It
 
 Don't expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !
 
-[![Front cover of the Martin Fowler's refactoring book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&ie=UTF8&qid=1493096197&sr=1-1&keywords=fowler+refactoring)
+[![Front cover of the Martin Fowler's refactoring book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493096197&sr=1-1&keywords=fowler+refactoring)
 
 ### Architecture Vision
 
@@ -102,7 +102,7 @@ Good news : no more PowerPoints and a lot more coding with the team ! Here is wh
 * To code with the team. As Bertrand Meyer once said "[Bubbles (aka. diagrams) don't crash](http://stal.blogspot.fr/2008/08/architect-always-implements.html)", it's plain too easy, and wrong, to mandate architecture without living with the consequences
 * To come up with more ideas when drafting the long term vision
 * To keep an eye on the 'long term' while being the navigator in pair programming
-* In the second edition of the [XP book](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1493096057&sr=8-1&keywords=extreme+programming) Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team
+* In the second edition of the [XP book](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493096057&sr=8-1&keywords=extreme+programming) Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team
 * To delegate as much as possible to the team. However smart the architect, the team as a whole is smarter ! Delegating architecture increases motivation and the quality of the outcome.
 
 

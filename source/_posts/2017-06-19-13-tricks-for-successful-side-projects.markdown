@@ -44,7 +44,7 @@ To setup a routine, block a slot in your day to work on your project, and stick 
 
 Nothing kills motivation as not delivering. At work, I can go on without user feedback for a while ([not too long though](/how-long-can-your-inner-drive-last/)). Unfortunately, that does not work on a time constrained side project. We have only one life and we don't want to spend our time on things that don't matter. Things that don't deliver don't matter ...
 
-To get the technical aspect of delivery out of the picture once and for all, I use [Continuous Delivery](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1498106027&sr=8-1&keywords=continuous+delivery). Continuous Delivery is pretty easy to start with on a new project :
+To get the technical aspect of delivery out of the picture once and for all, I use [Continuous Delivery](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1498106027&sr=8-1&keywords=continuous+delivery). Continuous Delivery is pretty easy to start with on a new project :
 
 *   automate all your tests
 *   setup a CI server
@@ -52,7 +52,7 @@ To get the technical aspect of delivery out of the picture once and for all, I u
 
 Once this is up and running, as long as I split my work in baby steps, I'll be delivering.
 
-[![The cover of the continuous delivery book](../imgs/2017-06-19-13-tricks-for-successful-side-projects/continuous-delivery.jpg)](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?ie=UTF8&qid=1498106027&sr=8-1&keywords=continuous+delivery)
+[![The cover of the continuous delivery book](../imgs/2017-06-19-13-tricks-for-successful-side-projects/continuous-delivery.jpg)](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1498106027&sr=8-1&keywords=continuous+delivery)
 
 ## 5\. Use SasS tools
 

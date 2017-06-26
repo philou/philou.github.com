@@ -11,7 +11,7 @@ categories:
 keywords: "Design by Contracts, Programming, Software, C++, Immutable Classes, Domain Driven Design, DDD, Refactoring"
 description: "The story of how I discovered Design by Contracts, and how my use of it changed through time"
 ---
-I first read about Design By Contract in 2002, in [Object Oriented Software Construction 2](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer). As soon as I read it, I was convinced, today, I still believe it's a great and fundamental technique. That's why, I almost never write a contract ! Let me explain.
+I first read about Design By Contract in 2002, in [Object Oriented Software Construction 2](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer). As soon as I read it, I was convinced, today, I still believe it's a great and fundamental technique. That's why, I almost never write a contract ! Let me explain.
 
 ## Phase 1 : DbC ignorance
 
@@ -19,11 +19,11 @@ I started to code professionally in 2001. This was a time where design and quali
 
 I wasn't really doing Object Oriented programming, but rather imperative programming, using objects as structs, getters, setters, and classes as a way to organize the code ... In this context, my design skills were improving slowly, and I was at the risk of falling in love with a local-optimum practice that would prevent me from growing further.
 
-That's why I started to read books such as the [Gang Of Four Design Patterns](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1?s=books&ie=UTF8&qid=1490074343&sr=1-1&keywords=design+patterns), or [OOSC2](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer).
+That's why I started to read books such as the [Gang Of Four Design Patterns](https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1490074343&sr=1-1&keywords=design+patterns), or [OOSC2](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer).
 
 ## Phase 2 : DbC enlightenment
 
-[![The cover of the Object Oriented Software Construction 2](../imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg)](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer)
+[![The cover of the Object Oriented Software Construction 2](../imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg)](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer)
 
 Reading this book was a profound experience to me. My programming changed fundamentally before and after reading it. The chapter about contracts, taught me what objects are.
 
@@ -99,7 +99,7 @@ Hopefully, overusing contracts also taught me a lot in a short time. Here are so
 
 ## Phase 4 : DbC hangover
 
-At the same time I discovered all these small subtleties about contracts, I fell upon Martin Fowler's book [Refactoring, improving the design of existing code](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?s=books&ie=UTF8&qid=1490074424&sr=1-1&keywords=refactoring+improving+the+design+of+existing+code) and started to use Unit Tests extensively. This lead me to the following conclusions :
+At the same time I discovered all these small subtleties about contracts, I fell upon Martin Fowler's book [Refactoring, improving the design of existing code](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1490074424&sr=1-1&keywords=refactoring+improving+the+design+of+existing+code) and started to use Unit Tests extensively. This lead me to the following conclusions :
 
 * Tests are more efficient at producing quality software
 * Contracts can be an hindrance when trying to do baby steps refactorings as described in Martin Fowler's book
@@ -111,7 +111,7 @@ On top of that, as DbC is not natively supported by languages, no documentation 
 Looking back, I might not be writing a lot of `asserts` in my code, but I am still thinking in terms of contracts all the time. In fact, there are a ton of ways to use DbC without writing assertions :
 
 * Use as much immutability as possible. An immutable class does not need to check its invariant all the time, just throwing from the constructor if arguments are not valid is enough.
-* Use conventions as much as possible, for example, constructor arguments should be set for all the life of the object (cf [Growing Object Oriented Software Guided by Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?s=books&ie=UTF8&qid=1490074450&sr=1-1&keywords=growing+object+oriented+software+guided+by+tests) which describes the different ways to inject something in an object)
+* Use conventions as much as possible, for example, constructor arguments should be set for all the life of the object (cf [Growing Object Oriented Software Guided by Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1490074450&sr=1-1&keywords=growing+object+oriented+software+guided+by+tests) which describes the different ways to inject something in an object)
 * Looking back at my DbC assertions, most relate to null values. Again conventions work better ! At work, we simply forbid passing null values around. If something can be null, it means it's optional, Java has an `Optional<T>` class for just that (I'm pretty sure it is possible to do something even better with C++ templates). In this case, if the contract is broken, NullReferenceException will eventually be our assertion.
 * Replace as many pre & post conditions with invariants on the callee, the arguments or the return objects as possible. It makes sense as it's just making sure we are using 'valid' objects everywhere. Again, if these objects are immutable, it makes the whole thing even simpler !
 * To take further benefit of the invariant of immutable objects, introduce new types. For example, instead of changing an object's state through a command with associated involved contracts, split the class in 2 and make the method a query returning an immutable object, potentially making the initial class immutable as well. Remember, immutable classes mean almost no assertions !
@@ -153,4 +153,4 @@ Details are omitted, but it's easy to see how shorter the code is.
 
 When applying all the techniques above, you'll see that cases for explicit assertions are rare. Less assertions also workarounds the issues coming from the poor support for DbC : no documentation and intricate cases.
 
-In the end, assertions made my code more 'functional'. I'm not alone to have done the same journey, and if you are interested you should read Eric Evans' [DDD](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?s=books&ie=UTF8&qid=1490082811&sr=1-1&keywords=domain+driven+design) book where he presents things like immutable value objects and specification objects.
+In the end, assertions made my code more 'functional'. I'm not alone to have done the same journey, and if you are interested you should read Eric Evans' [DDD](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1490082811&sr=1-1&keywords=domain+driven+design) book where he presents things like immutable value objects and specification objects.

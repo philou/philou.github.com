@@ -34,7 +34,7 @@ Diversity does not mean minority quotas in your team. Diversity means diversity 
 
 ### Slack
 
-Removing any slack from the planning is the surest way to kill creativity and innovation. Great ideas often come at unexpected moments (see [Pragmatic Thinking and Learning: Refactor Your Wetware](https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050/ref=sr_1_1?s=books&ie=UTF8&qid=1478151003&sr=1-1&keywords=pragmatic+thinking+and+learning)) because the mind works in the background to find them. You want to leave some time for that.
+Removing any slack from the planning is the surest way to kill creativity and innovation. Great ideas often come at unexpected moments (see [Pragmatic Thinking and Learning: Refactor Your Wetware](https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1478151003&sr=1-1&keywords=pragmatic+thinking+and+learning)) because the mind works in the background to find them. You want to leave some time for that.
 
 ### Go to conferences
 

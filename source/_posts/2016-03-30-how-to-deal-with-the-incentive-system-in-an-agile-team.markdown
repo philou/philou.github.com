@@ -14,13 +14,13 @@ For an organization, there's something schizophrenic about valuing team work, wa
 
 {% img center /imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/schizophrenic-smiley.jpg A schizophrenic :(: smiley %}
 
-As highlighted in [Build To Last](http://www.amazon.com/Built-Last-Successful-Visionary-Essentials/dp/0060516402/ref=sr_1_1?ie=UTF8&qid=1459922545&sr=8-1&keywords=build+to+last) genuine company values must permeate all aspects of the organization. Being agile also means putting teamwork first and that is quite incompatible with typical individual management by objectives and bonuses.
+As highlighted in [Build To Last](http://www.amazon.com/Built-Last-Successful-Visionary-Essentials/dp/0060516402/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1459922545&sr=8-1&keywords=build+to+last) genuine company values must permeate all aspects of the organization. Being agile also means putting teamwork first and that is quite incompatible with typical individual management by objectives and bonuses.
 
 This is nothing new, many have already written about the subject
 
 * Joel Spolsky : [Incentive Pay Considered Harmful](http://www.joelonsoftware.com/articles/fog0000000070.html)
-* Daniel Pink : [Drive : The Surprising Truth About What Motivates Us](http://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&qid=1459665370&sr=8-1&keywords=drive+daniel+pink)
-* Alfie Kohn : [Punished by Rewards: The Trouble with Gold Stars, Incentive Plans, A's, Praise, and Other Bribes](http://www.amazon.com/Punished-Rewards-Trouble-Incentive-Praise/dp/0618001816/ref=sr_1_1?ie=UTF8&qid=1459665424&sr=8-1&keywords=punished+by+rewards)
+* Daniel Pink : [Drive : The Surprising Truth About What Motivates Us](http://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1459665370&sr=8-1&keywords=drive+daniel+pink)
+* Alfie Kohn : [Punished by Rewards: The Trouble with Gold Stars, Incentive Plans, A's, Praise, and Other Bribes](http://www.amazon.com/Punished-Rewards-Trouble-Incentive-Praise/dp/0618001816/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1459665424&sr=8-1&keywords=punished+by+rewards)
 * Jurgen Appelo : [The Bonus System](http://noop.nl/2013/01/the-bonus-system.html)
 
 The problem is you usually don't have the choice ! Whether your team wants to or not, the chances are that your company already has a mandatory individual bonus scheme in place.

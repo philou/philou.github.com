@@ -35,7 +35,7 @@ Here is how I try to make my tests as maintainable as possible :
 * Use existing mocks when possible. For example, [Sqlite](http://www.sqlite.org/) in memory database : it speeds up the tests, removes the need for any environment setup, and is usually very simple to setup
 * Last of all, listen to your tests : if they get difficult to write, they might be a design improvement opportunity lying somewhere
 
-All in all there is nothing new here. A lot of things come from [GOOS](http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&qid=1391579113&sr=8-1&keywords=growing+object-oriented+software+guided+by+tests) others from [Clean Code](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y), the mocking 'requirements' come from [an article from Gregory Brown](http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html), I found others from my own experience and from a lot of other sources I cannot remember now ...
+All in all there is nothing new here. A lot of things come from [GOOS](http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1391579113&sr=8-1&keywords=growing+object-oriented+software+guided+by+tests) others from [Clean Code](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y), the mocking 'requirements' come from [an article from Gregory Brown](http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html), I found others from my own experience and from a lot of other sources I cannot remember now ...
 
 Happy testing !
 

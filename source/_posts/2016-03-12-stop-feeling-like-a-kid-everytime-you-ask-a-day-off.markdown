@@ -20,7 +20,7 @@ That's not the only issue with how we traditionally deal with vacations :
 
 ## Our Delegation Board
 
-Our team at work is already rather agile : we're using a blend of XP and Scrumban, we follow solid engineering practices and we are always trying to improve to deliver more value to our users. After reading [Management 3.0](http://www.amazon.com/Management-3-0-Developers-Developing-Addison-Wesley/dp/0321712471/ref=sr_1_1?ie=UTF8&qid=1457988177&sr=8-1&keywords=management+3.0) and [Management Workouts](https://management30.com/product/workouts/) I was convinced that I needed to move the team towards even more self organization.
+Our team at work is already rather agile : we're using a blend of XP and Scrumban, we follow solid engineering practices and we are always trying to improve to deliver more value to our users. After reading [Management 3.0](http://www.amazon.com/Management-3-0-Developers-Developing-Addison-Wesley/dp/0321712471/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1457988177&sr=8-1&keywords=management+3.0) and [Management Workouts](https://management30.com/product/workouts/) I was convinced that I needed to move the team towards even more self organization.
 
 We started by doing [delegation poker](https://management30.com/product/delegation-poker/), we created a [delegation board](https://management30.com/product/workouts/delegation-employee-engagement/), and set out to move all cards we could to the right side of the board.
 

@@ -22,7 +22,7 @@ Our jobs aren't always fun ... and that's in fact an issue ! Studies show that p
 2. How to remove the parts that are not fun ?
 3. How to add even more fun ?
 
-She defined what she called the funtinuum, which is that fun is a function of engagement and interaction. Basically, you won't have fun if you are doing nothing, or if no one cares about your work. That aligns well with [Daniel Pink's drivers of motivation](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?ie=UTF8&qid=1475123675&sr=8-1&keywords=daniel+pink+drive) : Autonomy, Mastery and Purpose.
+She defined what she called the funtinuum, which is that fun is a function of engagement and interaction. Basically, you won't have fun if you are doing nothing, or if no one cares about your work. That aligns well with [Daniel Pink's drivers of motivation](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1475123675&sr=8-1&keywords=daniel+pink+drive) : Autonomy, Mastery and Purpose.
 
 If something is not fun, it's because it does not require engagement or interaction. It's either boring or no one cares, or both. If that's the case, it's probably some kind of waste in some sense ... Removing un-fun activities would mean removing waste. It's interesting to note how this sounds like [lean Muda](https://en.wikipedia.org/wiki/Muda_(Japanese_term)) ! She gave examples such as :
 
@@ -62,7 +62,7 @@ This talk might not be of interest for all, but it is for us [at work](http://mu
 
 I haven't been touching Clojure for a while but I gave the language a try a few years ago. I had heard about Clojure spec but hadn't taken the time to look at it in details. As I understood it all, Spec is like some sort of [Design by Contract](https://en.wikipedia.org/wiki/Design_by_contract) on steroïds ! Clojure is not statically typed, but you can now assign spec metadata to values. A spec is roughly a predicate. By defining specs for the inputs and outputs of functions, it is possible to verify at runtime that the function is behaving correctly.
 
-As did Bertrand Meyer in the classic [OOSC2](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_1?ie=UTF8&qid=1475211259&sr=8-1&keywords=object+oriented+software+construction+meyer), who advised to use contracts during development only, Stuart explained that we should care about developer vs production time instead of compile vs runtime. From this point of view, it is not of great importance whether the compiler or the continuously running test suite finds an issue.
+As did Bertrand Meyer in the classic [OOSC2](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1475211259&sr=8-1&keywords=object+oriented+software+construction+meyer), who advised to use contracts during development only, Stuart explained that we should care about developer vs production time instead of compile vs runtime. From this point of view, it is not of great importance whether the compiler or the continuously running test suite finds an issue.
 
 But specs are a lot more than predicates ! They can be used to :
 

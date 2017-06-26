@@ -27,7 +27,7 @@ Wouldn't it be great if we could track the business value we are creating instea
 
 ## How to track and prioritize based on your business value
 
-From [Reinertsen's Flow book](http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?ie=UTF8&qid=1413953773&sr=8-1&keywords=product+development+flow), we learned that the cost of delay is the main driver of the value creation : the faster you deliver a feature, less you spend the cost of delay of that feature, the more value you are creating for your company. [This article](http://scaledagileframework.com/wsjf/) suggests that the cost of delay can be computed with the following formula :
+From [Reinertsen's Flow book](http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1413953773&sr=8-1&keywords=product+development+flow), we learned that the cost of delay is the main driver of the value creation : the faster you deliver a feature, less you spend the cost of delay of that feature, the more value you are creating for your company. [This article](http://scaledagileframework.com/wsjf/) suggests that the cost of delay can be computed with the following formula :
 
 > cost of delay = f(user business value) + g(time criticality) + h(risk reduction opportunity)
 
@@ -47,7 +47,7 @@ The later type of task will be detailed in other articles. Let's focus on the tw
 
 First, I'd say its business value is 0, until it's too late. You should not be working on it too soon, but you should not be working on it too late neither !
 
-In his book [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&ie=UTF8&qid=1413954965&sr=1-1&keywords=the+art+of+agile+development) James Shore details in great details how an agile team can commit to deliverables (I really recommend this part, I might even write a post about it). He explains that in order to commit, teams should multiply their estimates by 4, or by 1.8 if they are very rigourous in their application of all the XP practices.
+In his book [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1413954965&sr=1-1&keywords=the+art+of+agile+development) James Shore details in great details how an agile team can commit to deliverables (I really recommend this part, I might even write a post about it). He explains that in order to commit, teams should multiply their estimates by 4, or by 1.8 if they are very rigourous in their application of all the XP practices.
 
 So a rule to handle such a task could be to
 

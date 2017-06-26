@@ -26,9 +26,9 @@ Discuss with your experts, take some margin, do whatever voodoo you are used to.
 
 ## Use your agile process metrics
 
-This technique is explained in [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development), in section "Risk Management", page 227.
+This technique is explained in [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development), in section "Risk Management", page 227.
 
-[{% img center /imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg The cover of The Art of Agile Development%}](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development)
+[{% img center /imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg The cover of The Art of Agile Development%}](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development)
 
 ### Let's estimate the time you'll need before the release
 
@@ -41,7 +41,7 @@ Chances of making it | Using XP practices | Otherwise | Description
 10%	             |x1	          | x1	      | Almost impossible (ignore)
 50%	             |x1.4	          | x2	      | 50-50 chance (stretch goal)
 90%	             |x1.8	          | x4	      | Virtually certain (commit)
-_As explained in [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development) page 227, these numbers com from [DeMarco's Riskology](http://www.systemsguild.com/riskology/) system. Using XP practices means fixing all bugs at all iteration, sticking rigorously to DONE-DONE, and having a stable velocity over iterations._
+_As explained in [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development) page 227, these numbers com from [DeMarco's Riskology](http://www.systemsguild.com/riskology/) system. Using XP practices means fixing all bugs at all iteration, sticking rigorously to DONE-DONE, and having a stable velocity over iterations._
 
 This factor will account for unavoidable scope creep and wrong estimations.
 * Use you iteration velocity to know how many sprints you'll need to finish.

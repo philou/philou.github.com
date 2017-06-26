@@ -22,9 +22,9 @@ With 90% of automated test coverage, Cucumber scenarios to verify quality, every
 
 ## First try at exploratory testing
 
-[{% img center /imgs/2016-01-08-how-we-started-exploratory-testing/art-of-agile-development.jpg The cover of the Art Of Agile Development %}](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development)
+[{% img center /imgs/2016-01-08-how-we-started-exploratory-testing/art-of-agile-development.jpg The cover of the Art Of Agile Development %}](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development)
 
-In [The art of agile development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development), James Shore details the practice of exploratory testing as a great way of both :
+In [The art of agile development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development), James Shore details the practice of exploratory testing as a great way of both :
 
 * improving the quality of the product by finding bugs
 * improving the process

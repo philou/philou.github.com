@@ -65,7 +65,7 @@ Joe also had to interrupt his programming day once for an urgent meeting ... he 
 
 ## Self organized teams
 
-Meanwhile, Joe read some books about self organized teams, such as [Management 3.0 Workout](http://www.amazon.com/Workout-Practices-Improve-Delight-Clients/dp/9492032023/ref=sr_1_1?ie=UTF8&qid=1454480226&sr=8-1&keywords=management+3.0+workout) by Jurgen Appelo.
+Meanwhile, Joe read some books about self organized teams, such as [Management 3.0 Workout](http://www.amazon.com/Workout-Practices-Improve-Delight-Clients/dp/9492032023/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1454480226&sr=8-1&keywords=management+3.0+workout) by Jurgen Appelo.
 
 [{% img center /imgs/2016-02-03-how-to-keep-programming-when-assigned-a-management-job/management-workout.jpg Management 3.0 Workout Book Cover %}](https://management30.com/product/workouts/)
 
@@ -93,8 +93,8 @@ The journey is long and rough : one team member left as they were going seriousl
 
 Joe is now programming nearly as much as his team mates ! Most of his programming time is coaching time though. He does not sit and hack his way into a feature as he used to do. He's missing that a bit, he's also missing learning new technologies.
 
-That's why he started working on [side projects](/my-own-side-project-best-practices-after-reading-the-side-project-book) at home, using the latest hype JavaScript framework. He's reading generalist programming books also, such as the [7 XXX in 7 weeks](http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Daps&field-keywords=%22in+seven+weeks%22&rh=i%3Aaps%2Ck%3A%22in+seven+weeks%22) series which allow him to learn without loosing time on technical quirks he's not interested in at the moment ...
+That's why he started working on [side projects](/my-own-side-project-best-practices-after-reading-the-side-project-book) at home, using the latest hype JavaScript framework. He's reading generalist programming books also, such as the [7 XXX in 7 weeks](http://www.amazon.com/s/ref=nb_sb_noss_2?tag=pbourgau-20&amp;url=search-alias%3Daps&field-keywords=%22in+seven+weeks%22&rh=i%3Aaps%2Ck%3A%22in+seven+weeks%22) series which allow him to learn without loosing time on technical quirks he's not interested in at the moment ...
 
-[{% img center /imgs/2016-02-03-how-to-keep-programming-when-assigned-a-management-job/7-languages.jpg Seven Languages In Seven Weeks Book Cover %}](http://www.amazon.com/Seven-Languages-Weeks-Programming-Programmers/dp/193435659X/ref=sr_1_1?ie=UTF8&qid=1454739459&sr=8-1&keywords=7+languages+in+7+weeks)
+[{% img center /imgs/2016-02-03-how-to-keep-programming-when-assigned-a-management-job/7-languages.jpg Seven Languages In Seven Weeks Book Cover %}](http://www.amazon.com/Seven-Languages-Weeks-Programming-Programmers/dp/193435659X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1454739459&sr=8-1&keywords=7+languages+in+7+weeks)
 
 Good luck Joe !

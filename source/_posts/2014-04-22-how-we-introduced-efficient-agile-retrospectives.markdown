@@ -13,7 +13,7 @@ description: "The story explaining how our team went from no retrospectives to e
 ---
 6 months ago, our team started to run systematic iteration retrospectives. Within these 6 months, our team became more agile than ever. Running efficient retrospectives is what makes good teams great, it is what truly makes a team agile. Here is our story.
 
-At the begining, we started with a standard retrospective format inspired from [The Art Of Agile Development](http://www.amazon.com/The-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1398141097&sr=8-1&keywords=the+art+of+agile+development) (A truly great book by the way). As I was used to running retrospectives, I did the first one. This is how it goes :
+At the begining, we started with a standard retrospective format inspired from [The Art Of Agile Development](http://www.amazon.com/The-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1398141097&sr=8-1&keywords=the+art+of+agile+development) (A truly great book by the way). As I was used to running retrospectives, I did the first one. This is how it goes :
 
 * Repeat Norm's Kerth's prime directive to everyone (5 minutes) :
 
@@ -41,7 +41,7 @@ Pick up the 3 most voted issues, give everyone 5 minutes to think of useful acti
 
 As soon as the retrospective is finished, the animator must enter the actions in the coming sprint backlog. These actions are not user stories, but they **must** be done. If there are not, the team cannot be agile as they will be no continuous improvement. Don't assign any story points to these items, but let the velocity auto adjust for a given amount of improvements during every sprint.
 
-After the first one, every team member animated such a retrospective, one after the other. When everyone was at ease with this, we changed the format. We bought [Agile Retrospectives: Making Good Teams Great](http://www.amazon.com/Agile-Retrospectives-Making-Teams-Great/dp/0977616649/ref=pd_sim_b_1?ie=UTF8&refRID=0QA643CPNSQE9E0GSG5E) and everyone was responsible for designing his own retrospective session when his turn came. This allows different and various insights.
+After the first one, every team member animated such a retrospective, one after the other. When everyone was at ease with this, we changed the format. We bought [Agile Retrospectives: Making Good Teams Great](http://www.amazon.com/Agile-Retrospectives-Making-Teams-Great/dp/0977616649/ref=pd_sim_b_1?tag=pbourgau-20&amp;ie=UTF8&refRID=0QA643CPNSQE9E0GSG5E) and everyone was responsible for designing his own retrospective session when his turn came. This allows different and various insights.
 
 To conclude, here are a few retrospectives hints and guidelines
 

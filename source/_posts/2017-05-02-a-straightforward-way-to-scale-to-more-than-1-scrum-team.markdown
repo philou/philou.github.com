@@ -115,7 +115,7 @@ One full day of meetings is long. People get tired. In order to keep the energy 
 * Board games during breaks
 * End of day celebration outside the office. You could go out and have a drink all together for exemple.
 
-[![The Timeline board game box](../imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/timeline.jpg)](https://www.amazon.com/Asmodee-TIM01USASM-Timeline/dp/B005N57CNU/ref=sr_1_1?ie=UTF8&qid=1493870547&sr=8-1&keywords=timeline)<div class="image-credits">We had fun playing this game between the meetings</div>
+[![The Timeline board game box](../imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/timeline.jpg)](https://www.amazon.com/Asmodee-TIM01USASM-Timeline/dp/B005N57CNU/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493870547&sr=8-1&keywords=timeline)<div class="image-credits">We had fun playing this game between the meetings</div>
 
 ### Preparing the product Backlog
 
@@ -152,7 +152,7 @@ We did this on 4 teams. I have no ideas how it would work with more teams. We di
 Others have noticed similar things :
 
 * LeSS : ["Truly scaled scrum is Scrum scaled."](https://less.works/less/framework/introduction.html)
-* In the [Nature of Software](https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?ie=UTF8&qid=1493870372&sr=8-1&keywords=the+nature+of+software+development) [Ron Jeffries](http://ronjeffries.com/) explains that for a company is agile if it just focuses on delivering software "feature by feature"
-* In [A Practical Approach to Large-Scale Agile Development [...]](https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726/ref=sr_1_1?s=books&ie=UTF8&qid=1493870423&sr=1-1&keywords=large+scale+hp), the authors explain that they did not use any frameworks at HP, but just followed the agile principles
+* In the [Nature of Software](https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493870372&sr=8-1&keywords=the+nature+of+software+development) [Ron Jeffries](http://ronjeffries.com/) explains that for a company is agile if it just focuses on delivering software "feature by feature"
+* In [A Practical Approach to Large-Scale Agile Development [...]](https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493870423&sr=1-1&keywords=large+scale+hp), the authors explain that they did not use any frameworks at HP, but just followed the agile principles
 
 Agile scaling frameworks might be a good starting point (the Shu in [Shu-Ha-Ri](https://fr.wikipedia.org/wiki/Shuhari)), but only as long as the agile principles and values have not been understood by the organization.

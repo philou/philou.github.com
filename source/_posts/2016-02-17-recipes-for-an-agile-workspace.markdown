@@ -16,7 +16,7 @@ Nowadays, start-ups and tech companies seem to be competing for the most beautif
 
 {% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/open-space.jpg A nice modern and beautiful co-working space %}
 
-Unfortunately, sometimes, it's just the good old office in disguise. At the opposite, some teams or companies actually think and decide how to organize their offices. For example, here is what [Kent Beck](https://twitter.com/kentbeck) says about office setup in [XP embrace change](http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?ie=UTF8&qid=1456177035&sr=8-2&keywords=extreme+programming+embrace+change)
+Unfortunately, sometimes, it's just the good old office in disguise. At the opposite, some teams or companies actually think and decide how to organize their offices. For example, here is what [Kent Beck](https://twitter.com/kentbeck) says about office setup in [XP embrace change](http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1456177035&sr=8-2&keywords=extreme+programming+embrace+change)
 
 > If you don't have a reasonable place to work, your project won't be successful. The difference
 between a good space for the team and a bad space for the team is immediate and dramatic.
@@ -91,7 +91,7 @@ wrong place, they are moved. If the partitions are in the way, they are taken do
 too bright, they are taken out. If the phones are too loud, one day, mysteriously, they are all found
 to have cotton stuffed in the bells.
 
-Improving the office is a cheap way to make a software organization more efficient. For another reference, here is what Tom DeMarco & Tim Lister wrote in [Peopleware](http://www.amazon.com/gp/product/0321934113/ref=s9_simh_gw_g14_i3_r?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=desktop-1&pf_rd_r=1K2KEWBRQK6F1R26D5D2&pf_rd_t=36701&pf_rd_p=2079475242&pf_rd_i=desktop)
+Improving the office is a cheap way to make a software organization more efficient. For another reference, here is what Tom DeMarco & Tim Lister wrote in [Peopleware](http://www.amazon.com/gp/product/0321934113/ref=s9_simh_gw_g14_i3_r?tag=pbourgau-20&amp;pf_rd_m=ATVPDKIKX0DER&pf_rd_s=desktop-1&pf_rd_r=1K2KEWBRQK6F1R26D5D2&pf_rd_t=36701&pf_rd_p=2079475242&pf_rd_i=desktop)
 
 > Police-mentality planners design workplaces the way they would design prisons: optimized for containment at minimal cost. We have unthinkingly yielded to them on the subject of workplace
 design, yet for most organizations with productivity problems, there is no more fruitful area for improvement than the workplace. As long as workers are crowded into noisy, sterile, disruptive space, it's not worth improving anything but the **workplace**.

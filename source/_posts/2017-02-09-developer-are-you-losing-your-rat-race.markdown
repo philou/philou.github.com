@@ -65,15 +65,15 @@ How do you convince others that you are up to the job in a particular technology
 
 Regularly, people try to coin a word to describe the competent generalist developer : polyglot, full stack, craftsman ... If it's good enough, it usually gets taken over quite fast by the industry and just becomes yet another buzzword (the only exception being eXtreme Programming, but who would like to hire and eXtreme Programmer ?).
 
-In [Soft Skills](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?ie=UTF8&qid=1473135683&sr=8-1&keywords=soft+skills), John Somnez says the trick is to explain to people that you might not have experience in a technology 'yet'. This might work, if your resume gets through, which is not sure.
+In [Soft Skills](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1473135683&sr=8-1&keywords=soft+skills), John Somnez says the trick is to explain to people that you might not have experience in a technology 'yet'. This might work, if your resume gets through, which is not sure.
 
 Here's my try : the next time I'll polish my resume, I'll try to put forward my fundamental skills first, for example with 5 stars self-assessments. Only after will I add something like "By the way, I could work with tech X Y Z ...".
 
 ### Independence
 
-[{% img center /imgs/2017-02-09-developer-are-you-losing-your-rat-race/the-end-of-jobs.jpg Cover of the book 'The End of Jobs' %}](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs)
+[{% img center /imgs/2017-02-09-developer-are-you-losing-your-rat-race/the-end-of-jobs.jpg Cover of the book 'The End of Jobs' %}](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs)
 
-Being your own boss could be a solution in the long term. I recently listened to [The End of Jobs](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs) in which the author explains that entrepreneurship is an accessible alternative these days, and that like any skill, it's learnable. The catch is that there are no schools, no diplomas, and that it seems a lot riskier in the short run. Despite that, he makes the point that the skills you'll learn makes it quite safe in the long run !
+Being your own boss could be a solution in the long term. I recently listened to [The End of Jobs](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs) in which the author explains that entrepreneurship is an accessible alternative these days, and that like any skill, it's learnable. The catch is that there are no schools, no diplomas, and that it seems a lot riskier in the short run. Despite that, he makes the point that the skills you'll learn makes it quite safe in the long run !
 
 ## Questions
 
