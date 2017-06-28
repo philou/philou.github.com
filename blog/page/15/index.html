@@ -101,6 +101,62 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-install-a-patched-ruby-interpreter-wit/">How to Install a Patched Ruby Interpreter With Rbenv and Ruby-build</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-09T00:00:00+01:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a>&nbsp;seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
+
+
+<p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
+
+
+<ul>
+<li>download the ruby sources</li>
+<li>patch them</li>
+<li>create a ruby-build package definition with them</li>
+<li>install with rbenv</li>
+</ul>
+
+
+<p>Here is a script that does this for ruby 1.9.2-p125 and gcdata patch.</p>
+
+
+<p>
+<script src="https://gist.github.com/4492543.js"></script>
+</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-i-set-up-a-trustico-rapid-ssl-certificate/">How I Set Up a Trustico Rapid Ssl Certificate on Heroku Ssl Endpoint</a></h1>
     
     
@@ -117,7 +173,7 @@
   
 
 
-<time datetime="2012-12-13T00:00:00+00:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+<time datetime="2012-12-13T00:00:00+01:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
         
       </p>
     
@@ -188,7 +244,7 @@
   
 
 
-<time datetime="2012-11-08T00:00:00+00:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
+<time datetime="2012-11-08T00:00:00+01:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
         
       </p>
     
@@ -233,7 +289,7 @@
   
 
 
-<time datetime="2012-11-07T00:00:00+00:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time>
+<time datetime="2012-11-07T00:00:00+01:00" pubdate data-updated="true">Nov 7<span>th</span>, 2012</time>
         
       </p>
     
@@ -321,7 +377,7 @@
   
 
 
-<time datetime="2012-09-28T00:00:00+00:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
+<time datetime="2012-09-28T00:00:00+02:00" pubdate data-updated="true">Sep 28<span>th</span>, 2012</time>
         
       </p>
     
@@ -395,7 +451,7 @@
   
 
 
-<time datetime="2012-08-22T00:00:00+00:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+<time datetime="2012-08-22T00:00:00+02:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
         
       </p>
     
@@ -520,7 +576,7 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   
 
 
-<time datetime="2012-08-09T00:00:00+00:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
+<time datetime="2012-08-09T00:00:00+02:00" pubdate data-updated="true">Aug 9<span>th</span>, 2012</time>
         
       </p>
     
@@ -588,7 +644,7 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   
 
 
-<time datetime="2012-07-03T00:00:00+00:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
+<time datetime="2012-07-03T00:00:00+02:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
         
       </p>
     
@@ -738,7 +794,7 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   
 
 
-<time datetime="2012-05-28T00:00:00+00:00" pubdate data-updated="true">May 28<span>th</span>, 2012</time>
+<time datetime="2012-05-28T00:00:00+02:00" pubdate data-updated="true">May 28<span>th</span>, 2012</time>
         
       </p>
     
@@ -894,7 +950,7 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   
 
 
-<time datetime="2012-04-26T00:00:00+00:00" pubdate data-updated="true">Apr 26<span>th</span>, 2012</time>
+<time datetime="2012-04-26T00:00:00+02:00" pubdate data-updated="true">Apr 26<span>th</span>, 2012</time>
         
       </p>
     
@@ -906,46 +962,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 <li>use Bundler <a href="http://gembundler.com"><a href="http://gembundler.com">http://gembundler.com</a></a></li><li>keep your Gemfile simple : just the top level dependencies, and no version constraints</li><li>try to stick to popular gems : you&rsquo;ll find a lot more answers to your questions from the web. It&rsquo;s often simpler to write and maintain a little extra code than to depend on a crappy thirdparty that is supposed to meet your need</li><li>stick with the most recent versions of your dependencies. With a good test suite and with Bundler, it should be rather easy to upgrade, so do it often to avoid both the upgrade tunnel effect and struggling with bugs and incompatibility of unmaintained old versions of gems.</li></ul>
 <p>Edit: I discovered <a href="http://www.ruby-toolbox.com">the ruby toolbox</a>&nbsp;that categorizes and sorts gems based on their popularity !</p>
 <p>Edit 2: I discovered it is sometimes necessary to add constraints to get the latest versions of gems that would otherwise conflict (directly or not) with others.</p></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/stubmodel-and-mockmodel/">Stub_model and Mock_model</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-16T00:00:00+00:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I decided to stop using stub_model and mock_model. I do not use them enough to get fluent with them. Everytime I have to deal with them, something breaks in an unexpected way. I just decided to stand with good old stubs.</p>
-
-
-<p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
-
 </div>
   
   
@@ -1032,6 +1048,10 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/">Don&#8217;t stick to TDD&#8217;s Red-Green-Refactor loop to the letter</a>
+      </li>
+    
+      <li class="post">
         <a href="/13-tricks-for-successful-side-projects/">13 Tricks for Successful Side Projects</a>
       </li>
     
@@ -1045,10 +1065,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/20-bad-excuses-for-not-writing-unit-tests/">20 Bad Excuses For Not Writing Unit Tests</a>
-      </li>
-    
-      <li class="post">
-        <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">From apprentice to master, how to learn TDD (Test Driven Development)</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: agile | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-06-26T05:58:49+00:00</updated>
+  <updated>2017-06-28T22:54:30+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,9 +14,180 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Don't stick to TDD's Red-Green-Refactor loop to the letter]]></title>
+    <link href="http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/"/>
+    <updated>2017-06-28T15:52:00+02:00</updated>
+    <id>http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter</id>
+    <content type="html"><![CDATA[<p>As long as you are writing your tests before your code and doing regular refactoring, you are doing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> !</p>
+
+<p>The Red &ndash; Green &ndash; Refactor loop is useful to introduce TDD to new developers. Different loops can be more effective in real world situation.</p>
+
+<p>The Red &ndash; Green &ndash; Refactor loop is not a dogma !</p>
+
+<p><a href="http://www.natpryce.com/"><img src="../imgs/2017-06-28-dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/red-green-refactor.jpg" alt="The famous red, green, refactor TDD loop" /></a></p>
+
+<h2>Refactor &ndash; Red &ndash; Green</h2>
+
+<p>When I work on a story, I very often keep a TODO list next to my desk. I use it to keep track of the next steps, the edge cases to test, the code smells and refactorings to do.</p>
+
+<p>When I get to the end of the story, all that remains of this list is a few refactorings. Very often, I don&rsquo;t do them !</p>
+
+<p>With the feature working, doing these refactorings feels like violation of <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a>. Next time we&rsquo;ll have to work on this part of the code, we&rsquo;ll have a story to serve as guide to which refactorings to do.</p>
+
+<p>The same thing is effective at the unit test scale. It&rsquo;s easier to refactor when you know the test you want to add. Refactor to make this test easy to write !</p>
+
+<p>Here is an example with <a href="https://en.wikipedia.org/wiki/Fizz_buzz">Fizz Buzz</a></p>
+
+<p>```java
+static int fizzBuzz(int number) {
+   return number;
+}</p>
+
+<p>@Test public void
+it_is_1_for_1() {
+   assertThat(fizzBuzz(1)).isEqualTo(1);
+}</p>
+
+<p>@Test public void
+it_is_2_for_2() {
+   assertThat(fizzBuzz(2)).isEqualTo(2);
+}
+```</p>
+
+<p>Here is the test I&rsquo;d like to add. </p>
+
+<p><code>java
+@Test public void
+it_is_Fizz_for_3() {
+   assertThat(fizzBuzz(1)).isEqualTo("Fizz");
+}
+</code></p>
+
+<p>Unfortunately, fizzBuzz needs to return a String instead of an integer for it to compile. That&rsquo;s when I would refactor before adding the new test.</p>
+
+<p>```java
+static String fizzBuzz(int number) {
+   return Integer.toString(number);
+}</p>
+
+<p>@Test public void
+it_is_1_for_1() {
+   assertThat(fizzBuzz(1)).isEqualTo(&ldquo;1&rdquo;);
+}</p>
+
+<p>@Test public void
+it_is_2_for_2() {
+   assertThat(fizzBuzz(2)).isEqualTo(&ldquo;2&rdquo;);
+}
+```</p>
+
+<p>In the end, this loop is very like the classic TDD loop :</p>
+
+<p><code>
+red-green-refactor-red-green-refactor-red-green-refactor.............
+..........refactor-red-green-refactor-red-green-refactor-red-green...
+</code></p>
+
+<p>A bit more YAGNI, that&rsquo;s all.</p>
+
+<h2>Red &ndash; Better Red &ndash; Green &ndash; Refactor</h2>
+
+<p>A few weeks ago, <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">I wrote about error messages in unit tests</a>. To summarize, extra work on error messages reduces the testing feedback loop.</p>
+
+<p>We can translate this focus on error messages into an extra TDD step. Whatever the TDD loop you are using, you can add this step after the Red step.</p>
+
+<h2><del>Red</del> &ndash; Refactor &ndash; Green</h2>
+
+<p>Sometimes, it makes sense to refactor before fixing the test. The idea is to rely on the existing tests to prepare the code to fix the new test in one line.</p>
+
+<p>Let&rsquo;s take our Fizz Buzz example again. Imagine we finished the kata, when we decide to tweak the rules and try Fizz Buzz Bang. We should now print Bang on multiples of 7.</p>
+
+<p>Here is our starting point :</p>
+
+<p>```java
+static String fizzBuzz(int number) {
+   if (multipleOf(number, 3)) {
+      return &ldquo;Fizz&rdquo;;
+   }
+   if (multipleOf(number, 5)) {
+      return &ldquo;Buzz&rdquo;;
+   }
+   if (multipleOf(number, 3*5)) {
+      return &ldquo;FizzBuzz&rdquo;;
+   }   
+   return Integer.toString(number);
+}</p>
+
+<p>&hellip;</p>
+
+<p>@Test public void
+it_is_Bang_for_7() {
+   assertThat(fizzBuzz(7)).isEqualTo(&ldquo;Bang&rdquo;);
+}
+```</p>
+
+<p>I could go through all the hoops, 7, 14, then 3<em>7, 5</em>7 and finally 3<em>5</em>7 &hellip; By now, I should know the music though !</p>
+
+<p>What I would do in this case is :</p>
+
+<ul>
+<li>first to comment the new failing test to get back to green</li>
+<li>refactor the code to prepare for the new code</li>
+<li>uncomment the failing test</li>
+<li>fix it</li>
+</ul>
+
+
+<p>In our example, here is the refactoring I would do</p>
+
+<p>```java
+static String fizzBuzz(int number) {
+   String result = &ldquo;&rdquo;;
+   result += multipleWord(number, 3, &ldquo;Fizz&rdquo;);
+   result += multipleWord(number, 5, &ldquo;Buzz&rdquo;);
+   if (result.isEmpty()) {
+      result = Integer.toString(number);
+   }
+   return result;
+}</p>
+
+<p>private static String multipleWord(int number, int multiple, String word) {
+   if (multipleOf(number, multiple)) {
+      return word;
+   }
+   return &ldquo;&rdquo;;
+}</p>
+
+<p>&hellip;</p>
+
+<p>//@Test public void
+//it_is_Bang_for_7() {
+//   assertThat(fizzBuzz(7)).isEqualTo(&ldquo;Bang&rdquo;);
+//}
+```</p>
+
+<p>From there, fixing the test is dead simple.</p>
+
+<p>In practice I find this loop very useful. At local scale as we saw but it&rsquo;s also a great way to refactor your architecture at larger scale.</p>
+
+<p>One downsize is that if you are not careful, it might lead to over-engineering. Be warned, keep an eye on that !</p>
+
+<p>Last caveat : not all TDD interviewers like this technique &hellip;</p>
+
+<h2>Don&rsquo;t obsess</h2>
+
+<p>It&rsquo;s not because you are not following the Red Green Refactor loop to the letter that you are not doing TDD.</p>
+
+<p>An interesting point is that these variations to the TDD loop are combinable ! Experienced TDD practitioners can jump from one to the other without even noticing.</p>
+
+<p><a href="https://blog.acolyer.org/2017/06/13/a-dissection-of-the-test-driven-development-process-does-it-really-matter-to-test-first-or-test-last/">This paper</a> argues that as long as you write the tests along (before or after) the code, you get the same benefit. That&rsquo;s not going to make me stop writing my tests first, but it is interesting. That would mean that even a Code &ndash; Test &ndash; Refactor loop would be ok if it is fast enough !</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Most Scrum teams are not agile]]></title>
     <link href="http://philippe.bourgau.net/most-scrum-teams-are-not-agile/"/>
-    <updated>2017-05-09T06:36:00+00:00</updated>
+    <updated>2017-05-09T06:36:00+02:00</updated>
     <id>http://philippe.bourgau.net/most-scrum-teams-are-not-agile</id>
     <content type="html"><![CDATA[<p>Being agile is about adapting to change and continuously improving. I&rsquo;ve seen (and been) in too many teams blindly following Scrum (<a href="/how-to-kill-scrum-zombies/">Scrum Zombies</a>) without figuring out how to continuous improve. The most obvious symptom is a boring (or no) retrospective.</p>
 
@@ -121,7 +292,7 @@
   <entry>
     <title type="html"><![CDATA[A Straightforward Way to Scale to More Than 1 Scrum Team]]></title>
     <link href="http://philippe.bourgau.net/a-straightforward-way-to-scale-to-more-than-1-scrum-team/"/>
-    <updated>2017-05-02T06:11:00+00:00</updated>
+    <updated>2017-05-02T06:11:00+02:00</updated>
     <id>http://philippe.bourgau.net/a-straightforward-way-to-scale-to-more-than-1-scrum-team</id>
     <content type="html"><![CDATA[<p>How come the &ldquo;agile scaling&rdquo; landscape seems so daunting and bloated ?</p>
 
@@ -333,7 +504,7 @@
   <entry>
     <title type="html"><![CDATA[Incremental architecture, a cure against architecture astronauts]]></title>
     <link href="http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/"/>
-    <updated>2017-04-24T06:52:00+00:00</updated>
+    <updated>2017-04-24T06:52:00+02:00</updated>
     <id>http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts</id>
     <content type="html"><![CDATA[<p>Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a>. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding &hellip;</p>
 
@@ -446,7 +617,7 @@
   <entry>
     <title type="html"><![CDATA[Overclocking a Scrum Team to 12]]></title>
     <link href="http://philippe.bourgau.net/overclocking-a-scrum-team-to-12/"/>
-    <updated>2016-12-21T04:57:00+00:00</updated>
+    <updated>2016-12-21T04:57:00+01:00</updated>
     <id>http://philippe.bourgau.net/overclocking-a-scrum-team-to-12</id>
     <content type="html"><![CDATA[<p><em>From <a href="https://en.wikipedia.org/wiki/Overclocking">Wikipedia</a> :</em></p>
 
@@ -519,20 +690,6 @@
 <h2>A final word</h2>
 
 <p>Obviously, this has a smell of specialization, we&rsquo;re bending Scrum principles a bit. So take it for what it is : just like overclocking, it&rsquo;s a hack to get a bit of extra juice before investing in something a lot more expensive (<a href="https://www.agilealliance.org/glossary/scrum-of-scrums/">Scrum of Scrums</a>, <a href="http://less.works/">Less</a> or whatever).</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Video for our talk 'Extreme Practices' is on YouTube]]></title>
-    <link href="http://philippe.bourgau.net/video-for-our-talk-extreme-practices-is-on-youtube/"/>
-    <updated>2016-11-23T05:19:00+00:00</updated>
-    <id>http://philippe.bourgau.net/video-for-our-talk-extreme-practices-is-on-youtube</id>
-    <content type="html"><![CDATA[<p>As I already wrote about <a href="/rexp-remote-extreme-programming/">before</a>, my colleague <a href="https://ahmadatwi.me/">Ahmad</a> from Beirut gave a talk at <a href="http://www.agiletourbeirut.org/">Agile Tour Beirut</a> about how we adopted <a href="http://www.extremeprogramming.org/">XP</a> to a distributed team <a href="http://www.murex.com">at work</a>. I was the remote buddy during the talk.</p>
-
-<p>It was recorded and is now available on YouTube.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oJsukJhxt7E" frameborder="0" allowfullscreen></iframe>
-
 ]]></content>
   </entry>
   

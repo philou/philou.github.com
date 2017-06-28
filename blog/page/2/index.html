@@ -101,6 +101,142 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/">A Seamless Way to Keep Track of Technical Debt in Your Source Code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-04-12T08:48:00+02:00" pubdate data-updated="true">Apr 12<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I eventually stumbled upon a way to keep track of technical debt in source code that is both straightforward and already built-in most tools : simple <code>TODO</code> comments !</p>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/todo-comment.jpg" alt="Photo of a screen displaying source code with #TODO comments" /></p>
+
+<h2>How it happened ?</h2>
+
+<p>Some time ago, we tried to add <a href="/a-plan-for-technical-debt-lean-software-development-part-7/"><code>@TechnicalDebt</code></a> annotations in our source code. Unfortunately, after a few month, we came to the logical conclusion that it was too complex to be effective :</p>
+
+<ul>
+<li>It involved too much ceremony, which frightened people</li>
+<li>It made people uneasy to change anything around the annotation instead of sending a call to action</li>
+<li>As a result, it was always out of date</li>
+</ul>
+
+
+<p>After a bit of discussion with my colleagues, we decided to replace all these annotations with simple <code>TODO</code> comments.</p>
+
+<p>When the refactoring to do seems fairly obvious (but also premature) we&rsquo;ll use a straightforward <code>//TODO (example) introduce a factory</code> message. Next time a pairs gets to work on this part of the code, they get the silent opinion of their peers to help them decide what to do about this piece of the code. Other times, the code might be smelly, yet without us knowing what to do about it yet, in this case, we agreed to use <code>//TODO SMELL (example) responsibilities are not clear in this class</code> which is still a <code>TODO</code> comment, but not a clear call to action.</p>
+
+<p>When I started my <a href="https://github.com/philou/planning-poker">current side project</a>, I naturally started to use them. They display nicely in <a href="https://codeclimate.com/github/philou/planning-poker/issues">CodeClimate</a>.</p>
+
+<h3>The pros</h3>
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/codeclimate.jpg" alt="Screenshot of the CodeClimate issue dashboard displaying TODO comments" /></p>
+
+<p>The great thing about <code>TODO</code> comments is that, as a very old programming trick, they are already supported out of the box by most tools <a href="https://www.jetbrains.com/">IntelliJ</a>, <a href="https://www.sonarqube.org/">SonarQube</a>, <a href="http://rubyonrails.org/">Rails</a>, <a href="https://codeclimate.com">CodeClimate</a> and I guess many others. Only one day after I refactored to <code>TODO</code> comments, a team mate fixed one that had appeared in his IDE&rsquo;s TODO tab !</p>
+
+<h3>The cons</h3>
+
+<p>Some tools, IDEs in particular, tend to assume that you should fix all your <code>TODOs</code> before you commit anything. That&rsquo;s not exactly how we are using them to track lasting technical debt. So that&rsquo;s one thing you need to keep in mind.</p>
+
+<p>Tools like Sonar on the other hand, assign a fixed remediation cost to any <code>TODO</code> you have in the code, which is usually not the case at all !</p>
+
+<h2>How to set it up in your project</h2>
+
+<p>As you might guess, this is pretty easy. Just start adding <code>TODO</code> comments in your code &hellip;</p>
+
+<h3>Teamwise</h3>
+
+<p>It is worth first validating the practice with your colleagues though. There are many ways to do that, depending on your team&rsquo;s work habits :</p>
+
+<ul>
+<li>Use your team <a href="https://slack.com/">Slack</a> (or whatever chat room you use) to share a link to this post (for example) and create a yes/no poll</li>
+<li>Or if you think you need it, create some wiki page explaining the practice and detailing its rationals in your context, add a yes/no poll, and finally share this page with your team</li>
+<li>Eventually, if you think that this topic deserves it, setup a meeting with everyone and discuss the point. It might be worth sharing information about the practice beforehand to make the meeting more efficient. You can end the vote with a <a href="http://www.plays-in-business.com/thumb-voting/">thumb vote</a> (up : yes, down : no, side : whatever)</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg" alt="Thumbs voting positions" /><div class="image-credits">Photo from <a href="http://www.plays-in-business.com/thumb-voting/">Plays in Business</a></div></p>
+
+<p>Don&rsquo;t wait for unanimity to start the practice, majority is enough ! Make sure that people who voted the other way will follow the team practice in the end though. Remember that whatever the answer, discussing team practices is good.</p>
+
+<p>Once all the team agreed on using (or not) <code>TODO</code> comments, mention the practice in your team&rsquo;s coding conventions or working agreements (which I strongly recommend to have written somewhere). If you don&rsquo;t have any yet, create some !</p>
+
+<h3>Toolswise</h3>
+
+<p>Most tools will handle <code>TODO</code> out of the box.</p>
+
+<ul>
+<li>Rails comes with a <code>rake notes</code> task to list <code>TODO</code> comments.</li>
+<li>CodeClimate and SonarQube both lists <code>TODOs</code> as issues in their default config</li>
+<li>Most IDEs have a &lsquo;TODO&rsquo; tab which will display the <code>TODO</code> comments in the project</li>
+<li>Otherwise, good old grep will very happily find <code>TODO</code> comments in your code</li>
+</ul>
+
+
+<p>Some tools might require small tweaks to improve the experience :</p>
+
+<ul>
+<li>In IntelliJ, in the commit window, uncheck the &lsquo;Check TODO&rsquo; checkbox to avoid getting a warning at every commit</li>
+</ul>
+
+
+<p><img src="../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/intellij-commit.jpg" alt="IntelliJ's commit window, with its 'Check TODO' check box" /></p>
+
+<ul>
+<li>SonarQube uses the same fixed remediation cost for every TODO comment. It&rsquo;s up to you to adapt this remediation cost to your context.</li>
+</ul>
+
+
+<h2>What&rsquo;s next ?</h2>
+
+<p><code>TODO</code> comments are a good starting point to track technical debt. Once you start using them, there are a few things you can do :</p>
+
+<p>First, remember to fix some regularly. Very old <code>TODO</code> comments are technical debt of their own ! Using code quality dashboards like SonarQube or CodeClimate help to continuously improve your code.</p>
+
+<p>If your tools allow it, you might consider setting up a simpler <code>//SMELL ...</code> instead of <code>//TODO SMELL ...</code> or whatever other special comment that might be useful in your context.</p>
+
+<p>Finally, there is a lean continuous improvement practice which consists of logging problems as they occur. Doing this could help your team to decide which technical debt hotspots are the most important to fix. When appropriate, link the problems with the <code>TODO</code> comments. After a few weeks of this, walking through all the problems during a retrospective should shed light on what parts of the code are causing the most troubles.</p>
+
+<h2>Edit 2017-04-19</h2>
+
+<p>Thanks a lot for your comments ! People have suggested a ton of great improvements over my basic setup :</p>
+
+<ul>
+<li>plugins to other tools that also support <code>TODO</code> comments</li>
+<li>activating automatic sync between issues in CodeClimate and your issue tracking system</li>
+<li>using custom comments markers</li>
+<li>adding an &lsquo;X&rsquo; to your comment every time you are bothered by the technical debt, tools can configured to assign a higher severity to issues with a lot of &lsquo;X&rsquo;</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-mock-your-browsers-timezone-with-jasmine-and-momentjs/">How to Mock Your Browser&#8217;s Timezone With Jasmine and MomentJS</a></h1>
     
     
@@ -117,7 +253,7 @@
   
 
 
-<time datetime="2017-03-30T06:29:00+00:00" pubdate data-updated="true">Mar 30<span>th</span>, 2017</time>
+<time datetime="2017-03-30T06:29:00+02:00" pubdate data-updated="true">Mar 30<span>th</span>, 2017</time>
         
       </p>
     
@@ -180,7 +316,7 @@
   
 
 
-<time datetime="2017-03-14T18:57:00+00:00" pubdate data-updated="true">Mar 14<span>th</span>, 2017</time>
+<time datetime="2017-03-14T18:57:00+01:00" pubdate data-updated="true">Mar 14<span>th</span>, 2017</time>
         
       </p>
     
@@ -437,7 +573,7 @@
   
 
 
-<time datetime="2017-03-03T06:46:00+00:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2017</time>
+<time datetime="2017-03-03T06:46:00+01:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2017</time>
         
       </p>
     
@@ -609,7 +745,7 @@
   
 
 
-<time datetime="2017-02-23T05:25:00+00:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2017</time>
+<time datetime="2017-02-23T05:25:00+01:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2017</time>
         
       </p>
     
@@ -830,7 +966,7 @@
   
 
 
-<time datetime="2017-02-16T19:37:00+00:00" pubdate data-updated="true">Feb 16<span>th</span>, 2017</time>
+<time datetime="2017-02-16T19:37:00+01:00" pubdate data-updated="true">Feb 16<span>th</span>, 2017</time>
         
       </p>
     
@@ -952,7 +1088,7 @@
   
 
 
-<time datetime="2017-02-09T05:37:00+00:00" pubdate data-updated="true">Feb 9<span>th</span>, 2017</time>
+<time datetime="2017-02-09T05:37:00+01:00" pubdate data-updated="true">Feb 9<span>th</span>, 2017</time>
         
       </p>
     
@@ -1058,7 +1194,7 @@
   
 
 
-<time datetime="2017-02-01T17:41:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2017</time>
+<time datetime="2017-02-01T17:41:00+01:00" pubdate data-updated="true">Feb 1<span>st</span>, 2017</time>
         
       </p>
     
@@ -1169,7 +1305,7 @@
   
 
 
-<time datetime="2017-01-25T07:53:00+00:00" pubdate data-updated="true">Jan 25<span>th</span>, 2017</time>
+<time datetime="2017-01-25T07:53:00+01:00" pubdate data-updated="true">Jan 25<span>th</span>, 2017</time>
         
       </p>
     
@@ -1290,7 +1426,7 @@
   
 
 
-<time datetime="2017-01-16T08:20:00+00:00" pubdate data-updated="true">Jan 16<span>th</span>, 2017</time>
+<time datetime="2017-01-16T08:20:00+01:00" pubdate data-updated="true">Jan 16<span>th</span>, 2017</time>
         
       </p>
     
@@ -1465,97 +1601,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/what-happens-to-non-enthusiast-programmers-in-the-long-run/">What Happens to Non-Enthusiast Programmers in the Long Run ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-01-10T05:57:00+00:00" pubdate data-updated="true">Jan 10<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A few months ago, after receiving good feedback from my regular readers, I posted my latest article <a href="/is-there-any-room-for-the-not-passionate-developer/">Is There Any Room for the Not-Passionate Developer ?</a> on <a href="https://news.ycombinator.com/">Hackernews</a> and <a href="https://www.reddit.com/r/programming/">Reddit</a>. I got a <a href="/how-to-use-hackernews-and-reddit-for-blogging/">huge number of visits</a>, a lot more than I typically get !</p>
-
-<p>I also got a lot more comments, some nice, some tough, some agreeable and some challenging !</p>
-
-<p><img class="center" src="/imgs/2017-01-10-what-happens-to-non-enthusiast-programmers-in-the-long-run/professional.jpg" title="A logo of a guy wearing a suit" ></p>
-
-<h2>First, a summary</h2>
-
-<p>In this previous article, I wanted to contrast the different views about work/life balance in the software industry.</p>
-
-<p>Some, like agile gurus and companies like Basecamp, and <a href="http://lifehacker.com/working-over-40-hours-a-week-makes-you-less-productive-1725646811">studies</a>, strongly advocate for sane work hours. They explain that it results in greater productivity and healthy life.</p>
-
-<p>On the other hand, the software field is always bubbling with novelty, and keeping up to date with technologies is by itself a challenge that takes time. For some companies, which might already be fighting for their survival against competition, it is almost impossible to grant some extra training time to their employees. The problem becomes particularly difficult when engineers get older, become parents and cannot afford to spend some extra time learning the latest JavaScript framework.</p>
-
-<p>As a conclusion, I said that for most of us, it&rsquo;s really difficult to remain a developer in the long run without the grit that only passion for programming brings. I encourage you to <a href="/is-there-any-room-for-the-not-passionate-developer/">read it</a> for more details.</p>
-
-<h2>What I learned from the comments</h2>
-
-<p>First of all, thanks a lot for all these, they were very valuable, they forced me to think even more about the issue.</p>
-
-<h3>People have been burnt !</h3>
-
-<p>The word &lsquo;passion&rsquo; in particular, triggered engaged comments. As some pointed out, &lsquo;enthusiast&rsquo; or &lsquo;professional&rsquo; should be favored. It seems that some companies have asked their employees for unquestionable passion for their business (and not for engineering or programming) at the cost of the people&rsquo;s own lives. As a commenter said, a lot of shops do not integrate the absolute necessity for their programmers to learn continuously in their business model. It made me kind of sad to feel once more this state of our industry.</p>
-
-<p>As a result, people are weary of any statement of &lsquo;passion&rsquo; in the workplace, and would prefer to be seen as very skilled professional, dedicated to keeping their skills up to date.</p>
-
-<h3>The particular question of France</h3>
-
-<p><img class="center" src="/imgs/2017-01-10-what-happens-to-non-enthusiast-programmers-in-the-long-run/france.jpg" title="A photo of the Eiffel tower" ></p>
-
-<p>I received some comments from all over the world, but my observations came from where I work : in France. Here, all in all, we have at least 7 weeks of paid leaves per year. It&rsquo;s a lot more than in other parts of the world. I think it&rsquo;s around 2 weeks in the US (other <a href="https://www.bloomberg.com/news/articles/2016-10-18/americans-work-25-more-than-europeans-study-finds">sources</a> point the same fact). Imagine two companies, one from France, and one from the US. The one in the US can invest 5 weeks per year in exploratory learning (which can result in good things for both the business and the employee) while still producing as much as the french one.</p>
-
-<p>Obviously, there are other parameters to take into account for overall productivity like hours per day, the effects of holidays or long hours on creativity, or funding &hellip; but here are some facts about software engineering in France :</p>
-
-<ul>
-<li>20% time policy, hackathons and other exploratory learning are extremely rare (I&rsquo;ve seen it once in 15 years)</li>
-<li>It&rsquo;s slowly getting better, but if you remain a programmer in your thirties, you&rsquo;re seen as a loser</li>
-<li>France has no software powerhouse like Microsoft, Google, Apple &hellip;</li>
-</ul>
-
-
-<p>This lead me to this open question : What&rsquo;s the effect of the 7 weeks of paid leaves on the french software industry ?</p>
-
-<p>By no means will I try to give an answer, I just don&rsquo;t know. Plus, for those who might be wondering : I love my 7 weeks of holidays !</p>
-
-<h2>The conclusion I came to</h2>
-
-<p>Yet, I can try to draw a conclusion at the individual level. In France, if you&rsquo;re not really enthusiastic about programming, you won&rsquo;t put the extra effort off-the-job to learn the latest technologies. Within a few years, you&rsquo;ll be &lsquo;deprecated&rsquo;, which will leave you with mainly 2 options :</p>
-
-<ul>
-<li>become a manager</li>
-<li>stick to your current codebase (and become completely dependent of your employer)</li>
-</ul>
-
-
-<p>To me, the sad truth is that if you want to make a career as a professional developer in France, you&rsquo;d better be ready to spend some of your free time practicing !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1635,6 +1680,10 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/">Don&#8217;t stick to TDD&#8217;s Red-Green-Refactor loop to the letter</a>
+      </li>
+    
+      <li class="post">
         <a href="/13-tricks-for-successful-side-projects/">13 Tricks for Successful Side Projects</a>
       </li>
     
@@ -1648,10 +1697,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
     
       <li class="post">
         <a href="/20-bad-excuses-for-not-writing-unit-tests/">20 Bad Excuses For Not Writing Unit Tests</a>
-      </li>
-    
-      <li class="post">
-        <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">From apprentice to master, how to learn TDD (Test Driven Development)</a>
       </li>
     
   </ul>
