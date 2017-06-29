@@ -52,7 +52,7 @@ Here is the test I'd like to add. 
 ```java
 @Test public void
 it_is_Fizz_for_3() {
-   assertThat(fizzBuzz(1)).isEqualTo("Fizz");
+   assertThat(fizzBuzz(3)).isEqualTo("Fizz");
 }
 ```
 
@@ -89,7 +89,7 @@ A few weeks ago, [I wrote about error messages in unit tests](/speed-up-the-tdd-
 
 We can translate this focus on error messages into an extra TDD step. Whatever the TDD loop you are using, you can add this step after the Red step.
 
-## ~~Red~~ - Refactor - Green
+## ~~Red~~ - Green - Refactor - Red - Green
 
 Sometimes, it makes sense to refactor before fixing the test. The idea is to rely on the existing tests to prepare the code to fix the new test in one line.
 
