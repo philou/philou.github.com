@@ -101,6 +101,142 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Top 5 Talks I Attended at JavaOne 2016 (Part 2)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-09-28T20:02:00+02:00" pubdate data-updated="true">Sep 28<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is my second post relating the talks I attended at JavaOne 2016. <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Here</a> is the beginning of the story. Here we go.</p>
+
+<h2>Euphoria Despite the Despair</h2>
+
+<p><a href="https://twitter.com/holly_cummins">Holly Cummins</a></p>
+
+<p>Our jobs aren&rsquo;t always fun &hellip; and that&rsquo;s in fact an issue ! Studies show that people who have fun at work are 31% more productive ! The talk was organized in 3 parts :</p>
+
+<ol>
+<li>What is fun ?</li>
+<li>How to remove the parts that are not fun ?</li>
+<li>How to add even more fun ?</li>
+</ol>
+
+
+<p>She defined what she called the funtinuum, which is that fun is a function of engagement and interaction. Basically, you won&rsquo;t have fun if you are doing nothing, or if no one cares about your work. That aligns well with <a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1475123675&amp;sr=8-1&amp;keywords=daniel+pink+drive">Daniel Pink&rsquo;s drivers of motivation</a> : Autonomy, Mastery and Purpose.</p>
+
+<p>If something is not fun, it&rsquo;s because it does not require engagement or interaction. It&rsquo;s either boring or no one cares, or both. If that&rsquo;s the case, it&rsquo;s probably some kind of waste in some sense &hellip; Removing un-fun activities would mean removing waste. It&rsquo;s interesting to note how this sounds like <a href="https://en.wikipedia.org/wiki/Muda_(Japanese_term">lean Muda</a>) ! She gave examples such as :</p>
+
+<ul>
+<li>automate stuff</li>
+<li>pair programming transforms criticism into collaboration (bonus: it gives excuse to skip meetings)</li>
+<li>go <a href="https://twitter.com/search?q=%23NoEstimates">#NoEstimates</a> because estimating is painful and useless</li>
+<li>YAGNI defers useless things until they really add value</li>
+<li>Organize to skip meetings and other boring stuff</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Last step is to add fun to the workplace. She warned that adding fun before removing the un-fun stuff would feel fake and would make things worse &hellip;</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/DMpHQcMebTVGsz?startSlide=148" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p>To add fun, she suggested using things like :</p>
+
+<ul>
+<li>gamification (there was actually another great talk about gamification)</li>
+<li>build a hacking contest instead of a security training</li>
+<li>Install a <a href="https://sirenofshame.com/">Siren of Shame</a> for whoever breaks the build</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Here are <a href="http://www.slideshare.net/HollyCummins/software-developers-guide-to-fun-in-the-workplace-euphoria-despite-the-despair">the slides</a></p>
+
+<h2>Java 9: The Quest for Very Large Heaps</h2>
+
+<p>Bernard Traversat, Antoine Chambille</p>
+
+<p><a href="/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc.jpg"><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc-small.jpg" title="Slide of the memory regions in G1" ></a></p>
+
+<p>This talk might not be of interest for all, but it is for us <a href="http://murex.com">at work</a>. It went through the improvement to come to Java 9&rsquo;s G1 garbage collector. To summarize, to scale to very large heaps, it will split the memory into regions. Objects should be allocated on different regions depending on their specificities, which might help to build NUMA aware applications. Having the heap split up in smaller chunks enables the GC to run in parallel, which can speed up the old generation GC by up to 50 times !</p>
+
+<p><a href="http://www.java9countdown.xyz/">Java 9 is scheduled for march 2017</a></p>
+
+<h2>Agility and Robustness: Clojure + spec</h2>
+
+<p><a href="https://twitter.com/stuarthalloway">Stuart Halloway</a></p>
+
+<p>I haven&rsquo;t been touching Clojure for a while but I gave the language a try a few years ago. I had heard about Clojure spec but hadn&rsquo;t taken the time to look at it in details. As I understood it all, Spec is like some sort of <a href="https://en.wikipedia.org/wiki/Design_by_contract">Design by Contract</a> on steroïds ! Clojure is not statically typed, but you can now assign spec metadata to values. A spec is roughly a predicate. By defining specs for the inputs and outputs of functions, it is possible to verify at runtime that the function is behaving correctly.</p>
+
+<p>As did Bertrand Meyer in the classic <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1475211259&amp;sr=8-1&amp;keywords=object+oriented+software+construction+meyer">OOSC2</a>, who advised to use contracts during development only, Stuart explained that we should care about developer vs production time instead of compile vs runtime. From this point of view, it is not of great importance whether the compiler or the continuously running test suite finds an issue.</p>
+
+<p>But specs are a lot more than predicates ! They can be used to :</p>
+
+<ul>
+<li>enable assertions at runtime</li>
+<li>generate documentation</li>
+<li>generate test cases</li>
+<li>generate precise call logs</li>
+<li>get precise error messages</li>
+<li>explore a function and see how it can be called</li>
+</ul>
+
+
+<p>He went on to compare the virtues of Clojure spec with static typing (à la Java) and example based testing :</p>
+
+<p><img class="center" src="/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/clojure-spec.jpg" title="Slide comparing Clojure spec with example based testing and static typing" ></p>
+
+<p>Although I don&rsquo;t believe that generative testing can ever replace example based testing altogether, it certainly can help.</p>
+
+<p>All in all, the presentation was insanely great and engaging. It made me seriously think of going into Clojure programming again !</p>
+
+<p>Here are <a href="https://t.co/0FBl2l473N">the slides</a> and the <a href="https://www.youtube.com/watch?v=VNTQ-M_uSo8">the same talk at Strangeloop</a></p>
+
+<h2>Conclusion</h2>
+
+<p>Overall, JavaOne was great ! If I had the opportunity, I&rsquo;d go back every year ! There was a lot of other great talks I did not write about in these 2 posts, for example :</p>
+
+<ul>
+<li>Development Horror Stories was a lot of fun, especially the winning story !</li>
+<li>Hacking Hiring was full of good advises</li>
+<li>Managing Open Source Contributions in Large Organizations was full of good ideas</li>
+<li>Increasing Code Quality with Gamification was very inspiring</li>
+</ul>
+
+
+<h2>Edit 17 October 2016</h2>
+
+<p>I summarized 3 others JavaOne talks <a href="/3-more-great-talks-from-javaone-2016/">here</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Top 5 Talks I Attended at JavaOne 2016 (Part 1)</a></h1>
     
     
@@ -872,126 +1008,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/is-there-any-room-for-the-not-passionate-developer/">Is There Any Room for the Not-Passionate Developer ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-07-26T06:53:00+02:00" pubdate data-updated="true">Jul 26<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic-ebook/dp/B00AYQNR5U/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470025727&amp;sr=8-1&amp;keywords=the+passionate+programmer"><img class="center" src="/imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/passionate-programmer.jpg" title="The cover of The Passionate Programmer book" ></a></p>
-
-<p>In <a href="https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1469597091&amp;sr=8-1&amp;keywords=rework">Rework</a>, <a href="https://basecamp.com/">Basecamp</a> guys David Heinemeier Hansson and Jason Fried advise to <a href="https://signalvnoise.com/posts/902-fire-the-workaholics">&ldquo;Fire the workaholics&rdquo;</a>, while in <a href="https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1469801854&amp;sr=8-1&amp;keywords=zero+to+one">Zero to One</a> Peter Thiel argues that great working conditions (as described within Google for example) result from 10x technological advantages, not the other way round.</p>
-
-<p>Back in 1983, Bill Gates said :</p>
-
-<blockquote><p>You have to think it’s a fun industry. You’ve got to go home at night and open your
-mail and find computer magazines or else you’re not going to be on the same
-wavelength as the people [at Microsoft].</p></blockquote>
-
-<p>Where do we stand now ? Do you need to live and breath programming to remain a good developer ?</p>
-
-<h2>What about the 40h per week rule ?</h2>
-
-<p><img class="center" src="/imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/productivity.jpg" title="A graph of the productivity when working overtime" ></p>
-
-<p>Studies have repeatedly demonstrated that 40h per week is the most productive work load, but in <a href="https://www.amazon.com/Outliers-Story-Success-Malcolm-Gladwell/dp/0316017930">Outliers, the Story of Success</a> Malcolm Gladwell explains that getting fast to the 10000 hours of practice is a required road to success. As my Aïkido professor says, the more you practice, the better you get &hellip;</p>
-
-<p>In <a href="https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1469801992&amp;sr=1-1&amp;keywords=soft+skills+the+software+developer%27s+life+manual">Soft Skills: The software developer&rsquo;s life manual</a> John Somnez also makes the point for hard work, that while he long believed that smart work would be enough, it&rsquo;s only when he put more in that he managed to drastically change his career.</p>
-
-<p>During an <a href="http://calacanis.com/2008/03/07/how-to-save-money-running-a-startup-17-really-good-tips/">argument</a>, DHH argued in favor of work life balance whereas Jason Calacanis said that working in a startup had to be an all-in activity. In the end, they agreed that what matters is passion.</p>
-
-<p>From my own experience, whenever I work on something I am passionate about :</p>
-
-<ul>
-<li>I am more productive</li>
-<li>I feel energized rather than dulled by the work</li>
-</ul>
-
-
-<p>When I look around me, all the great developers I know are passionate and putting in more than 40 hours per week in programming. I also noticed that passion and efforts have always been pretty good indicators of future skills.</p>
-
-<p>But then, how do passionate people manage to remain productive when working more than 40 hours per week ?</p>
-
-<h2>What about the under the shower idea ?</h2>
-
-<p>In <a href="https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050">Pragmatic Thinking and Learning: Refactor Your Wetware (Pragmatic Programmers)</a> (which is a great book BTW), Andy Hunt explains that our R-mode works in the background, and needs time away from the task at hand to come up with &ldquo;out of the box&rdquo; creative solutions.</p>
-
-<p>XP argues for a <a href="http://www.sustainablepace.net/what-is-sustainable-pace">sustainable pace</a>, but at the same time, Uncle Bob says that we should put in 60 hours (40 for employer, and 20 for yourself) of work per week to become and remain &lsquo;professionals&rsquo; (I guess that&rsquo;s from <a href="https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470026034&amp;sr=8-2&amp;keywords=the+clean+code">The Clean Coder</a> if I remember correctly).</p>
-
-<p>On my side, 6 to 8 solid hours of pair-programming on the same subject is the most I can do before becoming a <a href="http://c2.com/cgi/wiki?NetNegativeProducingProgrammer">Net Negative Producing Programmer</a>. But I can do more programming per day if I work on a side project at the same time though !</p>
-
-<p>I guess that&rsquo;s how passionate people do it, they have different topics outside of their main work :</p>
-
-<ul>
-<li>they read books about programming</li>
-<li>they have their own <a href="http://www.sideprojectbook.com/">side projects</a></li>
-<li>they read articles about programming</li>
-<li>they might maintain a programming blog</li>
-<li>they might attend, organize or speak at meetup</li>
-</ul>
-
-
-<p>Most of the time, this does not make for more work, but rather for more learning. If I&rsquo;ve noticed that all the great programmers around me are passionate and strive to improve at their craft, I&rsquo;ve also noticed that overworked workaholics usually aren&rsquo;t very productive.</p>
-
-<h2>Special challenges for mums and dads</h2>
-
-<p>I think that Bill Gates 1983 statement still holds. If you are not passionate about programming, you&rsquo;ll have a hard time remaining and succeeding as a programmer in the long run.</p>
-
-<p>The great thing about all this passion is that we can experience an energized work environment, always bubbling with change and novelty. On the flip side, keeping up with all is not always easy.</p>
-
-<p>As we developers gain more experience, we tend to loose patience with everything that just feels as a pain in the ass, and will want :</p>
-
-<ul>
-<li>Powerful languages and technologies</li>
-<li>An efficient working environment</li>
-<li>Smart colleagues</li>
-</ul>
-
-
-<p>Unfortunately, that might also be the moment in your life when you become a parent, and you&rsquo;ll want  a stable income to sustain your family and some time to spend with your kids.</p>
-
-<p>That is when things get tricky. Neither can you jump ship for the next cool and risky startup where you&rsquo;ll do great things, nor can you find enough time moonlighting to improve your skills &hellip; To add pain to injury, even with 10 years of experience in various languages and technologies, most companies won&rsquo;t look at your resume unless it contains good keywords &hellip; It looks like the developer&rsquo;s version of  <a href="https://www.amazon.com/Innovators-Dilemma-Revolutionary-Change-Business/dp/0062060244/ref=sr_1_sc_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470024448&amp;sr=8-1-spell&amp;keywords=the+innovator%27s+dilemns">The Innovator&rsquo;s Dilemna</a> !</p>
-
-<p>Lack of passion and parenthood might partially explain why people stop being developers after a while. I can quickly think of 2 bad consequences of this :</p>
-
-<ul>
-<li>We tend to reinvent the wheel quite a lot (I&rsquo;m looking at you, .js frameworks &hellip;)</li>
-<li>We might be meta ignoring (ignoring that we ignore) people skills that could make us all more efficient</li>
-</ul>
-
-
-<p><em>EDIT 2017/01/11 Thanks for all your valuable comments, <a href="/what-happens-to-non-enthusiast-programmers-in-the-long-run/">here is a follow up</a></em></p>
-
-<p><em><a href="http://www.inside.com.tw/2016/08/05/is-there-any-room-for-the-not-passionate-developer">Chinese translation</a></em></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1075,6 +1091,10 @@ wavelength as the people [at Microsoft].</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/5-spa-conference-takeaways-that-could-make-us-better-software-professionals/">5 SPA Conference takeaways that could make us better software professionals</a>
+      </li>
+    
+      <li class="post">
         <a href="/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/">Don&#8217;t stick to TDD&#8217;s Red-Green-Refactor loop to the letter</a>
       </li>
     
@@ -1088,10 +1108,6 @@ wavelength as the people [at Microsoft].</p></blockquote>
     
       <li class="post">
         <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">Speed up the TDD feedback loop with better assertion messages</a>
-      </li>
-    
-      <li class="post">
-        <a href="/20-bad-excuses-for-not-writing-unit-tests/">20 Bad Excuses For Not Writing Unit Tests</a>
       </li>
     
   </ul>

@@ -101,6 +101,59 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/retroactively-add-keywords-for-your-existing-octopress-posts/">Retroactively Add Keywords for Your Existing Octopress Posts</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-11T06:54:00+01:00" pubdate data-updated="true">Feb 11<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>At the moment, I am exploring the world of SEO, and so I thought I could start with my blog. I found <a href="http://xit0.org/2013/05/seo-for-octopress-websites/">SEO for Octopress websites</a> that I followed to add keywords and descriptions to this blog.</p>
+
+<p>To fill actual keywords for all my existing posts, I had 2 options :</p>
+
+<ul>
+<li>edit around 60 posts by hand</li>
+<li>write a script to parse Yaml post descriptions and extract and inject keywords</li>
+</ul>
+
+
+<p>Sorry, I chose the geeky solution &hellip;</p>
+
+<p>
+<script src="https://gist.github.com/philou/8929876.js"></script>
+</p>
+
+
+<p>Just add this code to your toplevel Rakefile, and run <code>bundle exec rake add_keywords</code> and keywords will be added to your existing posts.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/my-humble-advices-about-how-to-write-maintainable-tests/">My Humble Advices About How to Write Maintainable Tests</a></h1>
     
     
@@ -830,71 +883,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-11T12:23:00+02:00" pubdate data-updated="true">Sep 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://rubydoc.info/gems/rspec-expectations">Rspec matchers</a> are a lot like predicates. Predicates that can talk &hellip; The good thing about predicates, as anybody who has done a bit of functional programming will tell you, is that they are easy to combine together into bigger predicates. I was really suprised to see that rspec does not come with such simple combinators as &lsquo;and&rsquo; or &lsquo;or&rsquo;.</p>
-
-<p>Here is a gist where I define simple combinators :</p>
-
-<script src="https://gist.github.com/philou/6521797.js"></script>
-
-
-<p>With this and the <a href="https://github.com/bmabey/email-spec">email_spec</a> matchers, it is possible to write something like this to find if an email was sent by rails :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">all_emails</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_any_that</span><span class="p">(</span><span class="n">and_</span><span class="p">(</span><span class="n">deliver_to</span><span class="p">(</span><span class="n">receiver</span><span class="p">),</span>
-</span><span class='line'>                                         <span class="n">have_subject</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span>
-</span><span class='line'>                                         <span class="n">have_body_text</span><span class="p">(</span><span class="n">body</span><span class="p">)))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It enables expressive test code and high reusability.</p>
-
-<p>Using the &lsquo;all&rsquo; combinator it is possible to write things like that :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">sample_items_attributes</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">all_</span> <span class="n">have_key</span><span class="p">(</span><span class="ss">:price</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I had to prepend &lsquo;all&rsquo; and &lsquo;and&rsquo; with an underscore because I would otherwise get conflicts&hellip; I&rsquo;m not overly satisfied with this, but it will do for the moment.</p>
-
-<p>I was happily supprised by the readability of error messages when the mach fails. Rspec does a very good job about this. I think it would be possible to get even better error messages by explicity using the sub matchers messages though. If anyone is interested, help yourself !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/13/">&larr; Older</a>
@@ -978,6 +966,10 @@ In this kind of environment, even mandatory code reviews tend to become a useles
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/5-spa-conference-takeaways-that-could-make-us-better-software-professionals/">5 SPA Conference takeaways that could make us better software professionals</a>
+      </li>
+    
+      <li class="post">
         <a href="/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/">Don&#8217;t stick to TDD&#8217;s Red-Green-Refactor loop to the letter</a>
       </li>
     
@@ -991,10 +983,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
     
       <li class="post">
         <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">Speed up the TDD feedback loop with better assertion messages</a>
-      </li>
-    
-      <li class="post">
-        <a href="/20-bad-excuses-for-not-writing-unit-tests/">20 Bad Excuses For Not Writing Unit Tests</a>
       </li>
     
   </ul>

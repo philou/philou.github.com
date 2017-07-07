@@ -4,7 +4,7 @@
   <title><![CDATA[Category: pair programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/pair-programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-07-04T06:39:58+02:00</updated>
+  <updated>2017-07-07T06:29:41+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[5 SPA Conference takeaways that could make us better software professionals]]></title>
+    <link href="http://philippe.bourgau.net/5-spa-conference-takeaways-that-could-make-us-better-software-professionals/"/>
+    <updated>2017-07-06T22:17:00+02:00</updated>
+    <id>http://philippe.bourgau.net/5-spa-conference-takeaways-that-could-make-us-better-software-professionals</id>
+    <content type="html"><![CDATA[<p>Last week, my colleague <a href="https://ahmadatwi.me/">Ahmad Atwi</a> and I went to the London <a href="https://www.spaconference.org/spa2017/">SPA Conference</a> to give our <a href="https://www.youtube.com/watch?v=oJsukJhxt7E">Remote eXtreme Practice</a> talk.</p>
+
+<p>The London <a href="http://www.extremeprogramming.org/">eXtreme Programming</a> is one of the most active in the world. You could feel an XP atmosphere at the conference. For example, people like <a href="http://www.natpryce.com/">Nat Pryce</a> and <a href="https://twitter.com/sf105">Steve Freeman</a>, authors of <a href="https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321503627&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3">GOOSGT</a> book were speakers.</p>
+
+<p><a href="https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321503627&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3"><img src="../imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/growing.jpg" alt="The cover of Growing Object-Oriented Software, Guided By Tests" /></a></p>
+
+<p>To summarize, we had the chance to attend a lot of very interesting sessions during the 3 days of the conference. Here are 5 pearls of wisdom I took back with me.</p>
+
+<h2>What connascences are</h2>
+
+<p>Identifying code <a href="http://connascence.io/">connascences</a> helps to rank refactorings and keep the system maintainable.</p>
+
+<p><a href="http://www.extremeprogramming.org/rules/refactor.html">Continuous refactoring</a> is one of the core practices of XP. For me, knowing what to refactor next has been a matter of <a href="https://martinfowler.com/bliki/CodeSmell.html">code smells</a>, discussing with my pair and gut feeling.</p>
+
+<p>A connascence is a coupling between parts of the system. Two parts of your code are connascent if changing one implies changing the other. For example, a function call is connascent by name with the function definition. If you change one, you need to change the other.</p>
+
+<p>Connascences are more formal than code smells. We can detect and rank them to pick the most important refactoring to do. People have listed 9 types of connascences. Some are visible in the source code, others are dynamic and difficult to spot before runtime.</p>
+
+<p>The lowest form of connascence is <a href="http://connascence.io/name.html">&lsquo;of name&rsquo;,</a> like in the function call example above. The worst form is <a href="http://connascence.io/identity.html">&lsquo;of Identity&rsquo;</a>, when different parts of the system must reference the same object.</p>
+
+<iframe src="http://philippe.bourgau.net//www.slideshare.net/slideshow/embed_code/key/jPvF4gxm5z6cGN?startSlide=14" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p>The higher the connascence, the more difficult it is to evolve the parts involved. Instead of relying on intuition, you can use a connascence based refactoring algorithm :</p>
+
+<ol>
+<li>Detect the highest connascence</li>
+<li>Reduce or remove it</li>
+<li>Repeat.</li>
+</ol>
+
+
+<p>Thanks <a href="https://twitter.com/xpsurgery">Kevin Rutherford</a> and <a href="https://twitter.com/mowat27">Adrian Mowat</a> for your <a href="http://xpsurgery.com/resources/connascence-hunt-slides/">Red Green then what ?</a> session about connascence.</p>
+
+<h2>Tips for pairing with junior developers</h2>
+
+<p><a href="https://twitter.com/irinatsyganok">Irina Tsyganok</a> and <a href="http://www.natpryce.com/">Nat Pryce</a> gave a very fun session about this topic. A lot of valuable points discussed, from which I saved a few pearls of wisdom.</p>
+
+<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Cat eating session from <a href="https://twitter.com/natpryce">@natpryce</a> at <a href="https://twitter.com/hashtag/spaconf17?src=hash">#spaconf17</a> (unless <a href="https://twitter.com/irinatsyganok">@irinatsyganok</a> stops him) <a href="https://t.co/XSiaPDp9kJ">pic.twitter.com/XSiaPDp9kJ</a></p>&mdash; Andy Longshaw (@andylongshaw) <a href="https://twitter.com/andylongshaw/status/879714743963054080">27 juin 2017</a></blockquote>
+
+
+<script async src="http://philippe.bourgau.net//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>It was reassuring to hear Nat saying that &ldquo;As we gain experience, we are not expected to know everything&rdquo;. Pairing with developers out of college is an occasion to &ldquo;exchange&rdquo; skills. Hard learned design skills versus updates on the latest technologies.</p>
+
+<p>I also learned about the <a href="http://actingcoachscotland.co.uk/blog/expert-induced-amnesia/">Expert&rsquo;s Amnesia</a> and why experts often have a hard time teaching. Expert level knowledge is by nature instinctive. At this level of skill, it becomes very difficult to detail the logic of things that seem obvious.</p>
+
+<h2>We engineers are more mentors than coaches</h2>
+
+<p>In the <a href="https://www.amazon.com/gp/product/0201616416/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0201616416&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=dc2f9dc4f5ca106842921bfded07b405">first XP book</a>, there were only 3 roles in the team : team members, on site customer and XP coach. The XP coach should be a developer who can help the team to learn the practices and principles of XP.</p>
+
+<p>About the same time, the personal or professional coach jobs appeared. The Scrum Master, is to Scrum what the XP coach is to XP, without the developer part. Remember the joke &ldquo;Scrum is like XP, without everything that makes it work&rdquo; (<a href="https://martinfowler.com/bliki/FlaccidScrum.html">Flaccid Scrum</a>).</p>
+
+<p>It looks like the Agile Coach job title appeared out of all this. The problem is no one exactly knows what this is. Should he be an experienced developer like the XP coach ? A great people person ? or someone good at introducing change ? or a mix of these ?</p>
+
+<p><a href="http://www.selfishprogramming.com/about/">Portia Tung</a> and <a href="https://uk.linkedin.com/in/helenlisowski">Helen Lisowski</a> &rsquo;s  talk &ldquo;The power of coaching&rdquo; clarified that.</p>
+
+<p>There is no knowledge transfer from the coach to the coachees ! On the other side, a mentor does transfer knowledge to his mentees. The coach helps his coachee take a step back and take decisions in full conciousness. The goal of the mentor is to inspire and train to new techniques.</p>
+
+<p>I&rsquo;m fine being a mentor and not a coach ;&ndash;)</p>
+
+<h2>Servant leaders need to be tough at times</h2>
+
+<p>We hear a lot about servant leadership nowadays. Scrum Master should be servant leaders, as well as managers in agile organizations.</p>
+
+<p><a href="https://fr.linkedin.com/company/bellebeck-limited">Angie Main</a> gave a very interesting session about servant leadership. She made an interesting point I had not heard about before. We all know that servant leaders should trust the team to get the work done most of the time. In spite of that, servant leaders must also be ready to step in and remove people who don&rsquo;t fit in and endanger the team !</p>
+
+<p>This reminded me of what Jim Collins says in <a href="http://www.wikisummaries.org/wiki/Built_to_Last#Chapter_6_.E2.80.93_Cult-like_Cultures">Built to last</a> : &ldquo;People who don&rsquo;t fit are expelled like viruses !&rdquo;</p>
+
+<p><a href="https://www.amazon.com/gp/product/0060516402/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060516402&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=e83ad8e3dcf7bdb7f875d5b22e8eb4c6"><img src="../imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/built-to-last.jpg" alt="The cover of Built to Last" /></a></p>
+
+<h2>1/3000 ideas succeeds</h2>
+
+<p>Thanks to <a href="https://twitter.com/ozzieyuce">Ozlem Yuce</a>&rsquo;s session, I learned about the &ldquo;Job To Be Done&rdquo; technique to understand the customer&rsquo;s real needs.</p>
+
+<p>Studies measured that only 1 idea out of 3000 ends up as a successful product ! <a href="https://www.researchgate.net/file.PostFileLoader.html?id=56217976614325233f8b4567&amp;assetKey=AS%3A285916150157312%401445179130594">Here</a> seems to be the original research.</p>
+
+<p>I&rsquo;ll remember this fact next time I&rsquo;m ask for a funky feature !</p>
+
+<h2>To conclude</h2>
+
+<p>At the end, we had a very good time at SPAconference. The talks were insightful, we had interesting discussions, the premises were comfortable and on top of that, food was great !</p>
+
+<p>I&rsquo;m already eager to go to SPA conference 2018 !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Pair Programming, From Pain Zone To Skill Zone]]></title>
@@ -53,7 +146,7 @@
 
 <h3>The Wandering Buddies</h3>
 
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/going_nowhere.jpg" title="A &lsquo;going nowhere&rsquo; sign" ></p>
+<p>{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/going_nowhere.jpg A &lsquo;going nowhere&rsquo; sign %}</p>
 
 <p>That&rsquo;s what you&rsquo;d get if you asked to newcomers straight out of school to pair program on existing source code on day 1. They&rsquo;d be dabbling here and there, without going anywhere. Each one would try to get the keyboard to try his way, but in the end, no general direction would be followed.</p>
 
@@ -71,7 +164,7 @@
 
 <h3>The Export / The Novice</h3>
 
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/race.jpg" title="A race where Usain Bolt leave everyone meters behind" ></p>
+<p>{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/race.jpg A race where Usain Bolt leave everyone meters behind %}</p>
 
 <p>That&rsquo;s when a &lsquo;lone wolf kind of&rsquo; expert pairs with a junior. The expert picks the keyboard, dashes through the tasks, doesn&rsquo;t make sure his pair follows (which usually means it does not).</p>
 
@@ -83,13 +176,13 @@
 
 <h3>The Mates</h3>
 
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/to-do-list.jpg" title="A Todo list" ></p>
+<p>{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/to-do-list.jpg A Todo list %}</p>
 
 <p>The programmers have equivalent skills on the subject at hand. They organized in a way that they are both learning from each other. By having to verbalize what and why they are doing things, by challenging each others assumptions and by sometimes doing differently than what they&rsquo;d alone.</p>
 
 <h3>The Mentor &amp; The Apprentice</h3>
 
-<p><img class="center" src="/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/help.jpg" title="People helping each other to climb a mountain" ></p>
+<p>{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/help.jpg People helping each other to climb a mountain %}</p>
 
 <p>Other times, there can be a real difference in skills for what the pair is attempting to do. In this situation, the goal of the most knowledgeable is to train his pair, who&rsquo;s goal is to learn. The task becomes some kind of exercise on which to practice.</p>
 
@@ -112,7 +205,7 @@
     <id>http://philippe.bourgau.net/from-zero-to-pair-programming-hero</id>
     <content type="html"><![CDATA[<p>In my team at <a href="http://www.murex.com">Murex</a>, we&rsquo;ve been doing Pair programming 75% of our time for the past 9 months now.</p>
 
-<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.JPG"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.resized.JPG" title="Photo of all the team doing pair programming" ></a></p>
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.JPG">{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.resized.JPG Photo of all the team doing pair programming%}</a></p>
 
 <p>Before I explain how we got there, let&rsquo;s summarize our observations :</p>
 
@@ -150,7 +243,7 @@
 
 <p><em>Bonus</em> : As everyone was doing reviews, and that reviews of small changes are easier, submits became smaller.</p>
 
-<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.png"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.resized.png" title="A screenshot of our code collaborator installation" ></a></p>
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.png">{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.resized.png A screenshot of our code collaborator installation%}</a></p>
 
 <p>This was certainly an improvement, but it remained time consuming. We believed we could do better.</p>
 
@@ -181,7 +274,7 @@
 
 <p>As a result, Ahmad became productive a lot more quickly. We are not 2 sub teams focusing on their own area of expertise, but 1 single distributed team sharing everything.</p>
 
-<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.jpg"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.resized.jpg" title="My remote pair programming setup" ></a></p>
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.jpg">{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.resized.jpg My remote pair programming setup%}</a></p>
 
 <h3>Improved Setup</h3>
 
@@ -194,7 +287,7 @@
 </ul>
 
 
-<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.jpg"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.resized.jpg" title="A screenshot of my pair programming environment" ></a></p>
+<p><a href="/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.jpg">{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.resized.jpg A screenshot of my pair programming environment%}</a></p>
 
 <ul>
 <li>We started using the <a href="http://pomodorotechnique.com/">Pomodoro technique</a> for control switching. <a href="http://www.marinaratimer.com/">MarinaraTimer</a> provides an online and shareable timer.</li>
@@ -211,7 +304,7 @@
 </ul>
 
 
-<p><a href="http://www.saros-project.org/screenshots"><img class="center" src="/imgs/2015-01-27-from-zero-to-pair-programming-hero/saros.resized.png" title="A screenshot from Eclipse with Saros plugin" ></a></p>
+<p><a href="http://www.saros-project.org/screenshots">{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/saros.resized.png A screenshot from Eclipse with Saros plugin%}</a></p>
 
 <ul>
 <li><a href="https://floobits.com/">Floobits</a> is a commercial equivalent of saros. We tried it and it seems great. It&rsquo;s not cheap though, especially with in-house servers.</li>
