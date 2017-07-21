@@ -6,7 +6,7 @@ comments: true
 categories:
  - agile
  - lean
- - xp
+ - extreme programming
  - performance
 keywords: "Lean Software Development, eXtreme Programming, Business Value, Spike, Cost of Delay, Performance, Optimizations"
 description: "An example about how to use a downgraded version of cost of delay to choose between different optimization strategies"

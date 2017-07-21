@@ -6,7 +6,7 @@ comments: true
 categories:
  - lean
  - agile
- - xp
+ - extreme programming
 keywords: "XP, eXtreme Programming, Lean, Lean software development, Agile software development, explanation"
 description: "Using the lean principles, let's analyse the 12 XP core practices and explain why and how they work"
 ---

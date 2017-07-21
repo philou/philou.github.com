@@ -7,7 +7,7 @@ date: 2011-10-05
 categories:
 - Agile
 - Best Practices
-- XP
+- extreme programming
 posterous_url: http://philippe.bourgau.net/collecting-agile-and-xp-best-practices
 posterous_slug: collecting-agile-and-xp-best-practices
 comments: true

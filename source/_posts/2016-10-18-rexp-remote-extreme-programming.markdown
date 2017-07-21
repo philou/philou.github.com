@@ -5,7 +5,7 @@ date: 2016-10-18 04:27
 comments: true
 categories:
  - agile
- - xp
+ - extreme programming
  - remote
  - rexp
 keywords: "eXtreme Programming, Remote eXtreme Programming, Remote Programming, Agile Software, Beirut, Agile Tour Beirut"

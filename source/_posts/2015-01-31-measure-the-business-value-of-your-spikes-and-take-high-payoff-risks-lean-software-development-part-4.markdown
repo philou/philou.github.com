@@ -6,7 +6,7 @@ comments: true
 categories:
  - lean
  - agile
- - xp
+ - extreme programming
 keywords: "Lean Software Development, eXtreme Programming, Business Value, Spike, Cost of Delay"
 description: "A case study about computing the business value of an eXtreme Programming Spike (aka experiment) in order to know how to prioritize it."
 ---

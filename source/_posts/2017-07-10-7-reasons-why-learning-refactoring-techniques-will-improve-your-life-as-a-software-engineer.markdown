@@ -76,4 +76,4 @@ Refactoring techniques enable small commits. Small commits simplify code reviews
 
 ## To be continued
 
-I hope that by now I persuaded you to learn incremental refactoring techniques. My next post will dig into the details about how to do that.
+I hope that by now I persuaded you to learn incremental refactoring techniques. My [next post](/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/) will dig into the details about how to do that.

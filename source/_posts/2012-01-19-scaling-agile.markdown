@@ -9,7 +9,7 @@ categories:
 - Enterprise
 - Lean
 - Scrum
-- XP
+- extreme programming
 posterous_url: http://philippe.bourgau.net/scaling-agile
 posterous_slug: scaling-agile
 comments: true
