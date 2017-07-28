@@ -4,7 +4,7 @@
   <title><![CDATA[Category: programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-07-21T08:26:43+02:00</updated>
+  <updated>2017-07-28T07:20:24+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,179 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[10 things to know that will make you great at refactoring legacy code]]></title>
+    <link href="http://philippe.bourgau.net/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/"/>
+    <updated>2017-07-28T06:35:00+02:00</updated>
+    <id>http://philippe.bourgau.net/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code</id>
+    <content type="html"><![CDATA[<p>We write tons of <a href="https://en.wikipedia.org/wiki/Legacy_code">legacy code</a> everyday. Experienced developers understand that legacy code is not something special. Legacy code is our daily bread and butter.</p>
+
+<p>Should we abandon all hope as we enter legacy code ? Would that be professional ? In the end, code is only a bunch of bytes, somewhere on a drive. We are the software professionals. We need to deal with that.</p>
+
+<p><img src="../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/keep-calm-and-take-the-power-back-4.jpg" alt="Keep Calm and Take The Power Back" /></p>
+
+<h2>1. Master non legacy refactoring first</h2>
+
+<p>Please calm down before this &ldquo;Bring &lsquo;em out&rdquo; energy goes to your head.</p>
+
+<p>I did not say that refactoring legacy code is easy. Legacy code can bite &hellip; bad. I&rsquo;ve been in teams which literally spent nights fixing a bad refactoring gone to production &hellip;</p>
+
+<p>Before you can refactor legacy code, you need to be good at refactoring new code. We all learned to swim in the shallow pool, it&rsquo;s the same with refactoring. Mastering green code refactoring will help you when tackling legacy code.</p>
+
+<p>First, you&rsquo;ll know the ideal you&rsquo;d like to get to. Knowing how productive a fast feedback loop is will motivate you to keep on refactoring.</p>
+
+<p>Second, you&rsquo;ll have a better idea of the baby steps to take you through a tricky refactoring.</p>
+
+<p>If you are not yet at ease with greenfield refactoring, have a look at <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">my previous post</a>.</p>
+
+<h2>2. Understand that refactoring legacy code is different</h2>
+
+<p>The next thing to remember is that refactoring legacy code is different. Let&rsquo;s assume <a href="https://stackoverflow.com/questions/4174867/what-is-the-definition-of-legacy-code">Michael Feather&rsquo;s definition of legacy code</a> : &ldquo;Code without tests&rdquo;. Getting rid of legacy code means adding automated tests.</p>
+
+<p>Unfortunately, trying to force push unit tests in legacy code usually results in a mess. It introduces lot&rsquo;s of artificial mocks in a meaningless design. It also creates brittle and unmaintainable tests. More harm than good. This might be an intermediate step, but it is usually not the quickest way to master your legacy code beast.</p>
+
+<p>Here are alternatives I prefer.</p>
+
+<h2>3. Divide and conquer</h2>
+
+<p>This is the most straightforward way to deal with legacy code. It&rsquo;s an iterative process to repeat until you get things under control. Here is how it goes :</p>
+
+<p>(1) Rely on the tests you have, (2) to refactor enough, (3) to test sub-parts in isolation. (4) Repeat until you are happy with the speed of the feedback loop.</p>
+
+<p>Depending on the initial state of your tests, this might take more or less time. Your first tests might even be manual. This is the bulldozer of refactoring. Very effective, but slow.</p>
+
+<p><img src="../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/bulldozer.jpg" alt="Bulldozer" /></p>
+
+<h2>4. Pair or mob program</h2>
+
+<blockquote><p>Given enough eyeballs, all bugs are shallow.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Linus%27s_Law">Linus&rsquo;s Law</a></p></blockquote>
+
+<p>Changing legacy code is a lot easier when you team up. First, it creates a motivating &ldquo;we&rsquo;re all in this together&rdquo; mindset. Second, it guards us against silly mistakes.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Mob_programming">Mob programming</a>, might seem very expensive, so let me explain why it is not. Suppose you want to introduce some tests in a tricky section of code.</p>
+
+<p>With mob programming, all the team gathers for half a day to work on this change. Together, they find and avoid most of the pitfalls. They commit a high quality change, which creates only one bug down the road.</p>
+
+<p>Let&rsquo;s see the alternative.</p>
+
+<p>Using solo programming, a poor programmer tries to tackle the change all by himself. He spends a few days to understand and double check all the traps he can think of. Finally, he commits his change, which results in many bugs later on. Every time a bug pops up, it interrupts someone to fix it ASAP.</p>
+
+<p>The savings in interruptions are greater than up front cost of mob or pair programming. </p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/p_pvslS4gEI" frameborder="0" allowfullscreen></iframe>
+
+
+<h2>5. Seams</h2>
+
+<blockquote><p>A software seam is <em>a place where you can alter behavior in your program without editing in that place.</em></p>
+
+<p><a href="http://wiki.c2.com/?SoftwareSeam">Michael Feathers</a></p></blockquote>
+
+<p>This is one of the many interesting things I learned from Michael&rsquo;s book about legacy code.</p>
+
+<p><a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=edaadc6370c2c8c9e943348d9fbdafb9"><img src="../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/legacy-code.jpg" alt="Cover of Working Effectively with Legacy Code" /></a></p>
+
+<p>Object polymorphism is only one kind of seam. Depending on your language, many other types of seams can be available. </p>
+
+<ul>
+<li>Type seam for generic languages</li>
+<li>Static link seam for static libraries</li>
+<li>Dynamic link seam for dynamic libraries</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Finding seams in your program is something opportunistic. Keep in mind though that testing through seams is not the end goal. It is only a step to bootstrap the test-refactor loop and start your refactoring journey.</p>
+
+<h2>6. Mikado Method</h2>
+
+<p>How do you get to your end then ? How to you refactor only what&rsquo;s useful for your features ? How do you do large refactorings in baby steps ?</p>
+
+<p>Over time, I found that the mikado method is a good answer to all these issues. The goal of the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> is to build a graph of dependent refactoring. It can then use it to perform all these refactorings one by one. Here is the mikado method by the book.</p>
+
+<p>Before anything else, you&rsquo;ll need a large sheet of paper to draw the graph. Then repeat the following :</p>
+
+<ol>
+<li>try to do the change you want</li>
+<li>If it builds and the tests pass, great, commit and you&rsquo;re done</li>
+<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
+<li>Write down the compilation and test errors </li>
+<li>Revert your change</li>
+<li>Recurse from 1 for every compilation or test error</li>
+<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
+</ol>
+
+
+<p>Once you built the full graph, tackle the refactorings from the leaves. As leafs have no dependencies, it should be easy to do and commit them.</p>
+
+<p><img src="../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado.jpg" alt="A Sample Mikado Graph" /></p>
+
+<p>When I first read about the mikado method, it seemed very simple and powerful. Things got more complex when I tried to apply it. For example, the fact that some changes don&rsquo;t compile hide future test failures. That means that very often, the &ldquo;Build the graph&rdquo; and &ldquo;Walk the graph&rdquo; phases overlap. In real life, the graph evolves and changes over time. </p>
+
+<p>My advice about the Mikado Method is not to take it to the letter. It&rsquo;s a fantastic communication tool. It helps not to get lost and to avoid a refactoring tunnel. It also helps to tackle refactoring as a team.</p>
+
+<p>It is not a strict algorithm though. Build and tests are not the only way to build the graph. Very often, a bit of thinking and expert knowledge are the best tools at hand.</p>
+
+<p><a href="https://www.amazon.com/gp/product/1617291218/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1617291218&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=f7405cd74335b3cbb8b263f1a5c37c1d"><img src="../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado-book.jpg" alt="Cover of The Mikado Method book" /></a></p>
+
+<h2>7. Bubble Context</h2>
+
+<p>Refactoring needs to be opportunistic. Sometimes there are shortcuts in your refactoring path.</p>
+
+<p>If you have access to a domain expert, the <a href="http://dddcommunity.org/library/evans_2011_2/2">Bubble Context</a> will cut the amount of refactoring to do. It&rsquo;s also an occasion to get rid of all the features that are in your software but that are not required anymore. </p>
+
+<p>The Bubble Context originated from the <a href="http://dddcommunity.org/library/evans_2011_2/">DDD community</a>, as a way to grow a domain in an existing code base. It goes like that :</p>
+
+<ol>
+<li>Find a domain expert</li>
+<li>(Re)write clean code for a very tiny sub domain</li>
+<li>Protect it from the outside with an <a href="https://softwareengineering.stackexchange.com/questions/184464/what-is-an-anti-corruption-layer-and-how-is-it-used">anticorruption layer</a></li>
+<li>Grow it little by little</li>
+</ol>
+
+
+<p>I have friends who are fans of the bubble context. It is super effective provided you have a domain expert. It is a method of choice in complex domain software.</p>
+
+<h2>8. Strangler</h2>
+
+<p>Bubble Context works great when refactoring domain specific code, what about the rest ? I had good results with the <a href="https://www.martinfowler.com/bliki/StranglerApplication.html">Strangler pattern</a>.</p>
+
+<p>For example, we had to refactor a rather complex parser for an internal DSL. It was very difficult to incrementally change the old parser, so we started to build a new one aside. It would try to parse, but delegate to the old one when it failed. Little by little, the new parser was handling more and more of the grammar. When it supported all the inputs, we removed the old one.</p>
+
+<p>The strangler is particularly well suited for refactoring technical components. They have more stable interfaces and can be very difficult to change incrementally.</p>
+
+<h2>9. Parallel Run</h2>
+
+<p>This is more of a trick than a long term strategy. The idea is to use the initial (legacy) version of the code as a reference for your refactoring. Run both and check that they are doing the same thing.</p>
+
+<p><img src="../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/railroad.jpg" alt="Parallel Railroads" /></p>
+
+<p>Here are some variations around this idea.</p>
+
+<p>If the code you want to refactor is side effect free, it should be easy to duplicate it before refactoring. This enables running both to check that they compute the same thing.</p>
+
+<p>Put this in a unit test to bootstrap a test-refactor loop. You can also run both in production and log any difference. You&rsquo;ll need access to production logs &hellip; Devops teams have a refactoring advantage !</p>
+
+<p>Here is another use of your logs. If the code writes a lot of logs, we can use them as a reference. Capture the logs of the old version, and unit test that the refactored version prints the same logs out. That&rsquo;s an unmaintainable test, but good enough to bootstrap the test-refactor loop.</p>
+
+<p>The <a href="https://github.com/emilybache/GildedRose-Refactoring-Kata">Gilded Rose kata</a> is a good exercise to practice this last technique.</p>
+
+<h2>10. Dead code is better off dead</h2>
+
+<p>You don&rsquo;t need to refactor dead code ! Again, access to production logs is a great advantage for refactoring.</p>
+
+<p>Add logs to learn how the real code runs. If it&rsquo;s never called, then delete it. If it&rsquo;s only called with some set of values, simplify it.</p>
+
+<h2>No silver bullet</h2>
+
+<p>That was a whirlwind tour of the legacy code refactoring techniques I know. It&rsquo;s no promise that refactoring will become easy or fast. I hope it is a good starting point to set up and walk a refactoring plan.</p>
+
+<p>This was the last post of a series of 3 about how to learn refactoring techniques. If you didn&rsquo;t already, check part 1 <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a> and part 2 <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to Start Learning the Tao of Incremental Code Refactoring Today</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to start learning the tao of incremental code refactoring today]]></title>
@@ -98,7 +271,7 @@
 
 <p>Refactoring is most useful with bad legacy code. Unfortunately, it also where it is the most difficult. Next week&rsquo;s blog post will be about what we can do to learn how to refactor legacy code.</p>
 
-<p>That was my second post in this mini-series about refactoring. First one was <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a></p>
+<p>That was my second post in this mini-series about refactoring. First one was <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a>. The third and last is <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">10 things to know that will make you great at refactoring legacy code</a></p>
 ]]></content>
   </entry>
   
@@ -402,179 +575,6 @@
 <li>adding an &lsquo;X&rsquo; to your comment every time you are bothered by the technical debt, tools can configured to assign a higher severity to issues with a lot of &lsquo;X&rsquo;</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Almost 15 years of using Design By Contract]]></title>
-    <link href="http://philippe.bourgau.net/almost-15-years-of-using-design-by-contract/"/>
-    <updated>2017-03-14T18:57:00+01:00</updated>
-    <id>http://philippe.bourgau.net/almost-15-years-of-using-design-by-contract</id>
-    <content type="html"><![CDATA[<p>I first read about Design By Contract in 2002, in <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer">Object Oriented Software Construction 2</a>. As soon as I read it, I was convinced, today, I still believe it&rsquo;s a great and fundamental technique. That&rsquo;s why, I almost never write a contract ! Let me explain.</p>
-
-<h2>Phase 1 : DbC ignorance</h2>
-
-<p>I started to code professionally in 2001. This was a time where design and quality software meant <a href="https://en.wikipedia.org/wiki/IBM_Rational_Rose_XDE">Rational Rose</a> (a UML design and code generation tool) while I, at the contrary, was just <a href="https://en.wikipedia.org/wiki/Cowboy_coding">Cow Boy Coding</a> my way out of any problem I was given.</p>
-
-<p>I wasn&rsquo;t really doing Object Oriented programming, but rather imperative programming, using objects as structs, getters, setters, and classes as a way to organize the code &hellip; In this context, my design skills were improving slowly, and I was at the risk of falling in love with a local-optimum practice that would prevent me from growing further.</p>
-
-<p>That&rsquo;s why I started to read books such as the <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490074343&amp;sr=1-1&amp;keywords=design+patterns">Gang Of Four Design Patterns</a>, or <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer">OOSC2</a>.</p>
-
-<h2>Phase 2 : DbC enlightenment</h2>
-
-<p><a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer"><img src="../imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg" alt="The cover of the Object Oriented Software Construction 2" /></a></p>
-
-<p>Reading this book was a profound experience to me. My programming changed fundamentally before and after reading it. The chapter about contracts, taught me what objects are.</p>
-
-<p>One the one hand, Pre and Post conditions can be used in any kind of programming and are just a kind of C <code>assert</code> macro on steroids. Class invariant, on the other hand, is a completely different kind of beast. The invariant of a class is a predicate about an instance of this class that should always be true. For example : field X should never be null, or the value of field N should always be greater than 0.</p>
-
-<p>In some way, grasping the concept of invariant is close to understanding what a class is.</p>
-
-<h2>Phase 3 : DbC everywhere</h2>
-
-<p>That&rsquo;s when I started to write contracts everywhere. I was writing C++ code at the time, and my code must have looked something like that :</p>
-
-<p>```c++
-class MonkeyWrench
-{</p>
-
-<pre><code>bool _isStarted;
-std::vector&lt;Part&gt;* _movingParts;
-</code></pre>
-
-<p>protected:</p>
-
-<pre><code>virtual void invariant() const
-{
-    assert(_isStarted == (_movingParts != NULL));
-}
-</code></pre>
-
-<p>public:</p>
-
-<pre><code>MonkeyWrench()
-{
-    this-&gt;_isStarted = false;
-    this-&gt;_movingParts = NULL;
-
-    invariant();
-}
-
-bool isStarted() const
-{
-    return this-&gt;isStarted();
-}
-
-void start()
-{
-    assert(!this-&gt;isStarted());
-    invariant();
-
-    this-&gt;_movingParts = ...
-
-    invariant();
-    assert(this-&gt;isStarted());
-}
-
-const std::vector&lt;Part&gt;&amp; movingParts() const
-{
-    assert(this-&gt;isStarted());
-    invariant();
-
-    return *this-&gt;_movingParts;
-}
-...
-</code></pre>
-
-<p>};
-```</p>
-
-<p>I definitely over-abused contracts, it made the code unreadable. Plus sometimes, I was using excessively long and intricate assertions which made the problem even worse.</p>
-
-<p>Hopefully, overusing contracts also taught me a lot in a short time. Here are some of the lessons I learned :</p>
-
-<ul>
-<li>DbC is not very well supported, it&rsquo;s never something built in the language, and edge cases like inheriting an invariant or conditions can become messy pretty fast.</li>
-<li>Checking for intricate contracts at every method call can be pretty slow.</li>
-<li>Checking everything beforehand is not always the simplest thing to do, at times, throwing an exception on failure just does a better job.</li>
-<li>It happened that removing the contract made the code do just what I wanted. It&rsquo;s easy to write unnecessary strict contracts.</li>
-<li><a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">Command Query Separation Principle</a> is great ! Having &lsquo;const&rsquo; or &lsquo;pure&rsquo; queries that don&rsquo;t change anything make writing contracts a lot simpler.</li>
-<li>Preconditions on queries are painful. When possible, returning a sensible &lsquo;null value&rsquo; works better, nothing is worse than getting an error when trying to call a const query from the interactive debugger.</li>
-<li>Finally, the more immutable a class is, the simpler the invariant. With a lot of mutable fields, you might resort to have the invariant check that fields are synchronized as expected. If fields are immutable, this simply vanishes.</li>
-</ul>
-
-
-<h2>Phase 4 : DbC hangover</h2>
-
-<p>At the same time I discovered all these small subtleties about contracts, I fell upon Martin Fowler&rsquo;s book <a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490074424&amp;sr=1-1&amp;keywords=refactoring+improving+the+design+of+existing+code">Refactoring, improving the design of existing code</a> and started to use Unit Tests extensively. This lead me to the following conclusions :</p>
-
-<ul>
-<li>Tests are more efficient at producing quality software</li>
-<li>Contracts can be an hindrance when trying to do baby steps refactorings as described in Martin Fowler&rsquo;s book</li>
-</ul>
-
-
-<p>On top of that, as DbC is not natively supported by languages, no documentation is generated, meaning that most of the time, the callers still have to look into the code. As a result, I was using contracts less and less often.</p>
-
-<h2>Phase 5 : DbC Zen</h2>
-
-<p>Looking back, I might not be writing a lot of <code>asserts</code> in my code, but I am still thinking in terms of contracts all the time. In fact, there are a ton of ways to use DbC without writing assertions :</p>
-
-<ul>
-<li>Use as much immutability as possible. An immutable class does not need to check its invariant all the time, just throwing from the constructor if arguments are not valid is enough.</li>
-<li>Use conventions as much as possible, for example, constructor arguments should be set for all the life of the object (cf <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490074450&amp;sr=1-1&amp;keywords=growing+object+oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a> which describes the different ways to inject something in an object)</li>
-<li>Looking back at my DbC assertions, most relate to null values. Again conventions work better ! At work, we simply forbid passing null values around. If something can be null, it means it&rsquo;s optional, Java has an <code>Optional&lt;T&gt;</code> class for just that (I&rsquo;m pretty sure it is possible to do something even better with C++ templates). In this case, if the contract is broken, NullReferenceException will eventually be our assertion.</li>
-<li>Replace as many pre &amp; post conditions with invariants on the callee, the arguments or the return objects as possible. It makes sense as it&rsquo;s just making sure we are using &lsquo;valid&rsquo; objects everywhere. Again, if these objects are immutable, it makes the whole thing even simpler !</li>
-<li>To take further benefit of the invariant of immutable objects, introduce new types. For example, instead of changing an object&rsquo;s state through a command with associated involved contracts, split the class in 2 and make the method a query returning an immutable object, potentially making the initial class immutable as well. Remember, immutable classes mean almost no assertions !</li>
-<li>Use your language. Ex, instead of asserting that 2 lists remain of the same length, refactor to a list of pairs ! (I know that&rsquo;s an obvious example, but you get the point)</li>
-<li>If you are using a statically typed language, use types ! For example, I remember at one project I worked on, we had an bug involving a duration : somewhere in the code milliseconds got mistaken for seconds &hellip; We fixed that by replacing the <code>integer</code> by <code>TimeSpan</code> all over the place. Again, that&rsquo;s so obvious !</li>
-<li>Eventually, when all else fails, or when it&rsquo;s just too much overhead, use the simple asserts provided by your language or common libraries.</li>
-</ul>
-
-
-<p>To come back at the previous code section, this how it could be written without assertions :</p>
-
-<p>```c++
-class MovingMonkeyWrench
-{</p>
-
-<pre><code>const std::vector&lt;Part&gt; _parts;
-</code></pre>
-
-<p>public:</p>
-
-<pre><code>MovingMonkeyWrench() : _parts(...) {}
-
-const std::vector&lt;Part&gt;&amp; parts() const
-{
-    return this-&gt;_parts;
-}
-...
-</code></pre>
-
-<p>};</p>
-
-<p>class MonkeyWrench
-{ <br/>
-public:</p>
-
-<pre><code>MovingMonkeyWrench start() const
-{
-    return MovingMonkeyWrench();
-}
-...
-</code></pre>
-
-<p>};
-```</p>
-
-<p>Details are omitted, but it&rsquo;s easy to see how shorter the code is.</p>
-
-<h2>Conclusion</h2>
-
-<p>When applying all the techniques above, you&rsquo;ll see that cases for explicit assertions are rare. Less assertions also workarounds the issues coming from the poor support for DbC : no documentation and intricate cases.</p>
-
-<p>In the end, assertions made my code more &lsquo;functional&rsquo;. I&rsquo;m not alone to have done the same journey, and if you are interested you should read Eric Evans' <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490082811&amp;sr=1-1&amp;keywords=domain+driven+design">DDD</a> book where he presents things like immutable value objects and specification objects.</p>
 ]]></content>
   </entry>
   
