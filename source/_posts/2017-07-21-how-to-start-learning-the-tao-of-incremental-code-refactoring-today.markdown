@@ -91,4 +91,4 @@ Having to question and explain your assumptions will speed up your learning. 
 
 Refactoring is most useful with bad legacy code. Unfortunately, it also where it is the most difficult. Next week's blog post will be about what we can do to learn how to refactor legacy code.
 
-That was my second post in this mini-series about refactoring. First one was [7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer](/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/)
+That was my second post in this mini-series about refactoring. First one was [7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer](/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/). The third and last is [10 things to know that will make you great at refactoring legacy code](/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/)
