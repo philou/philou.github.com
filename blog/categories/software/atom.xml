@@ -4,7 +4,7 @@
   <title><![CDATA[Category: software | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/software/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-07-28T07:20:24+02:00</updated>
+  <updated>2017-08-08T06:48:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Forget unit tests]]></title>
+    <link href="http://philippe.bourgau.net/forget-unit-tests/"/>
+    <updated>2017-08-08T06:24:00+02:00</updated>
+    <id>http://philippe.bourgau.net/forget-unit-tests</id>
+    <content type="html"><![CDATA[<p>Don&rsquo;t worry if your unit tests go to the DB, that might not be so bad.</p>
+
+<p>When I started writing unit tests, I did not know what these were. I read <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923">the definition</a>, and strived to follow the recommandations :</p>
+
+<ul>
+<li>they should be independent from each other</li>
+<li>they should not access the DB</li>
+<li>they should not use the network</li>
+<li>they should only cover a small scope of your code</li>
+</ul>
+
+
+<p>I started to write unit tests on my own and became <a href="http://wiki.c2.com/?TestInfected">test infected</a> pretty fast. Once I got convinced of the benefits of unit testing, I tried to spread the practice around me. I used to explain to people that it is very important to write real unit tests by the book. Otherwise, <em>Bad Things</em> would happen &hellip;</p>
+
+<h2>How I changed my mind</h2>
+
+<p>A few years ago, I spent a few years working on a <a href="http://rubyonrails.org/">Rails</a> side project called <a href="https://github.com/philou/mes-courses">mes-courses.fr</a>. I was using a small test gem to enforce that no unit tests were accessing the db. I had to write a lot of mocks around the code. I ended up hating mocks : they are too painful to maintain and provide a false sense of security. I&rsquo;m not alone in this camp, check <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">DHH&rsquo;s keynote at RailsConf 2014</a>.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9LfmrkyP81M" frameborder="0" allowfullscreen></iframe>
+
+
+<p>At some point, the mock pain got so bad that I stopped all developments until I found another way. I found a pretty simple workaround : use in-memory SQLite. I got rid of all the DB access mocks. Not only were the tests easier to write and maintain, but they were as fast as before, and they covered more code.</p>
+
+<p>That changed something fundamental in my understanding of testing</p>
+
+<h2>It&rsquo;s all about speed baby</h2>
+
+<p>The only thing that makes unit tests so important is that they run fast.</p>
+
+<p>Unit tests as described in the literature run fast. Let&rsquo;s see what happens when you remove one of the recommandations for unit tests.</p>
+
+<ul>
+<li>If tests depend on each other, their outcome will change with the execution order. This wastes our time in analyzing the results. On top of that, independent unit tests are easy to run in parallel, providing an extra speedup. We lose this potential when our tests are dependent.</li>
+<li>Tests that rely on an out-of-process DB run slower. Tests need to start the DB before anything else. Data needs to be setup and cleaned at every test. Accessing the DB implies using the network, which takes time as well. There&rsquo;s also a risk of making the tests dependent by sharing the same DB. A last issue is troubleshooting the DB process when things don&rsquo;t work.</li>
+<li>Tests that use the network are slow too ! First, Network is slower than memory. Second, data serialization between processes is slow as well. Finally, these tests are likely to use some form of sleep or polling, which is slow, fragile, or both !</li>
+<li>Finally, there is always a scope past which a test will be too slow.</li>
+</ul>
+
+
+<p>This means that not only unit tests are fast, but also that fast tests usually show the features of unit tests.</p>
+
+<p>My guess is that &lsquo;unit tests&rsquo; were explicitly defined as a recipe for fast tests ! If you stick to the definition of unit tests, you&rsquo;ll get fast tests and all their benefits.</p>
+
+<p><img src="../imgs/2017-08-08-forget-unit-tests/speedometer.jpg" alt="A speedometer" /></p>
+
+<h2>Fast tests</h2>
+
+<p>That also means that we should focus first on having fast tests rather than unit tests. Here is my real check to know if tests are fast enough :</p>
+
+<ul>
+<li>Is the build (and the tests and everything) less than 10 minutes ?</li>
+<li>Can I continuously run my tests while coding and stay in the flow ?</li>
+</ul>
+
+
+<p>If both answers are yes, then I won&rsquo;t question myself too much whether my tests are unit, integration or end to end.</p>
+
+<h2>So what ?</h2>
+
+<p>I&rsquo;ve been experimenting with these heuristics for some time. Side projects are great for experimenting since you don&rsquo;t have a team to convince ! Here are my main takeaways :</p>
+
+<ul>
+<li>Stick to end to end tests at the beginning of your project. They are easy to refactor to finer grained tests later on.</li>
+<li>In-memory DBs are great to speed tests up without wasting your time with mocking.  We can use a unique DB for every test to keep them independent.</li>
+<li>Large scope tests are not an issue provided 2 things.
+
+<ol>
+<li>The code contains very few side effects.</li>
+<li>It provides good exceptions and assertions messages</li>
+</ol>
+</li>
+</ul>
+
+
+<p>On the other side, there are things that I still recommend :</p>
+
+<ul>
+<li>Independent tests are easy to write from the beginning, difficult to fix later on. As they save a lot of headaches in diagnostic, I stick to them from the start.</li>
+<li>Avoid network, it makes the tests slow, fragile and tricky to diagnostic. But please, read <a href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/">this</a> before jumping to mocks.</li>
+</ul>
+
+
+<p>These rules have served me well, particularly in my side projects, where I don&rsquo;t have a lot of time. What about you ? Do you have your own testing rules ?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Don't stick to TDD's Red-Green-Refactor loop to the letter]]></title>
@@ -641,47 +732,6 @@ end
 <p>Spread the word ! Leave comments in code reviews, demo the practice to your pair buddy. Prepare a team coding dojo about custom assertion matchers. Discuss the issue in a retro !</p>
 
 <p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[20 Bad Excuses For Not Writing Unit Tests]]></title>
-    <link href="http://philippe.bourgau.net/20-bad-excuses-for-not-writing-unit-tests/"/>
-    <updated>2017-05-23T06:08:00+02:00</updated>
-    <id>http://philippe.bourgau.net/20-bad-excuses-for-not-writing-unit-tests</id>
-    <content type="html"><![CDATA[<blockquote><p>I guess we always find excuses to keep on with our bad habits, don&rsquo;t we ? <em><a href="http://www.goodreads.com/quotes/797048-i-guess-we-always-find-excuses-to-keep-on-with">Stephen King</a></em></p></blockquote>
-
-<ol>
-<li>I don&rsquo;t have the time. <em>But you&rsquo;ll have the time to fix the bugs &hellip;</em></li>
-<li>I don&rsquo;t know how to write tests. <em>No problem, anyone can <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">learn</a>.</em></li>
-<li>I&rsquo;m sure the code is working now. <em><a href="https://www.brainyquote.com/quotes/quotes/e/edsgerdijk204340.html">The competent programmer is fully aware of the limited size of his own skull &hellip;</a></em></li>
-<li>This code is not testable. <em>Learn or refactor.</em></li>
-<li>It&rsquo;s (UI|DB) code, we don&rsquo;t test it. <em>Because it never crashes ?</em></li>
-<li>Because I need to refactor first &hellip; and I need tests to refactor ! <em>Damn, you&rsquo;ve fallen into the test deadlock !</em></li>
-<li>It&rsquo;s multithreaded code, it&rsquo;s impossible to test. <em>Because it&rsquo;s fully tederministic ?</em></li>
-<li>The QA department is already testing the code. <em>Is that working well ?</em></li>
-<li>I should not test my own code, I&rsquo;ll be biased. <em>Start testing other people&rsquo;s code right now then !</em></li>
-<li>I&rsquo;m a programmer, not a tester. <em><a href="https://softwareengineering.stackexchange.com/questions/159572/as-a-professional-developer-is-it-acceptable-to-not-write-unit-tests">Professional programmers write tests</a>.</em></li>
-</ol>
-
-
-<p><img src="../imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/stronger_than_excuses_quote.jpg" alt="A quote 'Be Stronger Than Your Excuses'" /><div class="image-credits">From <a href="https://todayiwillbefit.com/2013/10/30/excuses-suck-top-10-bad-excuses-to-not-exercise/">todayiwillbefit.com</a></div></p>
-
-<ol>
-<li>I&rsquo;m using a REPL, it replaces unit tests. <em>Sure, and you&rsquo;re running your REPL buffers on the CI ? and keeping your them for the next time someone modifies your code.</em></li>
-<li>My type system is strong enough to replace tests. <em>Does it detect when you use &lsquo;+&rsquo; instead of &lsquo;*&rsquo; ?</em></li>
-<li>We don&rsquo;t have the tooling to write unit tests. <em><a href="https://en.wikipedia.org/wiki/List_of_unit_testing_frameworks">Get one</a>.</em></li>
-<li>Tests aren&rsquo;t run automatically anyway. <em><a href="https://en.wikipedia.org/wiki/Comparison_of_continuous_integration_software">Install a Continuous Integration Server</a>.</em></li>
-<li>I&rsquo;m domain expert developer, writing tests is not my job. <em>Creating bugs isn&rsquo;t either !</em></li>
-<li>We&rsquo;d rather switch to the <a href="http://www.paulgraham.com/avg.html">Blub language</a> first ! <em>You&rsquo;re right, let&rsquo;s do neither then !</em></li>
-<li>We don&rsquo;t test legacy code. <em>Specifically because it is <a href="https://en.wikipedia.org/wiki/Legacy_code">legacy code</a>.</em></li>
-<li>Adding tests for every production code we write is insane ! <em>As shipping untested code is unprofessional.</em></li>
-<li>I find more issues doing manual testing. <em><a href="/how-we-started-exploratory-testing/">Exploratory Testing</a> is a valuable testing, even more so on top of automated tests.</em></li>
-<li>Because my teammates don&rsquo;t run them. <em>Time for a <a href="/most-scrum-teams-are-not-agile/">retrospective</a>.</em></li>
-</ol>
-
-
-<p><img src="../imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
 ]]></content>
   </entry>
   

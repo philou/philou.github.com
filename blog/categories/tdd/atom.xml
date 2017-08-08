@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-07-28T07:20:24+02:00</updated>
+  <updated>2017-08-08T06:48:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Forget unit tests]]></title>
+    <link href="http://philippe.bourgau.net/forget-unit-tests/"/>
+    <updated>2017-08-08T06:24:00+02:00</updated>
+    <id>http://philippe.bourgau.net/forget-unit-tests</id>
+    <content type="html"><![CDATA[<p>Don&rsquo;t worry if your unit tests go to the DB, that might not be so bad.</p>
+
+<p>When I started writing unit tests, I did not know what these were. I read <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923">the definition</a>, and strived to follow the recommandations :</p>
+
+<ul>
+<li>they should be independent from each other</li>
+<li>they should not access the DB</li>
+<li>they should not use the network</li>
+<li>they should only cover a small scope of your code</li>
+</ul>
+
+
+<p>I started to write unit tests on my own and became <a href="http://wiki.c2.com/?TestInfected">test infected</a> pretty fast. Once I got convinced of the benefits of unit testing, I tried to spread the practice around me. I used to explain to people that it is very important to write real unit tests by the book. Otherwise, <em>Bad Things</em> would happen &hellip;</p>
+
+<h2>How I changed my mind</h2>
+
+<p>A few years ago, I spent a few years working on a <a href="http://rubyonrails.org/">Rails</a> side project called <a href="https://github.com/philou/mes-courses">mes-courses.fr</a>. I was using a small test gem to enforce that no unit tests were accessing the db. I had to write a lot of mocks around the code. I ended up hating mocks : they are too painful to maintain and provide a false sense of security. I&rsquo;m not alone in this camp, check <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">DHH&rsquo;s keynote at RailsConf 2014</a>.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9LfmrkyP81M" frameborder="0" allowfullscreen></iframe>
+
+
+<p>At some point, the mock pain got so bad that I stopped all developments until I found another way. I found a pretty simple workaround : use in-memory SQLite. I got rid of all the DB access mocks. Not only were the tests easier to write and maintain, but they were as fast as before, and they covered more code.</p>
+
+<p>That changed something fundamental in my understanding of testing</p>
+
+<h2>It&rsquo;s all about speed baby</h2>
+
+<p>The only thing that makes unit tests so important is that they run fast.</p>
+
+<p>Unit tests as described in the literature run fast. Let&rsquo;s see what happens when you remove one of the recommandations for unit tests.</p>
+
+<ul>
+<li>If tests depend on each other, their outcome will change with the execution order. This wastes our time in analyzing the results. On top of that, independent unit tests are easy to run in parallel, providing an extra speedup. We lose this potential when our tests are dependent.</li>
+<li>Tests that rely on an out-of-process DB run slower. Tests need to start the DB before anything else. Data needs to be setup and cleaned at every test. Accessing the DB implies using the network, which takes time as well. There&rsquo;s also a risk of making the tests dependent by sharing the same DB. A last issue is troubleshooting the DB process when things don&rsquo;t work.</li>
+<li>Tests that use the network are slow too ! First, Network is slower than memory. Second, data serialization between processes is slow as well. Finally, these tests are likely to use some form of sleep or polling, which is slow, fragile, or both !</li>
+<li>Finally, there is always a scope past which a test will be too slow.</li>
+</ul>
+
+
+<p>This means that not only unit tests are fast, but also that fast tests usually show the features of unit tests.</p>
+
+<p>My guess is that &lsquo;unit tests&rsquo; were explicitly defined as a recipe for fast tests ! If you stick to the definition of unit tests, you&rsquo;ll get fast tests and all their benefits.</p>
+
+<p><img src="../imgs/2017-08-08-forget-unit-tests/speedometer.jpg" alt="A speedometer" /></p>
+
+<h2>Fast tests</h2>
+
+<p>That also means that we should focus first on having fast tests rather than unit tests. Here is my real check to know if tests are fast enough :</p>
+
+<ul>
+<li>Is the build (and the tests and everything) less than 10 minutes ?</li>
+<li>Can I continuously run my tests while coding and stay in the flow ?</li>
+</ul>
+
+
+<p>If both answers are yes, then I won&rsquo;t question myself too much whether my tests are unit, integration or end to end.</p>
+
+<h2>So what ?</h2>
+
+<p>I&rsquo;ve been experimenting with these heuristics for some time. Side projects are great for experimenting since you don&rsquo;t have a team to convince ! Here are my main takeaways :</p>
+
+<ul>
+<li>Stick to end to end tests at the beginning of your project. They are easy to refactor to finer grained tests later on.</li>
+<li>In-memory DBs are great to speed tests up without wasting your time with mocking.  We can use a unique DB for every test to keep them independent.</li>
+<li>Large scope tests are not an issue provided 2 things.
+
+<ol>
+<li>The code contains very few side effects.</li>
+<li>It provides good exceptions and assertions messages</li>
+</ol>
+</li>
+</ul>
+
+
+<p>On the other side, there are things that I still recommend :</p>
+
+<ul>
+<li>Independent tests are easy to write from the beginning, difficult to fix later on. As they save a lot of headaches in diagnostic, I stick to them from the start.</li>
+<li>Avoid network, it makes the tests slow, fragile and tricky to diagnostic. But please, read <a href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/">this</a> before jumping to mocks.</li>
+</ul>
+
+
+<p>These rules have served me well, particularly in my side projects, where I don&rsquo;t have a lot of time. What about you ? Do you have your own testing rules ?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Don't stick to TDD's Red-Green-Refactor loop to the letter]]></title>
@@ -560,97 +651,6 @@ end
 <p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
 
 <p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[RSpecProxies now supports .to receive(xxx)... syntax]]></title>
-    <link href="http://philippe.bourgau.net/rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/"/>
-    <updated>2016-08-23T04:47:00+02:00</updated>
-    <id>http://philippe.bourgau.net/rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax</id>
-    <content type="html"><![CDATA[<p><img class="center" src="/imgs/2016-08-23-rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/test_probes.jpg" title="Hardware test probes" ></p>
-
-<p>Pure mocks are dangerous. They let defect go through, give a false sense of security and are difficult to maintain.</p>
-
-<p>I&rsquo;ve already talked about it <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">before</a> but since then, <a href="http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html">DHH announced that he was quitting TDD</a>, the <a href="http://martinfowler.com/articles/is-tdd-dead/">Is TDD Dead ?</a> debate took place, and the conclusion is that <a href="https://www.thoughtworks.com/insights/blog/mockists-are-dead-long-live-classicists">mockist are dead</a>.</p>
-
-<p>They are still times when mocks feel much simpler than any other things. For example, imagine your process leaks and crashes after 10 hours, the fix is to pass an option to a thirdparty, how would you test this in a fast test ? That&rsquo;s exactly the kind of situation where using test proxies saves you from mocks. A test proxy defers everything to the real object but also features unintrusive hooks and probes that you can use in your test. If you want a code example, check <a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split">this commit</a>, where I refactored a rails controller test from mocks to a RSpecProxies (v0.1).</p>
-
-<p>I created RSpecProxies <a href="/my-new-gem-for-creating-rspec-proxies/">a while ago</a>, a while ago, and it&rsquo;s syntax made it alien to the RSpec work, it needed an update. <a href="http://rspec.info">RSpec</a> now supports basic proxying with partial stubs, spies, the <code>and_call_original</code> and the <code>and_wrap_original</code> methods. <a href="https://github.com/philou/rspecproxies">RSpecProxies 1.0</a> is a collection of hooks built on top of these to make proxying easier, with a syntax that will be familiar to RSpec users.</p>
-
-<h2>Before original hook</h2>
-
-<p>This hook is triggered before a call a method. Suppose you want to simulate a bad connection :</p>
-
-<p>```ruby
-it &lsquo;can simulate unreliable connection&rsquo; do
-  i = 0
-  allow(Resource).to receive(:get).and_before_calling_original { |*args|</p>
-
-<pre><code>i += 1
-raise RuntimeError.new if i % 3 == 0
-</code></pre>
-
-<p>  }</p>
-
-<p>  resources = Resource.get_at_least(10)</p>
-
-<p>  expect(resources.size).to eq(10)
-end
-```</p>
-
-<h2>After original hooks</h2>
-
-<p>RSpecProxies provides the same kind of hook after the call :</p>
-
-<p>``` ruby
-it &lsquo;can check that the correct data is used (using and_after_calling_original&rsquo; do
-  user = nil
-  allow(User).to receive(:load).and_after_calling_original { |result| user = result }</p>
-
-<p>  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)</p>
-
-<p>  expect(response).to include(user.created_at.to_s)
-end
-```</p>
-
-<p>Here we are capturing the return value to use it later in the test. For this special purpose, RSpecProxies also provides 2 other helpers :</p>
-
-<p>``` ruby</p>
-
-<h1>Store the latest result in @user of self</h1>
-
-<p>allow(User).to receive(:load).and_capture_result_into(self, :user)</p>
-
-<h1>Collect all results in the users array</h1>
-
-<p>users = []
-allow(User).to receive(:load).and_collect_results_into(users)
-```</p>
-
-<h2>Proxy chains</h2>
-
-<p>RSpec mocks provides the <code>message_chain</code> feature to do build chains of stubs. RSpecProxy provides a very similar proxy chain concept. The main difference is that it creates proxies along the way, and not pure stubs. Pure stubs assume that you are mocking everything, but as our goal is to mock as little as possible, using proxies makes more sense.</p>
-
-<p>When using a mockist approach, the message chain is a bad smell because it makes your tests very brittle by depending on a lot of implementation. In contrast, proxy chains are meant to be used where they are the simplest way to inject what you need, without creating havoc.</p>
-
-<p>For example, suppose you want to display the progress of a very slow background task. You could mock a lot of your objects to have a fast test, of if you wanted to avoid all the bad side effects of mocking, you could run the background task in your test, and have a slow test &hellip; Or, you could use a chain of proxies :</p>
-
-<p>``` ruby
-it &lsquo;can override a deep getter&rsquo; do
-  allow(RenderingTask).to proxy_message_chain(&ldquo;load.completion_ratio&rdquo;) { |e| e.and_return(0.2523) }</p>
-
-<p>  controller.show</p>
-
-<p>  expect(response).to include(&lsquo;25%&rsquo;)
-end
-```</p>
-
-<p>Here the simplest thing to do is just to override a small getter, because from a functionnal point of view, that&rsquo;s exactly what we want to test.</p>
-
-<h2>Last word</h2>
-
-<p>The code is on <a href="https://github.com/philou/rspecproxies">github</a>, v1.0.0 is on <a href="https://rubygems.org/gems/rspecproxies/versions/0.1.0">rubygems</a>, it requires Ruby v2.2.5 and RSpec v3.5, the license is MIT, help in any form are welcome !</p>
 ]]></content>
   </entry>
   

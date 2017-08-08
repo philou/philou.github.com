@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-07-28T07:20:24+02:00</updated>
+  <updated>2017-08-08T06:48:23+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,98 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Forget unit tests]]></title>
+    <link href="http://philippe.bourgau.net/forget-unit-tests/"/>
+    <updated>2017-08-08T06:24:00+02:00</updated>
+    <id>http://philippe.bourgau.net/forget-unit-tests</id>
+    <category term="software" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<p>Don&rsquo;t worry if your unit tests go to the DB, that might not be so bad.</p>
+
+<p>When I started writing unit tests, I did not know what these were. I read <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923">the definition</a>, and strived to follow the recommandations :</p>
+
+<ul>
+<li>they should be independent from each other</li>
+<li>they should not access the DB</li>
+<li>they should not use the network</li>
+<li>they should only cover a small scope of your code</li>
+</ul>
+
+
+<p>I started to write unit tests on my own and became <a href="http://wiki.c2.com/?TestInfected">test infected</a> pretty fast. Once I got convinced of the benefits of unit testing, I tried to spread the practice around me. I used to explain to people that it is very important to write real unit tests by the book. Otherwise, <em>Bad Things</em> would happen &hellip;</p>
+
+<h2>How I changed my mind</h2>
+
+<p>A few years ago, I spent a few years working on a <a href="http://rubyonrails.org/">Rails</a> side project called <a href="https://github.com/philou/mes-courses">mes-courses.fr</a>. I was using a small test gem to enforce that no unit tests were accessing the db. I had to write a lot of mocks around the code. I ended up hating mocks : they are too painful to maintain and provide a false sense of security. I&rsquo;m not alone in this camp, check <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">DHH&rsquo;s keynote at RailsConf 2014</a>.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9LfmrkyP81M" frameborder="0" allowfullscreen></iframe>
+
+
+<p>At some point, the mock pain got so bad that I stopped all developments until I found another way. I found a pretty simple workaround : use in-memory SQLite. I got rid of all the DB access mocks. Not only were the tests easier to write and maintain, but they were as fast as before, and they covered more code.</p>
+
+<p>That changed something fundamental in my understanding of testing</p>
+
+<h2>It&rsquo;s all about speed baby</h2>
+
+<p>The only thing that makes unit tests so important is that they run fast.</p>
+
+<p>Unit tests as described in the literature run fast. Let&rsquo;s see what happens when you remove one of the recommandations for unit tests.</p>
+
+<ul>
+<li>If tests depend on each other, their outcome will change with the execution order. This wastes our time in analyzing the results. On top of that, independent unit tests are easy to run in parallel, providing an extra speedup. We lose this potential when our tests are dependent.</li>
+<li>Tests that rely on an out-of-process DB run slower. Tests need to start the DB before anything else. Data needs to be setup and cleaned at every test. Accessing the DB implies using the network, which takes time as well. There&rsquo;s also a risk of making the tests dependent by sharing the same DB. A last issue is troubleshooting the DB process when things don&rsquo;t work.</li>
+<li>Tests that use the network are slow too ! First, Network is slower than memory. Second, data serialization between processes is slow as well. Finally, these tests are likely to use some form of sleep or polling, which is slow, fragile, or both !</li>
+<li>Finally, there is always a scope past which a test will be too slow.</li>
+</ul>
+
+
+<p>This means that not only unit tests are fast, but also that fast tests usually show the features of unit tests.</p>
+
+<p>My guess is that &lsquo;unit tests&rsquo; were explicitly defined as a recipe for fast tests ! If you stick to the definition of unit tests, you&rsquo;ll get fast tests and all their benefits.</p>
+
+<p><img src="../imgs/2017-08-08-forget-unit-tests/speedometer.jpg" alt="A speedometer" /></p>
+
+<h2>Fast tests</h2>
+
+<p>That also means that we should focus first on having fast tests rather than unit tests. Here is my real check to know if tests are fast enough :</p>
+
+<ul>
+<li>Is the build (and the tests and everything) less than 10 minutes ?</li>
+<li>Can I continuously run my tests while coding and stay in the flow ?</li>
+</ul>
+
+
+<p>If both answers are yes, then I won&rsquo;t question myself too much whether my tests are unit, integration or end to end.</p>
+
+<h2>So what ?</h2>
+
+<p>I&rsquo;ve been experimenting with these heuristics for some time. Side projects are great for experimenting since you don&rsquo;t have a team to convince ! Here are my main takeaways :</p>
+
+<ul>
+<li>Stick to end to end tests at the beginning of your project. They are easy to refactor to finer grained tests later on.</li>
+<li>In-memory DBs are great to speed tests up without wasting your time with mocking.  We can use a unique DB for every test to keep them independent.</li>
+<li>Large scope tests are not an issue provided 2 things.
+
+<ol>
+<li>The code contains very few side effects.</li>
+<li>It provides good exceptions and assertions messages</li>
+</ol>
+</li>
+</ul>
+
+
+<p>On the other side, there are things that I still recommend :</p>
+
+<ul>
+<li>Independent tests are easy to write from the beginning, difficult to fix later on. As they save a lot of headaches in diagnostic, I stick to them from the start.</li>
+<li>Avoid network, it makes the tests slow, fragile and tricky to diagnostic. But please, read <a href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/">this</a> before jumping to mocks.</li>
+</ul>
+
+
+<p>These rules have served me well, particularly in my side projects, where I don&rsquo;t have a lot of time. What about you ? Do you have your own testing rules ?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[10 things to know that will make you great at refactoring legacy code]]></title>
@@ -2634,102 +2726,6 @@
 <p>This is not exhaustive, depending on your situation, there might be other things you&rsquo;ll need to do, like unsubscriptions for example.</p>
 
 <p>I&rsquo;d also like to give a word of feedback about ActionCable after this first look at it. Overall, it worked great both in development and production. Everything seemed to work almost out of the box &hellip; Except testing : I did not manage to write robust unit tests around it. There is <a href="https://github.com/rails/rails/pull/23211">pull request</a> for that that should be merged in Rails 5.~ sometimes soon. For the moment, I&rsquo;m sticking to large scale cucumber tests.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How I finally use Docker on small open source side projects]]></title>
-    <link href="http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects/"/>
-    <updated>2017-02-16T19:37:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects</id>
-    <category term="continuous-integration" /><category term="docker" /><category term="heroku" /><category term="open-source" /><category term="rails" /><category term="side-project" /><category term="travis" />
-    <content type="html"><![CDATA[<p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
-
-<p><img class="center" src="http://philippe.bourgau.net/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
-
-<h2>The Docker love phase</h2>
-
-<p>At first everything seemed great about Docker. I&rsquo;d used it on toy projects and it proved great to quickly setup cheap and fast virtual machines. I even created the <a href="https://github.com/philou/rubybox">Rubybox</a> project on Github to clone new ruby VMs in a matter of seconds. I also used Docker to host my <a href="http://octopress.org/">Octopress</a> environment to write this blog. As a long time Linux user, my dev machines have repeatedly been suffering from pollution : after some time, they get plagued with all the stuff I installed to do my various dev experiments, and at some point, re-install seems easier than cleaning up all the mess. If I could use containers for all my projects, Docker would be a cure for this.</p>
-
-<p>Going through all these successes, when I started my planning poker app, I decided to go all into Docker, development, CI and deployment. You can read the log of how I did that in <a href="http://philippe.bourgau.net/blog/categories/docker/">these posts</a>. Fast forward a bit of searching, experimenting and deploying, all was setup : my dev env was in containers, my CI was running in containers in <a href="https://circleci.com/gh/philou/planning-poker/tree/master">CircleCI</a> and the app was pushed to containers on <a href="https://www.digitalocean.com/">DgitalOcean</a>.</p>
-
-<h2>Reality strikes back</h2>
-
-<p>At first, everything seemed to be working fine. Even if there were a few glitches that I would have to fix down the road like :</p>
-
-<ul>
-<li>Whenever I wanted to update my app&rsquo;s dependencies, I had to run <code>bundle update</code> twice, and not incrementally. Surely, I would manage to fix that with a bit of time</li>
-<li>Obviously, the CI was slower, because it had to build the containers before deploying them to <a href="https://hub.docker.com/">Docker Hub</a>, but that was the price to pay in order to know exactly what was running on the server &hellip; right ?</li>
-<li>And &hellip; <a href="https://github.com/guard/guard">Guard</a> notifications did not appear on my desktop. I was accessing my dev env through ssh, so I would have to fix that, just a few hours and it should be working</li>
-</ul>
-
-
-<p>After a while, I got used to my work environment and became almost as productive as I used to be &hellip; but you know, shit happens !</p>
-
-<ul>
-<li>I had to install <a href="http://phantomjs.org/">PhantomJS</a> on my CI, and if that comes out of the box on <a href="https://travis-ci.org/">TravisCI</a>, you&rsquo;re all alone in your own containers. Installing this on the Debian container proved unnecessarily complex, but I figured it out</li>
-<li>Then all of a sudden, my CI started to break &hellip; You can read a summary of what I did to fix it <a href="http://philippe.bourgau.net/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">here</a>. Long story short : I had forgotten to clean up old docker images, and after enough deployments, the server ran out of space, and that corrupted the docker cache somehow. I eventually re-installed and upgraded the deployment VM. That made me lose quite some time though.</li>
-<li>Finally, as I started to play with <a href="https://github.com/rails/actioncable">ActionCable</a>, I could not get the web-socket notifications through my dev host. There must be some settings and configuration to make this work, for sure, but it&rsquo;s supposed to work out of the box.</li>
-</ul>
-
-
-<p>Eventually, this last issue convinced me to change my setup. All these usages of Docker where definitely worth it from a learning point of view, but as my focus moved to actually building the app, it was time to take pragmatic decisions.</p>
-
-<h2>My use of Docker now</h2>
-
-<p>There were 2 main ideas driving my changes to my dev env for this open source side project :</p>
-
-<ol>
-<li>Use the thing most people do</li>
-<li>Use commercially supported services &amp; tools</li>
-</ol>
-
-
-<p>These should avoid losing my time instead of being productive. My setup is now almost boring ! To summarize I now use <a href="https://travis-ci.org/philou/planning-poker">TravisCI</a>, <a href="https://philous-planning-poker.herokuapp.com/">Heroku</a>, and <a href="https://github.com/rbenv/rbenv">rbenv</a> on my physical machine. I kept Docker where it really shines : all the local servers required for development are managed by <a href="https://docs.docker.com/compose/">Docker Compose</a>. Here is my <a href="https://github.com/philou/planning-poker/blob/master/docker-compose.yml"><code>docker-compose.yml</code></a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">db</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgres:9.4.5</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">planning-poker-postgres:/var/lib/postgresql/data</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">ports</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&quot;5432:5432&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">redis</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">redis:3.2-alpine</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">planning-poker-redis:/var/lib/redis/data</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">ports</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&quot;6379:6379&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This saves me from installing <a href="https://www.postgresql.org/">Postgresql</a> or <a href="https://redis.io/">Redis</a> on my dev machine, and I can start all the services required for app with a single <code>docker-compose up</code> command !</p>
-
-<h2>My future uses of Docker</h2>
-
-<p>More generally, in the near future, here is when I&rsquo;ll use docker</p>
-
-<ul>
-<li>As I just said, to manage local servers</li>
-<li>To boot quick and cheap VMs (check <a href="https://github.com/philou/rubybox">rubybox</a>)</li>
-<li>To handle CI and deployment of large or non-standard systems, where Docker can provide a lot of benefits in terms of price, scaling or configurability</li>
-</ul>
-
-
-<p>Docker came from the deployment world, and this is where it is so great. As of today though, even if it is usable as dev VM, it is still not up to a standard dev machine. Despite that, all the issues I ran into could be fixed, and I&rsquo;m pretty sure they&rsquo;ll be some day.</p>
 ]]></content>
   </entry>
   
