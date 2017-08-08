@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Forget unit tests"
+title: "Forget unit tests, only fast tests matter"
 date: 2017-08-08 06:24
 comments: true
 categories:
