@@ -102,6 +102,74 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/sprints-are-not-sprints/">Sprints Are Not Sprints</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-07T06:22:00+01:00" pubdate data-updated="true">Jan 7<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I really don&rsquo;t know why <a href="http://www.scrum.org">Scrum</a> Sprints are called sprints ! From my experience, the number one mistake made by team starting with Scrum is to work as quickly and dirty as possible to complete the sprint, forgetting the <a href="http://www.sustainablepace.net/">sustainable pace</a>.</p>
+
+<p><img class="center" src="/imgs/2014-01-07-sprints-are-not-sprints/marathoner-vs-retail-sprinter.jpg" title="Side by side photos of a marathoner and a sprinter" ></p>
+
+<p>Finding another word is difficult though, I thought of &lsquo;stage&rsquo; or &lsquo;milestone&rsquo; that both convey the long run idea, but both feel more content than time bounded. A more exotic word could be a &lsquo;Scrum push&rsquo;, it conveys slow and intense action action rather than quick results.</p>
+
+<p><img class="center" src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/ST_vs_Gloucester_-_Match_-_23.JPG/640px-ST_vs_Gloucester_-_Match_-_23.JPG" title="A rugby scrum (Wikimedia)" ></p>
+
+<p>Overall, the traditional agile &lsquo;iteration&rsquo; is not bad at all, at least a lot better than Sprint.</p>
+
+<p><strong>EDIT 01/08/2014:</strong></p>
+
+<p>The &lsquo;Quick and Dirty&rsquo; Sprint strategy, is like trying to win a marathon with a greedy algorithm:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">while</span> <span class="ow">not</span> <span class="n">finished</span>
+</span><span class='line'>  <span class="n">sprint</span><span class="p">(</span><span class="mi">100</span><span class="n">m</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Not likely to work &hellip; Marathoners know that they&rsquo;ve got to stick to a constant speed during the whole race in order to finish it. The way to get faster is to :</p>
+
+<ul>
+<li>increase this cruise speed just a bit</li>
+<li>get at ease with it during a few races</li>
+<li>repeat</li>
+</ul>
+
+
+<p>Is there something to learn from this to improve software development speed ?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/trying-to-explain-monads-in-java/">Trying to Explain Monads in Java</a></h1>
     
     
@@ -839,90 +907,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">Simplest Way to Speed Up Rspec With in Memory Sqlite Db</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-02T09:16:00+02:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There are already a lot of articles explaining how to setup an in memory <a href="http://www.sqlite.org/">SQLite</a> database to speed up <a href="http://rubyonrails.org/">Rails</a> specs or unit tests. Most of them explain how to change your database.yml and to run setup your schema before running the tests. It works fine.</p>
-
-<p>There&rsquo;s a catch though : suppose you are using <a href="http://cukes.info/">cucumber</a>, it&rsquo;s likely you&rsquo;d rather run cucumber on a real database (<a href="http://www.postgresql.org/">PostgreSQL</a>, <a href="http://www.mysql.com/">MySQL</a> or whatever). Most gems expect cucumber and <a href="http://rspec.info/">rspec</a> to both run in the test environment &hellip; Every time I updated my bundle or that I wanted to use a new test gem, I would hit an issue about cucumber being run in its own &lsquo;cucumber&rsquo; environment : unexpected warnings and things not working out of the box.</p>
-
-<p>Eventually, I ditched the cucumber env, setup a PostgreSQL db on the test env, and injected the in memory sqlite database right inside spec_helper.rb :</p>
-
-<p>In database.yml :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_test</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>At the bottom of spec_helper.rb</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">setup_sqlite_db</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span>
-</span><span class='line'>  <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nb">load</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="s2">/db/schema.rb&quot;</span> <span class="c1"># use db agnostic schema by default</span>
-</span><span class='line'>  <span class="c1"># ActiveRecord::Migrator.up(&#39;db/migrate&#39;) # use migrations</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="n">silence_stream</span><span class="p">(</span><span class="no">STDOUT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">setup_sqlite_db</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -1003,6 +987,10 @@ In this kind of environment, even mandatory code reviews tend to become a useles
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/throwing-code-away-frequently/">Throwing code away frequently</a>
+      </li>
+    
+      <li class="post">
         <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming (2017)</a>
       </li>
     
@@ -1016,10 +1004,6 @@ In this kind of environment, even mandatory code reviews tend to become a useles
     
       <li class="post">
         <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">10 things to know that will make you great at refactoring legacy code</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to start learning the tao of incremental code refactoring today</a>
       </li>
     
   </ul>

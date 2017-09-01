@@ -102,6 +102,90 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">Simplest Way to Speed Up Rspec With in Memory Sqlite Db</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-02T09:16:00+02:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There are already a lot of articles explaining how to setup an in memory <a href="http://www.sqlite.org/">SQLite</a> database to speed up <a href="http://rubyonrails.org/">Rails</a> specs or unit tests. Most of them explain how to change your database.yml and to run setup your schema before running the tests. It works fine.</p>
+
+<p>There&rsquo;s a catch though : suppose you are using <a href="http://cukes.info/">cucumber</a>, it&rsquo;s likely you&rsquo;d rather run cucumber on a real database (<a href="http://www.postgresql.org/">PostgreSQL</a>, <a href="http://www.mysql.com/">MySQL</a> or whatever). Most gems expect cucumber and <a href="http://rspec.info/">rspec</a> to both run in the test environment &hellip; Every time I updated my bundle or that I wanted to use a new test gem, I would hit an issue about cucumber being run in its own &lsquo;cucumber&rsquo; environment : unexpected warnings and things not working out of the box.</p>
+
+<p>Eventually, I ditched the cucumber env, setup a PostgreSQL db on the test env, and injected the in memory sqlite database right inside spec_helper.rb :</p>
+
+<p>In database.yml :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses_test</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">utf8</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">mes_courses</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">password</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">secret</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">localhost</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5433</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>At the bottom of spec_helper.rb</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">setup_sqlite_db</span> <span class="o">=</span> <span class="nb">lambda</span> <span class="k">do</span>
+</span><span class='line'>  <span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nb">load</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="s2">/db/schema.rb&quot;</span> <span class="c1"># use db agnostic schema by default</span>
+</span><span class='line'>  <span class="c1"># ActiveRecord::Migrator.up(&#39;db/migrate&#39;) # use migrations</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="n">silence_stream</span><span class="p">(</span><span class="no">STDOUT</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">setup_sqlite_db</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/my-own-side-project-best-practices-after-reading-the-side-project-book/">My Own Side Project Best Practices After Reading the &#8216;Side Project Book&#8217;</a></h1>
     
     
@@ -743,67 +827,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If New Cucumber Transform Breaks Everyhing &#8230;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-08T08:36:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &hellip; Even completly unrelated scenarios were failing &hellip;</p>
-
-<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &ldquo;Transforms wisdom&rdquo; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
-
-<p>For example</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CAPTURE_NUMBER</span> <span class="o">=</span> <span class="no">Transform</span> <span class="sr">/^.*$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">digits</span><span class="o">|</span>
-</span><span class='line'>  <span class="nb">Float</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">When</span> <span class="sr">/^I withdraw (</span><span class="si">#{</span><span class="no">CAPTURE_NUMBER</span><span class="si">}</span><span class="sr">) from &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">bank_name</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">bank</span> <span class="o">=</span> <span class="no">Bank</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">bank_name</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>will match the bank name with CAPTURE_NUMBER, and you&rsquo;ll get an &ldquo;invalid value for Float&rdquo; error.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -884,6 +907,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/throwing-code-away-frequently/">Throwing code away frequently</a>
+      </li>
+    
+      <li class="post">
         <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming (2017)</a>
       </li>
     
@@ -897,10 +924,6 @@
     
       <li class="post">
         <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">10 things to know that will make you great at refactoring legacy code</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to start learning the tao of incremental code refactoring today</a>
       </li>
     
   </ul>

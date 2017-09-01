@@ -4,7 +4,7 @@
   <title><![CDATA[Category: extreme programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/extreme-programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-08-29T07:37:50+02:00</updated>
+  <updated>2017-09-01T07:29:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Throwing code away frequently]]></title>
+    <link href="http://philippe.bourgau.net/throwing-code-away-frequently/"/>
+    <updated>2017-09-01T06:56:00+02:00</updated>
+    <id>http://philippe.bourgau.net/throwing-code-away-frequently</id>
+    <content type="html"><![CDATA[<p>Here is the main feedback I got about my previous post <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming</a>.</p>
+
+<blockquote><p>What do you actually mean by throwing code away ? Does it mean stoping unit testing and refactoring ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg" alt="A drawing of a shredder destroying some code" /></p>
+
+<p>So I guess it deserves a bit of explanation.</p>
+
+<h2>What is it all about ?</h2>
+
+<p>When programming, I don&rsquo;t throw code away a lot. I tend to rely on my automated tests to change the code I already have. That might be a problem.</p>
+
+<p>As with everything, there is no one size fits all. We should choose the best practice for our current situation. Same thing applies for incremental changes versus rewriting.</p>
+
+<p>TDD makes incremental changes cost effective, and as such, is a key to get out of the Waterfall.</p>
+
+<p>The idea of throwing code away frequently is to make rewriting cost effective, so we can do it more often.</p>
+
+<h2>Why would we want to do so ?</h2>
+
+<p>In &ldquo;<a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">When Understanding means Rewriting"</a>, Jeff Atwood explains that reading code can be more difficult than writing it. There is a point where rewriting is going to be cheaper than changing.</p>
+
+<p>The more unit test you have, the later you reach that point. The more technical debt you take, and the sooner. The bigger the part to rewrite, the more risky it becomes.</p>
+
+<p>Let&rsquo;s imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as<br/>
+<a href="http://mikecavaliere.com/throw-away-your-code/">F**k Going Green: Throw Away Your Code</a>.</p>
+
+<p>This would be great for new features, that might be removed if they don&rsquo;t bring any value. It would also be a good way to get rid of technical debt. Naresh Jain also makes the point that without tests, you&rsquo;ll have to keep things simple (<a href="https://blogs.agilefaqs.com/2008/10/07/throwing-away-code/">here</a> and <a href="https://fr.slideshare.net/nashjain/the-decline-and-fall-of-agile-antifragile-mindset-to-rescue">here</a>) !</p>
+
+<p>Wait a minute, isn&rsquo;t that <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a> ?</p>
+
+<h2>How to make it work</h2>
+
+<p><a href="/extreme-extreme-programming-2017/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg" alt="A graph with all the practices from my previous article eXtreme eXtreme Programming" /></a></p>
+
+<h3>How to ensure quality without unit tests ?</h3>
+
+<p>TDD and unit testing is a cornerstone of XP. If we remove it, we need something else to build quality in. Could Mob Programming and Remote teams do the trick ?</p>
+
+<p>&ldquo;Given enough eyeballs, all bugs are shallow&rdquo;. Pair programming and code reviews catch a lot more bugs than solo programming. Only a few bugs are likely to pass through the scrutiny of the whole team doing mob programming.</p>
+
+<p>What about Remote ? Martin Fowler <a href="https://martinfowler.com/articles/remote-or-co-located.html">explains</a> that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.</p>
+
+<p><a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg" alt="People vs methodology impact on productivity" /></a><div class="image-credits">Photo from Steve McConnell on <a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/">Construx</a></div></p>
+
+<p>Finally, the Cucumber team <a href="https://cucumber.io/blog/2015/12/21/the-mob-rules-ok">reported</a> that Mob Programming works well for remote teams.</p>
+
+<h3>How to make this safer ?</h3>
+
+<p>Even with the best team, mistakes will happen. How can we avoid pushing a rewrite that crashes the whole system ?</p>
+
+<p>The main answer to that is good continuous deployment. We should deploy to a subset of users first. We should be able to rollback straight away if things don&rsquo;t work as expected.</p>
+
+<p>As the system grows, <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a> can keep continuous deployment under control. We can deploy, update and roll them back independently. By nature, microservices also reduce the scope of the rewrite. That alone, as we said earlier, makes rewrites safer.</p>
+
+<p>As a last point, some technologies make building microservice systems easier and incremental. The <a href="https://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm">Erlang VM</a>, for example, with first class actors, is one these. Time to give <a href="https://www.erlang.org/">Erlang</a> and <a href="https://elixir-lang.org/">Elixir</a> a try !</p>
+
+<h3>Is this always a good idea ?</h3>
+
+<p>There are good and bad situations.</p>
+
+<p>For example, a lean startup or data driven environment seems a good fit. Suppose your team measures the adoption of new features before deciding to keep or ditch them. You&rsquo;d better not invest in unit tests straight away.</p>
+
+<p>On the other side, software for a complex domain will be very difficult to rewrite flawlessly. I have worked in the finance industry for some years, I know what a complex domain is. I doubt I could rewrite a piece of intricate finance logic without bugs. I would stick to <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> and unit testing in these areas.</p>
+
+<h3>How to dip your toe</h3>
+
+<p>Here is how I intend to dip <em>my</em> toe. I won&rsquo;t drop automated testing completely yet. What I could do instead (and that I already did on side projects) is to start with end to end tests only.</p>
+
+<p>From there every time I want to change a piece of code, I have many options :</p>
+
+<ul>
+<li>Add a new end to end test and change the code.</li>
+<li>If the code is too much of a mess, I can rewrite it from scratch. I&rsquo;ll have the safety of the end to end tests.</li>
+<li>If I see that the module is stabilizing, has not been rewritten for a while, and yields well to modifications. I could start splitting end to end tests into unit tests, and embark on the TDD road.</li>
+</ul>
+
+
+<p>Maybe later, when I have a team doing mob programming to find my mistakes, we&rsquo;ll skip the end to end tests.</p>
+
+<h2>Other interesting links</h2>
+
+<ul>
+<li><a href="http://corgibytes.com/blog/2016/11/01/throwaway-code/">Throwaway Code</a> by M. Scott Ford</li>
+<li><a href="http://wiki.c2.com/?RewriteCodeFromScratch">Rewrite Code From Scratch</a> on c2 wiki</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[eXtreme eXtreme Programming (2017)]]></title>
@@ -87,7 +182,7 @@
 
 <p>Pair programming is great for code quality and knowledge sharing. <a href="https://en.wikipedia.org/wiki/Mob_programming#cite_note-8">Mob programming</a> is the more extreme version of pairing where <em>all</em> the team codes together.</p>
 
-<h3>No Refactoring</h3>
+<h3><a href="/throwing-code-away-frequently/">Throw code away frequently</a></h3>
 
 <p>An alternative to refactoring with unit tests is throwaway and rewrite once it gets too bad. Companies have been doing that for years. I worked at a bank that used to throwaway and rewrite individual apps that were part of a larger system. It can be a huge waste of money if these sub systems are too large. Scaling down to individual classes or microservices could make this cost effective.</p>
 
@@ -361,119 +456,6 @@
 <p>At the end, we had a very good time at SPAconference. The talks were insightful, we had interesting discussions, the premises were comfortable and on top of that, food was great !</p>
 
 <p>I&rsquo;m already eager to go to SPA conference 2018 !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Incremental architecture, a cure against architecture astronauts]]></title>
-    <link href="http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/"/>
-    <updated>2017-04-24T06:52:00+02:00</updated>
-    <id>http://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts</id>
-    <content type="html"><![CDATA[<p>Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a>. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding &hellip;</p>
-
-<p>When I was asked to re-engineer the &lsquo;wizards UI&rsquo;, I paused my coding to design something clean from scratch. It worked quite well at first : the overall code was a lot simpler and contained a lot less duplication than before. Seeing this new shiny UI, product people asked for new features. Unfortunately, I hadn&rsquo;t thought of them when designing this little framework. I was almost back at my initial situation.</p>
-
-<p>That&rsquo;s how I started to look for another way to design software. At about the same time the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming">eXtreme Programming book</a> fell into my hands. That&rsquo;s where I discovered the idea of incremental design and architecture.</p>
-
-<p><a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg" alt="Front cover of the first edition of the XP book" /></a></p>
-
-<h2>What is Incremental Archi</h2>
-
-<p>Let&rsquo;s start with the antithesis of incremental architecture :</p>
-
-<h3>Astronaut Architecture</h3>
-
-<p>The term &ldquo;Architecture Astronaut&rdquo; was coined by <a href="https://www.joelonsoftware.com">Joel Spolsky</a> back in 2001. If you haven&rsquo;t read this <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">classic post</a> yet, I strongly encourage you to do so. Basically, he explains that we should not be impressed by architects going over their heads talking about too abstract stuff.</p>
-
-<p>Incremental is the exact opposite of astronaut architecture</p>
-
-<h3>Two Schools to Software Architecture</h3>
-
-<p>Traditional architecture is about taking up-front choices that will be difficult to change. Incremental architecture is about preparing for non-stop change and taking decisions as late as possible.</p>
-
-<p>The idea in incremental architecture is really simple : keep your code simple, clean and automatically tested in order to be able to simply adapt your code and architecture when definitely needed.</p>
-
-<h3>Pros and Cons of incremental architecture</h3>
-
-<p>The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I&rsquo;m not alone, <a href="http://www.jamesshore.com/Agile-Book/incremental_design.html">James Shore</a> (who wrote the more on the subject) also shares my view:</p>
-
-<blockquote><p>Common thought is that distributed processing, persistence, internationalization, security, and transaction structure are so complex that you must consider them from the start of your project. I disagree; I&rsquo;ve dealt with all of them incrementally.</p>
-
-<p>Two issues that remain difficult to change are choice of programming language and platform. I wouldn&rsquo;t want to make those decisions incrementally!</p></blockquote>
-
-<p>I would add published APIs to this list.</p>
-
-<p>Granted, there are situations that incremental architecture alone cannot handle, what about its good points then ?</p>
-
-<p>In all the other cases (and that means most of the time), here is what you get :</p>
-
-<ul>
-<li>As you won&rsquo;t need to deal with future use cases, you&rsquo;ll do less work</li>
-<li>That in turn, will keep your code simpler, decreasing time to release new features</li>
-<li>As change is built-in, you&rsquo;ll be able to improve your architecture in ways you could not have imagined from the start !</li>
-</ul>
-
-
-<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1493096137&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg" alt="Front cover of the Art of Agile Software Development book" /></a></p>
-
-<p>If you cannot see how this could possibly work ? Read on !</p>
-
-<h2>How to do it</h2>
-
-<h3>eXtreme Programming</h3>
-
-<p>As I said earlier, incremental architecture emerged from eXtreme Programming. It won&rsquo;t come as a surprise that in order to work well incremental architecture requires the XP practices to be in place. In particular, the code base should be automatically tested, the continuous integration cycle should take less than 10 minutes, the design should be simple. The team should be good at doing refactoring.</p>
-
-<p>Don&rsquo;t expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !</p>
-
-<p><a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1493096197&amp;sr=1-1&amp;keywords=fowler+refactoring"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg" alt="Front cover of the Martin Fowler's refactoring book" /></a></p>
-
-<h3>Architecture Vision</h3>
-
-<p>At work, where our team consists of 9 developers, it&rsquo;s not always that simple to coordinate and all pull in the same direction. That&rsquo;s why we find it useful to share a very long term architecture vision (<a href="https://www.thoughtworks.com/insights/blog/enabling-incremental-design-and-evolutionary-architecture">Enabling Incremental Design and Evolutionary Architecture</a>). This will help people to make coherent decisions when hesitating between 2 alternate designs.</p>
-
-<p>The vision can be the result of the work of a pair, or a mob brainstorming or whatever. Building this vision is typically an activity where experienced programmers can contribute a lot of value.</p>
-
-<p>Once this vision is shared and understood by the team, every time a pair has to work on a story, they can orient the design towards it. But always as little as possible to finish the work at hand, remember the XP motos <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS (Keep It Simple &amp; Stupid)</a> &amp; <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI (You Ain&rsquo;t Gonna Need It</a>.</p>
-
-<p>One final word &hellip; a vision is just that : a vision ! It might turn out true, or false, be ready to change it as circumstances change.</p>
-
-<h3>Spikes</h3>
-
-<p>At times, even with a story in your hands and a long term architecture sketch on the whiteboard, you might have difficulties to know how to change your design to fulfill both.</p>
-
-<p>As always in XP, in case of uncertainty, use <a href="http://agiledictionary.com/209/spike/">Spikes</a> ! Spikes are short time-boxed experiments of throwaway code, which goal is to answer a specific design question.</p>
-
-<h3>How to mitigate the risks</h3>
-
-<p>What about these topics that don&rsquo;t yield to incremental architecture ? What if you discover late that you need to change your platform ? Or your API ?</p>
-
-<p>Obviously, you should think about these questions up-front. Hopefully, there are usually not that difficult to answer. But, over time, Non-Functional-Requirements and technologies change. Large and long living systems are particularly likely to need to change to a new platform someday.</p>
-
-<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix had the answer</a> : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.</p>
-
-<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy"><img src="../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg" alt="Ken Thompson and Dennis Ritchie, the creators of Unix" /></a><div class="image-credits">Photo from <a href="https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg">WikiMedia</a></div></p>
-
-<p>The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road &hellip; without the safety !</p>
-
-<h3>The Architect</h3>
-
-<p>Good news : no more PowerPoints and a lot more coding with the team ! Here is what&rsquo;s expected from an incremental architect :</p>
-
-<ul>
-<li>To code with the team. As Bertrand Meyer once said &ldquo;<a href="http://stal.blogspot.fr/2008/08/architect-always-implements.html">Bubbles (aka. diagrams) don&rsquo;t crash</a>&rdquo;, it&rsquo;s plain too easy, and wrong, to mandate architecture without living with the consequences</li>
-<li>To come up with more ideas when drafting the long term vision</li>
-<li>To keep an eye on the &lsquo;long term&rsquo; while being the navigator in pair programming</li>
-<li>In the second edition of the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-1&amp;keywords=extreme+programming">XP book</a> Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team</li>
-<li>To delegate as much as possible to the team. However smart the architect, the team as a whole is smarter ! Delegating architecture increases motivation and the quality of the outcome.</li>
-</ul>
-
-
-<h2>End of the story</h2>
-
-<p>I&rsquo;ve been practicing incremental architecture and design for a long time now. It made my life a lot simpler ! Most architecture questions become backlog items to prioritize.</p>
-
-<p>One last advice : be prepared to re-read <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky&rsquo;s article</a> whenever you get caught up in architecture meetings &hellip;</p>
 ]]></content>
   </entry>
   

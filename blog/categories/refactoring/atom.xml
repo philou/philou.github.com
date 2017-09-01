@@ -4,7 +4,7 @@
   <title><![CDATA[Category: refactoring | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/refactoring/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-08-29T07:37:50+02:00</updated>
+  <updated>2017-09-01T07:29:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Throwing code away frequently]]></title>
+    <link href="http://philippe.bourgau.net/throwing-code-away-frequently/"/>
+    <updated>2017-09-01T06:56:00+02:00</updated>
+    <id>http://philippe.bourgau.net/throwing-code-away-frequently</id>
+    <content type="html"><![CDATA[<p>Here is the main feedback I got about my previous post <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming</a>.</p>
+
+<blockquote><p>What do you actually mean by throwing code away ? Does it mean stoping unit testing and refactoring ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg" alt="A drawing of a shredder destroying some code" /></p>
+
+<p>So I guess it deserves a bit of explanation.</p>
+
+<h2>What is it all about ?</h2>
+
+<p>When programming, I don&rsquo;t throw code away a lot. I tend to rely on my automated tests to change the code I already have. That might be a problem.</p>
+
+<p>As with everything, there is no one size fits all. We should choose the best practice for our current situation. Same thing applies for incremental changes versus rewriting.</p>
+
+<p>TDD makes incremental changes cost effective, and as such, is a key to get out of the Waterfall.</p>
+
+<p>The idea of throwing code away frequently is to make rewriting cost effective, so we can do it more often.</p>
+
+<h2>Why would we want to do so ?</h2>
+
+<p>In &ldquo;<a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">When Understanding means Rewriting"</a>, Jeff Atwood explains that reading code can be more difficult than writing it. There is a point where rewriting is going to be cheaper than changing.</p>
+
+<p>The more unit test you have, the later you reach that point. The more technical debt you take, and the sooner. The bigger the part to rewrite, the more risky it becomes.</p>
+
+<p>Let&rsquo;s imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as<br/>
+<a href="http://mikecavaliere.com/throw-away-your-code/">F**k Going Green: Throw Away Your Code</a>.</p>
+
+<p>This would be great for new features, that might be removed if they don&rsquo;t bring any value. It would also be a good way to get rid of technical debt. Naresh Jain also makes the point that without tests, you&rsquo;ll have to keep things simple (<a href="https://blogs.agilefaqs.com/2008/10/07/throwing-away-code/">here</a> and <a href="https://fr.slideshare.net/nashjain/the-decline-and-fall-of-agile-antifragile-mindset-to-rescue">here</a>) !</p>
+
+<p>Wait a minute, isn&rsquo;t that <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a> ?</p>
+
+<h2>How to make it work</h2>
+
+<p><a href="/extreme-extreme-programming-2017/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg" alt="A graph with all the practices from my previous article eXtreme eXtreme Programming" /></a></p>
+
+<h3>How to ensure quality without unit tests ?</h3>
+
+<p>TDD and unit testing is a cornerstone of XP. If we remove it, we need something else to build quality in. Could Mob Programming and Remote teams do the trick ?</p>
+
+<p>&ldquo;Given enough eyeballs, all bugs are shallow&rdquo;. Pair programming and code reviews catch a lot more bugs than solo programming. Only a few bugs are likely to pass through the scrutiny of the whole team doing mob programming.</p>
+
+<p>What about Remote ? Martin Fowler <a href="https://martinfowler.com/articles/remote-or-co-located.html">explains</a> that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.</p>
+
+<p><a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg" alt="People vs methodology impact on productivity" /></a><div class="image-credits">Photo from Steve McConnell on <a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/">Construx</a></div></p>
+
+<p>Finally, the Cucumber team <a href="https://cucumber.io/blog/2015/12/21/the-mob-rules-ok">reported</a> that Mob Programming works well for remote teams.</p>
+
+<h3>How to make this safer ?</h3>
+
+<p>Even with the best team, mistakes will happen. How can we avoid pushing a rewrite that crashes the whole system ?</p>
+
+<p>The main answer to that is good continuous deployment. We should deploy to a subset of users first. We should be able to rollback straight away if things don&rsquo;t work as expected.</p>
+
+<p>As the system grows, <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a> can keep continuous deployment under control. We can deploy, update and roll them back independently. By nature, microservices also reduce the scope of the rewrite. That alone, as we said earlier, makes rewrites safer.</p>
+
+<p>As a last point, some technologies make building microservice systems easier and incremental. The <a href="https://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm">Erlang VM</a>, for example, with first class actors, is one these. Time to give <a href="https://www.erlang.org/">Erlang</a> and <a href="https://elixir-lang.org/">Elixir</a> a try !</p>
+
+<h3>Is this always a good idea ?</h3>
+
+<p>There are good and bad situations.</p>
+
+<p>For example, a lean startup or data driven environment seems a good fit. Suppose your team measures the adoption of new features before deciding to keep or ditch them. You&rsquo;d better not invest in unit tests straight away.</p>
+
+<p>On the other side, software for a complex domain will be very difficult to rewrite flawlessly. I have worked in the finance industry for some years, I know what a complex domain is. I doubt I could rewrite a piece of intricate finance logic without bugs. I would stick to <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> and unit testing in these areas.</p>
+
+<h3>How to dip your toe</h3>
+
+<p>Here is how I intend to dip <em>my</em> toe. I won&rsquo;t drop automated testing completely yet. What I could do instead (and that I already did on side projects) is to start with end to end tests only.</p>
+
+<p>From there every time I want to change a piece of code, I have many options :</p>
+
+<ul>
+<li>Add a new end to end test and change the code.</li>
+<li>If the code is too much of a mess, I can rewrite it from scratch. I&rsquo;ll have the safety of the end to end tests.</li>
+<li>If I see that the module is stabilizing, has not been rewritten for a while, and yields well to modifications. I could start splitting end to end tests into unit tests, and embark on the TDD road.</li>
+</ul>
+
+
+<p>Maybe later, when I have a team doing mob programming to find my mistakes, we&rsquo;ll skip the end to end tests.</p>
+
+<h2>Other interesting links</h2>
+
+<ul>
+<li><a href="http://corgibytes.com/blog/2016/11/01/throwaway-code/">Throwaway Code</a> by M. Scott Ford</li>
+<li><a href="http://wiki.c2.com/?RewriteCodeFromScratch">Rewrite Code From Scratch</a> on c2 wiki</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[10 things to know that will make you great at refactoring legacy code]]></title>
@@ -440,91 +535,6 @@
 <p>At the end, we had a very good time at SPAconference. The talks were insightful, we had interesting discussions, the premises were comfortable and on top of that, food was great !</p>
 
 <p>I&rsquo;m already eager to go to SPA conference 2018 !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[When the Boy Scout Rule Fails]]></title>
-    <link href="http://philippe.bourgau.net/when-the-boy-scout-rule-fails/"/>
-    <updated>2016-08-02T05:38:00+02:00</updated>
-    <id>http://philippe.bourgau.net/when-the-boy-scout-rule-fails</id>
-    <content type="html"><![CDATA[<p><img src="../imgs/2016-08-02-when-the-boy-scout-rule-fails/boy-scout-rule.jpg" alt="An illustration of the boy scout rule" /><div class="image-credits"><a href="http://bit.ly/2osQoyg">Original Tweet</a> by Marteen van Leeuwen</div></p>
-
-<p>Here goes the <a href="http://programmer.97things.oreilly.com/wiki/index.php/The_Boy_Scout_Rule">boy scout rule</a> :</p>
-
-<blockquote><p>Always check a module in cleaner than when you checked it out.</p></blockquote>
-
-<p>Unfortunately, this alone does not guarantee to keep the technical debt under control. What can we do then ?</p>
-
-<h2>Why the boy scout rule is not enough</h2>
-
-<p>I can easily think of a few issues that are not covered by the boy scout rule.</p>
-
-<h3>It only deals with local problems</h3>
-
-<p>In it&rsquo;s statement, the boy scout rule is local and does not address large scale design or architecture issues. Applying the boy scout rule keeps files well written, using with clear and understandable code. From a larger perspective though, it does very little or slow improvement to the overall design.</p>
-
-<p>These large scale refactorings are very difficult to deal with using the boy scout rule alone. It could be done but would require to share the refactoring goal with all the team, and then track its progress, while at the same time dealing with all the other subjects of the project. That&rsquo;s starting to sound like multitasking to me.</p>
-
-<h3>It&rsquo;s skill dependent</h3>
-
-<p>Another point about the boy scout rule (and to be fair, about any refactoring technique) is that programmers will be able to clean the code only as much as their skills allow them to !</p>
-
-<p>Imagine what would happen when a new master developer arrives in a team of juniors, he&rsquo;d spot a lot of technical debt and would suggest improvements and ways to clean the code. Code that was thought of as very clean would suddenly be downgraded to junk !</p>
-
-<p>The point here is that the boy scout rule cannot guarantee that you have no technical debt, because you don&rsquo;t know how much you have !</p>
-
-<p>That&rsquo;s where the debt metaphor reaches its limits and flips to some productivity investment. By investing time to perform some newly discovered refactoring, you could get a productivity boost !</p>
-
-<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design"><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/ddd.jpg" title="The cover of &ldquo;Domain Driven Design&rdquo;" ></a></p>
-
-<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470200818&amp;sr=8-1&amp;keywords=domain+driven+design">Domain-Driven Design: Tackling Complexity in the Heart of Software</a>, Eric Evans calls this knowledge distillation. He means that little by little, the team gains better understanding of the domain, sometimes going through what he calls a &lsquo;breakthrough&rsquo;. These breakthroughs often promote existing code to technical debt &hellip;</p>
-
-<h3>It&rsquo;s context dependent</h3>
-
-<p>Developers alone are not the only one responsible for creating technical debt. Changes to the environment also do.</p>
-
-<p>For example, if the market conditions change, and that new expectations for the product are slowly becoming the norm, your old perfectly working system becomes legacy and technical debt. As an example, let&rsquo;s examine what happened to the capital markets software industry in response to the 2008 crisis.</p>
-
-<ul>
-<li>The sector became a lot more regulated</li>
-<li>Risk control is moving from nightly batches to real time</li>
-<li>The demand for complex (and risky) contracts decreased</li>
-<li>As a consequence, trading on simpler contracts exploded</li>
-</ul>
-
-
-<p>All these elements combined invalidated existing architectures !</p>
-
-<p>New technologies also create technical debt. Think the switch from mainframe to the web.</p>
-
-<h2>What do we need then ?</h2>
-
-<p>Should we stop using the boy scout rule ? Surely not, it would be a total non-sense. Submitting clean and readable code is a must.</p>
-
-<p>But it is not enough. If you have spotted some large scale refactoring that could bring some improvement, we should do what a fund manager would do :</p>
-
-<ol>
-<li>Estimate the return on investment</li>
-<li>If it is good enough, do it now</li>
-</ol>
-
-
-<p>Obviously, large refactorings should also be split into smaller <del>value adding</del> cost reducing items. But then what ?</p>
-
-<p><a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development"><img class="center" src="/imgs/2016-08-02-when-the-boy-scout-rule-fails/nature-of-software.jpg" title="The cover of &ldquo;The Nature of Software Development&rdquo;" ></a></p>
-
-<p>In <a href="https://www.amazon.com/Nature-Software-Development-Simple-Valuable/dp/1941222374/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1470290668&amp;sr=8-1&amp;keywords=the+nature+of+software+development">The Nature of Software Development</a> Ron Jefferies says that we need a unique value-based prioritization strategy for everything, including technical improvements. Once you&rsquo;ve got that, there&rsquo;s no sense in splitting and embedding your refactoring in other tasks, this will just increase your work in progress, reducing your throughput and cycle time.</p>
-
-<p>Frankly, I think that&rsquo;s easier said than done. I can <em>think</em> of two ways :</p>
-
-<ul>
-<li>As Ron Jefferies tends to say, have a jelled-cross-functional team discuss and prioritize collectively</li>
-<li>As <a href="http://reinertsenassociates.com/technical-debt-adding-math-metaphor/">Don Reintersen</a> advocates, use an <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">economical framework</a> to estimate the return on investment</li>
-</ul>
-
-
-<p>At least that&rsquo;s a starting point !</p>
 ]]></content>
   </entry>
   

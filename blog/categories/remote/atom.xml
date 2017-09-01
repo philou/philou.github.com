@@ -4,7 +4,7 @@
   <title><![CDATA[Category: remote | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/remote/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-08-29T07:37:50+02:00</updated>
+  <updated>2017-09-01T07:29:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Throwing code away frequently]]></title>
+    <link href="http://philippe.bourgau.net/throwing-code-away-frequently/"/>
+    <updated>2017-09-01T06:56:00+02:00</updated>
+    <id>http://philippe.bourgau.net/throwing-code-away-frequently</id>
+    <content type="html"><![CDATA[<p>Here is the main feedback I got about my previous post <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming</a>.</p>
+
+<blockquote><p>What do you actually mean by throwing code away ? Does it mean stoping unit testing and refactoring ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg" alt="A drawing of a shredder destroying some code" /></p>
+
+<p>So I guess it deserves a bit of explanation.</p>
+
+<h2>What is it all about ?</h2>
+
+<p>When programming, I don&rsquo;t throw code away a lot. I tend to rely on my automated tests to change the code I already have. That might be a problem.</p>
+
+<p>As with everything, there is no one size fits all. We should choose the best practice for our current situation. Same thing applies for incremental changes versus rewriting.</p>
+
+<p>TDD makes incremental changes cost effective, and as such, is a key to get out of the Waterfall.</p>
+
+<p>The idea of throwing code away frequently is to make rewriting cost effective, so we can do it more often.</p>
+
+<h2>Why would we want to do so ?</h2>
+
+<p>In &ldquo;<a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">When Understanding means Rewriting"</a>, Jeff Atwood explains that reading code can be more difficult than writing it. There is a point where rewriting is going to be cheaper than changing.</p>
+
+<p>The more unit test you have, the later you reach that point. The more technical debt you take, and the sooner. The bigger the part to rewrite, the more risky it becomes.</p>
+
+<p>Let&rsquo;s imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as<br/>
+<a href="http://mikecavaliere.com/throw-away-your-code/">F**k Going Green: Throw Away Your Code</a>.</p>
+
+<p>This would be great for new features, that might be removed if they don&rsquo;t bring any value. It would also be a good way to get rid of technical debt. Naresh Jain also makes the point that without tests, you&rsquo;ll have to keep things simple (<a href="https://blogs.agilefaqs.com/2008/10/07/throwing-away-code/">here</a> and <a href="https://fr.slideshare.net/nashjain/the-decline-and-fall-of-agile-antifragile-mindset-to-rescue">here</a>) !</p>
+
+<p>Wait a minute, isn&rsquo;t that <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a> ?</p>
+
+<h2>How to make it work</h2>
+
+<p><a href="/extreme-extreme-programming-2017/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg" alt="A graph with all the practices from my previous article eXtreme eXtreme Programming" /></a></p>
+
+<h3>How to ensure quality without unit tests ?</h3>
+
+<p>TDD and unit testing is a cornerstone of XP. If we remove it, we need something else to build quality in. Could Mob Programming and Remote teams do the trick ?</p>
+
+<p>&ldquo;Given enough eyeballs, all bugs are shallow&rdquo;. Pair programming and code reviews catch a lot more bugs than solo programming. Only a few bugs are likely to pass through the scrutiny of the whole team doing mob programming.</p>
+
+<p>What about Remote ? Martin Fowler <a href="https://martinfowler.com/articles/remote-or-co-located.html">explains</a> that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.</p>
+
+<p><a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg" alt="People vs methodology impact on productivity" /></a><div class="image-credits">Photo from Steve McConnell on <a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/">Construx</a></div></p>
+
+<p>Finally, the Cucumber team <a href="https://cucumber.io/blog/2015/12/21/the-mob-rules-ok">reported</a> that Mob Programming works well for remote teams.</p>
+
+<h3>How to make this safer ?</h3>
+
+<p>Even with the best team, mistakes will happen. How can we avoid pushing a rewrite that crashes the whole system ?</p>
+
+<p>The main answer to that is good continuous deployment. We should deploy to a subset of users first. We should be able to rollback straight away if things don&rsquo;t work as expected.</p>
+
+<p>As the system grows, <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a> can keep continuous deployment under control. We can deploy, update and roll them back independently. By nature, microservices also reduce the scope of the rewrite. That alone, as we said earlier, makes rewrites safer.</p>
+
+<p>As a last point, some technologies make building microservice systems easier and incremental. The <a href="https://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm">Erlang VM</a>, for example, with first class actors, is one these. Time to give <a href="https://www.erlang.org/">Erlang</a> and <a href="https://elixir-lang.org/">Elixir</a> a try !</p>
+
+<h3>Is this always a good idea ?</h3>
+
+<p>There are good and bad situations.</p>
+
+<p>For example, a lean startup or data driven environment seems a good fit. Suppose your team measures the adoption of new features before deciding to keep or ditch them. You&rsquo;d better not invest in unit tests straight away.</p>
+
+<p>On the other side, software for a complex domain will be very difficult to rewrite flawlessly. I have worked in the finance industry for some years, I know what a complex domain is. I doubt I could rewrite a piece of intricate finance logic without bugs. I would stick to <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> and unit testing in these areas.</p>
+
+<h3>How to dip your toe</h3>
+
+<p>Here is how I intend to dip <em>my</em> toe. I won&rsquo;t drop automated testing completely yet. What I could do instead (and that I already did on side projects) is to start with end to end tests only.</p>
+
+<p>From there every time I want to change a piece of code, I have many options :</p>
+
+<ul>
+<li>Add a new end to end test and change the code.</li>
+<li>If the code is too much of a mess, I can rewrite it from scratch. I&rsquo;ll have the safety of the end to end tests.</li>
+<li>If I see that the module is stabilizing, has not been rewritten for a while, and yields well to modifications. I could start splitting end to end tests into unit tests, and embark on the TDD road.</li>
+</ul>
+
+
+<p>Maybe later, when I have a team doing mob programming to find my mistakes, we&rsquo;ll skip the end to end tests.</p>
+
+<h2>Other interesting links</h2>
+
+<ul>
+<li><a href="http://corgibytes.com/blog/2016/11/01/throwaway-code/">Throwaway Code</a> by M. Scott Ford</li>
+<li><a href="http://wiki.c2.com/?RewriteCodeFromScratch">Rewrite Code From Scratch</a> on c2 wiki</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[eXtreme eXtreme Programming (2017)]]></title>
@@ -87,7 +182,7 @@
 
 <p>Pair programming is great for code quality and knowledge sharing. <a href="https://en.wikipedia.org/wiki/Mob_programming#cite_note-8">Mob programming</a> is the more extreme version of pairing where <em>all</em> the team codes together.</p>
 
-<h3>No Refactoring</h3>
+<h3><a href="/throwing-code-away-frequently/">Throw code away frequently</a></h3>
 
 <p>An alternative to refactoring with unit tests is throwaway and rewrite once it gets too bad. Companies have been doing that for years. I worked at a bank that used to throwaway and rewrite individual apps that were part of a larger system. It can be a huge waste of money if these sub systems are too large. Scaling down to individual classes or microservices could make this cost effective.</p>
 
@@ -227,83 +322,6 @@
 <p> <div style="margin-bottom:5px"> <strong> <a href="http://philippe.bourgau.net//www.slideshare.net/aatwi/extreme-practices-agiletourbeirut-2016" title="Extreme Practices - AgileTourBeirut - 2016" target="_blank">Extreme Practices &ndash; AgileTourBeirut &ndash; 2016</a> </strong> from <strong><a target="_blank" href="http://philippe.bourgau.net//www.slideshare.net/aatwi">Ahmad Atwi</a></strong> </div></p>
 
 <p>EDIT 2016/11/23 : <a href="https://www.youtube.com/watch?v=oJsukJhxt7E">the full video</a> is now on YouTube</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Trello Templates to Boost Your Remote Retrospectives]]></title>
-    <link href="http://philippe.bourgau.net/trello-templates-to-boost-your-remote-retrospectives/"/>
-    <updated>2016-04-11T20:31:00+02:00</updated>
-    <id>http://philippe.bourgau.net/trello-templates-to-boost-your-remote-retrospectives</id>
-    <content type="html"><![CDATA[<p>I already wrote how we started to use <a href="http://trello.com">Trello</a> to do our <a href="/trellospectives-remote-retrospectives-with-trello/">remote retrospectives</a>. A while ago, my team mate <a href="http://bilal.eltayara.net/blog/2015/09/20/agile-retrospectives-using-trello/">Bilal Tayara</a> started to collect our activities into <a href="https://trello.com/agileretrospectives">trello templates</a>.</p>
-
-<p><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/retrospective_meetings.jpg" title="&lsquo;Stop Doing&rsquo;, &lsquo;Continue Doing&rsquo; &amp; &lsquo;Start doing&rsquo; panels of a retrospective activity" ></p>
-
-<h2>New activities</h2>
-
-<p>I just imported new activities we have been using in the past months :</p>
-
-<ul>
-<li>SMART Goals</li>
-<li>5 Whys</li>
-<li>Circle of Questions</li>
-<li>Communication</li>
-<li>Engagement</li>
-<li>ESVP</li>
-<li>Fishbone</li>
-<li>Focus On/Focus Off</li>
-<li>Force Field Analysis</li>
-<li>Gifts</li>
-<li>Glad Sad Mad</li>
-<li>Health Radar</li>
-<li>HHH</li>
-<li>Hot Air Balloon</li>
-<li>How are you feeling today ?</li>
-<li>Improvements Brainstorming</li>
-<li>Learning Matrix</li>
-<li>Note To Self</li>
-<li>Plus / Delta</li>
-<li>Problem &ndash;> Action</li>
-<li>Punctual Paulo</li>
-<li>Retrospective Planning Game</li>
-<li>Risk Brainstorming</li>
-<li>ROTI</li>
-<li>Sail Boat</li>
-<li>Satisfaction Histogram</li>
-<li>Take Away</li>
-<li>Team</li>
-<li>Team Radar</li>
-<li>Warmup Question</li>
-<li>What happened since last retro ?</li>
-</ul>
-
-
-<h2>How to use these templates</h2>
-
-<p>Clone the template to your organization every time you want to use it. There are instructions in the template to explain how to use it. For more detailed instructions, have a look at the original :</p>
-
-<ul>
-<li><a href="https://pragprog.com/book/dlret/agile-retrospectives">Agile Retrospectives, Making Good Teams Great</a> by Esther Derby and Diana Larsen, Foreword by Ken Schwaber</li>
-</ul>
-
-
-<p><a href="https://pragprog.com/book/dlret/agile-retrospectives"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/AgileRetrospectives.jpg" title="The cover of Agile Retrospectives" ></a></p>
-
-<ul>
-<li><a href="http://www.infoq.com/minibooks/agile-retrospectives-value">Getting Value out of Agile Retrospectives, Second Edition</a> by Luis Gonçalves and Ben Linders</li>
-</ul>
-
-
-<p><a href="http://www.infoq.com/minibooks/agile-retrospectives-value"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/GettingAgileOutOfAgileRetrospectives.jpg" title="The cover of Getting Agile Out Of Agile Retrospectives" ></a></p>
-
-<ul>
-<li><a href="https://leanpub.com/funretrospectives">Fun Retrospectives</a> by Taina Caetano and Paulo Caroli</li>
-</ul>
-
-
-<p><a href="https://leanpub.com/funretrospectives"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/FunRetrospectives.jpg" title="The cover of Fun Retrospectives" ></a></p>
-
-<p>One last thing : in order to improve this collection, we&rsquo;d like to have your feedback on existing activities, or your own new templates for other activities.</p>
 ]]></content>
   </entry>
   

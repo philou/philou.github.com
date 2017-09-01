@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-08-29T07:37:50+02:00</updated>
+  <updated>2017-09-01T07:29:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Throwing code away frequently]]></title>
+    <link href="http://philippe.bourgau.net/throwing-code-away-frequently/"/>
+    <updated>2017-09-01T06:56:00+02:00</updated>
+    <id>http://philippe.bourgau.net/throwing-code-away-frequently</id>
+    <content type="html"><![CDATA[<p>Here is the main feedback I got about my previous post <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming</a>.</p>
+
+<blockquote><p>What do you actually mean by throwing code away ? Does it mean stoping unit testing and refactoring ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg" alt="A drawing of a shredder destroying some code" /></p>
+
+<p>So I guess it deserves a bit of explanation.</p>
+
+<h2>What is it all about ?</h2>
+
+<p>When programming, I don&rsquo;t throw code away a lot. I tend to rely on my automated tests to change the code I already have. That might be a problem.</p>
+
+<p>As with everything, there is no one size fits all. We should choose the best practice for our current situation. Same thing applies for incremental changes versus rewriting.</p>
+
+<p>TDD makes incremental changes cost effective, and as such, is a key to get out of the Waterfall.</p>
+
+<p>The idea of throwing code away frequently is to make rewriting cost effective, so we can do it more often.</p>
+
+<h2>Why would we want to do so ?</h2>
+
+<p>In &ldquo;<a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">When Understanding means Rewriting"</a>, Jeff Atwood explains that reading code can be more difficult than writing it. There is a point where rewriting is going to be cheaper than changing.</p>
+
+<p>The more unit test you have, the later you reach that point. The more technical debt you take, and the sooner. The bigger the part to rewrite, the more risky it becomes.</p>
+
+<p>Let&rsquo;s imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as<br/>
+<a href="http://mikecavaliere.com/throw-away-your-code/">F**k Going Green: Throw Away Your Code</a>.</p>
+
+<p>This would be great for new features, that might be removed if they don&rsquo;t bring any value. It would also be a good way to get rid of technical debt. Naresh Jain also makes the point that without tests, you&rsquo;ll have to keep things simple (<a href="https://blogs.agilefaqs.com/2008/10/07/throwing-away-code/">here</a> and <a href="https://fr.slideshare.net/nashjain/the-decline-and-fall-of-agile-antifragile-mindset-to-rescue">here</a>) !</p>
+
+<p>Wait a minute, isn&rsquo;t that <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a> ?</p>
+
+<h2>How to make it work</h2>
+
+<p><a href="/extreme-extreme-programming-2017/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg" alt="A graph with all the practices from my previous article eXtreme eXtreme Programming" /></a></p>
+
+<h3>How to ensure quality without unit tests ?</h3>
+
+<p>TDD and unit testing is a cornerstone of XP. If we remove it, we need something else to build quality in. Could Mob Programming and Remote teams do the trick ?</p>
+
+<p>&ldquo;Given enough eyeballs, all bugs are shallow&rdquo;. Pair programming and code reviews catch a lot more bugs than solo programming. Only a few bugs are likely to pass through the scrutiny of the whole team doing mob programming.</p>
+
+<p>What about Remote ? Martin Fowler <a href="https://martinfowler.com/articles/remote-or-co-located.html">explains</a> that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.</p>
+
+<p><a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg" alt="People vs methodology impact on productivity" /></a><div class="image-credits">Photo from Steve McConnell on <a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/">Construx</a></div></p>
+
+<p>Finally, the Cucumber team <a href="https://cucumber.io/blog/2015/12/21/the-mob-rules-ok">reported</a> that Mob Programming works well for remote teams.</p>
+
+<h3>How to make this safer ?</h3>
+
+<p>Even with the best team, mistakes will happen. How can we avoid pushing a rewrite that crashes the whole system ?</p>
+
+<p>The main answer to that is good continuous deployment. We should deploy to a subset of users first. We should be able to rollback straight away if things don&rsquo;t work as expected.</p>
+
+<p>As the system grows, <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a> can keep continuous deployment under control. We can deploy, update and roll them back independently. By nature, microservices also reduce the scope of the rewrite. That alone, as we said earlier, makes rewrites safer.</p>
+
+<p>As a last point, some technologies make building microservice systems easier and incremental. The <a href="https://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm">Erlang VM</a>, for example, with first class actors, is one these. Time to give <a href="https://www.erlang.org/">Erlang</a> and <a href="https://elixir-lang.org/">Elixir</a> a try !</p>
+
+<h3>Is this always a good idea ?</h3>
+
+<p>There are good and bad situations.</p>
+
+<p>For example, a lean startup or data driven environment seems a good fit. Suppose your team measures the adoption of new features before deciding to keep or ditch them. You&rsquo;d better not invest in unit tests straight away.</p>
+
+<p>On the other side, software for a complex domain will be very difficult to rewrite flawlessly. I have worked in the finance industry for some years, I know what a complex domain is. I doubt I could rewrite a piece of intricate finance logic without bugs. I would stick to <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> and unit testing in these areas.</p>
+
+<h3>How to dip your toe</h3>
+
+<p>Here is how I intend to dip <em>my</em> toe. I won&rsquo;t drop automated testing completely yet. What I could do instead (and that I already did on side projects) is to start with end to end tests only.</p>
+
+<p>From there every time I want to change a piece of code, I have many options :</p>
+
+<ul>
+<li>Add a new end to end test and change the code.</li>
+<li>If the code is too much of a mess, I can rewrite it from scratch. I&rsquo;ll have the safety of the end to end tests.</li>
+<li>If I see that the module is stabilizing, has not been rewritten for a while, and yields well to modifications. I could start splitting end to end tests into unit tests, and embark on the TDD road.</li>
+</ul>
+
+
+<p>Maybe later, when I have a team doing mob programming to find my mistakes, we&rsquo;ll skip the end to end tests.</p>
+
+<h2>Other interesting links</h2>
+
+<ul>
+<li><a href="http://corgibytes.com/blog/2016/11/01/throwaway-code/">Throwaway Code</a> by M. Scott Ford</li>
+<li><a href="http://wiki.c2.com/?RewriteCodeFromScratch">Rewrite Code From Scratch</a> on c2 wiki</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Forget unit tests, only fast tests matter]]></title>
@@ -590,67 +685,6 @@ end
 <p>Finally, TDD can simplify your processes and tooling. Team-wide TDD results in a steady flow of features on top of which it is easier to create simple and effective processes and tools.</p>
 
 <p>The road is long, sinuous and at times rocky, but so are the rewards.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flavors of TDD]]></title>
-    <link href="http://philippe.bourgau.net/flavours-of-tdd/"/>
-    <updated>2016-09-20T20:54:00+02:00</updated>
-    <id>http://philippe.bourgau.net/flavours-of-tdd</id>
-    <content type="html"><![CDATA[<p>During the years doing some coding dojos with the same circle of people, I came up with my own style of practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. Lately, I had the chance to do a pair programming session with someone I did not know. That made me realize that they are in fact even more ways to practice TDD than I thought.</p>
-
-<h2>Mockist vs Classisist</h2>
-
-<p>A lot has already been written (and discussed) about these two approaches. I myself have already <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">blogged</a> about the subject, I even gave a <a href="/how-not-to-use-mocks-my-talk-at-paris-rb/">talk</a> about it. From my own point of view, I believe that the inconvenients of making mocking the default far outweights the benefits. I&rsquo;m not saying that mocks aren&rsquo;t useful from time to time, but rather that they should remain the exception.</p>
-
-<h2>Top-Down vs Bottom-Up</h2>
-
-<p>That&rsquo;s the reason why I wrote this post. This is the main difference I found between my style and my pair&rsquo;s. Let me explain.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg" title="Top-Down vs Bottom-Up" ></p>
-
-<h3>Top-Down</h3>
-
-<p>Doing TDD top-down means starting with high level end to end tests, implementing the minimum to make it work, refactor and repeat. A bit like BDD, the point is to focus on the expected behavior, and avoid writing useless things. The bad point is that the refactoring part can get pretty difficult. On real life code, strictly following top-down would mean writing a feature test first, passing it with a quick and dirty implementation, to then spend hours trying to refactor all that mess &hellip; good luck !</p>
-
-<p>Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#">Conway&rsquo;s Game of Life</a> using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders &hellip;). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/glider.gif" title="Conway&rsquo;s game of life gliders" ></p>
-
-<h3>Bottom-Up</h3>
-
-<p>At the other side of the spectrum, you can do bottom-up TDD. This means unit testing and implementing all the small bricks you think you&rsquo;ll need to provide the expected overall feature. The idea is to avoid tunnels and to get fast feedback on what you are coding. The bad side is that you might be coding something that will end up being unnecessary. Be careful, if you find yourself spending a lot of time building up utility classes, you might be doing too much bottom-up implementation.</p>
-
-<p>The <a href="http://codingdojo.org/cgi-bin/index.pl?KataRomanNumerals">Numerals to Romans Kata</a> is a good exercise to fail at bottom-up. Every time I did this exercise during a coding dojo, people new to it would start to come up with complicated ways to do it (often involving complex array manipulation). Compared to that, applying disciplined bottom-up TDD brings a <a href="https://github.com/FreeCodeCamp/FreeCodeCamp/wiki/Algorithm-Roman-Numeral-Converter">brutally effective solution for Numerals to Romans</a>.</p>
-
-<h2>Mixed approach</h2>
-
-<p>Both approaches have their pros and cons. I really believe developers who are serious about TDD should master both, and learn when to apply each. In fact, as often, the best approach lies somewhere in the middle. Here&rsquo;s my recipe :</p>
-
-<ol>
-<li>Start with a high level feature test</li>
-<li>try to make it pass &hellip;</li>
-<li>&hellip; (usually) fail</li>
-<li>rollback or shelve your test and draft implementation</li>
-<li>build a brick</li>
-<li>unshelve</li>
-<li>try to make it pass &hellip;</li>
-<li>&hellip; and so one until the high level test finally passes.</li>
-</ol>
-
-
-<p>In fact, it&rsquo;s a lot like the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> for building features instead of refactoring.</p>
-
-<h2>Practice in dojos</h2>
-
-<p>It&rsquo;s possible to intentionally practice this in coding dojos as well. Most kata should be OK, as long as the group agrees to fix it using this particular approach up front.</p>
-
-<p>If during the dojo, you&rsquo;ve just written a test, suddenly realize that it won&rsquo;t be easy to get it passing, and that you&rsquo;ve got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat &hellip; Eventually, you&rsquo;ll have all the bricks to make it easy to pass your test.</p>
-
-<p><img class="center" src="/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg" title="Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly" ></p>
-
-<p>Some might say this is not &lsquo;pure&rsquo; TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you&rsquo;re on the right track.</p>
 ]]></content>
   </entry>
   
