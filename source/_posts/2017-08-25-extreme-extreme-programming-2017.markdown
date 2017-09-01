@@ -73,7 +73,7 @@ Incremental improvements, in either product or organization, is not enough. As [
 
 Pair programming is great for code quality and knowledge sharing. [Mob programming](https://en.wikipedia.org/wiki/Mob_programming#cite_note-8) is the more extreme version of pairing where _all_ the team codes together.
 
-### No Refactoring
+### [Throw code away frequently](/throwing-code-away-frequently/)
 
 An alternative to refactoring with unit tests is throwaway and rewrite once it gets too bad. Companies have been doing that for years. I worked at a bank that used to throwaway and rewrite individual apps that were part of a larger system. It can be a huge waste of money if these sub systems are too large. Scaling down to individual classes or microservices could make this cost effective.
 
