@@ -5,7 +5,7 @@ date: 2017-08-18 09:11
 comments: true
 categories:
  - agile
- - retrospective
+ - retrospectives
  - remote
 keywords: "Agile Retrospectives, Retrospectives, Energizers, Remote Retrospectives, Remote Energizers, Remote Agile Retrospective Energizers, Remote Agile Energizers, Agile Energizers, Remote Retrospectives Energizers" 
 description: "The story of how my team came to do remote energizers the way they do them, and tips for your remote energizers"

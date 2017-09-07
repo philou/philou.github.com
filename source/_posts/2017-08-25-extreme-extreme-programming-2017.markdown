@@ -65,7 +65,7 @@ Incremental improvements, in either product or organization, is not enough. As [
 
 [![The cover of the Adapt book](../imgs/2017-08-25-extreme-extreme-programming-2017/adapt.jpg)](https://www.amazon.com/gp/product/1250007550/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1250007550&linkCode=as2&tag=pbourgau-20&linkId=1f1a29f9454328c6606e12b40399eb06)
 
-### Improvement kata
+### [Improvement kata](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/)
 
 [Improvement kata](https://en.wikipedia.org/wiki/Toyota_Kata#The_Improvement_Kata) is a way to drive long term continuous improvement. It's the main tool for that at Toyota (read [Toyota Kata](https://www.amazon.com/gp/product/0071635238/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0071635238&linkCode=as2&tag=pbourgau-20&linkId=93a84b0867a3e0f3dd915d87cba78b90) to learn more). It provides more time to think of the problem than a retrospective. It also fits perfectly in a data driven environment.
 
