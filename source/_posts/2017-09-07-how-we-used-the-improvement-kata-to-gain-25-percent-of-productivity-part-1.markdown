@@ -8,6 +8,8 @@ categories:
  - lean
  - retrospectives
  - continuous improvement
+ - improvement kata
+ - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Retrospectives, Lean, Lean Software, Agile, Scrum"
 description: "The first part of a 4 post series about how we applied the improvement kata to increase the productivity of our software team"
 ---
@@ -68,4 +70,4 @@ That's how I started to apply the improvement kata in my team. I already had an 
 
 Retrospectives could not get us there. Would the improvement kata would succeed ?
 
-This is the first part of a series of 4 posts relating our first use of the improvement kata. In the next post, I'll explain what we did to understand the current situation.
+This is the first part of a [series of 4 posts](/blog/categories/first-improvement-kata-series/) relating our first use of the improvement kata. In the [next post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/), I'll explain what we did to understand the current situation.
