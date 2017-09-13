@@ -10,7 +10,7 @@ categories:
  - improvement kata
  - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data"
-description: "Second post in a series relating our first improvement kata. Covers the first half of the 'understand' phase."
+description: "Second post in a series relating our first improvement kata. Covers the first half of the 'understand' phase, where we start to have suspicions about the way we were handling bugs."
 ---
 In my [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/), I described the productivity issue our team was facing. How retrospectives did not work, and how I started looking at the [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html).
 
