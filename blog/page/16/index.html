@@ -102,6 +102,62 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-install-a-patched-ruby-interpreter-wit/">How to Install a Patched Ruby Interpreter With Rbenv and Ruby-build</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-09T00:00:00+01:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a>&nbsp;seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
+
+
+<p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
+
+
+<ul>
+<li>download the ruby sources</li>
+<li>patch them</li>
+<li>create a ruby-build package definition with them</li>
+<li>install with rbenv</li>
+</ul>
+
+
+<p>Here is a script that does this for ruby 1.9.2-p125 and gcdata patch.</p>
+
+
+<p>
+<script src="https://gist.github.com/4492543.js"></script>
+</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-i-set-up-a-trustico-rapid-ssl-certificate/">How I Set Up a Trustico Rapid Ssl Certificate on Heroku Ssl Endpoint</a></h1>
     
     
@@ -914,46 +970,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/stubmodel-and-mockmodel/">Stub_model and Mock_model</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-16T00:00:00+02:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I decided to stop using stub_model and mock_model. I do not use them enough to get fluent with them. Everytime I have to deal with them, something breaks in an unexpected way. I just decided to stand with good old stubs.</p>
-
-
-<p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/17/">&larr; Older</a>
@@ -1034,6 +1050,10 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">How we used the improvement kata to gain 25% of productivity - Part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">How we used the improvement kata to gain 25% of productivity - Part 1</a>
       </li>
     
@@ -1047,10 +1067,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/">5 Remote energizer tips that will make your remote retrospectives rock</a>
-      </li>
-    
-      <li class="post">
-        <a href="/forget-unit-tests/">Forget unit tests, only fast tests matter</a>
       </li>
     
   </ul>
