@@ -34,7 +34,7 @@ We started with available data : story points and velocity. For sure this is a p
 
 Here is our velocity curve over 2 years.
 
-[![Velocity vs Manpower graph](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg)](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg)
+[![Velocity graph](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg)](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg)
 
 It's obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That's a clue that our gut feeling was not completely wrong. Our productivity did change.
 
@@ -80,6 +80,6 @@ It felt a bit like when I did the [20 hours experiment to learn anything](/how-i
 
 > 💡If you feel lost when doing something for the first time. Push through !
 
-In next week's post, I'll continue to detail the 'understand' phase. [The series](/blog/categories/first-improvement-kata-series/) also gained an extra post, and will now be 5 posts long.
+In [next week's post](http://0.0.0.0:4000/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/), I'll continue to detail the 'understand' phase. [The series](/blog/categories/first-improvement-kata-series/) also gained an extra post, and will now be 5 posts long.
 
-See you next week.
+More to read next week.
