@@ -11,7 +11,6 @@ categories:
  - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data"
 description: "Third post in a series relating our first improvement kata. Covers the second half of the 'understand' phase, where we understood that to be more productive, we had to have less bugs to fix."
-published: false
 ---
 This is the third post on a [series of 5 about the improvement kata](/blog/categories/first-improvement-kata-series/). If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
