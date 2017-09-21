@@ -102,6 +102,51 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-copy-a-database-from-an-heroku-app-to/">How to Copy a Database From an Heroku App to Another</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-11T00:00:00+01:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &#8220;integration&#8221; app, where I can do late verifications before deploying to my production app. If you don&#8217;t already do this, I recommend you to start now !</p>
+
+
+<p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku pgbackups:restore DATABASE <span class="sb">`</span>heroku pgbackups:url --app my-app-prod<span class="sb">`</span> --app my-app-integ --confirm my-app-integ
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-install-a-patched-ruby-interpreter-wit/">How to Install a Patched Ruby Interpreter With Rbenv and Ruby-build</a></h1>
     
     
@@ -930,46 +975,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/ruby-thirdparties-best-practices/">Ruby Thirdparties Best Practices</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-26T00:00:00+02:00" pubdate data-updated="true">Apr 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><p>I am just finishing migrating <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> from rails 2 to rails 3, and I can assure that I learnt these lessons the hard way &hellip;<br />
-<ul>
-<li>use Bundler <a href="http://gembundler.com"><a href="http://gembundler.com">http://gembundler.com</a></a></li><li>keep your Gemfile simple : just the top level dependencies, and no version constraints</li><li>try to stick to popular gems : you&rsquo;ll find a lot more answers to your questions from the web. It&rsquo;s often simpler to write and maintain a little extra code than to depend on a crappy thirdparty that is supposed to meet your need</li><li>stick with the most recent versions of your dependencies. With a good test suite and with Bundler, it should be rather easy to upgrade, so do it often to avoid both the upgrade tunnel effect and struggling with bugs and incompatibility of unmaintained old versions of gems.</li></ul>
-<p>Edit: I discovered <a href="http://www.ruby-toolbox.com">the ruby toolbox</a>&nbsp;that categorizes and sorts gems based on their popularity !</p>
-<p>Edit 2: I discovered it is sometimes necessary to add constraints to get the latest versions of gems that would otherwise conflict (directly or not) with others.</p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/17/">&larr; Older</a>
@@ -1050,6 +1055,10 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">How we used the improvement kata to gain 25% of productivity - Part 3</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">How we used the improvement kata to gain 25% of productivity - Part 2</a>
       </li>
     
@@ -1063,10 +1072,6 @@ This might trigger an error like &#8220;wrong number of arguments for MyApp::Eng
     
       <li class="post">
         <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming (2017)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/">5 Remote energizer tips that will make your remote retrospectives rock</a>
       </li>
     
   </ul>

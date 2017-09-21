@@ -4,7 +4,7 @@
   <title><![CDATA[Category: agile | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-09-15T07:00:21+02:00</updated>
+  <updated>2017-09-21T06:31:20+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,159 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 3]]></title>
+    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/"/>
+    <updated>2017-09-13T09:12:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3</id>
+    <content type="html"><![CDATA[<p>This is the third post on a <a href="/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
+
+<p>In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">previous post</a>, I explained how we started to understand what was going on. We were now questioning our way of handling bugs.</p>
+
+<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg" alt="Bugs drawn on top of code" /></p>
+
+<h2>More understanding</h2>
+
+<h3>Types of tasks</h3>
+
+<p>To answer this question, we decided to plot the different types of tasks we had completed per sprint.</p>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg" alt="Bar chart with the types of tasks over sprints" /></a></p>
+
+<p>Think again of the velocity curve we started with. We see an almost exact correlation between story count (green bars above) and story points (blue curve below).</p>
+
+<blockquote><p>💡#NoEstimates works</p></blockquote>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg" alt="Velocity graph" /></a></p>
+
+<p>We can also see that after sprint 56, we were spending more time on bugs and improvements. Improvements are supposed to improve productivity, so we decided to focus on bugs first. Here is what we get if we compute the average number of bugs per sprint :</p>
+
+<table>
+<thead>
+<tr>
+<th>Periods </th>
+<th> Sprints </th>
+<th> Bugs </th>
+<th> Average bugs fixed per sprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015, Before sprint 56  </td>
+<td> 15 </td>
+<td>  21 </td>
+<td>    1.4</td>
+</tr>
+<tr>
+<td>After sprint 56 </td>
+<td> 34 </td>
+<td>  210 </td>
+<td>   6.1</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Starting sprint 56, we were fixing 4 times as many bugs as we used to do before !</p>
+
+<h3>What is going on with bugs ?</h3>
+
+<p>At this point, we felt we&rsquo;d made a great step forward in our understanding. We almost thought we were done with it &hellip;</p>
+
+<p>After a bit of thinking though, it was clear that we were not ! We still needed to understand why we were in this situation.</p>
+
+<p>We started by listing more questions :</p>
+
+<ul>
+<li>Could it be that we just got a lot better at testing ? Since sprint 56, we had been doing <a href="/how-we-started-exploratory-testing/">regular exploratory testing</a>. Exploratory testing sessions were very effective at finding bugs.</li>
+<li>Were we paying back a bug debt ? The created versus resolved trend seemed to show so. But it could also be that we weren&rsquo;t testing as well as we used to !</li>
+</ul>
+
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png" alt="Created vs Resolved Bugs graph" /></a></p>
+
+<ul>
+<li>If we were paying back a bug debt, how close were we to the end of the payback ?</li>
+<li>Were we creating too many flaws in the software ?</li>
+<li>Are we fixing too many bugs ? If so, what should we do to fix less ?</li>
+<li>Are the bugs coming from other teams using our component or from our own testing ?</li>
+<li>Are bugs on new or old code ?</li>
+</ul>
+
+
+<p>A lot of questions, all difficult to answer. We decided to first see if we were paying back a bug debt. If this was the case, most other questions would become more or less irrelevant. With a bit of thinking, we came up with a measure to get the answer.</p>
+
+<h3>Are we paying back a bug debt ?</h3>
+
+<p>We first started to do exploratory testing at sprint 56. To do this, we would run a 1 hour session, where the pair finding the more bugs would win fruits. (Later on, we streamlined exploratory testing as part of the workflow for every story) At that time, we used to find more than 10 bugs in 1 hour.</p>
+
+<blockquote><p>💡Gamification transforms nice developers into berserk testers !</p></blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Explo Test Sesssion </th>
+<th> 61 </th>
+<th> 62 </th>
+<th> 63 </th>
+<th> 64 </th>
+<th> 66 </th>
+<th> 16.01</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bugs found  </td>
+<td> 16 </td>
+<td>  6 </td>
+<td> 16 </td>
+<td>    10 </td>
+<td>    11 </td>
+<td> 11</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>We would do another such a session. If we found significantly less than 10 bugs, let&rsquo;s say less than 6, it would mean that :</p>
+
+<ul>
+<li>we improved the quality of our software</li>
+<li>our streamlining of exploratory testing works</li>
+<li>if we continue to search and fix bugs as we do currently, we&rsquo;ll reach a point where we won&rsquo;t find any more bugs</li>
+</ul>
+
+
+<p>Otherwise, none of these stand, and we&rsquo;ll have to continue our investigations.</p>
+
+<p>So we did a 1 hour, fruit-powered, exploratory testing session. And we found only 3 bugs ! Indeed, we were paying back a bug debt. The question became</p>
+
+<blockquote><p>When should payback be over ?</p></blockquote>
+
+<p>A linear regression on the created vs resolved bug trend showed that we still had 15 more months to go !</p>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png" alt="Bug trend graph" /></a></p>
+
+<h2>Target condition</h2>
+
+<p>At that point, the target condition became obvious :</p>
+
+<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
+
+<p>Currently, around 1 pair (25% of the team) was busy fixing bugs. If we&rsquo;d manage to bring this down, we&rsquo;d have a 25% productivity boost.</p>
+
+<p>This was post 3 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. Next post will be about PDCA.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 2]]></title>
@@ -40,7 +193,7 @@
 
 <p>Here is our velocity curve over 2 years.</p>
 
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity vs Manpower graph" /></a></p>
+<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity graph" /></a></p>
 
 <p>It&rsquo;s obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That&rsquo;s a clue that our gut feeling was not completely wrong. Our productivity did change.</p>
 
@@ -89,9 +242,9 @@
 
 <blockquote><p>💡If you feel lost when doing something for the first time. Push through !</p></blockquote>
 
-<p>In next week&rsquo;s post, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
+<p>In <a href="http://0.0.0.0:4000/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">next week&rsquo;s post</a>, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
 
-<p>See you next week.</p>
+<p>More to read next week.</p>
 ]]></content>
   </entry>
   
@@ -313,177 +466,6 @@
 <p><img src="../imgs/2017-08-18-5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/yell.jpg" alt="Someone yelling in a kid's 'can-phone'" /></p>
 
 <p>Remote work is here to stay. More and more teams are facing similar difficulties. We need to invent new work practices. If you discovered new ways to run remote energizer, please share them with a comment.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Don't stick to TDD's Red-Green-Refactor loop to the letter]]></title>
-    <link href="http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/"/>
-    <updated>2017-06-28T15:52:00+02:00</updated>
-    <id>http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter</id>
-    <content type="html"><![CDATA[<p>As long as you are writing your tests before your code and doing regular refactoring, you are doing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> !</p>
-
-<p>The Red &ndash; Green &ndash; Refactor loop is useful to introduce TDD to new developers. Different loops can be more effective in real world situation.</p>
-
-<p>The Red &ndash; Green &ndash; Refactor loop is not a dogma !</p>
-
-<p><a href="http://www.natpryce.com/"><img src="../imgs/2017-06-28-dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/red-green-refactor.jpg" alt="The famous red, green, refactor TDD loop" /></a></p>
-
-<h2>Refactor &ndash; Red &ndash; Green</h2>
-
-<p>When I work on a story, I very often keep a TODO list next to my desk. I use it to keep track of the next steps, the edge cases to test, the code smells and refactorings to do.</p>
-
-<p>When I get to the end of the story, all that remains of this list is a few refactorings. Very often, I don&rsquo;t do them !</p>
-
-<p>With the feature working, doing these refactorings feels like violation of <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a>. Next time we&rsquo;ll have to work on this part of the code, we&rsquo;ll have a story to serve as guide to which refactorings to do.</p>
-
-<p>The same thing is effective at the unit test scale. It&rsquo;s easier to refactor when you know the test you want to add. Refactor to make this test easy to write !</p>
-
-<p>Here is an example with <a href="https://en.wikipedia.org/wiki/Fizz_buzz">Fizz Buzz</a></p>
-
-<p>```java
-static int fizzBuzz(int number) {
-   return number;
-}</p>
-
-<p>@Test public void
-it_is_1_for_1() {
-   assertThat(fizzBuzz(1)).isEqualTo(1);
-}</p>
-
-<p>@Test public void
-it_is_2_for_2() {
-   assertThat(fizzBuzz(2)).isEqualTo(2);
-}
-```</p>
-
-<p>Here is the test I&rsquo;d like to add. </p>
-
-<p><code>java
-@Test public void
-it_is_Fizz_for_3() {
-   assertThat(fizzBuzz(3)).isEqualTo("Fizz");
-}
-</code></p>
-
-<p>Unfortunately, fizzBuzz needs to return a String instead of an integer for it to compile. That&rsquo;s when I would refactor before adding the new test.</p>
-
-<p>```java
-static String fizzBuzz(int number) {
-   return Integer.toString(number);
-}</p>
-
-<p>@Test public void
-it_is_1_for_1() {
-   assertThat(fizzBuzz(1)).isEqualTo(&ldquo;1&rdquo;);
-}</p>
-
-<p>@Test public void
-it_is_2_for_2() {
-   assertThat(fizzBuzz(2)).isEqualTo(&ldquo;2&rdquo;);
-}
-```</p>
-
-<p>In the end, this loop is very like the classic TDD loop :</p>
-
-<p><code>
-red-green-refactor-red-green-refactor-red-green-refactor.............
-..........refactor-red-green-refactor-red-green-refactor-red-green...
-</code></p>
-
-<p>A bit more YAGNI, that&rsquo;s all.</p>
-
-<h2>Red &ndash; Better Red &ndash; Green &ndash; Refactor</h2>
-
-<p>A few weeks ago, <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">I wrote about error messages in unit tests</a>. To summarize, extra work on error messages reduces the testing feedback loop.</p>
-
-<p>We can translate this focus on error messages into an extra TDD step. Whatever the TDD loop you are using, you can add this step after the Red step.</p>
-
-<h2><del>Red</del> &ndash; Green &ndash; Refactor &ndash; Red &ndash; Green</h2>
-
-<p>Sometimes, it makes sense to refactor before fixing the test. The idea is to rely on the existing tests to prepare the code to fix the new test in one line.</p>
-
-<p>Let&rsquo;s take our Fizz Buzz example again. Imagine we finished the kata, when we decide to tweak the rules and try Fizz Buzz Bang. We should now print Bang on multiples of 7.</p>
-
-<p>Here is our starting point :</p>
-
-<p>```java
-static String fizzBuzz(int number) {
-   if (multipleOf(number, 3)) {
-      return &ldquo;Fizz&rdquo;;
-   }
-   if (multipleOf(number, 5)) {
-      return &ldquo;Buzz&rdquo;;
-   }
-   if (multipleOf(number, 3*5)) {
-      return &ldquo;FizzBuzz&rdquo;;
-   }   
-   return Integer.toString(number);
-}</p>
-
-<p>&hellip;</p>
-
-<p>@Test public void
-it_is_Bang_for_7() {
-   assertThat(fizzBuzz(7)).isEqualTo(&ldquo;Bang&rdquo;);
-}
-```</p>
-
-<p>I could go through all the hoops, 7, 14, then 3<em>7, 5</em>7 and finally 3<em>5</em>7 &hellip; By now, I should know the music though !</p>
-
-<p>What I would do in this case is :</p>
-
-<ul>
-<li>first to comment the new failing test to get back to green</li>
-<li>refactor the code to prepare for the new code</li>
-<li>uncomment the failing test</li>
-<li>fix it</li>
-</ul>
-
-
-<p>In our example, here is the refactoring I would do</p>
-
-<p>```java
-static String fizzBuzz(int number) {
-   String result = &ldquo;&rdquo;;
-   result += multipleWord(number, 3, &ldquo;Fizz&rdquo;);
-   result += multipleWord(number, 5, &ldquo;Buzz&rdquo;);
-   if (result.isEmpty()) {
-      result = Integer.toString(number);
-   }
-   return result;
-}</p>
-
-<p>private static String multipleWord(int number, int multiple, String word) {
-   if (multipleOf(number, multiple)) {
-      return word;
-   }
-   return &ldquo;&rdquo;;
-}</p>
-
-<p>&hellip;</p>
-
-<p>//@Test public void
-//it_is_Bang_for_7() {
-//   assertThat(fizzBuzz(7)).isEqualTo(&ldquo;Bang&rdquo;);
-//}
-```</p>
-
-<p>From there, fixing the test is dead simple.</p>
-
-<p>In practice I find this loop very useful. At local scale as we saw but it&rsquo;s also a great way to refactor your architecture at larger scale.</p>
-
-<p>One downsize is that if you are not careful, it might lead to over-engineering. Be warned, keep an eye on that !</p>
-
-<p>Last caveat : not all TDD interviewers like this technique &hellip;</p>
-
-<h2>Don&rsquo;t obsess</h2>
-
-<p>It&rsquo;s not because you are not following the Red Green Refactor loop to the letter that you are not doing TDD.</p>
-
-<p>An interesting point is that these variations to the TDD loop are combinable ! Experienced TDD practitioners can jump from one to the other without even noticing.</p>
-
-<p><a href="https://blog.acolyer.org/2017/06/13/a-dissection-of-the-test-driven-development-process-does-it-really-matter-to-test-first-or-test-last/">This paper</a> argues that as long as you write the tests along (before or after) the code, you get the same benefit. That&rsquo;s not going to make me stop writing my tests first, but it is interesting. That would mean that even a Code &ndash; Test &ndash; Refactor loop would be ok if it is fast enough !</p>
 ]]></content>
   </entry>
   

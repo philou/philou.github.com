@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-09-15T07:00:21+02:00</updated>
+  <updated>2017-09-21T06:31:20+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,160 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 3]]></title>
+    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/"/>
+    <updated>2017-09-13T09:12:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3</id>
+    <category term="agile" /><category term="continuous improvement" /><category term="first-improvement-kata-series" /><category term="improvement kata" /><category term="lean" />
+    <content type="html"><![CDATA[<p>This is the third post on a <a href="http://philippe.bourgau.net/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
+
+<p>In the <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">previous post</a>, I explained how we started to understand what was going on. We were now questioning our way of handling bugs.</p>
+
+<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg" alt="Bugs drawn on top of code" /></p>
+
+<h2>More understanding</h2>
+
+<h3>Types of tasks</h3>
+
+<p>To answer this question, we decided to plot the different types of tasks we had completed per sprint.</p>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg" alt="Bar chart with the types of tasks over sprints" /></a></p>
+
+<p>Think again of the velocity curve we started with. We see an almost exact correlation between story count (green bars above) and story points (blue curve below).</p>
+
+<blockquote><p>💡#NoEstimates works</p></blockquote>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg" alt="Velocity graph" /></a></p>
+
+<p>We can also see that after sprint 56, we were spending more time on bugs and improvements. Improvements are supposed to improve productivity, so we decided to focus on bugs first. Here is what we get if we compute the average number of bugs per sprint :</p>
+
+<table>
+<thead>
+<tr>
+<th>Periods </th>
+<th> Sprints </th>
+<th> Bugs </th>
+<th> Average bugs fixed per sprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015, Before sprint 56  </td>
+<td> 15 </td>
+<td>  21 </td>
+<td>    1.4</td>
+</tr>
+<tr>
+<td>After sprint 56 </td>
+<td> 34 </td>
+<td>  210 </td>
+<td>   6.1</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Starting sprint 56, we were fixing 4 times as many bugs as we used to do before !</p>
+
+<h3>What is going on with bugs ?</h3>
+
+<p>At this point, we felt we&rsquo;d made a great step forward in our understanding. We almost thought we were done with it &hellip;</p>
+
+<p>After a bit of thinking though, it was clear that we were not ! We still needed to understand why we were in this situation.</p>
+
+<p>We started by listing more questions :</p>
+
+<ul>
+<li>Could it be that we just got a lot better at testing ? Since sprint 56, we had been doing <a href="http://philippe.bourgau.net/how-we-started-exploratory-testing/">regular exploratory testing</a>. Exploratory testing sessions were very effective at finding bugs.</li>
+<li>Were we paying back a bug debt ? The created versus resolved trend seemed to show so. But it could also be that we weren&rsquo;t testing as well as we used to !</li>
+</ul>
+
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png" alt="Created vs Resolved Bugs graph" /></a></p>
+
+<ul>
+<li>If we were paying back a bug debt, how close were we to the end of the payback ?</li>
+<li>Were we creating too many flaws in the software ?</li>
+<li>Are we fixing too many bugs ? If so, what should we do to fix less ?</li>
+<li>Are the bugs coming from other teams using our component or from our own testing ?</li>
+<li>Are bugs on new or old code ?</li>
+</ul>
+
+
+<p>A lot of questions, all difficult to answer. We decided to first see if we were paying back a bug debt. If this was the case, most other questions would become more or less irrelevant. With a bit of thinking, we came up with a measure to get the answer.</p>
+
+<h3>Are we paying back a bug debt ?</h3>
+
+<p>We first started to do exploratory testing at sprint 56. To do this, we would run a 1 hour session, where the pair finding the more bugs would win fruits. (Later on, we streamlined exploratory testing as part of the workflow for every story) At that time, we used to find more than 10 bugs in 1 hour.</p>
+
+<blockquote><p>💡Gamification transforms nice developers into berserk testers !</p></blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Explo Test Sesssion </th>
+<th> 61 </th>
+<th> 62 </th>
+<th> 63 </th>
+<th> 64 </th>
+<th> 66 </th>
+<th> 16.01</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bugs found  </td>
+<td> 16 </td>
+<td>  6 </td>
+<td> 16 </td>
+<td>    10 </td>
+<td>    11 </td>
+<td> 11</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>We would do another such a session. If we found significantly less than 10 bugs, let&rsquo;s say less than 6, it would mean that :</p>
+
+<ul>
+<li>we improved the quality of our software</li>
+<li>our streamlining of exploratory testing works</li>
+<li>if we continue to search and fix bugs as we do currently, we&rsquo;ll reach a point where we won&rsquo;t find any more bugs</li>
+</ul>
+
+
+<p>Otherwise, none of these stand, and we&rsquo;ll have to continue our investigations.</p>
+
+<p>So we did a 1 hour, fruit-powered, exploratory testing session. And we found only 3 bugs ! Indeed, we were paying back a bug debt. The question became</p>
+
+<blockquote><p>When should payback be over ?</p></blockquote>
+
+<p>A linear regression on the created vs resolved bug trend showed that we still had 15 more months to go !</p>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png" alt="Bug trend graph" /></a></p>
+
+<h2>Target condition</h2>
+
+<p>At that point, the target condition became obvious :</p>
+
+<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
+
+<p>Currently, around 1 pair (25% of the team) was busy fixing bugs. If we&rsquo;d manage to bring this down, we&rsquo;d have a 25% productivity boost.</p>
+
+<p>This was post 3 in a <a href="http://philippe.bourgau.net/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. Next post will be about PDCA.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 2]]></title>
@@ -41,7 +195,7 @@
 
 <p>Here is our velocity curve over 2 years.</p>
 
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity vs Manpower graph" /></a></p>
+<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity graph" /></a></p>
 
 <p>It&rsquo;s obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That&rsquo;s a clue that our gut feeling was not completely wrong. Our productivity did change.</p>
 
@@ -90,9 +244,9 @@
 
 <blockquote><p>💡If you feel lost when doing something for the first time. Push through !</p></blockquote>
 
-<p>In next week&rsquo;s post, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="http://philippe.bourgau.net/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
+<p>In <a href="http://0.0.0.0:4000/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">next week&rsquo;s post</a>, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="http://philippe.bourgau.net/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
 
-<p>See you next week.</p>
+<p>More to read next week.</p>
 ]]></content>
   </entry>
   
@@ -2290,126 +2444,6 @@
 <p>I&rsquo;ve been practicing incremental architecture and design for a long time now. It made my life a lot simpler ! Most architecture questions become backlog items to prioritize.</p>
 
 <p>One last advice : be prepared to re-read <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky&rsquo;s article</a> whenever you get caught up in architecture meetings &hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How to get your team to do code reviews]]></title>
-    <link href="http://philippe.bourgau.net/how-to-get-your-team-to-do-code-reviews/"/>
-    <updated>2017-04-19T09:18:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-to-get-your-team-to-do-code-reviews</id>
-    <category term="best practices" /><category term="code reviews" /><category term="continuous improvement" /><category term="programming" />
-    <content type="html"><![CDATA[<p>As software developers, we very <del>always</del> often get to work in code bases that are not perfect. In this situation we have 3 choices : leave, grumble, or make some changes ! Team wide code reviews are a recognized way to increase the quality of the code.</p>
-
-<p>Unfortunately, installing code reviews as part of the daily work habits of a team can be very challenging. When I joined my team 3 years ago, no one was doing any kind of code reviews. With a small push here and there, I managed to get the team to adhere to a strict 4 eyes principle (full story <a href="http://philippe.bourgau.net/from-zero-to-pair-programming-hero/">here</a>).</p>
-
-<p>Here are a few strategies that I have either used or seen that should get your team mates to do code reviews.</p>
-
-<h2>Overall principle</h2>
-
-<p>Even if you are at the bottom of the org chart, you have far more influence than you would first think. My favorite way of bringing change is to demonstrate a valuable practice :</p>
-
-<ul>
-<li>First, you need to be trustworthy</li>
-<li>Then, do the practice you want to introduce</li>
-<li>Make sure it is seen as valuable</li>
-<li>Be ready to forgo the credits of the introduction of the practice</li>
-<li>Keep on until people start to copy what you are doing</li>
-</ul>
-
-
-<p>As <a href="http://quoteinvestigator.com/2010/12/21/doing-good-selfless/">someone famous</a> said</p>
-
-<blockquote><p>A man may do an immense deal of good, if he does not care who gets the credit</p></blockquote>
-
-<p>I won&rsquo;t go in the details about how to be trustworthy, which could be a post of its own. Basically, putting our customers interests first, speaking the truth and avoiding to appear dogmatic can get us a long way already. <a href="https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1">The Clean Coder</a> is an excellent read on the subject.</p>
-
-<p><a href="https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1"><img src="../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/clean-coder.jpg" alt="Front cover of the Clean Coder book" /></a></p>
-
-<h2>Strategies</h2>
-
-<h3>If you have retrospectives in place</h3>
-
-<p>In this case, you already have a place and time dedicated to discussing changes to your working agreements. Expressing your concerns about code quality (or another problem related to code reviews) and suggesting code reviews as a way to fix that problem might get a quick team buy-in.</p>
-
-<p>If you don&rsquo;t manage to get a definitive buy-in, try to get the team to &lsquo;beta-test&rsquo; code reviews for a while. If the experiment demonstrates value, it will convert into a full fledged working agreement.</p>
-
-<h3>If you practice collective code ownership</h3>
-
-<p>Unfortunately, if you don&rsquo;t have retrospectives in place, or if you did not manage to get your team to discuss code reviews in retrospectives, yo&rsquo;ll need to find another way to introduce them.</p>
-
-<p>If you have collective code ownership, it should be ok to comment on your team mates code (if not, jump directly to the next strategy). In this setting, just start to do some code reviews for others ! Make sure your reviews are helpful and &lsquo;nice&rsquo;.</p>
-
-<p>You&rsquo;ll need to stick to doing code reviews long enough before people actually start to mimic you. Reserve some time in your daily agenda for code reviews. Your goal is to win over people, so it might be a good idea to start with a selected few at the beginning, preferably people who are more likely to jump in. If asynchronous (tool based) reviews don&rsquo;t get answered, be ready to fallback to face to face discussions : review on your own, then just ask the author for a few minutes so that you can discuss his change. When you feel someone is interested by your reviews, ask him to review your own code in return.</p>
-
-<p>Remember to always try to get some feedback : ask people what they think of the exercise, keep note of the good points, and adapt to smooth out the rest.</p>
-
-<p><img src="../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/collective.jpg" alt="Illustration of a team working collectively" /><div class="image-credits">Photo from <a href="https://www.emotuit.com/blog">emotuit</a></div></p>
-
-<p>Once you won over your first team mate, involve him in your grand plan to spread the practice, explaining how much you think this could make a difference. As more and more people get convinced, the practice will eventually tacitly become part of your working conventions.</p>
-
-<p>Depending on your context, this might take more or less time. I said it was possible, I never said it would be easy ! Grit, patience and adaptation are key here.</p>
-
-<h3>Otherwise</h3>
-
-<p>This is the worst starting point, basically, you have nothing yet. The strategy is very similar to the one with collective code ownership, with a different first move.</p>
-
-<p>Instead of providing code reviews to your team mates, start by walking over to them to ask for a face to face code review of your own commits. Use the same tactic as stated before : stick to the same people at first. Once the practice starts to stick within this group, bring in a basic tool to ease up the process.</p>
-
-<p>At some point, you should be asked to review others code, that&rsquo;s a good sign ! If not, try again with other people.</p>
-
-<p>Continue using the same strategy as with collective code ownership and you should eventually get there !</p>
-
-<h3>When it does not seem to stick</h3>
-
-<p>There could be many reason why the practice is not adopted. The key for you is to understand why and to adapt your strategy. The reason is often that the perceived value is not big enough, for example :</p>
-
-<ul>
-<li>the team is not aware of its problems that reviews would fix : try to make them more visible</li>
-<li>reviews are seen as too expensive or painful : try better tools or taking more on yourself</li>
-<li>the team has bigger problems to fix first : spend your energy on these first !</li>
-<li>reviews just don&rsquo;t work in your context (ex: your job is to write one time, throw away code) : it&rsquo;s up to you to stay or leave !</li>
-</ul>
-
-
-<h2>Tools</h2>
-
-<p>There are a ton of tools and best practices to run code reviews. It&rsquo;s important that you know them, so that you know where you are going.</p>
-
-<p>Don&rsquo;t expect to use the best tools from the start though. At the beginning, your goal is to win over your team mates. In this context, only 2 things matter :</p>
-
-<ul>
-<li>It should have almost no adoption curve, so that others start using it</li>
-<li>It should have almost no maintenance cost, as you don&rsquo;t want to spend your time doing that</li>
-</ul>
-
-
-<p>That&rsquo;s why at the beginning, low tech tools are so great. Spending a month setting up a top notch code review system before the first review won&rsquo;t work. If your VCS has code reviews built-in, by all means use it ! Otherwise, diff in mails and face to face conversations are a good starting point. You&rsquo;ll later hook something in your VCS to automatically send mails with commit diffs &hellip;</p>
-
-<p>As people gradually get convinced of the value of code reviews, regularly meet and discuss a better setup. This is how you&rsquo;ll introduce state of the art tools and agree on refinements such as pre or post commit reviews.</p>
-
-<h3>Best practices</h3>
-
-<p>As a code review champion, it&rsquo;s very important that you provide great reviews to your team mates. You must become the local expert on the subject ! You don&rsquo;t want all your efforts to be ruined because one of your reviews has been perceived as aggressive.</p>
-
-<p><a href="https://static.rainfocus.com/oracle/oow16/sess/1473264722807001CoS2/ppt/code-reviews-vs-pull-requests.pdf"><img src="../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/atlassian.jpg" alt="A slide from Atlassian presentation about styles of code reviews" /></a></p>
-
-<p>There is a ton of resources on the internet about how to perform good code reviews, here are a few :</p>
-
-<ul>
-<li><a href="https://twitter.com/mariakhalusova">Maria Khalusova</a>&rsquo;s talk at Devoxx 2016 <a href="https://www.youtube.com/watch?v=-tcy4z0hszg">How to stop wasting your time and start performing useful code reviews</a></li>
-<li><a href="https://medium.com/@kannonboy/">Tim Pettersen</a> from <a href="https://www.atlassian.com">Atlassian</a> talked about <a href="https://static.rainfocus.com/oracle/oow16/sess/1473264722807001CoS2/ppt/code-reviews-vs-pull-requests.pdf">Code Reviews vs Pull Request</a> at JavaOne 2016</li>
-<li><a href="http://marcotroisi.com/">Marco Troisi</a> wrote an extensive blog post about <a href="http://marcotroisi.com/how-run-code-reviews-in-your-workflow/">How to run code reviews in your dev team&rsquo;s workflow</a></li>
-<li><a href="https://medium.com/@mrjoelkemp">Joel Kemp</a>&rsquo;s post <a href="https://medium.com/@mrjoelkemp/giving-better-code-reviews-16109e0fdd36">Giving better code reviews</a></li>
-<li>Gareth Wilson&rsquo;s post <a href="https://blog.fogcreek.com/effective-code-reviews-9-tips-from-a-converted-skeptic/">Effective Code Reviews – 9 Tips from a Converted Skeptic</a></li>
-</ul>
-
-
-<h2>What&rsquo;s next ?</h2>
-
-<p>Congratulations ! Your team will start to reap the benefits of code reviews. Keep on improving the practice !</p>
-
-<p>To end the story, after a few months of code reviews, during a retrospective, my team (<a href="http://www.murex.com/">at work</a>) decided to take it one step further and started to do almost full time pair programming ;&ndash;)</p>
 ]]></content>
   </entry>
   

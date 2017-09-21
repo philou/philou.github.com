@@ -4,7 +4,7 @@
   <title><![CDATA[Category: continuous improvement | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/continuous-improvement/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-09-15T07:00:21+02:00</updated>
+  <updated>2017-09-21T06:31:20+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,159 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 3]]></title>
+    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/"/>
+    <updated>2017-09-13T09:12:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3</id>
+    <content type="html"><![CDATA[<p>This is the third post on a <a href="/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
+
+<p>In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">previous post</a>, I explained how we started to understand what was going on. We were now questioning our way of handling bugs.</p>
+
+<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg" alt="Bugs drawn on top of code" /></p>
+
+<h2>More understanding</h2>
+
+<h3>Types of tasks</h3>
+
+<p>To answer this question, we decided to plot the different types of tasks we had completed per sprint.</p>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg" alt="Bar chart with the types of tasks over sprints" /></a></p>
+
+<p>Think again of the velocity curve we started with. We see an almost exact correlation between story count (green bars above) and story points (blue curve below).</p>
+
+<blockquote><p>💡#NoEstimates works</p></blockquote>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg" alt="Velocity graph" /></a></p>
+
+<p>We can also see that after sprint 56, we were spending more time on bugs and improvements. Improvements are supposed to improve productivity, so we decided to focus on bugs first. Here is what we get if we compute the average number of bugs per sprint :</p>
+
+<table>
+<thead>
+<tr>
+<th>Periods </th>
+<th> Sprints </th>
+<th> Bugs </th>
+<th> Average bugs fixed per sprint</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2015, Before sprint 56  </td>
+<td> 15 </td>
+<td>  21 </td>
+<td>    1.4</td>
+</tr>
+<tr>
+<td>After sprint 56 </td>
+<td> 34 </td>
+<td>  210 </td>
+<td>   6.1</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>Starting sprint 56, we were fixing 4 times as many bugs as we used to do before !</p>
+
+<h3>What is going on with bugs ?</h3>
+
+<p>At this point, we felt we&rsquo;d made a great step forward in our understanding. We almost thought we were done with it &hellip;</p>
+
+<p>After a bit of thinking though, it was clear that we were not ! We still needed to understand why we were in this situation.</p>
+
+<p>We started by listing more questions :</p>
+
+<ul>
+<li>Could it be that we just got a lot better at testing ? Since sprint 56, we had been doing <a href="/how-we-started-exploratory-testing/">regular exploratory testing</a>. Exploratory testing sessions were very effective at finding bugs.</li>
+<li>Were we paying back a bug debt ? The created versus resolved trend seemed to show so. But it could also be that we weren&rsquo;t testing as well as we used to !</li>
+</ul>
+
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png" alt="Created vs Resolved Bugs graph" /></a></p>
+
+<ul>
+<li>If we were paying back a bug debt, how close were we to the end of the payback ?</li>
+<li>Were we creating too many flaws in the software ?</li>
+<li>Are we fixing too many bugs ? If so, what should we do to fix less ?</li>
+<li>Are the bugs coming from other teams using our component or from our own testing ?</li>
+<li>Are bugs on new or old code ?</li>
+</ul>
+
+
+<p>A lot of questions, all difficult to answer. We decided to first see if we were paying back a bug debt. If this was the case, most other questions would become more or less irrelevant. With a bit of thinking, we came up with a measure to get the answer.</p>
+
+<h3>Are we paying back a bug debt ?</h3>
+
+<p>We first started to do exploratory testing at sprint 56. To do this, we would run a 1 hour session, where the pair finding the more bugs would win fruits. (Later on, we streamlined exploratory testing as part of the workflow for every story) At that time, we used to find more than 10 bugs in 1 hour.</p>
+
+<blockquote><p>💡Gamification transforms nice developers into berserk testers !</p></blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Explo Test Sesssion </th>
+<th> 61 </th>
+<th> 62 </th>
+<th> 63 </th>
+<th> 64 </th>
+<th> 66 </th>
+<th> 16.01</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bugs found  </td>
+<td> 16 </td>
+<td>  6 </td>
+<td> 16 </td>
+<td>    10 </td>
+<td>    11 </td>
+<td> 11</td>
+</tr>
+</tbody>
+</table>
+
+
+<br>
+
+
+<p>We would do another such a session. If we found significantly less than 10 bugs, let&rsquo;s say less than 6, it would mean that :</p>
+
+<ul>
+<li>we improved the quality of our software</li>
+<li>our streamlining of exploratory testing works</li>
+<li>if we continue to search and fix bugs as we do currently, we&rsquo;ll reach a point where we won&rsquo;t find any more bugs</li>
+</ul>
+
+
+<p>Otherwise, none of these stand, and we&rsquo;ll have to continue our investigations.</p>
+
+<p>So we did a 1 hour, fruit-powered, exploratory testing session. And we found only 3 bugs ! Indeed, we were paying back a bug debt. The question became</p>
+
+<blockquote><p>When should payback be over ?</p></blockquote>
+
+<p>A linear regression on the created vs resolved bug trend showed that we still had 15 more months to go !</p>
+
+<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png" alt="Bug trend graph" /></a></p>
+
+<h2>Target condition</h2>
+
+<p>At that point, the target condition became obvious :</p>
+
+<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
+
+<p>Currently, around 1 pair (25% of the team) was busy fixing bugs. If we&rsquo;d manage to bring this down, we&rsquo;d have a 25% productivity boost.</p>
+
+<p>This was post 3 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. Next post will be about PDCA.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 2]]></title>
@@ -40,7 +193,7 @@
 
 <p>Here is our velocity curve over 2 years.</p>
 
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity vs Manpower graph" /></a></p>
+<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity graph" /></a></p>
 
 <p>It&rsquo;s obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That&rsquo;s a clue that our gut feeling was not completely wrong. Our productivity did change.</p>
 
@@ -89,9 +242,9 @@
 
 <blockquote><p>💡If you feel lost when doing something for the first time. Push through !</p></blockquote>
 
-<p>In next week&rsquo;s post, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
+<p>In <a href="http://0.0.0.0:4000/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">next week&rsquo;s post</a>, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
 
-<p>See you next week.</p>
+<p>More to read next week.</p>
 ]]></content>
   </entry>
   
@@ -393,83 +546,6 @@
 <p>Congratulations ! Your team will start to reap the benefits of code reviews. Keep on improving the practice !</p>
 
 <p>To end the story, after a few months of code reviews, during a retrospective, my team (<a href="http://www.murex.com/">at work</a>) decided to take it one step further and started to do almost full time pair programming ;&ndash;)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Trello Templates to Boost Your Remote Retrospectives]]></title>
-    <link href="http://philippe.bourgau.net/trello-templates-to-boost-your-remote-retrospectives/"/>
-    <updated>2016-04-11T20:31:00+02:00</updated>
-    <id>http://philippe.bourgau.net/trello-templates-to-boost-your-remote-retrospectives</id>
-    <content type="html"><![CDATA[<p>I already wrote how we started to use <a href="http://trello.com">Trello</a> to do our <a href="/trellospectives-remote-retrospectives-with-trello/">remote retrospectives</a>. A while ago, my team mate <a href="http://bilal.eltayara.net/blog/2015/09/20/agile-retrospectives-using-trello/">Bilal Tayara</a> started to collect our activities into <a href="https://trello.com/agileretrospectives">trello templates</a>.</p>
-
-<p><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/retrospective_meetings.jpg" title="&lsquo;Stop Doing&rsquo;, &lsquo;Continue Doing&rsquo; &amp; &lsquo;Start doing&rsquo; panels of a retrospective activity" ></p>
-
-<h2>New activities</h2>
-
-<p>I just imported new activities we have been using in the past months :</p>
-
-<ul>
-<li>SMART Goals</li>
-<li>5 Whys</li>
-<li>Circle of Questions</li>
-<li>Communication</li>
-<li>Engagement</li>
-<li>ESVP</li>
-<li>Fishbone</li>
-<li>Focus On/Focus Off</li>
-<li>Force Field Analysis</li>
-<li>Gifts</li>
-<li>Glad Sad Mad</li>
-<li>Health Radar</li>
-<li>HHH</li>
-<li>Hot Air Balloon</li>
-<li>How are you feeling today ?</li>
-<li>Improvements Brainstorming</li>
-<li>Learning Matrix</li>
-<li>Note To Self</li>
-<li>Plus / Delta</li>
-<li>Problem &ndash;> Action</li>
-<li>Punctual Paulo</li>
-<li>Retrospective Planning Game</li>
-<li>Risk Brainstorming</li>
-<li>ROTI</li>
-<li>Sail Boat</li>
-<li>Satisfaction Histogram</li>
-<li>Take Away</li>
-<li>Team</li>
-<li>Team Radar</li>
-<li>Warmup Question</li>
-<li>What happened since last retro ?</li>
-</ul>
-
-
-<h2>How to use these templates</h2>
-
-<p>Clone the template to your organization every time you want to use it. There are instructions in the template to explain how to use it. For more detailed instructions, have a look at the original :</p>
-
-<ul>
-<li><a href="https://pragprog.com/book/dlret/agile-retrospectives">Agile Retrospectives, Making Good Teams Great</a> by Esther Derby and Diana Larsen, Foreword by Ken Schwaber</li>
-</ul>
-
-
-<p><a href="https://pragprog.com/book/dlret/agile-retrospectives"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/AgileRetrospectives.jpg" title="The cover of Agile Retrospectives" ></a></p>
-
-<ul>
-<li><a href="http://www.infoq.com/minibooks/agile-retrospectives-value">Getting Value out of Agile Retrospectives, Second Edition</a> by Luis Gonçalves and Ben Linders</li>
-</ul>
-
-
-<p><a href="http://www.infoq.com/minibooks/agile-retrospectives-value"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/GettingAgileOutOfAgileRetrospectives.jpg" title="The cover of Getting Agile Out Of Agile Retrospectives" ></a></p>
-
-<ul>
-<li><a href="https://leanpub.com/funretrospectives">Fun Retrospectives</a> by Taina Caetano and Paulo Caroli</li>
-</ul>
-
-
-<p><a href="https://leanpub.com/funretrospectives"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/FunRetrospectives.jpg" title="The cover of Fun Retrospectives" ></a></p>
-
-<p>One last thing : in order to improve this collection, we&rsquo;d like to have your feedback on existing activities, or your own new templates for other activities.</p>
 ]]></content>
   </entry>
   
