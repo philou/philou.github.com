@@ -28,7 +28,7 @@ Next step in the improvement kata is to run [Plan-Do-Check-Act (PDCA)](https://e
 
 We'd like to spend less time fixing bugs. At the same time, we know that we started to spend more time on bug fixing when we [started exploratory testing](/how-we-started-exploratory-testing/).
 
-One easy way to do less bug fixing would be to stop exploratory testing altogether ! Let's check the pros and the cons of exploratory testing :
+We thought that one easy way to do less bug fixing was to stop exploratory testing altogether ! We listed the pros and the cons of exploratory testing.
 
 ### The obvious cons
 
@@ -37,14 +37,14 @@ One easy way to do less bug fixing would be to stop exploratory testing altogeth
 ### But the pros are many
 
 *   It helps us discover technical debt and improve the quality of our code, which makes us faster in the long run. Clean code has less bugs. When we discover many bugs related to a particular region of the code, it means we should refactor it.
-*   It speeds up integration with other teams' work in many ways
+*   It speeds up integration with other teams' work in many ways :
     *   It saves other teams from debugging their time away trying to use broken things
     *   Fixing bugs is sometimes just a matter of providing clear 'not supported yet' errors. Doing this saves a tremendous amount of time to other teams.
     *   Avoids blocking other teams as they wait for your bug fixes
     *   Reduces interruptions from bug reports and fixes bouncing between teams.
     *   By reducing unplanned rework, it makes any commitment you do more likely
 
-In the light of all this, stoping exploratory testing does not seem like a great idea.
+In the light of all this, stoping exploratory testing did not seem like a great idea. We had to find something else.
 
 > 💡Saving time by not fixing bugs might not be a great idea
 
@@ -58,7 +58,7 @@ We needed to find a middle ground between where we were and stoping exploratory 
 *   raise clean errors on things that are not yet supported
 *   prevent scope creep from bug reports
 
-A few months ago, when we decided to prioritize bugs before features, we had defined a definition for bugs. Here is what it looked like. Something is a bug if anyone of these is true :
+A few months ago, when we decided to prioritize bugs before features, we had defined a definition for bugs. Here is what it looked like. Something is a bug if any one of these is true :
 
 1.  It used to work
 2.  It corrupts data
@@ -73,6 +73,6 @@ We decided to test this new bug definition for a while.
 
 ## Not there yet !
 
-We're getting closer to the end, but you'll see that in next post, we'll continue with other PDCA experiments.
+We're getting closer to the end, but you're not done with PDCA yet.
 
-This was post 4 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata.
+This was post 4 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. In the next and last post of this story you'll learn how we ended the PDCAs for great results. 
