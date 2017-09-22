@@ -100,4 +100,4 @@ At that point, the target condition became obvious :
 
 Currently, around 1 pair (25% of the team) was busy fixing bugs. If we'd manage to bring this down, we'd have a 25% productivity boost.
 
-This was post 3 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. Next post will be about PDCA.
+This was post 3 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. [Next post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/) will be about PDCA.
