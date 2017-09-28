@@ -102,6 +102,71 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/rspec-matchers-combinators-2-spec-combos-gem/">RSpec Matchers Combinators 2 : Spec_combos Gem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-25T21:29:00+02:00" pubdate data-updated="true">Sep 25<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
+
+<p>To use it, just add the following to your Gemfile :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;spec_combos&#39;</span><span class="p">,</span> <span class="ss">:group</span> <span class="o">=&gt;</span> <span class="s1">&#39;test&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="o">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">all_</span><span class="p">{</span><span class="n">and_</span><span class="p">(</span><span class="n">be_odd</span><span class="p">,</span> <span class="n">be_instance_of</span><span class="p">(</span><span class="no">Fixnum</span><span class="p">))}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It outputs the following error :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>Failure/Error: expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</span><span class='line'>  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:
+</span><span class='line'>    [1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+</span><span class='line'>      expected odd? to return true, got false
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I hope this might help !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a></h1>
     
     
@@ -740,64 +805,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/matching-meta-tags-with-capybara-2/">Matching Meta Tags With Capybara 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-01T20:20:00+02:00" pubdate data-updated="true">Jul 1<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I updated my bundle, some capybara have_selector(&hellip;) matches started to fail. Here was the message :</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>expected to find xpath "//meta[@http-equiv='refresh']" but there were no matches. Also found "", which matched the selector but not all filters. (Capybara::ExpectationNotMet)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>After some searching, I eventually understood that it was a modification in the behaviour of Capybara 2 that only matches elements in the html body, and not in the head anymore. If trying to match the title, <a href="http://stackoverflow.com/questions/13573525/rspec-capybara-2-0-tripping-up-my-have-selector-tests">stackoverflow suggests</a> to use :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_title</span><span class="p">(</span><span class="s1">&#39;My page&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>To match meta tags, I had to resort to the following :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">meta_refresh_tags</span> <span class="o">=</span> <span class="ss">Nokogiri</span><span class="p">:</span><span class="ss">:HTML</span><span class="p">(</span><span class="n">page</span><span class="o">.</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//meta[@http-equiv=&#39;refresh&#39;]&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">meta_refresh_tags</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span><span class="p">(</span><span class="n">be_empty</span><span class="p">,</span> <span class="s1">&#39;could not find a meta refresh tag&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could do with something nicer, but it&rsquo;s ok for the moment.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -878,6 +885,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">How we used the improvement kata to gain 25% of productivity - Part 4</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">How we used the improvement kata to gain 25% of productivity - Part 3</a>
       </li>
     
@@ -891,10 +902,6 @@
     
       <li class="post">
         <a href="/throwing-code-away-frequently/">Throwing code away frequently</a>
-      </li>
-    
-      <li class="post">
-        <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming (2017)</a>
       </li>
     
   </ul>
