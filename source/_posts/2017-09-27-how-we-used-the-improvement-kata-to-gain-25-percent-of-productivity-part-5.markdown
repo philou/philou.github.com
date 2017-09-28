@@ -12,8 +12,6 @@ categories:
  - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data, Bug Policy, Exploratory Testing"
 description: "Fifth post in a series relating our first improvement kata. Covers the end of the Plan-Do-Check-Act phase, when we decide to do more exploratory testing, and the end consequence on the team"
-published: false
-
 ---
 This is the fifth (and last) post of a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
@@ -21,7 +19,7 @@ In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-p
 
 It would take a while to know if adjusting the definition of a bug would help us or not. At the same time, we knew it would not help us to reduce the number of bugs we escaped to other teams.
 
-TODO Drawing
+![A 'SUCCESS' banner in the wind](../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/success-banner.jpg)
 
 ## Idea 3 : More exploratory testing
 
@@ -37,9 +35,9 @@ The first thing was to know a bit more about our bugs. Checking the recently clo
 
 ![Curve of the origin of bugs on the last 2 months](../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/kind-of-bugs.png)
 
-TODO rename left join to X
 
-From these graphs, we concluded 2 things :
+
+Ignoring the Christmas drop at the middle of the curve, we concluded 2 things from these graphs :
 
 * We were leaking bugs to the product
 * Bugs mostly came from newly added features
@@ -57,9 +55,9 @@ After a few weeks of that, we were able to update our bug trend and do a linear 
 
 Hurray ! As you can see, we were to be done with bugs around April 2017, which was 3 months away at that time.
 
-> 💡 Quality is free, but only for those willing to pay for it ! [[Tom DeMarco](https://en.wikiquote.org/wiki/Tom_DeMarco) in [Peopleware](TODO)
+> 💡 Quality is free, but only for those willing to pay for it ! [[Tom DeMarco](https://en.wikiquote.org/wiki/Tom_DeMarco) in [Peopleware](https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=9SX9Y3RG61NB7N9VJ6KS&dpID=61lAwzXfQiL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=detail)
 
-TODO cover + link peopleware
+[![Cover of the 'Peopleware' book by Tom DeMarco & Timothy Lister](../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/peopleware.jpg)](https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=9SX9Y3RG61NB7N9VJ6KS&dpID=61lAwzXfQiL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=detail)
 
 We confidently adopted these practices as part of our working agreements. This brought our first improvement kata to its end.
 
