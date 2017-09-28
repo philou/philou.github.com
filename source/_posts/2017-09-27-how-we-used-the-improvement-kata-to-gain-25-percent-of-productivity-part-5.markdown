@@ -55,7 +55,7 @@ After a few weeks of that, we were able to update our bug trend and do a linear 
 
 Hurray ! As you can see, we were to be done with bugs around April 2017, which was 3 months away at that time.
 
-> 💡 Quality is free, but only for those willing to pay for it ! [[Tom DeMarco](https://en.wikiquote.org/wiki/Tom_DeMarco) in [Peopleware](https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=9SX9Y3RG61NB7N9VJ6KS&dpID=61lAwzXfQiL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=detail)
+> 💡 Quality is free, but only for those willing to pay for it ! [[Tom DeMarco](https://en.wikiquote.org/wiki/Tom_DeMarco) in [Peopleware](https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=9SX9Y3RG61NB7N9VJ6KS&dpID=61lAwzXfQiL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=detail)]
 
 [![Cover of the 'Peopleware' book by Tom DeMarco & Timothy Lister](../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/peopleware.jpg)](https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&psc=1&refRID=9SX9Y3RG61NB7N9VJ6KS&dpID=61lAwzXfQiL&preST=_SX218_BO1,204,203,200_QL40_&dpSrc=detail)
 
