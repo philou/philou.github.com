@@ -10,7 +10,6 @@ comments: true
  - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data, Bug Policy, Exploratory Testing"
 description: "Fourth post in a series relating our first improvement kata. Covers the beginning of the Plan-Do-Check-Act phase, when we decide to stick to a strict bug policy, but review our definition of what a bug is"
-published: false
 ---
 This is the fourth post on a [series of 5 about the improvement kata](/blog/categories/first-improvement-kata-series/). If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
