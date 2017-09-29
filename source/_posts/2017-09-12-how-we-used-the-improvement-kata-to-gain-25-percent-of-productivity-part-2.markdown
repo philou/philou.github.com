@@ -80,6 +80,6 @@ It felt a bit like when I did the [20 hours experiment to learn anything](/how-i
 
 > 💡If you feel lost when doing something for the first time. Push through !
 
-In [next week's post](http://0.0.0.0:4000/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/), I'll continue to detail the 'understand' phase. [The series](/blog/categories/first-improvement-kata-series/) also gained an extra post, and will now be 5 posts long.
+In [next week's post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/), I'll continue to detail the 'understand' phase. [The series](/blog/categories/first-improvement-kata-series/) also gained an extra post, and will now be 5 posts long.
 
 More to read next week.
