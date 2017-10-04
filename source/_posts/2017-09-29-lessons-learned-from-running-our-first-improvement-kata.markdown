@@ -73,5 +73,5 @@ Hopefully, new tools like [CodeScene](https://codescene.io/) are emerging to fil
 
 [![The 'Code as a Crime Scene' book cover](../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/code-as-crime-scene.jpg)](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384)
 
-While we keep dreaming of such tool, I'll continue to blog. Next week, I will write a short guide of how to run your first improvement kata.
+While we keep dreaming of such tool, I'll continue to blog. Next week, I will write a short guide of [how to run your first improvement kata](/how-to-run-your-first-improvement-kata/).
 

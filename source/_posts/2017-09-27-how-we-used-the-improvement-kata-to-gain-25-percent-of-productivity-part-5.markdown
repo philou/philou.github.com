@@ -73,4 +73,4 @@ As we are still fixing bugs as they appear, the 25% productivity gain claim migh
 
 ## This is it !
 
-This was post 5 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. I'm not completely done writing about this improvement kata though. In the coming weeks, I'll post about the [lessons learned](/lessons-learned-from-running-our-first-improvement-kata/) and how to start your own improvement kata.
+This was post 5 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. I'm not completely done writing about this improvement kata though. In the coming weeks, I'll post about the [lessons learned](/lessons-learned-from-running-our-first-improvement-kata/) and [how to start your own improvement kata](/how-to-run-your-first-improvement-kata/).
