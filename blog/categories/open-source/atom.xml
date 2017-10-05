@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: open-source | Philippe Bourgau's blog]]></title>
+  <title><![CDATA[Category: open source | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/open-source/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-09-29T20:44:23+02:00</updated>
+  <updated>2017-10-05T06:43:11+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,336 +14,117 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How I finally use Docker on small open source side projects]]></title>
-    <link href="http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects/"/>
-    <updated>2017-02-16T19:37:00+01:00</updated>
-    <id>http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects</id>
-    <content type="html"><![CDATA[<p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
+    <title type="html"><![CDATA[Online store scrapping DSL gem]]></title>
+    <link href="http://philippe.bourgau.net/online-store-scrapping-dsl-gem/"/>
+    <updated>2014-01-21T06:50:00+01:00</updated>
+    <id>http://philippe.bourgau.net/online-store-scrapping-dsl-gem</id>
+    <content type="html"><![CDATA[<p>Since I decided to stop <a href="http://www.mes-courses.com">Mes Courses</a> to focus on <a href="http://www.agileavatars.com">AgileAvatars</a>, I have been extracting open source gems from the code base. The last one is <a href="https://github.com/philou/storexplore">Storexplore</a> : a declarative scrapping DSL that lets one define directory like apis to an online store.</p>
 
-<p><img class="center" src="/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
+<p>As explained in the Readme, it allows one to declare a store this way :</p>
 
-<h2>The Docker love phase</h2>
+<p>```ruby
+Storexplore::define_api &lsquo;dummy-store.com&rsquo; do</p>
 
-<p>At first everything seemed great about Docker. I&rsquo;d used it on toy projects and it proved great to quickly setup cheap and fast virtual machines. I even created the <a href="https://github.com/philou/rubybox">Rubybox</a> project on Github to clone new ruby VMs in a matter of seconds. I also used Docker to host my <a href="http://octopress.org/">Octopress</a> environment to write this blog. As a long time Linux user, my dev machines have repeatedly been suffering from pollution : after some time, they get plagued with all the stuff I installed to do my various dev experiments, and at some point, re-install seems easier than cleaning up all the mess. If I could use containers for all my projects, Docker would be a cure for this.</p>
+<p>  categories &lsquo;a.category&rsquo; do</p>
 
-<p>Going through all these successes, when I started my planning poker app, I decided to go all into Docker, development, CI and deployment. You can read the log of how I did that in <a href="http://philippe.bourgau.net/blog/categories/docker/">these posts</a>. Fast forward a bit of searching, experimenting and deploying, all was setup : my dev env was in containers, my CI was running in containers in <a href="https://circleci.com/gh/philou/planning-poker/tree/master">CircleCI</a> and the app was pushed to containers on <a href="https://www.digitalocean.com/">DgitalOcean</a>.</p>
+<pre><code>attributes do
+  { :name =&gt; page.get_one("h1").content }
+end
 
-<h2>Reality strikes back</h2>
+categories 'a.category' do
+  attributes do
+    { :name =&gt; page.get_one("h1").content }
+  end
 
-<p>At first, everything seemed to be working fine. Even if there were a few glitches that I would have to fix down the road like :</p>
+  items 'a.item' do
+    attributes do
+      {
+        :name =&gt; page.get_one('h1').content,
+        :brand =&gt; page.get_one('#brand').content,
+        :price =&gt; page.get_one('#price').content.to_f,
+        :image =&gt; page.get_one('#image').content,
+        :remote_id =&gt; page.get_one('#remote_id').content
+      }
+    end
+  end
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>And to use it like that :</p>
+
+<p>```ruby
+Api.browse(&lsquo;<a href="http://www.dummy-store.com">http://www.dummy-store.com</a>&rsquo;).categories.each do |category|</p>
+
+<p>  puts &ldquo;category: #{category.title}&rdquo;
+  puts &ldquo;attributes: #{category.attributes}&rdquo;</p>
+
+<p>  category.categories.each do |sub_category|</p>
+
+<pre><code>puts "  category: #{sub_category.title}"
+puts "  attributes: #{sub_category.attributes}"
+
+sub_category.items.each do |item|
+
+  puts "    item: #{item.title}"
+  puts "    attributes: #{item.attributes}"
+
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>I tried my best to make this library high quality :</p>
 
 <ul>
-<li>Whenever I wanted to update my app&rsquo;s dependencies, I had to run <code>bundle update</code> twice, and not incrementally. Surely, I would manage to fix that with a bit of time</li>
-<li>Obviously, the CI was slower, because it had to build the containers before deploying them to <a href="https://hub.docker.com/">Docker Hub</a>, but that was the price to pay in order to know exactly what was running on the server &hellip; right ?</li>
-<li>And &hellip; <a href="https://github.com/guard/guard">Guard</a> notifications did not appear on my desktop. I was accessing my dev env through ssh, so I would have to fix that, just a few hours and it should be working</li>
+<li>The code evolved from a simple procedural script to a dsl through constant refactorings</li>
+<li>Real world features like constant memory usage have been added to fix production bugs</li>
+<li>Documented with samples and rdoc</li>
+<li>Extensive automated testing</li>
 </ul>
 
 
-<p>After a while, I got used to my work environment and became almost as productive as I used to be &hellip; but you know, shit happens !</p>
+<p>Let&rsquo;s hope it will be usefull for some.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RSpec Matchers Combinators 2 : spec_combos gem]]></title>
+    <link href="http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem/"/>
+    <updated>2013-09-25T21:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/rspec-matchers-combinators-2-spec-combos-gem</id>
+    <content type="html"><![CDATA[<p>I already wrote about my <a href="/rspec-matchers-combinators/">RSpec Matchers Combinators</a>, I decided to extract them into the <a href="https://github.com/philou/spec_combos">spec_combos</a> gem.</p>
 
-<ul>
-<li>I had to install <a href="http://phantomjs.org/">PhantomJS</a> on my CI, and if that comes out of the box on <a href="https://travis-ci.org/">TravisCI</a>, you&rsquo;re all alone in your own containers. Installing this on the Debian container proved unnecessarily complex, but I figured it out</li>
-<li>Then all of a sudden, my CI started to break &hellip; You can read a summary of what I did to fix it <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">here</a>. Long story short : I had forgotten to clean up old docker images, and after enough deployments, the server ran out of space, and that corrupted the docker cache somehow. I eventually re-installed and upgraded the deployment VM. That made me lose quite some time though.</li>
-<li>Finally, as I started to play with <a href="https://github.com/rails/actioncable">ActionCable</a>, I could not get the web-socket notifications through my dev host. There must be some settings and configuration to make this work, for sure, but it&rsquo;s supposed to work out of the box.</li>
-</ul>
+<p>To use it, just add the following to your Gemfile :</p>
 
+<p><code>ruby
+gem 'spec_combos', :group =&gt; 'test'
+</code></p>
 
-<p>Eventually, this last issue convinced me to change my setup. All these usages of Docker where definitely worth it from a learning point of view, but as my focus moved to actually building the app, it was time to take pragmatic decisions.</p>
+<p>Compared to the first version of the matchers, I added better error messages. For example, consider the following complex nested assertion :</p>
 
-<h2>My use of Docker now</h2>
+<p><code>ruby
+expect([1,2,3]).to all_{and_(be_odd, be_instance_of(Fixnum))}
+</code></p>
 
-<p>There were 2 main ideas driving my changes to my dev env for this open source side project :</p>
+<p>It outputs the following error :</p>
 
-<ol>
-<li>Use the thing most people do</li>
-<li>Use commercially supported services &amp; tools</li>
-</ol>
+<p>```text
+Failure/Error: expect([1,2,3]).to all<em>{and</em>(be_odd, be_instance_of(Fixnum))}
+  expected [1, 2, 3] to all be odd and be an instance of Fixnum, but the following were not:</p>
 
-
-<p>These should avoid losing my time instead of being productive. My setup is now almost boring ! To summarize I now use <a href="https://travis-ci.org/philou/planning-poker">TravisCI</a>, <a href="https://philous-planning-poker.herokuapp.com/">Heroku</a>, and <a href="https://github.com/rbenv/rbenv">rbenv</a> on my physical machine. I kept Docker where it really shines : all the local servers required for development are managed by <a href="https://docs.docker.com/compose/">Docker Compose</a>. Here is my <a href="https://github.com/philou/planning-poker/blob/master/docker-compose.yml"><code>docker-compose.yml</code></a></p>
-
-<p>```yaml
-db:
-  image: postgres:9.4.5
-  volumes:</p>
-
-<pre><code>- planning-poker-postgres:/var/lib/postgresql/data
-</code></pre>
-
-<p>  ports:</p>
-
-<pre><code>- "5432:5432"
-</code></pre>
-
-<p>redis:
-  image: redis:3.2-alpine
-  volumes:</p>
-
-<pre><code>- planning-poker-redis:/var/lib/redis/data
-</code></pre>
-
-<p>  ports:</p>
-
-<pre><code>- "6379:6379"
+<pre><code>[1] (2): expected 2 to be odd and be an instance of Fixnum, but:
+  expected odd? to return true, got false
 </code></pre>
 
 <p>```</p>
 
-<p>This saves me from installing <a href="https://www.postgresql.org/">Postgresql</a> or <a href="https://redis.io/">Redis</a> on my dev machine, and I can start all the services required for app with a single <code>docker-compose up</code> command !</p>
-
-<h2>My future uses of Docker</h2>
-
-<p>More generally, in the near future, here is when I&rsquo;ll use docker</p>
-
-<ul>
-<li>As I just said, to manage local servers</li>
-<li>To boot quick and cheap VMs (check <a href="https://github.com/philou/rubybox">rubybox</a>)</li>
-<li>To handle CI and deployment of large or non-standard systems, where Docker can provide a lot of benefits in terms of price, scaling or configurability</li>
-</ul>
-
-
-<p>Docker came from the deployment world, and this is where it is so great. As of today though, even if it is usable as dev VM, it is still not up to a standard dev machine. Despite that, all the issues I ran into could be fixed, and I&rsquo;m pretty sure they&rsquo;ll be some day.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Verify the Big O Complexity of Ruby Code in RSpec]]></title>
-    <link href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/"/>
-    <updated>2017-01-04T17:48:00+01:00</updated>
-    <id>http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec</id>
-    <content type="html"><![CDATA[<p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
-
-<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
-
-<h2>How does it work ?</h2>
-
-<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
-
-<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
-
-<p>``` ruby</p>
-
-<h1>An adapter class to fit the code to measure in complexity assert</h1>
-
-<p>class ProductsOrdersMatching</p>
-
-<pre><code># Generate some arguments of a particular size
-def generate_args(size)
-    # Let's assume we have 10 times less products than orders
-    [ Array.new(size / 10) { build_a_product() }, Array.new(size) { build_an_order() } ]
-end
-
-# Run the code on which we want to assert performance
-def run(products, orders)
-    match_products_with_orders(products, orders)
-end
-</code></pre>
-
-<p>end</p>
-
-<p>describe &ldquo;Products and Orders Matching&rdquo; do</p>
-
-<pre><code>it "performs linearly" do
-    # Verify that the code runs in time proportional to the size of its arguments
-    expect(ProductOrdersMatching.new).to be_linear()
-end
-</code></pre>
-
-<p>end
-```</p>
-
-<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
-
-<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
-
-<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
-
-<h2>Did you say experiment ?</h2>
-
-<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
-
-<ul>
-<li>Allow the assertion to specify the sizes</li>
-<li>Allow the assertion to specify the warm-up and run rounds</li>
-<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
-<li>Find ways to make the whole thing faster</li>
-<li>O(lnx) : pre-treat with exp()</li>
-<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
-<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
-<li>Estimate how much the assert is deterministic</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[3 More Great Talks From JavaOne 2016]]></title>
-    <link href="http://philippe.bourgau.net/3-more-great-talks-from-javaone-2016/"/>
-    <updated>2016-10-14T04:05:00+02:00</updated>
-    <id>http://philippe.bourgau.net/3-more-great-talks-from-javaone-2016</id>
-    <content type="html"><![CDATA[<p>After the top <a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">5 talks I attended at JavaOne</a> here are more !</p>
-
-<h2>Managing Open Source Contributions in Large Organizations</h2>
-
-<p><a href="http://www.jamesward.com/presos">James Ward</a></p>
-
-<p>This talk was very interesting for companies or organizations that want to use Open Source in some way without ignoring the risks.</p>
-
-<p>After an introduction listing the benefits of contributing to open source, James explained the associated risks :</p>
-
-<ul>
-<li>Security (evil contributions or information leaks)</li>
-<li>Quality (bad contributions, increased maintenance or showing a bad image)</li>
-<li>Legal (responsibility in case of patent infringing contribution, ownership of a contribution, licenses)</li>
-</ul>
-
-
-<p>He then explained that there are 3 ways to deal with the issue :</p>
-
-<table>
-<thead>
-<tr>
-<th> Strategy </th>
-<th> Description </th>
-<th> Pros </th>
-<th> Cons </th>
-<th> Popularity </th>
-<th> Examples </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td> Do nothing </td>
-<td> Devs just contribute without saying it </td>
-<td> Easy, Gets it done </td>
-<td> Need to stay under the radar, Risks for all parties are ignores </td>
-<td> +++++ </td>
-<td> Most open source code on <a href="https://github.com">Github</a> is shared in this manner |</td>
-</tr>
-<tr>
-<td> Join a foundation </td>
-<td> Joining an existing open source foundation, with a framework </td>
-<td> Everything out of the box (infra, governance), builds trust </td>
-<td> Rules can be heavy, Ownership is given to the foundation </td>
-<td> +++ </td>
-<td> <a href="https://www.linkedin.com/">Linkedin</a> put <a href="https://kafka.apache.org/">Kafka</a> in the <a href="https://www.apache.org/">Apache Foundation</a> |</td>
-</tr>
-<tr>
-<td> Build tools </td>
-<td> Use your own tools to mitigate the main risks associated with the &lsquo;Do nothing&rsquo; strategy </td>
-<td> Built on top of Github, Keep control, Keeps things easy </td>
-<td> Need to develop, test and operate the tools </td>
-<td> + </td>
-<td> Demo of a tool plugged into Github to enforce a contributor license agreement for anyone pushing a pull request |</td>
-</tr>
-</tbody>
-</table>
-
-
-<p><a href="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA.jpg"><img class="center" src="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA-small.jpg" title="Slide with a Github capture for Contributor License Agreement" ></a></p>
-
-<p>The &lsquo;build tools&rsquo; strategy looks promising, even if it is not yet widely used !</p>
-
-<p>Here are <a href="https://www.youtube.com/watch?v=X71HrW6vC_0">the talk</a> and <a href="http://presos.jamesward.com/managing_open_source_contributions_in_large_orgs/index.html#/">the slides</a> on the authors website.</p>
-
-<h2>Java Performance Analysis in Linux with Flame Graphs</h2>
-
-<p><a href="http://www.brendangregg.com/">Brendan Gregg</a></p>
-
-<p>This is what a flame graph looks like :</p>
-
-<p><a href="http://www.brendangregg.com/FlameGraphs/cpu-mixedmode-vertx.svg"><img class="center" src="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/flamegraph.png" title="An example of a Java flame graph" ></a></p>
-
-<p>Technically, it&rsquo;s just an SVG with some Javascript. It shows the performance big picture. It aggregates data from Linux and JVM profilers. Vertically, you can see the call stacks in your system. The larger a block, the more time is taken inside a function (or in a sub call). The top border is where the CPU time is actually taken. If you want to speed up your system, speed up the wider zones at the top of the graph.</p>
-
-<p>At <a href="https://www.netflix.com">Netflix</a>, the speaker is a performance engineer, and his job is to build tools to help other teams discover performance issues. This is how they use Flame Graphs :</p>
-
-<ul>
-<li>Compare 2 flame graphs at different times to see what changed</li>
-<li>Do a <a href="http://martinfowler.com/bliki/CanaryRelease.html">canary release</a> and compare the new flame graph before finishing the deployment</li>
-<li>Taking continuous flame graphs on running services helps identify JVM behavior like JIT or GC</li>
-<li>They use different color themes to highlight different things</li>
-<li>They also use them to identify CPU cache misses</li>
-</ul>
-
-
-<p>By the way, I also thought this was a great example of using an innovative visualization to manage tons of data.</p>
-
-<p>I could find neither the video nor the slides of the talk, but I managed to find a lot of <a href="https://www.google.fr/search?safe=active&amp;client=ubuntu&amp;espv=2&amp;biw=1600&amp;bih=810&amp;tbm=vid&amp;q=Flame+Graphs&amp;oq=Flame+Graphs&amp;gs_l=serp.3...1396.1396.0.1616.1.1.0.0.0.0.59.59.1.1.0....0...1c.1.64.serp..0.0.0.z-3ygDHx4-Q">others talks about Flame Graphs</a>, as well as extra material on <a href="http://www.brendangregg.com/flamegraphs.html">the speaker&rsquo;s homepage</a>.</p>
-
-<h2>Increasing Code Quality with Gamification</h2>
-
-<p><a href="https://twitter.com/alex90_ch">Alexander Chatzizacharias</a></p>
-
-<p>You might be wondering why we should care about gamification ?</p>
-
-<ul>
-<li>Worldwide 11.2 billion hours are spent playing every week !</li>
-<li>People love to play because it makes them feel awesome</li>
-<li>Games are good teachers</li>
-<li>At work we are the ones who need to make others successful</li>
-<li>But only 32% of workers are engaged in their work !</li>
-</ul>
-
-
-<p>Games rely on 4 main dynamics :</p>
-
-<ul>
-<li>Competition (be very careful of closed economics which can be very bad for teams)</li>
-<li>Peer pressure (Public stats push teams and individual to conform to the norm)</li>
-<li>Progression (regular recognition of new skills is motivating)</li>
-<li>Rewards (Badges, Level ups, Monkey Money, real money &hellip;)</li>
-</ul>
-
-
-<p>He went on to demonstrate two games that are based on Jenkins and Sonar that aim at better code quality :</p>
-
-<ul>
-<li>One mobile app developed during a 24h Hackathon at CGI which might be open sourced at some point</li>
-<li>Another one called &lsquo;Dev Cube&rsquo; created at an university, where you get to decorate you virtual cubicle</li>
-</ul>
-
-
-<p><a href="https://www.youtube.com/watch?v=hfT2_HxOQdk"><img class="center" src="/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/quincy-adams.jpg" title="The speaker demoing his code quality game" ></a></p>
-
-<p>At the end of the talk, he gave the following recommendations :</p>
-
-<ul>
-<li>Understand the needs of all to respond to everyone&rsquo;s personal goals</li>
-<li>Don&rsquo;t assign things to do, that&rsquo;s not fun, give rewards instead</li>
-<li>Keep managers out of the picture</li>
-<li>To keep it going, you need regular improvements, special events and new rules</li>
-<li>KISS !</li>
-</ul>
-
-
-<p>Playing at work might not be unproductive in the end !</p>
-
-<p>The same <a href="https://www.youtube.com/watch?v=hfT2_HxOQdk">talk given at NLJug</a>, unfortunately, it&rsquo;s in Dutch. English slides are <a href="https://static.rainfocus.com/oracle/oow16/sess/14625567983370011wPS/ppt/increasing%20code%20quality%20with%20gamification.pdf">here</a> though.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automatic Travis daily build with Heroku scheduler]]></title>
-    <link href="http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler/"/>
-    <updated>2014-03-24T06:31:00+01:00</updated>
-    <id>http://philippe.bourgau.net/automatic-travis-daily-build-with-heroku-scheduler</id>
-    <content type="html"><![CDATA[<p>As <a href="/auchandirect-scrapi-an-unofficial-api-ruby-gem/">I just released</a> <a href="https://github.com/philou/auchandirect-scrAPI">auchandirect-scrAPI</a>, and that it relies on scrapping, I needed a daily build.</p>
-
-<p>The <a href="https://travis-ci.org">Travis</a> team <a href="https://github.com/travis-ci/travis-ci/issues/582">is already working</a> on this, and I found a small utility app called <a href="http://traviscron.pythonanywhere.com/">TravisCron</a> where anyone can register his repo for an automatic build.</p>
-
-<p>Unfortunately, the feature is not yet ready in Travis, and the TravisCron guys did not yet activate my repo. After having a look at the <a href="https://github.com/FiloSottile/travis-cron">TravisCron source code</a> and the <a href="https://github.com/travis-ci/travis.rb">Travis API</a>, I found out that it is really simple to do the same thing on my own.</p>
-
-<p>That&rsquo;s how I created <a href="https://github.com/philou/daily-travis">daily-travis</a>. It&rsquo;s a tiny Rake task, ready to be pushed and automaticaly scheduled on heroku that will restart the latest build when run.</p>
-
-<p>Details are in the <a href="https://github.com/philou/daily-travis/blob/master/README.md">README</a></p>
-
-<p>@Travis : Thanks again for your service.</p>
-
-<p><img class="center" src="/imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg" title="I love Travis logo" ></p>
+<p>I hope this might help !</p>
 ]]></content>
   </entry>
   

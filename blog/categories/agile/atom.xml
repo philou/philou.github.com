@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: agile | Philippe Bourgau's blog]]></title>
+  <title><![CDATA[Category: Agile | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/agile/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-09-29T20:44:23+02:00</updated>
+  <updated>2017-10-05T06:43:11+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,458 +14,66 @@
 
   
   <entry>
-    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 3]]></title>
-    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/"/>
-    <updated>2017-09-13T09:12:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3</id>
-    <content type="html"><![CDATA[<p>This is the third post on a <a href="/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
-
-<p>In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">previous post</a>, I explained how we started to understand what was going on. We were now questioning our way of handling bugs.</p>
-
-<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
-
-<p><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg" alt="Bugs drawn on top of code" /></p>
-
-<h2>More understanding</h2>
-
-<h3>Types of tasks</h3>
-
-<p>To answer this question, we decided to plot the different types of tasks we had completed per sprint.</p>
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg" alt="Bar chart with the types of tasks over sprints" /></a></p>
-
-<p>Think again of the velocity curve we started with. We see an almost exact correlation between story count (green bars above) and story points (blue curve below).</p>
-
-<blockquote><p>💡#NoEstimates works</p></blockquote>
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg" alt="Velocity graph" /></a></p>
-
-<p>We can also see that after sprint 56, we were spending more time on bugs and improvements. Improvements are supposed to improve productivity, so we decided to focus on bugs first. Here is what we get if we compute the average number of bugs per sprint :</p>
-
-<table>
-<thead>
-<tr>
-<th>Periods </th>
-<th> Sprints </th>
-<th> Bugs </th>
-<th> Average bugs fixed per sprint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2015, Before sprint 56  </td>
-<td> 15 </td>
-<td>  21 </td>
-<td>    1.4</td>
-</tr>
-<tr>
-<td>After sprint 56 </td>
-<td> 34 </td>
-<td>  210 </td>
-<td>   6.1</td>
-</tr>
-</tbody>
-</table>
+    <title type="html"><![CDATA[Scaling Agile]]></title>
+    <link href="http://philippe.bourgau.net/scaling-agile/"/>
+    <updated>2012-01-19T00:00:00+01:00</updated>
+    <id>http://philippe.bourgau.net/scaling-agile</id>
+    <content type="html"><![CDATA[<p>I have worked in small agile teams, and it does indeed work a lot better than the classical waterfall &amp; hierarchic environment. When speaking with other people who have been through the same experience,&nbsp;we started to wonder how could this be scaled to a big organization ?</p>
 
 
-<br>
+<p>I read two good books on the subject from Craig Larman and Bas Vodde:</p>
 
-
-<p>Starting sprint 56, we were fixing 4 times as many bugs as we used to do before !</p>
-
-<h3>What is going on with bugs ?</h3>
-
-<p>At this point, we felt we&rsquo;d made a great step forward in our understanding. We almost thought we were done with it &hellip;</p>
-
-<p>After a bit of thinking though, it was clear that we were not ! We still needed to understand why we were in this situation.</p>
-
-<p>We started by listing more questions :</p>
 
 <ul>
-<li>Could it be that we just got a lot better at testing ? Since sprint 56, we had been doing <a href="/how-we-started-exploratory-testing/">regular exploratory testing</a>. Exploratory testing sessions were very effective at finding bugs.</li>
-<li>Were we paying back a bug debt ? The created versus resolved trend seemed to show so. But it could also be that we weren&rsquo;t testing as well as we used to !</li>
-</ul>
-
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png" alt="Created vs Resolved Bugs graph" /></a></p>
-
-<ul>
-<li>If we were paying back a bug debt, how close were we to the end of the payback ?</li>
-<li>Were we creating too many flaws in the software ?</li>
-<li>Are we fixing too many bugs ? If so, what should we do to fix less ?</li>
-<li>Are the bugs coming from other teams using our component or from our own testing ?</li>
-<li>Are bugs on new or old code ?</li>
-</ul>
-
-
-<p>A lot of questions, all difficult to answer. We decided to first see if we were paying back a bug debt. If this was the case, most other questions would become more or less irrelevant. With a bit of thinking, we came up with a measure to get the answer.</p>
-
-<h3>Are we paying back a bug debt ?</h3>
-
-<p>We first started to do exploratory testing at sprint 56. To do this, we would run a 1 hour session, where the pair finding the more bugs would win fruits. (Later on, we streamlined exploratory testing as part of the workflow for every story) At that time, we used to find more than 10 bugs in 1 hour.</p>
-
-<blockquote><p>💡Gamification transforms nice developers into berserk testers !</p></blockquote>
-
-<table>
-<thead>
-<tr>
-<th>Explo Test Sesssion </th>
-<th> 61 </th>
-<th> 62 </th>
-<th> 63 </th>
-<th> 64 </th>
-<th> 66 </th>
-<th> 16.01</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bugs found  </td>
-<td> 16 </td>
-<td>  6 </td>
-<td> 16 </td>
-<td>    10 </td>
-<td>    11 </td>
-<td> 11</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>We would do another such a session. If we found significantly less than 10 bugs, let&rsquo;s say less than 6, it would mean that :</p>
-
-<ul>
-<li>we improved the quality of our software</li>
-<li>our streamlining of exploratory testing works</li>
-<li>if we continue to search and fix bugs as we do currently, we&rsquo;ll reach a point where we won&rsquo;t find any more bugs</li>
-</ul>
-
-
-<p>Otherwise, none of these stand, and we&rsquo;ll have to continue our investigations.</p>
-
-<p>So we did a 1 hour, fruit-powered, exploratory testing session. And we found only 3 bugs ! Indeed, we were paying back a bug debt. The question became</p>
-
-<blockquote><p>When should payback be over ?</p></blockquote>
-
-<p>A linear regression on the created vs resolved bug trend showed that we still had 15 more months to go !</p>
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png" alt="Bug trend graph" /></a></p>
-
-<h2>Target condition</h2>
-
-<p>At that point, the target condition became obvious :</p>
-
-<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
-
-<p>Currently, around 1 pair (25% of the team) was busy fixing bugs. If we&rsquo;d manage to bring this down, we&rsquo;d have a 25% productivity boost.</p>
-
-<p>This was post 3 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">Next post</a> will be about PDCA.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 2]]></title>
-    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/"/>
-    <updated>2017-09-12T09:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2</id>
-    <content type="html"><![CDATA[<p>In my <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">previous post</a>, I described the productivity issue our team was facing. How retrospectives did not work, and how I started looking at the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>.</p>
-
-<p>We had gone through the first phase of the improvement kata : set the end goal.</p>
-
-<blockquote><p>Generating enough profit for the business while sticking to a sustainable pace.</p></blockquote>
-
-<p>Time to start the second phase : Understand.</p>
-
-<p><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/question-light.jpeg" alt="Drawing of a question mark transforming into a light bulb" /></p>
-
-<h2>Understand</h2>
-
-<p>Where we really slower ? Or was it an illusion ?</p>
-
-<p>When trying to understand, you have to start with the data you have. You continue digging until you get a deeper understanding of the situation.</p>
-
-<h3>Velocity</h3>
-
-<p>We started with available data : story points and velocity. For sure this is a pretty bad measure of productivity. (Note : we should never use velocity for performance appraisal) In our case though, it felt like a good starting proxy measure.</p>
-
-<p>Here is our velocity curve over 2 years.</p>
-
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity graph" /></a></p>
-
-<p>It&rsquo;s obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That&rsquo;s a clue that our gut feeling was not completely wrong. Our productivity did change.</p>
-
-<h3>Man days</h3>
-
-<p>Our first hypothesis was that team members turnover was the cause. As with any team, some people came, and some people left. Let&rsquo;s superpose the man days and velocity curves.</p>
-
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower-small.jpg" alt="Velocity vs Manpower graph" /></a></p>
-
-<p>That could only explain <em>part</em> of the problem !</p>
-
-<p>We tried to fine tune the man days curve. We took people&rsquo;s involvement in tasks outside of programming into account. We used coefficients depending on the developers' experience. That did not provide a better explanation.</p>
-
-<p>We had to find another explanation.</p>
-
-<h3>Velocity computation</h3>
-
-<p>As I said earlier, velocity is not a measure of productivity. Any change in the way we were computing velocity would impact this curve.</p>
-
-<p>We had kept photos and Trello boards of our <a href="/trellospectives-remote-retrospectives-with-trello/">retrospectives meetings</a>. We searched them through for anything that could impact velocity. Here is what we found :</p>
-
-<ul>
-<li>At sprint 55, we decided to ditch the <a href="https://www.scrum.org/resources/deadly-disease-focus-factor">focus-factor</a></li>
-<li>At sprint 61, we started to do regular <a href="/how-we-started-exploratory-testing/">exploratory-testing</a>. Exploratory testing discovers more bugs on top of user reported bugs. This made us spend more time on fixing bugs.</li>
-<li>At sprint 62, as we opted for a <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">No Bug policy</a> we decided not to count story points for bugs</li>
-</ul>
-
-
-<blockquote><p>💡Keep Photos and Trello boards of Retrospectives as a log of your working agreements changes</p></blockquote>
-
-<p>The timings almost perfectly matched what we had observed in the first place. The question that came to our minds was :</p>
-
-<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
-
-<h2>Halfway through understanding</h2>
-
-<p>This is how we started to dig into our situation. It&rsquo;s a good time to give you a bit of feedback about how we felt at that point.</p>
-
-<p>It was the first time we tried the improvement kata. More than that, we did not find any tutorial or guides about how to run it. The only instructions we had were theoretical descriptions or super concrete examples. We had to bridge the gap and come up with our own way.</p>
-
-<p>To summarize, we felt a bit lost, we had gathered data from here and there, and we did not know what to look at next. On top of that, the quality of the data we were collecting was not great. We were wondering if we would get anything out of these investigations.</p>
-
-<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/the-first-20-hours.jpg" alt="The cover of the book 'The First 20 Hours'" /></a></p>
-
-<p>It felt a bit like when I did the <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">20 hours experiment to learn anything</a>. We did exactly what had worked with the learning experiment : we pushed through !</p>
-
-<blockquote><p>💡If you feel lost when doing something for the first time. Push through !</p></blockquote>
-
-<p>In <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">next week&rsquo;s post</a>, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
-
-<p>More to read next week.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 1]]></title>
-    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/"/>
-    <updated>2017-09-07T06:39:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1</id>
-    <content type="html"><![CDATA[<p>If you are serious about continuous improvement, you should learn the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>.</p>
-
-<p><a href="/blog/categories/retrospectives/">Retrospectives</a> are great to pick all the low hanging improvements. Once you&rsquo;ve caught up with the industry&rsquo;s best practices, retrospectives risk drying up. Untapped improvement opportunities likely still exist in your specific context. The improvement kata can find those.</p>
-
-<p><img src="../imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/low-hanging-fruits.jpeg" alt="Low and high hangling fruits on a tree" /></p>
-
-<p>Here is how we applied the improvement kata to gain 25% of productivity in my previous team.</p>
-
-<h2>The Situation</h2>
-
-<p>Thanks to repeated retrospectives, the team had been improving for 2 years. Retrospectives seemed like a silver bullet. We would discuss the current problems, grasp an underlying cause and pick a best practice. Most of the time, that fixed the problem.</p>
-
-<p>Sometimes it did not work though. Even if the issue came back in a later retrospective, it would not survive a second scrutiny. In the previous two years, the team had transformed the way it worked. It adopted TDD, incremental refactoring, pair programming, remote work, automated performance testing and many others.</p>
-
-<p>Lately though, things did not work so well. The team was struggling with productivity issues. The team was not slowing down, but the scope and complexity of the product had grown. Features were not getting out of the door as fast as they used to. We had the habit of prioritizing improvements and bug fixes over features. That used to improve the flow enough to get more and more feature done. It did not seem to work anymore.</p>
-
-<p>We tried to tackle the issue in retrospectives. We would change the way we prioritized features &hellip; To be later bogged down by bugs, technical debt or bad tools. We would discuss that in retrospective, and decide to change the priorities again &hellip; The loop went on and on a few times.</p>
-
-<p>We were getting nowhere.</p>
-
-<h2>The improvement kata </h2>
-
-<p>That&rsquo;s why I started to look for other ways to do continuous improvement. I stumbled upon a book called <a href="http://leanagilecamp.fr/">Small Lean Management Guide for Agile Teams</a>. The book is in french, but I wrote an <a href="/are-most-agile-teams-doing-continuous-improvement-the-silly-way/">english review</a>. I fell in love with the way the authors dug into the hard data of how they worked to understand and fix their problems.</p>
-
-<p>To learn more about this technique, I read <a href="https://www.amazon.com/Toyota-Kata-Managing-Improvement-Adaptiveness/dp/0071635238/ref=sr_1_1?ie=UTF8&amp;qid=1504758735&amp;sr=8-1&amp;keywords=toyota+kata">Toyota Kata</a>. It details two management tools used at Toyota : the improvement and coaching katas. Some say these are Toyota&rsquo;s special weapon. <em>The</em> thing that grew them from a small shop to the <a href="https://en.wikipedia.org/wiki/Automotive_industry">largest car manufacturer in the world</a>.</p>
-
-<p>They are katas because they are routines. They must be re-execute many times. The <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a> should improve the flow of work. The <a href="http://www-personal.umich.edu/~mrother/The_Coaching_Kata.html">coaching kata</a> helps someone (or yourself) to learn the improvement kata. Every time we go through the kata, we also understand it better.</p>
-
-<p>Here is how the improvement kata goes :</p>
-
-<ol>
-<li>Describe your end goal</li>
-<li>Understand where you stand about this goal by measuring facts and data</li>
-<li>Based on your end goal and the current situation, define where you&rsquo;d like to be in 3 months or less</li>
-<li>Use <a href="https://en.wikipedia.org/wiki/PDCA">Plan-Do-Check-Act</a> to experiment your way to this new situation
-
-<ol>
-<li>Plan an experiment</li>
-<li>Do this experiment</li>
-<li>Check the results of this experiment</li>
-<li>Act on these results. 
-
-<ul>
-<li>Either drop the experiment and plan a new one (go back to &lsquo;Plan&rsquo;).</li>
-<li>Or spread the change at a larger scale.</li>
-</ul>
+<li>
+<div><span><a href="http://www.amazon.com/Scaling-Lean-Agile-Development-Organizational/dp/0321480961/ref=sr_1_1?tag=pbourgau-20&amp;s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-1">Scaling Lean &amp; Agile Development: Thinking and Organizational Tools for Large-Scale Scrum</a></span></div>
 </li>
-</ol>
+<li>
+<div><span><a href="http://www.amazon.com/Practices-Scaling-Lean-Agile-Development/dp/0321636406/ref=sr_1_2?tag=pbourgau-20&amp;s=books&amp;ie=UTF8&amp;qid=1326974242&amp;sr=1-2">Practices for Scaling Lean &amp; Agile Development: Large, Multisite, and Offshore Product Development with Large-Scale Scrum</a></span></div>
 </li>
-</ol>
+</ul>
 
 
-<p><a href="http://www-personal.umich.edu/~mrother/Homepage.html"><img src="../imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/katapattern.jpg" alt="The Improvement Kata Pattern" /></a><div class="image-credits">Image from Mike Rother on <a href="http://www-personal.umich.edu/~mrother/Homepage.html">Toyota Kata Website</a></div></p>
+<p>There made a lot of good points and techniques, but it&nbsp;still sounded a bit theorical. Later&nbsp;I read <a href="http://producingoss.com/">"Producing Open Source Software"</a>&nbsp;from Karl Fogel. At first,&nbsp;it did not seem to&nbsp;have any link with scaling agile, but successfull open source projects have to&nbsp;handle distributed developpment&nbsp;and&nbsp;high turnover, so I thought that maybe large&nbsp;agile organizations have something to learn from open source developpment mechanics. Why wouldn't these technics that are successful at sharing code between companies be used internaly to share code between teams ?</p>
 
-<p>The coaching kata is a way to coach someone into applying the improvement kata. The fun thing is that you can coach yourself ! The idea is to ask questions to the coachee to remind him of where he stands in his improvement kata.</p>
 
-<p><a href="https://traccsolution.com/resources/coaching-infographic/"><img src="../imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/The-coaching-Kata-questions.jpg" alt="The Coaching Kata Questions" /></a></p>
+<p>At the same time, at work, I learnt the hard way that I should avoid to work for a "library, framework, engine ..." team. It's both frustrating and&nbsp;unrewarding :</p>
 
-<p>You&rsquo;ll find tons of details and material about these katas on the <a href="http://www-personal.umich.edu/~mrother/Homepage.html">Toyota Kata website</a>.</p>
 
-<h2>Our end goal</h2>
+<ul>
+<li>
+<div>You never really understand what you are working for, what is the final goal</div>
+</li>
+<li>
+<div>You are always doing a poor job at priorizing requests from different sponsors</div>
+</li>
+<li>
+<div>You are doing too much on some areas, but too few on others</div>
+</li>
+</ul>
 
-<p>That&rsquo;s how I started to apply the improvement kata in my team. I already had an idea of our end goal : to be more productive. To be more precise :</p>
 
-<blockquote><p>Generating enough profit for the business while sticking to a sustainable pace.</p></blockquote>
+<p>Agile &amp; incremental development and architecture solves this the nice&nbsp;way, by extract framework and libraries from running software ! Successful open source projects often start&nbsp;like that&nbsp;(<a href="http://rubyonrails.org/">Rails</a> being the cannonical example).</p>
 
-<p>Retrospectives could not get us there. Would the improvement kata would succeed ?</p>
 
-<p>This is the first part of a <a href="/blog/categories/first-improvement-kata-series/">series of 4 posts</a> relating our first use of the improvement kata. In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">next post</a>, I&rsquo;ll explain what we did to understand the current situation.</p>
+<p>So why couldn't we just let libraries and framework emerge&nbsp;the same way inside a company ? Why don't we maintain these projects as we would maintain an open source project : as a side product of&nbsp;our main output ?</p>
+
+
+<p>Craig Larman and Bas Vodde speak of feature teams, 20% free time, communities : all this fits nicely with this idea. Suppose we could&nbsp;have 20%&nbsp;of our time to work on what we like, any developper could take&nbsp;this time to extract a library from his team's codebase and promote it as a company library, he could become dictator in chief as long as he wishes to. Other teams could reuse it and submit patches. All of the time proven open source developpment best practices could be used.</p>
+
+
+<p>Edit: <a href="http://zachholman.com/talk/how-github-uses-github-to-build-github/">Github builds Github</a> with something a lot like this !</p>
+
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[eXtreme eXtreme Programming (2017)]]></title>
-    <link href="http://philippe.bourgau.net/extreme-extreme-programming-2017/"/>
-    <updated>2017-08-25T07:01:00+02:00</updated>
-    <id>http://philippe.bourgau.net/extreme-extreme-programming-2017</id>
-    <content type="html"><![CDATA[<p>What would <a href="http://www.extremeprogramming.org/">XP</a> look like if it was invented today ?</p>
+    <title type="html"><![CDATA[Collecting agile and XP best practices]]></title>
+    <link href="http://philippe.bourgau.net/collecting-agile-and-xp-best-practices/"/>
+    <updated>2011-10-05T00:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/collecting-agile-and-xp-best-practices</id>
+    <content type="html"><![CDATA[<p>There is a huge difference between reading about agile software developpment, and being an agile developper or team. There are a lot of practical best practices that one learns only through practice.<br />As I am currently building up a training about "practices of an agile developper" for <a href="http://www.keyconsulting.fr/" title="Key Consulting">my company</a>, I wanted to collect these best practices in <a href="https://github.com/philou/XP-Patterns/wiki" title="a wiki in github">a XP Patterns wiki</a>.</p>
 
-<p>A few days ago, I stumbled upon these two talks that got me thinking about this question.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cGuTmOUdFbo" frameborder="0" allowfullscreen></iframe>
-
-
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/h62n09XtS-A" frameborder="0" allowfullscreen></iframe>
-
-
-<p>So I looked deeper into the question, while sticking to the same <a href="http://www.extremeprogramming.org/values.html">values</a> and principles. Here is what I came up with.</p>
-
-<h2>Practices</h2>
-
-<h3>Continuous Deployment</h3>
-
-<p>Why should we only deliver at every iteration in 2017 ? <a href="https://blog.newrelic.com/2016/02/04/data-culture-survey-results-faster-deployment/">Lot&rsquo;s of companies</a> demonstrated how to deploy every commit to safely production. Amazon for example, <a href="http://www.zdnet.com/article/how-amazon-handles-a-new-software-deployment-every-second/">deploys new software every second</a> !</p>
-
-<h3><a href="https://en.wikipedia.org/wiki/DevOps">DevOps</a>++</h3>
-
-<p>As a team starts doing continuous deployment, devs get more and more involved in ops. This privileged view on the users&rsquo;s behaviour can turn devs into product experts. Why not push the logic further and make them <em>the</em> product guys as well ?</p>
-
-<h3>Test in prod</h3>
-
-<p>Continuous deployement opens up many opportunities. Deploying safely requires bulletproof rollbacks. Once devs take care of product, code and ops they can shortcut testing and directly <a href="https://www.theguardian.com/info/developer-blog/2016/dec/05/testing-in-production-how-we-combined-tests-with-monitoring">test in prod</a> with some users ! Rollback remains an option at any time.</p>
-
-<h3><a href="http://www.jamesshore.com/Agile-Book/no_bugs.html">#NoBugs</a></h3>
-
-<p>That seems like wishful thinking. The idea is to fix bugs as soon as they appear, but also to prevent them in the first place. Continuous Deployment requires great engineering practices, which enable this way of working. A story cannot be &ldquo;finished&rdquo; until test in prod is over, and bugs fixed.</p>
-
-<h3>Kanban</h3>
-
-<p>At its core, <a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> is a way to limit the work in progress. It&rsquo;s almost a side effect of the previous practices. <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">#noBugs almost kills interruptions for rework</a>. On top of that, devs have full control on their end to end work, so why would they multitask ?</p>
-
-<h3>#NoBacklog</h3>
-
-<p>In <a href="https://gettingreal.37signals.com/">Getting Real</a>, basecamp guys said that their <a href="https://gettingreal.37signals.com/ch05_Start_With_No.php">default answer to any new feature request was &ldquo;No&rdquo;</a>. Only after the same thing got asked many times would they start thinking of it. Maintaining a long backlog is a waste of time. Dumping backlog items but the current ones saves time. Important ideas will always come up again later.</p>
-
-<h3>#NoEstimates</h3>
-
-<p>This one is famous already. <a href="https://www.thoughtworks.com/insights/blog/how-estimating-story-counts-worked-us">Some teams</a> have saved time by using story count instead of story points. What&rsquo;s the point anyway if the team is already :</p>
-
-<ul>
-<li>working as best as it can</li>
-<li>on the most important thing</li>
-<li>and deploying as soon as possible</li>
-</ul>
-
-
-<h3>Data Driven</h3>
-
-<p>This is how to drive the system evolution. Instead of relying on projects, backlogs and predictions, use data. Data from user logs and interviews proves if a new feature is worth building or dumping. Exploring logs of internal tools can help to continuous improve.</p>
-
-<h3>Lean startup &amp; Hackathons</h3>
-
-<p>Incremental improvements, in either product or organization, is not enough. As <a href="http://timharford.com/">Tim Hardford</a> explained in <a href="https://www.amazon.com/gp/product/1250007550/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1250007550&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=1f1a29f9454328c6606e12b40399eb06">Adapt</a>, survival requires testing completely new ideas. <a href="https://en.wikipedia.org/wiki/Lean_startup">Lean startup</a> &amp; <a href="https://en.wikipedia.org/wiki/Hackathon">hackathons</a> experiments can do just that.</p>
-
-<p><a href="https://www.amazon.com/gp/product/1250007550/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1250007550&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=1f1a29f9454328c6606e12b40399eb06"><img src="../imgs/2017-08-25-extreme-extreme-programming-2017/adapt.jpg" alt="The cover of the Adapt book" /></a></p>
-
-<h3><a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">Improvement kata</a></h3>
-
-<p><a href="https://en.wikipedia.org/wiki/Toyota_Kata#The_Improvement_Kata">Improvement kata</a> is a way to drive long term continuous improvement. It&rsquo;s the main tool for that at Toyota (read <a href="https://www.amazon.com/gp/product/0071635238/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0071635238&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=93a84b0867a3e0f3dd915d87cba78b90">Toyota Kata</a> to learn more). It provides more time to think of the problem than a retrospective. It also fits perfectly in a data driven environment.</p>
-
-<h3>Mob programming</h3>
-
-<p>Pair programming is great for code quality and knowledge sharing. <a href="https://en.wikipedia.org/wiki/Mob_programming#cite_note-8">Mob programming</a> is the more extreme version of pairing where <em>all</em> the team codes together.</p>
-
-<h3><a href="/throwing-code-away-frequently/">Throw code away frequently</a></h3>
-
-<p>An alternative to refactoring with unit tests is throwaway and rewrite once it gets too bad. Companies have been doing that for years. I worked at a bank that used to throwaway and rewrite individual apps that were part of a larger system. It can be a huge waste of money if these sub systems are too large. Scaling down to individual classes or microservices could make this cost effective.</p>
-
-<h3>Remote</h3>
-
-<p>With access to a wider pool of talents, <a href="https://martinfowler.com/articles/remote-or-co-located.html">remote teams usually perform better</a>. It also makes everybody&rsquo;s life easier. Finally, teams have reported that mob &amp; remote programming <a href="https://www.infoq.com/presentations/distributed-teams-remote-collaboration">work great together</a>.</p>
-
-<h2>Afterthought</h2>
-
-<p>What&rsquo;s striking from this list is that it&rsquo;s not that far from the original XP ! For example, continuous deployment and generalists have always been part of it. Another point is that is not science fiction ! I found many teams reporting success with these practices on the internet ! A well-oiled XP team might very well get there through continuous improvement.</p>
-
-<p>The more I look at it, the more XP stands as a unique lighthouse in the foggy Agile landscape.</p>
-
-<p>As for me, I&rsquo;m not sure I&rsquo;d dare to swap TDD &amp; refactoring for throwaway &amp; rewrite. I&rsquo;m particularly worried about the complex domain specific heart of systems. Nothing prevents from using both strategies for different modules though.</p>
-
-<p>I should give it a try on a side project with a microservice friendly language, such as Erlang or Elixir.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[5 Remote energizer tips that will make your remote retrospectives rock]]></title>
-    <link href="http://philippe.bourgau.net/5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/"/>
-    <updated>2017-08-18T09:11:00+02:00</updated>
-    <id>http://philippe.bourgau.net/5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock</id>
-    <content type="html"><![CDATA[<p>Do you remember how people who are not used to the phone tend to shout in it, for the message to get far ? Read on and I&rsquo;ll explain how this silly habit will make your remote retrospectives great !</p>
-
-<p>A typical retrospective starts with an energizing activity, or <a href="http://www.funretrospectives.com/category/energizer/">energizer</a>. It&rsquo;s important for two reasons. First, people who don&rsquo;t speak during the first 5 minutes of a meeting are more likely to remain silent until the end. Second, getting everyone to do an energizing and fun activity sets the tone for a peaceful and creative time.</p>
-
-<p><img src="../imgs/2017-08-18-5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/remote-plus-retro.jpg" alt="Remote control + magnifying glass" /></p>
-
-<h2>Our experiences with remote energizers</h2>
-
-<p>When we started to do retrospectives at work, all the team was co located in Paris. There are tons of activities available on the internet to run effective energizers. We could do games like Fizz Buzz, or drawing based activities like <a href="http://www.funretrospectives.com/collaborative-face-drawing/">face drawing</a> and <a href="http://www.funretrospectives.com/visual-phone/">visual phone</a>. It was easy and fun.</p>
-
-<p>A few years ago, <a href="https://ahmadatwi.me/">Ahmad Atwi</a> joined our team from Beirut. Our catalog of energizer shrank to a few activities that we could run remotely. On top of that, going through the remote medium made it more challenging for energizers to &hellip; energize ! With time and trial, we managed to understand what works and how to pick the right energizer for a remote team.</p>
-
-<h2>Principles for remote energizers</h2>
-
-<p>We have an Agile <a href="https://en.wikipedia.org/wiki/Special_Interest_Group">Special Interest Group</a> at <a href="https://www.murex.com/">Murex</a>, where volunteers meet to share things they find interesting. A few weeks ago, during one of these sessions, we discussed remote energizers in a <a href="http://leancoffee.org/">Lean Coffee</a>.</p>
-
-<p>Here are the points we came up with.</p>
-
-<ul>
-<li>Question activities work great through <a href="https://trello.com/agileretrospectives">Trello</a>. <a href="https://www.amazon.com/gp/product/0977616649/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0977616649&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=2b51890b8e8909b6f2223ca69ec3b26f">Agile Retrospectives, making good teams great</a> details such a Check-In activity. The typical questions sound like &ldquo;Coming into this retrospective, if you were a car, what kind of car would you be ?&rdquo;</li>
-</ul>
-
-
-<p><a href="https://www.amazon.com/gp/product/0977616649/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0977616649&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=2b51890b8e8909b6f2223ca69ec3b26f"><img src="../imgs/2017-08-18-5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/agile-retros.jpg" alt="The Agile Retrospectives, making good teams great book cover" /></a></p>
-
-<ul>
-<li>If they are enough teammates at every place, energizers that play in small groups will work well. For example, it would be easy to organize a <a href="http://www.funretrospectives.com/the-balloon-battle/">balloon battle</a> or a <a href="http://www.funretrospectives.com/back-to-back/">back to back</a>.</li>
-</ul>
-
-
-<p><a href="https://martinfowler.com/articles/remote-or-co-located.html"><img src="../imgs/2017-08-18-5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/multi-site-team.png" alt="The Agile Retrospectives, making good teams great book cover" /></a></p>
-
-<ul>
-<li>It&rsquo;s also easy to use variations on an activity that proved effective. For example, explore new kinds of questions. It&rsquo;s even ok to repeat verbatim an activity from time to time.</li>
-<li>Replace energizing by team building. Team building is particularly important for remote teams. Instead of engaging activities, it&rsquo;s ok to have everyone share a personal anecdote. By knowing each other better, the team can build trust. For example, you could introduce such an activity with : &ldquo;What book would you bring on a desert island ? Why ?&rdquo;</li>
-<li>One last thing we came up with my colleague <a href="https://twitter.com/mc_moe">Morgan Kobeissi</a> to energize a remote meeting is to YELL. The idea is to ask everyone to answer a question while standing and yelling. A question could be &ldquo;How long have you been working and what companies did you work for ?&rdquo;</li>
-</ul>
-
-
-<p><img src="../imgs/2017-08-18-5-remote-energizer-tips-that-will-make-your-remote-retrospectives-rock/yell.jpg" alt="Someone yelling in a kid's 'can-phone'" /></p>
-
-<p>Remote work is here to stay. More and more teams are facing similar difficulties. We need to invent new work practices. If you discovered new ways to run remote energizer, please share them with a comment.</p>
 ]]></content>
   </entry>
   
