@@ -74,4 +74,4 @@ We decided to test this new bug definition for a while.
 
 We're getting closer to the end, but you're not done with PDCA yet.
 
-This was post 4 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. In the [next and last post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/) of this story you'll learn how we ended the PDCAs for great results. 
+This was post 4 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. In the [next and last post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/) of this story you'll learn how we ended the PDCAs for great results. 
