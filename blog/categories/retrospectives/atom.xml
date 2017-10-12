@@ -4,7 +4,7 @@
   <title><![CDATA[Category: retrospectives | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/retrospectives/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-10-09T06:24:59+02:00</updated>
+  <updated>2017-10-12T06:32:53+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons learned from running our first improvement kata]]></title>
+    <link href="http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata/"/>
+    <updated>2017-09-29T06:15:00+02:00</updated>
+    <id>http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata</id>
+    <content type="html"><![CDATA[<p>During the past few weeks, I blogged the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">story of our first improvement kata</a>.</p>
+
+<p>Doing this first <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a> taught us many lessons. We re-discovered best practices of the software industry. We also learned more general things about the improvement kata itself.</p>
+
+<p><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/lessons.jpg" alt="Drawing of books" /></p>
+
+<h2>Rediscovered best practices</h2>
+
+<p>As we went through the kata, we &lsquo;proved&rsquo; many known best practices. We did not have to <em>believe</em> them, we had data explaining that they worked. For example :</p>
+
+<ul>
+<li><a href="https://twitter.com/hashtag/noestimates">#NoEstimate</a> works. Back in <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">part 3</a> we saw that the story point and story count curves were very similar, almost identical</li>
+<li><a href="https://www.infoq.com/articles/0-bugs-policy">#NoBug policy</a> was part of the solution to our problem</li>
+<li>Doing more exploratory testing resulted in less bug fixing and increased our productivity. This proves principles like &ldquo;<a href="http://deming14points.com/quotes/build-quality-in/">Build quality in"</a> and <a href="https://en.wikiquote.org/wiki/Tom_DeMarco">&ldquo;Quality is free&rdquo;</a></li>
+</ul>
+
+
+<p>We also pushed the #NoBug policy further than it is usually done. We defined a clear definition for bugs that anyone could use. Doing so, we removed the product owner (or on-site customer) from the picture. Very often, the PO is the only one who can sort stories from bugs out. We created what <a href="http://reinertsenassociates.com/category/tips/">Donald Reinertsen</a> calls a distributed rule in the <a href="https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009">flow book</a>. It increased empowerment, removes bottlenecks, while ensuring alignment.</p>
+
+<p><a href="https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009"><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/flow-book-cover.jpg" alt="The 'Flow' book cover" /></a></p>
+
+<h2>The improvement kata</h2>
+
+<p>The first general lesson that we learned is that the improvement kata works !</p>
+
+<p>At the beginning, we were very uneasy not to have perfect data. Remember how we had to resort to velocity as a proxy measure for productivity. In the end, that was not a severe problem. It still allowed us to understand what was going on.</p>
+
+<p>We also learned that <a href="http://philippe.bourgau.net/blog/categories/retrospectives/">retrospective</a> is not the only road to continuous improvement. In fact, the improvement kata and retrospectives are very different :</p>
+
+<ul>
+<li>The time frame is different. A retrospective lasts for 1 or 2 hours and yield immediate results. An improvement kata is a background task that could take months in theory !</li>
+<li>But the improvement kata also digs a lot deeper in the topic and brings true understanding. In our case, it fixed a problem that retrospectives where failing to address.</li>
+<li>Ownership is also different. Retrospectives are a team activity. The improvement kata needs one or a few owners. It would be very difficult to align everyone on the same path of thoughts if we did it as a group activity.</li>
+<li>Being a team activity, retrospectives have built-in alignment. The conclusions of the improvement kata must explained and agreed for a team to act on them. A good practice is to have regular (short) team meetings to share the current state of an improvement kata.</li>
+<li>As the improvement kata is a more individual activity, it is more remote friendly. Team members can run the kata on their side, sharing everything through a wiki, or a blog for example.</li>
+</ul>
+
+
+<p>Keep in mind that this was our first try at the kata. Some of our difficulties might disappear with a bit of practice !</p>
+
+<h2>What&rsquo;s next ?</h2>
+
+<h3>Hybrid continuous improvement</h3>
+
+<p>I clarified the differences between the improvement kata and retrospectives. That&rsquo;s not the end of it. I&rsquo;m sure a mixed format could be very interesting ! Start with a retrospective to collect the team&rsquo;s problems, and vote on the more important. Add a corresponding improvement kata task to the backlog. Someone would then handle this improvement task, sharing with the team along the way.</p>
+
+<p>This might be a great opportunity to reduce meeting time with shorter retrospectives.</p>
+
+<blockquote><p>💡 Reduce meeting time with mixed retrospective &amp; improvement kata</p></blockquote>
+
+<h3>Data science for software</h3>
+
+<p>Going through this improvement kata made me realize something else. It is very difficult to get quality data to investigate. We had to resort to what was available all the way.</p>
+
+<p>What&rsquo;s striking is that we use software tool for all our work ! These tools have logs and could record usage data somewhere. Imagine all we could learn by mining all this data ! Our IDEs, CI servers, quality monitors, test tools, version control and project management tools should store everything we do at the same place !</p>
+
+<p>With all this data, could we improve our estimations ? Could we find creative ways to be more productive ? Could we estimate the speed up that fixing some technical debt would bring ?</p>
+
+<blockquote><p>💡 What are we waiting to apply data science to the development process ?</p></blockquote>
+
+<p>As the saying goes, &ldquo;The cobbler&rsquo;s children go barefoot&rdquo;. We are building such systems for others, but not for ourselves.</p>
+
+<p>Hopefully, new tools like <a href="https://codescene.io/">CodeScene</a> are emerging to fill this gap. You can learn more about CodeScene on their <a href="https://codescene.io/">website</a>, or from the <a href="https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384">founder&rsquo;s book</a>. It analyses the version control history to find hot spots and other things in your code.</p>
+
+<p><a href="https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384"><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/code-as-crime-scene.jpg" alt="The 'Code as a Crime Scene' book cover" /></a></p>
+
+<p>While we keep dreaming of such tool, I&rsquo;ll continue to blog. Next week, I will write a short guide of how to run your first improvement kata.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 1]]></title>
@@ -319,114 +394,6 @@
 <p><a href="https://leanpub.com/funretrospectives"><img class="center" src="/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/FunRetrospectives.jpg" title="The cover of Fun Retrospectives" ></a></p>
 
 <p>One last thing : in order to improve this collection, we&rsquo;d like to have your feedback on existing activities, or your own new templates for other activities.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Trellospectives : Remote Retrospectives with Trello]]></title>
-    <link href="http://philippe.bourgau.net/trellospectives-remote-retrospectives-with-trello/"/>
-    <updated>2015-04-05T06:18:00+02:00</updated>
-    <id>http://philippe.bourgau.net/trellospectives-remote-retrospectives-with-trello</id>
-    <content type="html"><![CDATA[<p>As a distributed team working from Paris and Beirut, after <a href="/from-zero-to-pair-programming-hero/">pair programming</a>, it was time for our retrospectives to get remote !</p>
-
-<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup-small.jpg" title="A remote retrospective meeting with Trello setup" ></a></p>
-
-<h2>Initial setup</h2>
-
-<p>At first we were using the visio conference system. The retrospective facilitator would connect with the remote participants through instant chat and forward theirs post-its. We also used an extra webcam connected to the laptop in order to show the whiteboard in the other room.</p>
-
-<h4>Pros</h4>
-
-<ul>
-<li>Anyone can do it now</li>
-<li>Kind of works</li>
-</ul>
-
-
-<h4>Cons</h4>
-
-<ul>
-<li>We often used to loose 5 minutes setting all the infrastructure up</li>
-<li>The remote room cannot see the board clearly through the webcam</li>
-<li>The animator has to spend his time forwarding the other room&rsquo;s points</li>
-<li>There is a &lsquo;master&rsquo; and a &lsquo;slave&rsquo; room</li>
-</ul>
-
-
-<h2>Sensei Tool</h2>
-
-<p>When Mohamad joined the team in Beirut, we thought that this was not going to scale &hellip; We decided to try something else. With the availability of the new conferencing system, we had the idea to use a web tool to run the retro. We found and tried <a href="http://senseitool.com/">senseitool.com</a>. After creating accounts for every member of the team and scheduling a retrospective through the tool, we could all equally participate using our smartphones. The retrospective follows a typical workflow that is fine for teams new to the practice.</p>
-
-<h4>Pros</h4>
-
-<ul>
-<li>Even easier to setup</li>
-<li>Works fine</li>
-</ul>
-
-
-<h4>Cons</h4>
-
-<ul>
-<li>The website was a bit slow</li>
-<li>The retrospective was too guided for an experienced team, we did not get as good outputs as we used to</li>
-<li>Everyone could participate as easily</li>
-</ul>
-
-
-<h2>Trello</h2>
-
-<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat-small.jpg" title="The boat activity on Trello" ></a></p>
-
-<p><a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=remote%20retrospective">Asking Google</a>, we discovered that some teams were having success using <a href="https://trello.com/">Trello</a> for their remote retrospectives. We decided to give it a try. Ahmad from Beirut got to work on our first retrospective with it. He had to prepare it beforehand (as we always have been doing). In practice :</p>
-
-<ul>
-<li>Ahmad created an organization for our team</li>
-<li>We all registered to Trello and joined the organization (we like joining (smile))</li>
-<li>Ahmad created a custom board for each activity</li>
-<li>During the meeting, we used the video conferencing system and the instant chat to have both visio and screen sharing</li>
-<li>The animator used a laptop to manage the Trello boards</li>
-<li>Everyone of us could add post-its through his smartphone app</li>
-</ul>
-
-
-<h4>Pros</h4>
-
-<ul>
-<li>The setup is easy</li>
-<li>The retrospective worked well and delivered interesting output</li>
-<li>We actually all see the board</li>
-<li>The smartphone app works well</li>
-<li>It is possible to vote directly through Trello</li>
-<li>Everyone could participate as easily</li>
-<li>We can classify post-its with labels</li>
-<li>We can insert pictures and photos</li>
-<li>There are a lot of chrome extensions to Trello (<a href="https://chrome.google.com/webstore/detail/vertical-lists-for-trello/aldklnbenbdgfgfbflalmlddkkndgnlc?utm_source=chrome-app-launcher-info-dialog">Vertical Lists for Trello</a>), <a href="https://chrome.google.com/webstore/detail/card-color-titles-for-tre/hpmobkglehhleflhaefmfajhbdnjmgim?utm_source=chrome-app-launcher-info-dialog">Card Color Titles for Trello</a></li>
-</ul>
-
-
-<h4>Cons</h4>
-
-<ul>
-<li>There is nothing to &lsquo;group&rsquo; post its together</li>
-<li>We need to prepare custom boards for every activity</li>
-<li>We would need to pay for the gold version with custom backgrounds and stickers</li>
-</ul>
-
-
-<h2>Conclusion</h2>
-
-<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti-small.jpg" title="The Return On Time Invested activity on Trello" ></a></p>
-
-<p>While missing a few features that would make it awesome, Trello is the best tool we found for remote retrospective, and is better than our initial physical setup. We&rsquo;re continuing to use it, and we now have to figure out</p>
-
-<ul>
-<li>If we could find a way to speed up the meeting preparation</li>
-<li>How to handle &lsquo;graph oriented&rsquo; activities such as the &lsquo;5 whys&rsquo;</li>
-</ul>
-
-
-<p><a href="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys.jpg"><img class="center" src="/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys-small.jpg" title="The 5 why activity on a physical whiteboard" ></a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: improvement kata | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/improvement-kata/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-10-09T06:24:59+02:00</updated>
+  <updated>2017-10-12T06:32:53+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons learned from running our first improvement kata]]></title>
+    <link href="http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata/"/>
+    <updated>2017-09-29T06:15:00+02:00</updated>
+    <id>http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata</id>
+    <content type="html"><![CDATA[<p>During the past few weeks, I blogged the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">story of our first improvement kata</a>.</p>
+
+<p>Doing this first <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a> taught us many lessons. We re-discovered best practices of the software industry. We also learned more general things about the improvement kata itself.</p>
+
+<p><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/lessons.jpg" alt="Drawing of books" /></p>
+
+<h2>Rediscovered best practices</h2>
+
+<p>As we went through the kata, we &lsquo;proved&rsquo; many known best practices. We did not have to <em>believe</em> them, we had data explaining that they worked. For example :</p>
+
+<ul>
+<li><a href="https://twitter.com/hashtag/noestimates">#NoEstimate</a> works. Back in <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">part 3</a> we saw that the story point and story count curves were very similar, almost identical</li>
+<li><a href="https://www.infoq.com/articles/0-bugs-policy">#NoBug policy</a> was part of the solution to our problem</li>
+<li>Doing more exploratory testing resulted in less bug fixing and increased our productivity. This proves principles like &ldquo;<a href="http://deming14points.com/quotes/build-quality-in/">Build quality in"</a> and <a href="https://en.wikiquote.org/wiki/Tom_DeMarco">&ldquo;Quality is free&rdquo;</a></li>
+</ul>
+
+
+<p>We also pushed the #NoBug policy further than it is usually done. We defined a clear definition for bugs that anyone could use. Doing so, we removed the product owner (or on-site customer) from the picture. Very often, the PO is the only one who can sort stories from bugs out. We created what <a href="http://reinertsenassociates.com/category/tips/">Donald Reinertsen</a> calls a distributed rule in the <a href="https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009">flow book</a>. It increased empowerment, removes bottlenecks, while ensuring alignment.</p>
+
+<p><a href="https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009"><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/flow-book-cover.jpg" alt="The 'Flow' book cover" /></a></p>
+
+<h2>The improvement kata</h2>
+
+<p>The first general lesson that we learned is that the improvement kata works !</p>
+
+<p>At the beginning, we were very uneasy not to have perfect data. Remember how we had to resort to velocity as a proxy measure for productivity. In the end, that was not a severe problem. It still allowed us to understand what was going on.</p>
+
+<p>We also learned that <a href="http://philippe.bourgau.net/blog/categories/retrospectives/">retrospective</a> is not the only road to continuous improvement. In fact, the improvement kata and retrospectives are very different :</p>
+
+<ul>
+<li>The time frame is different. A retrospective lasts for 1 or 2 hours and yield immediate results. An improvement kata is a background task that could take months in theory !</li>
+<li>But the improvement kata also digs a lot deeper in the topic and brings true understanding. In our case, it fixed a problem that retrospectives where failing to address.</li>
+<li>Ownership is also different. Retrospectives are a team activity. The improvement kata needs one or a few owners. It would be very difficult to align everyone on the same path of thoughts if we did it as a group activity.</li>
+<li>Being a team activity, retrospectives have built-in alignment. The conclusions of the improvement kata must explained and agreed for a team to act on them. A good practice is to have regular (short) team meetings to share the current state of an improvement kata.</li>
+<li>As the improvement kata is a more individual activity, it is more remote friendly. Team members can run the kata on their side, sharing everything through a wiki, or a blog for example.</li>
+</ul>
+
+
+<p>Keep in mind that this was our first try at the kata. Some of our difficulties might disappear with a bit of practice !</p>
+
+<h2>What&rsquo;s next ?</h2>
+
+<h3>Hybrid continuous improvement</h3>
+
+<p>I clarified the differences between the improvement kata and retrospectives. That&rsquo;s not the end of it. I&rsquo;m sure a mixed format could be very interesting ! Start with a retrospective to collect the team&rsquo;s problems, and vote on the more important. Add a corresponding improvement kata task to the backlog. Someone would then handle this improvement task, sharing with the team along the way.</p>
+
+<p>This might be a great opportunity to reduce meeting time with shorter retrospectives.</p>
+
+<blockquote><p>💡 Reduce meeting time with mixed retrospective &amp; improvement kata</p></blockquote>
+
+<h3>Data science for software</h3>
+
+<p>Going through this improvement kata made me realize something else. It is very difficult to get quality data to investigate. We had to resort to what was available all the way.</p>
+
+<p>What&rsquo;s striking is that we use software tool for all our work ! These tools have logs and could record usage data somewhere. Imagine all we could learn by mining all this data ! Our IDEs, CI servers, quality monitors, test tools, version control and project management tools should store everything we do at the same place !</p>
+
+<p>With all this data, could we improve our estimations ? Could we find creative ways to be more productive ? Could we estimate the speed up that fixing some technical debt would bring ?</p>
+
+<blockquote><p>💡 What are we waiting to apply data science to the development process ?</p></blockquote>
+
+<p>As the saying goes, &ldquo;The cobbler&rsquo;s children go barefoot&rdquo;. We are building such systems for others, but not for ourselves.</p>
+
+<p>Hopefully, new tools like <a href="https://codescene.io/">CodeScene</a> are emerging to fill this gap. You can learn more about CodeScene on their <a href="https://codescene.io/">website</a>, or from the <a href="https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384">founder&rsquo;s book</a>. It analyses the version control history to find hot spots and other things in your code.</p>
+
+<p><a href="https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384"><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/code-as-crime-scene.jpg" alt="The 'Code as a Crime Scene' book cover" /></a></p>
+
+<p>While we keep dreaming of such tool, I&rsquo;ll continue to blog. Next week, I will write a short guide of how to run your first improvement kata.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 5]]></title>
@@ -80,7 +155,7 @@
 
 <h2>This is it !</h2>
 
-<p>This was post 5 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. I&rsquo;m not completely done writing about this improvement kata though. In the coming weeks, I&rsquo;ll post about the lessons learned and how to start your own improvement kata.</p>
+<p>This was post 5 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. I&rsquo;m not completely done writing about this improvement kata though. In the coming weeks, I&rsquo;ll post about the <a href="/lessons-learned-from-running-our-first-improvement-kata/">lessons learned</a> and how to start your own improvement kata.</p>
 ]]></content>
   </entry>
   

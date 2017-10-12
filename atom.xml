@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-10-09T06:24:59+02:00</updated>
+  <updated>2017-10-12T06:32:53+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,82 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Lessons learned from running our first improvement kata]]></title>
+    <link href="http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata/"/>
+    <updated>2017-09-29T06:15:00+02:00</updated>
+    <id>http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata</id>
+    <category term="agile" /><category term="continuous improvement" /><category term="improvement kata" /><category term="lean" /><category term="retrospectives" /><category term="testing" />
+    <content type="html"><![CDATA[<p>During the past few weeks, I blogged the <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">story of our first improvement kata</a>.</p>
+
+<p>Doing this first <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a> taught us many lessons. We re-discovered best practices of the software industry. We also learned more general things about the improvement kata itself.</p>
+
+<p><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/lessons.jpg" alt="Drawing of books" /></p>
+
+<h2>Rediscovered best practices</h2>
+
+<p>As we went through the kata, we &lsquo;proved&rsquo; many known best practices. We did not have to <em>believe</em> them, we had data explaining that they worked. For example :</p>
+
+<ul>
+<li><a href="https://twitter.com/hashtag/noestimates">#NoEstimate</a> works. Back in <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">part 3</a> we saw that the story point and story count curves were very similar, almost identical</li>
+<li><a href="https://www.infoq.com/articles/0-bugs-policy">#NoBug policy</a> was part of the solution to our problem</li>
+<li>Doing more exploratory testing resulted in less bug fixing and increased our productivity. This proves principles like &ldquo;<a href="http://deming14points.com/quotes/build-quality-in/">Build quality in&#8221;</a> and <a href="https://en.wikiquote.org/wiki/Tom_DeMarco">&ldquo;Quality is free&rdquo;</a></li>
+</ul>
+
+
+<p>We also pushed the #NoBug policy further than it is usually done. We defined a clear definition for bugs that anyone could use. Doing so, we removed the product owner (or on-site customer) from the picture. Very often, the PO is the only one who can sort stories from bugs out. We created what <a href="http://reinertsenassociates.com/category/tips/">Donald Reinertsen</a> calls a distributed rule in the <a href="https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009">flow book</a>. It increased empowerment, removes bottlenecks, while ensuring alignment.</p>
+
+<p><a href="https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009"><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/flow-book-cover.jpg" alt="The 'Flow' book cover" /></a></p>
+
+<h2>The improvement kata</h2>
+
+<p>The first general lesson that we learned is that the improvement kata works !</p>
+
+<p>At the beginning, we were very uneasy not to have perfect data. Remember how we had to resort to velocity as a proxy measure for productivity. In the end, that was not a severe problem. It still allowed us to understand what was going on.</p>
+
+<p>We also learned that <a href="http://philippe.bourgau.net/blog/categories/retrospectives/">retrospective</a> is not the only road to continuous improvement. In fact, the improvement kata and retrospectives are very different :</p>
+
+<ul>
+<li>The time frame is different. A retrospective lasts for 1 or 2 hours and yield immediate results. An improvement kata is a background task that could take months in theory !</li>
+<li>But the improvement kata also digs a lot deeper in the topic and brings true understanding. In our case, it fixed a problem that retrospectives where failing to address.</li>
+<li>Ownership is also different. Retrospectives are a team activity. The improvement kata needs one or a few owners. It would be very difficult to align everyone on the same path of thoughts if we did it as a group activity.</li>
+<li>Being a team activity, retrospectives have built-in alignment. The conclusions of the improvement kata must explained and agreed for a team to act on them. A good practice is to have regular (short) team meetings to share the current state of an improvement kata.</li>
+<li>As the improvement kata is a more individual activity, it is more remote friendly. Team members can run the kata on their side, sharing everything through a wiki, or a blog for example.</li>
+</ul>
+
+
+<p>Keep in mind that this was our first try at the kata. Some of our difficulties might disappear with a bit of practice !</p>
+
+<h2>What&rsquo;s next ?</h2>
+
+<h3>Hybrid continuous improvement</h3>
+
+<p>I clarified the differences between the improvement kata and retrospectives. That&rsquo;s not the end of it. I&rsquo;m sure a mixed format could be very interesting ! Start with a retrospective to collect the team&rsquo;s problems, and vote on the more important. Add a corresponding improvement kata task to the backlog. Someone would then handle this improvement task, sharing with the team along the way.</p>
+
+<p>This might be a great opportunity to reduce meeting time with shorter retrospectives.</p>
+
+<blockquote><p>💡 Reduce meeting time with mixed retrospective &amp; improvement kata</p></blockquote>
+
+<h3>Data science for software</h3>
+
+<p>Going through this improvement kata made me realize something else. It is very difficult to get quality data to investigate. We had to resort to what was available all the way.</p>
+
+<p>What&rsquo;s striking is that we use software tool for all our work ! These tools have logs and could record usage data somewhere. Imagine all we could learn by mining all this data ! Our IDEs, CI servers, quality monitors, test tools, version control and project management tools should store everything we do at the same place !</p>
+
+<p>With all this data, could we improve our estimations ? Could we find creative ways to be more productive ? Could we estimate the speed up that fixing some technical debt would bring ?</p>
+
+<blockquote><p>💡 What are we waiting to apply data science to the development process ?</p></blockquote>
+
+<p>As the saying goes, &ldquo;The cobbler&rsquo;s children go barefoot&rdquo;. We are building such systems for others, but not for ourselves.</p>
+
+<p>Hopefully, new tools like <a href="https://codescene.io/">CodeScene</a> are emerging to fill this gap. You can learn more about CodeScene on their <a href="https://codescene.io/">website</a>, or from the <a href="https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384">founder&rsquo;s book</a>. It analyses the version control history to find hot spots and other things in your code.</p>
+
+<p><a href="https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384"><img src="../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/code-as-crime-scene.jpg" alt="The 'Code as a Crime Scene' book cover" /></a></p>
+
+<p>While we keep dreaming of such tool, I&rsquo;ll continue to blog. Next week, I will write a short guide of how to run your first improvement kata.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 5]]></title>
@@ -81,7 +157,7 @@
 
 <h2>This is it !</h2>
 
-<p>This was post 5 in a <a href="http://philippe.bourgau.net/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. I&rsquo;m not completely done writing about this improvement kata though. In the coming weeks, I&rsquo;ll post about the lessons learned and how to start your own improvement kata.</p>
+<p>This was post 5 in a <a href="http://philippe.bourgau.net/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. I&rsquo;m not completely done writing about this improvement kata though. In the coming weeks, I&rsquo;ll post about the <a href="http://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata/">lessons learned</a> and how to start your own improvement kata.</p>
 ]]></content>
   </entry>
   
@@ -2172,112 +2248,6 @@
 <p>Finally, TDD can simplify your processes and tooling. Team-wide TDD results in a steady flow of features on top of which it is easier to create simple and effective processes and tools.</p>
 
 <p>The road is long, sinuous and at times rocky, but so are the rewards.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Most Scrum teams are not agile]]></title>
-    <link href="http://philippe.bourgau.net/most-scrum-teams-are-not-agile/"/>
-    <updated>2017-05-09T06:36:00+02:00</updated>
-    <id>http://philippe.bourgau.net/most-scrum-teams-are-not-agile</id>
-    <category term="agile" /><category term="continuous improvement" /><category term="retrospectives" /><category term="scrum" />
-    <content type="html"><![CDATA[<p>Being agile is about adapting to change and continuously improving. I&rsquo;ve seen (and been) in too many teams blindly following Scrum (<a href="http://philippe.bourgau.net/how-to-kill-scrum-zombies/">Scrum Zombies</a>) without figuring out how to continuous improve. The most obvious symptom is a boring (or no) retrospective.</p>
-
-<p>Usually, it did not start that way, people had good intentions, and tried to follow the Scrum cookbook. Unfortunately, without any guidance or extreme perseverance, it is plain too easy to mess up the retrospective. If no concrete actions are scheduled at the end of the retro, if the same problems keep coming up at every retro, or if no problems at all are raised during the retro : your Scrum is somehow broken !</p>
-
-<p>One of the promises of Scrum is to keep code quality high, in order to be able to adapt to late changes. Without a good retro to update the coding standards, the working agreements, or to spot and organize large scale refactoring, this will not happen.</p>
-
-<p>One of the agile principle <a href="http://agilemanifesto.org/principles.html">explicitly states</a> the need for motivated team members. In <a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494561757&amp;sr=8-1&amp;keywords=pink+drive">Drive</a> Daniel Pink explains that one of the ingredient for motivation is autonomy. As a way to fix recurring problems, effective retrospectives will create autonomy, and enable motivation. Dysfunctional retros will slowly kill both &hellip;</p>
-
-<p>Although continuous improvement at all levels is one of the most important element in your process, it needs a bit of practice to setup right. After trying different approach in different teams, I compiled a list of the things that worked for me :</p>
-
-<p><a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494561757&amp;sr=8-1&amp;keywords=pink+drive"><img src="../imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg" alt="The cover of the Daniel Pink's &quot;Drive&quot; book" /></a></p>
-
-<h2>How to do successful retrospectives</h2>
-
-<h3>Start !</h3>
-
-<p>Sounds obvious ! The first step is to schedule a recurring meeting and invite all the team. Someone should take care of facilitating. If you want to improve things, do this yourself at the beginning ! Once the practice is in place and everyone sees the benefits, you&rsquo;ll be able to get some help.</p>
-
-<p><a href="http://philippe.bourgau.net/how-we-introduced-efficient-agile-retrospectives/">Here</a> is a crash-course about how to organize and drive your first retrospective. If your team is distributed, you&rsquo;ll need a slightly different setup. In my previous team, we had success using <a href="https://trello.com">Trello</a>, you can read more about it <a href="http://philippe.bourgau.net/trellospectives-remote-retrospectives-with-trello/">here</a>.</p>
-
-<p><img src="../imgs/2017-05-09-most-scrum-teams-are-not-agile/just-do-it.jpg" alt="Just Do It picture" /></p>
-
-<h3>Make sure everyone talks</h3>
-
-<p>Retros should not be &ldquo;just-another-boring-meeting&rdquo; ! People should be excited to be there and to solve their recurring problems. I&rsquo;ve seen retros where no one would speak, as if there was absolutely nothing to improve ! I&rsquo;ve also been in retros where people raised collaboration issues, and came up with drastic improvements to the way they work, like adopting pair-programming for example.</p>
-
-<p>There can be many reason why people don&rsquo;t speak : habit, organizational culture &hellip; Whatever the cause, if you show them the path, if you demonstrate that retro work and that it is safe to speak, you&rsquo;ll get them to participate.</p>
-
-<p>Here are a few tricks to guide a team there :</p>
-
-<ul>
-<li>It is said that if someone does not speak in the first 5 minutes of a meeting, he&rsquo;ll remain silent for the rest. That&rsquo;s why <a href="www.funretrospectives.com/category/energizer/">energizers</a> work. They force everyone to participate to a Fun activity right from the start. <a href="http://www.funretrospectives.com/">Fun Retrospective</a> contains a lot of engaging energizers.</li>
-<li>Bring food ! Having food at work was one of Kent Beck&rsquo;s main advises in <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494561932&amp;sr=1-2&amp;keywords=extreme+programming+explained+embrace+change">eXtreme Programming, Embrace Change</a>. Food is social and create a more relaxed and safer atmosphere.</li>
-<li>Before you start the meeting, it might be useful to repeat the <a href="http://www.retrospectives.com/pages/retroPrimeDirective.html">Retrospective&rsquo;s Prime Directive</a>.</li>
-</ul>
-
-
-<blockquote><p>Regardless of what we discover, we understand and truly believe that everyone did the best job they could, given what they knew at the time, their skills and abilities, the resources available, and the situation at hand.</p></blockquote>
-
-<ul>
-<li>As the animator, you should make sure the discussions don&rsquo;t degenerate into some kind of trolling or blaming. If it&rsquo;s the case, remind that this is not the way the retro is meant to work. In worst case, give a 5 minutes break to everyone to calm down.</li>
-<li>If needed, have a private discussion with people outside the retro to make sure that they understand the &ldquo;Blame the process, not the people&rdquo; principle of the retro well enough.</li>
-</ul>
-
-
-<p>Dealing with &ldquo;bad&rdquo; behavior in retros is a wide topic which I am only scratching the surface here. I guess I could write a full post about it.</p>
-
-<p><a href="http://www.funretrospectives.com/"><img src="../imgs/2017-05-09-most-scrum-teams-are-not-agile/fun-retro.jpeg" alt="The cover of the &quot;Fun Retrospectives&quot; book" /></a></p>
-
-<h3>Get out of with actionable tasks</h3>
-
-<p>If you want a sure way to screw up your retros here it is : end the first one with no actionable things to do ! People will learn that it&rsquo;s a useless pscho-blabla meeting for agile softies.</p>
-
-<p>This should be the absolute priority during the first retros. There are various kind of actionable tasks. Teams can adopt new conventions, decide to tackle some specific refactoring, or build a small new tool &hellip;</p>
-
-<p>Actionable items should be small enough to be completed in one sprint. This is fine for refactoring a class, adding a <a href="https://www.sonarqube.org/">SonarQube</a> rule or asking for something from another team. What about larger tasks ? Suppose you just identified a large refactoring to do, how do you get started ? I know 2 strategies for that :</p>
-
-<ul>
-<li>Only identify the first step of what you want to start. At least, that&rsquo;s enough to get started and learn what to do later.</li>
-<li>Agree on a <a href="https://mikadomethod.wordpress.com/">Mikado</a> discovery task to understand what needs to be done. Code is not the only thing that can be refactored with the Mikado method ! People have used it to transform <a href="http://nomad8.com/organisational-change-with-mikado/">organizations</a> !</li>
-</ul>
-
-
-<p>It&rsquo;s also a good habit to book the rooms for extra time after the official retro time. Nothing is as frustrating as being interrupted while investigating a promising improvement !</p>
-
-<p>Finally, I think it&rsquo;s a good practice to review what happened of the improvements that were selected during last retro. It stresses the importance of doing what was scheduled in retrospective. It also gives a chance to investigate the reason why they were not done !</p>
-
-<p><a href="https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494562230&amp;sr=1-1&amp;keywords=mikado+method"><img src="../imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg" alt="The cover of the &quot;Mikado Method&quot; book" /></a></p>
-
-<h3>Put them in the sprint</h3>
-
-<p>When actions are selected in the retro, you should add them to the coming sprint before it starts. Obviously, you&rsquo;ll add non business related items in your sprint backlog. Whatever you might have hear from agile zealots, do it ! Process improvements are fist class backlog citizens, just don&rsquo;t discuss them with your <a href="https://www.scrum.org/resources/blog/who-professional-scrum-product-owner">product owner</a>.</p>
-
-<p>If you want a chance to deliver what you committed to in your sprint backlog, you&rsquo;ll need bandwidth for that ! They are many ways to do get that. Some teams use <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a>, others reserve an &lsquo;improvement day&rsquo; every sprint. My personal favorite (and the one we&rsquo;ve been doing at work) is to estimate the improvements in story points and reserve a fraction (ex 20%) of your story points for improvements.</p>
-
-<p>You can try to negotiate your improvement ratio with your product owner &hellip; or you might also just set it yourself ! The team is responsible for the quality of its work. Better be sorry than ineffective. If you stick to your ratio and only work on the most important improvements, it&rsquo;s usually pretty easy to justify working on them. Plus if you manage to go under the radar for a few sprints, the results of the improvements should speak by themselves.</p>
-
-<h3>Do them as soon as the sprint starts</h3>
-
-<p>One last thing. Start to work on your improvements as soon as the sprint starts.</p>
-
-<p>Improvements are similar to investments : you invest in process, tools or code in exchange for more value creation downstream. Once you&rsquo;ve decided to invest in something, what&rsquo;s the point of waiting 1 week ? Plus if you wait for later in the sprint, you run the risk of having unfinished improvements at the next retro, which might interfere when prioritizing new ones.</p>
-
-<h2>Continuously improving teams</h2>
-
-<p>Being part of a continuously improving team is easier to live than to describe. It feels like the future is bright. Once a team has mastered continuous improvement, people can be optimistic that they&rsquo;ll manage to adapt to change later down the road :</p>
-
-<ul>
-<li>They could switch gears and go full speed on a particular re-architecture</li>
-<li>They could change their working agreements to adapt to new constraints</li>
-<li>They could re-focus their efforts to handle a maintenance pike</li>
-</ul>
-
-
-<p>At the end of the day, bottom-up continuous improvement makes everyone&rsquo;s lives easier. Developers experience more autonomy while improving their productivity, they can do good work (which also means spending less time bug-fixing). Product owners learn that they can trust the team to do their best. Sponsors get more value for their money.</p>
-
-<blockquote><p>Agile teams bend so they don&rsquo;t break !</p></blockquote>
 ]]></content>
   </entry>
   
