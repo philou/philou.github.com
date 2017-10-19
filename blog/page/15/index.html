@@ -102,6 +102,60 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/jasmine-and-coffeescript-setup-for-rails/">Jasmine and Coffeescript Setup for Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-04T07:44:00+02:00" pubdate data-updated="true">Jul 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I started to write more javascript code in my <a href="https://www.mes-courses.fr">rails app</a>, it became obvious that I should be testing it ! I wanted to use <a href="http://pivotal.github.io/jasmine/">jasmine</a> and <a href="http://coffeescript.org">coffeescript</a>. I searched a long time to find out what was the most common and supported setup for a rails app, so now I recommand</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;jasmine&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;jasminerice&#39;</span>
+</span><span class='line'><span class="n">gem</span> <span class="s1">&#39;guard-jasmine&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>The <a href="https://github.com/pivotal/jasmine-gem">jasmine gem</a> is by far the most common jasmine gem, it is supported by <a href="http://pivotallabs.com">Pivotal Labs</a> so there is no fear of it being droped soon.</li>
+<li>The <a href="https://github.com/netzpirat/guard-jasmine">guard-jasmin gem</a> is supported by <a href="https://mksoft.ch">MKSoft</a>, and is not only handling continuous <a href="http://phantomjs.org/">phantomjs</a> headless jasmine testing through guard, but it also provides command line and rake tools to run your jasmine specs during continuous integration.</li>
+<li>Eventually, the <a href="https://github.com/bradphelan/jasminerice">jasminerice gem</a> makes it easy to write your jasmine specs with coffeescript. It also wraps a version of <a href="https://github.com/velesin/jasmine-jquery">jasmine-jquery</a> to assist client javascript testing. Although there is a &ldquo;looking for maintainer&rdquo; message on the README page, there are some recent commits, so it seems that pull requests are still being merged even if the project is not actively developpped anymore &hellip; I belive volunteers are welcome.</li>
+</ul>
+
+
+<p>All 3 have detailed and up to date setup and usage instructions.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/ditching-autotest-for-guard/">Ditching Autotest for Guard</a></h1>
     
     
@@ -709,65 +763,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">How to Stub Around a Call to the Original Method With Rspec ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-19T07:05:00+02:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Update 05/23/2014: I created a <a href="https://github.com/philou/rspecproxies">gem</a> for this, read an introduction <a href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/">here</a></strong></p>
-
-<p>Rspec mocks now features a &lsquo;and_call_original&rsquo; method to create simple proxy mocks. But how could we build more complex proxies ?</p>
-
-<p>For the sake of the subject, let&rsquo;s take an example that is not a testing best practice, but that everybody will understand. Suppose you want to simulate a faulty network in your tests. You&rsquo;d like to stub Net::HTTP.get so that it raises errors from time to time. Here is what you could do</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span class='line'><span class="n">original_get</span> <span class="o">=</span> <span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:get</span><span class="p">)</span>
-</span><span class='line'><span class="ss">Net</span><span class="p">:</span><span class="ss">:HTTP</span><span class="o">.</span><span class="n">stub</span><span class="p">(</span><span class="ss">:get</span><span class="p">)</span> <span class="k">do</span> <span class="o">|*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-</span><span class='line'>  <span class="k">raise</span> <span class="no">RuntimeError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;network down&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span>
-</span><span class='line'>  <span class="n">original_get</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note the block is taken into account, in this example, it does not matter so much, but forgetting it can bring up really strange issues.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/16/">&larr; Older</a>
@@ -848,6 +843,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-run-your-first-improvement-kata/">How to run your first improvement kata</a>
+      </li>
+    
+      <li class="post">
         <a href="/lessons-learned-from-running-our-first-improvement-kata/">Lessons learned from running our first improvement kata</a>
       </li>
     
@@ -861,10 +860,6 @@
     
       <li class="post">
         <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">How we used the improvement kata to gain 25% of productivity - Part 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">How we used the improvement kata to gain 25% of productivity - Part 2</a>
       </li>
     
   </ul>
