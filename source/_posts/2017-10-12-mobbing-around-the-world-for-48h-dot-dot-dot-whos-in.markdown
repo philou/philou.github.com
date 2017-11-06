@@ -51,7 +51,9 @@ And what about the team structure ? Could a team of 30 be effective in this sett
 
 ## Let's try it !
 
-As any new idea, it's also very likely to fail miserably ... The best way to find out is to try !
+As any new idea, it's also very likely to fail miserably ... The communication overhead could turn out overwhelming. The mob might not be resilient to frequent changes after all. It could work but not bring any reduction to cycle time. There is a ton of reasons for this to fail.
+
+The best way to find out is to try !
 
 > 💡 Stupid ideas that work become great ideas. [[XP moto](https://ronjeffries.com/articles/tricks/pick-something-stupid/)]
 
@@ -74,6 +76,6 @@ There's nothing impossible here !
 
 ## Call for volunteers
 
-If you want to participate, leave a comment below or contact me through [twitter](https://twitter.com). I'll keep you updated about the status of the experiment.
+If you want to participate, leave a comment below or contact me through [twitter](https://twitter.com/pbourgau). I'll keep you updated about the status of the experiment.
 
 One last thing ... as you've guessed this is an experiment, not paid work. Anything we would produce will be open sourced on [Github](https://github.com/).

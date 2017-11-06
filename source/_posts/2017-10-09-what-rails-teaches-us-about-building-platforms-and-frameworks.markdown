@@ -66,6 +66,6 @@ Agile principles and technical practices is what allowed them to take the common
 
 ## Open question
 
-If it is possible to do the thing that makes the most economic sense, why isn't it the default way ? Why are so many of us still losing a ton of money writing large frameworks and platforms up-front ?
+If it is possible to do the thing that makes the most economic sense, why isn't it the default way ? Why are so many of us still losing a ton of money writing large frameworks and platforms up-front ? How could we get large companies to adopt the more nimble 'basecamp' way ?
 
 _If you have remarks, answers or different point of views, I'd love to read your comment !_
