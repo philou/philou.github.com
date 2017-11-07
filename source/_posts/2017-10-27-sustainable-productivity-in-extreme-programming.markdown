@@ -17,7 +17,7 @@ My last post detailed how prioritization and Work In Progress limits are the key
 
 > XP is an experiment in answer to the question, "How would you program if you had enough time?” [Kent Beck](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1509114442&sr=8-1&keywords=xp+explained)
 
-TODO drawing inverted curve graph from XP explained book, with a smiley or something
+![Cost of changes over time, for traditional and XP ways of building software](../imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg)<div class="image-credits">From ["Extreme Programming Explained: Embrace Change"](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1510040835&sr=8-1&keywords=extreme+programming+explained) by Kent Beck</div>
 
 ## It's in old pots we brew the best soup (TODO translate)
 

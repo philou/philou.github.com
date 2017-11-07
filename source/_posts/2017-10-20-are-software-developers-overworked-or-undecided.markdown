@@ -12,7 +12,7 @@ published: false
 ---
 During the last 15 years, I've worked in many different teams. Every team has its own way of working. I've been at places where everyone seemed busy all the time. Did we deliver more ? No. Often quite the opposite ! The most productive teams I've been in used to do no more than 6 hours of solid work every day ...
 
-TODO drawing dev in mouse wheel
+![A developer in a mouse wheel](../imgs/2017-10-20-are-software-developers-overworked-or-undecided/dev-in-mouse-wheel.jpg)
 
 ## What's the reason behind that ?
 
@@ -30,7 +30,7 @@ Every software product is new product development ([Craig Larman](https://www.am
 
 The answer is obvious : prioritization ! Only work on the most important item at a time. It's not because we start everything now that they'll sell them earlier ! It's quite the opposite in fact !
 
-TODO graph drawing
+![A comparision of sequential and concurrent product development](../imgs/2017-10-20-are-software-developers-overworked-or-undecided/concurrent-vs-sequential.jpg)
 
 Here is another advantage to prioritization. It decreases the time between start and completion of a feature. This, in turn, decreases the likelihood of building something obsolete.
 
