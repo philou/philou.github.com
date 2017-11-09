@@ -10,7 +10,6 @@ categories:
  - testing
 keywords: "Rails, Ruby on Rails, Framework, Architecture, Software, Software architecture, Testing, Automated Testing, Agile, Agile Software Development"
 description: "Reflection about how the Rails framework was built, and how agile development practices enable to build specific before generic."
-published: false
 ---
 More than ever, the cheapest way to build a framework is to refactor it out of a specific app.
 
