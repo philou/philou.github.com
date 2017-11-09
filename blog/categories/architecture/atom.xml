@@ -4,7 +4,7 @@
   <title><![CDATA[Category: architecture | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/architecture/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-11-07T08:55:48+01:00</updated>
+  <updated>2017-11-09T06:16:04+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Rails teaches us about building platforms and frameworks]]></title>
+    <link href="http://philippe.bourgau.net/what-rails-teaches-us-about-building-platforms-and-frameworks/"/>
+    <updated>2017-10-09T09:20:00+02:00</updated>
+    <id>http://philippe.bourgau.net/what-rails-teaches-us-about-building-platforms-and-frameworks</id>
+    <content type="html"><![CDATA[<p>More than ever, the cheapest way to build a framework is to refactor it out of a specific app.</p>
+
+<p><a href="http://rubyonrails.org/">Rails</a> is a web development server side framework built in <a href="https://www.ruby-lang.org/">Ruby</a>. It&rsquo;s been and remains very popular. It set the tone for all the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> web frameworks that followed. People have ported it to many other languages. Rails is now in it&rsquo;s 5th version, what is less known is how it was built in the first place.</p>
+
+<p><img src="../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/train-and-rails.jpg" alt="Drawing of a train being detached from its rails" /></p>
+
+<h2>The story of Rails</h2>
+
+<p><a href="http://david.heinemeierhansson.com/">David Heinemeier Hansson</a>, the creator of Rails, is a cult in the Ruby community. You can find the history of Rails at many places. If you have a bit of time, read <a href="https://www.wired.com/2008/02/mf-signals/?currentPage=all">this great article</a> from Wired. If you don&rsquo;t have a lot of time, here is a summary.</p>
+
+<p><a href="https://twitter.com/jasonfried?lang=fr">Jason Fried</a> and DHH were working at <a href="https://37signals.com/">37signals</a>. They were working on project management app for small businesses called <a href="https://basecamp.com/">Basecamp</a>. After releasing the first version of Basecamp, DHH extracted and open sourced Rails out of it.</p>
+
+<p>37signals later then re-used Rails to build other apps like Campfire, Highrise and Backpack.</p>
+
+<p>We all know the end of the story, Rails adoption exploded. Many successful companies like <a href="https://github.com/">Github</a>, <a href="https://www.airbnb.com/">Airbnb</a>, <a href="https://twitter.com">Twitter</a> &amp; <a href="https://www.shopify.com">Shopify</a> have used it. It evolved a lot, through the darwinism of open source. Today, Rails might not be the latest and coolest web framework, but it is still very productive and popular.</p>
+
+<p><img src="../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rails-logo.jpg" alt="The Rails logo" /></p>
+
+<h2>Economic sense</h2>
+
+<p>To summarize, here is how they did it :</p>
+
+<ol>
+<li>Built a specific app, and monetized it</li>
+<li>Extracted an open source framework from it</li>
+<li>Built other apps on the framework</li>
+</ol>
+
+
+<p>If you are not a programmers, you&rsquo;re likely to assume that the cost of reusing software is negligible. If you are a programmer, I&rsquo;ll ask you to assume that it is for a while.  Under this hypothesis, all they did makes a lot of business sense :</p>
+
+<ul>
+<li>Building a specific app first is the fastest path to paying customers. Building a framework first would need more work.</li>
+<li>Once you have paying customers, you&rsquo;ve got money to fuel further work.</li>
+<li>In particular, you have money to finance the extraction of an open source framework.</li>
+<li>Putting the framework open source increases its reusability through bug reports and contributions.</li>
+<li>Building the next app is even easier thanks to a mature framework and the revenues from the original app</li>
+</ul>
+
+
+<blockquote><p>💡 Once you have paying customers, you&rsquo;ve got money to fuel further work.</p></blockquote>
+
+<h2>How can it work ?</h2>
+
+<p><a href="https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?ie=UTF8&amp;qid=1507610064&amp;sr=8-1&amp;keywords=rework"><img src="../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rework-cover.jpg" alt="Cover of Rework book" /></a></p>
+
+<p>Ok, enough for common sense. Let&rsquo;s see what happens when you take into account the real cost of changing software ? All software developers know that changing software is far from cheap. Very often, it&rsquo;s more expensive to adapt than to rebuild</p>
+
+<p>So how did the Rails guys manage it ? Rails has 3 specificities that explain that :</p>
+
+<ul>
+<li>Rails has automated testing built in and out</li>
+<li>Basecamp guys are agile with a lower &lsquo;a&rsquo;. They don&rsquo;t follow Scrum or any method. Read their books and you&rsquo;ll understand how agile they are. They follow principles like KISS, YAGNI, Lean startup discovery &hellip;</li>
+<li>Finally, it was open sourced !</li>
+</ul>
+
+
+<p>Agile principles and technical practices is what allowed them to take the common-sense path.</p>
+
+<blockquote><p>💡 Thanks to agile practices, the cheapest way to build a framework is to extract it from a specific app.</p></blockquote>
+
+<h2>Open question</h2>
+
+<p>If it is possible to do the thing that makes the most economic sense, why isn&rsquo;t it the default way ? Why are so many of us still losing a ton of money writing large frameworks and platforms up-front ? How could we get large companies to adopt the more nimble &lsquo;basecamp&rsquo; way ?</p>
+
+<p><em>If you have remarks, answers or different point of views, I&rsquo;d love to read your comment !</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Incremental architecture, a cure against architecture astronauts]]></title>
