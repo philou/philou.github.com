@@ -56,7 +56,7 @@ Ok, enough for common sense. Let's see what happens when you take into account t
 So how did the Rails guys manage it ? Rails has 3 specificities that explain that :
 
 *   Rails has automated testing built in and out
-*   Basecamp guys are agile with a lower 'a'. They don't follow Scrum or any method. Read their books and you'll understand how agile they are. They follow principles like KISS, YAGNI, Lean startup discovery ...
+*   Basecamp guys are agile with a lower 'a'. They don't follow Scrum or any method. Read [their books](http://david.heinemeierhansson.com/#rework) and you'll understand how agile they are. They follow principles like KISS, YAGNI, Lean startup discovery ...
 *   Finally, it was open sourced !
 
 Agile principles and technical practices is what allowed them to take the common-sense path.
