@@ -6,9 +6,9 @@ comments: false
 sharing: true
 footer: true
 ---
-Philippe Bourgau, eXtreme Programmer and Coach, pushing the limits of XP
+Philippe Bourgau, sustainable productivity coach and developer
 
-*I build high performing and sustainable teams by adapting XP to their unique challenges and context.*
+*I build productive and sustainable teams by adapting eXtreme Programming to their unique challenges and context.*
 
 Early adopter of eXtreme Programming, I have been practicing since 2003 and mentoring teams since 2006. Thanks to XP, I have delivered high quality, fit to purpose and future proof software with less stress and overtime.
 
@@ -16,7 +16,7 @@ I have worked on all aspects of software : technical, product, people, process, 
 
 Mainstream agile methods like Scrum or Kanban, lacking the technical foundations of XP, fall short of their promises. At the same time, few teams fall in the original pre-requisites of XP.
 
-I have successfully used XP in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to become hyper productive and sustainable by adapting coding, tooling, organization & collaboration habits from XP to their very special context.
+I have successfully used XP in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach sustainable productivity by adapting coding, tooling, organization & collaboration habits from XP to their very special context.
 
 Finally, I love doing side projects, from wannabe businesses to open source.
 
