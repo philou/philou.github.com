@@ -5,6 +5,7 @@ date: 2017-11-22 10:40
 comments: true
 categories: 
  - continuous improvement
+ - quality
  - zero-bugs-series
  - how to guide
  - psychology
@@ -16,7 +17,7 @@ This is the forth and last post of a [series about the #ZeroBugs policy](/blog/c
 
 There's a catch though, even if you are sure that [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) is a good thing, people around you might not agree ! As with any kind of change, one of the trickiest thing is overcoming people's fear about your idea. This post will be about dealing with people's resistance.
 
-TODO drawing : bug in loopglass, but with people discussing "let's remove all the bugs ! Yes, great ideas .. but wait a second, what about X ? ..."
+![Drawing of people arguing over the #ZeroBugs policy](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-4/bug-dilemna.jpg)
 
 ## A few general change advices
 
@@ -48,7 +49,7 @@ Also point out that they'll have more visibility and control over what is being 
 
 They might also have concerns about the time to spend categorizing bugs. Make sure to get this as streamlined as possible. For example, if they are very busy, you could pre-categorize the issues to make it easier for them.
 
-In [this blog post](https://medium.com/search?q=software%20zero%20bugs), Andrew Fulton explains how he convinced his boss to adopt a #ZeroBugs policy.
+In [this blog post](https://medium.com/swlh/how-we-got-to-zero-bugs-and-implemented-a-zero-bug-policy-c77ee3f2e50b), Andrew Fulton explains how he convinced his boss to adopt a #ZeroBugs policy.
 
 ## Last words
 

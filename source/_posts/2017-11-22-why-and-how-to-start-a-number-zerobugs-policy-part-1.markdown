@@ -5,7 +5,7 @@ date: 2017-11-22 10:22
 comments: true
 categories: 
  - continuous improvement
- - testing
+ - quality
  - zero-bugs-series
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Beginning of our story towards #ZeroBugs"
@@ -19,7 +19,7 @@ At the other end of the spectrum, some [eXtreme Programming teams](http://leanag
 
 Wouldn't it be great for everyone if we had less bugs to fix ? Programmers would do more interesting work. Business people would get more valuable features. People would do less overtime. All this while users get a better product !
 
-TODO drawing bug in visor
+![A bug in a viewfinder](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg)
 
 Last year, in my team, we reached and maintained a #ZeroBugs state. Here is how we did it.
 

@@ -5,7 +5,7 @@ date: 2017-11-22 10:40
 comments: true
 categories: 
  - continuous improvement
- - testing
+ - quality
  - zero-bugs-series
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Conclusion of our story towards #ZeroBugs"
@@ -15,7 +15,7 @@ This is the second post of a [series about the #ZeroBugs policy](/blog/categorie
 
 Here is a quick summary of where we stood. We had tried to apply a #ZeroBugs policy with exploratory testing. We had discovered a lot of bugs, and we had agreed to tackle them little by little. We hoped to finish in a few months.
 
-TODO drawing of bugs in a hammer game (need to find the name)
+![The Bug Panic game](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-2/bug-panic.jpg)
 
 ## The final bug rules
 

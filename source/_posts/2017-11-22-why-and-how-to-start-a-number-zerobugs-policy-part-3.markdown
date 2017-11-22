@@ -5,7 +5,7 @@ date: 2017-11-22 10:40
 comments: true
 categories: 
  - continuous improvement
- - testing
+ - quality
  - zero-bugs-series
  - how to guide
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software, Change Management, How to"
@@ -16,7 +16,7 @@ This is the third post of a [series about the #ZeroBugs policy](/blog/categories
 
 I hope that by now, I have convinced you that applying a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is good for you and your team. I'll surprise you by arguing that it's a lot easier than people first think. This post will be about how to inject it in your team.
 
-TODO drawing insecticide + tapette + truc a coller = zero bugs
+![A funny formula for zero bugs](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-3/zero-bug-formula.jpg)
 
 ## Build quality in
 
