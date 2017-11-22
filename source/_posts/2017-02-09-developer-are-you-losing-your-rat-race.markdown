@@ -63,7 +63,7 @@ Unfortunately, knowing is not enough ...
 
 How do you convince others that you are up to the job in a particular technology ? Unfortunately, I don't have a definitive answer yet ...
 
-Regularly, people try to coin a word to describe the competent generalist developer : polyglot, full stack, craftsman ... If it's good enough, it usually gets taken over quite fast by the industry and just becomes yet another buzzword (the only exception being eXtreme Programming, but who would like to hire and eXtreme Programmer ?).
+Regularly, people try to coin a word to describe the competent generalist developer : polyglot, full stack, craftsman ... If it's good enough, it usually gets taken over quite fast by the industry and just becomes yet another buzzword (the only exception being eXtreme Programming, but who would like to hire an eXtreme Programmer ?).
 
 In [Soft Skills](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1473135683&sr=8-1&keywords=soft+skills), John Somnez says the trick is to explain to people that you might not have experience in a technology 'yet'. This might work, if your resume gets through, which is not sure.
 
