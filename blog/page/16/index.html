@@ -102,6 +102,67 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">If New Cucumber Transform Breaks Everyhing &#8230;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-08T08:36:00+02:00" pubdate data-updated="true">May 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After reading <a href="http://pragprog.com/book/hwcuc/the-cucumber-book">The cucumber book</a> I decided to add clever cucumber transforms but steps started to fail all over the place &hellip; Even completly unrelated scenarios were failing &hellip;</p>
+
+<p>I should have read the <a href="https://github.com/cucumber/cucumber/wiki/Step-Argument-Transforms">Cucumber transforms doc page</a> and particularly the &ldquo;Transforms wisdom&rdquo; section before anything, it would have been a real time saver. To summarise, when a step is executed, all transforms regexps are tried on the step captures, and the first matching transform is applied ! Inlining the transform global inside the step regex removes duplication, but in no way does it imply which transform will be applied !</p>
+
+<p>For example</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">CAPTURE_NUMBER</span> <span class="o">=</span> <span class="no">Transform</span> <span class="sr">/^.*$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">digits</span><span class="o">|</span>
+</span><span class='line'>  <span class="nb">Float</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">When</span> <span class="sr">/^I withdraw (</span><span class="si">#{</span><span class="no">CAPTURE_NUMBER</span><span class="si">}</span><span class="sr">) from &quot;([^&quot;]+)&quot;$/</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">bank_name</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">bank</span> <span class="o">=</span> <span class="no">Bank</span><span class="o">.</span><span class="n">find_by_name</span><span class="p">(</span><span class="n">bank_name</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">bank</span><span class="o">.</span><span class="n">withdraw</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>will match the bank name with CAPTURE_NUMBER, and you&rsquo;ll get an &ldquo;invalid value for Float&rdquo; error.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/rubular-a-really-usefull-ruby-regex-tool/">Rubular: A Really Usefull Ruby Regex Tool</a></h1>
     
     
@@ -118,7 +179,7 @@
   
 
 
-<time datetime="2013-04-24T06:42:00+01:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
+<time datetime="2013-04-24T06:42:00+02:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
         
       </p>
     
@@ -154,7 +215,7 @@
   
 
 
-<time datetime="2013-04-24T06:34:00+01:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
+<time datetime="2013-04-24T06:34:00+02:00" pubdate data-updated="true">Apr 24<span>th</span>, 2013</time>
         
       </p>
     
@@ -196,7 +257,7 @@
   
 
 
-<time datetime="2013-04-19T07:05:00+01:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
+<time datetime="2013-04-19T07:05:00+02:00" pubdate data-updated="true">Apr 19<span>th</span>, 2013</time>
         
       </p>
     
@@ -255,7 +316,7 @@
   
 
 
-<time datetime="2013-02-22T00:00:00+00:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
+<time datetime="2013-02-22T00:00:00+01:00" pubdate data-updated="true">Feb 22<span>nd</span>, 2013</time>
         
       </p>
     
@@ -307,7 +368,7 @@
   
 
 
-<time datetime="2013-02-01T00:00:00+00:00" pubdate data-updated="true">Feb 1<span>st</span>, 2013</time>
+<time datetime="2013-02-01T00:00:00+01:00" pubdate data-updated="true">Feb 1<span>st</span>, 2013</time>
         
       </p>
     
@@ -379,7 +440,7 @@
   
 
 
-<time datetime="2013-01-28T00:00:00+00:00" pubdate data-updated="true">Jan 28<span>th</span>, 2013</time>
+<time datetime="2013-01-28T00:00:00+01:00" pubdate data-updated="true">Jan 28<span>th</span>, 2013</time>
         
       </p>
     
@@ -415,7 +476,7 @@
   
 
 
-<time datetime="2013-01-11T00:00:00+00:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+<time datetime="2013-01-11T00:00:00+01:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
         
       </p>
     
@@ -460,7 +521,7 @@
   
 
 
-<time datetime="2013-01-09T00:00:00+00:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
+<time datetime="2013-01-09T00:00:00+01:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
         
       </p>
     
@@ -516,7 +577,7 @@
   
 
 
-<time datetime="2012-12-13T00:00:00+00:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+<time datetime="2012-12-13T00:00:00+01:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
         
       </p>
     
@@ -559,51 +620,6 @@
 <p>instead of heroku certs:add. This should be enough, there is no need to update any dns entry.</p>
 
 <p>To make sure the new certificate is used, visit the heroku ssl endpoint directly (get it by running heroku certs) and then visit your ssl site to check the certificate infos from your browser.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/cloning-an-rbenv-version/">Cloning an Rbenv Version</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-08T00:00:00+00:00" pubdate data-updated="true">Nov 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>There is no doc about this, but it turns out to be very simple, just copy the version directory :</p>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> ~/.rbenv/versionscp -R original-version new-version
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s it !</p>
-
 </div>
   
   
@@ -691,6 +707,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/are-software-developers-overworked-or-undecided/">Are Software Developers Overworked or Undecided ?</a>
+      </li>
+    
+      <li class="post">
         <a href="/mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/">Mobbing around the world for 48h &#8230; who&#8217;s in ?</a>
       </li>
     
@@ -704,10 +724,6 @@
     
       <li class="post">
         <a href="/lessons-learned-from-running-our-first-improvement-kata/">Lessons learned from running our first improvement kata</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/">How we used the improvement kata to gain 25% of productivity - Part 5</a>
       </li>
     
   </ul>
