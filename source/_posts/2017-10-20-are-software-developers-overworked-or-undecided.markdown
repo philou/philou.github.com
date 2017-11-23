@@ -8,7 +8,6 @@ categories:
  - lean
 keywords: "Lean, Lean management, Agile, Agile Software Development, WIP, Work In Progress, Prioritization"
 description: "A short discussion of how work in progress limitation and serious prioritization are key to higher productivity and a sustainable pace"
-published: false
 ---
 During the last 15 years, I've worked in many different teams. Every team has its own way of working. I've been at places where everyone seemed busy all the time. Did we deliver more ? No. Often quite the opposite ! The most productive teams I've been in used to do no more than 6 hours of solid work every day ...
 

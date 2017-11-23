@@ -1,5 +1,4 @@
 ---
-keywords: "blogging, Octopress, seo, Retroactively, add, keywords, your, existing, posts"
 layout: post
 title: "Retroactively add keywords for your existing Octopress posts"
 date: 2014-02-11 06:54
