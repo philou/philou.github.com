@@ -6,6 +6,8 @@ comments: true
 categories:
  - agile
  - extreme programming
+ - pair programming
+ - retrospectives
  - remote
  - rexp
 keywords: "eXtreme Programming, Remote eXtreme Programming, Remote Programming, Agile Software, Beirut, Agile Tour Beirut"
