@@ -59,7 +59,7 @@ Expect the first time to be a bit rocky, and to feel lost from time to time ...
 
 Many practices and techniques seem daunting at first. Remember the first time you wrote a test before the code. The first time you tried to program using only immutable data structures. Or the time you wrote your first "hello world" program !
 
-> 💡 We can learn anything things on our own by just doing them
+> 💡 We can learn anything on our own by just doing it
 
 The improvement kata is no different. Give it a go, and you'll learn a powerful technique.
 
