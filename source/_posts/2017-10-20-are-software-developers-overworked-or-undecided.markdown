@@ -52,4 +52,4 @@ People at the top of the company need to control the overall WIP. If they don't,
 
 There's an interesting parallel in the Stephen R. Covey's [7 Habits of Highly Effective People](https://www.amazon.com/7-Habits-Highly-Effective-People/dp/0935721800/ref=sr_1_3?ie=UTF8&qid=1509113465&sr=8-3&keywords=7+habits+of). He says we should drop the urgent and not important for the important and not urgent. In software term, it means spending time on important and long term work rather than short term stuff. We should do more refactoring, hiring, training and continuous improvement. We should stoping building features we are not sure of the value.
 
-Let's summarize. Here are my advices to work less and be more productive. Enforce hard WIP limits at all levels. Do serious prioritization. Provide enough slack. In my next post, I'll show how XP addresses these issues.
+Let's summarize. Here are my advices to work less and be more productive. Enforce hard WIP limits at all levels. Do serious prioritization. Provide enough slack. In my [next post](/sustainable-productivity-in-extreme-programming/), I'll show how XP addresses these issues.

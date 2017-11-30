@@ -9,17 +9,16 @@ categories:
  - extreme programming
 keywords: "Agile, Lean, eXtreme Programming, Sustainable Pace, Work In Progress, WIP, WIP Limitations, Prioritization, Modern XP"
 description: "An explanation of how the original and modern eXtreme Programming do WIP limits and prioritization to achieve long term productivity and a sustainable pace"
-published: false
 ---
 [eXtreme programming](http://extremeprogramming.org/) will not improve your short term productivity. But it will drastically improve your long term productivity.
 
-My last post detailed how prioritization and Work In Progress limits are the keys to less work and higher productivity.
+My [last post](/are-software-developers-overworked-or-undecided/) detailed how prioritization and Work In Progress limits are the keys to less work and higher productivity.
 
 > XP is an experiment in answer to the question, "How would you program if you had enough time?” [Kent Beck](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1509114442&sr=8-1&keywords=xp+explained)
 
 ![Cost of changes over time, for traditional and XP ways of building software](../imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg)<div class="image-credits">From ["Extreme Programming Explained: Embrace Change"](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1510040835&sr=8-1&keywords=extreme+programming+explained) by Kent Beck</div>
 
-## It's in old pots we brew the best soup (TODO translate)
+## The best jam is made in old jars
 
 As I was writing the post, I could not stop thinking :
 
@@ -33,7 +32,7 @@ XP has a drastic way to reduce WIP by 2 : pair programming. Instead of 6 develop
 
 Although it is now seen as a Scrum practice, Planning Game was part of original XP. Sticking to a basic planning game will give room for slack at the end of iterations. The trick is to leave the [infamous focus factor](https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2) away.
 
-> 💡 Basic planning game will give room for slack.
+> 💡 A simple planning game will give room for slack.
 
 Suppose a team member takes vacations for a sprint. The team should deliver less user stories that sprint. They'll have less story points to schedule on next sprint. This leaves room for slack and long term improvements such as refactoring, learning ... If half the team goes on holiday, that's a different story, adapt your schedule with gut feeling.
 
@@ -49,7 +48,7 @@ The YAGNI ([You Ain't Gonna Need It](https://en.wikipedia.org/wiki/You_aren%27t_
 
 <iframe src="https://player.vimeo.com/video/221024846" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-In this wonderful talk from Rachel Davies, she presents how her team has been  improving XP for 15 years. She explains how they organize as 2 mobs and 1 solo. At any moment, one mob is working on stories. The other mob works on important long term technical improvements. The solo does some learning. This is an even greater WIP reduction technique than pair programming.
+In this wonderful talk from [Rachel C. Davies](http://rachelcdavies.github.io/), she presents how her team has been improving XP for 15 years. She explains how they organize as 2 mobs and 1 solo. At any moment, one mob is working on stories. The other mob works on important long term technical improvements. The solo does some learning. This is an even greater WIP reduction technique than pair programming.
 
 Having a dev doing learning all the time is a form of continuous slack. If the team feels that they cannot deliver something by an important date, he can join the mob to help them.
 
