@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-11-30T06:33:08+01:00</updated>
+  <updated>2017-12-07T06:24:47+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,97 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Why and how to start a #ZeroBugs policy - part 1]]></title>
+    <link href="http://philippe.bourgau.net/why-and-how-to-start-a-number-zerobugs-policy-part-1/"/>
+    <updated>2017-12-07T10:22:00+01:00</updated>
+    <id>http://philippe.bourgau.net/why-and-how-to-start-a-number-zerobugs-policy-part-1</id>
+    <category term="continuous improvement" /><category term="quality" /><category term="zero-bugs-series" />
+    <content type="html"><![CDATA[<p>Some teams spend 95% of their development time fixing bugs &hellip; An entrepreneur I worked with reported an even scarier story. He went bankrupt because bugs were taking <em>all</em> the development time. He had no time left for new features !</p>
+
+<p>At the other end of the spectrum, some <a href="http://leanagilepartners.com/library/Vanschooenderwoert-EmbeddedNumbers.pdf">eXtreme Programming teams</a> reported bug rates as low as 1.5 per month !</p>
+
+<blockquote><p>💡 Some XP teams reported bug rates as low as 1.5 per month !</p></blockquote>
+
+<p>Wouldn&rsquo;t it be great for everyone if we had less bugs to fix ? Programmers would do more interesting work. Business people would get more valuable features. People would do less overtime. All this while users get a better product !</p>
+
+<p><img src="../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg" alt="A bug in a viewfinder" /></p>
+
+<p>Last year, in my team, we reached and maintained a #ZeroBugs state. Here is how we did it.</p>
+
+<h2>What&rsquo;s the <a href="http://www.jamesshore.com/Agile-Book/no_bugs.html">#ZeroBugs</a> policy</h2>
+
+<p>Before we jump into our story, let&rsquo;s take a second to understand what this is all about.</p>
+
+<p>Bugs waste time. They waste the time of users, who can&rsquo;t do what they need. They waste everyone&rsquo;s time with interruptions from unhappy user. They steal time from new features development. If you have a large number of known bugs, you&rsquo;ll also waste some time organizing them : eliminating duplicates, prioritizing them, ignoring others &hellip;</p>
+
+<p>A #ZeroBugs policy is the convention of having no bugs in your backlog. This means that when someone finds a defect, it should be immediately :</p>
+
+<ul>
+<li>fixed before any other feature</li>
+<li>prioritized as a new story</li>
+<li>or ignored (for the moment)</li>
+</ul>
+
+
+<p>Obviously, the less bug you create the easier this will be.</p>
+
+<h2>Our journey to a #ZeroBugs policy</h2>
+
+<h3>Context</h3>
+
+<p>We were an R&amp;D team, building a data management system. Our product was moving outside of pure research and development. Other teams were starting to use it and often reported bugs back to us.</p>
+
+<p>We&rsquo;d first read about #ZeroBugs in <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1511342870&amp;sr=8-1&amp;keywords=the+art+of+agile">The Art of Agile Software Development</a>. Given enough automated testing, XP teams could almost stop doing bug fixing !</p>
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1511342870&amp;sr=8-1&amp;keywords=the+art+of+agile"><img src="../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/art-of-agile.jpg" alt="Cover of the book &quot;The Art of Agile Software Development&quot;" /></a></p>
+
+<p>As we had very solid automated testing in place, we decided to take the extra steps to save time on bug fixing.</p>
+
+<h3>First tentative</h3>
+
+<p>There is a straightforward way to install a #ZeroBugs policy. Make sure to have a customer or a Product Owner to prioritize defects as soon as they appear (check <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">this story</a> for an example).</p>
+
+<p>Unfortunately, this would not work for us. Our Product Owner was great at providing us with a long term vision. He could not be available for day to day bug prioritization tough.</p>
+
+<p>Our first try was to propose a definition for bugs that we could use ourselves to classify them. We decided that something was a bug if either of the following was true :</p>
+
+<ul>
+<li>It corrupts data.</li>
+<li>It returns wrong results. As we were building a data management system, this was rather easy to verify.</li>
+<li>It used to work but is now broken</li>
+</ul>
+
+
+<p>Whenever we found an issue meeting any of these points, we would start working on it straightaway.</p>
+
+<blockquote><p>💡 Exploratory testing goes hand in hand with #ZeroBugs policy</p></blockquote>
+
+<p>To speed up downstream integration of our product by other teams, we also <a href="http://philippe.bourgau.net/how-we-started-exploratory-testing/">started Exploratory Testing</a>. <a href="https://en.wikipedia.org/wiki/Exploratory_testing">Exploratory testing</a> is a practice that goes hand in hand with a #ZeroBugs policy.</p>
+
+<h3>Unearthing a bug debt</h3>
+
+<p>During the first exploratory testing session, we found more than 10 bugs. We thought that with a bit of focus we could fix all lingering bugs in a few weeks max &hellip; After 2 other sessions and more than one sprint of intense bug fixing, we had even unearthed more bugs. We were wrong, this would take a lot more than a few weeks.</p>
+
+<p>If we kept on our 1 hour exploratory testing sessions every sprint, we would fill our backlog with bugs. We would also be fixing bugs for a few months before we could tackle any new feature !</p>
+
+<p>We agreed on the following strategy to fix all these bugs little by little :</p>
+
+<ul>
+<li>stop these intense exploratory testing sessions</li>
+<li>do shorter exploratory testing sessions at the end of every story</li>
+<li>fix 5 to 6 bugs every sprint</li>
+</ul>
+
+
+<p>We hoped to fix all our bugs in a few months.</p>
+
+<h2>Next week</h2>
+
+<p>That was the first part of <a href="http://philippe.bourgau.net/blog/categories/zero-bugs-series/">a series of posts about #ZeroBugs policy</a>. In the next post, I&rsquo;ll explain how we dealt with this bug debt and dig into the consequences it had on our work.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sustainable productivity in eXtreme Programming]]></title>
@@ -1668,252 +1759,6 @@
 <p>At the end, we had a very good time at SPAconference. The talks were insightful, we had interesting discussions, the premises were comfortable and on top of that, food was great !</p>
 
 <p>I&rsquo;m already eager to go to SPA conference 2018 !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Don't stick to TDD's Red-Green-Refactor loop to the letter]]></title>
-    <link href="http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/"/>
-    <updated>2017-06-28T15:52:00+02:00</updated>
-    <id>http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter</id>
-    <category term="agile" /><category term="software" /><category term="tdd" /><category term="testing" />
-    <content type="html"><![CDATA[<p>As long as you are writing your tests before your code and doing regular refactoring, you are doing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> !</p>
-
-<p>The Red &ndash; Green &ndash; Refactor loop is useful to introduce TDD to new developers. Different loops can be more effective in real world situation.</p>
-
-<p>The Red &ndash; Green &ndash; Refactor loop is not a dogma !</p>
-
-<p><a href="http://www.natpryce.com/"><img src="../imgs/2017-06-28-dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/red-green-refactor.jpg" alt="The famous red, green, refactor TDD loop" /></a></p>
-
-<h2>Refactor &ndash; Red &ndash; Green</h2>
-
-<p>When I work on a story, I very often keep a TODO list next to my desk. I use it to keep track of the next steps, the edge cases to test, the code smells and refactorings to do.</p>
-
-<p>When I get to the end of the story, all that remains of this list is a few refactorings. Very often, I don&rsquo;t do them !</p>
-
-<p>With the feature working, doing these refactorings feels like violation of <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a>. Next time we&rsquo;ll have to work on this part of the code, we&rsquo;ll have a story to serve as guide to which refactorings to do.</p>
-
-<p>The same thing is effective at the unit test scale. It&rsquo;s easier to refactor when you know the test you want to add. Refactor to make this test easy to write !</p>
-
-<p>Here is an example with <a href="https://en.wikipedia.org/wiki/Fizz_buzz">Fizz Buzz</a></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">static</span> <span class="kt">int</span> <span class="nf">fizzBuzz</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="k">return</span> <span class="n">number</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">it_is_1_for_1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">assertThat</span><span class="o">(</span><span class="n">fizzBuzz</span><span class="o">(</span><span class="mi">1</span><span class="o">)).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">it_is_2_for_2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">assertThat</span><span class="o">(</span><span class="n">fizzBuzz</span><span class="o">(</span><span class="mi">2</span><span class="o">)).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="mi">2</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here is the test I&rsquo;d like to add. </p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">it_is_Fizz_for_3</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">assertThat</span><span class="o">(</span><span class="n">fizzBuzz</span><span class="o">(</span><span class="mi">3</span><span class="o">)).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&quot;Fizz&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Unfortunately, fizzBuzz needs to return a String instead of an integer for it to compile. That&rsquo;s when I would refactor before adding the new test.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">static</span> <span class="n">String</span> <span class="nf">fizzBuzz</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">it_is_1_for_1</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">assertThat</span><span class="o">(</span><span class="n">fizzBuzz</span><span class="o">(</span><span class="mi">1</span><span class="o">)).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&quot;1&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">it_is_2_for_2</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">assertThat</span><span class="o">(</span><span class="n">fizzBuzz</span><span class="o">(</span><span class="mi">2</span><span class="o">)).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&quot;2&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In the end, this loop is very like the classic TDD loop :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">red</span><span class="o">-</span><span class="n">green</span><span class="o">-</span><span class="n">refactor</span><span class="o">-</span><span class="n">red</span><span class="o">-</span><span class="n">green</span><span class="o">-</span><span class="n">refactor</span><span class="o">-</span><span class="n">red</span><span class="o">-</span><span class="n">green</span><span class="o">-</span><span class="n">refactor</span><span class="o">.............</span>
-</span><span class='line'><span class="o">..........</span><span class="na">refactor</span><span class="o">-</span><span class="n">red</span><span class="o">-</span><span class="n">green</span><span class="o">-</span><span class="n">refactor</span><span class="o">-</span><span class="n">red</span><span class="o">-</span><span class="n">green</span><span class="o">-</span><span class="n">refactor</span><span class="o">-</span><span class="n">red</span><span class="o">-</span><span class="n">green</span><span class="o">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>A bit more YAGNI, that&rsquo;s all.</p>
-
-<h2>Red &ndash; Better Red &ndash; Green &ndash; Refactor</h2>
-
-<p>A few weeks ago, <a href="http://philippe.bourgau.net/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">I wrote about error messages in unit tests</a>. To summarize, extra work on error messages reduces the testing feedback loop.</p>
-
-<p>We can translate this focus on error messages into an extra TDD step. Whatever the TDD loop you are using, you can add this step after the Red step.</p>
-
-<h2><del>Red</del> &ndash; Green &ndash; Refactor &ndash; Red &ndash; Green</h2>
-
-<p>Sometimes, it makes sense to refactor before fixing the test. The idea is to rely on the existing tests to prepare the code to fix the new test in one line.</p>
-
-<p>Let&rsquo;s take our Fizz Buzz example again. Imagine we finished the kata, when we decide to tweak the rules and try Fizz Buzz Bang. We should now print Bang on multiples of 7.</p>
-
-<p>Here is our starting point :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">static</span> <span class="n">String</span> <span class="nf">fizzBuzz</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="k">if</span> <span class="o">(</span><span class="n">multipleOf</span><span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="mi">3</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'><span class="err">      </span><span class="k">return</span> <span class="s">&quot;Fizz&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span><span class="o">}</span>
-</span><span class='line'><span class="err">   </span><span class="k">if</span> <span class="o">(</span><span class="n">multipleOf</span><span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="mi">5</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'><span class="err">      </span><span class="k">return</span> <span class="s">&quot;Buzz&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span><span class="o">}</span>
-</span><span class='line'><span class="err">   </span><span class="k">if</span> <span class="o">(</span><span class="n">multipleOf</span><span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="mi">3</span><span class="o">*</span><span class="mi">5</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'><span class="err">      </span><span class="k">return</span> <span class="s">&quot;FizzBuzz&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span><span class="o">}</span> <span class="err">  </span>
-</span><span class='line'><span class="err">   </span><span class="k">return</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="nd">@Test</span> <span class="kd">public</span> <span class="kt">void</span>
-</span><span class='line'><span class="n">it_is_Bang_for_7</span><span class="o">()</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">assertThat</span><span class="o">(</span><span class="n">fizzBuzz</span><span class="o">(</span><span class="mi">7</span><span class="o">)).</span><span class="na">isEqualTo</span><span class="o">(</span><span class="s">&quot;Bang&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I could go through all the hoops, 7, 14, then 3<em>7, 5</em>7 and finally 3<em>5</em>7 &hellip; By now, I should know the music though !</p>
-
-<p>What I would do in this case is :</p>
-
-<ul>
-<li>first to comment the new failing test to get back to green</li>
-<li>refactor the code to prepare for the new code</li>
-<li>uncomment the failing test</li>
-<li>fix it</li>
-</ul>
-
-
-<p>In our example, here is the refactoring I would do</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">static</span> <span class="n">String</span> <span class="nf">fizzBuzz</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span><span class="n">result</span> <span class="o">+=</span> <span class="n">multipleWord</span><span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="s">&quot;Fizz&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="err">   </span><span class="n">result</span> <span class="o">+=</span> <span class="n">multipleWord</span><span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="mi">5</span><span class="o">,</span> <span class="s">&quot;Buzz&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="err">   </span><span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-</span><span class='line'><span class="err">      </span><span class="n">result</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
-</span><span class='line'><span class="err">   </span><span class="o">}</span>
-</span><span class='line'><span class="err">   </span><span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">multipleWord</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">,</span> <span class="kt">int</span> <span class="n">multiple</span><span class="o">,</span> <span class="n">String</span> <span class="n">word</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'><span class="err">   </span><span class="k">if</span> <span class="o">(</span><span class="n">multipleOf</span><span class="o">(</span><span class="n">number</span><span class="o">,</span> <span class="n">multiple</span><span class="o">))</span> <span class="o">{</span>
-</span><span class='line'><span class="err">      </span><span class="k">return</span> <span class="n">word</span><span class="o">;</span>
-</span><span class='line'><span class="err">   </span><span class="o">}</span>
-</span><span class='line'><span class="err">   </span><span class="k">return</span> <span class="s">&quot;&quot;</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">//@Test public void</span>
-</span><span class='line'><span class="c1">//it_is_Bang_for_7() {</span>
-</span><span class='line'><span class="c1">//   assertThat(fizzBuzz(7)).isEqualTo(&quot;Bang&quot;);</span>
-</span><span class='line'><span class="c1">//}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>From there, fixing the test is dead simple.</p>
-
-<p>In practice I find this loop very useful. At local scale as we saw but it&rsquo;s also a great way to refactor your architecture at larger scale.</p>
-
-<p>One downsize is that if you are not careful, it might lead to over-engineering. Be warned, keep an eye on that !</p>
-
-<p>Last caveat : not all TDD interviewers like this technique &hellip;</p>
-
-<h2>Don&rsquo;t obsess</h2>
-
-<p>It&rsquo;s not because you are not following the Red Green Refactor loop to the letter that you are not doing TDD.</p>
-
-<p>An interesting point is that these variations to the TDD loop are combinable ! Experienced TDD practitioners can jump from one to the other without even noticing.</p>
-
-<p><a href="https://blog.acolyer.org/2017/06/13/a-dissection-of-the-test-driven-development-process-does-it-really-matter-to-test-first-or-test-last/">This paper</a> argues that as long as you write the tests along (before or after) the code, you get the same benefit. That&rsquo;s not going to make me stop writing my tests first, but it is interesting. That would mean that even a Code &ndash; Test &ndash; Refactor loop would be ok if it is fast enough !</p>
 ]]></content>
   </entry>
   

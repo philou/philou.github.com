@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: zero-bugs-series | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/zero-bugs-series/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2017-12-07T06:24:47+01:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why and how to start a #ZeroBugs policy - part 1]]></title>
+    <link href="http://philippe.bourgau.net/why-and-how-to-start-a-number-zerobugs-policy-part-1/"/>
+    <updated>2017-12-07T10:22:00+01:00</updated>
+    <id>http://philippe.bourgau.net/why-and-how-to-start-a-number-zerobugs-policy-part-1</id>
+    <content type="html"><![CDATA[<p>Some teams spend 95% of their development time fixing bugs &hellip; An entrepreneur I worked with reported an even scarier story. He went bankrupt because bugs were taking <em>all</em> the development time. He had no time left for new features !</p>
+
+<p>At the other end of the spectrum, some <a href="http://leanagilepartners.com/library/Vanschooenderwoert-EmbeddedNumbers.pdf">eXtreme Programming teams</a> reported bug rates as low as 1.5 per month !</p>
+
+<blockquote><p>💡 Some XP teams reported bug rates as low as 1.5 per month !</p></blockquote>
+
+<p>Wouldn&rsquo;t it be great for everyone if we had less bugs to fix ? Programmers would do more interesting work. Business people would get more valuable features. People would do less overtime. All this while users get a better product !</p>
+
+<p><img src="../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg" alt="A bug in a viewfinder" /></p>
+
+<p>Last year, in my team, we reached and maintained a #ZeroBugs state. Here is how we did it.</p>
+
+<h2>What&rsquo;s the <a href="http://www.jamesshore.com/Agile-Book/no_bugs.html">#ZeroBugs</a> policy</h2>
+
+<p>Before we jump into our story, let&rsquo;s take a second to understand what this is all about.</p>
+
+<p>Bugs waste time. They waste the time of users, who can&rsquo;t do what they need. They waste everyone&rsquo;s time with interruptions from unhappy user. They steal time from new features development. If you have a large number of known bugs, you&rsquo;ll also waste some time organizing them : eliminating duplicates, prioritizing them, ignoring others &hellip;</p>
+
+<p>A #ZeroBugs policy is the convention of having no bugs in your backlog. This means that when someone finds a defect, it should be immediately :</p>
+
+<ul>
+<li>fixed before any other feature</li>
+<li>prioritized as a new story</li>
+<li>or ignored (for the moment)</li>
+</ul>
+
+
+<p>Obviously, the less bug you create the easier this will be.</p>
+
+<h2>Our journey to a #ZeroBugs policy</h2>
+
+<h3>Context</h3>
+
+<p>We were an R&amp;D team, building a data management system. Our product was moving outside of pure research and development. Other teams were starting to use it and often reported bugs back to us.</p>
+
+<p>We&rsquo;d first read about #ZeroBugs in <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1511342870&amp;sr=8-1&amp;keywords=the+art+of+agile">The Art of Agile Software Development</a>. Given enough automated testing, XP teams could almost stop doing bug fixing !</p>
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1511342870&amp;sr=8-1&amp;keywords=the+art+of+agile"><img src="../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/art-of-agile.jpg" alt="Cover of the book &quot;The Art of Agile Software Development&quot;" /></a></p>
+
+<p>As we had very solid automated testing in place, we decided to take the extra steps to save time on bug fixing.</p>
+
+<h3>First tentative</h3>
+
+<p>There is a straightforward way to install a #ZeroBugs policy. Make sure to have a customer or a Product Owner to prioritize defects as soon as they appear (check <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">this story</a> for an example).</p>
+
+<p>Unfortunately, this would not work for us. Our Product Owner was great at providing us with a long term vision. He could not be available for day to day bug prioritization tough.</p>
+
+<p>Our first try was to propose a definition for bugs that we could use ourselves to classify them. We decided that something was a bug if either of the following was true :</p>
+
+<ul>
+<li>It corrupts data.</li>
+<li>It returns wrong results. As we were building a data management system, this was rather easy to verify.</li>
+<li>It used to work but is now broken</li>
+</ul>
+
+
+<p>Whenever we found an issue meeting any of these points, we would start working on it straightaway.</p>
+
+<blockquote><p>💡 Exploratory testing goes hand in hand with #ZeroBugs policy</p></blockquote>
+
+<p>To speed up downstream integration of our product by other teams, we also <a href="/how-we-started-exploratory-testing/">started Exploratory Testing</a>. <a href="https://en.wikipedia.org/wiki/Exploratory_testing">Exploratory testing</a> is a practice that goes hand in hand with a #ZeroBugs policy.</p>
+
+<h3>Unearthing a bug debt</h3>
+
+<p>During the first exploratory testing session, we found more than 10 bugs. We thought that with a bit of focus we could fix all lingering bugs in a few weeks max &hellip; After 2 other sessions and more than one sprint of intense bug fixing, we had even unearthed more bugs. We were wrong, this would take a lot more than a few weeks.</p>
+
+<p>If we kept on our 1 hour exploratory testing sessions every sprint, we would fill our backlog with bugs. We would also be fixing bugs for a few months before we could tackle any new feature !</p>
+
+<p>We agreed on the following strategy to fix all these bugs little by little :</p>
+
+<ul>
+<li>stop these intense exploratory testing sessions</li>
+<li>do shorter exploratory testing sessions at the end of every story</li>
+<li>fix 5 to 6 bugs every sprint</li>
+</ul>
+
+
+<p>We hoped to fix all our bugs in a few months.</p>
+
+<h2>Next week</h2>
+
+<p>That was the first part of <a href="/blog/categories/zero-bugs-series/">a series of posts about #ZeroBugs policy</a>. In the next post, I&rsquo;ll explain how we dealt with this bug debt and dig into the consequences it had on our work.</p>
+]]></content>
+  </entry>
+  
+</feed>

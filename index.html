@@ -102,6 +102,123 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/why-and-how-to-start-a-number-zerobugs-policy-part-1/">Why and How to Start a #ZeroBugs Policy - Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-12-07T10:22:00+01:00" pubdate data-updated="true">Dec 7<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Some teams spend 95% of their development time fixing bugs &hellip; An entrepreneur I worked with reported an even scarier story. He went bankrupt because bugs were taking <em>all</em> the development time. He had no time left for new features !</p>
+
+<p>At the other end of the spectrum, some <a href="http://leanagilepartners.com/library/Vanschooenderwoert-EmbeddedNumbers.pdf">eXtreme Programming teams</a> reported bug rates as low as 1.5 per month !</p>
+
+<blockquote><p>💡 Some XP teams reported bug rates as low as 1.5 per month !</p></blockquote>
+
+<p>Wouldn&rsquo;t it be great for everyone if we had less bugs to fix ? Programmers would do more interesting work. Business people would get more valuable features. People would do less overtime. All this while users get a better product !</p>
+
+<p><img src="../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg" alt="A bug in a viewfinder" /></p>
+
+<p>Last year, in my team, we reached and maintained a #ZeroBugs state. Here is how we did it.</p>
+
+<h2>What&rsquo;s the <a href="http://www.jamesshore.com/Agile-Book/no_bugs.html">#ZeroBugs</a> policy</h2>
+
+<p>Before we jump into our story, let&rsquo;s take a second to understand what this is all about.</p>
+
+<p>Bugs waste time. They waste the time of users, who can&rsquo;t do what they need. They waste everyone&rsquo;s time with interruptions from unhappy user. They steal time from new features development. If you have a large number of known bugs, you&rsquo;ll also waste some time organizing them : eliminating duplicates, prioritizing them, ignoring others &hellip;</p>
+
+<p>A #ZeroBugs policy is the convention of having no bugs in your backlog. This means that when someone finds a defect, it should be immediately :</p>
+
+<ul>
+<li>fixed before any other feature</li>
+<li>prioritized as a new story</li>
+<li>or ignored (for the moment)</li>
+</ul>
+
+
+<p>Obviously, the less bug you create the easier this will be.</p>
+
+<h2>Our journey to a #ZeroBugs policy</h2>
+
+<h3>Context</h3>
+
+<p>We were an R&amp;D team, building a data management system. Our product was moving outside of pure research and development. Other teams were starting to use it and often reported bugs back to us.</p>
+
+<p>We&rsquo;d first read about #ZeroBugs in <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1511342870&amp;sr=8-1&amp;keywords=the+art+of+agile">The Art of Agile Software Development</a>. Given enough automated testing, XP teams could almost stop doing bug fixing !</p>
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1511342870&amp;sr=8-1&amp;keywords=the+art+of+agile"><img src="../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/art-of-agile.jpg" alt="Cover of the book &quot;The Art of Agile Software Development&quot;" /></a></p>
+
+<p>As we had very solid automated testing in place, we decided to take the extra steps to save time on bug fixing.</p>
+
+<h3>First tentative</h3>
+
+<p>There is a straightforward way to install a #ZeroBugs policy. Make sure to have a customer or a Product Owner to prioritize defects as soon as they appear (check <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">this story</a> for an example).</p>
+
+<p>Unfortunately, this would not work for us. Our Product Owner was great at providing us with a long term vision. He could not be available for day to day bug prioritization tough.</p>
+
+<p>Our first try was to propose a definition for bugs that we could use ourselves to classify them. We decided that something was a bug if either of the following was true :</p>
+
+<ul>
+<li>It corrupts data.</li>
+<li>It returns wrong results. As we were building a data management system, this was rather easy to verify.</li>
+<li>It used to work but is now broken</li>
+</ul>
+
+
+<p>Whenever we found an issue meeting any of these points, we would start working on it straightaway.</p>
+
+<blockquote><p>💡 Exploratory testing goes hand in hand with #ZeroBugs policy</p></blockquote>
+
+<p>To speed up downstream integration of our product by other teams, we also <a href="/how-we-started-exploratory-testing/">started Exploratory Testing</a>. <a href="https://en.wikipedia.org/wiki/Exploratory_testing">Exploratory testing</a> is a practice that goes hand in hand with a #ZeroBugs policy.</p>
+
+<h3>Unearthing a bug debt</h3>
+
+<p>During the first exploratory testing session, we found more than 10 bugs. We thought that with a bit of focus we could fix all lingering bugs in a few weeks max &hellip; After 2 other sessions and more than one sprint of intense bug fixing, we had even unearthed more bugs. We were wrong, this would take a lot more than a few weeks.</p>
+
+<p>If we kept on our 1 hour exploratory testing sessions every sprint, we would fill our backlog with bugs. We would also be fixing bugs for a few months before we could tackle any new feature !</p>
+
+<p>We agreed on the following strategy to fix all these bugs little by little :</p>
+
+<ul>
+<li>stop these intense exploratory testing sessions</li>
+<li>do shorter exploratory testing sessions at the end of every story</li>
+<li>fix 5 to 6 bugs every sprint</li>
+</ul>
+
+
+<p>We hoped to fix all our bugs in a few months.</p>
+
+<h2>Next week</h2>
+
+<p>That was the first part of <a href="/blog/categories/zero-bugs-series/">a series of posts about #ZeroBugs policy</a>. In the next post, I&rsquo;ll explain how we dealt with this bug debt and dig into the consequences it had on our work.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/sustainable-productivity-in-extreme-programming/">Sustainable Productivity in eXtreme Programming</a></h1>
     
     
@@ -1060,115 +1177,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">How We Used the Improvement Kata to Gain 25% of Productivity - Part 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-09-12T09:00:00+02:00" pubdate data-updated="true">Sep 12<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In my <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">previous post</a>, I described the productivity issue our team was facing. How retrospectives did not work, and how I started looking at the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>.</p>
-
-<p>We had gone through the first phase of the improvement kata : set the end goal.</p>
-
-<blockquote><p>Generating enough profit for the business while sticking to a sustainable pace.</p></blockquote>
-
-<p>Time to start the second phase : Understand.</p>
-
-<p><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/question-light.jpeg" alt="Drawing of a question mark transforming into a light bulb" /></p>
-
-<h2>Understand</h2>
-
-<p>Where we really slower ? Or was it an illusion ?</p>
-
-<p>When trying to understand, you have to start with the data you have. You continue digging until you get a deeper understanding of the situation.</p>
-
-<h3>Velocity</h3>
-
-<p>We started with available data : story points and velocity. For sure this is a pretty bad measure of productivity. (Note : we should never use velocity for performance appraisal) In our case though, it felt like a good starting proxy measure.</p>
-
-<p>Here is our velocity curve over 2 years.</p>
-
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity graph" /></a></p>
-
-<p>It&rsquo;s obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That&rsquo;s a clue that our gut feeling was not completely wrong. Our productivity did change.</p>
-
-<h3>Man days</h3>
-
-<p>Our first hypothesis was that team members turnover was the cause. As with any team, some people came, and some people left. Let&rsquo;s superpose the man days and velocity curves.</p>
-
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower-small.jpg" alt="Velocity vs Manpower graph" /></a></p>
-
-<p>That could only explain <em>part</em> of the problem !</p>
-
-<p>We tried to fine tune the man days curve. We took people&rsquo;s involvement in tasks outside of programming into account. We used coefficients depending on the developers&#8217; experience. That did not provide a better explanation.</p>
-
-<p>We had to find another explanation.</p>
-
-<h3>Velocity computation</h3>
-
-<p>As I said earlier, velocity is not a measure of productivity. Any change in the way we were computing velocity would impact this curve.</p>
-
-<p>We had kept photos and Trello boards of our <a href="/trellospectives-remote-retrospectives-with-trello/">retrospectives meetings</a>. We searched them through for anything that could impact velocity. Here is what we found :</p>
-
-<ul>
-<li>At sprint 55, we decided to ditch the <a href="https://www.scrum.org/resources/deadly-disease-focus-factor">focus-factor</a></li>
-<li>At sprint 61, we started to do regular <a href="/how-we-started-exploratory-testing/">exploratory-testing</a>. Exploratory testing discovers more bugs on top of user reported bugs. This made us spend more time on fixing bugs.</li>
-<li>At sprint 62, as we opted for a <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">No Bug policy</a> we decided not to count story points for bugs</li>
-</ul>
-
-
-<blockquote><p>💡Keep Photos and Trello boards of Retrospectives as a log of your working agreements changes</p></blockquote>
-
-<p>The timings almost perfectly matched what we had observed in the first place. The question that came to our minds was :</p>
-
-<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
-
-<h2>Halfway through understanding</h2>
-
-<p>This is how we started to dig into our situation. It&rsquo;s a good time to give you a bit of feedback about how we felt at that point.</p>
-
-<p>It was the first time we tried the improvement kata. More than that, we did not find any tutorial or guides about how to run it. The only instructions we had were theoretical descriptions or super concrete examples. We had to bridge the gap and come up with our own way.</p>
-
-<p>To summarize, we felt a bit lost, we had gathered data from here and there, and we did not know what to look at next. On top of that, the quality of the data we were collecting was not great. We were wondering if we would get anything out of these investigations.</p>
-
-<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/the-first-20-hours.jpg" alt="The cover of the book 'The First 20 Hours'" /></a></p>
-
-<p>It felt a bit like when I did the <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">20 hours experiment to learn anything</a>. We did exactly what had worked with the learning experiment : we pushed through !</p>
-
-<blockquote><p>💡If you feel lost when doing something for the first time. Push through !</p></blockquote>
-
-<p>In <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">next week&rsquo;s post</a>, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
-
-<p>More to read next week.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1247,6 +1255,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-1/">Why and how to start a #ZeroBugs policy - part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/sustainable-productivity-in-extreme-programming/">Sustainable productivity in eXtreme Programming</a>
       </li>
     
@@ -1260,10 +1272,6 @@
     
       <li class="post">
         <a href="/what-rails-teaches-us-about-building-platforms-and-frameworks/">What Rails teaches us about building platforms and frameworks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-run-your-first-improvement-kata/">How to run your first improvement kata</a>
       </li>
     
   </ul>
