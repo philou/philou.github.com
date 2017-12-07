@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why and how to start a #ZeroBugs policy - part 1"
-date: 2017-11-22 10:22
+date: 2017-12-07 10:22
 comments: true
 categories: 
  - continuous improvement
@@ -9,7 +9,6 @@ categories:
  - zero-bugs-series
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Beginning of our story towards #ZeroBugs"
-published: false
 ---
 Some teams spend 95% of their development time fixing bugs ... An entrepreneur I worked with reported an even scarier story. He went bankrupt because bugs were taking _all_ the development time. He had no time left for new features !
 
@@ -65,11 +64,11 @@ Whenever we found an issue meeting any of these points, we would start working o
 
 > 💡 Exploratory testing goes hand in hand with #ZeroBugs policy
 
-[Exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) is a practice that goes hand in hand with a #ZeroBugs policy. To speed up downstream integration of our product by other teams, we also [started that](/how-we-started-exploratory-testing/).
+To speed up downstream integration of our product by other teams, we also [started Exploratory Testing](/how-we-started-exploratory-testing/). [Exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) is a practice that goes hand in hand with a #ZeroBugs policy. 
 
 ### Unearthing a bug debt
 
-During the first exploratory testing session, we found more than 10 bugs. We thought that with a bit of focus we could fix all lingering bugs in a few weeks max ... After 2 other sessions and more than one sprint of intense bug fixing, we had even more bugs. We were wrong, this would take a lot more than a few weeks.
+During the first exploratory testing session, we found more than 10 bugs. We thought that with a bit of focus we could fix all lingering bugs in a few weeks max ... After 2 other sessions and more than one sprint of intense bug fixing, we had even unearthed more bugs. We were wrong, this would take a lot more than a few weeks.
 
 If we kept on our 1 hour exploratory testing sessions every sprint, we would fill our backlog with bugs. We would also be fixing bugs for a few months before we could tackle any new feature !
 

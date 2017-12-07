@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why and how to start a #ZeroBugs policy - part 4"
-date: 2017-11-22 10:40
+date: 2017-12-24 10:40
 comments: true
 categories: 
  - continuous improvement
