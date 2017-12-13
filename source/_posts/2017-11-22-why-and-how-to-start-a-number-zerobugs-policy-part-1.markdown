@@ -48,11 +48,11 @@ We'd first read about #ZeroBugs in [The Art of Agile Software Development](https
 
 As we had very solid automated testing in place, we decided to take the extra steps to save time on bug fixing.
 
-### First tentative
+### First attempt
 
 There is a straightforward way to install a #ZeroBugs policy. Make sure to have a customer or a Product Owner to prioritize defects as soon as they appear (check [this story](https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684) for an example).
 
-Unfortunately, this would not work for us. Our Product Owner was great at providing us with a long term vision. He could not be available for day to day bug prioritization tough.
+Unfortunately, this would not work for us. Our Product Owner was great at providing us with a long term vision. He could not be available for day to day bug prioritization though.
 
 Our first try was to propose a definition for bugs that we could use ourselves to classify them. We decided that something was a bug if either of the following was true :
 
