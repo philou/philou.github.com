@@ -9,7 +9,6 @@ categories:
  - zero-bugs-series
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Conclusion of our story towards #ZeroBugs"
-published: false
 ---
 This is the second post of a [series about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the [previous post](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed what a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is and how we tried to apply it. I encourage you start [there](/why-and-how-to-start-a-number-zerobugs-policy-part-1/).
 

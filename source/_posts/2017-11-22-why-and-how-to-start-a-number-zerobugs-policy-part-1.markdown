@@ -82,4 +82,4 @@ We hoped to fix all our bugs in a few months.
 
 ## Next week
 
-That was the first part of [a series of posts about #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the next post, I'll explain how we dealt with this bug debt and dig into the consequences it had on our work.
+That was the first part of [a series of posts about #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the [next post](/why-and-how-to-start-a-number-zerobugs-policy-part-2/), I'll explain how we dealt with this bug debt and dig into the consequences it had on our work.
