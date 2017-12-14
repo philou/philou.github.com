@@ -102,6 +102,126 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/5-spa-conference-takeaways-that-could-make-us-better-software-professionals/">5 SPA Conference Takeaways That Could Make Us Better Software Professionals</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-07-06T22:17:00+02:00" pubdate data-updated="true">Jul 6<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last week, my colleague <a href="https://ahmadatwi.me/">Ahmad Atwi</a> and I went to the London <a href="https://www.spaconference.org/spa2017/">SPA Conference</a> to give our <a href="https://www.youtube.com/watch?v=oJsukJhxt7E">Remote eXtreme Practice</a> talk.</p>
+
+<p>The London <a href="http://www.extremeprogramming.org/">eXtreme Programming</a> is one of the most active in the world. You could feel an XP atmosphere at the conference. For example, people like <a href="http://www.natpryce.com/">Nat Pryce</a> and <a href="https://twitter.com/sf105">Steve Freeman</a>, authors of <a href="https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321503627&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3">GOOSGT</a> book were speakers.</p>
+
+<p><a href="https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321503627&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3"><img src="../imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/growing.jpg" alt="The cover of Growing Object-Oriented Software, Guided By Tests" /></a></p>
+
+<p>To summarize, we had the chance to attend a lot of very interesting sessions during the 3 days of the conference. Here are 5 pearls of wisdom I took back with me.</p>
+
+<h2>What connascences are</h2>
+
+<p>Identifying code <a href="http://connascence.io/">connascences</a> helps to rank refactorings and keep the system maintainable.</p>
+
+<p><a href="http://www.extremeprogramming.org/rules/refactor.html">Continuous refactoring</a> is one of the core practices of XP. For me, knowing what to refactor next has been a matter of <a href="https://martinfowler.com/bliki/CodeSmell.html">code smells</a>, discussing with my pair and gut feeling.</p>
+
+<p>A connascence is a coupling between parts of the system. Two parts of your code are connascent if changing one implies changing the other. For example, a function call is connascent by name with the function definition. If you change one, you need to change the other.</p>
+
+<p>Connascences are more formal than code smells. We can detect and rank them to pick the most important refactoring to do. People have listed 9 types of connascences. Some are visible in the source code, others are dynamic and difficult to spot before runtime.</p>
+
+<p>The lowest form of connascence is <a href="http://connascence.io/name.html">&lsquo;of name&rsquo;,</a> like in the function call example above. The worst form is <a href="http://connascence.io/identity.html">&lsquo;of Identity&rsquo;</a>, when different parts of the system must reference the same object.</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/jPvF4gxm5z6cGN?startSlide=14" width="510" height="420" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+
+
+<p>The higher the connascence, the more difficult it is to evolve the parts involved. Instead of relying on intuition, you can use a connascence based refactoring algorithm :</p>
+
+<ol>
+<li>Detect the highest connascence</li>
+<li>Reduce or remove it</li>
+<li>Repeat.</li>
+</ol>
+
+
+<p>Thanks <a href="https://twitter.com/xpsurgery">Kevin Rutherford</a> and <a href="https://twitter.com/mowat27">Adrian Mowat</a> for your <a href="http://xpsurgery.com/resources/connascence-hunt-slides/">Red Green then what ?</a> session about connascence.</p>
+
+<h2>Tips for pairing with junior developers</h2>
+
+<p><a href="https://twitter.com/irinatsyganok">Irina Tsyganok</a> and <a href="http://www.natpryce.com/">Nat Pryce</a> gave a very fun session about this topic. A lot of valuable points discussed, from which I saved a few pearls of wisdom.</p>
+
+<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">Cat eating session from <a href="https://twitter.com/natpryce">@natpryce</a> at <a href="https://twitter.com/hashtag/spaconf17?src=hash">#spaconf17</a> (unless <a href="https://twitter.com/irinatsyganok">@irinatsyganok</a> stops him) <a href="https://t.co/XSiaPDp9kJ">pic.twitter.com/XSiaPDp9kJ</a></p>&mdash; Andy Longshaw (@andylongshaw) <a href="https://twitter.com/andylongshaw/status/879714743963054080">27 juin 2017</a></blockquote>
+
+
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<p>It was reassuring to hear Nat saying that &ldquo;As we gain experience, we are not expected to know everything&rdquo;. Pairing with developers out of college is an occasion to &ldquo;exchange&rdquo; skills. Hard learned design skills versus updates on the latest technologies.</p>
+
+<p>I also learned about the <a href="http://actingcoachscotland.co.uk/blog/expert-induced-amnesia/">Expert&rsquo;s Amnesia</a> and why experts often have a hard time teaching. Expert level knowledge is by nature instinctive. At this level of skill, it becomes very difficult to detail the logic of things that seem obvious.</p>
+
+<h2>We engineers are more mentors than coaches</h2>
+
+<p>In the <a href="https://www.amazon.com/gp/product/0201616416/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0201616416&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=dc2f9dc4f5ca106842921bfded07b405">first XP book</a>, there were only 3 roles in the team : team members, on site customer and XP coach. The XP coach should be a developer who can help the team to learn the practices and principles of XP.</p>
+
+<p>About the same time, the personal or professional coach jobs appeared. The Scrum Master, is to Scrum what the XP coach is to XP, without the developer part. Remember the joke &ldquo;Scrum is like XP, without everything that makes it work&rdquo; (<a href="https://martinfowler.com/bliki/FlaccidScrum.html">Flaccid Scrum</a>).</p>
+
+<p>It looks like the Agile Coach job title appeared out of all this. The problem is no one exactly knows what this is. Should he be an experienced developer like the XP coach ? A great people person ? Or someone good at introducing change ? or a mix of these ?</p>
+
+<p><a href="http://www.selfishprogramming.com/about/">Portia Tung</a> and <a href="https://uk.linkedin.com/in/helenlisowski">Helen Lisowski</a> &rsquo;s  talk &ldquo;The power of coaching&rdquo; clarified that.</p>
+
+<p>There is no knowledge transfer from the coach to the coachees ! On the other side, a mentor does transfer knowledge to his mentees. The coach helps his coachee take a step back and take decisions in full consciousness. The goal of the mentor is to inspire and train to new techniques.</p>
+
+<p>I&rsquo;m fine being a mentor and not a coach ;&ndash;)</p>
+
+<h2>Servant leaders need to be tough at times</h2>
+
+<p>We hear a lot about servant leadership nowadays. Scrum Master should be servant leaders, as well as managers in agile organizations.</p>
+
+<p><a href="https://fr.linkedin.com/company/bellebeck-limited">Angie Main</a> gave a very interesting session about servant leadership. She made an interesting point I had not heard about before. We all know that servant leaders should trust the team to get the work done most of the time. In spite of that, servant leaders must also be ready to step in and remove people who don&rsquo;t fit in and endanger the team !</p>
+
+<p>This reminded me of what Jim Collins says in <a href="http://www.wikisummaries.org/wiki/Built_to_Last#Chapter_6_.E2.80.93_Cult-like_Cultures">Built to last</a> : &ldquo;People who don&rsquo;t fit are expelled like viruses !&rdquo;</p>
+
+<p><a href="https://www.amazon.com/gp/product/0060516402/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0060516402&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=e83ad8e3dcf7bdb7f875d5b22e8eb4c6"><img src="../imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/built-to-last.jpg" alt="The cover of Built to Last" /></a></p>
+
+<h2>1/3000 ideas succeeds</h2>
+
+<p>Thanks to <a href="https://twitter.com/ozzieyuce">Ozlem Yuce</a>&rsquo;s session, I learned about the &ldquo;Job To Be Done&rdquo; technique to understand the customer&rsquo;s real needs.</p>
+
+<p>Studies measured that only 1 idea out of 3000 ends up as a successful product ! <a href="https://www.researchgate.net/file.PostFileLoader.html?id=56217976614325233f8b4567&amp;assetKey=AS%3A285916150157312%401445179130594">Here</a> seems to be the original research.</p>
+
+<p>I&rsquo;ll remember this fact next time I&rsquo;m ask for a funky feature !</p>
+
+<h2>To conclude</h2>
+
+<p>At the end, we had a very good time at SPAconference. The talks were insightful, we had interesting discussions, the premises were comfortable and on top of that, food was great !</p>
+
+<p>I&rsquo;m already eager to go to SPA conference 2018 !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/">Don&#8217;t Stick to TDD&#8217;s Red-Green-Refactor Loop to the Letter</a></h1>
     
     
@@ -1682,152 +1802,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-get-your-team-to-do-code-reviews/">How to Get Your Team to Do Code Reviews</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-04-19T09:18:00+02:00" pubdate data-updated="true">Apr 19<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As software developers, we very <del>always</del> often get to work in code bases that are not perfect. In this situation we have 3 choices : leave, grumble, or make some changes ! Team wide code reviews are a recognized way to increase the quality of the code.</p>
-
-<p>Unfortunately, installing code reviews as part of the daily work habits of a team can be very challenging. When I joined my team 3 years ago, no one was doing any kind of code reviews. With a small push here and there, I managed to get the team to adhere to a strict 4 eyes principle (full story <a href="/from-zero-to-pair-programming-hero/">here</a>).</p>
-
-<p>Here are a few strategies that I have either used or seen that should get your team mates to do code reviews.</p>
-
-<h2>Overall principle</h2>
-
-<p>Even if you are at the bottom of the org chart, you have far more influence than you would first think. My favorite way of bringing change is to demonstrate a valuable practice :</p>
-
-<ul>
-<li>First, you need to be trustworthy</li>
-<li>Then, do the practice you want to introduce</li>
-<li>Make sure it is seen as valuable</li>
-<li>Be ready to forgo the credits of the introduction of the practice</li>
-<li>Keep on until people start to copy what you are doing</li>
-</ul>
-
-
-<p>As <a href="http://quoteinvestigator.com/2010/12/21/doing-good-selfless/">someone famous</a> said</p>
-
-<blockquote><p>A man may do an immense deal of good, if he does not care who gets the credit</p></blockquote>
-
-<p>I won&rsquo;t go in the details about how to be trustworthy, which could be a post of its own. Basically, putting our customers interests first, speaking the truth and avoiding to appear dogmatic can get us a long way already. <a href="https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1">The Clean Coder</a> is an excellent read on the subject.</p>
-
-<p><a href="https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1"><img src="../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/clean-coder.jpg" alt="Front cover of the Clean Coder book" /></a></p>
-
-<h2>Strategies</h2>
-
-<h3>If you have retrospectives in place</h3>
-
-<p>In this case, you already have a place and time dedicated to discussing changes to your working agreements. Expressing your concerns about code quality (or another problem related to code reviews) and suggesting code reviews as a way to fix that problem might get a quick team buy-in.</p>
-
-<p>If you don&rsquo;t manage to get a definitive buy-in, try to get the team to &lsquo;beta-test&rsquo; code reviews for a while. If the experiment demonstrates value, it will convert into a full fledged working agreement.</p>
-
-<h3>If you practice collective code ownership</h3>
-
-<p>Unfortunately, if you don&rsquo;t have retrospectives in place, or if you did not manage to get your team to discuss code reviews in retrospectives, yo&rsquo;ll need to find another way to introduce them.</p>
-
-<p>If you have collective code ownership, it should be ok to comment on your team mates code (if not, jump directly to the next strategy). In this setting, just start to do some code reviews for others ! Make sure your reviews are helpful and &lsquo;nice&rsquo;.</p>
-
-<p>You&rsquo;ll need to stick to doing code reviews long enough before people actually start to mimic you. Reserve some time in your daily agenda for code reviews. Your goal is to win over people, so it might be a good idea to start with a selected few at the beginning, preferably people who are more likely to jump in. If asynchronous (tool based) reviews don&rsquo;t get answered, be ready to fallback to face to face discussions : review on your own, then just ask the author for a few minutes so that you can discuss his change. When you feel someone is interested by your reviews, ask him to review your own code in return.</p>
-
-<p>Remember to always try to get some feedback : ask people what they think of the exercise, keep note of the good points, and adapt to smooth out the rest.</p>
-
-<p><img src="../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/collective.jpg" alt="Illustration of a team working collectively" /><div class="image-credits">Photo from <a href="https://www.emotuit.com/blog">emotuit</a></div></p>
-
-<p>Once you won over your first team mate, involve him in your grand plan to spread the practice, explaining how much you think this could make a difference. As more and more people get convinced, the practice will eventually tacitly become part of your working conventions.</p>
-
-<p>Depending on your context, this might take more or less time. I said it was possible, I never said it would be easy ! Grit, patience and adaptation are key here.</p>
-
-<h3>Otherwise</h3>
-
-<p>This is the worst starting point, basically, you have nothing yet. The strategy is very similar to the one with collective code ownership, with a different first move.</p>
-
-<p>Instead of providing code reviews to your team mates, start by walking over to them to ask for a face to face code review of your own commits. Use the same tactic as stated before : stick to the same people at first. Once the practice starts to stick within this group, bring in a basic tool to ease up the process.</p>
-
-<p>At some point, you should be asked to review others code, that&rsquo;s a good sign ! If not, try again with other people.</p>
-
-<p>Continue using the same strategy as with collective code ownership and you should eventually get there !</p>
-
-<h3>When it does not seem to stick</h3>
-
-<p>There could be many reason why the practice is not adopted. The key for you is to understand why and to adapt your strategy. The reason is often that the perceived value is not big enough, for example :</p>
-
-<ul>
-<li>the team is not aware of its problems that reviews would fix : try to make them more visible</li>
-<li>reviews are seen as too expensive or painful : try better tools or taking more on yourself</li>
-<li>the team has bigger problems to fix first : spend your energy on these first !</li>
-<li>reviews just don&rsquo;t work in your context (ex: your job is to write one time, throw away code) : it&rsquo;s up to you to stay or leave !</li>
-</ul>
-
-
-<h2>Tools</h2>
-
-<p>There are a ton of tools and best practices to run code reviews. It&rsquo;s important that you know them, so that you know where you are going.</p>
-
-<p>Don&rsquo;t expect to use the best tools from the start though. At the beginning, your goal is to win over your team mates. In this context, only 2 things matter :</p>
-
-<ul>
-<li>It should have almost no adoption curve, so that others start using it</li>
-<li>It should have almost no maintenance cost, as you don&rsquo;t want to spend your time doing that</li>
-</ul>
-
-
-<p>That&rsquo;s why at the beginning, low tech tools are so great. Spending a month setting up a top notch code review system before the first review won&rsquo;t work. If your VCS has code reviews built-in, by all means use it ! Otherwise, diff in mails and face to face conversations are a good starting point. You&rsquo;ll later hook something in your VCS to automatically send mails with commit diffs &hellip;</p>
-
-<p>As people gradually get convinced of the value of code reviews, regularly meet and discuss a better setup. This is how you&rsquo;ll introduce state of the art tools and agree on refinements such as pre or post commit reviews.</p>
-
-<h3>Best practices</h3>
-
-<p>As a code review champion, it&rsquo;s very important that you provide great reviews to your team mates. You must become the local expert on the subject ! You don&rsquo;t want all your efforts to be ruined because one of your reviews has been perceived as aggressive.</p>
-
-<p><a href="https://static.rainfocus.com/oracle/oow16/sess/1473264722807001CoS2/ppt/code-reviews-vs-pull-requests.pdf"><img src="../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/atlassian.jpg" alt="A slide from Atlassian presentation about styles of code reviews" /></a></p>
-
-<p>There is a ton of resources on the internet about how to perform good code reviews, here are a few :</p>
-
-<ul>
-<li><a href="https://twitter.com/mariakhalusova">Maria Khalusova</a>&rsquo;s talk at Devoxx 2016 <a href="https://www.youtube.com/watch?v=-tcy4z0hszg">How to stop wasting your time and start performing useful code reviews</a></li>
-<li><a href="https://medium.com/@kannonboy/">Tim Pettersen</a> from <a href="https://www.atlassian.com">Atlassian</a> talked about <a href="https://static.rainfocus.com/oracle/oow16/sess/1473264722807001CoS2/ppt/code-reviews-vs-pull-requests.pdf">Code Reviews vs Pull Request</a> at JavaOne 2016</li>
-<li><a href="http://marcotroisi.com/">Marco Troisi</a> wrote an extensive blog post about <a href="http://marcotroisi.com/how-run-code-reviews-in-your-workflow/">How to run code reviews in your dev team&rsquo;s workflow</a></li>
-<li><a href="https://medium.com/@mrjoelkemp">Joel Kemp</a>&rsquo;s post <a href="https://medium.com/@mrjoelkemp/giving-better-code-reviews-16109e0fdd36">Giving better code reviews</a></li>
-<li>Gareth Wilson&rsquo;s post <a href="https://blog.fogcreek.com/effective-code-reviews-9-tips-from-a-converted-skeptic/">Effective Code Reviews – 9 Tips from a Converted Skeptic</a></li>
-</ul>
-
-
-<h2>What&rsquo;s next ?</h2>
-
-<p>Congratulations ! Your team will start to reap the benefits of code reviews. Keep on improving the practice !</p>
-
-<p>To end the story, after a few months of code reviews, during a retrospective, my team (<a href="http://www.murex.com/">at work</a>) decided to take it one step further and started to do almost full time pair programming ;&ndash;)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1908,6 +1882,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-2/">Why and how to start a #ZeroBugs policy - part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-1/">Why and how to start a #ZeroBugs policy - part 1</a>
       </li>
     
@@ -1921,10 +1899,6 @@
     
       <li class="post">
         <a href="/mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/">Mobbing around the world for 48h &#8230; who&#8217;s in ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/what-rails-teaches-us-about-building-platforms-and-frameworks/">What Rails teaches us about building platforms and frameworks</a>
       </li>
     
   </ul>
