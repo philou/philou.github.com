@@ -72,5 +72,5 @@ It's great to fix the bugs very fast. It's even better if to fix them before the
 
 ## Next week
 
-This was part 3 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In next week's post, I'll provide arguments and advices to convince the people around you to give it a try.
+This was part 3 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In next week's post ([be notified](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)), I'll provide arguments and advices to convince the people around you to give it a try.
 

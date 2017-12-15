@@ -59,4 +59,4 @@ To summarize, sticking to #ZeroBugs is a win-win and sustainable situation for a
 
 ## Next week
 
-This was part 2 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In next week's post, I'll provide a step by step guide about how to inject a #ZeroBugs policy in your team.
+This was part 2 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In next week's post ([be notified](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)), I'll provide a step by step guide about how to inject a #ZeroBugs policy in your team.
