@@ -9,7 +9,7 @@ categories:
  - zero-bugs-series
  - how to guide
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software, Change Management, How to"
-description: "An how to guide to inject #ZeroBugs in your team"
+description: "An how-to guide to inject #ZeroBugs in your team"
 published: false
 ---
 This is the third post of a [series about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the [first 2 posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, and what were the consequences.
@@ -56,7 +56,7 @@ Ok, that was the easy part. How can we deal with the zillions bugs we all have w
 
 If you have a rather small bug debt, as we did, you can get away by prioritizing X bugs every sprint.
 
-Let's suppose you have a larger bug debt. You could do as [ConceptShare did](https://medium.com/swlh/how-we-got-to-zero-bugs-and-implemented-a-zero-bug-policy-c77ee3f2e50b) and crank out a feature team dedicated to elimate bugs. That should work, but it will take some time. It took the ConceptShare teams 18 months to get rid of a 350 bugs backlog !
+Let's suppose you have a larger bug debt. You could do as [ConceptShare did](https://medium.com/swlh/how-we-got-to-zero-bugs-and-implemented-a-zero-bug-policy-c77ee3f2e50b) and crank out a feature team dedicated to eliminate bugs. That should work, but it will take some time. It took the ConceptShare teams 18 months to get rid of a 350 bugs backlog !
 
 It's a good idea to take a look at all existing bugs to re-classify some as stories and delete others. Just as you should now be doing with new bugs. This should drastically reduce the number of bugs, but it will take some time from very busy people ... Again, rules to define what a bug is would make this easier.
 
@@ -68,9 +68,9 @@ Finally, there's a last, very effective solution : archive all the bugs ! Some b
 
 It's great to fix the bugs very fast. It's even better if to fix them before the users see them ! [Exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) is the way to do that. It will also provide you a measure of how many bugs escape your development process. I encourage you to try this very interesting practice. I wrote [a guide](/how-we-started-exploratory-testing/) about how to start exploratory testing.
 
-> 💡 Exploratory Testing gives you an quantifiable measure of your workflow
+> 💡 Exploratory Testing gives you a quantifiable measure of your workflow
 
 ## Next week
 
-This was part 3 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In next week's post ([be notified](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)), I'll provide arguments and advices to convince the people around you to give it a try.
+This was part 3 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In next week's post ([subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)), I'll provide arguments and advices to convince the people around you to give it a try.
 
