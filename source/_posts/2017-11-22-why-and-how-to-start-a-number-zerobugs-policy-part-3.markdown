@@ -10,7 +10,6 @@ categories:
  - how to guide
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software, Change Management, How to"
 description: "An how-to guide to inject #ZeroBugs in your team"
-published: false
 ---
 This is the third post of a [series about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the [first 2 posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, and what were the consequences.
 
