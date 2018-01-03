@@ -683,22 +683,22 @@
 <span class='line-number'>47</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">MonkeyWrench</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">bool</span> <span class="n">_isStarted</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;*</span> <span class="n">_movingParts</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">m_isStarted</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;*</span> <span class="n">m_movingParts</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">protected</span><span class="o">:</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">invariant</span><span class="p">()</span> <span class="k">const</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="n">_isStarted</span> <span class="o">==</span> <span class="p">(</span><span class="n">_movingParts</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">));</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="n">m_isStarted</span> <span class="o">==</span> <span class="p">(</span><span class="n">m_movingParts</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">));</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">public</span><span class="o">:</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="n">MonkeyWrench</span><span class="p">()</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">_isStarted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">_movingParts</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_isStarted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_movingParts</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
 </span><span class='line'>    <span class="p">}</span>
@@ -713,7 +713,7 @@
 </span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
 </span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">_movingParts</span> <span class="o">=</span> <span class="p">...</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_movingParts</span> <span class="o">=</span> <span class="p">...</span>
 </span><span class='line'>
 </span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
 </span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
@@ -724,7 +724,7 @@
 </span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
 </span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">_movingParts</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_movingParts</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="p">...</span>
 </span><span class='line'><span class="p">};</span>
@@ -801,14 +801,14 @@
 <span class='line-number'>23</span>
 </pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">MovingMonkeyWrench</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;</span> <span class="n">_parts</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;</span> <span class="n">m_parts</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">public</span><span class="o">:</span>
-</span><span class='line'>    <span class="n">MovingMonkeyWrench</span><span class="p">()</span> <span class="o">:</span> <span class="n">_parts</span><span class="p">(...)</span> <span class="p">{}</span>
+</span><span class='line'>    <span class="n">MovingMonkeyWrench</span><span class="p">()</span> <span class="o">:</span> <span class="n">m_parts</span><span class="p">(...)</span> <span class="p">{}</span>
 </span><span class='line'>
 </span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;&amp;</span> <span class="n">parts</span><span class="p">()</span> <span class="k">const</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">_parts</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_parts</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>    <span class="p">...</span>
 </span><span class='line'><span class="p">};</span>
@@ -1694,7 +1694,7 @@
       </div>
     </div>
     <footer role="contentinfo"><p>
-  Copyright &copy; 2017 - Philippe Bourgau -
+  Copyright &copy; 2018 - Philippe Bourgau -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
 </p>
 

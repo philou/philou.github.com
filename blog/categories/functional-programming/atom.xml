@@ -4,7 +4,7 @@
   <title><![CDATA[Category: functional-programming | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/functional-programming/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2017-12-21T06:31:20+01:00</updated>
+  <updated>2018-01-03T14:16:59+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -46,15 +46,15 @@
 class MonkeyWrench
 {</p>
 
-<pre><code>bool _isStarted;
-std::vector&lt;Part&gt;* _movingParts;
+<pre><code>bool m_isStarted;
+std::vector&lt;Part&gt;* m_movingParts;
 </code></pre>
 
 <p>protected:</p>
 
 <pre><code>virtual void invariant() const
 {
-    assert(_isStarted == (_movingParts != NULL));
+    assert(m_isStarted == (m_movingParts != NULL));
 }
 </code></pre>
 
@@ -62,8 +62,8 @@ std::vector&lt;Part&gt;* _movingParts;
 
 <pre><code>MonkeyWrench()
 {
-    this-&gt;_isStarted = false;
-    this-&gt;_movingParts = NULL;
+    this-&gt;m_isStarted = false;
+    this-&gt;m_movingParts = NULL;
 
     invariant();
 }
@@ -78,7 +78,7 @@ void start()
     assert(!this-&gt;isStarted());
     invariant();
 
-    this-&gt;_movingParts = ...
+    this-&gt;m_movingParts = ...
 
     invariant();
     assert(this-&gt;isStarted());
@@ -89,7 +89,7 @@ const std::vector&lt;Part&gt;&amp; movingParts() const
     assert(this-&gt;isStarted());
     invariant();
 
-    return *this-&gt;_movingParts;
+    return *this-&gt;m_movingParts;
 }
 ...
 </code></pre>
@@ -146,16 +146,16 @@ const std::vector&lt;Part&gt;&amp; movingParts() const
 class MovingMonkeyWrench
 {</p>
 
-<pre><code>const std::vector&lt;Part&gt; _parts;
+<pre><code>const std::vector&lt;Part&gt; m_parts;
 </code></pre>
 
 <p>public:</p>
 
-<pre><code>MovingMonkeyWrench() : _parts(...) {}
+<pre><code>MovingMonkeyWrench() : m_parts(...) {}
 
 const std::vector&lt;Part&gt;&amp; parts() const
 {
-    return this-&gt;_parts;
+    return this-&gt;m_parts;
 }
 ...
 </code></pre>
