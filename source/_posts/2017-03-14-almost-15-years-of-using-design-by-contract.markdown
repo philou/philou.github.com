@@ -38,22 +38,22 @@ That's when I started to write contracts everywhere. I was writing C++ code at t
 ```c++
 class MonkeyWrench
 {
-    bool _isStarted;
-    std::vector<Part>* _movingParts;
+    bool m_isStarted;
+    std::vector<Part>* m_movingParts;
 
 protected:
     
     virtual void invariant() const
     {
-        assert(_isStarted == (_movingParts != NULL));
+        assert(m_isStarted == (m_movingParts != NULL));
     }
     
 public:
     
     MonkeyWrench()
     {
-        this->_isStarted = false;
-        this->_movingParts = NULL;
+        this->m_isStarted = false;
+        this->m_movingParts = NULL;
         
         invariant();
     }
@@ -68,7 +68,7 @@ public:
         assert(!this->isStarted());
         invariant();
         
-        this->_movingParts = ...
+        this->m_movingParts = ...
         
         invariant();
         assert(this->isStarted());
@@ -79,7 +79,7 @@ public:
         assert(this->isStarted());
         invariant();
         
-        return *this->_movingParts;
+        return *this->m_movingParts;
     }
     ...
 };
@@ -124,14 +124,14 @@ To come back at the previous code section, this how it could be written without 
 ```c++
 class MovingMonkeyWrench
 {
-    const std::vector<Part> _parts;
+    const std::vector<Part> m_parts;
     
 public:
-    MovingMonkeyWrench() : _parts(...) {}
+    MovingMonkeyWrench() : m_parts(...) {}
     
     const std::vector<Part>& parts() const
     {
-        return this->_parts;
+        return this->m_parts;
     }
     ...
 };
