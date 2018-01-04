@@ -102,6 +102,104 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/">How We Used the Improvement Kata to Gain 25% of Productivity - Part 5</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-09-27T07:00:00+02:00" pubdate data-updated="true">Sep 27<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is the fifth (and last) post of a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
+
+<p>In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">previous post</a>, we decided to adjust our definition of a bug to limit the time lost on nice-to-have bug fixes.</p>
+
+<p>It would take a while to know if adjusting the definition of a bug would help us or not. At the same time, we knew it would not help us to reduce the number of bugs we escaped to other teams.</p>
+
+<p><img src="../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/success-banner.jpg" alt="A 'SUCCESS' banner in the wind" /></p>
+
+<h2>Idea 3 : More exploratory testing</h2>
+
+<p>We decided to push on this matter as well. This means that we would be running two <a href="https://en.wikipedia.org/wiki/PDCA">PDCAs (Plan-Do-Check-Act)</a> at the same time. This is not the improvement kata procedure by the book. That could have been an error from our side, as first time users of the kata. Or maybe it&rsquo;s a pragmatic habit to adapt the kata to real life &hellip; I guess we&rsquo;ll know better as we apply the kata more often. The danger is that the different experiments can conflict with each other. When measuring the results, it becomes difficult to link observations with experiments. Anyway, back to our own situation, as you&rsquo;ll see, it ended up well for us.</p>
+
+<p>The first thing was to know a bit more about our bugs. Checking the recently closed bugs yielded suspicions about a recent features. Analyzing further proved our gut feeling.</p>
+
+<h6>Curve of how bugs were fixed on the last 2 months</h6>
+
+<p><img src="../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/fixed-bugs.png" alt="Curve of how bugs were fixed on last 2 months" /></p>
+
+<h6>Curve of the origin of bugs on the last 2 months</h6>
+
+<p><img src="../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/kind-of-bugs.png" alt="Curve of the origin of bugs on the last 2 months" /></p>
+
+<p>Ignoring the Christmas drop at the middle of the curve, we concluded 2 things from these graphs :</p>
+
+<ul>
+<li>We were leaking bugs to the product</li>
+<li>Bugs mostly came from newly added features</li>
+</ul>
+
+
+<blockquote><p>Despite all our automated tests and regular  exploratory testing, we were leaking bugs.</p></blockquote>
+
+<p>We decided to do more exploratory testing for a while ! We were already doing exploratory testing at the end of every story. We added an extra 1 hour team session of exploratory testing every sprint.</p>
+
+<h2>Do, Check &amp; Act</h2>
+
+<p>We used these new conventions for a few weeks. We did more exploratory testing, and would be more strict about what a bug was. We stuck to our prioritization : first improvements, then bugs and only after, stories.</p>
+
+<p>After a few weeks of that, we were able to update our bug trend and do a linear regression on it again. Here were the results :</p>
+
+<p><img src="../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/final-bug-trend.png" alt="Curve of the origin of bugs on the last 2 months" /></p>
+
+<p>Hurray ! As you can see, we were to be done with bugs around April 2017, which was 3 months away at that time.</p>
+
+<blockquote><p>💡 Quality is free, but only for those willing to pay for it ! [<a href="https://en.wikiquote.org/wiki/Tom_DeMarco">Tom DeMarco</a> in <a href="https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&amp;psc=1&amp;refRID=9SX9Y3RG61NB7N9VJ6KS&amp;dpID=61lAwzXfQiL&amp;preST=_SX218_BO1,204,203,200_QL40_&amp;dpSrc=detail">Peopleware</a>]</p></blockquote>
+
+<p><a href="https://www.amazon.com/Peopleware-Productive-Projects-Teams-3rd/dp/0321934113/ref=pd_lpo_sbs_14_t_0?_encoding=UTF8&amp;psc=1&amp;refRID=9SX9Y3RG61NB7N9VJ6KS&amp;dpID=61lAwzXfQiL&amp;preST=_SX218_BO1,204,203,200_QL40_&amp;dpSrc=detail"><img src="../imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/peopleware.jpg" alt="Cover of the 'Peopleware' book by Tom DeMarco &amp; Timothy Lister" /></a></p>
+
+<p>We confidently adopted these practices as part of our working agreements. This brought our first improvement kata to its end.</p>
+
+<blockquote><p>💡 The improvement kata not only brings improvements, it also teaches you why they work.</p></blockquote>
+
+<h2>3 months later</h2>
+
+<p>As you know, April 2017 is long gone. I can now give you a more up to date report of the actual effects on the team&rsquo;s daily work. </p>
+
+<p>First, the backlog does not contain bugs anymore. We payed the bug debt back. Second, we still discover some bugs from time to time, but a lot less than we used to. To summarize, there is now a pair of developers (25%) of the team that can work on user stories instead of fixing bugs.</p>
+
+<p>As we are still fixing bugs as they appear, the 25% productivity gain claim might be an overstatement, but 20% is not. At the same time, less bugs are now escaping. This means that the whole organization is saving on interruptions and rework. 25% might not be such a bold claim after all !</p>
+
+<h2>This is it !</h2>
+
+<p>This was post 5 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. I&rsquo;m not completely done writing about this improvement kata though. In the coming weeks, I&rsquo;ll post about the <a href="/lessons-learned-from-running-our-first-improvement-kata/">lessons learned</a> and <a href="/how-to-run-your-first-improvement-kata/">how to start your own improvement kata</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">How We Used the Improvement Kata to Gain 25% of Productivity - Part 4</a></h1>
     
     
@@ -1243,122 +1341,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to Start Learning the Tao of Incremental Code Refactoring Today</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-07-21T08:05:00+02:00" pubdate data-updated="true">Jul 21<span>st</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In my <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">last post</a>, I explained why incremental refactoring techniques will make you both more productive and relaxed.</p>
-
-<p>As anything worth its salt, the path to full mastery is long and requires dedication. The good news is that you&rsquo;ll start to feel the benefits long before you are a master.</p>
-
-<h2>Dedicated Practice</h2>
-
-<p>The quickest thing that will get you up to speed is dedicated practice. Take some time to do some exercices outside of any &lsquo;production&rsquo; code.</p>
-
-<h3>TDD Coding Katas</h3>
-
-<p>The most famous practice to learn TDD also works very well to learn refactoring. That shouldn&rsquo;t be a surprise as incremental refactoring is an integral part of TDD.</p>
-
-<p>There are many ways to do your first coding kata. You could find a coding dojo near you (ask <a href="https://www.meetup.com/">meetup.com</a>). Or you could find motivated colleagues to start one at your company &hellip; I wrote in more details about how to attend a coding dojo in <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">this post</a>.</p>
-
-<p><a href="https://www.amazon.com/gp/product/919811803X/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=919811803X&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=340ea938a5e4f00178676804ac6c2278"><img src="../imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/coding-dojo.jpg" alt="Emily Bache's Coding Dojo book cover" /></a></p>
-
-<p>You can also practice katas on your own. My friend <a href="https://twitter.com/tpierrain">Thomas Pierrain</a> rehearses the same katas to discover deeper insights.</p>
-
-<h3>Refactoring Golf</h3>
-
-<p>The goal of incremental refactoring is to keep the code production ready all the time. Smaller commits is one happy consequence of that.</p>
-
-<p>You can stretch your refactoring muscles by doing coding katas and keeping the code compiling all the time. You&rsquo;ll need to master your IDE and its automated refactoring. Most of all, it will shift your attention from the goal to the path !</p>
-
-<p>I learned at <a href="https://www.spaconference.org/spa2017/">SPA conference</a> that we call this &lsquo;Refactoring golf&rsquo;. The name comes from Golf contests, <a href="http://wiki.c2.com/?PerlGolf">popular in the Perl community</a>. Their goal is to write the shortest program possible to do a specific goal. The goal of a Refactoring Golf is to go from code A to code B in the fewest transformations possible.</p>
-
-<p>They are a few <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=refactoring+golf&amp;type=">refactoring golf repos on Github</a>, I tried one and found it fun ! Give it a try too !</p>
-
-<h2>Study some theory</h2>
-
-<p>Real mastery does not come by practice alone. Studying theory alongside practice yields deeper insights. Theory enables to put your practice into perspective and to find ways to improve it. It saves you from getting stuck in bad habits. It also saves you from having to rediscover everything by yourself.</p>
-
-<h3>Develop your design taste</h3>
-
-<p>In <a href="http://www.paulgraham.com/taste.html">Taste for Makers</a> Paul Graham explains why taste for is fundamental to programming. Taste is what allows you to judge if code is nice or bad in a few seconds. Taste is subjective, intuitive and fast, unlike rules which are objective but slower. Expert designers use taste to pinpoint issues and good points in code on the spot.</p>
-
-<p>Within the fast TDD &ndash; Refactoring loop, taste is the tool of choice to drive the design. Guess what : we can all improve our design taste !</p>
-
-<p><a href="https://blog.codinghorror.com/code-smells/">Code smells</a> are the first things to read about to improve your design taste. Once you know them well enough, it will be possible to spot things that might need refactoring as you code.</p>
-
-<p>Spotting problems is nice, but finding solutions is better ! <a href="https://en.wikipedia.org/wiki/Software_design_pattern">Design Patterns</a> are just that &hellip; There has been a lot of controversy around Design Patterns. If overusing them leads to bloated code, using them to fix strong smells makes a lot of sense. There is even a book about the subject :</p>
-
-<p><a href="https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0321213351&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=d79d093008fb9e77f75ea2089d6cbdae"><img src="../imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/refactoring-to-patterns.jpg" alt="Joshua Kerievsky's Refactoring To Patterns book cover" /></a></p>
-
-<p>Finally, there&rsquo;s a third and most common way to improve our design taste. It&rsquo;s to read code ! The more code we read, the better our brain becomes at picking small clues about what nice and what is not. It&rsquo;s important to read clean code but also bad code. To read code in different languages. Code built on different frameworks. </p>
-
-<p>So, read code at work, read code in books, read code in open source libraries, good code, legacy code &hellip;</p>
-
-<h3>Learn your refactorings</h3>
-
-<p>As with most topics in programming there is a reference book about refactoring. It&rsquo;s Martin Fowlers&rsquo;s <a href="https://www.amazon.com/gp/product/0201485672/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0201485672&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=73fc09a5a451402a7036509ae62e8c66">Refactoring, improving the design of existing code</a>. Everything is in there, smells, unit testing and a repository of refactoring walkthroughs.</p>
-
-<p><a href="https://www.amazon.com/gp/product/0201485672/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0201485672&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=73fc09a5a451402a7036509ae62e8c66"><img src="../imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/refactoring.jpg" alt="Martin Fowler's refactoring book cover" /></a></p>
-
-<p>The book is said to be a difficult read, but the content is worth gold. If you have the grit, give it a try ! At the end, you should understand how your IDE does automated refactoring. You should also be able to perform all the refactorings that your IDE does not provide by hand ! This will enlarge your refactoring toolbox, and help you to drive larger refactorings from A to B.</p>
-
-<h2>Develop a refactoring attitude</h2>
-
-<p>Practice makes perfect. Whatever our refactoring skill, there is something to learn by practicing more.</p>
-
-<h3>Make it a challenge</h3>
-
-<p>As you are coding, whenever you find a refactoring to do to your code, make it a challenge to perform it in baby steps. Try to keep the code compiling and the tests green as much as possible.</p>
-
-<p>When things go wrong, revert instead of pushing forward. Stop and think, try to find a different path.</p>
-
-<p>If you are pairing, challenge your pair to find a safer track.</p>
-
-<p>This might delay you a bit at first, but you&rsquo;ll also be able to submit many times per day. You&rsquo;ll see that your refactoring muscles will grow fast. You should see clear progress in only 1 or 2 weeks.</p>
-
-<h3>Team up against long refactorings</h3>
-
-<p>If your team prioritizes a user story that will need some re-design, try to agree on a refactoring plan. The idea is to find a coarse grain path that will allow you to commit and deliver many times. This plan might also help you to share the work on the story.</p>
-
-<p>Having to question and explain your assumptions will speed up your learning. </p>
-
-<h2>Legacy code</h2>
-
-<p>Refactoring is most useful with bad legacy code. Unfortunately, it also where it is the most difficult. Next week&rsquo;s blog post will be about what we can do to learn how to refactor legacy code.</p>
-
-<p>That was my second post in this mini-series about refactoring. First one was <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a>. The third and last is <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">10 things to know that will make you great at refactoring legacy code</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1439,6 +1421,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-4/">Why and how to start a #ZeroBugs policy - part 4</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-3/">Why and how to start a #ZeroBugs policy - part 3</a>
       </li>
     
@@ -1452,10 +1438,6 @@
     
       <li class="post">
         <a href="/sustainable-productivity-in-extreme-programming/">Sustainable productivity in eXtreme Programming</a>
-      </li>
-    
-      <li class="post">
-        <a href="/are-software-developers-overworked-or-undecided/">Are Software Developers Overworked or Undecided ?</a>
       </li>
     
   </ul>
