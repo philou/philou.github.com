@@ -4,7 +4,7 @@
   <title><![CDATA[Category: improvement kata | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/improvement-kata/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-01-04T06:07:26+01:00</updated>
+  <updated>2018-01-09T06:34:41+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -228,6 +228,94 @@
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 4]]></title>
+    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/"/>
+    <updated>2017-09-22T06:40:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4</id>
+    <content type="html"><![CDATA[<p>This is the fourth post on a <a href="/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
+
+<p>We ended the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">previous post</a> with a target condition :</p>
+
+<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
+
+<p>Currently, 1 pair (one quarter of the team) is constantly busy fixing bugs. If we manage to find a way to spend less time on bugs, we can expect a productivity increase of about 25%.</p>
+
+<p><img src="../imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/x-bugs.jpg" alt="Anti bug insecticide can" /></p>
+
+<p>Next step in the improvement kata is to run <a href="https://en.wikipedia.org/wiki/PDCA">Plan-Do-Check-Act (PDCA)</a> experiments. Before you run experiments, you need ideas !</p>
+
+<h2>Idea 1 : Stop exploratory testing</h2>
+
+<p>We&rsquo;d like to spend less time fixing bugs. At the same time, we know that we started to spend more time on bug fixing when we <a href="/how-we-started-exploratory-testing/">started exploratory testing</a>.</p>
+
+<p>We thought that one easy way to do less bug fixing was to stop exploratory testing altogether ! We listed the pros and the cons of exploratory testing.</p>
+
+<h3>The obvious cons</h3>
+
+<ul>
+<li>It discovers bugs. Fixing these bugs costs time. We&rsquo;d rather spend this time delivering new features</li>
+</ul>
+
+
+<h3>But the pros are many</h3>
+
+<ul>
+<li>It helps us discover technical debt and improve the quality of our code, which makes us faster in the long run. Clean code has less bugs. When we discover many bugs related to a particular region of the code, it means we should refactor it.</li>
+<li>It speeds up integration with other teams' work in many ways :
+
+<ul>
+<li>It saves other teams from debugging their time away trying to use broken things</li>
+<li>Fixing bugs is sometimes just a matter of providing clear &lsquo;not supported yet&rsquo; errors. Doing this saves a tremendous amount of time to other teams.</li>
+<li>Avoids blocking other teams as they wait for your bug fixes</li>
+<li>Reduces interruptions from bug reports and fixes bouncing between teams.</li>
+<li>By reducing unplanned rework, it makes any commitment you do more likely</li>
+</ul>
+</li>
+</ul>
+
+
+<p>In the light of all this, stoping exploratory testing did not seem like a great idea. We had to find something else.</p>
+
+<blockquote><p>💡Saving time by not fixing bugs might not be a great idea</p></blockquote>
+
+<p><img src="../imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/exploration.jpg" alt="Exploration map with a red cross" /></p>
+
+<h2>Idea 2 : Review what a bug is</h2>
+
+<p>We needed to find a middle ground between where we were and stoping exploratory testing. We wanted :</p>
+
+<ul>
+<li>not to let bugs escape</li>
+<li>raise clean errors on things that are not yet supported</li>
+<li>prevent scope creep from bug reports</li>
+</ul>
+
+
+<p>A few months ago, when we decided to prioritize bugs before features, we had defined a definition for bugs. Here is what it looked like. Something is a bug if any one of these is true :</p>
+
+<ol>
+<li>It used to work</li>
+<li>It corrupts data</li>
+<li>It silently returns wrong results</li>
+<li>It returns an internal error (like an internal exception stack trace)</li>
+</ol>
+
+
+<p>We examined this definition, discussed, and decided to dump the first clause. Our logic was that it was very difficult to know if something had already been working. The best thing we could refer to was our extensive suite of tests. If we discover that something is not working, it is very likely that it has never been. If it had been working, it means there was a hole in our test suite.</p>
+
+<blockquote><p>💡A hole in a test suite is a bug to fix</p></blockquote>
+
+<p>We decided to test this new bug definition for a while.</p>
+
+<h2>Not there yet !</h2>
+
+<p>We&rsquo;re getting closer to the end, but you&rsquo;re not done with PDCA yet.</p>
+
+<p>This was post 4 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/">next and last post</a> of this story you&rsquo;ll learn how we ended the PDCAs for great results.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 3]]></title>
     <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/"/>
     <updated>2017-09-13T09:12:00+02:00</updated>
@@ -377,88 +465,6 @@
 <p>Currently, around 1 pair (25% of the team) was busy fixing bugs. If we&rsquo;d manage to bring this down, we&rsquo;d have a 25% productivity boost.</p>
 
 <p>This was post 3 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">Next post</a> will be about PDCA.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 2]]></title>
-    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/"/>
-    <updated>2017-09-12T09:00:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2</id>
-    <content type="html"><![CDATA[<p>In my <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">previous post</a>, I described the productivity issue our team was facing. How retrospectives did not work, and how I started looking at the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>.</p>
-
-<p>We had gone through the first phase of the improvement kata : set the end goal.</p>
-
-<blockquote><p>Generating enough profit for the business while sticking to a sustainable pace.</p></blockquote>
-
-<p>Time to start the second phase : Understand.</p>
-
-<p><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/question-light.jpeg" alt="Drawing of a question mark transforming into a light bulb" /></p>
-
-<h2>Understand</h2>
-
-<p>Where we really slower ? Or was it an illusion ?</p>
-
-<p>When trying to understand, you have to start with the data you have. You continue digging until you get a deeper understanding of the situation.</p>
-
-<h3>Velocity</h3>
-
-<p>We started with available data : story points and velocity. For sure this is a pretty bad measure of productivity. (Note : we should never use velocity for performance appraisal) In our case though, it felt like a good starting proxy measure.</p>
-
-<p>Here is our velocity curve over 2 years.</p>
-
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg" alt="Velocity graph" /></a></p>
-
-<p>It&rsquo;s obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That&rsquo;s a clue that our gut feeling was not completely wrong. Our productivity did change.</p>
-
-<h3>Man days</h3>
-
-<p>Our first hypothesis was that team members turnover was the cause. As with any team, some people came, and some people left. Let&rsquo;s superpose the man days and velocity curves.</p>
-
-<p><a href="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower.jpg"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower-small.jpg" alt="Velocity vs Manpower graph" /></a></p>
-
-<p>That could only explain <em>part</em> of the problem !</p>
-
-<p>We tried to fine tune the man days curve. We took people&rsquo;s involvement in tasks outside of programming into account. We used coefficients depending on the developers' experience. That did not provide a better explanation.</p>
-
-<p>We had to find another explanation.</p>
-
-<h3>Velocity computation</h3>
-
-<p>As I said earlier, velocity is not a measure of productivity. Any change in the way we were computing velocity would impact this curve.</p>
-
-<p>We had kept photos and Trello boards of our <a href="/trellospectives-remote-retrospectives-with-trello/">retrospectives meetings</a>. We searched them through for anything that could impact velocity. Here is what we found :</p>
-
-<ul>
-<li>At sprint 55, we decided to ditch the <a href="https://www.scrum.org/resources/deadly-disease-focus-factor">focus-factor</a></li>
-<li>At sprint 61, we started to do regular <a href="/how-we-started-exploratory-testing/">exploratory-testing</a>. Exploratory testing discovers more bugs on top of user reported bugs. This made us spend more time on fixing bugs.</li>
-<li>At sprint 62, as we opted for a <a href="https://medium.com/quality-functions/the-zero-bug-policy-b0bd987be684">No Bug policy</a> we decided not to count story points for bugs</li>
-</ul>
-
-
-<blockquote><p>💡Keep Photos and Trello boards of Retrospectives as a log of your working agreements changes</p></blockquote>
-
-<p>The timings almost perfectly matched what we had observed in the first place. The question that came to our minds was :</p>
-
-<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
-
-<h2>Halfway through understanding</h2>
-
-<p>This is how we started to dig into our situation. It&rsquo;s a good time to give you a bit of feedback about how we felt at that point.</p>
-
-<p>It was the first time we tried the improvement kata. More than that, we did not find any tutorial or guides about how to run it. The only instructions we had were theoretical descriptions or super concrete examples. We had to bridge the gap and come up with our own way.</p>
-
-<p>To summarize, we felt a bit lost, we had gathered data from here and there, and we did not know what to look at next. On top of that, the quality of the data we were collecting was not great. We were wondering if we would get anything out of these investigations.</p>
-
-<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img src="../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/the-first-20-hours.jpg" alt="The cover of the book 'The First 20 Hours'" /></a></p>
-
-<p>It felt a bit like when I did the <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">20 hours experiment to learn anything</a>. We did exactly what had worked with the learning experiment : we pushed through !</p>
-
-<blockquote><p>💡If you feel lost when doing something for the first time. Push through !</p></blockquote>
-
-<p>In <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">next week&rsquo;s post</a>, I&rsquo;ll continue to detail the &lsquo;understand&rsquo; phase. <a href="/blog/categories/first-improvement-kata-series/">The series</a> also gained an extra post, and will now be 5 posts long.</p>
-
-<p>More to read next week.</p>
 ]]></content>
   </entry>
   
