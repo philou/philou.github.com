@@ -3,6 +3,7 @@ layout: post
 title: "How we used the improvement kata to gain 25% of productivity - Part 4"
 date: 2017-09-22 06:40
 comments: true
+categories: 
  - agile
  - lean
  - continuous improvement
