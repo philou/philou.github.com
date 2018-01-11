@@ -10,7 +10,6 @@ categories:
  - agile-transformations-fail-series
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation"
 description: "The typical story of what happens when large company leaders decide to go to Agile"
-published: false
 ---
 In [Aesop's famous tale](https://en.wikipedia.org/wiki/The_Goose_That_Laid_the_Golden_Eggs), a farmer kills his goose that lays a golden egg every day to get all the eggs at once. He finds no eggs, lost his goose, and remains poor ever after.
 
