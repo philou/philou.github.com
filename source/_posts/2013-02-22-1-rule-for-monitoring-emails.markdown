@@ -1,7 +1,7 @@
 ---
 keywords: "web, exploitation, rule, monitoring, emails"
 layout: post
-title: ! '#1 rule for monitoring emails'
+title: '#1 rule for monitoring emails'
 published: true
 date: 2013-02-22
 categories:
