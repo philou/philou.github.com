@@ -54,4 +54,4 @@ A specific danger of "Agile" is that it can serve micro-management. Short iterat
 
 ## Next Week's post
 
-This was part 1 of a [series of posts on making large organizations more agile](/blog/categories/agile-transformations-fail-series/). Next post will dig into why the traditional approach described above does not work. Further posts will propose what to do. [Subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) to be notified as soon as next post is ready.
+This was part 1 of a [series of posts on making large organizations more agile](/blog/categories/agile-transformations-fail-series/). [Next post](/why-agile-transformations-usually-dont-work-part-2-the-problem/) will dig into why the traditional approach described above does not work. Further posts will propose what to do.

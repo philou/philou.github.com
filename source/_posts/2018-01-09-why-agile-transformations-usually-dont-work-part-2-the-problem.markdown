@@ -10,7 +10,6 @@ categories:
  - agile-transformations-fail-series
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning"
 description: "After going over the typical problems in large scale Agile transformations, I dig into the reasons underlying the failures."
-published: false
 ---
 This is the second post in a [series about making large organizations more agile](/blog/categories/agile-transformations-fail-series/). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 
