@@ -15,7 +15,7 @@ published: false
 ---
 In the [previous posts](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/), I presented how to use the [Mikado Method](https://mikadomethod.wordpress.com/) to large organization changes. Drawn from the programming world, this technique keeps a low transformation [WIP](https://en.wikipedia.org/wiki/Work_in_process). In theory, this should reduce risk and the time to see return on investment. Let's see the pros and cons in more detail.
 
-TODO drawing une balance avec un mikado a la place de l'aiguille
+![A weighting machine comparing big bang and midado](../imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/mikado-weighter.jpg)
 
 ## An experiment culture
 
