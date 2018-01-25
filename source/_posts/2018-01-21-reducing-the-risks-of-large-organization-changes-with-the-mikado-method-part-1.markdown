@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Reducing the risks of large organization changes with the Mikado Method - part 1"
-date: 2018-02-09 11:53
+date: 2018-02-08 11:53
 comments: true
 categories:
  - agile

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why Agile transformations usually don't work - part 3 - What to do"
-date: 2018-01-27 09:43
+date: 2018-01-25 09:43
 comments: true
 categories:
  - agile
@@ -11,7 +11,6 @@ categories:
  - agile-transformations-fail-series
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning, Management 3.0, Transparent compensation"
 description: "After going over the typical problems in large scale Agile transformations, I explain how patience and providing a right to fail are part of the answer."
-published: false
 ---
 This is the third post in a [series about making large organizations more agile](/blog/categories/agile-transformations-fail-series/). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 
