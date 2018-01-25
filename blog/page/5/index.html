@@ -102,6 +102,227 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-subscribe-to-an-actioncable-channel-on-a-specific-page-with-custom-data/">How to Subscribe to an ActionCable Channel on a Specific Page With Custom Data ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-02-23T05:25:00+01:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In my spare time, I&rsquo;m writing a <a href="https://github.com/philou/planning-poker">Planning Poker App</a>. As a reminder, planning poker is a group estimation technique designed to eliminate influence bias. Participants keeps their estimates secret until everyone unveils them at the same time (See <a href="https://en.wikipedia.org/wiki/Planning_poker">Wikipedia</a> for more details).</p>
+
+<p>The driving idea behind my app is for team members to connect together and share a view of the current vote happening in their team. Each team has an animator, who is responsible to start new votes. This is the aspect I&rsquo;ve been working on during the last few days. I want all team members to be notified that a new vote started by displaying a countdown on their page.</p>
+
+<p>I am building the app with <a href="http://rubyonrails.org/">Rails 5</a> but I did not have a clear idea of what technology to use to build this feature. After some googling, I found that ActionCable provides just the kind of broadcasting I am looking for (Have a look at the <a href="http://edgeguides.rubyonrails.org/action_cable_overview.html">ActionCable Rails guide</a> for more details).</p>
+
+<h2>A Specific Page</h2>
+
+<p>The Rails guide is pretty clear, as usual I would say, but all the examples show subscriptions at any page load. As explained above, I only want participants to subscribe to their own team&rsquo;s votes : until they have joined a team, it is not possible to subscribe to a particular channel.</p>
+
+<p>As my app is currently behaving, once identified, participants get to a specific team page. I wanted to use this page as the starting point to my subscription. After some more googling about page specific JavaScript in Rails, I found <a href="http://brandonhilkert.com/blog/organizing-javascript-in-rails-application-with-turbolinks/">this page</a> from Brandon Hilkert that explains how to do this cleanly. The idea is to add the controller and action names to the body tag, and to filter out js code at page load. This is what I ended up doing :</p>
+
+<p>First, I adapted the app layout to keep track of the controller and action names in the HTML body :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/layouts/application.html.erb --&gt;</span>
+</span><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  ...
+</span><span class='line'>  <span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;&lt;%= controller_name %&gt; &lt;%= action_name %&gt;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    ...
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then I replaced the default channel subscription with a function :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/javascripts/channels/team.coffee</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Channels</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Channels</span><span class="p">.</span><span class="nx">Team</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">App.Channels.Team.subscribe = </span><span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span> <span class="s">&quot;TeamChannel&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="nv">received: </span><span class="nf">(data) -&gt;</span>
+</span><span class='line'>      <span class="c1"># Do something with this data</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As a reminder, here is what the server side channel would look like :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">TeamChannel</span> <span class="o">&lt;</span> <span class="ss">ApplicationCable</span><span class="p">:</span><span class="ss">:Channel</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">subscribed</span>
+</span><span class='line'>    <span class="n">stream_from</span> <span class="s2">&quot;team_channel&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally, I called this subscribe function from some page specific Javascript :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/team_members.coffee</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span> <span class="s">&quot;turbolinks:load&quot;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">unless</span> <span class="nx">$</span><span class="p">(</span><span class="s">&quot;.team_members.show&quot;</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">Channels</span><span class="p">.</span><span class="nx">Team</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>That&rsquo;s it. By playing around in your browser&rsquo;s js console, you should be able to test it.</p>
+
+<h2>Custom Data</h2>
+
+<p>That&rsquo;s just half of the story. The code above subscribes on a specific page, but it does not specify any particular team channel to subscribe to. This means that all participants would receive notifications from all teams !</p>
+
+<p>In his article about unobtrusive JavaScript in Rails, Brandon Hilkert also suggests using HTML data attributes to pass parameters to the a JavaScript button event handler. There&rsquo;s no button in our case, but we can still use the same technique. Let&rsquo;s add data specific attributes to the HTML body.</p>
+
+<p>To subscribe to specific team channel, the plan is to add the team name to the HTML body tag through a data attribute, then to capture and use this team name when subscribing.</p>
+
+<p>Again, let&rsquo;s enhance the layout :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/layouts/application.html.erb --&gt;</span>
+</span><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  ...
+</span><span class='line'>  <span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">&quot;&lt;%= controller_name %&gt; &lt;%= action_name %&gt;&quot;</span> <span class="err">&lt;%=</span> <span class="na">yield</span> <span class="na">:extra_body_attributes</span> <span class="err">%</span><span class="nt">&gt;</span> &gt;
+</span><span class='line'>    ...
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I had to adapt my views. In the team members show view (the one doing the subscription), I added an extra data attribute for the team name :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!-- app/views/team_members/show.html.erb --&gt;</span>
+</span><span class='line'><span class="err">&lt;</span>% provide(:extra_body_attributes, raw(&quot;data-team-name=\&quot;#{@team.name}\&quot;&quot;)) %&gt;
+</span><span class='line'>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With this done, it is possible to capture the team name from the page load event and feed it to the subscribe method :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/team_members.coffee</span>
+</span><span class='line'><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">on</span> <span class="s">&quot;turbolinks:load&quot;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="k">unless</span> <span class="nx">$</span><span class="p">(</span><span class="s">&quot;.team_members.show&quot;</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">Channels</span><span class="p">.</span><span class="nx">Team</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s">&#39;body&#39;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">&#39;team-name&#39;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I then used the team name to subscribe to a specific channel :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='coffeescript'><span class='line'><span class="c1"># app/assets/javascripts/channels/team.coffee</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Channels</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">App</span><span class="p">.</span><span class="nx">Channels</span><span class="p">.</span><span class="nx">Team</span> <span class="o">||=</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">App.Channels.Team.subscribe = </span><span class="nf">(teamName) -&gt;</span>
+</span><span class='line'>  <span class="nx">App</span><span class="p">.</span><span class="nx">cable</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">create</span> <span class="p">{</span><span class="nv">channel: </span><span class="s">&quot;TeamChannel&quot;</span><span class="p">,</span> <span class="nv">team_name: </span><span class="nx">teamName</span><span class="p">},</span>
+</span><span class='line'>    <span class="nv">received: </span><span class="nf">(data) -&gt;</span>
+</span><span class='line'>      <span class="c1"># Do something with this data</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The last piece is to actually start a specific channel :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">TeamChannel</span> <span class="o">&lt;</span> <span class="ss">ApplicationCable</span><span class="p">:</span><span class="ss">:Channel</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">subscribed</span>
+</span><span class='line'>    <span class="n">stream_from</span> <span class="s2">&quot;team_channel_</span><span class="si">#{</span><span class="n">params</span><span class="o">[</span><span class="ss">:team_name</span><span class="o">]</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Same as before, hack a bit with your browser&rsquo;s console, you should be able to check that it&rsquo;s working.</p>
+
+<h2>Last thoughts</h2>
+
+<p>This is not exhaustive, depending on your situation, there might be other things you&rsquo;ll need to do, like unsubscriptions for example.</p>
+
+<p>I&rsquo;d also like to give a word of feedback about ActionCable after this first look at it. Overall, it worked great both in development and production. Everything seemed to work almost out of the box &hellip; Except testing : I did not manage to write robust unit tests around it. There is <a href="https://github.com/rails/rails/pull/23211">pull request</a> for that that should be merged in Rails 5.~ sometimes soon. For the moment, I&rsquo;m sticking to large scale cucumber tests.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-i-finally-use-docker-on-small-open-source-side-projects/">How I Finally Use Docker on Small Open Source Side Projects</a></h1>
     
     
@@ -1197,47 +1418,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/video-for-our-talk-extreme-practices-is-on-youtube/">Video for Our Talk &#8216;Extreme Practices&#8217; Is on YouTube</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-11-23T05:19:00+01:00" pubdate data-updated="true">Nov 23<span>rd</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I already wrote about <a href="/rexp-remote-extreme-programming/">before</a>, my colleague <a href="https://ahmadatwi.me/">Ahmad</a> from Beirut gave a talk at <a href="http://www.agiletourbeirut.org/">Agile Tour Beirut</a> about how we adopted <a href="http://www.extremeprogramming.org/">XP</a> to a distributed team <a href="http://www.murex.com">at work</a>. I was the remote buddy during the talk.</p>
-
-<p>It was recorded and is now available on YouTube.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oJsukJhxt7E" frameborder="0" allowfullscreen></iframe>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1318,6 +1498,10 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-agile-transformations-usually-dont-work-part-3-what-to-do/">Why Agile transformations usually don&#8217;t work - part 3 - What to do</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-2-the-problem/">Why Agile transformations usually don&#8217;t work - part 2 - The problem</a>
       </li>
     
@@ -1331,10 +1515,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
     
       <li class="post">
         <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-3/">Why and how to start a #ZeroBugs policy - part 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-2/">Why and how to start a #ZeroBugs policy - part 2</a>
       </li>
     
   </ul>
