@@ -102,6 +102,129 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to Measure Your Speed With Your Business Value ? (Lean Software Development Part 3)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-10-16T07:07:00+02:00" pubdate data-updated="true">Oct 16<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There is a french idiom that basicaly is</p>
+
+<blockquote><p>No use to run, all that is needed is to start on time &hellip;</p></blockquote>
+
+<p>an agile engineer would add</p>
+
+<blockquote><p>&hellip; and to go in the good direction</p></blockquote>
+
+<p>Indeed, velocity or mean cycle time as speed measures have their shortcomings :</p>
+
+<ul>
+<li>Can be falsified by story point inflation !</li>
+<li>Does not tell the team or its product owner whether they are working on the right thing.</li>
+</ul>
+
+
+<p>Wouldn&rsquo;t it be great if we could track the business value we are creating instead ? Wouldn&rsquo;t it be more motivating for developpers to know how they are contributing to the bottom line ? Wouldn&rsquo;t it help various people to align inside the organization ?</p>
+
+<h2>How to track and prioritize based on your business value</h2>
+
+<p>From <a href="http://www.amazon.com/The-Principles-Product-Development-Flow/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1413953773&amp;sr=8-1&amp;keywords=product+development+flow">Reinertsen&rsquo;s Flow book</a>, we learned that the cost of delay is the main driver of the value creation : the faster you deliver a feature, less you spend the cost of delay of that feature, the more value you are creating for your company. <a href="http://scaledagileframework.com/wsjf/">This article</a> suggests that the cost of delay can be computed with the following formula :</p>
+
+<blockquote><p>cost of delay = f(user business value) + g(time criticality) + h(risk reduction opportunity)</p></blockquote>
+
+<p><a href="http://fr.slideshare.net/jchyip/estimating-cost-of-delay/27">This other article</a> suggests that they are different types of tasks that corresponds to the different terms of the formula above.</p>
+
+<p><img class="center" src="/imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/task-types.jpeg" title="&#34;Different kind of tasks&#34;" alt="&#34;Different kind of tasks&#34;"></p>
+
+<p>Here is how we could link the 2 articles :</p>
+
+<ul>
+<li>Stories with deadlines : either through legal or market constraints, not doing this will put you out of business (&lsquo;time criticality&rsquo; in the formula)</li>
+<li>Stories that influence the bottom line : by increasing the sales figures when delivered, or decreasing them when not delivered, which is kind of the same (&lsquo;user business value&rsquo; in the formula)</li>
+<li>Risk reduction tasks : by mitigating risk or streamlining the process, these tasks actually improve the bottom line of other stories (&lsquo;risk reduction opportunity&rsquo; in the formula)</li>
+</ul>
+
+
+<p>The later type of task will be detailed in other articles. Let&rsquo;s focus on the two others.</p>
+
+<h2>The case of the deadlined feature ?</h2>
+
+<p>First, I&rsquo;d say its business value is 0, until it&rsquo;s too late. You should not be working on it too soon, but you should not be working on it too late neither !</p>
+
+<p>In his book <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1413954965&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> James Shore details in great details how an agile team can commit to deliverables (I really recommend this part, I might even write a post about it). He explains that in order to commit, teams should multiply their estimates by 4, or by 1.8 if they are very rigourous in their application of all the XP practices.</p>
+
+<p>So a rule to handle such a task could be to</p>
+
+<ul>
+<li>estimate it</li>
+<li>multiply that estimate by 4</li>
+<li>substract this time from the deadline</li>
+<li>prioritize it so that it can be started at that date, but not earlier</li>
+<li>don&rsquo;t expect to be creating any value by completing these stories</li>
+</ul>
+
+
+<h2>What&rsquo;s the business value of other typical user stories</h2>
+
+<p><a href="http://scaledagileframework.com/wsjf/">This article</a> suggests that in this case the cost of delay is equal to the business value of the feature for the user. But how can we have an idea of its actual user business value ?</p>
+
+<p>Before actually selling and getting the money, it&rsquo;s just an estimation. With the good information, some people will make better estimates than others, never the less, it&rsquo;s still an estimate. Let&rsquo;s try a &ldquo;Business Value Poker&rdquo; ! Here are a few ideas about how to conduct this:</p>
+
+<ul>
+<li>Estimate business value at the same time as you estimate the complexity of a story</li>
+<li>Create some business value $ poker estimate cards, write an app for this, or bring in some Poker Chips to estimate the value</li>
+<li>Invite some business people (sales, marketting &hellip;) to the meeting to get real knowledge (being organized as a feature team will help)</li>
+</ul>
+
+
+<p><a href="https://gigaom.com/2012/05/16/social-gaming-to-gambling-states-inch-forward/poker-chips-by-sanzar-murzin/"><img class="center" src="/imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/all-in.jpg" title="&#34;Hands pushing poker chips for an all-in&#34;" alt="&#34;Hands pushing poker chips for an all-in&#34;"></a></p>
+
+<p>At the end, when you have the estimated cost of delay and duration of every task, you can directly prioritize using the WSJF (Weighted Shortest Job First) :</p>
+
+<blockquote><p>WSJF = Cost of Delay / Duration</p></blockquote>
+
+<p>Just do the tasks by decreasing order of WSJF.</p>
+
+<p>At the end of the sprint, just as we track the story points we completed with the velocity, we could track the business value we created, that would be our business value speed. If you have access to real sales numbers, it might be interesting to see if it&rsquo;s possible to correlate the figures.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>The more I learn about Lean principles, the more I find our current Issues Tracking Systems (I&rsquo;m used to Jira) limited. They seem to be databases with a nice UI, whereas what we need are tools to help us to make better decisions out of the multitude of items &hellip; How come they do not provide something as simple as the WSJF ?</p>
+
+<h2>Edit 12/09/2014</h2>
+
+<p>I got some pretty positive feedback from practicing these business value pokers. Inviting the product owner forced him to explain in details why he believed some features were more valuable than others. On the opposite, it allowed the developpers to hightlight how some seemingly unimportant stories were critical to a long term goal. In the end, everyone, including the product owner, is asking for more. It&rsquo;s a good practice that helps introducing the business value / cost of delay concept.</p>
+
+<p>This was part 3 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 2 was <a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming works ?</a>, Part 4 will be <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/why-extreme-programming-works-lean-software-development-part-2/">Why eXtreme Programming Works ? (Lean Software Development Part 2)</a></h1>
     
     
@@ -2209,73 +2332,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/refactoring-trick-to-insert-a-wrapper/">Refactoring Trick to Insert a Wrapper</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-30T08:01:00+02:00" pubdate data-updated="true">Apr 30<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last week at work, we decided that we needed an <a href="http://stackoverflow.com/questions/909264/ddd-anti-corruption-layer-how-to">Anticorruption Layer</a> between our code and another team&rsquo;s. They have been using our internal data structures as they needed to, in an ad hoc way. This turned out to be an issue when we want to refactor our code. The goals of this layer are :</p>
-
-<ul>
-<li>to provide an explicit API layer, controlling what is accessible from the outside</li>
-<li>to allow us to improve our implementation independently of this API</li>
-</ul>
-
-
-<p>The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
-
-<ol>
-<li>Make sure you have a clean SCC state</li>
-<li>Rename the class to be wrapped (let&rsquo;s call it Foo) into FooWrapper</li>
-<li>From SCC, revert the part of the code where you want to continue using Foo directly</li>
-<li>In SCC, revert Foo and FooWrapper</li>
-<li>Manually (re)create the FooWrapper class</li>
-<li>Create FooWrapper.wrap(x) and FooWrapper.unwrap(x) methods</li>
-<li>Fix all the compilation issues (mostly by calling wrap() and unwrap())</li>
-<li>Run your tests and fix any remaining points</li>
-</ol>
-
-
-<p>That saved us a whole lot of time. If your layer contains several classes with references between them, they is an optimal order through which to introduce the wrappers. Any order will work, but some will require more temporary calls to wrap and unwrap (step 7.). At the end, wrap() and unwrap() methods should only be called from within the layer.</p>
-
-<p>Often you&rsquo;ll find out that to complete the wrapping of a class, you&rsquo;ll first need to wrap another class, you can :</p>
-
-<ul>
-<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental</li>
-<li>Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward</li>
-<li>Insert temporary calls to wrap() and unwrap() : they&rsquo;ll be removed when you&rsquo;ll later wrap the other class. This might be the only way if the classes have cyclic dependencies.</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -2356,6 +2412,10 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-agile-transformations-usually-dont-work-part-4-transparency/">Why Agile transformations usually don&#8217;t work - part 4 - Transparency</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-3-what-to-do/">Why Agile transformations usually don&#8217;t work - part 3 - What to do</a>
       </li>
     
@@ -2369,10 +2429,6 @@ violent psychopath who knows where you live.  Code for readability.</p></blockqu
     
       <li class="post">
         <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-4/">Why and how to start a #ZeroBugs policy - part 4</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-3/">Why and how to start a #ZeroBugs policy - part 3</a>
       </li>
     
   </ul>
