@@ -71,4 +71,4 @@ We could worry that dropping MBO will drop people's motivation as well. It turns
 
 ## To be continued
 
-This was part 3 of a [series of posts on making large organizations more agile](/blog/categories/agile-transformations-fail-series/)]. We're almost at the end. The last post will dig into how to provide the data to everyone. [Subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) to be notified as soon as next post is ready.
+This was part 3 of a [series of posts on making large organizations more agile](/blog/categories/agile-transformations-fail-series/). We're almost at the end. [The last post](/why-agile-transformations-usually-dont-work-part-4-transparency/) will dig into how to provide the data to everyone.
