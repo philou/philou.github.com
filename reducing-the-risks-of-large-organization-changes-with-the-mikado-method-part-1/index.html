@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Reducing the risks of large organization changes with the Mikado Method - part 1 - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="First post of a series about applying the Mikado Method for large organization changes. Here I draw parallels between large scale code and &hellip;">
+
+  
+  <meta name="keywords" content="Mikado Method, Agile, Agile transformation, Large Scale Transformation, Large Scale Agile">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-me">About Me</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Reducing the Risks of Large Organization Changes With the Mikado Method - Part 1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-02-08T11:53:00+01:00" pubdate data-updated="true">Feb 8<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Large scale agile transformations are often painful, stressful and &hellip; failed ! Mixing the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">Improvement Kata</a> and the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> can make them more successful.</p>
+
+<p><img src="../imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/mikado.jpg" alt="A drawing of entangled mikado sticks" /></p>
+
+<p>The Mikado Method is a programming technique to reduce the risks of large code changes. Let&rsquo;s see how to apply it to organization changes.</p>
+
+<h2><a href="https://dzone.com/articles/if-it-aint-broke-dont-fix-it">&ldquo;If it&rsquo;s not broke, don&rsquo;t touch it !&rdquo;</a></h2>
+
+<p>A lot of programmers have learned this maxim the hard way. Here is how it goes.</p>
+
+<p>It all starts with a shitty piece of code that gets into everyone&rsquo;s way as soon as they have to deal with it. It&rsquo;s badly written, difficult to understand, and very difficult to change. One day, a brave programmer suggests to rewrite or revamp it so that it gets easy to work with. This is not a small task, but after some discussion and negotiation, he gets a &lsquo;go&rsquo; from his team.</p>
+
+<p>A few hours in this refactoring, he discovers that he needs to adapt other pieces of the code before he moves on. He leaves his work in progress as it is, and starts to change these pre-requisites. Unfortunately, these too have pre-requisite. Little by little, he builds up <a href="https://en.wikipedia.org/wiki/Work_in_process">work in progress</a>(WIP) on different parts of the code. He still has nothing working though ! He&rsquo;s beginning to have troubles keeping track of all his WIP. On top of that, he&rsquo;s wasting time integrating the work done by his colleagues with his WIP. As days pass by with nothing to show, his team begins to doubt that he&rsquo;ll be able to bring this to its end ! The situation as a whole accumulates an awful lot of stress on the developer. In the end, it is pretty likely that the team will abandon the whole thing.</p>
+
+<blockquote><p>💡 By never changing the code, programmers make it even harder to change</p></blockquote>
+
+<p>The problem with this maxim is that by never changing the code, programmers make it even harder to change. In the end, this makes new features too expensive to build, which is pretty bad for the business.</p>
+
+<p>Let&rsquo;s see how this related to large organization changes.</p>
+
+<h2>The typical large scale agile transformation</h2>
+
+<p>It all starts when a leader decides that Agile is the way to go. It could be because everyone is doing it or that he got convinced by someone. It could also be because consultants sold him a 10% productivity increase. The reason does not matter. What matters is that in a few months, all the company should switch to an Agile method. Large groups of people will have to switch to <a href="https://www.agilealliance.org/glossary/scrum-of-scrums/">Scrum of Scrum</a>, <a href="https://less.works/">LeSS</a>, <a href="http://www.scaledagileframework.com/">SAFe</a> or any other framework. Even if the transformation is split in product teams, these will still be big.</p>
+
+<p>One great thing about these frameworks is that they show problems. After a few sprints people discover that they have troubles delivering incrementally. After analysis, they understand another deeper problem. Examples : bad management, legacy code, outdated tooling, bad underlying processes &hellip; As Agile is the new <a href="https://sourcemaking.com/antipatterns/golden-hammer">Golden Hammer</a>, the teams responsible of these problems in turn jump to Agile X method. Unfortunately, these too might fall into deeper problems &hellip; and the pattern repeats itself. Meanwhile, the top down transformation team sticks its own objectives. It continues to onboard new product teams to Agile, fueling the mess that is spreading.</p>
+
+<p><img src="../imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/hammer.jpg" alt="A golden hammer" /></p>
+
+<p>At any moment, a very large proportion of the people in the company are in a state of transformation. This is pretty bad for productivity. What is even worse is that they are all facing the same root problems. They are all blocked in a sub-optimal state, impeded by the root problems. Following agile principles, they all start similar initiatives to workaround these issues ! They then need to coordinate with other teams, to avoid duplicate efforts. On top of that, as agile newbies, all these teams need coaches to help them at the same time.</p>
+
+<blockquote><p>💡 Large scale Agile transformations are too often stressful for everyone &hellip;</p></blockquote>
+
+<p>Needless to say that this situation is pretty stressful for everyone. It costs a lot, in productivity and consulting, for results yet to come. Despite reassurance that things will get better, the leader&rsquo;s trust is eroding.</p>
+
+<p>The story ends bad when it goes on for too long. When the leader loses faith in the initiative, he cancels it, and goes back to the old ways. That&rsquo;s what we call the <a href="https://www.google.fr/search?q=agile+hangover">Agile hangover</a> : &ldquo;We tried it, but it was a mess. It does not work for us.&rdquo;</p>
+
+<h2>To be continued</h2>
+
+<p>As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a <a href="TODO">series about the Mikado Method and large scale organization changes</a>. In next post, we&rsquo;ll detail this technique, and see how to apply it on organization changes. <a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Subscribe</a> to be notified as soon as next post is ready.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-02-08T11:53:00+01:00" pubdate data-updated="true">Feb 8<span>th</span>, 2018</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/coaching/'>coaching</a>, <a class='category' href='/blog/categories/large-scale/'>large scale</a>, <a class='category' href='/blog/categories/lean/'>lean</a>, <a class='category' href='/blog/categories/mikado-method-organization-series/'>mikado-method-organization-series</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/why-agile-transformations-usually-dont-work-part-4-transparency/" title="Previous Post: Why Agile transformations usually don't work - part 4 - Transparency">&laquo; Why Agile transformations usually don't work - part 4 - Transparency</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1><a href="/about-me">About Me</a></h1>
+  <p>Philippe Bourgau, eXtreme Programmer and Coach, pushing the limits of XP</p>
+  <p>I build high performing and sustainable teams by adapting XP to their unique challenges and context.</p>
+  <ul>
+    <li><a href="/about-me">Read more ...</a></li>
+    <li><a href="http://twitter.com/pbourgau">Twitter</a></li>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin</a></li>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="http://philous-planning-poker.herokuapp.com">Philou's Planning Poker</a> : Better poker estimates for remote teams !</li>
+    <li><a href="/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">Reducing the risks of large organization changes with the Mikado Method - part 1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/why-agile-transformations-usually-dont-work-part-4-transparency/">Why Agile transformations usually don't work - part 4 - Transparency</a>
+      </li>
+    
+      <li class="post">
+        <a href="/why-agile-transformations-usually-dont-work-part-3-what-to-do/">Why Agile transformations usually don't work - part 3 - What to do</a>
+      </li>
+    
+      <li class="post">
+        <a href="/why-agile-transformations-usually-dont-work-part-2-the-problem/">Why Agile transformations usually don't work - part 2 - The problem</a>
+      </li>
+    
+      <li class="post">
+        <a href="/why-agile-transformations-usually-dont-work-part-1-the-situation/">Why Agile transformations usually don't work - part 1 - The situation</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/';
+        var disqus_url = 'http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

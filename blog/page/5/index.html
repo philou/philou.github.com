@@ -102,6 +102,263 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/almost-15-years-of-using-design-by-contract/">Almost 15 Years of Using Design by Contract</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-03-14T18:57:00+01:00" pubdate data-updated="true">Mar 14<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I first read about Design By Contract in 2002, in <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer">Object Oriented Software Construction 2</a>. As soon as I read it, I was convinced, today, I still believe it&rsquo;s a great and fundamental technique. That&rsquo;s why, I almost never write a contract ! Let me explain.</p>
+
+<h2>Phase 1 : DbC ignorance</h2>
+
+<p>I started to code professionally in 2001. This was a time where design and quality software meant <a href="https://en.wikipedia.org/wiki/IBM_Rational_Rose_XDE">Rational Rose</a> (a UML design and code generation tool) while I, at the contrary, was just <a href="https://en.wikipedia.org/wiki/Cowboy_coding">Cow Boy Coding</a> my way out of any problem I was given.</p>
+
+<p>I wasn&rsquo;t really doing Object Oriented programming, but rather imperative programming, using objects as structs, getters, setters, and classes as a way to organize the code &hellip; In this context, my design skills were improving slowly, and I was at the risk of falling in love with a local-optimum practice that would prevent me from growing further.</p>
+
+<p>That&rsquo;s why I started to read books such as the <a href="https://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490074343&amp;sr=1-1&amp;keywords=design+patterns">Gang Of Four Design Patterns</a>, or <a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer">OOSC2</a>.</p>
+
+<h2>Phase 2 : DbC enlightenment</h2>
+
+<p><a href="https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1490073815&amp;sr=8-2&amp;keywords=object+oriented+software+construction+meyer"><img src="../imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg" alt="The cover of the Object Oriented Software Construction 2" /></a></p>
+
+<p>Reading this book was a profound experience to me. My programming changed fundamentally before and after reading it. The chapter about contracts, taught me what objects are.</p>
+
+<p>One the one hand, Pre and Post conditions can be used in any kind of programming and are just a kind of C <code>assert</code> macro on steroids. Class invariant, on the other hand, is a completely different kind of beast. The invariant of a class is a predicate about an instance of this class that should always be true. For example : field X should never be null, or the value of field N should always be greater than 0.</p>
+
+<p>In some way, grasping the concept of invariant is close to understanding what a class is.</p>
+
+<h2>Phase 3 : DbC everywhere</h2>
+
+<p>That&rsquo;s when I started to write contracts everywhere. I was writing C++ code at the time, and my code must have looked something like that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">MonkeyWrench</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">m_isStarted</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;*</span> <span class="n">m_movingParts</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">protected</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">invariant</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="n">m_isStarted</span> <span class="o">==</span> <span class="p">(</span><span class="n">m_movingParts</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">));</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">MonkeyWrench</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_isStarted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_movingParts</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">bool</span> <span class="n">isStarted</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kt">void</span> <span class="n">start</span><span class="p">()</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_movingParts</span> <span class="o">=</span> <span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;&amp;</span> <span class="n">movingParts</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="n">assert</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">isStarted</span><span class="p">());</span>
+</span><span class='line'>        <span class="n">invariant</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">m_movingParts</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I definitely over-abused contracts, it made the code unreadable. Plus sometimes, I was using excessively long and intricate assertions which made the problem even worse.</p>
+
+<p>Hopefully, overusing contracts also taught me a lot in a short time. Here are some of the lessons I learned :</p>
+
+<ul>
+<li>DbC is not very well supported, it&rsquo;s never something built in the language, and edge cases like inheriting an invariant or conditions can become messy pretty fast.</li>
+<li>Checking for intricate contracts at every method call can be pretty slow.</li>
+<li>Checking everything beforehand is not always the simplest thing to do, at times, throwing an exception on failure just does a better job.</li>
+<li>It happened that removing the contract made the code do just what I wanted. It&rsquo;s easy to write unnecessary strict contracts.</li>
+<li><a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation">Command Query Separation Principle</a> is great ! Having &lsquo;const&rsquo; or &lsquo;pure&rsquo; queries that don&rsquo;t change anything make writing contracts a lot simpler.</li>
+<li>Preconditions on queries are painful. When possible, returning a sensible &lsquo;null value&rsquo; works better, nothing is worse than getting an error when trying to call a const query from the interactive debugger.</li>
+<li>Finally, the more immutable a class is, the simpler the invariant. With a lot of mutable fields, you might resort to have the invariant check that fields are synchronized as expected. If fields are immutable, this simply vanishes.</li>
+</ul>
+
+
+<h2>Phase 4 : DbC hangover</h2>
+
+<p>At the same time I discovered all these small subtleties about contracts, I fell upon Martin Fowler&rsquo;s book <a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490074424&amp;sr=1-1&amp;keywords=refactoring+improving+the+design+of+existing+code">Refactoring, improving the design of existing code</a> and started to use Unit Tests extensively. This lead me to the following conclusions :</p>
+
+<ul>
+<li>Tests are more efficient at producing quality software</li>
+<li>Contracts can be an hindrance when trying to do baby steps refactorings as described in Martin Fowler&rsquo;s book</li>
+</ul>
+
+
+<p>On top of that, as DbC is not natively supported by languages, no documentation is generated, meaning that most of the time, the callers still have to look into the code. As a result, I was using contracts less and less often.</p>
+
+<h2>Phase 5 : DbC Zen</h2>
+
+<p>Looking back, I might not be writing a lot of <code>asserts</code> in my code, but I am still thinking in terms of contracts all the time. In fact, there are a ton of ways to use DbC without writing assertions :</p>
+
+<ul>
+<li>Use as much immutability as possible. An immutable class does not need to check its invariant all the time, just throwing from the constructor if arguments are not valid is enough.</li>
+<li>Use conventions as much as possible, for example, constructor arguments should be set for all the life of the object (cf <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490074450&amp;sr=1-1&amp;keywords=growing+object+oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a> which describes the different ways to inject something in an object)</li>
+<li>Looking back at my DbC assertions, most relate to null values. Again conventions work better ! At work, we simply forbid passing null values around. If something can be null, it means it&rsquo;s optional, Java has an <code>Optional&lt;T&gt;</code> class for just that (I&rsquo;m pretty sure it is possible to do something even better with C++ templates). In this case, if the contract is broken, NullReferenceException will eventually be our assertion.</li>
+<li>Replace as many pre &amp; post conditions with invariants on the callee, the arguments or the return objects as possible. It makes sense as it&rsquo;s just making sure we are using &lsquo;valid&rsquo; objects everywhere. Again, if these objects are immutable, it makes the whole thing even simpler !</li>
+<li>To take further benefit of the invariant of immutable objects, introduce new types. For example, instead of changing an object&rsquo;s state through a command with associated involved contracts, split the class in 2 and make the method a query returning an immutable object, potentially making the initial class immutable as well. Remember, immutable classes mean almost no assertions !</li>
+<li>Use your language. Ex, instead of asserting that 2 lists remain of the same length, refactor to a list of pairs ! (I know that&rsquo;s an obvious example, but you get the point)</li>
+<li>If you are using a statically typed language, use types ! For example, I remember at one project I worked on, we had an bug involving a duration : somewhere in the code milliseconds got mistaken for seconds &hellip; We fixed that by replacing the <code>integer</code> by <code>TimeSpan</code> all over the place. Again, that&rsquo;s so obvious !</li>
+<li>Eventually, when all else fails, or when it&rsquo;s just too much overhead, use the simple asserts provided by your language or common libraries.</li>
+</ul>
+
+
+<p>To come back at the previous code section, this how it could be written without assertions :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class='c++'><span class='line'><span class="k">class</span> <span class="nc">MovingMonkeyWrench</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;</span> <span class="n">m_parts</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">MovingMonkeyWrench</span><span class="p">()</span> <span class="o">:</span> <span class="n">m_parts</span><span class="p">(...)</span> <span class="p">{}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Part</span><span class="o">&gt;&amp;</span> <span class="n">parts</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">m_parts</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">};</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">MonkeyWrench</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'><span class="k">public</span><span class="o">:</span>
+</span><span class='line'>    <span class="n">MovingMonkeyWrench</span> <span class="n">start</span><span class="p">()</span> <span class="k">const</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">MovingMonkeyWrench</span><span class="p">();</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Details are omitted, but it&rsquo;s easy to see how shorter the code is.</p>
+
+<h2>Conclusion</h2>
+
+<p>When applying all the techniques above, you&rsquo;ll see that cases for explicit assertions are rare. Less assertions also workarounds the issues coming from the poor support for DbC : no documentation and intricate cases.</p>
+
+<p>In the end, assertions made my code more &lsquo;functional&rsquo;. I&rsquo;m not alone to have done the same journey, and if you are interested you should read Eric Evans&#8217; <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1490082811&amp;sr=1-1&amp;keywords=domain+driven+design">DDD</a> book where he presents things like immutable value objects and specification objects.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a></h1>
     
     
@@ -1355,135 +1612,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">How I Got My Feet Wet With Machine Learning With &#8216;the First 20 Hours&#8217;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-12-29T21:09:00+01:00" pubdate data-updated="true">Dec 29<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I&rsquo;m currently wrapping up an alpha of a unit testing <a href="https://github.com/philou/complexity-assert">ruby gem</a> that allows to assert the complexity of a piece of code. It&rsquo;s the result of an experiment to learn some <a href="https://en.wikipedia.org/wiki/Machine_learning">Machine Learning</a> skills in 20 hours &hellip; not bad for a first a try at Data Science ! This is the story of this experiment.</p>
-
-<h2>How it all started ?</h2>
-
-<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours"><img class="center" src="/imgs/2016-12-29-how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/book-cover.jpg" title="The cover of the book 'The First 20 Hours'" ></a></p>
-
-<p>A few months ago, I read <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1483258282&amp;sr=8-1&amp;keywords=the+first+20+hours">The First 20 Hours</a>. The book describes a technique to get up to speed and learn some practical skills on any particular subject in only 20 hours. As examples, the author details how he managed to teach himself a pretty decent level of Yoga, Ukulele, Wind Surfing, Programming, Go and touch typing.</p>
-
-<p>I decided to give it a try. In order to get a boost, I found a few motivated people at work to do it with me. I started by presenting them the technique described in the book, and asked everyone what they wanted to learn. After a quick vote, we set out to learn more about Machine Learning.</p>
-
-<h2>The technique</h2>
-
-<p>The method is meant to allow anyone to learn necessary skills to accomplish a specific task in about 20 hours. I my case, I could expect to get a basic understanding of the Machine Learning concepts, as well as some practical skills to do something involving Machine Learning. Here are the details of the technique :</p>
-
-<ol>
-<li>H0 : Deep dive in the main concepts and theory of machine learning</li>
-<li>H6 : Define an ambitious and practical goal or skill level to achieve by the end, and an outline of how to get there</li>
-<li>H6 to H20 : Learn by doing</li>
-</ol>
-
-
-<p>As you see, the technique is pretty simple !</p>
-
-<h2>How did it work ?</h2>
-
-<h3>For the group</h3>
-
-<p>The plan for the group was :</p>
-
-<ul>
-<li>to meet weekly for 2 hours</li>
-<li>to share what we learned at the end of every session</li>
-<li>to bound by similar goals</li>
-</ul>
-
-
-<p>At first, people were enthusiastic about learning something like machine learning. After a while, I started to get the following remarks :</p>
-
-<ul>
-<li>&ldquo;I don&rsquo;t really see the point of doing this together rather than independently&rdquo;</li>
-<li>&ldquo;I&rsquo;m feeling a bit lost by not having a concrete goal and a plan from H0&rdquo;</li>
-<li>&ldquo;I picked up a target that&rsquo;s too large for me&rdquo;</li>
-</ul>
-
-
-<p>The learning curve must have proven too steep, because as time went by, a lot of people droped out, and we ended up being only 2 !</p>
-
-<h3>For me</h3>
-
-<p>The first phase was the toughest. As the author had warned in his book, &ldquo;You&rsquo;ll get deep above your head in theory and concepts you don&rsquo;t know&rdquo;, &ldquo;You&rsquo;ll feel lost&rdquo;. He had some reassuring words though : &ldquo;The steeper the learning curve, the more you&rsquo;ll be learning !&rdquo; I actually like this feeling of unknown things to learn, and that&rsquo;s why I stuck to it.</p>
-
-<p>I took me 8 hours, and not 6 to get a good overall grasp of Machine Learning techniques. The theory was just too wide and interesting and I could not cut the learning after just 6 hours :&ndash;). I studied <a href="https://xyclade.github.io/MachineLearning/#cross-validation">Machine Learning for developers</a> plus a few other pages for details on specific points. I took and kept notes about what I learned. I chose my subject &ldquo;unit testing algorithm complexity&rdquo; for the following reasons :</p>
-
-<ul>
-<li>I could imagine some utility</li>
-<li>I had been writing benchmarks at work for 3 years, and I knew the practice well enough</li>
-<li>It&rsquo;s pretty easy to generate data for this subject : just run your algorithm !</li>
-<li>It seems a good first step, doable with basic Machine Learning techniques like linear regression</li>
-<li>It seems small enough to get something working in 12 hours</li>
-<li>I could use ruby, which I find both fast and pleasant to program</li>
-</ul>
-
-
-<p>This is the plan I set out :</p>
-
-<ol>
-<li>Generate data with a linear algorithm (O(n))</li>
-<li>Run linear regression on the data</li>
-<li>Compute the the <a href="https://xyclade.github.io/MachineLearning/#root-mean-squared-error-rmse">RMSE</a> of the model</li>
-<li>Deal with Garbage Collection in order to make reduce its noise</li>
-<li>Deal with interpreter warm-up for the same reason</li>
-<li>Generate data for a constant (O(1)) algorithm and build a model for it</li>
-<li>Find a way to identify if an algorithm is constant or linear from it&rsquo;s execution timings</li>
-<li>Generate data for a quadratic (O(2)) algorithm and build a model for it</li>
-<li>Identify if an algorithm is constant, linear or quadratic</li>
-<li>Package all this in an <a href="http://rspec.info/">RSpec</a> library</li>
-</ol>
-
-
-<p>It started well, and I made good progress. Unfortunately, as people dropped out of the group and I got more urgent things to do at work, I had to pause my project for a while. It&rsquo;s only been since last week that I got some time during my holidays to finish this off. I&rsquo;m currently at H18, and I&rsquo;ve completed all steps from 1 to 9.</p>
-
-<p>As I said the project is still in early alpha. They is a lot of points in which it could be improved (more complexities, faster, more reliable &hellip;). Even though I did not tackle the more advanced machine learning techniques, I now understand the overall process of ML : explore to get an intuitive grasp of the data, try out a model, see what happens, and repeat &hellip; I feel that learning these more advanced techniques would be easier now.</p>
-
-<h2>My opinion on the method</h2>
-
-<p>Overall, I found the experiment really effective, it&rsquo;s possible to learn quite a lot by focusing on it for 20 hours. A word of warning though : you need to be really motivated and ready to stick through difficulties.</p>
-
-<p>It&rsquo;s also been very pleasant. I&rsquo;ve always loved to learn new things, so I might be a little biased on that aspect. I liked the first part when I felt that there was a lot to learn in a large subject I knew almost nothing about. I loved the second part too, although this might be more related to machine learning, because I felt like exploring an unknown (data set) and trying to understand it.</p>
-
-<p>I&rsquo;ve never been afraid to learn something, doing this experiment taught me I can learn anything fast ! I&rsquo;ll definitely re-use it again.</p>
-
-<p>One last word about doing this in group. My own experiment did not work very well. Most people were not comfortable with the first &lsquo;explore&rsquo; phase. I guess one could make it work better by starting 6 or 8 hours before the rest of the group, enough to grasp the basic concepts and come up with a few end goals. Having concrete targets from day 1 should help people to stick through and to collaborate. The &lsquo;guide&rsquo; could also help the others through the first phase.</p>
-
-<p>Stay tuned, I&rsquo;ll present my gem in <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">a following post</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1564,6 +1692,10 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">Reducing the risks of large organization changes with the Mikado Method - part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-4-transparency/">Why Agile transformations usually don&#8217;t work - part 4 - Transparency</a>
       </li>
     
@@ -1577,10 +1709,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
     
       <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-1-the-situation/">Why Agile transformations usually don&#8217;t work - part 1 - The situation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-4/">Why and how to start a #ZeroBugs policy - part 4</a>
       </li>
     
   </ul>

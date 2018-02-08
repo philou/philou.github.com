@@ -102,6 +102,128 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/throwing-code-away-frequently/">Throwing Code Away Frequently</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-09-01T06:56:00+02:00" pubdate data-updated="true">Sep 1<span>st</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Here is the main feedback I got about my previous post <a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming</a>.</p>
+
+<blockquote><p>What do you actually mean by throwing code away ? Does it mean stoping unit testing and refactoring ?</p></blockquote>
+
+<p><img src="../imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg" alt="A drawing of a shredder destroying some code" /></p>
+
+<p>So I guess it deserves a bit of explanation.</p>
+
+<h2>What is it all about ?</h2>
+
+<p>When programming, I don&rsquo;t throw code away a lot. I tend to rely on my automated tests to change the code I already have. That might be a problem.</p>
+
+<p>As with everything, there is no one size fits all. We should choose the best practice for our current situation. Same thing applies for incremental changes versus rewriting.</p>
+
+<p>TDD makes incremental changes cost effective, and as such, is a key to get out of the Waterfall.</p>
+
+<p>The idea of throwing code away frequently is to make rewriting cost effective, so we can do it more often.</p>
+
+<h2>Why would we want to do so ?</h2>
+
+<p>In &ldquo;<a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">When Understanding means Rewriting&#8221;</a>, Jeff Atwood explains that reading code can be more difficult than writing it. There is a point where rewriting is going to be cheaper than changing.</p>
+
+<p>The more unit test you have, the later you reach that point. The more technical debt you take, and the sooner. The bigger the part to rewrite, the more risky it becomes.</p>
+
+<p>Let&rsquo;s imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as<br/>
+<a href="http://mikecavaliere.com/throw-away-your-code/">F**k Going Green: Throw Away Your Code</a>.</p>
+
+<p>This would be great for new features, that might be removed if they don&rsquo;t bring any value. It would also be a good way to get rid of technical debt. Naresh Jain also makes the point that without tests, you&rsquo;ll have to keep things simple (<a href="https://blogs.agilefaqs.com/2008/10/07/throwing-away-code/">here</a> and <a href="https://fr.slideshare.net/nashjain/the-decline-and-fall-of-agile-antifragile-mindset-to-rescue">here</a>) !</p>
+
+<p>Wait a minute, isn&rsquo;t that <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a> ?</p>
+
+<h2>How to make it work</h2>
+
+<p><a href="/extreme-extreme-programming-2017/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg" alt="A graph with all the practices from my previous article eXtreme eXtreme Programming" /></a></p>
+
+<h3>How to ensure quality without unit tests ?</h3>
+
+<p>TDD and unit testing is a cornerstone of XP. If we remove it, we need something else to build quality in. Could Mob Programming and Remote teams do the trick ?</p>
+
+<p>&ldquo;Given enough eyeballs, all bugs are shallow&rdquo;. Pair programming and code reviews catch a lot more bugs than solo programming. Only a few bugs are likely to pass through the scrutiny of the whole team doing mob programming.</p>
+
+<p>What about Remote ? Martin Fowler <a href="https://martinfowler.com/articles/remote-or-co-located.html">explains</a> that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.</p>
+
+<p><a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/"><img src="../imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg" alt="People vs methodology impact on productivity" /></a><div class="image-credits">Photo from Steve McConnell on <a href="http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/">Construx</a></div></p>
+
+<p>Finally, the Cucumber team <a href="https://cucumber.io/blog/2015/12/21/the-mob-rules-ok">reported</a> that Mob Programming works well for remote teams.</p>
+
+<h3>How to make this safer ?</h3>
+
+<p>Even with the best team, mistakes will happen. How can we avoid pushing a rewrite that crashes the whole system ?</p>
+
+<p>The main answer to that is good continuous deployment. We should deploy to a subset of users first. We should be able to rollback straight away if things don&rsquo;t work as expected.</p>
+
+<p>As the system grows, <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a> can keep continuous deployment under control. We can deploy, update and roll them back independently. By nature, microservices also reduce the scope of the rewrite. That alone, as we said earlier, makes rewrites safer.</p>
+
+<p>As a last point, some technologies make building microservice systems easier and incremental. The <a href="https://stackoverflow.com/questions/16779162/what-kind-of-virtual-machine-is-beam-the-erlang-vm">Erlang VM</a>, for example, with first class actors, is one these. Time to give <a href="https://www.erlang.org/">Erlang</a> and <a href="https://elixir-lang.org/">Elixir</a> a try !</p>
+
+<h3>Is this always a good idea ?</h3>
+
+<p>There are good and bad situations.</p>
+
+<p>For example, a lean startup or data driven environment seems a good fit. Suppose your team measures the adoption of new features before deciding to keep or ditch them. You&rsquo;d better not invest in unit tests straight away.</p>
+
+<p>On the other side, software for a complex domain will be very difficult to rewrite flawlessly. I have worked in the finance industry for some years, I know what a complex domain is. I doubt I could rewrite a piece of intricate finance logic without bugs. I would stick to <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> and unit testing in these areas.</p>
+
+<h3>How to dip your toe</h3>
+
+<p>Here is how I intend to dip <em>my</em> toe. I won&rsquo;t drop automated testing completely yet. What I could do instead (and that I already did on side projects) is to start with end to end tests only.</p>
+
+<p>From there every time I want to change a piece of code, I have many options :</p>
+
+<ul>
+<li>Add a new end to end test and change the code.</li>
+<li>If the code is too much of a mess, I can rewrite it from scratch. I&rsquo;ll have the safety of the end to end tests.</li>
+<li>If I see that the module is stabilizing, has not been rewritten for a while, and yields well to modifications. I could start splitting end to end tests into unit tests, and embark on the TDD road.</li>
+</ul>
+
+
+<p>Maybe later, when I have a team doing mob programming to find my mistakes, we&rsquo;ll skip the end to end tests.</p>
+
+<h2>Other interesting links</h2>
+
+<ul>
+<li><a href="http://corgibytes.com/blog/2016/11/01/throwaway-code/">Throwaway Code</a> by M. Scott Ford</li>
+<li><a href="http://wiki.c2.com/?RewriteCodeFromScratch">Rewrite Code From Scratch</a> on c2 wiki</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/extreme-extreme-programming-2017/">eXtreme eXtreme Programming (2017)</a></h1>
     
     
@@ -1411,162 +1533,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/side-projects-matter/">Side Projects Matter</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-06-13T09:13:00+02:00" pubdate data-updated="true">Jun 13<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As a manager, you could benefit a lot from helping your developers with their side projects.</p>
-
-<p>I finished my <a href="https://philous-planning-poker.herokuapp.com/">latest side project</a>. That&rsquo;s the fifth serious one I bring to an end :</p>
-
-<ol>
-<li>2010-2014 <a href="/rip-mes-courses-dot-fr/">www.mes-courses.fr</a>, an improved UI for online groceries. This was both a technical project and a wannabe business</li>
-<li>Since 2011, <a href="/">this blog</a></li>
-<li>2015 <a href="/agileavatars-dot-com-magnets-for-real/">www.agileavatars.com</a>, a custom magnet shop for agile team boards. This was a lean startup style business project</li>
-<li>2016 <a href="/verify-the-big-o-complexity-of-ruby-code-in-rspec/">complexity-asserts</a> a unit test matcher to enforce algorithm complexity. This was a technical project time boxed to 20h.</li>
-<li>2016-2017 <a href="/planning-poker/">Philou&rsquo;s Planning Poker</a>, a technical product, that I built to solve my own problem.</li>
-</ol>
-
-
-<p>The more I do side projects, the more I am certain of their value to my employer.</p>
-
-<p><img src="../imgs/2017-06-13-side-projects-matter/side-project.jpg" alt="Hand drawing with stating 'creative business idea'" /><div class="image-credits"><a href='http://fr.freepik.com/vecteurs-libre/dessines-a-la-main-business-icons_769576.htm'>Designed by Freepik</a></div></p>
-
-<h2>Reasons companies discourage side projects</h2>
-
-<p>Unfortunately, most companies discourage their employees to have side projects. It boils down to fundamental fears :</p>
-
-<ul>
-<li>they might get less done</li>
-<li>they might leave</li>
-</ul>
-
-
-<p>While these are legitimate, most of the time, they are also unlikely or short sighted.</p>
-
-<h3>Why don&rsquo;t they work extra hours ?</h3>
-
-<p>Said another way : if developers want to code, why don&rsquo;t they add new features to the company&rsquo;s products ?</p>
-
-<p>From my own experience, having a side project has always been an <a href="/is-there-any-room-for-the-not-passionate-developer/">energy booster</a>. Side projects have made me more effective at work !</p>
-
-<p>For a compulsive hacker, a side project is a hobby ! As painting, piano or soccer is to others. Working on smaller software, being in full control, renews the joy of programming.</p>
-
-<h3>They&rsquo;ll quit once they&rsquo;ve learned new skills !</h3>
-
-<p>Simply said, if a company&rsquo;s retention strategy is to deprecate its developers &hellip; It&rsquo;s got problems a lot worse than a few people doing side projects at night !</p>
-
-<h3>They won&rsquo;t be as productive !</h3>
-
-<p>You could think that developers will be less focused on the company&rsquo;s issues while at work. Indeed, passionate side-project hackers always have it on top of their heads.</p>
-
-<p>Most of the time though, the extra energy provided by the side project out-weights this focus loss.</p>
-
-<p>In the end, we should trust people to be professional. Let&rsquo;s deal with the problem later, when someone actually starts to underdeliver.</p>
-
-<h3>They&rsquo;ll leave if it turns into a successful product !</h3>
-
-<p>Building a product company is pretty damn hard. A time starved side project is pretty unlikely to turn into a successful business. Not much to worry about here ! If it happens, the company is lucky to have had such a productive employee.</p>
-
-<h3>They might steal our intellectual property !</h3>
-
-<p>This one is true. Only a very small minority of people might do that, but the risk remains.</p>
-
-<p>You might conclude that it&rsquo;s easier to play it safe and prohibit side projects &hellip; at the same time, it&rsquo;s always sad to punish the majority for a minority&rsquo;s bad behavior.</p>
-
-<p>It boils down to a tradeoff between risks and rewards. How sensible the company is to IP theft vs the benefits of having a side-project friendly policy.</p>
-
-<p>If you are wondering what these benefits are, read on !</p>
-
-<h2>Side projects made me a more valuable employee</h2>
-
-<p>As developers, side project teach us a lot. What is less obvious, is how these new skills benefit our employers !</p>
-
-<h3>Keep up with technology</h3>
-
-<p>A side project is an occasion to work on any subject, with any technology we want. That&rsquo;s the perfect time to try that latest <a href="https://colorlib.com/wp/javascript-frameworks/">JS</a> framework we cannot use at work.</p>
-
-<p>This will help us and our companies to transition to these new technologies in the future.</p>
-
-<p>Experimenting different platforms also widens our horizons. It teaches us new ways of addressing problems in our daily stack. For examples, learning <a href="https://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special">LISP macros</a> pushed me to use lambdas to create new control structures in Java, C++ or C#.</p>
-
-<p>The conclusion is that side projects make people more productive and adaptive. Which in turn makes companies more productive and resilient</p>
-
-<h3>Understand what technical debt is</h3>
-
-<p><img src="../imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg" alt="A technical debt iceberg" /><div class="image-credits"><a href='https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code'>Image from Vector Software</a></div></p>
-
-<p>The bottleneck in a side project is always time. In this context, to deliver fast enough to keep my motivation high, I tend to take technical debt. Particularly because I ignore how long I&rsquo;ll be maintaining this code.</p>
-
-<p>Even so, if I later decide to stick to this side project, this technical debt will be an issue.</p>
-
-<p>That&rsquo;s what technical debt is : a conscious choice to cut a corner and fix it later. Without keeping track of the cut corners, it&rsquo;s not debt anymore, but crappy code ! That&rsquo;s why I ended up using <a href="/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/"><code>#TODO</code> comments</a> in my side projects.</p>
-
-<p>Later down the road, at any moment, I can decide to invest in refactoring some technical debt out. We can apply the exact same principles at our day jobs.</p>
-
-<h3>Understanding what a business is</h3>
-
-<p>Trying to make money from your side project taught me other kind of lessons. To sell my product or service, I had to learn a ton of other skills than the typical developer has. Nothing will sell without marketing or sales. I also had to dip my toes in design, web content creation and project management.</p>
-
-<p>Once I went through this, I was able to better understand a big picture at work. It became easier to discuss with product, project and sales people. I&rsquo;m able to make better tradeoffs between engineering, product and technical debt. Non technical colleagues appreciate that. As developers, it increases our value and trustworthiness.</p>
-
-<h3>Discover new ways of doing things</h3>
-
-<p>While progressing towards my own side project goals, I had to search the internet for help on some tasks. I ended up using SaaS tools, and discovered alternate practices to the ones I was using in my daily job.</p>
-
-<p>That&rsquo;s great for employers ! Developers will gain perspective about which company processes work well and which don&rsquo;t. If you have some form of continuous improvement in place at work, they&rsquo;ll suggest great ideas ! If you don&rsquo;t, then you should <a href="/how-we-introduced-efficient-agile-retrospectives/">start doing retrospectives</a> now !</p>
-
-<h2>Companies should sponsor side projects</h2>
-
-<p>I hope I convinced you that side projects are at least as efficient as a formal training. The topics are unknown at the beginning, but that&rsquo;s the trick : they deal with the <a href="https://en.wikipedia.org/wiki/There_are_known_knowns">unknown unknowns</a> !</p>
-
-<p>There are many ways a company can help its employees with their side projects :</p>
-
-<ul>
-<li><a href="http://www.jamesshore.com/Agile-Book/slack.html">Slack time</a> is a great way to spark the interest in a topic. Developers might start something in their slack time, and continue as a side project. Provided the topic as value for the company, they could continue using their Slack time on it.</li>
-<li>Hosting a <a href="https://startupweekend.org/">Startup Weekend</a> or a <a href="https://en.wikipedia.org/wiki/Hackathon">Hackathon</a>. Most company offices are empty on Saturdays and Sundays. You could ask your company to lend its premises for such an event. It&rsquo;s very likely that some employees will take part.</li>
-<li>Even better, some companies, like <a href="https://labs.spotify.com/2013/02/15/organizing-a-hack-week/">Spotify</a>, organize regular Hackathons <em>on office hours</em> ! That&rsquo;s Slack time, on steroids !</li>
-<li>Sponsoring internal communities can enable employees with side-projects to help each other. Sponsorship could be free lunch, premises or a regular small slice of time on work hours.</li>
-<li>Providing a clear legal framework around side projects reduces the risks for everyone. Questions like the ownership of intellectual property are better dealt with upfront.</li>
-</ul>
-
-
-<p><a href="https://labs.spotify.com/2013/02/15/organizing-a-hack-week/"><img src="../imgs/2017-06-13-side-projects-matter/spotify-hackathon.jpg" alt="A photo of Spotify's open space during a Hackathon" /></a></p>
-
-<p>If you are a developer looking for a side project idea, suggest slack time in retrospective ! You could also ask for sponsorship and organize a startup week-end or a lunch time community.</p>
-
-<p>Finally, if your company is side-project friendly, communicate about it ! It&rsquo;s a great selling point and it will attract great programmers.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1647,6 +1613,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">Reducing the risks of large organization changes with the Mikado Method - part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-4-transparency/">Why Agile transformations usually don&#8217;t work - part 4 - Transparency</a>
       </li>
     
@@ -1660,10 +1630,6 @@
     
       <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-1-the-situation/">Why Agile transformations usually don&#8217;t work - part 1 - The situation</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-and-how-to-start-a-number-zerobugs-policy-part-4/">Why and how to start a #ZeroBugs policy - part 4</a>
       </li>
     
   </ul>
