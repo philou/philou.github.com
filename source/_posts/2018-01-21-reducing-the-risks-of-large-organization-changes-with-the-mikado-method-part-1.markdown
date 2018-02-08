@@ -11,7 +11,6 @@ categories:
  - mikado-method-organization-series
 keywords: "Mikado Method, Agile, Agile transformation, Large Scale Transformation, Large Scale Agile"
 description: "First post of a series about applying the Mikado Method for large organization changes. Here I draw parallels between large scale code and organization changes."
-published: false
 ---
 Large scale agile transformations are often painful, stressful and ... failed ! Mixing the [Improvement Kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html) and the [Mikado Method](https://mikadomethod.wordpress.com/) can make them more successful.
 
