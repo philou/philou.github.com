@@ -33,7 +33,7 @@ Keeping these printouts in sync with the real cost would make the thing even mor
 
 What about an inflatable device linked to [SonarQube](http://www.sonarqube.org/) (or any other code metrics tracking system) ? It could grow as new code is written. We could make it as large as we want : 1m<sup>3</sup> for every 10K lines of Code, making the whole office a difficult place to walk around. Try to figure out how to work with this thing in the office :
 
-[{% img center /imgs/2016-06-08-the-size-of-code/Large_Inflatable_Art.jpg Large Inflatable Art (Jimmy Kuehnle) %}](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/)
+[{% img center /imgs/2016-06-08-the-size-of-code/Large_Inflatable_Art.jpg Large Inflatable Art (Jimmy Kuehnle) %}](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/)<div class="image-credits">[By Jimmy Kuehnle](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/) </div>
 
 ### Third Idea : Sand
 
