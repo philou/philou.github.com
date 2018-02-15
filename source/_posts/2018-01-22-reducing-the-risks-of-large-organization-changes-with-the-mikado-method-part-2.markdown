@@ -12,7 +12,6 @@ categories:
  - mikado-method-organization-series
 keywords: "Mikado Method, Agile, Agile transformation, Large Scale Transformation, Large Scale Agile, Improvement Kata"
 description: "Second post of a series about applying the Mikado Method for large organization changes. Here I show how the Mikado Method and the Improvement Kata are quite similar, and how to apply both for large organization changes."
-published: false
 ---
 In the [previous post](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/), I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge [Work In Progress](https://en.wikipedia.org/wiki/Work_in_process). Let's see how programmers deal with these problems.
 
