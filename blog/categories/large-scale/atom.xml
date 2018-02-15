@@ -4,7 +4,7 @@
   <title><![CDATA[Category: large scale | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/large-scale/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-02-12T06:18:26+01:00</updated>
+  <updated>2018-02-15T06:10:55+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 2]]></title>
+    <link href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/"/>
+    <updated>2018-02-15T06:45:00+01:00</updated>
+    <id>http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2</id>
+    <content type="html"><![CDATA[<p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous post</a>, I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge <a href="https://en.wikipedia.org/wiki/Work_in_process">Work In Progress</a>. Let&rsquo;s see how programmers deal with these problems.</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg" alt="A drawing of a wipe, with the text &quot;Mind your WIP&quot;" /></p>
+
+<h2>The mikado method algorithm</h2>
+
+<p>The <a href="https://mikadomethod.wordpress.com/">mikado method</a> is a programming technique to perform large <a href="https://en.wikipedia.org/wiki/Code_refactoring">code refactoring</a> one step at a time. It fixes the problematic situation we raised at the beginning of these posts. It enables developers to integrate their work with their teammates' continuously. It allows to build features and do the refactoring in parallel. Developers can also pause a mikado refactoring for a while if needed. On top of all this, it makes it easier for the full team to collaborate on the same refactoring.</p>
+
+<blockquote><p>💡 Developers can pause a Mikado Method refactoring for a while if needed.</p></blockquote>
+
+<p>Here is how it goes, but you can get a more detailed (and technical) description <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">here</a>.</p>
+
+<ol>
+<li>Try to do the change you want</li>
+<li>If it the tests pass, great, you&rsquo;re done</li>
+<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
+<li>Write down the errors you faced</li>
+<li>Revert your change</li>
+<li>Recurse from 1 for every error</li>
+<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
+</ol>
+
+
+<p>The catch is that developers should revert the work they could not finish to move on !</p>
+
+<h2>How to apply it to an organization change</h2>
+
+<p>In some way, the Mikado Method is very similar to the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>. The flow of the Improvement kata goes on like that :</p>
+
+<ol>
+<li>Determine a target condition</li>
+<li>Try to work with the target condition in place</li>
+<li>If it works, you&rsquo;re done</li>
+<li>Otherwise, understand the main impediment, and revert to the old way of doing things</li>
+<li>Work to remove the impediment</li>
+<li>Start again from step 2</li>
+</ol>
+
+
+<p>Have a look at <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">these blog posts</a> for a more practical presentation of the improvement kata.</p>
+
+<blockquote><p>💡 The Mikado Method and the Improvement Kata are more than similar.</p></blockquote>
+
+<p>Granted, the Mikado method and the improvement kata look similar. They are in fact more than similar. The improvement kata does not prescribe how you should fix your impediments. What&rsquo;s not explicit is that we can use it recursively to fix impediments ! That makes it almost identical to the Mikado Method, but for organization instead of code. It won&rsquo;t be a surprise to know that some companies have used the improvement kata for that. For example, <a href="https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726?pd_rd_wg=UdZ7n&amp;pd_rd_r=ea4d5912-c825-432a-b633-ac6822a475f4&amp;pd_rd_w=rQ1LZ&amp;ref_=pd_gw_psimh&amp;pf_rd_r=0N5KT332R3TD0DWK8FM0&amp;pf_rd_p=a1e8e44e-a6a8-5785-afd0-7f174f0d74f9">HP used it to drive its Laser Jet team transformation</a>. Others have already used the <a href="http://nomad8.com/organisational-change-with-mikado/">Mikado Method for organization transformation</a>.</p>
+
+<p><a href="http://nomad8.com/organisational-change-with-mikado/"><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg" alt="Extract of the orga mikado graph used by the Sandy Mamoli" /></a><div class="image-credits"><a href="http://nomad8.com/organisational-change-with-mikado/">Original Post</a> by Sandy Mamoli</div></p>
+
+<p>Suppose your organization wants to move to full Continuous Integration(TODO). It could start by trying to integrate all their devs in 10 minutes on a small group of teams. If it works, fine, other large teams can try it as well. Let&rsquo;s see what to do if it fails though. Thanks to a <a href="/blog/categories/retrospectives/">retrospective</a> teams understand that they need to master CI themselves first. In this case, they could revert large scale CI, and have one of the teams try to do continuous integration. If it works, fine, another team can try it too. If it does not, they&rsquo;ll do a post-mortem of some sort to understand the root issue, and work on it. For example, here the main impediment could be a coupled architecture. The fun thing would be to apply the Mikado Method to do this refactoring 😉.</p>
+
+<p>As with the Mikado Method, it is possible to draw an organization change Mikado graph along the way :</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png" alt="The mikado graph for the story above" /></p>
+
+<p>The graph is a living artifact. As we try and revert new experiments, we should expand and collapse the graph. This creates a global and shared view of the state of the change. Needless to say that this is great for collaboration.</p>
+
+<h2>To be continued (again)</h2>
+
+<p>This was part 2 of a <a href="/blog/categories/mikado-method-organization-series/">series on applying the Mikado Method to organization changes</a>. I&rsquo;ll end this series up with next post, where I&rsquo;ll go through the pros and cons of the approach. <a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Subscribe</a> to be notified as soon as next post is ready.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 1]]></title>
@@ -56,7 +122,7 @@
 
 <h2>To be continued</h2>
 
-<p>As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a <a href="TODO">series about the Mikado Method and large scale organization changes</a>. In next post, we&rsquo;ll detail this technique, and see how to apply it on organization changes. <a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Subscribe</a> to be notified as soon as next post is ready.</p>
+<p>As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a <a href="/blog/categories/mikado-method-organization-series/">series about the Mikado Method and large scale organization changes</a>. In <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">next post</a>, we&rsquo;ll detail this technique, and see how to apply it on organization changes.</p>
 ]]></content>
   </entry>
   
@@ -254,60 +320,6 @@
 <p>It does not have to be that way. What if they followed massive decentralization of power. What if they made more data available ? What if they adapted the compensation scheme to encourage risk taking. What if they gave authority to their teams to experiment and learn from their own problems. Would people still feel it&rsquo;s just another re-org ? As a reference, see how <a href="https://www.solidarity-us.org/leanproduction">unions have been fighting lean manufacturing for decades</a>.</p>
 
 <p>That&rsquo;s what we&rsquo;ll look into the next posts. This was part 2 of a <a href="/blog/categories/agile-transformations-fail-series/">series of posts on making large organizations more agile</a>. <a href="/why-agile-transformations-usually-dont-work-part-3-what-to-do/">Further posts</a> will propose what to do.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Why Agile transformations usually don't work - part 1 - The situation]]></title>
-    <link href="http://philippe.bourgau.net/why-agile-transformations-usually-dont-work-part-1-the-situation/"/>
-    <updated>2018-01-11T06:35:00+01:00</updated>
-    <id>http://philippe.bourgau.net/why-agile-transformations-usually-dont-work-part-1-the-situation</id>
-    <content type="html"><![CDATA[<p>In <a href="https://en.wikipedia.org/wiki/The_Goose_That_Laid_the_Golden_Eggs">Aesop&rsquo;s famous tale</a>, a farmer kills his goose that lays a golden egg every day to get all the eggs at once. He finds no eggs, lost his goose, and remains poor ever after.</p>
-
-<p>I&rsquo;ve seen the same pattern happen many times in the software industry. A team decides to become more agile. After a few years of continuous improvement, it shows largely above average performances. Managers start to notice and ask how the team got there, to replicate this success. Unfortunately, they don&rsquo;t want to wait a few years for the other teams to find their own way. As a result, an &ldquo;Agile&rdquo; process is copy printed to all teams. Follows only ephemeral improvement, at the same time that the initial team gets drowned in a company &ldquo;Scaled Agile&rdquo; initiative &hellip;</p>
-
-<p><img src="../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-1-the-situation/lets-all-do-this-agile-thing.jpg" alt="Drawing of a street tag 'Let's all do this Agile thing !&quot;" /></p>
-
-<h2>Examples</h2>
-
-<p>In the 60&rsquo;s, <a href="https://en.wikipedia.org/wiki/History_of_Toyota">Toyota</a> was innovating new ways to build cars. Other car manufacturers used to visit the Toyota plants to understand how they did it. Toyota was welcoming them with open arms ! (You can still <a href="http://www.visittoyotaky.com/">visit Toyota plants</a> today) Fortunately for Toyota, none of the visitors managed to copy their results.</p>
-
-<blockquote><p>💡 Competitors managed to copy Toyota&rsquo;s practices, but not their results !</p></blockquote>
-
-<p>Let&rsquo;s think of other agile companies like Google, Apple or Spotify. Did they copy an existing Agile framework or recipe ? No, they rather learned to embrace change in their own way. The HP LaserJet team did not become more agile by sticking to best practices either, they also did it their own way.</p>
-
-<p><a href="https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726/ref=sr_1_1?ie=UTF8&amp;qid=1515476483&amp;sr=8-1&amp;keywords=hp+large+scale+agile"><img src="../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-1-the-situation/hp-large-scale-agile-dev.jpg" alt="The cover of &quot;A Practical Approach to Large-Scale Agile Development. How HP Transformed LaserJet FutureSmart Firmware&quot;" /></a></p>
-
-<p>Thinking about it, I never read a single story of how a team succeeded by sticking to method X, Y or Z.</p>
-
-<p>It&rsquo;s just not possible to be agile by strict adherence to a method. Unfortunately, that&rsquo;s what most companies do. Have a look at the job posts, everyone is looking for agile devs, but do these companies look agile once you are in ?</p>
-
-<h2>What are the actual results ?</h2>
-
-<p>With a move to &ldquo;Agile&rdquo;, management usually envisions some of the following benefits :</p>
-
-<ul>
-<li>better quality</li>
-<li>increased productivity through waste reduction</li>
-<li>more innovation</li>
-</ul>
-
-
-<p>People who want these changes fast don&rsquo;t understand what they are doing. If they were, they would not expect this to be fast. It&rsquo;s all too easy to see &ldquo;Agile&rdquo; as a method, or a process.</p>
-
-<p>Following the traditional <a href="http://www.reinventingorganizations.com/">&ldquo;machine&rdquo; organization metaphor</a>, processes are to be applied ! Deploying the new &ldquo;Agile&rdquo; process, leaves little room for self-organization and empowerment. People throughout the organization perceive it as yet another reorganization. People still feel like cogs in the machine. Cogs don&rsquo;t show a lot of autonomy and motivation ! That&rsquo;s when the vicious circle kicks in. To fix the lack of drive, management adds more top-down process !</p>
-
-<p>Long story short, these transformations bring very little improvements. At the beginning, when everyone is keeping a close look at the process, things will go a bit better. A few month later, things will get back to where they were.</p>
-
-<blockquote><p><iframe src="http://philippe.bourgau.net//www.slideshare.net/slideshow/embed_code/key/JAoAahDozJKWD5?startSlide=13" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://philippe.bourgau.net//www.slideshare.net/ThoughtWorks/lean-enterprise-how-to-innovate-at-scale" title="Lean Enterprise - Enabling Innovative Culture" target="_blank">Lean Enterprise &ndash; Enabling Innovative Culture</a> </strong> de <strong><a href="http://philippe.bourgau.net//www.slideshare.net/ThoughtWorks" target="_blank">ThoughtWorks</a></strong> </div></p></blockquote>
-
-<p>A specific danger of &ldquo;Agile&rdquo; is that it can serve micro-management. Short iterations, code reviews and other feedback practices puts everyone under the radar. This makes decision makers feel more in control, at the cost of motivation and innovation. As an example, check <a href="http://sceptical-meerkat.blogspot.fr/2016/12/pair-programming-whats-in-it-for-me.html">this post</a> from a pair programming sceptic.</p>
-
-<blockquote><p>💡 &ldquo;Agile&rdquo; can easily slip into micro-management</p></blockquote>
-
-<h2>Next Week&rsquo;s post</h2>
-
-<p>This was part 1 of a <a href="/blog/categories/agile-transformations-fail-series/">series of posts on making large organizations more agile</a>. <a href="/why-agile-transformations-usually-dont-work-part-2-the-problem/">Next post</a> will dig into why the traditional approach described above does not work. Further posts will propose what to do.</p>
 ]]></content>
   </entry>
   

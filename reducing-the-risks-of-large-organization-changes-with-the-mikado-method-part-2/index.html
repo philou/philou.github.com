@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: sqlite - Philippe Bourgau's blog</title>
+  <title>Reducing the risks of large organization changes with the Mikado Method - part 2 - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Category: sqlite">
+  <meta name="description" content="Second post of a series about applying the Mikado Method for large organization changes. Here I show how the Mikado Method and the Improvement Kata &hellip;">
 
   
-  <meta name="keywords" content="Blog, Programming, eXtreme Programming, XP, TDD, Remote, Best Practices, Tips, Tutorial">
+  <meta name="keywords" content="Mikado Method, Agile, Agile transformation, Large Scale Transformation, Large Scale Agile, Improvement Kata">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.netblog/categories/sqlite/">
+  <link rel="canonical" href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -95,36 +95,152 @@
     <div id="main">
       <div id="content">
 	<div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Sqlite</h1>
+    
+      <h1 class="entry-title">Reducing the Risks of Large Organization Changes With the Mikado Method - Part 2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-02-15T06:45:00+01:00" pubdate data-updated="true">Feb 15<span>th</span>, 2018</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous post</a>, I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge <a href="https://en.wikipedia.org/wiki/Work_in_process">Work In Progress</a>. Let&rsquo;s see how programmers deal with these problems.</p>
 
-  
-  <h2>2017</h2>
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg" alt="A drawing of a wipe, with the text &quot;Mind your WIP&quot;" /></p>
 
-<article>
-  
-<h1><a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite</a></h1>
-<time datetime="2017-01-25T07:53:00+01:00" pubdate><span class='month'>Jan</span> <span class='day'>25</span> <span class='year'>2017</span></time>
+<h2>The mikado method algorithm</h2>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cucumber/'>cucumber</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/rspec/'>rspec</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/sqlite/'>sqlite</a>, <a class='category' href='/blog/categories/testing/'>testing</a></span>
-</footer>
+<p>The <a href="https://mikadomethod.wordpress.com/">mikado method</a> is a programming technique to perform large <a href="https://en.wikipedia.org/wiki/Code_refactoring">code refactoring</a> one step at a time. It fixes the problematic situation we raised at the beginning of these posts. It enables developers to integrate their work with their teammates&#8217; continuously. It allows to build features and do the refactoring in parallel. Developers can also pause a mikado refactoring for a while if needed. On top of all this, it makes it easier for the full team to collaborate on the same refactoring.</p>
+
+<blockquote><p>💡 Developers can pause a Mikado Method refactoring for a while if needed.</p></blockquote>
+
+<p>Here is how it goes, but you can get a more detailed (and technical) description <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">here</a>.</p>
+
+<ol>
+<li>Try to do the change you want</li>
+<li>If it the tests pass, great, you&rsquo;re done</li>
+<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
+<li>Write down the errors you faced</li>
+<li>Revert your change</li>
+<li>Recurse from 1 for every error</li>
+<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
+</ol>
 
 
-</article>
+<p>The catch is that developers should revert the work they could not finish to move on !</p>
 
+<h2>How to apply it to an organization change</h2>
+
+<p>In some way, the Mikado Method is very similar to the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>. The flow of the Improvement kata goes on like that :</p>
+
+<ol>
+<li>Determine a target condition</li>
+<li>Try to work with the target condition in place</li>
+<li>If it works, you&rsquo;re done</li>
+<li>Otherwise, understand the main impediment, and revert to the old way of doing things</li>
+<li>Work to remove the impediment</li>
+<li>Start again from step 2</li>
+</ol>
+
+
+<p>Have a look at <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">these blog posts</a> for a more practical presentation of the improvement kata.</p>
+
+<blockquote><p>💡 The Mikado Method and the Improvement Kata are more than similar.</p></blockquote>
+
+<p>Granted, the Mikado method and the improvement kata look similar. They are in fact more than similar. The improvement kata does not prescribe how you should fix your impediments. What&rsquo;s not explicit is that we can use it recursively to fix impediments ! That makes it almost identical to the Mikado Method, but for organization instead of code. It won&rsquo;t be a surprise to know that some companies have used the improvement kata for that. For example, <a href="https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726?pd_rd_wg=UdZ7n&amp;pd_rd_r=ea4d5912-c825-432a-b633-ac6822a475f4&amp;pd_rd_w=rQ1LZ&amp;ref_=pd_gw_psimh&amp;pf_rd_r=0N5KT332R3TD0DWK8FM0&amp;pf_rd_p=a1e8e44e-a6a8-5785-afd0-7f174f0d74f9">HP used it to drive its Laser Jet team transformation</a>. Others have already used the <a href="http://nomad8.com/organisational-change-with-mikado/">Mikado Method for organization transformation</a>.</p>
+
+<p><a href="http://nomad8.com/organisational-change-with-mikado/"><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg" alt="Extract of the orga mikado graph used by the Sandy Mamoli" /></a><div class="image-credits"><a href="http://nomad8.com/organisational-change-with-mikado/">Original Post</a> by Sandy Mamoli</div></p>
+
+<p>Suppose your organization wants to move to full Continuous Integration(TODO). It could start by trying to integrate all their devs in 10 minutes on a small group of teams. If it works, fine, other large teams can try it as well. Let&rsquo;s see what to do if it fails though. Thanks to a <a href="/blog/categories/retrospectives/">retrospective</a> teams understand that they need to master CI themselves first. In this case, they could revert large scale CI, and have one of the teams try to do continuous integration. If it works, fine, another team can try it too. If it does not, they&rsquo;ll do a post-mortem of some sort to understand the root issue, and work on it. For example, here the main impediment could be a coupled architecture. The fun thing would be to apply the Mikado Method to do this refactoring 😉.</p>
+
+<p>As with the Mikado Method, it is possible to draw an organization change Mikado graph along the way :</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png" alt="The mikado graph for the story above" /></p>
+
+<p>The graph is a living artifact. As we try and revert new experiments, we should expand and collapse the graph. This creates a global and shared view of the state of the change. Needless to say that this is great for collaboration.</p>
+
+<h2>To be continued (again)</h2>
+
+<p>This was part 2 of a <a href="/blog/categories/mikado-method-organization-series/">series on applying the Mikado Method to organization changes</a>. I&rsquo;ll end this series up with next post, where I&rsquo;ll go through the pros and cons of the approach. <a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Subscribe</a> to be notified as soon as next post is ready.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-02-15T06:45:00+01:00" pubdate data-updated="true">Feb 15<span>th</span>, 2018</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/coaching/'>coaching</a>, <a class='category' href='/blog/categories/improvement-kata/'>improvement kata</a>, <a class='category' href='/blog/categories/large-scale/'>large scale</a>, <a class='category' href='/blog/categories/lean/'>lean</a>, <a class='category' href='/blog/categories/mikado-method-organization-series/'>mikado-method-organization-series</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/" title="Previous Post: Reducing the risks of large organization changes with the Mikado Method - part 1">&laquo; Reducing the risks of large organization changes with the Mikado Method - part 1</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -253,7 +369,10 @@
       var disqus_shortname = 'philippe-bourgau';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/';
+        var disqus_url = 'http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

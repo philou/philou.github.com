@@ -4,7 +4,7 @@
   <title><![CDATA[Category: improvement kata | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/improvement-kata/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-02-12T06:18:26+01:00</updated>
+  <updated>2018-02-15T06:10:55+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,72 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 2]]></title>
+    <link href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/"/>
+    <updated>2018-02-15T06:45:00+01:00</updated>
+    <id>http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2</id>
+    <content type="html"><![CDATA[<p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous post</a>, I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge <a href="https://en.wikipedia.org/wiki/Work_in_process">Work In Progress</a>. Let&rsquo;s see how programmers deal with these problems.</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg" alt="A drawing of a wipe, with the text &quot;Mind your WIP&quot;" /></p>
+
+<h2>The mikado method algorithm</h2>
+
+<p>The <a href="https://mikadomethod.wordpress.com/">mikado method</a> is a programming technique to perform large <a href="https://en.wikipedia.org/wiki/Code_refactoring">code refactoring</a> one step at a time. It fixes the problematic situation we raised at the beginning of these posts. It enables developers to integrate their work with their teammates' continuously. It allows to build features and do the refactoring in parallel. Developers can also pause a mikado refactoring for a while if needed. On top of all this, it makes it easier for the full team to collaborate on the same refactoring.</p>
+
+<blockquote><p>💡 Developers can pause a Mikado Method refactoring for a while if needed.</p></blockquote>
+
+<p>Here is how it goes, but you can get a more detailed (and technical) description <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">here</a>.</p>
+
+<ol>
+<li>Try to do the change you want</li>
+<li>If it the tests pass, great, you&rsquo;re done</li>
+<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
+<li>Write down the errors you faced</li>
+<li>Revert your change</li>
+<li>Recurse from 1 for every error</li>
+<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
+</ol>
+
+
+<p>The catch is that developers should revert the work they could not finish to move on !</p>
+
+<h2>How to apply it to an organization change</h2>
+
+<p>In some way, the Mikado Method is very similar to the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>. The flow of the Improvement kata goes on like that :</p>
+
+<ol>
+<li>Determine a target condition</li>
+<li>Try to work with the target condition in place</li>
+<li>If it works, you&rsquo;re done</li>
+<li>Otherwise, understand the main impediment, and revert to the old way of doing things</li>
+<li>Work to remove the impediment</li>
+<li>Start again from step 2</li>
+</ol>
+
+
+<p>Have a look at <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">these blog posts</a> for a more practical presentation of the improvement kata.</p>
+
+<blockquote><p>💡 The Mikado Method and the Improvement Kata are more than similar.</p></blockquote>
+
+<p>Granted, the Mikado method and the improvement kata look similar. They are in fact more than similar. The improvement kata does not prescribe how you should fix your impediments. What&rsquo;s not explicit is that we can use it recursively to fix impediments ! That makes it almost identical to the Mikado Method, but for organization instead of code. It won&rsquo;t be a surprise to know that some companies have used the improvement kata for that. For example, <a href="https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726?pd_rd_wg=UdZ7n&amp;pd_rd_r=ea4d5912-c825-432a-b633-ac6822a475f4&amp;pd_rd_w=rQ1LZ&amp;ref_=pd_gw_psimh&amp;pf_rd_r=0N5KT332R3TD0DWK8FM0&amp;pf_rd_p=a1e8e44e-a6a8-5785-afd0-7f174f0d74f9">HP used it to drive its Laser Jet team transformation</a>. Others have already used the <a href="http://nomad8.com/organisational-change-with-mikado/">Mikado Method for organization transformation</a>.</p>
+
+<p><a href="http://nomad8.com/organisational-change-with-mikado/"><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg" alt="Extract of the orga mikado graph used by the Sandy Mamoli" /></a><div class="image-credits"><a href="http://nomad8.com/organisational-change-with-mikado/">Original Post</a> by Sandy Mamoli</div></p>
+
+<p>Suppose your organization wants to move to full Continuous Integration(TODO). It could start by trying to integrate all their devs in 10 minutes on a small group of teams. If it works, fine, other large teams can try it as well. Let&rsquo;s see what to do if it fails though. Thanks to a <a href="/blog/categories/retrospectives/">retrospective</a> teams understand that they need to master CI themselves first. In this case, they could revert large scale CI, and have one of the teams try to do continuous integration. If it works, fine, another team can try it too. If it does not, they&rsquo;ll do a post-mortem of some sort to understand the root issue, and work on it. For example, here the main impediment could be a coupled architecture. The fun thing would be to apply the Mikado Method to do this refactoring 😉.</p>
+
+<p>As with the Mikado Method, it is possible to draw an organization change Mikado graph along the way :</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png" alt="The mikado graph for the story above" /></p>
+
+<p>The graph is a living artifact. As we try and revert new experiments, we should expand and collapse the graph. This creates a global and shared view of the state of the change. Needless to say that this is great for collaboration.</p>
+
+<h2>To be continued (again)</h2>
+
+<p>This was part 2 of a <a href="/blog/categories/mikado-method-organization-series/">series on applying the Mikado Method to organization changes</a>. I&rsquo;ll end this series up with next post, where I&rsquo;ll go through the pros and cons of the approach. <a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Subscribe</a> to be notified as soon as next post is ready.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to run your first improvement kata]]></title>
@@ -312,159 +378,6 @@
 <p>We&rsquo;re getting closer to the end, but you&rsquo;re not done with PDCA yet.</p>
 
 <p>This was post 4 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/">next and last post</a> of this story you&rsquo;ll learn how we ended the PDCAs for great results.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[How we used the improvement kata to gain 25% of productivity - Part 3]]></title>
-    <link href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/"/>
-    <updated>2017-09-13T09:12:00+02:00</updated>
-    <id>http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3</id>
-    <content type="html"><![CDATA[<p>This is the third post on a <a href="/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
-
-<p>In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/">previous post</a>, I explained how we started to understand what was going on. We were now questioning our way of handling bugs.</p>
-
-<blockquote><p>Are we spending too much time on bugs ?</p></blockquote>
-
-<p><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg" alt="Bugs drawn on top of code" /></p>
-
-<h2>More understanding</h2>
-
-<h3>Types of tasks</h3>
-
-<p>To answer this question, we decided to plot the different types of tasks we had completed per sprint.</p>
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg" alt="Bar chart with the types of tasks over sprints" /></a></p>
-
-<p>Think again of the velocity curve we started with. We see an almost exact correlation between story count (green bars above) and story points (blue curve below).</p>
-
-<blockquote><p>💡#NoEstimates works</p></blockquote>
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg" alt="Velocity graph" /></a></p>
-
-<p>We can also see that after sprint 56, we were spending more time on bugs and improvements. Improvements are supposed to improve productivity, so we decided to focus on bugs first. Here is what we get if we compute the average number of bugs per sprint :</p>
-
-<table>
-<thead>
-<tr>
-<th>Periods </th>
-<th> Sprints </th>
-<th> Bugs </th>
-<th> Average bugs fixed per sprint</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2015, Before sprint 56  </td>
-<td> 15 </td>
-<td>  21 </td>
-<td>    1.4</td>
-</tr>
-<tr>
-<td>After sprint 56 </td>
-<td> 34 </td>
-<td>  210 </td>
-<td>   6.1</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>Starting sprint 56, we were fixing 4 times as many bugs as we used to do before !</p>
-
-<h3>What is going on with bugs ?</h3>
-
-<p>At this point, we felt we&rsquo;d made a great step forward in our understanding. We almost thought we were done with it &hellip;</p>
-
-<p>After a bit of thinking though, it was clear that we were not ! We still needed to understand why we were in this situation.</p>
-
-<p>We started by listing more questions :</p>
-
-<ul>
-<li>Could it be that we just got a lot better at testing ? Since sprint 56, we had been doing <a href="/how-we-started-exploratory-testing/">regular exploratory testing</a>. Exploratory testing sessions were very effective at finding bugs.</li>
-<li>Were we paying back a bug debt ? The created versus resolved trend seemed to show so. But it could also be that we weren&rsquo;t testing as well as we used to !</li>
-</ul>
-
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png" alt="Created vs Resolved Bugs graph" /></a></p>
-
-<ul>
-<li>If we were paying back a bug debt, how close were we to the end of the payback ?</li>
-<li>Were we creating too many flaws in the software ?</li>
-<li>Are we fixing too many bugs ? If so, what should we do to fix less ?</li>
-<li>Are the bugs coming from other teams using our component or from our own testing ?</li>
-<li>Are bugs on new or old code ?</li>
-</ul>
-
-
-<p>A lot of questions, all difficult to answer. We decided to first see if we were paying back a bug debt. If this was the case, most other questions would become more or less irrelevant. With a bit of thinking, we came up with a measure to get the answer.</p>
-
-<h3>Are we paying back a bug debt ?</h3>
-
-<p>We first started to do exploratory testing at sprint 56. To do this, we would run a 1 hour session, where the pair finding the more bugs would win fruits. (Later on, we streamlined exploratory testing as part of the workflow for every story) At that time, we used to find more than 10 bugs in 1 hour.</p>
-
-<blockquote><p>💡Gamification transforms nice developers into berserk testers !</p></blockquote>
-
-<table>
-<thead>
-<tr>
-<th>Explo Test Sesssion </th>
-<th> 61 </th>
-<th> 62 </th>
-<th> 63 </th>
-<th> 64 </th>
-<th> 66 </th>
-<th> 16.01</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Bugs found  </td>
-<td> 16 </td>
-<td>  6 </td>
-<td> 16 </td>
-<td>    10 </td>
-<td>    11 </td>
-<td> 11</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>We would do another such a session. If we found significantly less than 10 bugs, let&rsquo;s say less than 6, it would mean that :</p>
-
-<ul>
-<li>we improved the quality of our software</li>
-<li>our streamlining of exploratory testing works</li>
-<li>if we continue to search and fix bugs as we do currently, we&rsquo;ll reach a point where we won&rsquo;t find any more bugs</li>
-</ul>
-
-
-<p>Otherwise, none of these stand, and we&rsquo;ll have to continue our investigations.</p>
-
-<p>So we did a 1 hour, fruit-powered, exploratory testing session. And we found only 3 bugs ! Indeed, we were paying back a bug debt. The question became</p>
-
-<blockquote><p>When should payback be over ?</p></blockquote>
-
-<p>A linear regression on the created vs resolved bug trend showed that we still had 15 more months to go !</p>
-
-<p><a href="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png"><img src="../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png" alt="Bug trend graph" /></a></p>
-
-<h2>Target condition</h2>
-
-<p>At that point, the target condition became obvious :</p>
-
-<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
-
-<p>Currently, around 1 pair (25% of the team) was busy fixing bugs. If we&rsquo;d manage to bring this down, we&rsquo;d have a 25% productivity boost.</p>
-
-<p>This was post 3 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">Next post</a> will be about PDCA.</p>
 ]]></content>
   </entry>
   

@@ -102,6 +102,117 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/spork-alternative-compatible-with-cucumber/">Spork Alternative Compatible With Cucumber</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-03T08:51:00+02:00" pubdate data-updated="true">Aug 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Version 1.3.0 of <a href="http://cukes.info/">Cucumber</a> droped spork support, so I had to find something else. I am using <a href="https://github.com/guard/guard">Guard</a> setup with <a href="http://rspec.info/">rspec</a> and Cucumber for my <a href="http://rubyonrails.org/">Rails</a> app.</p>
+
+<p>I first tried <a href="https://github.com/burke/zeus">Zeus</a> with <a href="https://github.com/qnm/guard-zeus">guard-zeus</a>, it kind of worked, but it ruined my Guard console with the Zeus server status, and it left zombie processes on guard exit &hellip;</p>
+
+<p>Eventually, I tried <a href="https://github.com/jonleighton/spring">Spring</a>, and once I made sure <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">rspec and cucumber both ran on the test environment</a>, it worked fine with minimal configuration. Here is what I had to do to get it working</p>
+
+<ul>
+<li>remove spork from your Gemfile</li>
+<li>remove require &lsquo;spork&rsquo;, Spork.prefork and Spork.each_run calls from spec/spec_helper.rb and features/support/env.rb</li>
+<li>install spring</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install spring</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>add spring to your Gemfile ! Also <a href="https://github.com/jonleighton/spring/blob/master/README.md">they say it is not required</a> I later had an error complaining it wasn&rsquo;t.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">group</span> <span class="ss">:test</span><span class="p">,</span> <span class="ss">:development</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'>  <span class="n">gem</span> <span class="s1">&#39;spring&#39;</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="n">group</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>update your Guardfile example :</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">guard</span> <span class="ss">:rspec</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s2">&quot;--tag ~@slow&quot;</span><span class="p">,</span> <span class="n">all_after_pass</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="n">keep_failed</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">spring</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">guard</span> <span class="s1">&#39;cucumber&#39;</span><span class="p">,</span> <span class="n">all_on_start</span><span class="p">:</span> <span class="kp">false</span><span class="p">,</span> <span class="ss">cli</span><span class="p">:</span> <span class="s1">&#39;--format progress --no-profile&#39;</span><span class="p">,</span> <span class="n">command_prefix</span><span class="p">:</span> <span class="s1">&#39;spring&#39;</span><span class="p">,</span> <span class="ss">bundler</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>add a .spring.rb file to automaticaly restart Spring on main file changes. I think I&rsquo;ll have to update this file when I discover that a test failed because spring needs to be restarted</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;.spring.rb&quot;</span>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;spec/factories&quot;</span>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch</span> <span class="s2">&quot;features/env.rb&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Spring</span><span class="o">.</span><span class="n">watch_method</span> <span class="o">=</span> <span class="ss">:listen</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">Simplest Way to Speed Up Rspec With in Memory Sqlite Db</a></h1>
     
     
@@ -695,138 +806,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/dont-repeat-names-in-cucumber-scenarios/">Don&#8217;t Repeat Names in Cucumber Scenarios</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-09T08:35:00+02:00" pubdate data-updated="true">May 9<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><strong>Update 06/12/2014: I created a <a href="https://github.com/philou/cucumber_tricks">gem</a> for this and other things, read an introduction <a href="http://philippe.bourgau.net//">here</a></strong></p>
-
-<p>When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
-</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
-</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the deposit account</span>
-</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the deposit account</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It would be better if we could write it like that</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="k">Scenario:</span><span class="nf"> Withdrawing some cash</span>
-</span><span class='line'><span class="k">  Given </span><span class="nf">a deposit account with </span><span class="s">1000</span><span class="nf">€</span>
-</span><span class='line'><span class="nf">  </span><span class="k">When </span><span class="nf">I withdraw </span><span class="s">100</span><span class="nf">€ from the account</span>
-</span><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on the account</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Sometimes we actually want to repeat the names though, either for clarity, or if we are dealing with many accounts within the same scenario.</p>
-
-<p>To make both my scenarios more readable and my steps more versatile, I created special main_account_name accessors and a custom transform.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span>
-</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="s2">&quot;credit&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">main_account_name</span><span class="o">=</span><span class="p">(</span><span class="n">account_name</span><span class="p">)</span>
-</span><span class='line'>  <span class="vi">@main_account_name</span> <span class="o">||=</span> <span class="n">account_name</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">CAPTURE_ACCOUNT_NAME</span> <span class="o">=</span> <span class="no">Tranform</span><span class="p">(</span><span class="sr">/^(a|an|the) *(.*) account$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">_prefix</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">account_name</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>    <span class="n">main_account_name</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="n">account_name</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When creating the account, I added some code to set the main_account_name</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Given</span><span class="p">(</span><span class="sr">/^(</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">) with (\d+)€$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">account_name</span><span class="p">,</span> <span class="n">amount</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'>  <span class="nb">self</span><span class="o">.</span><span class="n">main_account_name</span><span class="o">=</span> <span class="n">account_name</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It is then possible to write steps like</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">When</span><span class="p">(</span><span class="sr">/^I withdraw (\d+)€ from (</span><span class="si">#{</span><span class="no">CAPTURE_ACCOUNT_NAME</span><span class="si">}</span><span class="sr">)$/</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">amount</span><span class="p">,</span> <span class="n">account_name</span><span class="o">|</span>
-</span><span class='line'>  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>that will match both &ldquo;the deposit account&rdquo; and &ldquo;the account&rdquo; depending on context.</p>
-
-<p>It would be really nice to be able to write things like</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='gherkin'><span class='line'><span class="nf">  </span><span class="k">Then </span><span class="nf">there should be </span><span class="s">900</span><span class="nf">€ on it</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>but because of the <a href="/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/">way cucumber handles transforms</a>, the only way I know to do that is to write a new step definition.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/17/">&larr; Older</a>
@@ -907,6 +886,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">Reducing the risks of large organization changes with the Mikado Method - part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">Reducing the risks of large organization changes with the Mikado Method - part 1</a>
       </li>
     
@@ -920,10 +903,6 @@
     
       <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-2-the-problem/">Why Agile transformations usually don&#8217;t work - part 2 - The problem</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-agile-transformations-usually-dont-work-part-1-the-situation/">Why Agile transformations usually don&#8217;t work - part 1 - The situation</a>
       </li>
     
   </ul>
