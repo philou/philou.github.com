@@ -64,4 +64,4 @@ The graph is a living artifact. As we try and revert new experiments, we should 
 
 ## To be continued (again)
 
-This was part 2 of a [series on applying the Mikado Method to organization changes](/blog/categories/mikado-method-organization-series/). I'll end this series up with next post, where I'll go through the pros and cons of the approach. [Subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) to be notified as soon as next post is ready.
+This was part 2 of a [series on applying the Mikado Method to organization changes](/blog/categories/mikado-method-organization-series/). I'll end this series up with [next post](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/), where I'll go through the pros and cons of the approach.
