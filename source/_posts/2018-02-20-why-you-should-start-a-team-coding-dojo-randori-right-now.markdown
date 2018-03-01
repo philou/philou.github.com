@@ -8,8 +8,7 @@ categories:
  - team building
  - coding dojo
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori"
-description: "A story of how a team coding dojo Randori can improve team work, and why you should start one" 
-published: false
+description: "A story of how a team coding dojo Randori can improve team work, and why you should start one"
 ---
 [Coding Dojos](http://codingdojo.org/) are easy to start and have a high return on investment. They will improve everyone's technical skills. That's only the start though. Practiced as a team Randori, they will also be a tremendous boost to team work.
 
@@ -20,6 +19,8 @@ published: false
 Coming up with team coding conventions is always a challenge. A few years ago, I remember organizing a meeting to discuss this with my team mates. In about 1 hour, we managed to agree on the standard C# code style, but not much more. Important points like the usage of singletons were still far from any agreement. I was disappointed. At least I learned that this is not the good way to build coding conventions.
 
 A few years later, in another team, the coding conventions topic came up again. I did not want to repeat my previous failure. I created a wiki page where we could suggest, comment and vote for conventions. It was a lot better than my previous attempt, but it was slow. It turned out that we had also been doing team coding dojos for a while. A colleague suggested to try to fix a [Sonar](https://www.sonarqube.org/) issue from our production code during a Randori session. It took us 2 hours to fix not one but a bunch of errors and to agree on 3 or 4 coding conventions. That was far more effective than my wiki page ! Looking back at the past few months, I realized what other topics the Randoris had helped the team with.
+
+> 💡 Team Coding Dojo Randori are great at defining coding conventions.
 
 ## Classic Team Problems
 
@@ -58,5 +59,7 @@ A team Randori is a Randori with your team. It improves all the problems I liste
 *   People will share IDE shortcuts and tricks.
 *   The constant feedback will make people accustomed to it.
 *   On top of that, people will refactor or have their code refactored from time to time. This is a great lesson in egoless programming.
+
+> 💡 Coding Dojo Randoris are a great lesson in Egoless Programming
 
 I hope I convinced you that you should start team coding dojo Randoris. In my next post, I'll go into more details about how to setup and run your first Randori. Don't miss it, [subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
