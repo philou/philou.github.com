@@ -102,6 +102,107 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">Hitting the Middle Ground Between Classicist and Mockist TDD</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-06-18T08:55:00+02:00" pubdate data-updated="true">Jun 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>From <a href="http://martinfowler.com/articles/mocksArentStubs.html">Martin Fowler&rsquo;s point of view</a>, I must have been a mockist. With using mocks extensively comes quite a few advantages :</p>
+
+<ul>
+<li>test failures often pinpoint the falsy code</li>
+<li>easier test organisation mimicking that of the code</li>
+<li>faster tests</li>
+<li>simpler test initialization</li>
+</ul>
+
+
+<p>Mocks also have their own problems, but mostly :</p>
+
+<ul>
+<li>especialy with dynamicaly typed languages, a mock for class A might not implement the same methods than the real class A, but the test might be passing though ! This ampers refactoring with a longer feedback loop and mock setup rewriting</li>
+</ul>
+
+
+<p>That&rsquo;s what always bothered me. Eventually I tried a combinaison of techniques that seem to work well together and provides most of the best of both worlds.</p>
+
+<ul>
+<li>extensive use of factories (with <a href="https://github.com/thoughtbot/factory_girl">FactoryGirl</a>) to simplify setup</li>
+<li>use of an <a href="http://www.sqlite.org/inmemorydb.html">in memory sqlite database</a> to get a fast full working db</li>
+<li>implement fully functional fakes for some parts of the system</li>
+<li>carefull use of mocks, inspired from <a href="http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html">Gregory Brown&rsquo;s thoughts on mocks</a>
+
+<ul>
+<li>when a test is too slow</li>
+<li>to cut off a dependency to a subsystem that is not available in a unit test</li>
+<li>to simplify overly long test data setup</li>
+</ul>
+</li>
+<li>use of test proxies (as in <a href="https://github.com/rr/rr">rr</a>) to inject specific behaviour or to perform specific checks without modifying the rest of the program.</li>
+</ul>
+
+
+<p>Here is how I implemented this with rspec :</p>
+
+<script src="https://gist.github.com/philou/5894144.js"></script>
+
+
+<p>With all this in place, it is most of the time possible to write straightforward tests. For example here, only real objects are used. @order gets its value when Order.create! is called.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s2">&quot;should create an order with the cart&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">capture_result_from</span><span class="p">(</span><span class="no">Order</span><span class="p">,</span> <span class="ss">:create!</span><span class="p">,</span> <span class="ss">into</span><span class="p">:</span> <span class="ss">:order</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">check_in_cart</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="vi">@order</span><span class="o">.</span><span class="n">should_not</span> <span class="n">be_nil</span>
+</span><span class='line'>  <span class="vi">@order</span><span class="o">.</span><span class="n">cart</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="vi">@cart</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Maybe I should swith to rr &hellip;</p>
+
+<p><strong>EDIT 20/08/2014:</strong></p>
+
+<p>I eventually moved this code into its own gem, it&rsquo;s <a href="https://github.com/philou/rspecproxies">on github</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/display-full-backtraces-in-rspec/">Display Full Backtraces in Rspec</a></h1>
     
     
@@ -680,51 +781,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-copy-a-database-from-an-heroku-app-to/">How to Copy a Database From an Heroku App to Another</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-11T00:00:00+01:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &#8220;integration&#8221; app, where I can do late verifications before deploying to my production app. If you don&#8217;t already do this, I recommend you to start now !</p>
-
-
-<p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku pgbackups:restore DATABASE <span class="sb">`</span>heroku pgbackups:url --app my-app-prod<span class="sb">`</span> --app my-app-integ --confirm my-app-integ
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/18/">&larr; Older</a>
@@ -805,6 +861,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">Why you should start a team coding dojo Randori right now</a>
+      </li>
+    
+      <li class="post">
         <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/">Reducing the risks of large organization changes with the Mikado Method - part 3</a>
       </li>
     
@@ -818,10 +878,6 @@
     
       <li class="post">
         <a href="/why-agile-transformations-usually-dont-work-part-4-transparency/">Why Agile transformations usually don&#8217;t work - part 4 - Transparency</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-agile-transformations-usually-dont-work-part-3-what-to-do/">Why Agile transformations usually don&#8217;t work - part 3 - What to do</a>
       </li>
     
   </ul>
