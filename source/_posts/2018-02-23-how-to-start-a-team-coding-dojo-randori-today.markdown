@@ -11,9 +11,9 @@ keywords: "Coding Dojo, TDD, Test Driven Development, Randori, How to, Guide"
 description: "A very practical guide as to how to start a Randori Coding Dojo to boost your team's teamwork"
 published: false
 ---
-In my previous post(TODO), I explained why you should start a team [coding dojo](http://codingdojo.org/) [Randori](http://codingdojo.org/RandoriKata/) as soon as you can. Here is a step by step guide to set one up today.
+In my [previous post](/why-you-should-start-a-team-coding-dojo-randori-right-now/), I explained why you should start a team [coding dojo](http://codingdojo.org/) [Randori](http://codingdojo.org/RandoriKata/) as soon as you can. Here is a step by step guide to set one up today.
 
-TODO drawing
+![A white belt](../imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/white-belt.jpg)
 
 ## Logistics
 
@@ -69,9 +69,9 @@ As a first problem, I like the [Roman Numerals](http://codingdojo.org/kata/Roman
 *   [codingdojo.org](http://codingdojo.org/)
 *   [cyber-dojo.org](http://cyber-dojo.org/)
 *   [kata-log.rocks](http://kata-log.rocks)
-*   [The Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1519279127&sr=8-1&keywords=coding+dojo+handbook)
+*   [The Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1519279127&sr=8-1&keywords=coding+dojo+handbook) (Where you'll also find tons of other valuable advices)
 
-TODO image coding dojo handbook
+[![The Coding Dojo Handbook cover](../imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1519279127&sr=8-1&keywords=coding+dojo+handbook)
 
 Whatever the topic you chose for your first session, make sure it is not too difficult.
 
@@ -105,4 +105,4 @@ Ask everyone for their answers and write them down. You'll use this at the begin
 
 ## Next Post
 
-I thought 2 posts would be enough to cover coding dojos, but it seems I have more to say ! My next post will be about tricks and advices to make your dojos a success. Don't miss it : subscribe(TODO) !
+I thought 2 posts would be enough to cover coding dojos, but it seems I have more to say ! My next post will be about tricks and advices to make your dojos a success. Don't miss it : [subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
