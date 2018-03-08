@@ -62,4 +62,4 @@ A team Randori is a Randori with your team. It improves all the problems I liste
 
 > 💡 Coding Dojo Randoris are a great lesson in Egoless Programming
 
-I hope I convinced you that you should start team coding dojo Randoris. In my next post, I'll go into more details about how to setup and run your first Randori. Don't miss it, [subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
+I hope I convinced you that you should start team coding dojo Randoris. In my [next post](/how-to-start-a-team-coding-dojo-randori-today/), I'll go into more details about how to setup and run your first Randori.
