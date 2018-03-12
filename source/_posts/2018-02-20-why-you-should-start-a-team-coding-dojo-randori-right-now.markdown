@@ -7,6 +7,7 @@ categories:
  - tdd
  - team building
  - coding dojo
+ - team-randori-series
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori"
 description: "A story of how a team coding dojo Randori can improve team work, and why you should start one"
 ---
