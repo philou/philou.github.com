@@ -5,14 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Performance is a feature - Philippe Bourgau's blog</title>
+  <title>Coding Dojo Troubleshooting - Philippe Bourgau's blog</title>
   <meta name="author" content="Philippe Bourgau">
 
   
-  <meta name="description" content="Given performance requirements are a feature, what are the consequences for an agile team ?">
+  <meta name="description" content="A guide to deal with the most common complaints and mistakes when starting a Coding Dojo.">
 
   
-  <meta name="keywords" content="performance, feature, story, epic, scrum">
+  <meta name="keywords" content="Coding Dojo, TDD, Test Driven Development, Randori, Psychology, Change management, Complaints, Troubleshoot">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://philippe.bourgau.net/performance-is-a-feature/">
+  <link rel="canonical" href="http://philippe.bourgau.net/coding-dojo-troubleshooting/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -99,7 +99,7 @@
   
   <header>
     
-      <h1 class="entry-title">Performance Is a Feature</h1>
+      <h1 class="entry-title">Coding Dojo Troubleshooting</h1>
     
     
       <p class="meta">
@@ -115,58 +115,65 @@
   
 
 
-<time datetime="2015-01-19T06:46:00+01:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
+<time datetime="2018-03-15T06:41:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2018</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Now that is a widespread title for blog articles ! Just <a href="https://www.google.fr/search?sourceid=chrome-psyapi2&amp;ion=1&amp;espv=2&amp;ie=UTF-8&amp;q=performance%20is%20a%20feature">search Google</a>, and you&rsquo;ll find &ldquo;Performance is a feature&rdquo; in <a href="http://blog.codinghorror.com/performance-is-a-feature/">Coding Horror</a> and <a href="http://coffeeonthekeyboard.com/performance-is-a-feature-623/">others</a>.</p>
+<div class="entry-content"><p>In my last 2 blog posts, I&rsquo;ve detailed <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">why</a> and <a href="/how-to-start-a-team-coding-dojo-randori-today/">how</a> to start a team Randori Coding Dojo. That&rsquo;s the easy part. As soon as you start your first dojo, you&rsquo;ll face trickier issues, especially people issues.</p>
 
-<p><a href="http://www.motorstown.com/50701-dragster-jet.html"><img class="center" src="/imgs/2015-01-19-performance-is-a-feature/dragster.jpg" title="A Dragster at full speed" ></a></p>
+<p><img src="../imgs/2018-03-08-coding-dojo-troubleshooting/tool-belt.jpg" alt="A martial artist with a tool belt" /></p>
 
-<h1>What&rsquo;s in it for us ?</h1>
+<h2>What if my team (or my boss) does not want to ?</h2>
 
-<p>If performance is indead a feature, then it can be managed like any feature :</p>
-
-<ul>
-<li><p>It should result from use cases</p>
-
-<blockquote><p>During use case X, the user should not wait more than Y seconds for Z</p></blockquote></li>
-<li><p>It can be split into user stories</p></li>
-</ul>
-
-
-<blockquote><ul>
-<li>Story 1: During use case X, the user should not wait more than 2*Y seconds for Z</li>
-<li>Story 2: During use case X, the user should not wait more than Y seconds for Z</li>
-</ul>
-</blockquote>
+<p>Very often some of your team mates won&rsquo;t see the value of the coding dojo upfront and will prefer to work on other tasks. It can also be your boss, who thinks you should be delivering features instead. Here are a few tricks you can do to make it work.</p>
 
 <ul>
-<li>They can be prioritized against other stories</li>
+<li>Try to find another time slot. Ask people for their preferred moment. If you can negotiate food sponsorship with your boss, you might get everyone happy. He won&rsquo;t feel you&rsquo;re not delivering features, you&rsquo;ll have a free lunch and you&rsquo;ll improve your skills.</li>
+<li>If your boss or colleague doesn&rsquo;t want to spend 2 full hours on a dojo. Get them to start with smaller problems and a shorter time slot.</li>
+<li>Your colleagues might have doubts about the value of the dojo. Get them to try it once or a few times before committing to a recurring event.</li>
+<li>As a general rule of thumb, the more you manage to involve people in the preparation, the more they&rsquo;ll adhere.</li>
+<li>If you have 1 or 2 inveterate laggards, do it without them anyway. With time, they&rsquo;ll understand what they are missing !</li>
 </ul>
 
 
-<blockquote><ul>
-<li>Let&rsquo;s forget about performance for now and deliver functionality A as soon as ready, we&rsquo;ll speed things up later.</li>
-<li>Let&rsquo;s fix basic performance constraints for use case X for now, every story will have to comply with these constraints later.</li>
-</ul>
-</blockquote>
+<blockquote><p>💡 If you cannot get people to adopt a new practice, get them to try it once. You&rsquo;ll be more than halfway there.</p></blockquote>
+
+<h2>Dealing with TDD complaints</h2>
+
+<p><img src="../imgs/2018-03-08-coding-dojo-troubleshooting/skeptic-gorilla.jpg" alt="A gorilla with a skeptic look" /></p>
+
+<p>As you&rsquo;ll start your first Randori, you&rsquo;ll have some complaints about <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>. Whether they come from newbies or skeptics, they usually look like :</p>
 
 <ul>
-<li>The performance on these use cases should be automatically tested and non regressed</li>
+<li>Why do we stick to TDD ? We&rsquo;d go so much faster if we coded this straight away.</li>
+<li>We don&rsquo;t need TDD for such a simple problem.</li>
+<li>We don&rsquo;t need such small baby steps on this simple problem.</li>
+<li>&hellip;</li>
 </ul>
 
 
-<blockquote><ul>
-<li>If we slow things too much and these tests breaks, we&rsquo;ll have to optimize the code.</li>
-<li>But as long as we don&rsquo;t break the tests, it&rsquo;s ok to unoptimize the code !</li>
-</ul>
-</blockquote>
+<p>My answer is more or less always the same. I try to re-frame everyone in the context of a learning exercice of deliberate practice. It could sound something like :</p>
 
-<p>Maybe that&rsquo;s a chance to stop performance related gut feeling quarrels !</p>
+<blockquote><p>Yes, sure. I know you are professional developers and that you could easily solve this little problem. Keep in mind that we are here to deliberately practice TDD and friends. Solving the problem is only a side effect.</p>
+
+<p>We are going to apply TDD by the book, for the sake of learning. It&rsquo;s a lot easier to learn to swim in 1 meter of water than in the middle of the sea. Once we&rsquo;ll master it in the safe dojo environment, you&rsquo;ll know how to adapt it to your production code.</p>
+
+<p>Please, play by the rules here !</p></blockquote>
+
+<p>As you can see, I don&rsquo;t try to convince them. The last thing I want is to get into a pro vs cons of TDD. 95% of the time, this answer is enough to get people over their skepticism and try it for the time of the dojo. Unfortunately, the last 5% might result in a difficult session. There&rsquo;s no single way to deal with these 5%. You can try to discuss with them in private, or run next session without them.</p>
+
+<blockquote><p>💡 Reframe the coding dojo as a learning exercice relying on TDD to go beyond skepticism.</p></blockquote>
+
+<h2>How to avoid getting bogged down in details</h2>
+
+<p>One last advice, especially for your first sessions. It&rsquo;s a common rookie mistake to waste 80% of the coding time on error handling. The key is to focus on what you want to learn. You are not writing production code, so don&rsquo;t hesitate to omit certain aspects. For example, assume that correct arguments are provided to skip error handling. This will save you time, be more fun and increase what you learn.</p>
+
+<h2>What&rsquo;s next ?</h2>
+
+<p>This was part 3 of this <a href="/blog/categories/team-randori-series/">series on team coding dojo</a>. In the next post, I&rsquo;ll write how to maximize the benefits we can get out of coding dojos. Don&rsquo;t miss it : <a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Subscribe</a> !</p>
 </div>
 
 
@@ -189,12 +196,12 @@
   
 
 
-<time datetime="2015-01-19T06:46:00+01:00" pubdate data-updated="true">Jan 19<span>th</span>, 2015</time>
+<time datetime="2018-03-15T06:41:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2018</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/agile/'>agile</a>, <a class='category' href='/blog/categories/performance/'>performance</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+    <a class='category' href='/blog/categories/coding-dojo/'>coding dojo</a>, <a class='category' href='/blog/categories/psychology/'>psychology</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/team-building/'>team building</a>, <a class='category' href='/blog/categories/team-randori-series/'>team-randori-series</a>
   
 </span>
 
@@ -203,7 +210,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/performance-is-a-feature/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/performance-is-a-feature/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/coding-dojo-troubleshooting/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/coding-dojo-troubleshooting/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -216,10 +223,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/how-to-setup-a-weekly-fruit-basket-in-no-time/" title="Previous Post: How to setup a weekly fruit basket in no time">&laquo; How to setup a weekly fruit basket in no time</a>
+        <a class="basic-alignment left" href="/how-to-start-a-team-coding-dojo-randori-today/" title="Previous Post: How to start a team coding dojo Randori today">&laquo; How to start a team coding dojo Randori today</a>
       
-      
-        <a class="basic-alignment right" href="/can-agile-teams-commit/" title="Next Post: Can agile teams commit?">Can agile teams commit? &raquo;</a>
       
     </p>
   </footer>
@@ -359,8 +364,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://philippe.bourgau.net/performance-is-a-feature/';
-        var disqus_url = 'http://philippe.bourgau.net/performance-is-a-feature/';
+        var disqus_identifier = 'http://philippe.bourgau.net/coding-dojo-troubleshooting/';
+        var disqus_url = 'http://philippe.bourgau.net/coding-dojo-troubleshooting/';
         var disqus_script = 'embed.js';
       
     (function () {
