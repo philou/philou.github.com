@@ -79,7 +79,7 @@ Whatever the topic you chose for your first session, make sure it is not too dif
 
 ### Coding
 
-That's why we are here ! The Randori is a dojo format where everyone works together, on the same problem, through the same computer. Start the timer for 5 minutes as the first pair works on the problem. When the timer rings, the co-pilot takes the keyboard, and someone new becomes the co-pilot. Start the timer again, and repeat after 5 more minutes. If you did not already, have a look at my previous post(TODO) for more details.
+That's why we are here ! The Randori is a dojo format where everyone works together, on the same problem, through the same computer. Start the timer for 5 minutes as the first pair works on the problem. When the timer rings, the co-pilot takes the keyboard, and someone new becomes the co-pilot. Start the timer again, and repeat after 5 more minutes. If you did not already, have a look at my previous [post](/why-you-should-start-a-team-coding-dojo-randori-right-now/) for more details.
 
 You should be using [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) during the Randori. Even if you are not (yet) using it on your production code. Here is why :
 
@@ -88,7 +88,7 @@ You should be using [Test Driven Development](https://en.wikipedia.org/wiki/Test
 * It teaches how to do baby steps refactorings
 * 🎁 Bonus : it demonstrates agile principles in practice (focus on outcome, incremental delivery, YAGNI ...)
 
-I've written a lot about TDD, have a look at my posts(TODO) for more. Applying TDD means sticking to the Red-Green-Refactor loop. During first sessions, be particularly careful that people don't refactor on red tests.
+I've written a lot about TDD, have a look at [my posts](/blog/categories/tdd/) for more. Applying TDD means sticking to the Red-Green-Refactor loop. During first sessions, be particularly careful that people don't refactor on red tests.
 
 > 💡 Team Randori coding dojo demonstrates agile principles in practice (focus on outcome, incremental delivery, YAGNI ...)
 
