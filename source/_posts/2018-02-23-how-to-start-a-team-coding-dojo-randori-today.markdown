@@ -105,4 +105,4 @@ Ask everyone for their answers and write them down. You'll use this at the begin
 
 ## Next Post
 
-I thought 2 posts would be enough to cover coding dojos, but it seems I have more to say ! My next post will be about tricks and advices to make your dojos a success. Don't miss it : [subscribe](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
+I thought 2 posts would be enough to cover coding dojos, but it seems I have more to say ! [My next post](/coding-dojo-troubleshooting/) will be about tricks and advices to make your dojos a success.

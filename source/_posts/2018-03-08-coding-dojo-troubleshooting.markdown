@@ -11,7 +11,6 @@ categories:
  - team-randori-series
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori, Psychology, Change management, Complaints, Troubleshoot"
 description: "A guide to deal with the most common complaints and mistakes when starting a Coding Dojo."
-published: false
 ---
 In my last 2 blog posts, I've detailed [why](/why-you-should-start-a-team-coding-dojo-randori-right-now/) and [how](/how-to-start-a-team-coding-dojo-randori-today/) to start a team Randori Coding Dojo. That's the easy part. As soon as you start your first dojo, you'll face trickier issues, especially people issues.
 
