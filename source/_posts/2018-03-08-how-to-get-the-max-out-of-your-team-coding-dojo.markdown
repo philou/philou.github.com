@@ -10,7 +10,6 @@ categories:
  - team-randori-series
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori, Teamwork, Programming"
 description: "Ideas about how to push your team coding dojo further in order to improve teamwork and production code."
-published: false
 ---
 If you've read my [previous posts about Team Randori Coding Dojos](/blog/categories/team-randori-series/), you should know why and how to run a successful one.
 
