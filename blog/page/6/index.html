@@ -102,6 +102,128 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-i-finally-use-docker-on-small-open-source-side-projects/">How I Finally Use Docker on Small Open Source Side Projects</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-02-16T19:37:00+01:00" pubdate data-updated="true">Feb 16<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
+
+<p><img class="center" src="/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
+
+<h2>The Docker love phase</h2>
+
+<p>At first everything seemed great about Docker. I&rsquo;d used it on toy projects and it proved great to quickly setup cheap and fast virtual machines. I even created the <a href="https://github.com/philou/rubybox">Rubybox</a> project on Github to clone new ruby VMs in a matter of seconds. I also used Docker to host my <a href="http://octopress.org/">Octopress</a> environment to write this blog. As a long time Linux user, my dev machines have repeatedly been suffering from pollution : after some time, they get plagued with all the stuff I installed to do my various dev experiments, and at some point, re-install seems easier than cleaning up all the mess. If I could use containers for all my projects, Docker would be a cure for this.</p>
+
+<p>Going through all these successes, when I started my planning poker app, I decided to go all into Docker, development, CI and deployment. You can read the log of how I did that in <a href="http://philippe.bourgau.net/blog/categories/docker/">these posts</a>. Fast forward a bit of searching, experimenting and deploying, all was setup : my dev env was in containers, my CI was running in containers in <a href="https://circleci.com/gh/philou/planning-poker/tree/master">CircleCI</a> and the app was pushed to containers on <a href="https://www.digitalocean.com/">DgitalOcean</a>.</p>
+
+<h2>Reality strikes back</h2>
+
+<p>At first, everything seemed to be working fine. Even if there were a few glitches that I would have to fix down the road like :</p>
+
+<ul>
+<li>Whenever I wanted to update my app&rsquo;s dependencies, I had to run <code>bundle update</code> twice, and not incrementally. Surely, I would manage to fix that with a bit of time</li>
+<li>Obviously, the CI was slower, because it had to build the containers before deploying them to <a href="https://hub.docker.com/">Docker Hub</a>, but that was the price to pay in order to know exactly what was running on the server &hellip; right ?</li>
+<li>And &hellip; <a href="https://github.com/guard/guard">Guard</a> notifications did not appear on my desktop. I was accessing my dev env through ssh, so I would have to fix that, just a few hours and it should be working</li>
+</ul>
+
+
+<p>After a while, I got used to my work environment and became almost as productive as I used to be &hellip; but you know, shit happens !</p>
+
+<ul>
+<li>I had to install <a href="http://phantomjs.org/">PhantomJS</a> on my CI, and if that comes out of the box on <a href="https://travis-ci.org/">TravisCI</a>, you&rsquo;re all alone in your own containers. Installing this on the Debian container proved unnecessarily complex, but I figured it out</li>
+<li>Then all of a sudden, my CI started to break &hellip; You can read a summary of what I did to fix it <a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">here</a>. Long story short : I had forgotten to clean up old docker images, and after enough deployments, the server ran out of space, and that corrupted the docker cache somehow. I eventually re-installed and upgraded the deployment VM. That made me lose quite some time though.</li>
+<li>Finally, as I started to play with <a href="https://github.com/rails/actioncable">ActionCable</a>, I could not get the web-socket notifications through my dev host. There must be some settings and configuration to make this work, for sure, but it&rsquo;s supposed to work out of the box.</li>
+</ul>
+
+
+<p>Eventually, this last issue convinced me to change my setup. All these usages of Docker where definitely worth it from a learning point of view, but as my focus moved to actually building the app, it was time to take pragmatic decisions.</p>
+
+<h2>My use of Docker now</h2>
+
+<p>There were 2 main ideas driving my changes to my dev env for this open source side project :</p>
+
+<ol>
+<li>Use the thing most people do</li>
+<li>Use commercially supported services &amp; tools</li>
+</ol>
+
+
+<p>These should avoid losing my time instead of being productive. My setup is now almost boring ! To summarize I now use <a href="https://travis-ci.org/philou/planning-poker">TravisCI</a>, <a href="https://philous-planning-poker.herokuapp.com/">Heroku</a>, and <a href="https://github.com/rbenv/rbenv">rbenv</a> on my physical machine. I kept Docker where it really shines : all the local servers required for development are managed by <a href="https://docs.docker.com/compose/">Docker Compose</a>. Here is my <a href="https://github.com/philou/planning-poker/blob/master/docker-compose.yml"><code>docker-compose.yml</code></a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">db</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgres:9.4.5</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">planning-poker-postgres:/var/lib/postgresql/data</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">ports</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&quot;5432:5432&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="l-Scalar-Plain">redis</span><span class="p-Indicator">:</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">redis:3.2-alpine</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">planning-poker-redis:/var/lib/redis/data</span>
+</span><span class='line'>  <span class="l-Scalar-Plain">ports</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&quot;6379:6379&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This saves me from installing <a href="https://www.postgresql.org/">Postgresql</a> or <a href="https://redis.io/">Redis</a> on my dev machine, and I can start all the services required for app with a single <code>docker-compose up</code> command !</p>
+
+<h2>My future uses of Docker</h2>
+
+<p>More generally, in the near future, here is when I&rsquo;ll use docker</p>
+
+<ul>
+<li>As I just said, to manage local servers</li>
+<li>To boot quick and cheap VMs (check <a href="https://github.com/philou/rubybox">rubybox</a>)</li>
+<li>To handle CI and deployment of large or non-standard systems, where Docker can provide a lot of benefits in terms of price, scaling or configurability</li>
+</ul>
+
+
+<p>Docker came from the deployment world, and this is where it is so great. As of today though, even if it is usable as dev VM, it is still not up to a standard dev machine. Despite that, all the issues I ran into could be fixed, and I&rsquo;m pretty sure they&rsquo;ll be some day.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/developer-are-you-losing-your-rat-race/">Developer ! Are You Losing Your Rat Race ?</a></h1>
     
     
@@ -1116,88 +1238,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-kill-scrum-zombies/">How to Kill Scrum Zombies ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-11-03T05:41:00+01:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>First of all, what is that ? Usually, Scrum zombies go in groups, and quite often, you&rsquo;ll find a full team of them :</p>
-
-<p>A typical team of Scrum Zombies follows Scrum pretty well, does all the ceremonies, adopted good engineering practices, and might even be delivering OK. But all the fun is gone, everyone is on autopilot, no continuous improvement is happening anymore, retrospectives are dull and repetitive &hellip; There&rsquo;s a gut feeling in the air that sooner or later, the project will miss a turn.</p>
-
-<p><img class="center" src="/imgs/2016-11-03-how-to-kill-scrum-zombies/sad-fans.jpg" title="A team of sad fans, looking like lost zombies" ></p>
-
-<p>Sounds familiar ?</p>
-
-<h2>What&rsquo;s going on exactly ?</h2>
-
-<p>When dev teams want to get more (agile|lean|reactive|.*) they often resort to hiring a full time coach. At first, a coach can have a great impact on the team. He will unblock change, show different ways of getting things done and train the team to new practices. Once all this is done, the coach becomes like any team member, or sometimes just leaves. That&rsquo;s the point when the team, as a whole, has to take on responsibility for continuous improvement.</p>
-
-<h2>What&rsquo;s needed then ?</h2>
-
-<p>The team needs to be able to conduct their own experiments and improvements. For this, they need divergent thinking, or creativity, or thinking out of the box; name it as you prefer. In a complex world, no single individual can bring all the answers to all the upcoming issues any team will face. Once the coach has put in place the practices necessary to continuous improvement, it&rsquo;s up to the team.</p>
-
-<p>Unlike what the common idea says, creativity does not come out of thin air, it is cultivated !</p>
-
-<h3>Diversity in the team</h3>
-
-<p>Diversity does not mean minority quotas in your team. Diversity means diversity of interest, of way of thinking, of mentality, of way of working &hellip; The more diverse your team members, the more likely they&rsquo;ll find innovative ways to work out of their current problems.</p>
-
-<h3>Slack</h3>
-
-<p>Removing any slack from the planning is the surest way to kill creativity and innovation. Great ideas often come at unexpected moments (see <a href="https://www.amazon.com/Pragmatic-Thinking-Learning-Refactor-Programmers/dp/1934356050/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1478151003&amp;sr=1-1&amp;keywords=pragmatic+thinking+and+learning">Pragmatic Thinking and Learning: Refactor Your Wetware</a>) because the mind works in the background to find them. You want to leave some time for that.</p>
-
-<h3>Go to conferences</h3>
-
-<p>Creativity builds on creativity. Great ideas are often adaptations of one or many existing ones. Going to conferences is a great way to collect a lot of ideas !</p>
-
-<h3>Share trainings and lectures</h3>
-
-<p>Different people might react differently to the same information. When a team member finishes reading a book or comes back from a training, it&rsquo;s a great idea to have him present what he learned to the others. This will reinforce his own learning, but it might also trigger new ideas in his team mates.</p>
-
-<h3>A dash of turnover</h3>
-
-<p>Too much turnover can be fatal to a team, but not having any will bring other kind of problems too. Newcomers will challenge the status-quo, and the &ldquo;this is how it&rsquo;s done here&rdquo; motto won&rsquo;t be enough for them. That&rsquo;s just what&rsquo;s needed to trigger a sane re-examination of the current practices. Oh &hellip; and turnover between teams is fine too ! If your company is large enough, you don&rsquo;t need to hire or fire people to create turnover, just encourage them to move to other teams !</p>
-
-<h2>The tricky part of complexity</h2>
-
-<p>By leaving time for other things than just cranking out stories, life will come back into the project, and zombies should go away. But wait, there&rsquo;s even more !</p>
-
-<p>Software projects are pretty complex beasts. One of the most counter-intuitive thing with these complex system is that they make planning very difficult. Focusing too much on your main goal might be slowing you down !</p>
-
-<p><img class="center" src="/imgs/2016-11-03-how-to-kill-scrum-zombies/large-tunnels-in-a-mine.jpg" title="Crossroad of large tunnels in a mine" ></p>
-
-<p>In the face of complexity your project landscape is like a maze of tunnels ! Who said you&rsquo;re choosing the best ones ? By keeping free time to explore other, seemingly unrelated, topics you might discover opportunities that will remove a lot of the work to get to your final destination !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1278,6 +1318,10 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-learn-a-programming-language-in-just-20-hours/">How to learn a programming language in just 20 hours</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-get-the-max-out-of-your-team-coding-dojo/">How to get the max out of your Team Coding Dojo ?</a>
       </li>
     
@@ -1291,10 +1335,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
     
       <li class="post">
         <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">Why you should start a team coding dojo Randori right now</a>
-      </li>
-    
-      <li class="post">
-        <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/">Reducing the risks of large organization changes with the Mikado Method - part 3</a>
       </li>
     
   </ul>
