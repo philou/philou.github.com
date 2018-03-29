@@ -13,7 +13,7 @@ keywords: "Learning, The first 20 hours, 20 hours of code katas, Personal Produc
 description: "A detailed review of the 20 hours of Code Kata technique, explaining why it works so well to learn new programming languages" 
 published: false
 ---
-In my [previous post](/how-to-learn-a-programming-languages-in-just-20-hours/), I described how I've been using 20 hours of Code Katas to learn new languages. If you did not read it yet, have a look at it first. Let's now look at why it works so well.
+In my [previous post](/how-to-learn-a-programming-language-in-just-20-hours/), I described how I've been using 20 hours of Code Katas to learn new languages. If you did not read it yet, have a look at it first. Let's now look at why it works so well.
 
 In [The First 20 Hours](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours) Josh Kaufman explains how he learned [Ruby](https://www.ruby-lang.org/) in 20 hours. He did not become a Ruby expert, but he was able to build and maintain a static website generator. For my part, I have succeeded to learn [a bit of machine learning](/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/) using the 20 hours technique.
 

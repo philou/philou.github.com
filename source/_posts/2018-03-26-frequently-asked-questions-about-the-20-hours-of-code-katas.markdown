@@ -13,7 +13,7 @@ keywords: "Learning, The first 20 hours, 20 hours of code katas, Personal Produc
 description: "Answers to frequently asked questions about the 20 hours of Code Kata. Ideas to expand the practice to other contexts." 
 published: false
 ---
-In my [previous posts](/blog/categories/20-hours-code-kata-series/), I explained how to use the 20 hours of Code Katas technique to learn new languages. If you did not read these yet, start by [the beginning](/how-to-learn-a-programming-languages-in-just-20-hours/).
+In my [previous posts](/blog/categories/20-hours-code-kata-series/), I explained how to use the 20 hours of Code Katas technique to learn new languages. If you did not read these yet, start by [the beginning](/how-to-learn-a-programming-language-in-just-20-hours/).
 
 ![A drawing of FAQ in a lightbulb](../imgs/2018-03-26-frequently-asked-questions-about-the-20-hours-of-code-katas/faq-bulb.jpg)
 
@@ -51,6 +51,6 @@ Once you've created and tested your kata, share it ! There are online kata repos
 
 ## One last thing
 
-I just remembered I did not finish [my story about my Javascript kata plan](/how-to-learn-a-programming-languages-in-just-20-hours/). For those wondering, here is the end of story. In the end I did not join this team to do Javascript coaching. After thinking through it for a while, I decided to stop the katas there, and move to something else. I was only 6 hours in, and what was the point to study Javascript not to use it straight away ? The day I'll need it, I'm likely to have forgotten 80% of it and some of it will be outdated. The knowledge is only another 20 hours away anyway !
+I just remembered I did not finish [my story about my Javascript kata plan](/how-to-learn-a-programming-language-in-just-20-hours/). For those wondering, here is the end of story. In the end I did not join this team to do Javascript coaching. After thinking through it for a while, I decided to stop the katas there, and move to something else. I was only 6 hours in, and what was the point to study Javascript not to use it straight away ? The day I'll need it, I'm likely to have forgotten 80% of it and some of it will be outdated. The knowledge is only another 20 hours away anyway !
 
 That's what we could call "Just In Time Learning" ! We are drowning in knowledge nowadays. It's better to have a fast and effective way to learn anything than trying to know everything.

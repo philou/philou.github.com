@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How to learn a programming languages in just 20 hours"
+title: "How to learn a programming language in just 20 hours"
 date: 2018-03-29 06:35
 comments: true
 categories: 
@@ -12,11 +12,10 @@ categories:
  - 20-hours-code-kata-series
 keywords: "Learning, The first 20 hours, 20 hours of code katas, Personal Productivity, Coding Dojo, Code Kata, TDD, Test Driven Development"
 description: "Stories and a guide about the 20 hours of Code Kata, a technique that allowed me to learn new programming languages very fast"
-published: false
 ---
 We should not panic when asked to work with a new language. We should be bold enough to answer to job openings requiring technologies we are not used to. In one word, we should not be afraid of new techs. Here is why : by scheduling 20 hours of Code Kata routine sessions, we can get a decent level of mastery on most topics.
 
-![A book with built-in clock](../imgs/2018-03-23-how-to-learn-a-programming-languages-in-just-20-hours/timed-book.jpg)
+![A book with built-in clock](../imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/timed-book.jpg)
 
 ## How I learned some Haskell
 
@@ -30,7 +29,7 @@ Many times afterwards, I learned new languages quickly by practicing them in the
 
 Fast forward to the end of last year. Someone asked me if I could work at coaching a team doing some Javascript. I've done some Javascript in the past, but my skills definitely needed a serious update. I decided to use Code Katas to refresh my Javascript. To try to make this even more effective, I decided to mix in a bit of the ["First 20 hours"](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours) technique.
 
-[![The cover of the book "The first 20 hours"](../imgs/2018-03-23-how-to-learn-a-programming-languages-in-just-20-hours/the-first-20-hours.jpg)](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours)
+[![The cover of the book "The first 20 hours"](../imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/the-first-20-hours.jpg)](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours)
 
 I started by defining a plan of 10 sessions of 2 hours long code katas :
 
@@ -67,7 +66,7 @@ If all went well, you should have learned quite a lot in only 20 hours. At that 
 
 This was the first post in [a series about applying the 20 hours technique and Code Katas to learn new programming languages](/blog/categories/20-hours-code-kata-series/). Here is the what to expect in the coming posts.
 
-1.  [How to learn a programming languages in just 20 hours](/how-to-learn-a-programming-languages-in-just-20-hours/)
+1.  [How to learn a programming languages in just 20 hours](/how-to-learn-a-programming-language-in-just-20-hours/)
 2.  Why 20 hours of code kata are so effective for learning new languages
 3.  Frequently asked questions about the 20 hours of Code Katas
 
