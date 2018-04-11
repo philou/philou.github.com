@@ -69,5 +69,3 @@ This was the first post in [a series about applying the 20 hours technique and C
 1.  [How to learn a programming languages in just 20 hours](/how-to-learn-a-programming-language-in-just-20-hours/)
 2.  [Why 20 hours of code kata are so effective for learning new languages](/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/)
 3.  Frequently asked questions about the 20 hours of Code Katas
-
-[Stay tuned](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
