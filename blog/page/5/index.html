@@ -102,6 +102,221 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">Speed Up the TDD Feedback Loop With Better Assertion Messages</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-05-29T06:37:00+02:00" pubdate data-updated="true">May 29<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>There is a rather widespread <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> practice to have a <a href="https://softwareengineering.stackexchange.com/questions/7823/is-it-ok-to-have-multiple-asserts-in-a-single-unit-test">single assertion per test</a>. The goal is to have faster feedback loop while coding. When a test fails, it can be for a single reason, making the diagnostic faster.</p>
+
+<p>The same goes with the test names. When a test fails, a readable test name in the report simplifies the diagnostic. Some testing frameworks allow the use of plain strings as test names. In others, people use <a href="https://en.wikipedia.org/wiki/Naming_convention_(programming">underscores</a>#Multiple-word_identifiers) instead of <a href="https://en.wikipedia.org/wiki/Camel_case">CamelCase</a> in test names.</p>
+
+<p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/rubymine.jpg" alt="RubyMine test report" /></p>
+
+<h2>A 4th step in TDD: Fail, <em>Fail better</em>, Pass, Refactor</h2>
+
+<h3>First, make it fail</h3>
+
+<p>Everyone knows that Test Driven Development starts by making the test fail. Let me illustrate why.</p>
+
+<p>A few years ago, I was working on a <a href="https://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29">C#</a> project. We were using TDD and <a href="https://github.com/nunit/nunit">NUnit</a>. At some point, while working on a story, I forgot to make my latest test fail. I wrote some code to pass this test, I ran the tests, and they were green. When I was almost done, I tried to plug all the parts together, but nothing was working. I had to start the debugger to understand what was going wrong. At first, I could not understand why the exact thing I had unit tested earlier was now broken. After more investigation I discovered that I had forgotten to make my test public. NUnit only runs public tests &hellip;</p>
+
+<p>If I had made sure my test was failing, I would have spotted straightaway that it was not ran.</p>
+
+<h3>Then make it fail &hellip; better !</h3>
+
+<p>I lived the same kind of story with wrong failures many times. The test fails, but for a bad reason. I move on to implement the code to fix it &hellip; but it still does not pass ! Only then do I check the error message and discover the real thing to fix. Again, it&rsquo;s a transgression to baby steps and to the <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> principle. If the tests is small, that might not be too much of an issue. But it can be if the test is big, or if the real fix deprecates all the premature work.</p>
+
+<h3>Strive for explicit error message</h3>
+
+<p>The idea is to make sure to have good enough error messages before moving on to the &ldquo;pass&rdquo; step.</p>
+
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg" alt="Cover of GOOSGT" /></a></p>
+
+<p>There&rsquo;s nothing groundbreaking about this practice. It&rsquo;s not a step as explicit as the other 3 steps of TDD. The first place I read about this idea was in <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided By Tests</a>.</p>
+
+<h2>How to improve your messages</h2>
+
+<h3>Readable code</h3>
+
+<p>Some test frameworks print out the failed assertion code to the test failure report. Others, especially in dynamic languages, use the assertion code itself to deduce an error message. If your test code is readable enough, your error messages might be as well !</p>
+
+<p>For example, with <a href="https://www.ruby-lang.org">Ruby</a> <a href="http://rspec.info/">RSpec</a> testing framework :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s2">&quot;must have an ending&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="no">Vote</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">team</span><span class="p">:</span> <span class="vi">@daltons</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yield the following error :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="c1">#&lt;Vote ...&gt; to be valid, but got errors: Ending can&#39;t be blank</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Pass in a message argument</h3>
+
+<p>Sometimes, readable code is not enough to provide good messages. All testing frameworks I know provide some way to pass in a custom error message. That&rsquo;s often a cheap and straightforward way to clarify your test reports.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'>  <span class="n">it</span> <span class="s2">&quot;should not render anything&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">post_create</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">code</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="ss">HTTP</span><span class="p">:</span><span class="ss">:Status</span><span class="o">::</span><span class="no">OK</span><span class="o">.</span><span class="n">to_s</span><span class="p">),</span>
+</span><span class='line'>                             <span class="s2">&quot;expected the post to succeed, but got http status </span><span class="si">#{</span><span class="n">response</span><span class="o">.</span><span class="n">code</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Yields</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expected</span> <span class="n">the</span> <span class="n">post</span> <span class="n">to</span> <span class="n">succeed</span><span class="p">,</span> <span class="n">but</span> <span class="n">got</span> <span class="n">http</span> <span class="n">status</span> <span class="mi">204</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Define your own matchers</h3>
+
+<p>The drawback with explicit error message is that they harm code readability. If this becomes too much of an issue, one last solution is the use of <a href="https://objectpartners.com/2013/09/18/the-benefits-of-using-assertthat-over-other-assert-methods-in-unit-tests/">test matchers</a>. A test matcher is a class encapsulating assertion code. The test framework provides a fluent api to bind a matcher with the actual and expected values. Almost all test framework support some flavor of these. If not, or if you want more, there are libraries that do :</p>
+
+<ul>
+<li><a href="http://joel-costigliola.github.io/assertj/index.html">AssertJ</a> is a fluent assertion library for Java. You can easily extend it with your own assertions (ie. matchers)</li>
+<li><a href="http://n-fluent.net/">NFluent</a> is the same thing for .Net.</li>
+</ul>
+
+
+<p>As an example, in a past side project, I defined an <a href="https://github.com/philou/mes-courses/blob/master/spec/support/include_all_matcher.rb">include_all</a> rspec matcher that verifies that many elements are present in a collection. It can be used that way :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">expect</span><span class="p">(</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">include_all</span><span class="p">(</span><span class="o">[</span><span class="s2">&quot;Tomatoes&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">,</span> <span class="s2">&quot;Potatoes&quot;</span><span class="o">]</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It yields error messages like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">[</span><span class="s2">&quot;Bananas&quot;</span><span class="p">,</span> <span class="s2">&quot;Potatoes&quot;</span><span class="o">]</span> <span class="n">are</span> <span class="n">missing</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A custom matcher is more work, but it provides both readable code and clean error messages.</p>
+
+<h2>Other good points of matchers</h2>
+
+<p>Like any of these 3 tactics, matchers provide better error messages. Explicit error messages, in turn, speed up the diagnostic on regression. In the end, faster diagnostic means easier maintenance.</p>
+
+<p>But there&rsquo;s more awesomness in custom test matchers !</p>
+
+<h3>Adaptive error messages</h3>
+
+<p>In a custom matcher, you have to write code to generate the error message. This means we can add logic there ! It&rsquo;s an opportunity to build more detailed error messages.</p>
+
+<p>This can be particularly useful when testing recursive (tree-like) structures. A few years ago, I wrote an rspec matcher library called <a href="https://github.com/philou/xpath-specs">xpath-specs</a>. It checks html views for the presence of recursive XPath. Instead of printing</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Could</span> <span class="ow">not</span> <span class="n">find</span> <span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s2">&quot;grades&quot;</span><span class="o">]//</span><span class="n">span</span><span class="o">[</span><span class="n">text</span><span class="p">()</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="o">]</span> <span class="k">in</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It will print</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Could</span> <span class="n">find</span> <span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s2">&quot;grades&quot;</span><span class="o">]</span> <span class="n">but</span> <span class="ow">not</span> <span class="sr">//</span><span class="n">table</span><span class="o">[</span><span class="vi">@id</span><span class="o">=</span><span class="s2">&quot;grades&quot;</span><span class="o">]//</span><span class="n">span</span><span class="o">[</span><span class="n">text</span><span class="p">()</span><span class="o">=</span><span class="s1">&#39;Joe&#39;</span><span class="o">]</span> <span class="k">in</span> <span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(BTW, I&rsquo;m still wondering if testing views this way is a good idea &hellip;)</p>
+
+<h3>Test code reuse</h3>
+
+<p>One of the purpose of custom test matchers is to be reusable. That&rsquo;s a good place to factorize assertion code. It is both more readable and more organized than extracting an assertion method.</p>
+
+<h3>Better coverage</h3>
+
+<p>I noticed that custom matcher have a psychological effect on test coverage ! A matcher is a place to share assertion code. Adding thorough assertions seems legitimate, contrary to repeating them inline.</p>
+
+<h3>Avoids mocking</h3>
+
+<p>We often resort to mocks instead of side effect tests because it&rsquo;s a lot shorter. A custom matcher encapsulates the assertion code. It makes it OK to use a few assertions to test for side effects, which is usually preferable to mocking.</p>
+
+<p>For example, here is a matcher that checks that our remote service API received the correct calls, without doing any mocking.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">RSpec</span><span class="p">:</span><span class="ss">:Matchers</span><span class="o">.</span><span class="n">define</span> <span class="ss">:have_received_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">cart</span><span class="p">,</span> <span class="n">credentials</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">api</span><span class="o">|</span>
+</span><span class='line'>    <span class="ow">not</span> <span class="n">api</span><span class="o">.</span><span class="n">nil?</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="n">api</span><span class="o">.</span><span class="n">login</span> <span class="o">==</span> <span class="n">credentials</span><span class="o">.</span><span class="n">email</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="n">api</span><span class="o">.</span><span class="n">password</span> <span class="o">==</span> <span class="n">credentials</span><span class="o">.</span><span class="n">password</span> <span class="ow">and</span>
+</span><span class='line'>    <span class="n">cart</span><span class="o">.</span><span class="n">lines</span><span class="o">.</span><span class="n">all?</span> <span class="k">do</span> <span class="o">|</span><span class="n">cart_line</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">cart</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">cart_line</span><span class="o">.</span><span class="n">item</span><span class="o">.</span><span class="n">remote_id</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">failure_message</span> <span class="k">do</span> <span class="o">|</span><span class="n">api</span><span class="o">|</span>
+</span><span class='line'>    <span class="s2">&quot;expected </span><span class="si">#{</span><span class="n">api</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> to have received order </span><span class="si">#{</span><span class="n">cart</span><span class="o">.</span><span class="n">inspect</span><span class="si">}</span><span class="s2"> from </span><span class="si">#{</span><span class="n">credentials</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Care about error messages</h2>
+
+<p>Providing good error messages is a small effort compared to unit testing in general. At the same time, it speeds up the feedback loop, both while coding and during later maintenance. Imagine how easier it would be to analyze and fix regressions if they all had clear error messages !</p>
+
+<p>Spread the word ! Leave comments in code reviews, demo the practice to your pair buddy. Prepare a team coding dojo about custom assertion matchers. Discuss the issue in a retro !</p>
+
+<p><img src="../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/20-bad-excuses-for-not-writing-unit-tests/">20 Bad Excuses for Not Writing Unit Tests</a></h1>
     
     
@@ -1453,178 +1668,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/my-ultimate-jira-personal-kanban/">My Ultimate Jira Personal Kanban</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-03-03T06:46:00+01:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>A few years ago, I <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">wrote</a> about how I started to use <a href="https://www.atlassian.com/software/jira">Jira</a> as my <a href="http://www.personalkanban.com/pk/">personal Kanban</a> board <a href="https://twitter.com/work_at_murex">at work</a>. A lot of things have changed since then, which brought me to update my board and make it even more productive !</p>
-
-<h2>The context</h2>
-
-<p>During the almost 18 months since I wrote this first post, a lot of things have changed in my daily work (hopefully : I&rsquo;m not doing the same thing again and again !). Essentially, I got involved in more projects, some of which involve people from all around the company and some of which don&rsquo;t require any code to be written. For example, I&rsquo;m now engaged in our Agile Community of Practice, where I sometimes contribute content.</p>
-
-<p>Here are the consequences on my work :</p>
-
-<ul>
-<li>I have more tasks to deal with, not necessarily more work, but still more tasks</li>
-<li>I have more sources of tasks : tasks can come from any of the projects I am involved in</li>
-<li>I have more tasks depending on other people, and that are in a <code>WAITING</code> state meanwhile</li>
-</ul>
-
-
-<p>I had to adapt my personal Kanban to this new workload.</p>
-
-<h2>The changes</h2>
-
-<p>As I explained in <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">the previous description of my Jira Personal Kanban</a>, I am using a custom project and Kanban board to aggregate all my tasks from various projects, in order to see everything in a single unique place. Here are the changes I&rsquo;ve made since, so if you haven&rsquo;t yet, it might be a good idea to read <a href="/bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/">that previous version</a> first.</p>
-
-<h3>Quick filters</h3>
-
-<p>In his post <a href="http://paulgraham.com/makersschedule.html">Maker&rsquo;s Schedule, Manager&rsquo;s Schedule</a> Paul Graham explained the challenge of having a lot of non-programming work to do everyday for programmers. He then advises to use slots for different activities during the day, in order to keep uninterrupted chunks of time to do creative work. To apply this technique, I reserved &lsquo;Unbookable except for X&rsquo; slots in my calendar everyday.</p>
-
-<p>I had previously been using Swim-lanes to track work from different projects. This turned out not to scale very well to more projects : it made the board messy, and I kept being distracted by all these other tasks. I ditched all the Swim-lanes (not exactly, I kept one for urgent issues only). Instead of Swim-lanes for tracking projects, I now use Quick Filters. I created such filters as <code>With Project X</code> and <code>Without Project X</code>. During the day, when I want to focus on Project X, I use quick filters to only show tasks related to it.</p>
-
-<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/quick-filters.jpg" alt="Quick filters screen capture" /></p>
-
-<h3>Day markers</h3>
-
-<p>I have a daily routine of checking what&rsquo;s on my plate and deciding what I&rsquo;d like to achieve during the day (picking the right time to do this is an art in itself). In order to keep track of this, I use special day marker tasks : as <code>^^^ TODAY ^^^</code>, <code>^^^ TOMORROW ^^^</code> and <code>^^^ THIS WEEK ^^^</code>. This tasks are always in my <code>TODO</code> column, and will never be completed. I move them around to mark what I expect to finish at different time horizon. Ex : everything above <code>^^^ TODAY ^^^</code> should be finished before the end of the day.</p>
-
-<p>Again, this helps me to focus on today&rsquo;s activities, and to do just enough prioritization.</p>
-
-<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/day-markers.jpg" alt="Day marker tasks screen capture" /></p>
-
-<p>One last thing here, you&rsquo;ll have noticed the Epic for these special tasks. It&rsquo;s a way to identify them in JQL queries.</p>
-
-<h3>WAITING flag</h3>
-
-<p>Quite often, you have tasks waiting for someone else. That&rsquo;s surely not the most efficient situation, but once you leave the comfort of your focused dev team, handoffs are often the norm (at least until the lean principles spread in every part of the business). Status of waiting tasks is worth checking regularly, but very certainly not many times per day !</p>
-
-<p>Again, leaving them in my board created useless distraction. I have now taken the habit of renaming the tasks I&rsquo;m waiting for with a <code>[WAITING] ...</code> prefix. On top of that, I created 2 quick filters <code>WAITING</code> and <code>Without WAITING</code> to quickly check and then forget about waiting tasks.</p>
-
-<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/waiting-tasks.jpg" alt="Waiting tasks screen capture" /></p>
-
-<h3>Watching tasks I&rsquo;m not the assignee of</h3>
-
-<p>On some occasions, we might be two of us working on the same task, or I might want to keep an eye on a task to know if something is needed from me. As there is only a single possible assignee in Jira, I changed my global filters to also include tasks with a custom label <code>pbourgau-watch</code>. Any time I want to add a task in my board, I just add this label to it.</p>
-
-<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/pbourgau-watch.jpg" alt="Screen capture of a task description I'm not the assignee of" /></p>
-
-<h3>Getting the Lean reports back</h3>
-
-<p>In order not to have too many old tasks in my board, I used to filter out old items in the global filter. This did the job, but at the cost of invalidating the lean reports (cumulative flow and control charts). In order to get these back, I removed this constraint from the global filter, and created yet another quick filter <code>Without Old</code> which I almost always keep on.</p>
-
-<p><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/control-chart.jpg" alt="Control chart screen capture" /></p>
-
-<h2>Scripts</h2>
-
-<h4>Global Filter</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">project</span> <span class="k">in</span> <span class="p">(</span><span class="n">POP</span><span class="p">,</span> <span class="n">POPABTODO</span><span class="p">,</span> <span class="ss">&quot;Development Engineering Program&quot;</span><span class="p">,</span> <span class="n">COPA</span><span class="p">)</span>
-</span><span class='line'><span class="k">AND</span> <span class="k">type</span> <span class="o">!=</span> <span class="n">Epic</span>
-</span><span class='line'><span class="k">AND</span> <span class="p">(</span><span class="n">Assignee</span> <span class="o">=</span> <span class="n">pbourgau</span> <span class="k">OR</span>
-</span><span class='line'>    <span class="n">Co</span><span class="o">-</span><span class="n">Assignees</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="p">)</span> <span class="k">OR</span>
-</span><span class='line'>    <span class="n">mentors</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="p">)</span> <span class="k">OR</span>
-</span><span class='line'>    <span class="n">labels</span> <span class="k">in</span> <span class="p">(</span><span class="n">pbourgau</span><span class="o">-</span><span class="n">watch</span><span class="p">))</span>
-</span><span class='line'><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">Rank</span> <span class="k">ASC</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Quick Filters</h4>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- With &quot;Project X&quot; + Day marker tasks (Epic link ...) + tasks containing &quot;BRANDING&quot;</span>
-</span><span class='line'><span class="n">project</span> <span class="o">=</span> <span class="ss">&quot;Project X&quot;</span> <span class="k">or</span> <span class="ss">&quot;Epic Link&quot;</span> <span class="o">=</span> <span class="n">POPABTODO</span><span class="o">-</span><span class="mi">410</span> <span class="k">or</span> <span class="n">summary</span> <span class="o">~</span> <span class="ss">&quot;BRANDING&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- Without &quot;Project X&quot;</span>
-</span><span class='line'><span class="n">project</span> <span class="o">!=</span> <span class="ss">&quot;Project X&quot;</span> <span class="k">and</span> <span class="n">summary</span>  <span class="o">!~</span> <span class="ss">&quot;BRANDING&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- Without Old</span>
-</span><span class='line'><span class="n">status</span> <span class="k">not</span> <span class="k">in</span> <span class="p">(</span><span class="n">DONE</span><span class="p">,</span><span class="n">CLOSED</span><span class="p">)</span> <span class="k">OR</span> <span class="n">updated</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">14</span><span class="n">d</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- WAITING</span>
-</span><span class='line'><span class="n">summary</span> <span class="o">~</span> <span class="s1">&#39;WAITING&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- Without WAITING</span>
-</span><span class='line'><span class="n">summary</span> <span class="o">!~</span> <span class="s1">&#39;WAITING&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>Things that did not change</h4>
-
-<p>I still use a WIP limit on the In Progress column, display the Epic in on the cards and special use custom color coding for tasks :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="c1">-- Tasks with an imminent due date become red</span>
-</span><span class='line'><span class="n">duedate</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="n">d</span> <span class="k">or</span> <span class="n">priority</span> <span class="o">=</span> <span class="ss">&quot;1-Very High&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1">-- Tasks with a due date are orange</span>
-</span><span class='line'><span class="n">duedate</span> <span class="k">is</span> <span class="k">not</span> <span class="n">EMPTY</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>The result</h2>
-
-<p>Overall, this is how my board looks like :</p>
-
-<p><a href="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board.jpg"><img src="../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board-small.jpg" alt="Full board screen capture" /></a></p>
-
-<p>I guess I&rsquo;m a kind of personal productivity geek &hellip; but I believe it&rsquo;s a skill of utter importance for developers, especially when they get a bit of experience and are not fed ready made tasks to do.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/6/">&larr; Older</a>
@@ -1705,6 +1748,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/frequently-asked-questions-about-the-20-hours-of-code-katas/">Frequently asked questions about the 20 hours of Code Katas</a>
+      </li>
+    
+      <li class="post">
         <a href="/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/">Why 20 hours of code kata are so effective for learning new languages</a>
       </li>
     
@@ -1718,10 +1765,6 @@
     
       <li class="post">
         <a href="/coding-dojo-troubleshooting/">Coding Dojo Troubleshooting</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-start-a-team-coding-dojo-randori-today/">How to start a team coding dojo Randori today</a>
       </li>
     
   </ul>
