@@ -58,7 +58,9 @@ Others already spoke about the dangers of mocks :
 In [this series of posts](/blog/categories/how-to-avoid-mocks-series/), I'll go through the details of the different techniques I used to remove mocks. Here is my plan :
 
 1.  [Careless Mocking considered Harmful](/careless-mocking-considered-harmful/)
-2.  Small scale techniques to avoid mocks
+2.  How Immutable Value Objects fight mocks
+3.  Immutable Value Objects vs Mocks : Fizz Buzz
+4.  Other small scale techniques to avoid mocks : Data Builders and Test Matchers
 3.  Large scale techniques to avoid mocks
 4.  Mocking in special contexts like legacy and dynamically or statically typed languages
 

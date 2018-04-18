@@ -11,7 +11,6 @@ categories:
  - 20-hours-code-kata-series
 keywords: "Learning, The first 20 hours, 20 hours of code katas, Personal Productivity, Coding Dojo, Code Kata, TDD, Test Driven Development, FAQ, Frequently Asked Questions"
 description: "Answers to frequently asked questions about the 20 hours of Code Kata. Ideas to expand the practice to other contexts." 
-published: false
 ---
 In my [previous posts](/blog/categories/20-hours-code-kata-series/), I explained how to use the 20 hours of Code Katas technique to learn new languages. If you did not read these yet, start by [the beginning](/how-to-learn-a-programming-language-in-just-20-hours/).
 
