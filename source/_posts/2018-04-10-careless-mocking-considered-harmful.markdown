@@ -11,7 +11,6 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking"
 description: "The problems I got into on a side project after using too much mocking. This is the first post of a series about how to avoid mocks."
-published: false
 ---
 > 💡 Mock hell : when excessive use of test mocks makes [refactoring](https://en.wikipedia.org/wiki/Code_refactoring) extremely slow or difficult.
 
