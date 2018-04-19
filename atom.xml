@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-04-12T06:52:18+02:00</updated>
+  <updated>2018-04-19T06:08:22+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Careless Mocking Considered Harmful]]></title>
+    <link href="http://philippe.bourgau.net/careless-mocking-considered-harmful/"/>
+    <updated>2018-04-19T13:13:00+02:00</updated>
+    <id>http://philippe.bourgau.net/careless-mocking-considered-harmful</id>
+    <category term="how-to-avoid-mocks-series" /><category term="mocking" /><category term="programming" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<blockquote><p>💡 Mock hell : when excessive use of test mocks makes <a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a> extremely slow or difficult.</p></blockquote>
+
+<p>A few years ago, I managed to get a side project out of mock hell. Since then, I&rsquo;ve been using what I learned to avoid mocks in all the projects I&rsquo;ve worked on. This is the start of a series of posts about my mock-avoiding techniques.</p>
+
+<p><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg" alt="A tag &quot;Mocks don't rock !&quot;" /></p>
+
+<h2>Escape from Mock Hell</h2>
+
+<p>Between 2010 and 2014, I was working on a side project I called <a href="https://github.com/philou/mes-courses">http://mes-courses.fr</a>. Which actually means &ldquo;my house shopping&rdquo; in English. I wanted people to be able to do their house shopping in 5 minutes, by using a better UI for online groceries. I was using Ruby, and I had just read <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1523422024&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a>. I got a bit too excited with mocking, and was using it way too much.</p>
+
+<p>I&rsquo;d been practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> for more than 5 years and I was expecting great results with a language like Ruby. After a few months though, I could feel that something was not going as well as it should. The test initialization code was getting longer and longer, as it included a lot of mock setup. This made the tests more complex and less readable. It also made them unreliable, as it was not rare for all my unit tests to pass while the system was not working. I was taking the habit of running my end to end test more and more often. I was also losing a lot of time maintaining the mock setup code in line with the real classes. Mocks also tricked me into the bad practice of keeping a 1 to 1 mapping between code and test files. That again increased my maintenance burden when moving code from one file to another.</p>
+
+<p>It reached a point where I could not take it anymore. All these problems were pointing at mocks, so I tried to remove them from a test file. Here are the techniques I ended up using to remove them mocks : </p>
+
+<ul>
+<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value Objects</a></li>
+<li><a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a></li>
+<li><a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Test Matchers</a></li>
+<li><a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal architecture</a></li>
+<li><a href="https://www.martinfowler.com/articles/mocksArentStubs.html">In-memory fakes</a></li>
+<li><a href="https://wincent.com/wiki/Proxy_(test_double">Proxy doubles</a>)</li>
+</ul>
+
+
+<p>The end result was beyond my hopes, as my problems almost magically disappeared. The code got simpler, I became a lot more confident about my unit tests, and they got easier to maintain. As an illustration, here is an excerpts from the diff of a rails controller test file which went through this mock diet.</p>
+
+<p><a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split"><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg" alt="A screen capture of a Github diff showing a test file going on a mock diet" /></a></p>
+
+<h2>What&rsquo;s the long term risk ?</h2>
+
+<p>Basically, excessive mocking arms the maintainability of the tests. Here is what would have happened if I&rsquo;d done nothing. Tests would have become so painful to maintain that I would have started to ignore or delete them. As coverage would decrease, more and more code would become untested. That&rsquo;s exactly Michael Feathers&#8217; definition of Legacy Code :</p>
+
+<blockquote><p>Legacy Code is code without tests. <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1523422039&amp;sr=1-1&amp;keywords=legacy+code">Michael Feathers</a></p></blockquote>
+
+<p>To summarize, excessive use of mocks leads to legacy code ! As most of us have learned the hard way, the further a system drifts into legacy, the lower the productivity.</p>
+
+<blockquote><p>💡 Excessive use of mocks leads to legacy code</p></blockquote>
+
+<h2>Next posts</h2>
+
+<p>Others already spoke about the dangers of mocks :</p>
+
+<ul>
+<li>Uncle Bob through <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">his blog</a></li>
+<li>DHH in the <a href="https://www.google.fr/search?q=is+TDD+dead&amp;safe=active&amp;tbm=vid">&ldquo;Is TDD Dead&rdquo; series</a></li>
+</ul>
+
+
+<p>In <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">this series of posts</a>, I&rsquo;ll go through the details of the different techniques I used to remove mocks. Here is my plan :</p>
+
+<ol>
+<li><a href="http://philippe.bourgau.net/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
+<li>How Immutable Value Objects fight mocks</li>
+<li>Immutable Value Objects vs Mocks : Fizz Buzz</li>
+<li>Other small scale techniques to avoid mocks : Data Builders and Test Matchers</li>
+<li>Large scale techniques to avoid mocks</li>
+<li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
+</ol>
+
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Frequently asked questions about the 20 hours of Code Katas]]></title>
@@ -1289,58 +1359,6 @@
 <p>Unfortunately, there is no easy way to prove the long term productivity of XP. We cannot split the world to run the same project with and without XP. Another difficulty is that after a years of XP, work remains smooth and sustainable. Nothing like crunch mode. People used to the hero culture are hard to convince that they can be more productive by doing less.</p>
 
 <p>Hopefully, lean theory and gut feeling of programmers who have switched to XP can back up my claims.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Are Software Developers Overworked or Undecided ?]]></title>
-    <link href="http://philippe.bourgau.net/are-software-developers-overworked-or-undecided/"/>
-    <updated>2017-10-20T06:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/are-software-developers-overworked-or-undecided</id>
-    <category term="agile" /><category term="lean" />
-    <content type="html"><![CDATA[<p>During the last 15 years, I&rsquo;ve worked in many different teams. Every team has its own way of working. I&rsquo;ve been at places where everyone seemed busy all the time. Did we deliver more ? No. Often quite the opposite ! The most productive teams I&rsquo;ve been in used to do no more than 6 hours of solid work every day &hellip;</p>
-
-<p><img src="../imgs/2017-10-20-are-software-developers-overworked-or-undecided/dev-in-mouse-wheel.jpg" alt="A developer in a mouse wheel" /></p>
-
-<h2>What&rsquo;s the reason behind that ?</h2>
-
-<p>In Lean Management theory, lead time is the time it takes to get a feature from customer request to delivery. Here is a graph that draws typical lead time over factory load (1 &ndash; idle time percentage).</p>
-
-<p><img src="../imgs/2017-10-20-are-software-developers-overworked-or-undecided/cycle-time-vs-utilization.jpg" alt="A graph of the lead time versus utilization" /></p>
-
-<p>What does all this tell us ? </p>
-
-<p>When utilization becomes too high, people start multitasking. As multitasking increases, productivity drops, delaying projects. As a consequence, products are late to hit the market. On the other side, a low utilization means paying people to be idle. That might put any company out of business. Factory managers&#8217; best practice is to limit Work In Progress by loading their assembly lines around 80%. Not too high to avoid over-utilization, but not too low to avoid wasting time.</p>
-
-<p>Every software product is new product development (<a href="https://www.amazon.com/Agile-Iterative-Development-Managers-Guide/dp/0131111558/ref=sr_1_1?ie=UTF8&amp;qid=1509112918&amp;sr=8-1&amp;keywords=larman+a+manager%27s+guide">Craig Larman</a>). As such, they are way less predictable than any assembly line. It means we need more slack to absorb unexpected variations (<a href="https://www.amazon.com/Principles-Product-Development-Flow-Generation-ebook/dp/B007TKU0O0/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1509112980&amp;sr=1-1&amp;keywords=reinertsen+flow">Donald G. Reinertsen</a>). This tells us that we should have more than 20% of slack in our schedules and plannings. Unfortunately, overloading and multitasking is a wide spread disease in the software world.</p>
-
-<h2>How to get rid of task switching ?</h2>
-
-<p>The answer is obvious : prioritization ! Only work on the most important item at a time. It&rsquo;s not because we start everything now that they&rsquo;ll sell them earlier ! It&rsquo;s quite the opposite in fact !</p>
-
-<p><img src="../imgs/2017-10-20-are-software-developers-overworked-or-undecided/concurrent-vs-sequential.jpg" alt="A comparision of sequential and concurrent product development" /></p>
-
-<p>Here is another advantage to prioritization. It decreases the time between start and completion of a feature. This, in turn, decreases the likelihood of building something obsolete.</p>
-
-<p>One last thing about prioritization &hellip;</p>
-
-<p><img src="../imgs/2017-10-20-are-software-developers-overworked-or-undecided/Cost-of-Delay-distribution.png" alt="A graph of values of features in decreasing order" /><div class="image-credits"><a href="http://blackswanfarming.com/experience-report-maersk-line/">&ldquo;Black Swan Farming Using Cost of Delay&rdquo;</a> Joshua J.Arnold and Özlem Yüce</div></p>
-
-<p>This graph tells us that a small fraction of the features bring most of the value, while a very large portion of the features bring almost no value &hellip; As puzzling as this graph may be, it&rsquo;s also a wonderful opportunity. If we manage to focus one the most valuable features only, we can save a ton of work, while being more effective ! <a href="http://theleanstartup.com/">Lean startup</a> and market research are techniques to identify these features up-front.</p>
-
-<blockquote><p>💡 You don&rsquo;t need more time, you just need to decide ! Seth Godin</p></blockquote>
-
-<h2>Culture issue</h2>
-
-<p>Becoming more effective by banning overtime, enforcing monotasking and being serious about prioritizing ? These ideas are heresy in some workplaces ! Have a look around you. Are people overworked ? Are they fire fighting all the time ? Are they drowning in multitasking ? If it&rsquo;s the case, I bet there&rsquo;s a wide scale lack of prioritization issue at your workplace.</p>
-
-<p>People at the top of the company need to control the overall WIP. If they don&rsquo;t, multitasking will catch you up, however you try to escape it. Multitasking can be obvious e.g., when we need to work on different projects at the same time. It can also sneak in as maintenance, or unrelated meetings marathons. Another symptom is when developers need to take on &ldquo;submarine&rdquo; refactoring initiatives. From experience, that&rsquo;s often the case in sales driven companies. Where any customer request is agreed and sold, regardless of the company&rsquo;s capacity.</p>
-
-<blockquote><p>💡 Require​ ​everyone​ ​in​ ​product​ ​and​ ​engineering​ ​to​ ​read​ ​​Principles​ ​of​ ​Product​ ​Development​ ​Flow by Donald Reinertsen. <a href="https://hackernoon.com/how-do-we-go-faster-ed51207952a8">John Cutler</a></p></blockquote>
-
-<p>There&rsquo;s an interesting parallel in the Stephen R. Covey&rsquo;s <a href="https://www.amazon.com/7-Habits-Highly-Effective-People/dp/0935721800/ref=sr_1_3?ie=UTF8&amp;qid=1509113465&amp;sr=8-3&amp;keywords=7+habits+of">7 Habits of Highly Effective People</a>. He says we should drop the urgent and not important for the important and not urgent. In software term, it means spending time on important and long term work rather than short term stuff. We should do more refactoring, hiring, training and continuous improvement. We should stoping building features we are not sure of the value.</p>
-
-<p>Let&rsquo;s summarize. Here are my advices to work less and be more productive. Enforce hard WIP limits at all levels. Do serious prioritization. Provide enough slack. In my <a href="http://philippe.bourgau.net/sustainable-productivity-in-extreme-programming/">next post</a>, I&rsquo;ll show how XP addresses these issues.</p>
 ]]></content>
   </entry>
   

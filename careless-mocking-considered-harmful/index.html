@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Careless Mocking Considered Harmful - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="The problems I got into on a side project after using too much mocking. This is the first post of a series about how to avoid mocks.">
+
+  
+  <meta name="keywords" content="Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/careless-mocking-considered-harmful/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-me">About Me</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Careless Mocking Considered Harmful</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-04-19T13:13:00+02:00" pubdate data-updated="true">Apr 19<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>💡 Mock hell : when excessive use of test mocks makes <a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a> extremely slow or difficult.</p></blockquote>
+
+<p>A few years ago, I managed to get a side project out of mock hell. Since then, I&rsquo;ve been using what I learned to avoid mocks in all the projects I&rsquo;ve worked on. This is the start of a series of posts about my mock-avoiding techniques.</p>
+
+<p><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg" alt="A tag &quot;Mocks don't rock !&quot;" /></p>
+
+<h2>Escape from Mock Hell</h2>
+
+<p>Between 2010 and 2014, I was working on a side project I called <a href="https://github.com/philou/mes-courses">http://mes-courses.fr</a>. Which actually means &ldquo;my house shopping&rdquo; in English. I wanted people to be able to do their house shopping in 5 minutes, by using a better UI for online groceries. I was using Ruby, and I had just read <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1523422024&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a>. I got a bit too excited with mocking, and was using it way too much.</p>
+
+<p>I&rsquo;d been practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> for more than 5 years and I was expecting great results with a language like Ruby. After a few months though, I could feel that something was not going as well as it should. The test initialization code was getting longer and longer, as it included a lot of mock setup. This made the tests more complex and less readable. It also made them unreliable, as it was not rare for all my unit tests to pass while the system was not working. I was taking the habit of running my end to end test more and more often. I was also losing a lot of time maintaining the mock setup code in line with the real classes. Mocks also tricked me into the bad practice of keeping a 1 to 1 mapping between code and test files. That again increased my maintenance burden when moving code from one file to another.</p>
+
+<p>It reached a point where I could not take it anymore. All these problems were pointing at mocks, so I tried to remove them from a test file. Here are the techniques I ended up using to remove them mocks : </p>
+
+<ul>
+<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value Objects</a></li>
+<li><a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a></li>
+<li><a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Test Matchers</a></li>
+<li><a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal architecture</a></li>
+<li><a href="https://www.martinfowler.com/articles/mocksArentStubs.html">In-memory fakes</a></li>
+<li><a href="https://wincent.com/wiki/Proxy_(test_double">Proxy doubles</a>)</li>
+</ul>
+
+
+<p>The end result was beyond my hopes, as my problems almost magically disappeared. The code got simpler, I became a lot more confident about my unit tests, and they got easier to maintain. As an illustration, here is an excerpts from the diff of a rails controller test file which went through this mock diet.</p>
+
+<p><a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split"><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg" alt="A screen capture of a Github diff showing a test file going on a mock diet" /></a></p>
+
+<h2>What&rsquo;s the long term risk ?</h2>
+
+<p>Basically, excessive mocking arms the maintainability of the tests. Here is what would have happened if I&rsquo;d done nothing. Tests would have become so painful to maintain that I would have started to ignore or delete them. As coverage would decrease, more and more code would become untested. That&rsquo;s exactly Michael Feathers&#8217; definition of Legacy Code :</p>
+
+<blockquote><p>Legacy Code is code without tests. <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1523422039&amp;sr=1-1&amp;keywords=legacy+code">Michael Feathers</a></p></blockquote>
+
+<p>To summarize, excessive use of mocks leads to legacy code ! As most of us have learned the hard way, the further a system drifts into legacy, the lower the productivity.</p>
+
+<blockquote><p>💡 Excessive use of mocks leads to legacy code</p></blockquote>
+
+<h2>Next posts</h2>
+
+<p>Others already spoke about the dangers of mocks :</p>
+
+<ul>
+<li>Uncle Bob through <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">his blog</a></li>
+<li>DHH in the <a href="https://www.google.fr/search?q=is+TDD+dead&amp;safe=active&amp;tbm=vid">&ldquo;Is TDD Dead&rdquo; series</a></li>
+</ul>
+
+
+<p>In <a href="/blog/categories/how-to-avoid-mocks-series/">this series of posts</a>, I&rsquo;ll go through the details of the different techniques I used to remove mocks. Here is my plan :</p>
+
+<ol>
+<li><a href="/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
+<li>How Immutable Value Objects fight mocks</li>
+<li>Immutable Value Objects vs Mocks : Fizz Buzz</li>
+<li>Other small scale techniques to avoid mocks : Data Builders and Test Matchers</li>
+<li>Large scale techniques to avoid mocks</li>
+<li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
+</ol>
+
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-04-19T13:13:00+02:00" pubdate data-updated="true">Apr 19<span>th</span>, 2018</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/how-to-avoid-mocks-series/'>how-to-avoid-mocks-series</a>, <a class='category' href='/blog/categories/mocking/'>mocking</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/careless-mocking-considered-harmful/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/careless-mocking-considered-harmful/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/frequently-asked-questions-about-the-20-hours-of-code-katas/" title="Previous Post: Frequently asked questions about the 20 hours of Code Katas">&laquo; Frequently asked questions about the 20 hours of Code Katas</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1><a href="/about-me">About Me</a></h1>
+  <p>Philippe Bourgau, eXtreme Programmer and Coach, pushing the limits of XP</p>
+  <p>I build high performing and sustainable teams by adapting XP to their unique challenges and context.</p>
+  <ul>
+    <li><a href="/about-me">Read more ...</a></li>
+    <li><a href="http://twitter.com/pbourgau">Twitter</a></li>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin</a></li>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="http://philous-planning-poker.herokuapp.com">Philou's Planning Poker</a> : Better poker estimates for remote teams !</li>
+    <li><a href="/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a>
+      </li>
+    
+      <li class="post">
+        <a href="/frequently-asked-questions-about-the-20-hours-of-code-katas/">Frequently asked questions about the 20 hours of Code Katas</a>
+      </li>
+    
+      <li class="post">
+        <a href="/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/">Why 20 hours of code kata are so effective for learning new languages</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-learn-a-programming-language-in-just-20-hours/">How to learn a programming language in just 20 hours</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-get-the-max-out-of-your-team-coding-dojo/">How to get the max out of your Team Coding Dojo ?</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/careless-mocking-considered-harmful/';
+        var disqus_url = 'http://philippe.bourgau.net/careless-mocking-considered-harmful/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

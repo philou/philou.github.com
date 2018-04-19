@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-04-12T06:52:18+02:00</updated>
+  <updated>2018-04-19T06:08:22+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Careless Mocking Considered Harmful]]></title>
+    <link href="http://philippe.bourgau.net/careless-mocking-considered-harmful/"/>
+    <updated>2018-04-19T13:13:00+02:00</updated>
+    <id>http://philippe.bourgau.net/careless-mocking-considered-harmful</id>
+    <content type="html"><![CDATA[<blockquote><p>💡 Mock hell : when excessive use of test mocks makes <a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a> extremely slow or difficult.</p></blockquote>
+
+<p>A few years ago, I managed to get a side project out of mock hell. Since then, I&rsquo;ve been using what I learned to avoid mocks in all the projects I&rsquo;ve worked on. This is the start of a series of posts about my mock-avoiding techniques.</p>
+
+<p><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg" alt="A tag &quot;Mocks don't rock !&quot;" /></p>
+
+<h2>Escape from Mock Hell</h2>
+
+<p>Between 2010 and 2014, I was working on a side project I called <a href="https://github.com/philou/mes-courses">http://mes-courses.fr</a>. Which actually means &ldquo;my house shopping&rdquo; in English. I wanted people to be able to do their house shopping in 5 minutes, by using a better UI for online groceries. I was using Ruby, and I had just read <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1523422024&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a>. I got a bit too excited with mocking, and was using it way too much.</p>
+
+<p>I&rsquo;d been practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> for more than 5 years and I was expecting great results with a language like Ruby. After a few months though, I could feel that something was not going as well as it should. The test initialization code was getting longer and longer, as it included a lot of mock setup. This made the tests more complex and less readable. It also made them unreliable, as it was not rare for all my unit tests to pass while the system was not working. I was taking the habit of running my end to end test more and more often. I was also losing a lot of time maintaining the mock setup code in line with the real classes. Mocks also tricked me into the bad practice of keeping a 1 to 1 mapping between code and test files. That again increased my maintenance burden when moving code from one file to another.</p>
+
+<p>It reached a point where I could not take it anymore. All these problems were pointing at mocks, so I tried to remove them from a test file. Here are the techniques I ended up using to remove them mocks : </p>
+
+<ul>
+<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value Objects</a></li>
+<li><a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a></li>
+<li><a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Test Matchers</a></li>
+<li><a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal architecture</a></li>
+<li><a href="https://www.martinfowler.com/articles/mocksArentStubs.html">In-memory fakes</a></li>
+<li><a href="https://wincent.com/wiki/Proxy_(test_double">Proxy doubles</a>)</li>
+</ul>
+
+
+<p>The end result was beyond my hopes, as my problems almost magically disappeared. The code got simpler, I became a lot more confident about my unit tests, and they got easier to maintain. As an illustration, here is an excerpts from the diff of a rails controller test file which went through this mock diet.</p>
+
+<p><a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split"><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg" alt="A screen capture of a Github diff showing a test file going on a mock diet" /></a></p>
+
+<h2>What&rsquo;s the long term risk ?</h2>
+
+<p>Basically, excessive mocking arms the maintainability of the tests. Here is what would have happened if I&rsquo;d done nothing. Tests would have become so painful to maintain that I would have started to ignore or delete them. As coverage would decrease, more and more code would become untested. That&rsquo;s exactly Michael Feathers' definition of Legacy Code :</p>
+
+<blockquote><p>Legacy Code is code without tests. <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1523422039&amp;sr=1-1&amp;keywords=legacy+code">Michael Feathers</a></p></blockquote>
+
+<p>To summarize, excessive use of mocks leads to legacy code ! As most of us have learned the hard way, the further a system drifts into legacy, the lower the productivity.</p>
+
+<blockquote><p>💡 Excessive use of mocks leads to legacy code</p></blockquote>
+
+<h2>Next posts</h2>
+
+<p>Others already spoke about the dangers of mocks :</p>
+
+<ul>
+<li>Uncle Bob through <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">his blog</a></li>
+<li>DHH in the <a href="https://www.google.fr/search?q=is+TDD+dead&amp;safe=active&amp;tbm=vid">&ldquo;Is TDD Dead&rdquo; series</a></li>
+</ul>
+
+
+<p>In <a href="/blog/categories/how-to-avoid-mocks-series/">this series of posts</a>, I&rsquo;ll go through the details of the different techniques I used to remove mocks. Here is my plan :</p>
+
+<ol>
+<li><a href="/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
+<li>How Immutable Value Objects fight mocks</li>
+<li>Immutable Value Objects vs Mocks : Fizz Buzz</li>
+<li>Other small scale techniques to avoid mocks : Data Builders and Test Matchers</li>
+<li>Large scale techniques to avoid mocks</li>
+<li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
+</ol>
+
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Rails teaches us about building platforms and frameworks]]></title>
@@ -321,177 +390,6 @@
 
 
 <p>These rules have served me well, particularly in my side projects, where I don&rsquo;t have a lot of time. What about you ? Do you have your own testing rules ?</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Don't stick to TDD's Red-Green-Refactor loop to the letter]]></title>
-    <link href="http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/"/>
-    <updated>2017-06-28T15:52:00+02:00</updated>
-    <id>http://philippe.bourgau.net/dont-stick-to-tdds-red-green-refactor-loop-to-the-letter</id>
-    <content type="html"><![CDATA[<p>As long as you are writing your tests before your code and doing regular refactoring, you are doing <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> !</p>
-
-<p>The Red &ndash; Green &ndash; Refactor loop is useful to introduce TDD to new developers. Different loops can be more effective in real world situation.</p>
-
-<p>The Red &ndash; Green &ndash; Refactor loop is not a dogma !</p>
-
-<p><a href="http://www.natpryce.com/"><img src="../imgs/2017-06-28-dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/red-green-refactor.jpg" alt="The famous red, green, refactor TDD loop" /></a></p>
-
-<h2>Refactor &ndash; Red &ndash; Green</h2>
-
-<p>When I work on a story, I very often keep a TODO list next to my desk. I use it to keep track of the next steps, the edge cases to test, the code smells and refactorings to do.</p>
-
-<p>When I get to the end of the story, all that remains of this list is a few refactorings. Very often, I don&rsquo;t do them !</p>
-
-<p>With the feature working, doing these refactorings feels like violation of <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a>. Next time we&rsquo;ll have to work on this part of the code, we&rsquo;ll have a story to serve as guide to which refactorings to do.</p>
-
-<p>The same thing is effective at the unit test scale. It&rsquo;s easier to refactor when you know the test you want to add. Refactor to make this test easy to write !</p>
-
-<p>Here is an example with <a href="https://en.wikipedia.org/wiki/Fizz_buzz">Fizz Buzz</a></p>
-
-<p>```java
-static int fizzBuzz(int number) {
-   return number;
-}</p>
-
-<p>@Test public void
-it_is_1_for_1() {
-   assertThat(fizzBuzz(1)).isEqualTo(1);
-}</p>
-
-<p>@Test public void
-it_is_2_for_2() {
-   assertThat(fizzBuzz(2)).isEqualTo(2);
-}
-```</p>
-
-<p>Here is the test I&rsquo;d like to add. </p>
-
-<p><code>java
-@Test public void
-it_is_Fizz_for_3() {
-   assertThat(fizzBuzz(3)).isEqualTo("Fizz");
-}
-</code></p>
-
-<p>Unfortunately, fizzBuzz needs to return a String instead of an integer for it to compile. That&rsquo;s when I would refactor before adding the new test.</p>
-
-<p>```java
-static String fizzBuzz(int number) {
-   return Integer.toString(number);
-}</p>
-
-<p>@Test public void
-it_is_1_for_1() {
-   assertThat(fizzBuzz(1)).isEqualTo(&ldquo;1&rdquo;);
-}</p>
-
-<p>@Test public void
-it_is_2_for_2() {
-   assertThat(fizzBuzz(2)).isEqualTo(&ldquo;2&rdquo;);
-}
-```</p>
-
-<p>In the end, this loop is very like the classic TDD loop :</p>
-
-<p><code>
-red-green-refactor-red-green-refactor-red-green-refactor.............
-..........refactor-red-green-refactor-red-green-refactor-red-green...
-</code></p>
-
-<p>A bit more YAGNI, that&rsquo;s all.</p>
-
-<h2>Red &ndash; Better Red &ndash; Green &ndash; Refactor</h2>
-
-<p>A few weeks ago, <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">I wrote about error messages in unit tests</a>. To summarize, extra work on error messages reduces the testing feedback loop.</p>
-
-<p>We can translate this focus on error messages into an extra TDD step. Whatever the TDD loop you are using, you can add this step after the Red step.</p>
-
-<h2><del>Red</del> &ndash; Green &ndash; Refactor &ndash; Red &ndash; Green</h2>
-
-<p>Sometimes, it makes sense to refactor before fixing the test. The idea is to rely on the existing tests to prepare the code to fix the new test in one line.</p>
-
-<p>Let&rsquo;s take our Fizz Buzz example again. Imagine we finished the kata, when we decide to tweak the rules and try Fizz Buzz Bang. We should now print Bang on multiples of 7.</p>
-
-<p>Here is our starting point :</p>
-
-<p>```java
-static String fizzBuzz(int number) {
-   if (multipleOf(number, 3)) {
-      return &ldquo;Fizz&rdquo;;
-   }
-   if (multipleOf(number, 5)) {
-      return &ldquo;Buzz&rdquo;;
-   }
-   if (multipleOf(number, 3*5)) {
-      return &ldquo;FizzBuzz&rdquo;;
-   }   
-   return Integer.toString(number);
-}</p>
-
-<p>&hellip;</p>
-
-<p>@Test public void
-it_is_Bang_for_7() {
-   assertThat(fizzBuzz(7)).isEqualTo(&ldquo;Bang&rdquo;);
-}
-```</p>
-
-<p>I could go through all the hoops, 7, 14, then 3<em>7, 5</em>7 and finally 3<em>5</em>7 &hellip; By now, I should know the music though !</p>
-
-<p>What I would do in this case is :</p>
-
-<ul>
-<li>first to comment the new failing test to get back to green</li>
-<li>refactor the code to prepare for the new code</li>
-<li>uncomment the failing test</li>
-<li>fix it</li>
-</ul>
-
-
-<p>In our example, here is the refactoring I would do</p>
-
-<p>```java
-static String fizzBuzz(int number) {
-   String result = &ldquo;&rdquo;;
-   result += multipleWord(number, 3, &ldquo;Fizz&rdquo;);
-   result += multipleWord(number, 5, &ldquo;Buzz&rdquo;);
-   if (result.isEmpty()) {
-      result = Integer.toString(number);
-   }
-   return result;
-}</p>
-
-<p>private static String multipleWord(int number, int multiple, String word) {
-   if (multipleOf(number, multiple)) {
-      return word;
-   }
-   return &ldquo;&rdquo;;
-}</p>
-
-<p>&hellip;</p>
-
-<p>//@Test public void
-//it_is_Bang_for_7() {
-//   assertThat(fizzBuzz(7)).isEqualTo(&ldquo;Bang&rdquo;);
-//}
-```</p>
-
-<p>From there, fixing the test is dead simple.</p>
-
-<p>In practice I find this loop very useful. At local scale as we saw but it&rsquo;s also a great way to refactor your architecture at larger scale.</p>
-
-<p>One downsize is that if you are not careful, it might lead to over-engineering. Be warned, keep an eye on that !</p>
-
-<p>Last caveat : not all TDD interviewers like this technique &hellip;</p>
-
-<h2>Don&rsquo;t obsess</h2>
-
-<p>It&rsquo;s not because you are not following the Red Green Refactor loop to the letter that you are not doing TDD.</p>
-
-<p>An interesting point is that these variations to the TDD loop are combinable ! Experienced TDD practitioners can jump from one to the other without even noticing.</p>
-
-<p><a href="https://blog.acolyer.org/2017/06/13/a-dissection-of-the-test-driven-development-process-does-it-really-matter-to-test-first-or-test-last/">This paper</a> argues that as long as you write the tests along (before or after) the code, you get the same benefit. That&rsquo;s not going to make me stop writing my tests first, but it is interesting. That would mean that even a Code &ndash; Test &ndash; Refactor loop would be ok if it is fast enough !</p>
 ]]></content>
   </entry>
   

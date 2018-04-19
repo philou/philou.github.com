@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: how-to-avoid-mocks-series | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2018-04-19T06:08:22+02:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Careless Mocking Considered Harmful]]></title>
+    <link href="http://philippe.bourgau.net/careless-mocking-considered-harmful/"/>
+    <updated>2018-04-19T13:13:00+02:00</updated>
+    <id>http://philippe.bourgau.net/careless-mocking-considered-harmful</id>
+    <content type="html"><![CDATA[<blockquote><p>💡 Mock hell : when excessive use of test mocks makes <a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a> extremely slow or difficult.</p></blockquote>
+
+<p>A few years ago, I managed to get a side project out of mock hell. Since then, I&rsquo;ve been using what I learned to avoid mocks in all the projects I&rsquo;ve worked on. This is the start of a series of posts about my mock-avoiding techniques.</p>
+
+<p><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg" alt="A tag &quot;Mocks don't rock !&quot;" /></p>
+
+<h2>Escape from Mock Hell</h2>
+
+<p>Between 2010 and 2014, I was working on a side project I called <a href="https://github.com/philou/mes-courses">http://mes-courses.fr</a>. Which actually means &ldquo;my house shopping&rdquo; in English. I wanted people to be able to do their house shopping in 5 minutes, by using a better UI for online groceries. I was using Ruby, and I had just read <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1523422024&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a>. I got a bit too excited with mocking, and was using it way too much.</p>
+
+<p>I&rsquo;d been practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> for more than 5 years and I was expecting great results with a language like Ruby. After a few months though, I could feel that something was not going as well as it should. The test initialization code was getting longer and longer, as it included a lot of mock setup. This made the tests more complex and less readable. It also made them unreliable, as it was not rare for all my unit tests to pass while the system was not working. I was taking the habit of running my end to end test more and more often. I was also losing a lot of time maintaining the mock setup code in line with the real classes. Mocks also tricked me into the bad practice of keeping a 1 to 1 mapping between code and test files. That again increased my maintenance burden when moving code from one file to another.</p>
+
+<p>It reached a point where I could not take it anymore. All these problems were pointing at mocks, so I tried to remove them from a test file. Here are the techniques I ended up using to remove them mocks : </p>
+
+<ul>
+<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value Objects</a></li>
+<li><a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a></li>
+<li><a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Test Matchers</a></li>
+<li><a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal architecture</a></li>
+<li><a href="https://www.martinfowler.com/articles/mocksArentStubs.html">In-memory fakes</a></li>
+<li><a href="https://wincent.com/wiki/Proxy_(test_double">Proxy doubles</a>)</li>
+</ul>
+
+
+<p>The end result was beyond my hopes, as my problems almost magically disappeared. The code got simpler, I became a lot more confident about my unit tests, and they got easier to maintain. As an illustration, here is an excerpts from the diff of a rails controller test file which went through this mock diet.</p>
+
+<p><a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split"><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg" alt="A screen capture of a Github diff showing a test file going on a mock diet" /></a></p>
+
+<h2>What&rsquo;s the long term risk ?</h2>
+
+<p>Basically, excessive mocking arms the maintainability of the tests. Here is what would have happened if I&rsquo;d done nothing. Tests would have become so painful to maintain that I would have started to ignore or delete them. As coverage would decrease, more and more code would become untested. That&rsquo;s exactly Michael Feathers' definition of Legacy Code :</p>
+
+<blockquote><p>Legacy Code is code without tests. <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1523422039&amp;sr=1-1&amp;keywords=legacy+code">Michael Feathers</a></p></blockquote>
+
+<p>To summarize, excessive use of mocks leads to legacy code ! As most of us have learned the hard way, the further a system drifts into legacy, the lower the productivity.</p>
+
+<blockquote><p>💡 Excessive use of mocks leads to legacy code</p></blockquote>
+
+<h2>Next posts</h2>
+
+<p>Others already spoke about the dangers of mocks :</p>
+
+<ul>
+<li>Uncle Bob through <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">his blog</a></li>
+<li>DHH in the <a href="https://www.google.fr/search?q=is+TDD+dead&amp;safe=active&amp;tbm=vid">&ldquo;Is TDD Dead&rdquo; series</a></li>
+</ul>
+
+
+<p>In <a href="/blog/categories/how-to-avoid-mocks-series/">this series of posts</a>, I&rsquo;ll go through the details of the different techniques I used to remove mocks. Here is my plan :</p>
+
+<ol>
+<li><a href="/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
+<li>How Immutable Value Objects fight mocks</li>
+<li>Immutable Value Objects vs Mocks : Fizz Buzz</li>
+<li>Other small scale techniques to avoid mocks : Data Builders and Test Matchers</li>
+<li>Large scale techniques to avoid mocks</li>
+<li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
+</ol>
+
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+]]></content>
+  </entry>
+  
+</feed>
