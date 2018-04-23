@@ -11,7 +11,7 @@ categories:
 keywords: "book, lean software development, lean software, agile, agile software development"
 description: "A summary / review of the book 'Petit guide de management lean a l'usage des équipes agiles'"
 ---
-A few weeks ago, as I was looking the internet for Lean principles to improve our way of working, I fell upon this book [Petit guide de management lean a l'usage des équipes agiles](leanagilecamp.fr) (NB: the book is in French, the title means 'Little lean management guide at the usage of agile teams'). It made me think and I thought it deserved a blog post.
+A few weeks ago, as I was looking the internet for Lean principles to improve our way of working, I fell upon this book [Petit guide de management lean a l'usage des équipes agiles](http://www.leanagilecamp.fr/) (NB: the book is in French, the title means 'Little lean management guide at the usage of agile teams'). It made me think and I thought it deserved a blog post.
 
 [{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/cover.svg The book cover %}](http://leanagilecamp.fr)
 
