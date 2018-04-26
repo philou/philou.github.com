@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ddd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ddd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-04-23T06:05:04+02:00</updated>
+  <updated>2018-04-26T06:09:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,81 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Immutable Value Objects fight Mocks]]></title>
+    <link href="http://philippe.bourgau.net/how-immutable-value-objects-fight-mocks/"/>
+    <updated>2018-04-26T08:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-immutable-value-objects-fight-mocks</id>
+    <content type="html"><![CDATA[<p>Excessive use of mocks makes tests very painful to maintain. If we stick painful mocks for too long, we&rsquo;ll end up abandoning unit testing. Eventually, the system will degrade into legacy. </p>
+
+<p>There are many techniques to avoid mocks. Some of the most effective involve architecture changes. Unfortunately, there are not the most straightforward to use. Re-architecting involves people and time that you may not dispose of right now. In the following posts, I&rsquo;ll go over techniques that any developer can use in his day to day code to avoid mocks. These battle tested techniques that I&rsquo;ve used on different projects in the past. Check <a href="/careless-mocking-considered-harmful/">the previous post</a> if you&rsquo;re interested to learn how I came to use them.</p>
+
+<p>This is the second post <a href="/blog/categories/how-to-avoid-mocks-series/">of a series about how to avoid mocks</a> in automated tests. If you haven&rsquo;t yet, I recommend you to read my <a href="/careless-mocking-considered-harmful/">first post</a> to understand the perils of mocks in more details.</p>
+
+<p>The first mock fighting small-scale technique I&rsquo;ll go over is <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a>.</p>
+
+<p><img src="../imgs/2018-04-17-how-immutable-value-objects-fight-mocks/immutable-rock.jpg" alt="A drawing of a rock written &quot;Immutable Value Object&quot;" /></p>
+
+<h2>What are Immutable Value Objects ?</h2>
+
+<p>Behind this weird name is something very simple to understand. Immutable Value Objects :</p>
+
+<ul>
+<li>Cannot change their state after construction</li>
+<li>Only depend on other Immutable Value Objects</li>
+<li>Don&rsquo;t change the state of the whole system in any way</li>
+<li>Don&rsquo;t do side effects, like inputs and outputs for example</li>
+</ul>
+
+
+<p>Eric Evans popularized the name in the <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&amp;qid=1523985269&amp;sr=8-2&amp;keywords=domain+driven+design">Domain-Driven Design Blue Book</a>. Immutable Value Objects have existed for decades in functional languages though. We say these objects are immutable (they cannot change) and pure (they cannot do side effects). Here are 2 interesting properties of Value Objects :</p>
+
+<ul>
+<li>you can call a method any number of times with no risk of changing anything to the system</li>
+<li>you&rsquo;ll always get the same result every time you call the same method on the same object</li>
+</ul>
+
+
+<p>These by itself, can already be handy when testing.</p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&amp;qid=1523985269&amp;sr=8-2&amp;keywords=domain+driven+design"><img src="../imgs/2018-04-17-how-immutable-value-objects-fight-mocks/ddd.jpg" alt="Cover of Eric Evans's DDD book" /></a></p>
+
+<h2>How do they prevent mocks ?</h2>
+
+<p>That was a bit theoretical, so let&rsquo;s see how this helps to reduce mocking.</p>
+
+<h3>Simpler &ldquo;init path&rdquo;</h3>
+
+<p>Let&rsquo;s take it the other way round and see how side effects can lead to mocking. Every test starts with setting the state in which to run the test. Side effects make this complicated, as many objects need to collaborate to set this state up. When this becomes too painful, people start hacking around with mocks. This in turn makes the tests more fragile :</p>
+
+<ul>
+<li>We are not testing a &ldquo;real&rdquo; situation</li>
+<li>We need to keep this setup in line with the real code</li>
+</ul>
+
+
+<blockquote><p>💡 Intricate state initialization encourage people to use mocks.</p></blockquote>
+
+<h3>Isolates parts of the system</h3>
+
+<p>Unfortunately, that is not all the story ! Mutable state also, tricks us into using mocks. As soon as your test deals with mutable state, there is a chance that this state is changed in the &lsquo;real&rsquo; system. This means that some bugs might &lsquo;escape&rsquo; unit tests and appear in end to end tests or in production. That&rsquo;s where the mocks strike ! In order to detect this bug in a fast feedback loop, we&rsquo;re likely to add larger scope tests and use mocks to speed them up &hellip;</p>
+
+<blockquote><p>💡 Mutable state and side effects make unit tests less effective.</p></blockquote>
+
+<h3>Reduces code with side effects</h3>
+
+<p>But there&rsquo;s another reason why Immutable Value Objects help us to avoid mocks. As we&rsquo;ll try to use them more and more for the previous two reasons, we&rsquo;ll need to adapt our programming style. As we&rsquo;ll push more and more code in Immutable Value Objects, the &lsquo;imperative&rsquo; part will shrink. This &lsquo;imperative&rsquo; part is where side-effect happen. This is the part where mocking out IOs makes sense. To summarize, the more Immutable Value Objects we use, the more isolated the IOs are, and the less mocking we need.</p>
+
+<p>Javascript expert Eric Elliot also wrote about the immutability and mocks <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">here</a>.</p>
+
+<h2>Next week</h2>
+
+<p>This was the second post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to prevent mocks</a> in your automated tests. Next post will be an example of using immutable value objects on the <a href="http://codingdojo.org/kata/FizzBuzz/">FizzBuzz kata</a>.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Almost 15 years of using Design By Contract]]></title>

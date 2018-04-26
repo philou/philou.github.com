@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-04-23T06:05:04+02:00</updated>
+  <updated>2018-04-26T06:09:35+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,82 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Immutable Value Objects fight Mocks]]></title>
+    <link href="http://philippe.bourgau.net/how-immutable-value-objects-fight-mocks/"/>
+    <updated>2018-04-26T08:51:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-immutable-value-objects-fight-mocks</id>
+    <category term="ddd" /><category term="how-to-avoid-mocks-series" /><category term="mocking" /><category term="programming" /><category term="tdd" /><category term="testing" />
+    <content type="html"><![CDATA[<p>Excessive use of mocks makes tests very painful to maintain. If we stick painful mocks for too long, we&rsquo;ll end up abandoning unit testing. Eventually, the system will degrade into legacy. </p>
+
+<p>There are many techniques to avoid mocks. Some of the most effective involve architecture changes. Unfortunately, there are not the most straightforward to use. Re-architecting involves people and time that you may not dispose of right now. In the following posts, I&rsquo;ll go over techniques that any developer can use in his day to day code to avoid mocks. These battle tested techniques that I&rsquo;ve used on different projects in the past. Check <a href="http://philippe.bourgau.net/careless-mocking-considered-harmful/">the previous post</a> if you&rsquo;re interested to learn how I came to use them.</p>
+
+<p>This is the second post <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">of a series about how to avoid mocks</a> in automated tests. If you haven&rsquo;t yet, I recommend you to read my <a href="http://philippe.bourgau.net/careless-mocking-considered-harmful/">first post</a> to understand the perils of mocks in more details.</p>
+
+<p>The first mock fighting small-scale technique I&rsquo;ll go over is <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a>.</p>
+
+<p><img src="../imgs/2018-04-17-how-immutable-value-objects-fight-mocks/immutable-rock.jpg" alt="A drawing of a rock written &quot;Immutable Value Object&quot;" /></p>
+
+<h2>What are Immutable Value Objects ?</h2>
+
+<p>Behind this weird name is something very simple to understand. Immutable Value Objects :</p>
+
+<ul>
+<li>Cannot change their state after construction</li>
+<li>Only depend on other Immutable Value Objects</li>
+<li>Don&rsquo;t change the state of the whole system in any way</li>
+<li>Don&rsquo;t do side effects, like inputs and outputs for example</li>
+</ul>
+
+
+<p>Eric Evans popularized the name in the <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&amp;qid=1523985269&amp;sr=8-2&amp;keywords=domain+driven+design">Domain-Driven Design Blue Book</a>. Immutable Value Objects have existed for decades in functional languages though. We say these objects are immutable (they cannot change) and pure (they cannot do side effects). Here are 2 interesting properties of Value Objects :</p>
+
+<ul>
+<li>you can call a method any number of times with no risk of changing anything to the system</li>
+<li>you&rsquo;ll always get the same result every time you call the same method on the same object</li>
+</ul>
+
+
+<p>These by itself, can already be handy when testing.</p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&amp;qid=1523985269&amp;sr=8-2&amp;keywords=domain+driven+design"><img src="../imgs/2018-04-17-how-immutable-value-objects-fight-mocks/ddd.jpg" alt="Cover of Eric Evans's DDD book" /></a></p>
+
+<h2>How do they prevent mocks ?</h2>
+
+<p>That was a bit theoretical, so let&rsquo;s see how this helps to reduce mocking.</p>
+
+<h3>Simpler &ldquo;init path&rdquo;</h3>
+
+<p>Let&rsquo;s take it the other way round and see how side effects can lead to mocking. Every test starts with setting the state in which to run the test. Side effects make this complicated, as many objects need to collaborate to set this state up. When this becomes too painful, people start hacking around with mocks. This in turn makes the tests more fragile :</p>
+
+<ul>
+<li>We are not testing a &ldquo;real&rdquo; situation</li>
+<li>We need to keep this setup in line with the real code</li>
+</ul>
+
+
+<blockquote><p>💡 Intricate state initialization encourage people to use mocks.</p></blockquote>
+
+<h3>Isolates parts of the system</h3>
+
+<p>Unfortunately, that is not all the story ! Mutable state also, tricks us into using mocks. As soon as your test deals with mutable state, there is a chance that this state is changed in the &lsquo;real&rsquo; system. This means that some bugs might &lsquo;escape&rsquo; unit tests and appear in end to end tests or in production. That&rsquo;s where the mocks strike ! In order to detect this bug in a fast feedback loop, we&rsquo;re likely to add larger scope tests and use mocks to speed them up &hellip;</p>
+
+<blockquote><p>💡 Mutable state and side effects make unit tests less effective.</p></blockquote>
+
+<h3>Reduces code with side effects</h3>
+
+<p>But there&rsquo;s another reason why Immutable Value Objects help us to avoid mocks. As we&rsquo;ll try to use them more and more for the previous two reasons, we&rsquo;ll need to adapt our programming style. As we&rsquo;ll push more and more code in Immutable Value Objects, the &lsquo;imperative&rsquo; part will shrink. This &lsquo;imperative&rsquo; part is where side-effect happen. This is the part where mocking out IOs makes sense. To summarize, the more Immutable Value Objects we use, the more isolated the IOs are, and the less mocking we need.</p>
+
+<p>Javascript expert Eric Elliot also wrote about the immutability and mocks <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">here</a>.</p>
+
+<h2>Next week</h2>
+
+<p>This was the second post in a <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">series about how to prevent mocks</a> in your automated tests. Next post will be an example of using immutable value objects on the <a href="http://codingdojo.org/kata/FizzBuzz/">FizzBuzz kata</a>.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Careless Mocking Considered Harmful]]></title>
@@ -71,15 +147,13 @@
 
 <ol>
 <li><a href="http://philippe.bourgau.net/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
-<li>How Immutable Value Objects fight mocks</li>
+<li><a href="http://philippe.bourgau.net/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight mocks</a></li>
 <li>Immutable Value Objects vs Mocks : Fizz Buzz</li>
 <li>Other small scale techniques to avoid mocks : Data Builders and Test Matchers</li>
 <li>Large scale techniques to avoid mocks</li>
 <li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
 </ol>
 
-
-<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
 ]]></content>
   </entry>
   
@@ -1298,67 +1372,6 @@
 <h2>Next week</h2>
 
 <p>That was the first part of <a href="http://philippe.bourgau.net/blog/categories/zero-bugs-series/">a series of posts about #ZeroBugs policy</a>. In the <a href="http://philippe.bourgau.net/why-and-how-to-start-a-number-zerobugs-policy-part-2/">next post</a>, I&rsquo;ll explain how we dealt with this bug debt and dig into the consequences it had on our work.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sustainable productivity in eXtreme Programming]]></title>
-    <link href="http://philippe.bourgau.net/sustainable-productivity-in-extreme-programming/"/>
-    <updated>2017-10-27T18:21:00+02:00</updated>
-    <id>http://philippe.bourgau.net/sustainable-productivity-in-extreme-programming</id>
-    <category term="agile" /><category term="extreme programming" /><category term="lean" />
-    <content type="html"><![CDATA[<p><a href="http://extremeprogramming.org/">eXtreme programming</a> will not improve your short term productivity. But it will drastically improve your long term productivity.</p>
-
-<p>My <a href="http://philippe.bourgau.net/are-software-developers-overworked-or-undecided/">last post</a> detailed how prioritization and Work In Progress limits are the keys to less work and higher productivity.</p>
-
-<blockquote><p>XP is an experiment in answer to the question, &ldquo;How would you program if you had enough time?” <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&amp;qid=1509114442&amp;sr=8-1&amp;keywords=xp+explained">Kent Beck</a></p></blockquote>
-
-<p><img src="../imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg" alt="Cost of changes over time, for traditional and XP ways of building software" /><div class="image-credits">From <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&amp;qid=1510040835&amp;sr=8-1&amp;keywords=extreme+programming+explained">&ldquo;Extreme Programming Explained: Embrace Change&rdquo;</a> by Kent Beck</div></p>
-
-<h2>The best jam is made in old jars</h2>
-
-<p>As I was writing the post, I could not stop thinking :</p>
-
-<blockquote><p>Once again, XP has been addressing these WIP and prioritization issues for 20 years now !</p></blockquote>
-
-<p>Let&rsquo;s see exactly how.</p>
-
-<h3>WIP limitation</h3>
-
-<p>XP has a drastic way to reduce WIP by 2 : pair programming. Instead of 6 developers taking on 6 stories at the same time, they only tackle 3. I won&rsquo;t dive into the ton of other advantages to pair programming here. If you want to learn more, these <a href="http://philippe.bourgau.net/blog/categories/pair-programming/">blog posts</a> might help.</p>
-
-<p>Although it is now seen as a Scrum practice, Planning Game was part of original XP. Sticking to a basic planning game will give room for slack at the end of iterations. The trick is to leave the <a href="https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2">infamous focus factor</a> away.</p>
-
-<blockquote><p>💡 A simple planning game will give room for slack.</p></blockquote>
-
-<p>Suppose a team member takes vacations for a sprint. The team should deliver less user stories that sprint. They&rsquo;ll have less story points to schedule on next sprint. This leaves room for slack and long term improvements such as refactoring, learning &hellip; If half the team goes on holiday, that&rsquo;s a different story, adapt your schedule with gut feeling.</p>
-
-<p>A funny aspect of this is that XP teams are now the most likely to switch to the more extreme <a href="https://twitter.com/hashtag/noestimates">#NoEstimates</a>.</p>
-
-<h3>Priorities</h3>
-
-<p>XP&rsquo;s on-site customer is a straightforward way to work only on the most valuable features. Who better than an end user would be able to make this estimation ?</p>
-
-<p>The YAGNI (<a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">You Ain&rsquo;t Gonna Need It</a>) and simple design principles avoid building unnecessary features. TDD&rsquo;s strict point of not writing code before a failing test prevents over-engineering.</p>
-
-<h2>Modern XP</h2>
-
-<iframe src="https://player.vimeo.com/video/221024846" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-
-<p>In this wonderful talk from <a href="http://rachelcdavies.github.io/">Rachel C. Davies</a>, she presents how her team has been improving XP for 15 years. She explains how they organize as 2 mobs and 1 solo. At any moment, one mob is working on stories. The other mob works on important long term technical improvements. The solo does some learning. This is an even greater WIP reduction technique than pair programming.</p>
-
-<p>Having a dev doing learning all the time is a form of continuous slack. If the team feels that they cannot deliver something by an important date, he can join the mob to help them.</p>
-
-<p>There&rsquo;s even more to this learning. It can be about anything. Developers work on their technical skills, but they also learn about the domain. Little by little this turns them into domain experts. Guess what : domain experts are great at optimizing value !</p>
-
-<blockquote><p>💡 With time and efforts, developers can become domain experts !</p></blockquote>
-
-<h2>Afterthoughts</h2>
-
-<p>Unfortunately, there is no easy way to prove the long term productivity of XP. We cannot split the world to run the same project with and without XP. Another difficulty is that after a years of XP, work remains smooth and sustainable. Nothing like crunch mode. People used to the hero culture are hard to convince that they can be more productive by doing less.</p>
-
-<p>Hopefully, lean theory and gut feeling of programmers who have switched to XP can back up my claims.</p>
 ]]></content>
   </entry>
   
