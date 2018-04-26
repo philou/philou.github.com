@@ -12,7 +12,6 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Immutable Value Object, Value Objects, Immutable Data, Immutable Data Structures, DDD, Domain Driven Design"
 description: "An explanation of how immutable value objects helps developers to remote mocks from their tests"
-published: false
 ---
 Excessive use of mocks makes tests very painful to maintain. If we stick painful mocks for too long, we'll end up abandoning unit testing. Eventually, the system will degrade into legacy. 
 
