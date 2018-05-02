@@ -12,7 +12,6 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Immutable Value Object, Value Objects, Immutable Data, Immutable Data Structures, Ruby"
 description: "A walk through of the Fizz Buzz kata using immutable value objects to remove mocks."
-published: false
 ---
 In my [previous post](/how-immutable-value-objects-fight-mocks/) I explained how [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) help us to avoid mocks. In this post, I'll illustrate this in practice with real code.
 

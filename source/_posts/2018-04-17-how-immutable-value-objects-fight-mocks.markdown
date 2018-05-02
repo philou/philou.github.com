@@ -68,7 +68,4 @@ Javascript expert Eric Elliot also wrote about the immutability and mocks [here]
 
 ## Next week
 
-This was the second post in a [series about how to prevent mocks](/blog/categories/how-to-avoid-mocks-series/) in your automated tests. Next post will be an example of using immutable value objects on the [FizzBuzz kata](http://codingdojo.org/kata/FizzBuzz/).
-
-[Stay tuned !](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
-
+This was the second post in a [series about how to prevent mocks](/blog/categories/how-to-avoid-mocks-series/) in your automated tests. [Next post](/immutable-value-objects-vs-mocks-fizz-buzz/) will be an example of using immutable value objects on the [FizzBuzz kata](http://codingdojo.org/kata/FizzBuzz/).
