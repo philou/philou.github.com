@@ -188,7 +188,7 @@ Outside of this situation, you might try some of the following arguments to move
 
 ## Next post
 
-I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/). In next post, I'll dig into other small scale mock fighting patterns : [Test Data Builders](http://www.natpryce.com/articles/000714.html) and [Test Matchers](https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers).
+I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/). In next post, I'll dig into another small scale mock fighting pattern : [Test Data Builders](http://www.natpryce.com/articles/000714.html).
 
 [Stay tuned !](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
     
