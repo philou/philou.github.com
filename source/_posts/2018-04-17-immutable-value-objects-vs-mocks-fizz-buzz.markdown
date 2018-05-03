@@ -134,7 +134,7 @@ describe 'Statist Fizz Buzz' do
     expect(fizzBuzzN(6)).to eq("Fizz")
   end
 
-  it 'should print Buzz for multiples of 3' do
+  it 'should print Buzz for multiples of 5' do
     expect(fizzBuzzN(5)).to eq("Buzz")
     expect(fizzBuzzN(10)).to eq("Buzz")
   end
