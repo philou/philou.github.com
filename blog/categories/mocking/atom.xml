@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mocking | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/mocking/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-04-26T06:09:35+02:00</updated>
+  <updated>2018-05-03T06:12:41+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,251 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Immutable Value Objects vs Mocks : Fizz Buzz]]></title>
+    <link href="http://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/"/>
+    <updated>2018-05-03T19:28:00+02:00</updated>
+    <id>http://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz</id>
+    <content type="html"><![CDATA[<p>In my <a href="/how-immutable-value-objects-fight-mocks/">previous post</a> I explained how <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a> help us to avoid mocks. In this post, I&rsquo;ll illustrate this in practice with real code.</p>
+
+<p>This is the third post on a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to avoid mocks</a>. If you haven&rsquo;t, you can start reading the full story <a href="/careless-mocking-considered-harmful/">here</a>.</p>
+
+<p><img src="../imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg" alt="A drawing &quot;FIZZ BUZZ&quot; rock fallen and sealed in the ground" /></p>
+
+<h2>Fizz Buzz Example</h2>
+
+<p>As a simple example, I&rsquo;ll go through the classic <a href="http://codingdojo.org/kata/FizzBuzz/">Fizz Buzz</a>. I&rsquo;ve implemented and tested it with and without immutable value objects. Please keep in mind that this is a toy example, where problems are obvious and easily fixed. I try to highlight at small scale the same problems that get hidden by the complexity of a large scale program.</p>
+
+<p>Let&rsquo;s start with a typical FizzBuzz implementation.</p>
+
+<p>```ruby
+1.upto(100) do |i|
+  if (i%3 == 0 and i%5 == 0)</p>
+
+<pre><code>STDOUT.puts("FizzBuzz\n")
+</code></pre>
+
+<p>  elsif (i%3 == 0)</p>
+
+<pre><code>STDOUT.puts("Fizz\n")
+</code></pre>
+
+<p>  elsif (i%5 == 0)</p>
+
+<pre><code>STDOUT.puts("Buzz\n")
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>STDOUT.puts("#{i}\n")
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Suppose you need to add some tests around the code. The most straightforward way is to mock <code>STDOUT</code> :</p>
+
+<p>```ruby
+require &lsquo;rspec&rsquo;</p>
+
+<p>def fizzBuzz(max, out)
+  1.upto(max) do |i|</p>
+
+<pre><code>if (i%3 == 0 and i%5 == 0)
+  out.puts("FizzBuzz\n")
+elsif (i%3 == 0)
+  out.puts("Fizz\n")
+elsif (i%5 == 0)
+  out.puts("Buzz\n")
+else
+  out.puts("#{i}\n")
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>main</h1>
+
+<p>fizzBuzz(100,STDOUT)</p>
+
+<p>describe &lsquo;Mockist Fizz Buzz&rsquo; do</p>
+
+<p>  it &lsquo;should print numbers, fizz and buzz&rsquo; do</p>
+
+<pre><code>out = double("out")
+expect(out).to receive(:puts).with("1\n").ordered
+expect(out).to receive(:puts).with("2\n").ordered
+expect(out).to receive(:puts).with("Fizz\n").ordered
+expect(out).to receive(:puts).with("4\n").ordered
+expect(out).to receive(:puts).with("Buzz\n").ordered
+expect(out).to receive(:puts).with("Fizz\n").ordered
+expect(out).to receive(:puts).with("7\n").ordered
+expect(out).to receive(:puts).with("8\n").ordered
+expect(out).to receive(:puts).with("Fizz\n").ordered
+expect(out).to receive(:puts).with("Buzz\n").ordered
+expect(out).to receive(:puts).with("11\n").ordered
+expect(out).to receive(:puts).with("Fizz\n").ordered
+expect(out).to receive(:puts).with("13\n").ordered
+expect(out).to receive(:puts).with("14\n").ordered
+expect(out).to receive(:puts).with("FizzBuzz\n").ordered
+
+fizzBuzz(15, out)
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>```</p>
+
+<p>Unfortunately, there are a few problems with this code :</p>
+
+<ul>
+<li>With nested logic and complicated mock setup, both code and tests aren&rsquo;t very readable</li>
+<li>They both seem to violate the single responsibility principle as well</li>
+<li>It&rsquo;s depending on a mutable output. Within a larger program, something could be messing around with this output stream. That would break FizzBuzz.</li>
+</ul>
+
+
+<p>Let&rsquo;s now try to use as many immutable values objects as possible, and see what happens to the mocks.</p>
+
+<p>```ruby
+require &lsquo;rspec&rsquo;</p>
+
+<h1>We extracted a function to do the fizz buzz on a single number</h1>
+
+<p>def fizzBuzzN(i)
+  if (i%3 == 0 and i%5 == 0)</p>
+
+<pre><code>"FizzBuzz"
+</code></pre>
+
+<p>  elsif (i%3 == 0)</p>
+
+<pre><code>"Fizz"
+</code></pre>
+
+<p>  elsif (i%5 == 0)</p>
+
+<pre><code>"Buzz"
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>i.to_s
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>We replaced the many calls to STDOUT.puts by building a single</h1>
+
+<h1>large (and immutable) string</h1>
+
+<p>def fizzBuzz(max)
+  ((1..max).map {|i| fizzBuzzN(i)}).join(&ldquo;\n&rdquo;)
+end</p>
+
+<h1>main, with a single call to STDOUT.puts</h1>
+
+<p>STDOUT.puts fizzBuzz(100)</p>
+
+<p>describe &lsquo;Statist Fizz Buzz&rsquo; do</p>
+
+<p>  it &lsquo;should print numbers not multiples of 3 or 5&rsquo; do</p>
+
+<pre><code>expect(fizzBuzzN(1)).to eq("1")
+expect(fizzBuzzN(2)).to eq("2")
+expect(fizzBuzzN(4)).to eq("4")
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &lsquo;should print Fizz for multiples of 3&rsquo; do</p>
+
+<pre><code>expect(fizzBuzzN(3)).to eq("Fizz")
+expect(fizzBuzzN(6)).to eq("Fizz")
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &lsquo;should print Buzz for multiples of 3&rsquo; do</p>
+
+<pre><code>expect(fizzBuzzN(5)).to eq("Buzz")
+expect(fizzBuzzN(10)).to eq("Buzz")
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &lsquo;should print FizzBuzz for multiples of 3 and 5&rsquo; do</p>
+
+<pre><code>expect(fizzBuzzN(15)).to eq("FizzBuzz")
+expect(fizzBuzzN(30)).to eq("FizzBuzz")
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &lsquo;should print numbers, fizz and buzz&rsquo; do</p>
+
+<pre><code>expect(fizzBuzz(15)).to start_with("1\n2\nFizz").and(end_with("14\nFizzBuzz"))
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>As we can see, using immutable value objects got us rid of the mocks. Obviously, this new code will not be as efficient as the original version, but most of the time, this does not matter. As a bonus though we get finer grain and more readable tests.</p>
+
+<h3>Other testing advantages</h3>
+
+<p>Appart from preventing mocks, Immutable Value Objects have other advantages related to testing.</p>
+
+<ul>
+<li>We can directly assert their equality, without having to dig into their guts</li>
+<li>We can call methods as many times as we want, without the risk of changing anything and breaking the tests</li>
+<li>Immutable Value Objects are a lot less likely to contain invalid state. This removes the need for a whole range of validity tests.</li>
+</ul>
+
+
+<blockquote><p>💡 Immutable Value Objects simplify testing in many ways.</p></blockquote>
+
+<h3>Convincing your teammates</h3>
+
+<p>We&rsquo;ve seen that Immutable Value Objects have a ton of advantages when testing. People have found that they also have many other benefits :</p>
+
+<ul>
+<li><a href="https://www.linkedin.com/pulse/20140528113353-16837833-6-benefits-of-programming-with-immutable-objects-in-java/">6 Benefits of Programming with Immutable Objects in Java</a></li>
+<li><a href="https://hackernoon.com/5-benefits-of-immutable-objects-worth-considering-for-your-next-project-f98e7e85b6ac">5 Benefits of Immutable Objects Worth Considering for Your Next Project</a></li>
+</ul>
+
+
+<p>Surprisingly though, it&rsquo;s difficult to persuade programmers to use more immutability. It&rsquo;s tricky to explain why returning a modified copy is simpler than just adding a setter.</p>
+
+<blockquote><p>💡 Why is it so hard to persuade other developers to use immutable data structures ?</p></blockquote>
+
+<p>I had the most success by far when encountering a bug resulting of share mutable state. When this happens, the long term benefits and safety of the immutable design wins people over. The good thing is that as you convince more people in the team, immutability will spread like a virus !</p>
+
+<p>Outside of this situation, you might try some of the following arguments to move people :</p>
+
+<ul>
+<li>Immutable values prevent bugs caused by different parts of the system changing the same mutable state</li>
+<li>They make it easier to deal with the program in smaller parts and to reason about the system in general</li>
+<li>Immutable values don&rsquo;t need any synchronization and make multithreaded programming easier</li>
+<li>When tempted to add a simple setter instead of keeping a class immutable, highlight the stressful debugging time to come</li>
+<li>If you&rsquo;re dealing with a Design By Contract adept, explain how <a href="/almost-15-years-of-using-design-by-contract/">immutability has it built-in</a></li>
+<li>Admit that mainstream languages have bad support for Immutable Value. Point to patterns like <a href="https://dzone.com/articles/immutability-with-builder-design-pattern">Data Builders</a> that work around these limitation</li>
+</ul>
+
+
+<h2>Next post</h2>
+
+<p>I&rsquo;m done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. In next post, I&rsquo;ll dig into another small scale mock fighting pattern : <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a>.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Immutable Value Objects fight Mocks]]></title>
@@ -82,9 +327,7 @@
 
 <h2>Next week</h2>
 
-<p>This was the second post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to prevent mocks</a> in your automated tests. Next post will be an example of using immutable value objects on the <a href="http://codingdojo.org/kata/FizzBuzz/">FizzBuzz kata</a>.</p>
-
-<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
+<p>This was the second post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to prevent mocks</a> in your automated tests. <a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Next post</a> will be an example of using immutable value objects on the <a href="http://codingdojo.org/kata/FizzBuzz/">FizzBuzz kata</a>.</p>
 ]]></content>
   </entry>
   
@@ -146,8 +389,9 @@
 <ol>
 <li><a href="/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
 <li><a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight mocks</a></li>
-<li>Immutable Value Objects vs Mocks : Fizz Buzz</li>
-<li>Other small scale techniques to avoid mocks : Data Builders and Test Matchers</li>
+<li><a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a></li>
+<li>How to use Test Data Builders to avoid mocks and keep your tests clear</li>
+<li>One last small scale technique to avoid mocks : Test Matchers</li>
 <li>Large scale techniques to avoid mocks</li>
 <li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
 </ol>
@@ -262,60 +506,6 @@ end
 <h2>Last word</h2>
 
 <p>The code is on <a href="https://github.com/philou/rspecproxies">github</a>, v1.0.0 is on <a href="https://rubygems.org/gems/rspecproxies/versions/0.1.0">rubygems</a>, it requires Ruby v2.2.5 and RSpec v3.5, the license is MIT, help in any form are welcome !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[My new gem for creating rspec proxies]]></title>
-    <link href="http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/"/>
-    <updated>2014-05-23T06:20:00+02:00</updated>
-    <id>http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies</id>
-    <content type="html"><![CDATA[<p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
-
-<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
-
-<p>Here are the pain points proxies try to fix :</p>
-
-<ul>
-<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
-<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
-</ul>
-
-
-<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
-
-<ul>
-<li>Verify actual load count without interfering in any behaviour</li>
-</ul>
-
-
-<p>```ruby
-it &lsquo;caches users&rsquo; do
-  users = User.capture_results_from(:load)</p>
-
-<p>  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)
-  controller.login(&lsquo;joe&rsquo;, &lsquo;secret&rsquo;)</p>
-
-<p>  expect(users).to have_exactly(1).items
-end
-```</p>
-
-<ul>
-<li>Use proxies to stub an object that does not yet exist</li>
-</ul>
-
-
-<p>```ruby
-it &lsquo;rounds the completion ratio&rsquo; do
-   RenderingTask.proxy_chain(:load, :completion_ratio) {|s| s.and_return(0.2523) }</p>
-
-<p>   renderingController.show</p>
-
-<p>   expect(response).to include(&lsquo;25%&rsquo;)
-end
-```</p>
-
-<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
 ]]></content>
   </entry>
   

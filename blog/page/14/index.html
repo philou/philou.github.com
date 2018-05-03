@@ -102,6 +102,159 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/can-agile-teams-commit/">Can Agile Teams Commit?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-01-21T06:57:00+01:00" pubdate data-updated="true">Jan 21<span>st</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Making commitments to deliver software is always difficult. Whatever the margin you might take, it invariably seems wrong afterward &hellip;</p>
+
+<p>Most Scrum, XP or Kanban litterature does not adress the issue, simply saying that commitment is not required, as long as you continuously deliver value (faster than your competition). That&rsquo;s kind of true, but sometimes you need commitments, for example if your customer is not yet ready to deploy your new software every friday worldwide &hellip;</p>
+
+<p>So how can you do it while remaining agile ?</p>
+
+<p>Grossly speaking, you have 2 options :</p>
+
+<h2>Do it as usual</h2>
+
+<p>Discuss with your experts, take some margin, do whatever voodoo you are used to. This will not be worse than it used to be. It might turn out better, thanks to your agile process, you should be able to deploy with a reduced the scope if needed.</p>
+
+<p><img class="center" src="/imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg" title="A guy entranced with voodoo" ></p>
+
+<h2>Use your agile process metrics</h2>
+
+<p>This technique is explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a>, in section &ldquo;Risk Management&rdquo;, page 227.</p>
+
+<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img class="center" src="/imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg" title="The cover of The Art of Agile Development" ></a></p>
+
+<h3>Let&rsquo;s estimate the time you&rsquo;ll need before the release</h3>
+
+<ul>
+<li>First, list all the stories you want it your release</li>
+<li>Then estimate them with story points.</li>
+<li>Now that you have the total number of story points you&rsquo;ll have to deliver before the release, apply a generic risk multiplier :</li>
+</ul>
+
+
+<table>
+<thead>
+<tr>
+<th>Chances of making it </th>
+<th> Using XP practices </th>
+<th> Otherwise </th>
+<th> Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10%              </td>
+<td>x1              </td>
+<td> x1        </td>
+<td> Almost impossible (ignore)</td>
+</tr>
+<tr>
+<td>50%              </td>
+<td>x1.4            </td>
+<td> x2        </td>
+<td> 50-50 chance (stretch goal)</td>
+</tr>
+<tr>
+<td>90%              </td>
+<td>x1.8            </td>
+<td> x4        </td>
+<td> Virtually certain (commit)</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><em>As explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> page 227, these numbers com from <a href="http://www.systemsguild.com/riskology/">DeMarco&rsquo;s Riskology</a> system. Using XP practices means fixing all bugs at all iteration, sticking rigorously to DONE-DONE, and having a stable velocity over iterations.</em></p>
+
+<p>This factor will account for unavoidable scope creep and wrong estimations.
+* Use you iteration velocity to know how many sprints you&rsquo;ll need to finish.</p>
+
+<h4>For example :</h4>
+
+<p>Suppose you have 45 stories that account for a total of 152 story points, and that your velocity is 23 story points per iteration. You need to do a commitment, but hopefully, you are applying all the XP practices. So you can compute :</p>
+
+<blockquote><p>Number of sprints = 152*1.8/23 = 12 sprints, (24 weeks, or about 5.5 months)</p></blockquote>
+
+<h3>What about unknown risks ?</h3>
+
+<p>Unfortunately, using just the previous, you might miss some unavoidable important tasks you&rsquo;ll need to do before you can release. Think about monitoring tools and stress testing, when did your product owner prioritize these ? These are risk management activities that need to be added to your backlog in the first place. Here is how to list most of them.</p>
+
+<ul>
+<li>Do a full team brainstorming about anything that could possibly go bad for your project</li>
+<li>For every item discovered, estimate
+
+<ul>
+<li>It&rsquo;s probability of occurrence (low, medium, high)</li>
+<li>It&rsquo;s consequences (delay, cost, cancellation of the project)</li>
+</ul>
+</li>
+<li>For every item, decide whether to
+
+<ul>
+<li>avoid it : you have to find a way to make sure this will not happen</li>
+<li>contain it : you&rsquo;ll deal with the risk when it occurs</li>
+<li>mitigate it : you have to find a way to reduce it&rsquo;s impact</li>
+<li>ignore it : don&rsquo;t bother with unlikely risks of no importance</li>
+</ul>
+</li>
+<li>Finally, create stories to match your risk management decisions. These might be :
+
+<ul>
+<li>Monitoring systems helps to contain a risk</li>
+<li>Logging helps to mitigate a risk</li>
+<li>An automated scaling in script for situations of high demand helps both mitigate and contain the risk</li>
+</ul>
+</li>
+<li>Simply add these stories to your backlog, and repeat the previous section. You can now make your commitment</li>
+</ul>
+
+
+<h2>Afterthoughts</h2>
+
+<p>Contrary to the widespread belief, agile practices and metrics actually helps to make commitments.</p>
+
+<p>It would be better if we had project specific statistics instead of generic risk multipliers. It&rsquo;s a shame that task tracking tools (JIRA &amp; friends) still don&rsquo;t help us with this.</p>
+
+<p>We should keep in mind though, that estimating all your backlog in advance takes some time and is actually some kind of waste. If possible, just sticking to build (and sell) the thing that is the most useful now is more simple (<a href="http://vimeo.com/75196281">this guy calls it drunken stumble</a>).</p>
+
+<iframe src="//player.vimeo.com/video/75196281" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<p> <p><a href="http://vimeo.com/75196281">Tech Mesh 2012 &ndash; Building an Application Platform: Lessons from CloudBees &ndash; Garrett Smith</a> from <a href="http://vimeo.com/erlang">Erlang Solutions</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/performance-is-a-feature/">Performance Is a Feature</a></h1>
     
     
@@ -2261,102 +2414,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/my-new-gem-for-creating-rspec-proxies/">My New Gem for Creating Rspec Proxies</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-23T06:20:00+02:00" pubdate data-updated="true">May 23<span>rd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I already wrote a lot about test proxies (<a href="/how-to-stub-around-a-call-to-the-original-method-with-rspec/">here</a>, <a href="/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">here</a> and <a href="/my-humble-advices-about-how-to-write-maintainable-tests/">here</a>).</p>
-
-<p>I just took the time to transform my previous gist in a full fledged ruby gem. It&rsquo;s called &ldquo;rspecproxies&rdquo; and it can be found <a href="https://github.com/philou/rspecproxies">on github</a>. It&rsquo;s fully tested, documented and there&rsquo;s a usage section in the readme to help anyone get started.</p>
-
-<p>Here are the pain points proxies try to fix :</p>
-
-<ul>
-<li>Without mocks, it is sometimes just awfully painfull to write the test (do you really want to start a background task just to get a completion ratio ?)</li>
-<li>With classic stubs, you sometimes have to stub things you are not interested in in your test, you end up with unmaintainable extra long stub setup</li>
-</ul>
-
-
-<p>Let&rsquo;s have a look at a few examples of tests with proxies :</p>
-
-<ul>
-<li>Verify actual load count without interfering in any behaviour</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">users</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">capture_results_from</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_exactly</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">items</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>Use proxies to stub an object that does not yet exist</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;rounds the completion ratio&#39;</span> <span class="k">do</span>
-</span><span class='line'>   <span class="no">RenderingTask</span><span class="o">.</span><span class="n">proxy_chain</span><span class="p">(</span><span class="ss">:load</span><span class="p">,</span> <span class="ss">:completion_ratio</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">s</span><span class="o">|</span> <span class="n">s</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="mi">2523</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="n">renderingController</span><span class="o">.</span><span class="n">show</span>
-</span><span class='line'>
-</span><span class='line'>   <span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="s1">&#39;25%&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I&rsquo;d really love to see more code tested with proxies, it makes the whole testing so much more natural. As with any testing techniques, we get more thorough testing from the ease of writing the test.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/15/">&larr; Older</a>
@@ -2437,6 +2494,10 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight Mocks</a>
       </li>
     
@@ -2450,10 +2511,6 @@ Which is a must have to regularly <strong>deliver value</strong> on commitment !
     
       <li class="post">
         <a href="/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/">Why 20 hours of code kata are so effective for learning new languages</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-learn-a-programming-language-in-just-20-hours/">How to learn a programming language in just 20 hours</a>
       </li>
     
   </ul>
