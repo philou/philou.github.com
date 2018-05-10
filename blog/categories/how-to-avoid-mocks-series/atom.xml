@@ -4,7 +4,7 @@
   <title><![CDATA[Category: how-to-avoid-mocks-series | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-03T08:35:35+02:00</updated>
+  <updated>2018-05-10T09:09:12+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,447 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to use Test Data Builders to avoid mocks and keep your tests clear]]></title>
+    <link href="http://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/"/>
+    <updated>2018-05-10T09:56:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear</id>
+    <content type="html"><![CDATA[<p>We are sometimes tempted to use mocks to shortcut test data initialization. Unfortunately, excessive mocking makes tests difficult to maintain. As <a href="https://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.html">Uncle Bob explained</a>, it&rsquo;s a road that leads to giving up on tests.</p>
+
+<p>Hopefully, <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a> both shortcut test data setup and avoid mocks.</p>
+
+<p><img src="../imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg" alt="Drawing of a crate" /></p>
+
+<p>This is the fourth post <a href="/blog/categories/how-to-avoid-mocks-series/">of a series about how to avoid mocks</a> in automated tests. If you haven&rsquo;t yet, I recommend you to start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<h2>The problem with test data initialization</h2>
+
+<p>Setting up the correct state for automated tests can be pretty verbose. This is especially true for software in complex domains or code with a lot of side effects.</p>
+
+<p>The situation gets worse as tests need to setup similar but not exactly identical data. What I often see in code bases is a lot of test data setup duplication. For example, here are tests for a basic ticketing system.</p>
+
+<p>```ruby
+require &lsquo;rspec&rsquo;
+require &lsquo;date&rsquo;</p>
+
+<p>describe &lsquo;Ticket Tracking&rsquo; do
+  context &ldquo;with test setup duplication&rdquo; do</p>
+
+<pre><code>it 'latest change date is the creation date when nothing changed' do
+  creation_time = DateTime.new(2018,4,26,13,9,0)
+
+  ticket = Ticket.new("Widget broken", "The widget is not loading when ...", "Philippe", creation_time)
+
+  expect(ticket.latest_change).to be(creation_time)
+end
+
+it 'latest change date is the comment date when a comment is written' do
+  ticket = Ticket.new("Widget broken", "The widget is not loading when ...", "Philippe", DateTime.new(2018, 4, 26, 13, 9, 0))
+  comment_time = DateTime.new(2018, 4, 26, 13, 16, 0)
+
+  ticket.add_comment(Comment.new("Should work now", "Dan", comment_time))
+
+  expect(ticket.latest_change).to be(comment_time)
+end
+
+it 'latest change date is the comment date of the latest comment' do
+  ticket = Ticket.new("Widget broken", "The widget is not loading when ...", "Philippe", DateTime.new(2018, 4, 26, 13, 9, 0))
+  ticket.add_comment(Comment.new("Should work now", "Dan", DateTime.new(2018, 4, 26, 13, 16, 0)))
+  comment_time = DateTime.new(2018, 4, 26, 18, 36, 0)
+
+  ticket.add_comment(Comment.new("Should work now", "Dan", comment_time))
+
+  expect(ticket.latest_change).to be(comment_time)
+  end
+
+it 'latest change date is time of latest change if after comment' do
+  creation_time = DateTime.new(2018, 4, 26, 13, 9, 0)
+  ticket = Ticket.new("Widget broken", "The widget is not loading when ...", "Philippe", creation_time)
+  ticket.add_comment(Comment.new("Should work now", "Dan", DateTime.new(2017, 4, 26, 13, 16, 0)))
+
+  expect(ticket.latest_change).to be(creation_time)
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<h2>The code under test</h2>
+
+<h1>#</h1>
+
+<p>class Ticket</p>
+
+<p>  def initialize(title, description, reporter, creation_time)</p>
+
+<pre><code>@updated_at = creation_time
+@comments = []
+</code></pre>
+
+<p>  end</p>
+
+<p>  def latest_change</p>
+
+<pre><code>([@updated_at] + @comments.map(&amp;:created_at)).max
+</code></pre>
+
+<p>  end</p>
+
+<p>  def add_comment(comment)</p>
+
+<pre><code>@comments.push(comment)
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Comment
+  attr_reader :created_at
+  def initialize(message, author, time)</p>
+
+<pre><code>@created_at = time
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>```</p>
+
+<p>It&rsquo;s clear that there&rsquo;s a huge amount of duplication in the tests data setups.</p>
+
+<p>The straightforward fix against that is method extraction. This is the <a href="https://martinfowler.com/bliki/ObjectMother.html">Object Mother pattern</a>. Unfortunately, Object Mother breaks down under the number of variations. Every time you need a new change, you&rsquo;ll add a parameter to the Object Mother method. Long story short, you&rsquo;ll end up with code like that :</p>
+
+<p>```ruby
+describe &lsquo;Ticket Tracking&rsquo; do
+  context &ldquo;with object mother&rdquo; do</p>
+
+<pre><code>it 'latest change date is the creation date when nothing changed' do
+  creation_time = DateTime.new(2018, 4, 26, 13, 5, 0)
+  ticket = create_ticket(creation_time, [])
+
+  expect(ticket.latest_change).to be(creation_time)
+end
+
+it 'latest change date is the comment date when a comment is written' do
+  comment_time = DateTime.new(2018, 4, 26, 13, 16, 0)
+  ticket = create_ticket(DateTime.new(2018, 4, 26, 13, 9, 0), [comment_time])
+
+  expect(ticket.latest_change).to be(comment_time)
+end
+
+it 'latest change date is the comment date of the latest comment' do
+  comment_time = DateTime.new(2018, 4, 26, 18, 36, 0)
+  ticket = create_ticket(DateTime.new(2018, 4, 26, 13, 9, 0),
+                         [DateTime.new(2018, 4, 26, 13, 16, 0), comment_time])
+
+  expect(ticket.latest_change).to be(comment_time)
+end
+
+it 'latest change date is time of latest change if after comment' do
+  creation_time = DateTime.new(2018, 4, 26, 13, 9, 0)
+  ticket = create_ticket(creation_time,[DateTime.new(2017, 4, 26, 13, 16, 0)])
+
+  expect(ticket.latest_change).to be(creation_time)
+end
+
+def create_ticket(creation_time, comment_times)
+  ticket = Ticket.new("Widget broken", "The widget is not loading when ...", "Philippe", creation_time)
+  comment_times.each do |comment_time|
+    ticket.add_comment(Comment.new("Should work now", "Dan", comment_time))
+  end
+  return ticket
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>end
+```</p>
+
+<p>As you can see, we have less duplication, but the tests got both unreadable and intricate &hellip; Following <a href="/how-immutable-value-objects-fight-mocks/">my advices</a> and using more <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a> makes the situation worse ! When data is mutable, we can customize it after the call to the Object Mother method. If data is immutable, it all has to be setup at initialization &hellip;</p>
+
+<p>That&rsquo;s when the mock temptation strikes. Sometimes it&rsquo;s so much easier to mock a method rather than to initialize your data properly. It can be 1 line of mock instead of dealing with all this mess.</p>
+
+<blockquote><p>💡 If you are not careful, messy test initialization code will trick you into using mocks.</p></blockquote>
+
+<p>Suppose we now want to make sure we can&rsquo;t add comments that were written before the ticket was created. We&rsquo;ll add the following</p>
+
+<p>```ruby
+describe &lsquo;Ticket Tracking&rsquo; do
+  # &hellip;
+  it &ldquo;is not possible to insert a comment before creation data&rdquo; do</p>
+
+<pre><code>ticket = create_ticket(DateTime.new(2018, 4, 26, 13, 9, 0), [])
+expect do
+  ticket.add_comment(Comment.new("Should work now", "Dan", DateTime.new(2017, 4, 26, 13, 9, 0)))
+end.to raise_error(ArgumentError)
+</code></pre>
+
+<p>  end
+end</p>
+
+<h1>&hellip;</h1>
+
+<p>class Ticket
+  # &hellip;
+  def add_comment(comment)</p>
+
+<pre><code>raise ArgumentError unless @updated_at &lt; comment.created_at
+
+@comments.push(comment)
+</code></pre>
+
+<p>  end
+  # &hellip;
+end</p>
+
+<p>```</p>
+
+<p>Unfortunately, one test (<code>latest change date is time of latest change if after comment</code>) where we were doing just this, will now fail. The fix would be to find a real situation for this test. Here this could be that the ticket is modified after the latest comment. If the tests are too messy though, a mock can be a quick and dirty fix the setup and make the test pass :</p>
+
+<p>```ruby
+it &lsquo;latest change date is time of latest change if after comment&rsquo; do
+  creation_time = DateTime.new(2018, 4, 26, 13, 9, 0)
+  ticket = create_ticket(creation_time, [])
+  comment = Comment.new(&ldquo;Should work now&rdquo;, &ldquo;Dan&rdquo;, DateTime.new(2018, 4, 26, 13, 16, 0))
+  ticket.add_comment(comment)
+  allow(comment).to receive(:created_at).and_return(DateTime.new(2017, 4, 26, 13, 16, 0))</p>
+
+<p>  expect(ticket.latest_change).to be(creation_time)
+end
+```</p>
+
+<p>There is a third way : Test Data Builders</p>
+
+<h2>What are test data builders</h2>
+
+<p>As often, when design is not satisfying, adding an indirection solves the issue. Here the indirection takes shape of the Builder pattern.</p>
+
+<blockquote><p><em>Builder Pattern [</em><a href="https://en.wikipedia.org/wiki/Builder_pattern"><em>Wikipedia</em></a><em>] :</em></p>
+
+<p>The intent of the Builder design pattern is to separate the construction of a complex object from its representation. By doing so the same construction process can create different representations.</p></blockquote>
+
+<p>The idea is to use the builder pattern to build the test data. <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a> covers this technique in great length.</p>
+
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="../imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/growing.jpg" alt="Cover of the book Growing Object Oriented Software Guided By Tests" /></a></p>
+
+<p>Here is the previous code re-written using the test data builder pattern.</p>
+
+<p>```ruby
+require &lsquo;rspec&rsquo;
+require &lsquo;date&rsquo;</p>
+
+<p>describe &lsquo;Ticket Tracking&rsquo; do
+  context &ldquo;with test data builders&rdquo; do</p>
+
+<pre><code>before :each do
+  @t = date_times.build
+end
+
+it 'latest change date is the creation date when nothing changed' do
+  ticket = a_ticket.at(@t[0]).build
+
+  expect(ticket.latest_change).to be(@t[0])
+end
+
+it 'latest change date is the comment date when a comment is written' do
+  ticket = a_ticket
+               .at(@t[0])
+               .with_comment(a_comment.at(@t[1]))
+               .build
+
+  expect(ticket.latest_change).to be(@t[1])
+end
+
+it 'latest change date is the comment date of the latest comment' do
+  ticket = a_ticket
+               .at(@t[0])
+               .with_comment(a_comment.at(@t[1]))
+               .with_comment(a_comment.at(@t[2]))
+               .build
+
+  expect(ticket.latest_change).to be(@t[2])
+end
+
+it 'latest change date is time of latest change if after comment' do
+  ticket = a_ticket.at(@t[0])
+               .with_comment(a_comment.at(@t[1]))
+               .build
+
+  ticket.update_description("The widget is not loading when logged in as anonymous", @t[2])
+
+  expect(ticket.latest_change).to be(@t[2])
+end
+
+it "is not possible to insert a comment before creation data" do
+  ticket = a_ticket.at(@t[1]).build
+
+  expect do
+    ticket.add_comment(a_comment.at(@t[0]).build)
+  end.to raise_error(ArgumentError)
+end
+</code></pre>
+
+<p>  end
+end</p>
+
+<h2>Test Data Builders</h2>
+
+<h1>#</h1>
+
+<p>class DateTimeBuilder
+  def build</p>
+
+<pre><code>seed = DateTime.now
+(0..10).map {|i| seed + i}
+</code></pre>
+
+<p>  end
+end
+def date_times()
+  DateTimeBuilder.new
+end</p>
+
+<p>class CommentBuilder
+  def initialize</p>
+
+<pre><code>@at = DateTime.now
+</code></pre>
+
+<p>  end
+  def at(time)</p>
+
+<pre><code>@at = time
+self
+</code></pre>
+
+<p>  end
+  def build</p>
+
+<pre><code>Comment.new("Should work now", "Dan", @at)
+</code></pre>
+
+<p>  end
+end
+def a_comment()
+  CommentBuilder.new
+end</p>
+
+<p>class TicketBuilder
+  def initialize</p>
+
+<pre><code>@at = DateTime.now
+@comments = []
+</code></pre>
+
+<p>  end
+  def at(time)</p>
+
+<pre><code>@at = time
+self
+</code></pre>
+
+<p>  end
+  def with_comment(comment_builder)</p>
+
+<pre><code>@comments.push(comment_builder.build)
+self
+</code></pre>
+
+<p>  end
+  def build</p>
+
+<pre><code>ticket = Ticket.new("Widget broken", "The widget is not loading when ...", "Philippe", @at)
+@comments.each do |comment|
+  ticket.add_comment(comment)
+end
+ticket
+</code></pre>
+
+<p>  end
+end
+def a_ticket()
+  TicketBuilder.new
+end</p>
+
+<h2>The code under test</h2>
+
+<h1>#</h1>
+
+<p>class Ticket</p>
+
+<p>  def initialize(title, description, reporter, creation_time)</p>
+
+<pre><code>@updated_at = creation_time
+@comments = []
+</code></pre>
+
+<p>  end</p>
+
+<p>  def latest_change</p>
+
+<pre><code>([@updated_at] + @comments.map(&amp;:created_at)).max
+</code></pre>
+
+<p>  end</p>
+
+<p>  def add_comment(comment)</p>
+
+<pre><code>raise ArgumentError unless @updated_at &lt; comment.created_at
+
+@comments.push(comment)
+</code></pre>
+
+<p>  end</p>
+
+<p>  def update_description(description, update_time)</p>
+
+<pre><code>@updated_at = update_time
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>class Comment
+  attr_reader :created_at</p>
+
+<p>  def initialize(message, author, time)</p>
+
+<pre><code>@created_at = time
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>As you can see, it provides default test values, and we only need to provide the custom values we care about. This makes the test code both readable and intention revealing. Making the tests more understandable helps a lot to find ways to avoid mocks. Here, we replaced the mock on the comment time by an update to the ticket after the last comment.</p>
+
+<p>The pattern applies in many languages, even if implementations will be different. In Ruby, libraries like <a href="https://github.com/thoughtbot/factory_bot">factory_bot</a> avoid a lot of boilerplate code. Have a look at <a href="http://www.natpryce.com/articles/000769.html">this article</a> for examples in Java.</p>
+
+<h2>Other advantages</h2>
+
+<p>Test data builders have another second effect benefit. When setting up the data is complicated, we are likely to add more that one assertion in a test. Unit tests can end up looking like a mini scenario to avoid duplicating this test setup.</p>
+
+<p>It&rsquo;s easy to create a specific tests for every assertion with Test Data Builders. By doing so we get smaller and more focused tests, which bring :</p>
+
+<ul>
+<li>Better names for tests</li>
+<li>More readable tests</li>
+<li>Faster diagnostic of the problem when a particular test fails</li>
+<li>🎁 Better coverage ! In a large test, all assertions work on the same input values. When we have many small tests, we can use a different value in each.</li>
+</ul>
+
+
+<blockquote><p>💡 By simplifying the creation of new tests with different data, Test Data Builders increase code coverage in the long term!</p></blockquote>
+
+<h2>Next week</h2>
+
+<p>This is the fourth post of <a href="/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a> in automated tests. Next week I&rsquo;ll dig into Custom Assertion Matchers and how they avoid mock expectations.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Immutable Value Objects vs Mocks : Fizz Buzz]]></title>
@@ -253,8 +694,6 @@ end
 <h2>Next post</h2>
 
 <p>I&rsquo;m done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. In next post, I&rsquo;ll dig into another small scale mock fighting pattern : <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a>.</p>
-
-<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
 ]]></content>
   </entry>
   
