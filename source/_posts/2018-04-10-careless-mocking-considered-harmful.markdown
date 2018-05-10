@@ -59,7 +59,7 @@ In [this series of posts](/blog/categories/how-to-avoid-mocks-series/), I'll go 
 1.  [Careless Mocking considered Harmful](/careless-mocking-considered-harmful/)
 2.  [How Immutable Value Objects fight mocks](/how-immutable-value-objects-fight-mocks/)
 3.  [Immutable Value Objects vs Mocks : Fizz Buzz](/immutable-value-objects-vs-mocks-fizz-buzz/)
-4.  How to use Test Data Builders to avoid mocks and keep your tests clear
+4.  [How to use Test Data Builders to avoid mocks and keep your tests clear](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)
 4.  One last small scale technique to avoid mocks : Test Matchers
 3.  Large scale techniques to avoid mocks
 4.  Mocking in special contexts like legacy and dynamically or statically typed languages

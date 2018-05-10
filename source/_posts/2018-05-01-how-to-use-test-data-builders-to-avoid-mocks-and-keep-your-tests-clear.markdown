@@ -12,7 +12,6 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Test Data Builders, Data Builders, Test Data, Test Setup, Ruby"
 description: "An explanation of how Test Data Builders prevent excessive mocking. Code examples in Ruby are presented to illustrate the point."
-published: false
 ---
 We are sometimes tempted to use mocks to shortcut test data initialization. Unfortunately, excessive mocking makes tests difficult to maintain. As [Uncle Bob explained](https://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.html), it's a road that leads to giving up on tests.
 
