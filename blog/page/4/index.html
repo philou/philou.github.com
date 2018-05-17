@@ -102,6 +102,121 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/">How We Used the Improvement Kata to Gain 25% of Productivity - Part 4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-09-22T06:40:00+02:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is the fourth post on a <a href="/blog/categories/first-improvement-kata-series/">series of 5 about the improvement kata</a>. If you haven&rsquo;t read the beginning of the story, I recommend you start from <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">part 1</a>.</p>
+
+<p>We ended the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">previous post</a> with a target condition :</p>
+
+<blockquote><p>We&rsquo;d like to be done with bugs within 3 months.</p></blockquote>
+
+<p>Currently, 1 pair (one quarter of the team) is constantly busy fixing bugs. If we manage to find a way to spend less time on bugs, we can expect a productivity increase of about 25%.</p>
+
+<p><img src="../imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/x-bugs.jpg" alt="Anti bug insecticide can" /></p>
+
+<p>Next step in the improvement kata is to run <a href="https://en.wikipedia.org/wiki/PDCA">Plan-Do-Check-Act (PDCA)</a> experiments. Before you run experiments, you need ideas !</p>
+
+<h2>Idea 1 : Stop exploratory testing</h2>
+
+<p>We&rsquo;d like to spend less time fixing bugs. At the same time, we know that we started to spend more time on bug fixing when we <a href="/how-we-started-exploratory-testing/">started exploratory testing</a>.</p>
+
+<p>We thought that one easy way to do less bug fixing was to stop exploratory testing altogether ! We listed the pros and the cons of exploratory testing.</p>
+
+<h3>The obvious cons</h3>
+
+<ul>
+<li>It discovers bugs. Fixing these bugs costs time. We&rsquo;d rather spend this time delivering new features</li>
+</ul>
+
+
+<h3>But the pros are many</h3>
+
+<ul>
+<li>It helps us discover technical debt and improve the quality of our code, which makes us faster in the long run. Clean code has less bugs. When we discover many bugs related to a particular region of the code, it means we should refactor it.</li>
+<li>It speeds up integration with other teams&#8217; work in many ways :
+
+<ul>
+<li>It saves other teams from debugging their time away trying to use broken things</li>
+<li>Fixing bugs is sometimes just a matter of providing clear &lsquo;not supported yet&rsquo; errors. Doing this saves a tremendous amount of time to other teams.</li>
+<li>Avoids blocking other teams as they wait for your bug fixes</li>
+<li>Reduces interruptions from bug reports and fixes bouncing between teams.</li>
+<li>By reducing unplanned rework, it makes any commitment you do more likely</li>
+</ul>
+</li>
+</ul>
+
+
+<p>In the light of all this, stoping exploratory testing did not seem like a great idea. We had to find something else.</p>
+
+<blockquote><p>💡Saving time by not fixing bugs might not be a great idea</p></blockquote>
+
+<p><img src="../imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/exploration.jpg" alt="Exploration map with a red cross" /></p>
+
+<h2>Idea 2 : Review what a bug is</h2>
+
+<p>We needed to find a middle ground between where we were and stoping exploratory testing. We wanted :</p>
+
+<ul>
+<li>not to let bugs escape</li>
+<li>raise clean errors on things that are not yet supported</li>
+<li>prevent scope creep from bug reports</li>
+</ul>
+
+
+<p>A few months ago, when we decided to prioritize bugs before features, we had defined a definition for bugs. Here is what it looked like. Something is a bug if any one of these is true :</p>
+
+<ol>
+<li>It used to work</li>
+<li>It corrupts data</li>
+<li>It silently returns wrong results</li>
+<li>It returns an internal error (like an internal exception stack trace)</li>
+</ol>
+
+
+<p>We examined this definition, discussed, and decided to dump the first clause. Our logic was that it was very difficult to know if something had already been working. The best thing we could refer to was our extensive suite of tests. If we discover that something is not working, it is very likely that it has never been. If it had been working, it means there was a hole in our test suite.</p>
+
+<blockquote><p>💡A hole in a test suite is a bug to fix</p></blockquote>
+
+<p>We decided to test this new bug definition for a while.</p>
+
+<h2>Not there yet !</h2>
+
+<p>We&rsquo;re getting closer to the end, but you&rsquo;re not done with PDCA yet.</p>
+
+<p>This was post 4 in a <a href="/blog/categories/first-improvement-kata-series/">series of 5</a> about the improvement kata. In the <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/">next and last post</a> of this story you&rsquo;ll learn how we ended the PDCAs for great results.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/">How We Used the Improvement Kata to Gain 25% of Productivity - Part 3</a></h1>
     
     
@@ -1244,108 +1359,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-07-10T09:10:00+02:00" pubdate data-updated="true">Jul 10<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This post is a bold promise. Mastering incremental refactoring techniques makes our lives as software engineers more enjoyable.</p>
-
-<p>I have already made the <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">same statement about TDD before</a>. As <a href="http://www.extremeprogramming.org/rules/refactor.html">refactoring</a> is a part of TDD, one could think I am repeating myself. At the same time, a <a href="https://blogs.msdn.microsoft.com/ericgu/2017/06/22/notdd/">recent Microsoft blog post</a> argued that refactoring is more important than TDD. Even though I&rsquo;m a TDD fan, that&rsquo;s an interesting point.</p>
-
-<p>Incremental refactoring is key to make releases non-events ! As early as 2006, using <a href="https://en.wikipedia.org/wiki/Extreme_programming">XP</a>, we were releasing mission critical software without bugs ! We would deliver a new version of our software to a horde of angry traders and go to the movies without a sweat !</p>
-
-<p>What&rsquo;s so special about incremental refactoring ?</p>
-
-<h2>Avoid the tunnel effect</h2>
-
-<p><img src="../imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/tunnel.jpg" alt="A long tunnel" /></p>
-
-<p>Mastering incremental refactoring techniques allows to break a feature down to baby steps. Not only smaller commits, but also smaller releases ! You can deploy and validate every step in production before we move to the next !</p>
-
-<p>Small releases are also a lot easier to fix than big bang deployments. That alone is a good enough reason to deploy in baby steps.</p>
-
-<p>There are a lot of other advantages to small deployments. Merges become straightforward. Someone can take over your work if you get sick. Finally, it&rsquo;s also easier to switch to another urgent task if you need to.</p>
-
-<h2>Deliver early</h2>
-
-<p>When you know that you will be able to improve your work later on, it becomes possible to stick to what&rsquo;s needed <em>now</em>. After spending some time working on a feature, it might turn out that you delivered enough value. Between enhancing this feature and starting another one, pick the most valuable. Don&rsquo;t be able to switch. Incremental refactoring, makes it easy to resume later on if it makes sense.</p>
-
-<p>Real productivity is not measured through code, but through feature value. This explains why incremental refactoring is more productive than up-front / big-bang development.</p>
-
-<h2>Know where you stand</h2>
-
-<p>As you&rsquo;ll work through your feature, you&rsquo;ll have to keep track of the done and remaining steps. As you go through this todo list and deliver every successive step, you get a pretty clear idea of where you stand. You&rsquo;ll know that you&rsquo;ve done 3 out of 7 steps for example. It helps everyone to know what&rsquo;s the remaining work and when you&rsquo;ll be able to work on something else.</p>
-
-<p><img src="../imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/wool-tangled.jpg" alt="Tangled wool" /></p>
-
-<p>A few times, I fell in the trap of features that should have taken a few hours and that lingered for days. I remember how stupid I was feeling every morning, explaining to my colleagues that it was more complex than I had thought, but that it should be finished before tomorrow &hellip; Learning incremental refactoring techniques saved me from these situations.</p>
-
-<h2>Deliver unexpected feature</h2>
-
-<p>Incremental refactoring techniques improves the code. As a systematic team wide effort, it keeps the code healthy and evolutive. When someone requests an unexpected feature late, you&rsquo;ll be able to deliver it.</p>
-
-<p>This should improve your relation with product people. They will be very happy when you build their latest idea without a full redesign.</p>
-
-<h2>Avoids rewrites</h2>
-
-<p>Joel Spolsky wrote a long time ago that rewriting a large piece of software is the <a href="https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/">number 1 thing not to do</a> ! All my experiences in rewriting systems have been painful and stressful.</p>
-
-<p>It always starts very rosy. Everyone is feeling very productive with the latest tools and technologies. Unfortunately, it takes a lot of features to replace the existing system. As always with software, the time estimates for the rewrite are completely wrong. As a result, everyone starts grumbling about why this rewrite is taking so long. The fact that the legacy system is still evolving does not help either. Long story short, the greenfield project ends up cutting corners and taking technical debt pretty fast &hellip; fueling the infamous vicious circle again.</p>
-
-<p>Incremental refactoring techniques offer an alternative. It enables to change and improve the architecture of the legacy system. It <em>looks</em> longer, but it&rsquo;s always less risky. And looking back, it&rsquo;s almost always faster as well !</p>
-
-<h2>Ease pair programming</h2>
-
-<p>eXtreme Programming contains a set of practices that reinforce each other. As I wrote at the beginning, refactoring goes hand in hand with TDD. <a href="/blog/categories/pair-programming/">Pair programming</a> is another practice of XP.</p>
-
-<p><a href="http://www.extremeprogramming.org/map/code.html"><img src="../imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/xp-practices.GIF" alt="Tangled wool" /></a><div class="image-credits">From <a href="http://www.extremeprogramming.org/">www.extremeprogramming.org/</a></div></p>
-
-<p>TDD and Refactoring simplify pair programming. When a pair is doing incremental refactoring, they only need to discuss and agree on the design at hand. They know that however the design needs to evolve in the long term, they&rsquo;ll be able to refactor it. It&rsquo;s a lot easier to pair program if you don&rsquo;t have to agree on all the details of the long term design &hellip;</p>
-
-<p>In turn, pair programming fosters <a href="http://www.extremeprogramming.org/rules/collective.html">collective code ownership</a>. Collective code ownership increases the <a href="https://en.wikipedia.org/wiki/Bus_factor">truck factor</a>. Which reduces the project risks and makes the team&rsquo;s productivity more stable. In the long run, this makes the work experience more sustainable and less stressful.</p>
-
-<h2>Simplify remote work</h2>
-
-<p>Refactoring will also save you from the commutes and allow you to work closer to the ones you love !</p>
-
-<p>Refactoring techniques enable small commits. Small commits simplify code reviews, which are key to remote or distributed work. Even if you are doing <a href="/rexp-remote-extreme-programming/">remote pair programming</a>, small commits help to switch the control between buddies more often.</p>
-
-<p><a href="https://www.amazon.com/gp/product/B00I800FFY/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00I800FFY&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=9873e69d645cba27701f4b3744acab0e"><img src="../imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/remote-pairing.jpg" alt="Tangled wool" /></a></p>
-
-<h2>To be continued</h2>
-
-<p>I hope that by now I persuaded you to learn incremental refactoring techniques. My <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">next post</a> will dig into the details about how to do that.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/5/">&larr; Older</a>
@@ -1426,6 +1439,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to use Test Data Builders to avoid mocks and keep your tests clear</a>
       </li>
     
@@ -1439,10 +1456,6 @@
     
       <li class="post">
         <a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a>
-      </li>
-    
-      <li class="post">
-        <a href="/frequently-asked-questions-about-the-20-hours-of-code-katas/">Frequently asked questions about the 20 hours of Code Katas</a>
       </li>
     
   </ul>

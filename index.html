@@ -102,6 +102,283 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers Will Keep Mocks Away</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-05-17T06:47:00+02:00" pubdate data-updated="true">May 17<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I cannot write a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a> without mentioning Custom Assertion Matchers. If you don&rsquo;t know what custom assertions are, here is pseudo code that uses a custom assertion :</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For more details, have a look at these examples for your preferred language : <a href="http://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html">Java</a>, <a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Ruby</a> or <a href="http://tonylukasavage.com/blog/2014/05/29/custom-assertions-in-should-dot-js/">Javascript</a>.</p>
+
+<p><img src="../imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg" alt="A drawing of a box of matches, branded 'Matchers' on top" /></p>
+
+<p>That custom assertion matchers have an effect on mock usage might seem puzzling at first. Let me explain. Us, mere human developers, get lured into mocking when tests become too complicated. By keeping the tests simpler, Custom Assertion Matchers help use to avoid mocks. It&rsquo;s a bit like why test data builders keep mocks at bay.</p>
+
+<blockquote><p>💡 We get lured into mocking when tests become too complicated</p></blockquote>
+
+<p>I already blogged about <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">the benefits of Custom Assertion Matchers</a>. Here I&rsquo;m going to dive in their advantages against mocking.</p>
+
+<p>This is the fifth post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to avoid mocks</a>. If you haven&rsquo;t yet, I recommend you to start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<h2>Why would we end up with mocks when we don&rsquo;t have matchers ?</h2>
+
+<p>Let&rsquo;s walkthrough a small story. Suppose we are building an e-commerce website. When someone passes an order, we want to notify the analytics service. Here is some very simple code for that.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">AnalyticsService</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@items</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="kp">attr_reader</span> <span class="ss">:items</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">order_passed</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">cart</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'><span class="err">     </span><span class="vi">@items</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="ss">customer</span><span class="p">:</span> <span class="n">customer</span><span class="p">,</span> <span class="ss">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Order</span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@customer</span> <span class="o">=</span> <span class="n">customer</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@cart</span> <span class="o">=</span> <span class="n">cart</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@analytics</span> <span class="o">=</span> <span class="n">analytics</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">pass</span>
+</span><span class='line'><span class="err">   </span><span class="c1"># launch order processing and expedition  </span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="vi">@analytics</span><span class="o">.</span><span class="n">order_passed</span><span class="p">(</span><span class="vi">@customer</span><span class="p">,</span> <span class="vi">@cart</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s1">&#39;Order&#39;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s2">&quot;notifies analytics service about passed orders&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">cart</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Pasta&quot;</span><span class="p">,</span><span class="s2">&quot;Tomatoes&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="err">   </span><span class="n">analytics</span> <span class="o">=</span> <span class="no">AnalyticsService</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="err">   </span><span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">order</span><span class="o">.</span><span class="n">pass</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="o">.</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="ss">customer</span><span class="p">:</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="ss">item</span><span class="p">:</span> <span class="s2">&quot;Pasta&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="o">.</span><span class="n">items</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="ss">customer</span><span class="p">:</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="ss">item</span><span class="p">:</span> <span class="s2">&quot;Tomatoes&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Let&rsquo;s focus on the tests a bit. We first notice that the verification section is large and difficult to understand.  Looking in more details, it knows too much about the internals of AnalyticsService. We had to make the items accessor public just for the sake of testing. The test even knows how the items are stored in a list of hashes. If we were to refactor this representation, we would have to change the tests as well.</p>
+
+<p>We could argue that responsibility-wise, our test should only focus on Order. It makes sense for the test to use a mock to verify that the Order calls AnalyticsService as expected. Let&rsquo;s see what this would look like.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s2">&quot;notifies analytics service about passed orders&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">cart</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Pasta&quot;</span><span class="p">,</span><span class="s2">&quot;Tomatoes&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="err"> </span><span class="n">analytics</span> <span class="o">=</span> <span class="no">AnalyticsService</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="err"> </span><span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:order_passed</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">order</span><span class="o">.</span><span class="n">pass</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sure, the test code is simpler. It&rsquo;s also better according to good design principles. The only glitch is that we now have a mock in place with all the problems I described <a href="/careless-mocking-considered-harmful/">before</a>.</p>
+
+<p>This might not (yet) be a problem in our example but, for example, the mock &lsquo;cuts&rsquo; the execution of the program. Suppose that someday, the Order starts expecting something from the AnalyticsService. We&rsquo;d then need to &lsquo;simulate&rsquo; the real behavior in our mock. This would make the test very hard to maintain.</p>
+
+<h2>Matchers to the rescue</h2>
+
+<p>Let&rsquo;s see how a matcher could help us here. The idea is to improve on the first &lsquo;state checking&rsquo; solution to make it better than the mock one. We&rsquo;ll extract and isolate all the state checking code in a custom matcher. By factorizing the code in a single matcher, we&rsquo;ll reduce duplication. The matcher remains too intimate with the object, but as it is now unique and well named, it&rsquo;s less of a problem. Plus, as always with matchers, we improved readability.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">RSpec</span><span class="p">:</span><span class="ss">:Matchers</span><span class="o">.</span><span class="n">define</span> <span class="ss">:have_been_notified_of_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">customer</span><span class="p">,</span> <span class="n">cart</span><span class="o">|</span>
+</span><span class='line'><span class="err"> </span><span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">analytics</span><span class="o">|</span>
+</span><span class='line'><span class="err">   </span><span class="n">cart</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+</span><span class='line'><span class="err">     </span><span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="n">analytics</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="ss">customer</span><span class="p">:</span> <span class="n">customer</span><span class="p">,</span> <span class="ss">item</span><span class="p">:</span> <span class="n">item</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'><span class="err">   </span><span class="kp">true</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s1">&#39;Order&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s2">&quot;notifies analytics service about passed orders&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">cart</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;Pasta&quot;</span><span class="p">,</span><span class="s2">&quot;Tomatoes&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="err">   </span><span class="n">analytics</span> <span class="o">=</span> <span class="no">AnalyticsService</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="err">   </span><span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">order</span><span class="o">.</span><span class="n">pass</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_been_notified_of_order</span><span class="p">(</span><span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here is how we could summarize the pros and cons of each approach :</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Assert state          </th>
+<th> Mocks                              </th>
+<th> Matchers </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> 👎 duplicated code    </td>
+<td>👎 duplicates the program behavior</td>
+<td>❤️ customizable error messages|</td>
+</tr>
+<tr>
+<td></td>
+<td>👎 breaks encapsulation</td>
+<td>                                   </td>
+<td>❤️ more readable|</td>
+</tr>
+<tr>
+<td></td>
+<td>                       </td>
+<td>                                    </td>
+<td>👎 intimacy with the asserted object|</td>
+</tr>
+<tr>
+<td></td>
+<td>                       </td>
+<td>                                    </td>
+<td>❤️ factorizes the assertion code|</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Design improvements</h2>
+
+<p>Depending on your situation, you might find further design improvements. In our example, a publish-subscribe pattern might do. A better design is likely to fix the encapsulation problem of the matcher. Here again, the custom assertion matchers will help. In most cases, it will be enough to change the implementation of the matchers only.</p>
+
+<blockquote><p>💡 Custom assertion matchers make refactoring easier by factorizing test assertions.</p></blockquote>
+
+<h2>Summary of small-scale techniques</h2>
+
+<p>I&rsquo;m done with small scale mock avoiding techniques. To summarize, the first thing to do is to push for more and more <a href="/how-immutable-value-objects-fight-mocks/">immutable value objects</a>. Not only does it help us to avoid mocks, but it will also provides many benefits for production code. Practices like <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">Test Data Builders</a> and Custom Assertion Matchers simplify dealing with Immutable Value Objects in tests. They also help to keep tests small and clean, which is also a great thing against mocks.</p>
+
+<h2>Next post</h2>
+
+<p>In the following posts, I&rsquo;ll look into architecture scale techniques to avoid mocks. I&rsquo;ll start with Hexagonal architecture.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to Use Test Data Builders to Avoid Mocks and Keep Your Tests Clear</a></h1>
     
     
@@ -1728,154 +2005,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-start-a-team-coding-dojo-randori-today/">How to Start a Team Coding Dojo Randori Today</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2018-03-08T08:57:00+01:00" pubdate data-updated="true">Mar 8<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In my <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">previous post</a>, I explained why you should start a team <a href="http://codingdojo.org/">coding dojo</a> <a href="http://codingdojo.org/RandoriKata/">Randori</a> as soon as you can. Here is a step by step guide to set one up today.</p>
-
-<p><img src="../imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/white-belt.jpg" alt="A white belt" /></p>
-
-<h2>Logistics</h2>
-
-<p>This the most important, and most easy, part !</p>
-
-<h3>A Time Slot</h3>
-
-<p>For a regular team coding dojo, practice showed that 2 hours every 2 weeks works great. Most teams I&rsquo;ve worked with had 2 weeks sprints, which made this rhythm natural.</p>
-
-<p>Try to find a day and a slot that fits your own constraints. It could on the first, last or mid day of the sprint. It could be in the morning where people are usually fresh. People might have a bit less energy in the afternoon. Don&rsquo;t put it in the middle of the afternoon, or you&rsquo;ll ruin the programmers&#8217; focus. Some teams use the lunch break, and bring food in to make the coding dojo even more fun.</p>
-
-<p>Once you&rsquo;ve found the perfect slot, book a recurring meeting with all your team. It&rsquo;s now official, you are going to have your first team coding dojo !</p>
-
-<h3>Material Stuff</h3>
-
-<p>You now need only 4 other things :</p>
-
-<ul>
-<li>a room</li>
-<li>a laptop with a programming environment</li>
-<li>a large visible screen to display the laptop</li>
-<li>a timer</li>
-</ul>
-
-
-<p>It used to need a bit of preparation to get all these, but nowadays, it should be easy.</p>
-
-<h2>Your first session</h2>
-
-<p>The good thing about the Randori is that it is almost preparation-free. Here is the typical agenda for a Randori session :</p>
-
-<ol>
-<li>Introduction (0:05)</li>
-<li>Problem Selection (0:05)</li>
-<li>Coding (1:40)</li>
-<li>Retrospective (0:10)</li>
-</ol>
-
-
-<h3>Introduction</h3>
-
-<p>Start by reviewing last session&rsquo;s retrospective. This will bring good resolutions back to everyone&rsquo;s minds. Obviously, you cannot do that at the first session. Present the rules of the Randori instead (as stated by <a href="https://twitter.com/emilybache?lang=fr">Emily Bache</a> in her <a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&amp;qid=1519388493&amp;sr=8-1&amp;keywords=coding+dojo+handbook">book</a>):</p>
-
-<blockquote><ol>
-<li>If you have the keyboard, you get to decide what to type</li>
-<li>If you have the keyboard and you don’t know what to type, ask for help</li>
-<li>If you are asked for help, kindly respond to the best of your ability</li>
-<li>If you are not asked, but you see an opportunity for improvement or learning, choose an appropriate moment to mention it. This may involve waiting until the next time all the tests pass (for design improvement suggestions) or until the retrospective.</li>
-</ol>
-</blockquote>
-
-<p>Don&rsquo;t hesitate to repeat the rules when you have a newcomer or when you see fit.</p>
-
-<p>The introduction is also a moment where participants can share things together. Just make sure it does not eat on coding time.</p>
-
-<h3>Problem Selection</h3>
-
-<p>There is a ton of coding dojo subjects out there. For the first session, pick in 1 or 2 problems for the team to choose from. After a few sessions, let people bring in problems and dot vote on their favorite subjects.</p>
-
-<p>As a first problem, I like the <a href="http://codingdojo.org/kata/RomanNumerals/">Roman Numerals</a> kata. It&rsquo;s not too difficult and has some interesting <a href="https://martinfowler.com/bliki/Yagni.html">YAGNI</a> and &ldquo;Do the simplest thing that could work&rdquo; properties. That&rsquo;s only a personal preference though. Here some resources where to find kata problems :</p>
-
-<ul>
-<li><a href="http://codingdojo.org/">codingdojo.org</a></li>
-<li><a href="http://cyber-dojo.org/">cyber-dojo.org</a></li>
-<li><a href="http://kata-log.rocks">kata-log.rocks</a></li>
-<li><a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&amp;qid=1519279127&amp;sr=8-1&amp;keywords=coding+dojo+handbook">The Coding Dojo Handbook</a> (Where you&rsquo;ll also find tons of other valuable advices)</li>
-</ul>
-
-
-<p><a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&amp;qid=1519279127&amp;sr=8-1&amp;keywords=coding+dojo+handbook"><img src="../imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/coding-dojo.jpg" alt="The Coding Dojo Handbook cover" /></a></p>
-
-<p>Whatever the topic you chose for your first session, make sure it is not too difficult.</p>
-
-<blockquote><p>💡 As a first team Randori coding dojo problem, I like <a href="http://codingdojo.org/kata/RomanNumerals/">Roman Numerals</a> kata.</p></blockquote>
-
-<h3>Coding</h3>
-
-<p>That&rsquo;s why we are here ! The Randori is a dojo format where everyone works together, on the same problem, through the same computer. Start the timer for 5 minutes as the first pair works on the problem. When the timer rings, the co-pilot takes the keyboard, and someone new becomes the co-pilot. Start the timer again, and repeat after 5 more minutes. If you did not already, have a look at my previous <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">post</a> for more details.</p>
-
-<p>You should be using <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> during the Randori. Even if you are not (yet) using it on your production code. Here is why :</p>
-
-<ul>
-<li>It provides a fast feedback loop which enables the fast paced 5 minutes round robin</li>
-<li>It teaches how to design testable code, which is always useful</li>
-<li>It teaches how to do baby steps refactorings</li>
-<li>🎁 Bonus : it demonstrates agile principles in practice (focus on outcome, incremental delivery, YAGNI &hellip;)</li>
-</ul>
-
-
-<p>I&rsquo;ve written a lot about TDD, have a look at <a href="/blog/categories/tdd/">my posts</a> for more. Applying TDD means sticking to the Red-Green-Refactor loop. During first sessions, be particularly careful that people don&rsquo;t refactor on red tests.</p>
-
-<blockquote><p>💡 Team Randori coding dojo demonstrates agile principles in practice (focus on outcome, incremental delivery, YAGNI &hellip;)</p></blockquote>
-
-<h3>Retrospective</h3>
-
-<p>Stop coding 10 minutes before the end of the session. It might be difficult, but remind everyone that you are here to learn and that you can resume on next session. Use these 10 minutes to think about how it went. As the facilitator, take the keyboard, write these 4 questions in a text document :</p>
-
-<ul>
-<li>What did we do ?</li>
-<li>What did we learn ?</li>
-<li>What still puzzles us ?</li>
-<li>What did we decide ?</li>
-</ul>
-
-
-<p>Ask everyone for their answers and write them down. You&rsquo;ll use this at the beginning of next session.</p>
-
-<h2>Next Post</h2>
-
-<p>I thought 2 posts would be enough to cover coding dojos, but it seems I have more to say ! <a href="/coding-dojo-troubleshooting/">My next post</a> will be about tricks and advices to make your dojos a success.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1954,6 +2083,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to use Test Data Builders to avoid mocks and keep your tests clear</a>
       </li>
     
@@ -1967,10 +2100,6 @@
     
       <li class="post">
         <a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a>
-      </li>
-    
-      <li class="post">
-        <a href="/frequently-asked-questions-about-the-20-hours-of-code-katas/">Frequently asked questions about the 20 hours of Code Katas</a>
       </li>
     
   </ul>

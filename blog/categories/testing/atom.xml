@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-10T09:13:48+02:00</updated>
+  <updated>2018-05-17T06:07:34+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,184 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How Custom Assertion Matchers will keep mocks away]]></title>
+    <link href="http://philippe.bourgau.net/how-custom-assertion-matchers-will-keep-mocks-away/"/>
+    <updated>2018-05-17T06:47:00+02:00</updated>
+    <id>http://philippe.bourgau.net/how-custom-assertion-matchers-will-keep-mocks-away</id>
+    <content type="html"><![CDATA[<p>I cannot write a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a> without mentioning Custom Assertion Matchers. If you don&rsquo;t know what custom assertions are, here is pseudo code that uses a custom assertion :</p>
+
+<p><code>
+assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
+</code></p>
+
+<p>For more details, have a look at these examples for your preferred language : <a href="http://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html">Java</a>, <a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Ruby</a> or <a href="http://tonylukasavage.com/blog/2014/05/29/custom-assertions-in-should-dot-js/">Javascript</a>.</p>
+
+<p><img src="../imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg" alt="A drawing of a box of matches, branded 'Matchers' on top" /></p>
+
+<p>That custom assertion matchers have an effect on mock usage might seem puzzling at first. Let me explain. Us, mere human developers, get lured into mocking when tests become too complicated. By keeping the tests simpler, Custom Assertion Matchers help use to avoid mocks. It&rsquo;s a bit like why test data builders keep mocks at bay.</p>
+
+<blockquote><p>💡 We get lured into mocking when tests become too complicated</p></blockquote>
+
+<p>I already blogged about <a href="/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">the benefits of Custom Assertion Matchers</a>. Here I&rsquo;m going to dive in their advantages against mocking.</p>
+
+<p>This is the fifth post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to avoid mocks</a>. If you haven&rsquo;t yet, I recommend you to start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<h2>Why would we end up with mocks when we don&rsquo;t have matchers ?</h2>
+
+<p>Let&rsquo;s walkthrough a small story. Suppose we are building an e-commerce website. When someone passes an order, we want to notify the analytics service. Here is some very simple code for that.</p>
+
+<p>```ruby
+class AnalyticsService</p>
+
+<p> def initialize<br/>
+   @items = []<br/>
+ end</p>
+
+<p> attr_reader :items</p>
+
+<p> def order_passed(customer, cart)<br/>
+   cart.each do |item|<br/>
+     @items.push(customer: customer, item: item)<br/>
+   end<br/>
+ end<br/>
+end</p>
+
+<p>class Order<br/>
+ def initialize(customer, cart, analytics)<br/>
+   @customer = customer<br/>
+   @cart = cart<br/>
+   @analytics = analytics<br/>
+ end</p>
+
+<p> def pass<br/>
+   # launch order processing and expedition</p>
+
+<p>   @analytics.order_passed(@customer, @cart)<br/>
+ end</p>
+
+<p>end</p>
+
+<p>describe &lsquo;Order&rsquo; do</p>
+
+<p> it &ldquo;notifies analytics service about passed orders&rdquo; do<br/>
+   cart = [&ldquo;Pasta&rdquo;,&ldquo;Tomatoes&rdquo;]<br/>
+   analytics = AnalyticsService.new<br/>
+   order = Order.new(&ldquo;Philippe&rdquo;, cart, analytics)</p>
+
+<p>   order.pass</p>
+
+<p>   expect(analytics.items).to include(customer: &ldquo;Philippe&rdquo;, item: &ldquo;Pasta&rdquo;)<br/>
+   expect(analytics.items).to include(customer: &ldquo;Philippe&rdquo;, item: &ldquo;Tomatoes&rdquo;)<br/>
+ end<br/>
+end
+```</p>
+
+<p>Let&rsquo;s focus on the tests a bit. We first notice that the verification section is large and difficult to understand.  Looking in more details, it knows too much about the internals of AnalyticsService. We had to make the items accessor public just for the sake of testing. The test even knows how the items are stored in a list of hashes. If we were to refactor this representation, we would have to change the tests as well.</p>
+
+<p>We could argue that responsibility-wise, our test should only focus on Order. It makes sense for the test to use a mock to verify that the Order calls AnalyticsService as expected. Let&rsquo;s see what this would look like.</p>
+
+<p>```ruby
+it &ldquo;notifies analytics service about passed orders&rdquo; do<br/>
+ cart = [&ldquo;Pasta&rdquo;,&ldquo;Tomatoes&rdquo;]<br/>
+ analytics = AnalyticsService.new<br/>
+ order = Order.new(&ldquo;Philippe&rdquo;, cart, analytics)</p>
+
+<p> expect(analytics).to receive(:order_passed).with(&ldquo;Philippe&rdquo;, cart)</p>
+
+<p> order.pass<br/>
+end
+```</p>
+
+<p>Sure, the test code is simpler. It&rsquo;s also better according to good design principles. The only glitch is that we now have a mock in place with all the problems I described <a href="/careless-mocking-considered-harmful/">before</a>.</p>
+
+<p>This might not (yet) be a problem in our example but, for example, the mock &lsquo;cuts&rsquo; the execution of the program. Suppose that someday, the Order starts expecting something from the AnalyticsService. We&rsquo;d then need to &lsquo;simulate&rsquo; the real behavior in our mock. This would make the test very hard to maintain.</p>
+
+<h2>Matchers to the rescue</h2>
+
+<p>Let&rsquo;s see how a matcher could help us here. The idea is to improve on the first &lsquo;state checking&rsquo; solution to make it better than the mock one. We&rsquo;ll extract and isolate all the state checking code in a custom matcher. By factorizing the code in a single matcher, we&rsquo;ll reduce duplication. The matcher remains too intimate with the object, but as it is now unique and well named, it&rsquo;s less of a problem. Plus, as always with matchers, we improved readability.</p>
+
+<p>```ruby
+RSpec::Matchers.define :have_been_notified_of_order do |customer, cart|<br/>
+ match do |analytics|<br/>
+   cart.each do |item|<br/>
+     return false unless analytics.items.include?(customer: customer, item: item)<br/>
+   end<br/>
+   true<br/>
+ end<br/>
+end</p>
+
+<p>describe &lsquo;Order&rsquo; do<br/>
+ it &ldquo;notifies analytics service about passed orders&rdquo; do<br/>
+   cart = [&ldquo;Pasta&rdquo;,&ldquo;Tomatoes&rdquo;]<br/>
+   analytics = AnalyticsService.new<br/>
+   order = Order.new(&ldquo;Philippe&rdquo;, cart, analytics)</p>
+
+<p>   order.pass</p>
+
+<p>   expect(analytics).to have_been_notified_of_order(&ldquo;Philippe&rdquo;, cart)<br/>
+ end<br/>
+end
+```</p>
+
+<p>Here is how we could summarize the pros and cons of each approach :</p>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th> Assert state          </th>
+<th> Mocks                              </th>
+<th> Matchers </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td> 👎 duplicated code    </td>
+<td>👎 duplicates the program behavior</td>
+<td>❤️ customizable error messages|</td>
+</tr>
+<tr>
+<td></td>
+<td>👎 breaks encapsulation</td>
+<td>                                   </td>
+<td>❤️ more readable|</td>
+</tr>
+<tr>
+<td></td>
+<td>                       </td>
+<td>                                    </td>
+<td>👎 intimacy with the asserted object|</td>
+</tr>
+<tr>
+<td></td>
+<td>                       </td>
+<td>                                    </td>
+<td>❤️ factorizes the assertion code|</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2>Design improvements</h2>
+
+<p>Depending on your situation, you might find further design improvements. In our example, a publish-subscribe pattern might do. A better design is likely to fix the encapsulation problem of the matcher. Here again, the custom assertion matchers will help. In most cases, it will be enough to change the implementation of the matchers only.</p>
+
+<blockquote><p>💡 Custom assertion matchers make refactoring easier by factorizing test assertions.</p></blockquote>
+
+<h2>Summary of small-scale techniques</h2>
+
+<p>I&rsquo;m done with small scale mock avoiding techniques. To summarize, the first thing to do is to push for more and more <a href="/how-immutable-value-objects-fight-mocks/">immutable value objects</a>. Not only does it help us to avoid mocks, but it will also provides many benefits for production code. Practices like <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">Test Data Builders</a> and Custom Assertion Matchers simplify dealing with Immutable Value Objects in tests. They also help to keep tests small and clean, which is also a great thing against mocks.</p>
+
+<h2>Next post</h2>
+
+<p>In the following posts, I&rsquo;ll look into architecture scale techniques to avoid mocks. I&rsquo;ll start with Hexagonal architecture.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to use Test Data Builders to avoid mocks and keep your tests clear]]></title>
@@ -835,80 +1013,6 @@ end
 <li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Rails teaches us about building platforms and frameworks]]></title>
-    <link href="http://philippe.bourgau.net/what-rails-teaches-us-about-building-platforms-and-frameworks/"/>
-    <updated>2017-10-09T09:20:00+02:00</updated>
-    <id>http://philippe.bourgau.net/what-rails-teaches-us-about-building-platforms-and-frameworks</id>
-    <content type="html"><![CDATA[<p>More than ever, the cheapest way to build a framework is to refactor it out of a specific app.</p>
-
-<p><a href="http://rubyonrails.org/">Rails</a> is a web development server side framework built in <a href="https://www.ruby-lang.org/">Ruby</a>. It&rsquo;s been and remains very popular. It set the tone for all the <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> web frameworks that followed. People have ported it to many other languages. Rails is now in it&rsquo;s 5th version, what is less known is how it was built in the first place.</p>
-
-<p><img src="../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/train-and-rails.jpg" alt="Drawing of a train being detached from its rails" /></p>
-
-<h2>The story of Rails</h2>
-
-<p><a href="http://david.heinemeierhansson.com/">David Heinemeier Hansson</a>, the creator of Rails, is a cult in the Ruby community. You can find the history of Rails at many places. If you have a bit of time, read <a href="https://www.wired.com/2008/02/mf-signals/?currentPage=all">this great article</a> from Wired. If you don&rsquo;t have a lot of time, here is a summary.</p>
-
-<p><a href="https://twitter.com/jasonfried?lang=fr">Jason Fried</a> and DHH were working at <a href="https://37signals.com/">37signals</a>. They were working on project management app for small businesses called <a href="https://basecamp.com/">Basecamp</a>. After releasing the first version of Basecamp, DHH extracted and open sourced Rails out of it.</p>
-
-<p>37signals later then re-used Rails to build other apps like Campfire, Highrise and Backpack.</p>
-
-<p>We all know the end of the story, Rails adoption exploded. Many successful companies like <a href="https://github.com/">Github</a>, <a href="https://www.airbnb.com/">Airbnb</a>, <a href="https://twitter.com">Twitter</a> &amp; <a href="https://www.shopify.com">Shopify</a> have used it. It evolved a lot, through the darwinism of open source. Today, Rails might not be the latest and coolest web framework, but it is still very productive and popular.</p>
-
-<p><img src="../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rails-logo.jpg" alt="The Rails logo" /></p>
-
-<h2>Economic sense</h2>
-
-<p>To summarize, here is how they did it :</p>
-
-<ol>
-<li>Built a specific app, and monetized it</li>
-<li>Extracted an open source framework from it</li>
-<li>Built other apps on the framework</li>
-</ol>
-
-
-<p>If you are not a programmers, you&rsquo;re likely to assume that the cost of reusing software is negligible. If you are a programmer, I&rsquo;ll ask you to assume that it is for a while.  Under this hypothesis, all they did makes a lot of business sense :</p>
-
-<ul>
-<li>Building a specific app first is the fastest path to paying customers. Building a framework first would need more work.</li>
-<li>Once you have paying customers, you&rsquo;ve got money to fuel further work.</li>
-<li>In particular, you have money to finance the extraction of an open source framework.</li>
-<li>Putting the framework open source increases its reusability through bug reports and contributions.</li>
-<li>Building the next app is even easier thanks to a mature framework and the revenues from the original app</li>
-</ul>
-
-
-<blockquote><p>💡 Once you have paying customers, you&rsquo;ve got money to fuel further work.</p></blockquote>
-
-<h2>How can it work ?</h2>
-
-<p><a href="https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?ie=UTF8&amp;qid=1507610064&amp;sr=8-1&amp;keywords=rework"><img src="../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rework-cover.jpg" alt="Cover of Rework book" /></a></p>
-
-<p>Ok, enough for common sense. Let&rsquo;s see what happens when you take into account the real cost of changing software ? All software developers know that changing software is far from cheap. Very often, it&rsquo;s more expensive to adapt than to rebuild</p>
-
-<p>So how did the Rails guys manage it ? Rails has 3 specificities that explain that :</p>
-
-<ul>
-<li>Rails has automated testing built in and out</li>
-<li>Basecamp guys are agile with a lower &lsquo;a&rsquo;. They don&rsquo;t follow Scrum or any method. Read <a href="https://basecamp.com/about/books">their books</a> and you&rsquo;ll understand how agile they are. They follow principles like KISS, YAGNI, Lean startup discovery &hellip;</li>
-<li>Finally, it was open sourced !</li>
-</ul>
-
-
-<p>Agile principles and technical practices is what allowed them to take the common-sense path.</p>
-
-<blockquote><p>💡 Thanks to agile practices, the cheapest way to build a framework is to extract it from a specific app.</p></blockquote>
-
-<h2>Open question</h2>
-
-<p>If it is possible to do the thing that makes the most economic sense, why isn&rsquo;t it the default way ? Why are so many of us still losing a ton of money writing large frameworks and platforms up-front ? How could we get large companies to adopt the more nimble &lsquo;basecamp&rsquo; way ?</p>
-
-<p><em>If you have remarks, answers or different point of views, I&rsquo;d love to read your comment !</em></p>
 ]]></content>
   </entry>
   

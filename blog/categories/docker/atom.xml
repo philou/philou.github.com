@@ -4,7 +4,7 @@
   <title><![CDATA[Category: docker | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-10T09:13:48+02:00</updated>
+  <updated>2018-05-17T06:07:34+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -20,7 +20,7 @@
     <id>http://philippe.bourgau.net/how-i-finally-use-docker-on-small-open-source-side-projects</id>
     <content type="html"><![CDATA[<p>A few months ago, I started <a href="https://github.com/philou/planning-poker">Philou&rsquo;s Planning Poker</a>, an open source side project to run <a href="https://en.wikipedia.org/wiki/Planning_poker">planning poker estimate sessions</a> remotely. The main technology is <a href="http://rubyonrails.org/">Rails</a>, and I&rsquo;d been planning to use <a href="https://www.docker.com/">Docker</a> as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !</p>
 
-<p><img class="center" src="/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg" title="The Docker logo next to a silver bullet" ></p>
+<p>{% img center /imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg The Docker logo next to a silver bullet %}</p>
 
 <h2>The Docker love phase</h2>
 
@@ -134,7 +134,7 @@ db:
 
 <p>After searching the internet a bit, I found <a href="https://github.com/docker/docker/issues/6325">this issue</a> which made me understand that my server had ran out of disk space because of old versions of my docker images. I tried to remove them, but the commands were failing. After some more search, I found <a href="https://github.com/docker/docker/issues/26015">this other issue</a> and came to the conclusion that there was no solution except resetting docker completely. Hopefully, Digital Ocean has a button for rebuilding the VM.</p>
 
-<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg" title="A screenshot of the rebuild screen on digitalocean" ></a></p>
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg">{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg A screenshot of the rebuild screen on digitalocean %}</a></p>
 
 <p>Once the VM was rebuilt, the first thing that I did was to try to connect from my shell on my local machine. I had to clean up my known host file, but that was simple enough.</p>
 
@@ -159,7 +159,7 @@ bash: line 1: 18576 Killed
 
 <p>After some more Google searching, I discovered that this time, the VM was running out of memory ! The fast fix was to upgrade the VM (at the extra cost of 5$ / month).</p>
 
-<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg" title="A screenshot of the resize screen on digitalocean" ></a></p>
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg">{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg A screenshot of the resize screen on digitalocean %}</a></p>
 
 <p>After increasing the memory (and disk space) of the VM, deployment went like a charm. Others have fixed the same issue for free by <a href="https://www.digitalocean.com/community/questions/npm-gets-killed-no-matter-what">adding a swap partition to the VM</a>.</p>
 
@@ -206,7 +206,7 @@ bash: line 1: 18576 Killed
 </ol>
 
 
-<p><img class="center" src="/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg" title="The logos of Docker, CircleCI and DigitalOcean" ></p>
+<p>{% img center /imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg The logos of Docker, CircleCI and DigitalOcean %}</p>
 
 <h2>What did I need to do to make it work</h2>
 
