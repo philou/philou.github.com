@@ -150,6 +150,4 @@ I'm done with small scale mock avoiding techniques. To summarize, the first thin
 
 ## Next post
 
-In the following posts, I'll look into architecture scale techniques to avoid mocks. I'll start with Hexagonal architecture.
-
-[Stay tuned](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
+In the following posts, I'll look into architecture scale techniques to avoid mocks. I'll start with [Hexagonal architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/).

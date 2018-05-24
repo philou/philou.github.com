@@ -60,6 +60,7 @@ In [this series of posts](/blog/categories/how-to-avoid-mocks-series/), I'll go 
 2.  [How Immutable Value Objects fight mocks](/how-immutable-value-objects-fight-mocks/)
 3.  [Immutable Value Objects vs Mocks : Fizz Buzz](/immutable-value-objects-vs-mocks-fizz-buzz/)
 4.  [How to use Test Data Builders to avoid mocks and keep your tests clear](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)
-4.  One last small scale technique to avoid mocks : Test Matchers
-3.  Large scale techniques to avoid mocks
-4.  Mocking in special contexts like legacy and dynamically or statically typed languages
+5.  [How Custom Assertion Matchers will keep mocks away](/how-custom-assertion-matchers-will-keep-mocks-away/)
+6.  [Avoid mocks and test your core domain faster with Hexagonal Architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)
+7.  Other large scale techniques to avoid mocks
+8.  Mocking in special contexts like legacy and dynamically or statically typed languages
