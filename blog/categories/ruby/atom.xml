@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ruby | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-17T06:07:34+02:00</updated>
+  <updated>2018-05-24T08:58:59+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,423 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Avoid mocks and test your core domain faster with Hexagonal Architecture]]></title>
+    <link href="http://philippe.bourgau.net/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/"/>
+    <updated>2018-05-24T06:43:00+02:00</updated>
+    <id>http://philippe.bourgau.net/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture</id>
+    <content type="html"><![CDATA[<p>As I&rsquo;ve written in my last few posts, we can get a long way to avoid mocks with small scale coding best practices. Unfortunately, when systems reach a certain size, we need something at architecture scale.</p>
+
+<p>This is the 6th post of a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. If you haven&rsquo;t, you can start by <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<p><img src="../imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg" alt="A drawing of a hexagon-shaped building" /></p>
+
+<h2>Why do we end up with mocks in large systems ?</h2>
+
+<p>A few years ago, I joined a team working in a legacy system. We wanted to apply <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and refactoring. As expected, adding tests legacy code proved a real challenge. With a lot of effort we could manage to add a few. Unfortunately, this did not seem to have any positive effect on our maintainability ! The tests we were writing all involved a lot of mocking. The system was such a large mass of spaghetti code that there was no clear place to mock. We were actually mocking where it seemed the easiest on a test by test basis. We were making progress at small scale, but the big picture was not improving at all !</p>
+
+<p>Large systems are beasts with many faces. They  involve a lot of IOs. They write and read data from the disk and databases. They call 3rd parties and remote services.</p>
+
+<p>As we test these large systems, we&rsquo;ll need to stub out these IOs. Even if the tests are fast enough, we usually don&rsquo;t want to call external services for real. Most of the time though, tests are slow. That&rsquo;s 2 reasons why end up adding some mocks.</p>
+
+<p>Here comes the nasty part. These large systems are so complex that we, developers, don&rsquo;t have the full picture. When we test, we tend to mock at different places, depending on our knowledge. This is bad for maintenance. Mocks duplicate production code behavior. When many different mocks are in place to isolate an external dependency, we end up with &lsquo;n&rsquo; versions of the code. That&rsquo;s a nightmare to refactor !</p>
+
+<blockquote><p>💡 When many different mocks are in place to isolate an external dependency, we end up with &lsquo;n&rsquo; versions of the code !</p></blockquote>
+
+<h2>Hexagonal architecture to the rescue</h2>
+
+<p><a href="http://alistair.cockburn.us/Hexagonal+architecture">Alistair Cockburn</a> coined the term. The idea is pretty simple :  isolate a piece of code from all dependencies. This is particularly useful for the core functional areas. With this in place, it becomes straightforward (and fast) to test the core domain logic.</p>
+
+<p>To main techniques to isolate a piece of code from any dependency are :</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency injection</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Observer_pattern">Observers</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapters</a></li>
+</ul>
+
+
+<p>It&rsquo;s also possible to split a system in many &lsquo;hexagons&rsquo; and glue them together with adapters at startup. If you want to learn more on this style of architecture, have a look into the <a href="https://www.infoq.com/articles/ddd-contextmapping">Domain Driven Design lore</a>. This community has been building systems this way for years now.</p>
+
+<h2>Enough talk, show me the code !</h2>
+
+<p>This post was the occasion to try to inject a Hexagonal Architecture and a dash of DDD in a Rails application. There&rsquo;s one caveat though : DDD shines on complex systems. Unfortunately, large and complex systems make very poor didactic examples. The following code highlights the gains about mocking. We would not use DDD for such a small app in real life.</p>
+
+<h3>The starting point</h3>
+
+<p>I chose a simple TODO app. I started by generating a scaffold for a Task with a description and a done/not-done status. As third party interaction, completing a task sends an automatic tweet. Here is the only specific code I wrote on top of the Rails scaffold :</p>
+
+<h6>app/models/task.rb</h6>
+
+<p>```ruby
+class Task &lt; ApplicationRecord
+  include ActiveModel::Dirty</p>
+
+<p>  validates :description, presence: true</p>
+
+<p>  before_save :tweet_if_done</p>
+
+<p>  private
+  def tweet_if_done</p>
+
+<pre><code>if done_changed?
+  TwitterClient::Client.update(self.description)
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h6>spec/models/task_spec.rb</h6>
+
+<p>```ruby
+require &lsquo;rails_helper&rsquo;</p>
+
+<p>RSpec.describe Task, type: :model do</p>
+
+<p>  it &ldquo;is valid with all attributes set&rdquo; do</p>
+
+<pre><code>expect(Task.create(description: "Finish presentation", done: false)).to be_valid
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &ldquo;requires a description&rdquo; do</p>
+
+<pre><code>expect(Task.create(description: nil, done: false)).to be_invalid
+expect(Task.create(description: "", done: false)).to be_invalid
+</code></pre>
+
+<p>  end</p>
+
+<p>  it &ldquo;tweets when a task is finished&rdquo; do</p>
+
+<pre><code>task = Task.create(description: "Wash the car", done: false)
+
+expect(TwitterClient::Client).to receive(:update).with("Wash the car")
+
+task.done = true
+task.save
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>This is pretty simple and to the point !</p>
+
+<h3>5 years later</h3>
+
+<p>Now let&rsquo;s imagine that the app grew to tens of thousands of lines. We added a lot of features to the app, which transformed the TODO domain into a very complex thing. Now suppose that, for the sake of maintenance, we want to isolate the domain logic into its own hexagon. Unlike traditional Rails ActiveRecords, we want to make it independent from the database. We also want it to be independent from the Twitter API.</p>
+
+<p>Here is what the code might look like.</p>
+
+<h6>lib/core/task.rb</h6>
+
+<p>First, we have a core task class, independent from anything else. The Core module is our hexagon.</p>
+
+<p>```ruby
+module Core
+  class Task</p>
+
+<pre><code>attr_reader :description
+attr_accessor :db_id
+
+def initialize(attributes = {})
+  @description= "What do you need to do ?"
+  @done = false
+  @done_subscribers = []
+
+  self.update(attributes)
+end
+
+def done?
+  @done
+end
+
+def mark_as_done
+  @done = true
+  @done_subscribers.each {|proc| proc.call(self) }
+end
+
+def update(attributes={})
+  self.description= attributes[:description] unless attributes[:description].nil?
+  self.mark_as_done if attributes[:done]
+end
+
+def notify_when_done(&amp;proc)
+  @done_subscribers.push(proc)
+end
+
+def description=(desc)
+  raise ArgumentError.new("Task description cannot be blank") if desc.blank?
+
+  @description = desc
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>As we can see, it contains only domain logic and nothing else.</p>
+
+<h6># spec/lib/core/task_spec.rb</h6>
+
+<p>Here is the corresponding test, fast, mock-free and independent from the database and any external system.</p>
+
+<p>```ruby
+require &lsquo;rails_helper&rsquo;
+require &lsquo;core/task&rsquo;</p>
+
+<p>context &lsquo;Task&rsquo; do</p>
+
+<p>  let(:task) { Core::Task.new}</p>
+
+<p>  specify &lsquo;is not done by default&rsquo; do</p>
+
+<pre><code>expect(task).not_to be_done
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;comes with a default description&rsquo; do</p>
+
+<pre><code>expect(task.description).not_to be_blank
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;it can be initialized from a hash&rsquo; do</p>
+
+<pre><code>task = Core::Task.new(description: "Old description", done: true)
+
+expect(task.description).to eq("Old description")
+expect(task).to be_done
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;can have a custom description&rsquo; do</p>
+
+<pre><code>task.description= "Clean up the house"
+expect(task.description).to eq("Clean up the house")
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;forbids empty descriptions&rsquo; do</p>
+
+<pre><code>expect{task.description = nil }.to raise_error(ArgumentError)
+expect{task.description = "" }.to raise_error(ArgumentError)
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;can be done&rsquo; do</p>
+
+<pre><code>task.mark_as_done
+expect(task).to be_done
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;publishes when done&rsquo; do</p>
+
+<pre><code>done_task = nil
+task.notify_when_done {|t| done_task = t}
+
+task.mark_as_done
+
+expect(done_task).to be(task)
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;can be updated with a hash&rsquo; do</p>
+
+<pre><code>task.update(description: "New description", done: true)
+
+expect(task.description).to eq("New description")
+expect(task).to be_done
+</code></pre>
+
+<p>  end</p>
+
+<p>  specify &lsquo;has no DB id by default&rsquo; do</p>
+
+<pre><code>expect(task.db_id).to be_nil
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h6># lib/infrastructure/task_repo.rb</h6>
+
+<p>To read and save with the database, we now go through an adapter.</p>
+
+<p>```ruby
+module Infrastructure
+  class TaskRepo</p>
+
+<pre><code>def self.all
+  Task.all.map do |db_task|
+    from_db(db_task)
+  end
+end
+
+def self.load(db_id)
+  from_db(Task.find(db_id))
+end
+
+def self.save(task)
+  if task.db_id.nil?
+    db_task = Task.create!(to_db_attributes(task))
+    task.db_id = db_task.id
+  else
+    db_task = Task.find(task.db_id)
+    db_task.update!(to_db_attributes(task))
+  end
+  task
+end
+
+def self.delete(task)
+  unless task.db_id.nil?
+    db_task = Task.find(task.db_id)
+    db_task.destroy!
+    task.db_id = nil
+  end
+end
+
+private
+
+def self.to_db_attributes(task)
+  {description: task.description, done: task.done?}
+end
+
+def self.from_db(db_task)
+  result = Core::Task.new
+  result.db_id = db_task.id
+  result.description = db_task.description
+  result.mark_as_done if db_task.done?
+  result
+end
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<h6># app/controllers/tasks_controller.rb</h6>
+
+<p>Finally, all the pieces interact together in the controller. Obviously, we&rsquo;ll need to adapt the views and the tests.</p>
+
+<p>```ruby
+require &lsquo;core/task&rsquo;
+require &lsquo;infrastructure/task_repo&rsquo;</p>
+
+<p>class TasksController &lt; ApplicationController
+  before_action :set_task, only: [:show, :edit, :update, :destroy]</p>
+
+<p>  # GET /tasks
+  def index</p>
+
+<pre><code>@tasks = Infrastructure::TaskRepo.all
+</code></pre>
+
+<p>  end</p>
+
+<p>  # GET /tasks/1
+  def show
+  end</p>
+
+<p>  # GET /tasks/new
+  def new</p>
+
+<pre><code>@task = Core::Task.new
+</code></pre>
+
+<p>  end</p>
+
+<p>  # GET /tasks/1/edit
+  def edit
+  end</p>
+
+<p>  # POST /tasks
+  def create</p>
+
+<pre><code>begin
+  @task = Core::Task.new(task_params)
+  Infrastructure::TaskRepo.save(@task)
+
+  redirect_to task_url(@task.db_id), notice: 'Task was successfully created.'
+
+rescue ArgumentError
+  render :new
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  # PATCH/PUT /tasks/1
+  def update</p>
+
+<pre><code>begin
+  @task.update(task_params)
+  Infrastructure::TaskRepo.save(@task)
+
+  redirect_to task_url(@task.db_id), notice: 'Task was successfully updated.'
+
+rescue ArgumentError
+  render :edit
+end
+</code></pre>
+
+<p>  end</p>
+
+<p>  # DELETE /tasks/1
+  def destroy</p>
+
+<pre><code>Infrastructure::TaskRepo.delete(@task)
+redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+</code></pre>
+
+<p>  end</p>
+
+<p>  private</p>
+
+<pre><code>def set_task
+  @task = Infrastructure::TaskRepo.load(params[:id])
+  @task.notify_when_done do |task|
+    TwitterClient::Client.update(task.description)
+  end
+end
+
+# Never trust parameters from the scary internet, only allow the white list through.
+def task_params
+  params.permit(:description, :done)
+end
+</code></pre>
+
+<p>end
+```</p>
+
+<p>The main gain here is that our core domain, our most valuable asset is now easy to test without mocks. This means that we are able to write and execute fast tests for this area of the code. This puts us in a great position to increase our competitive advantage in our core business !</p>
+
+<blockquote><p>💡 By keeping your tests around your core domain fast, Hexagonal Architecture increases your competitive advantage.</p></blockquote>
+
+<p>As you can see, we are now wiring everything together at the controller level. We could later build a facade to isolate the controller from the inside of our domain. A <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">presenter</a> might do, but it seemed over-engineered, even in this made up example. (I&rsquo;ll post something about that some day)</p>
+
+<h2>Next post</h2>
+
+<p>As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it&rsquo;s easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we&rsquo;ll see in the next post about in-memory fakes.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How Custom Assertion Matchers will keep mocks away]]></title>
@@ -185,9 +602,7 @@ end
 
 <h2>Next post</h2>
 
-<p>In the following posts, I&rsquo;ll look into architecture scale techniques to avoid mocks. I&rsquo;ll start with Hexagonal architecture.</p>
-
-<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+<p>In the following posts, I&rsquo;ll look into architecture scale techniques to avoid mocks. I&rsquo;ll start with <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Hexagonal architecture</a>.</p>
 ]]></content>
   </entry>
   
@@ -960,79 +1375,6 @@ ActiveRecord::Schema.verbose = false</p>
 <h2>One more thing &hellip;</h2>
 
 <p>If you need even more speed, you can now run your specs in parallel in different processes ! Each in-memory SQLite DB is bound to its process, so unlike a real PostgreSQL dev DB, you won&rsquo;t get any conflicts between your tests ;&ndash;)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Verify the Big O Complexity of Ruby Code in RSpec]]></title>
-    <link href="http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec/"/>
-    <updated>2017-01-04T17:48:00+01:00</updated>
-    <id>http://philippe.bourgau.net/verify-the-big-o-complexity-of-ruby-code-in-rspec</id>
-    <content type="html"><![CDATA[<p>It might be possible to discover performance regressions before running your long and large scale benchmarks !</p>
-
-<p><a href="https://github.com/philou/complexity-assert">complexity_assert</a> is an <a href="http://rspec.info/">RSpec</a> library that determines and checks the <a href="http://bigocheatsheet.com/">big O complexity</a> of a piece of code. Once you&rsquo;ve determined the performance critical sections of your system, you can use it to verify that they perform with the complexity you expect.</p>
-
-<h2>How does it work ?</h2>
-
-<p>The gem itself is the result of an experiment to learn machine learning in 20 hours (you can read more about that experiment in <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">my previous post</a> if you want).</p>
-
-<p>Suppose you have some a method, let&rsquo;s call it <code>match_products_with_orders(products, orders)</code> which is called in in one of your processes with very large arguments. Badly written, this method could be quadratic (O(n²)), which would lead to catastrophic performances in production. When coding it, you&rsquo;ve taken particular care to make it perform in linear time. Unfortunately, it could easily slip back to a slower implementation with a bad refactoring &hellip; Using complexity_assert, you can make sure that this does not happen :</p>
-
-<p>``` ruby</p>
-
-<h1>An adapter class to fit the code to measure in complexity assert</h1>
-
-<p>class ProductsOrdersMatching</p>
-
-<pre><code># Generate some arguments of a particular size
-def generate_args(size)
-    # Let's assume we have 10 times less products than orders
-    [ Array.new(size / 10) { build_a_product() }, Array.new(size) { build_an_order() } ]
-end
-
-# Run the code on which we want to assert performance
-def run(products, orders)
-    match_products_with_orders(products, orders)
-end
-</code></pre>
-
-<p>end</p>
-
-<p>describe &ldquo;Products and Orders Matching&rdquo; do</p>
-
-<pre><code>it "performs linearly" do
-    # Verify that the code runs in time proportional to the size of its arguments
-    expect(ProductOrdersMatching.new).to be_linear()
-end
-</code></pre>
-
-<p>end
-```</p>
-
-<p>That&rsquo;s it ! If ever someone changes the code of <code>match_products_with_orders</code> and makes it perform worse than linearly, the assertion will fail ! There are similar assertions to check for constant and quadratic execution times.</p>
-
-<p>Internally, the code will be called a number of times with different (smallish) sizes of arguments and the execution times will be logged. When this is over, by doing different flavors of linear regressions, it should determine whether the algorithm performs in O(1), O(n) or O(n²). Depending on your code, this can take time to run, but should still be faster than running large scale benchmarks.</p>
-
-<p>Just check the <a href="https://github.com/philou/complexity-assert/blob/master/README.md">README</a> for more details.</p>
-
-<h2>Did you say experiment ?</h2>
-
-<p>It all started like an experiment. So the gem itself, is still experimental ! It&rsquo;s all fresh, and it could receive a lot of enhancements like :</p>
-
-<ul>
-<li>Allow the assertion to specify the sizes</li>
-<li>Allow the assertion to specify the warm-up and run rounds</li>
-<li>Robustness against garbage collection : use GC intensive ruby methods, and see how the regression behaves</li>
-<li>Find ways to make the whole thing faster</li>
-<li>O(lnx) : pre-treat with exp()</li>
-<li>O(?lnx) : use exp, then a search for the coefficient (aka polynomial)</li>
-<li>O(xlnx) : there is no well known inverse for that, we can compute it numerically though</li>
-<li>Estimate how much the assert is deterministic</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>As you see, there&rsquo;s a lot of room for ideas and improvements.</p>
 ]]></content>
   </entry>
   

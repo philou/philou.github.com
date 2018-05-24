@@ -102,6 +102,639 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid Mocks and Test Your Core Domain Faster With Hexagonal Architecture</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-05-24T06:43:00+02:00" pubdate data-updated="true">May 24<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As I&rsquo;ve written in my last few posts, we can get a long way to avoid mocks with small scale coding best practices. Unfortunately, when systems reach a certain size, we need something at architecture scale.</p>
+
+<p>This is the 6th post of a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. If you haven&rsquo;t, you can start by <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<p><img src="../imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg" alt="A drawing of a hexagon-shaped building" /></p>
+
+<h2>Why do we end up with mocks in large systems ?</h2>
+
+<p>A few years ago, I joined a team working in a legacy system. We wanted to apply <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and refactoring. As expected, adding tests legacy code proved a real challenge. With a lot of effort we could manage to add a few. Unfortunately, this did not seem to have any positive effect on our maintainability ! The tests we were writing all involved a lot of mocking. The system was such a large mass of spaghetti code that there was no clear place to mock. We were actually mocking where it seemed the easiest on a test by test basis. We were making progress at small scale, but the big picture was not improving at all !</p>
+
+<p>Large systems are beasts with many faces. They  involve a lot of IOs. They write and read data from the disk and databases. They call 3rd parties and remote services.</p>
+
+<p>As we test these large systems, we&rsquo;ll need to stub out these IOs. Even if the tests are fast enough, we usually don&rsquo;t want to call external services for real. Most of the time though, tests are slow. That&rsquo;s 2 reasons why end up adding some mocks.</p>
+
+<p>Here comes the nasty part. These large systems are so complex that we, developers, don&rsquo;t have the full picture. When we test, we tend to mock at different places, depending on our knowledge. This is bad for maintenance. Mocks duplicate production code behavior. When many different mocks are in place to isolate an external dependency, we end up with &lsquo;n&rsquo; versions of the code. That&rsquo;s a nightmare to refactor !</p>
+
+<blockquote><p>💡 When many different mocks are in place to isolate an external dependency, we end up with &lsquo;n&rsquo; versions of the code !</p></blockquote>
+
+<h2>Hexagonal architecture to the rescue</h2>
+
+<p><a href="http://alistair.cockburn.us/Hexagonal+architecture">Alistair Cockburn</a> coined the term. The idea is pretty simple :  isolate a piece of code from all dependencies. This is particularly useful for the core functional areas. With this in place, it becomes straightforward (and fast) to test the core domain logic.</p>
+
+<p>To main techniques to isolate a piece of code from any dependency are :</p>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency injection</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Observer_pattern">Observers</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapters</a></li>
+</ul>
+
+
+<p>It&rsquo;s also possible to split a system in many &lsquo;hexagons&rsquo; and glue them together with adapters at startup. If you want to learn more on this style of architecture, have a look into the <a href="https://www.infoq.com/articles/ddd-contextmapping">Domain Driven Design lore</a>. This community has been building systems this way for years now.</p>
+
+<h2>Enough talk, show me the code !</h2>
+
+<p>This post was the occasion to try to inject a Hexagonal Architecture and a dash of DDD in a Rails application. There&rsquo;s one caveat though : DDD shines on complex systems. Unfortunately, large and complex systems make very poor didactic examples. The following code highlights the gains about mocking. We would not use DDD for such a small app in real life.</p>
+
+<h3>The starting point</h3>
+
+<p>I chose a simple TODO app. I started by generating a scaffold for a Task with a description and a done/not-done status. As third party interaction, completing a task sends an automatic tweet. Here is the only specific code I wrote on top of the Rails scaffold :</p>
+
+<h6>app/models/task.rb</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
+</span><span class='line'>  <span class="kp">include</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Dirty</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">validates</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">before_save</span> <span class="ss">:tweet_if_done</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">tweet_if_done</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">done_changed?</span>
+</span><span class='line'>      <span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>spec/models/task_spec.rb</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="no">Task</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:model</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;is valid with all attributes set&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Finish presentation&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;requires a description&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_invalid</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_invalid</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;tweets when a task is finished&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Wash the car&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Wash the car&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">save</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is pretty simple and to the point !</p>
+
+<h3>5 years later</h3>
+
+<p>Now let&rsquo;s imagine that the app grew to tens of thousands of lines. We added a lot of features to the app, which transformed the TODO domain into a very complex thing. Now suppose that, for the sake of maintenance, we want to isolate the domain logic into its own hexagon. Unlike traditional Rails ActiveRecords, we want to make it independent from the database. We also want it to be independent from the Twitter API.</p>
+
+<p>Here is what the code might look like.</p>
+
+<h6>lib/core/task.rb</h6>
+
+<p>First, we have a core task class, independent from anything else. The Core module is our hexagon.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Core</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">Task</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kp">attr_reader</span> <span class="ss">:description</span>
+</span><span class='line'>    <span class="kp">attr_accessor</span> <span class="ss">:db_id</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">{})</span>
+</span><span class='line'>      <span class="vi">@description</span><span class="o">=</span> <span class="s2">&quot;What do you need to do ?&quot;</span>
+</span><span class='line'>      <span class="vi">@done</span> <span class="o">=</span> <span class="kp">false</span>
+</span><span class='line'>      <span class="vi">@done_subscribers</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">done?</span>
+</span><span class='line'>      <span class="vi">@done</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">mark_as_done</span>
+</span><span class='line'>      <span class="vi">@done</span> <span class="o">=</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="vi">@done_subscribers</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="nb">proc</span><span class="o">|</span> <span class="nb">proc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="p">{})</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">description</span><span class="o">=</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:description</span><span class="o">]</span> <span class="k">unless</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:description</span><span class="o">].</span><span class="n">nil?</span>
+</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">mark_as_done</span> <span class="k">if</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:done</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">notify_when_done</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">proc</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@done_subscribers</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">description</span><span class="o">=</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">raise</span> <span class="no">ArgumentError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Task description cannot be blank&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">desc</span><span class="o">.</span><span class="n">blank?</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="vi">@description</span> <span class="o">=</span> <span class="n">desc</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As we can see, it contains only domain logic and nothing else.</p>
+
+<h6># spec/lib/core/task_spec.rb</h6>
+
+<p>Here is the corresponding test, fast, mock-free and independent from the database and any external system.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;core/task&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">context</span> <span class="s1">&#39;Task&#39;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span> <span class="p">{</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;is not done by default&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_done</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;comes with a default description&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_blank</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;it can be initialized from a hash&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Old description&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Old description&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;can have a custom description&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="o">=</span> <span class="s2">&quot;Clean up the house&quot;</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Clean up the house&quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;forbids empty descriptions&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">{</span><span class="n">task</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="kp">nil</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">{</span><span class="n">task</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;can be done&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">mark_as_done</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;publishes when done&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">done_task</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">notify_when_done</span> <span class="p">{</span><span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="n">done_task</span> <span class="o">=</span> <span class="n">t</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">mark_as_done</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">done_task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;can be updated with a hash&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;New description&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;New description&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;has no DB id by default&#39;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_nil</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6># lib/infrastructure/task_repo.rb</h6>
+
+<p>To read and save with the database, we now go through an adapter.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Infrastructure</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">TaskRepo</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
+</span><span class='line'>      <span class="no">Task</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">db_task</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">from_db</span><span class="p">(</span><span class="n">db_task</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">db_id</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">from_db</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">db_id</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">save</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="o">.</span><span class="n">nil?</span>
+</span><span class='line'>        <span class="n">db_task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="n">to_db_attributes</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">task</span><span class="o">.</span><span class="n">db_id</span> <span class="o">=</span> <span class="n">db_task</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="n">db_task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">db_task</span><span class="o">.</span><span class="n">update!</span><span class="p">(</span><span class="n">to_db_attributes</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">task</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">unless</span> <span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="o">.</span><span class="n">nil?</span>
+</span><span class='line'>        <span class="n">db_task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">db_task</span><span class="o">.</span><span class="n">destroy!</span>
+</span><span class='line'>        <span class="n">task</span><span class="o">.</span><span class="n">db_id</span> <span class="o">=</span> <span class="kp">nil</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="kp">private</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">to_db_attributes</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">{</span><span class="ss">description</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">done?</span><span class="p">}</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_db</span><span class="p">(</span><span class="n">db_task</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">result</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>      <span class="n">result</span><span class="o">.</span><span class="n">db_id</span> <span class="o">=</span> <span class="n">db_task</span><span class="o">.</span><span class="n">id</span>
+</span><span class='line'>      <span class="n">result</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">db_task</span><span class="o">.</span><span class="n">description</span>
+</span><span class='line'>      <span class="n">result</span><span class="o">.</span><span class="n">mark_as_done</span> <span class="k">if</span> <span class="n">db_task</span><span class="o">.</span><span class="n">done?</span>
+</span><span class='line'>      <span class="n">result</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6># app/controllers/tasks_controller.rb</h6>
+
+<p>Finally, all the pieces interact together in the controller. Obviously, we&rsquo;ll need to adapt the views and the tests.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;core/task&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;infrastructure/task_repo&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:set_task</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># GET /tasks</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'>    <span class="vi">@tasks</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># GET /tasks/1</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># GET /tasks/new</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'>    <span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># GET /tasks/1/edit</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">edit</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># POST /tasks</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'>    <span class="k">begin</span>
+</span><span class='line'>      <span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
+</span><span class='line'>      <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">task_url</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">db_id</span><span class="p">),</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully created.&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">rescue</span> <span class="no">ArgumentError</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">:new</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># PATCH/PUT /tasks/1</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'>    <span class="k">begin</span>
+</span><span class='line'>      <span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
+</span><span class='line'>      <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">task_url</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">db_id</span><span class="p">),</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully updated.&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">rescue</span> <span class="no">ArgumentError</span>
+</span><span class='line'>      <span class="n">render</span> <span class="ss">:edit</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># DELETE /tasks/1</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">destroy</span>
+</span><span class='line'>    <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">redirect_to</span> <span class="n">tasks_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully destroyed.&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kp">private</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">set_task</span>
+</span><span class='line'>      <span class="vi">@task</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>      <span class="vi">@task</span><span class="o">.</span><span class="n">notify_when_done</span> <span class="k">do</span> <span class="o">|</span><span class="n">task</span><span class="o">|</span>
+</span><span class='line'>        <span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># Never trust parameters from the scary internet, only allow the white list through.</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">task_params</span>
+</span><span class='line'>      <span class="n">params</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:description</span><span class="p">,</span> <span class="ss">:done</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The main gain here is that our core domain, our most valuable asset is now easy to test without mocks. This means that we are able to write and execute fast tests for this area of the code. This puts us in a great position to increase our competitive advantage in our core business !</p>
+
+<blockquote><p>💡 By keeping your tests around your core domain fast, Hexagonal Architecture increases your competitive advantage.</p></blockquote>
+
+<p>As you can see, we are now wiring everything together at the controller level. We could later build a facade to isolate the controller from the inside of our domain. A <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">presenter</a> might do, but it seemed over-engineered, even in this made up example. (I&rsquo;ll post something about that some day)</p>
+
+<h2>Next post</h2>
+
+<p>As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it&rsquo;s easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we&rsquo;ll see in the next post about in-memory fakes.</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers Will Keep Mocks Away</a></h1>
     
     
@@ -364,9 +997,7 @@
 
 <h2>Next post</h2>
 
-<p>In the following posts, I&rsquo;ll look into architecture scale techniques to avoid mocks. I&rsquo;ll start with Hexagonal architecture.</p>
-
-<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned</a> !</p>
+<p>In the following posts, I&rsquo;ll look into architecture scale techniques to avoid mocks. I&rsquo;ll start with <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Hexagonal architecture</a>.</p>
 </div>
   
   
@@ -1555,8 +2186,9 @@
 <li><a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight mocks</a></li>
 <li><a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a></li>
 <li><a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to use Test Data Builders to avoid mocks and keep your tests clear</a></li>
-<li>One last small scale technique to avoid mocks : Test Matchers</li>
-<li>Large scale techniques to avoid mocks</li>
+<li><a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a></li>
+<li><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a></li>
+<li>Other large scale techniques to avoid mocks</li>
 <li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
 </ol>
 
@@ -1918,93 +2550,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/coding-dojo-troubleshooting/">Coding Dojo Troubleshooting</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2018-03-15T06:41:00+01:00" pubdate data-updated="true">Mar 15<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In my last 2 blog posts, I&rsquo;ve detailed <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">why</a> and <a href="/how-to-start-a-team-coding-dojo-randori-today/">how</a> to start a team Randori Coding Dojo. That&rsquo;s the easy part. As soon as you start your first dojo, you&rsquo;ll face trickier issues, especially people issues.</p>
-
-<p><img src="../imgs/2018-03-08-coding-dojo-troubleshooting/tool-belt.jpg" alt="A martial artist with a tool belt" /></p>
-
-<h2>What if my team (or my boss) does not want to ?</h2>
-
-<p>Very often some of your team mates won&rsquo;t see the value of the coding dojo upfront and will prefer to work on other tasks. It can also be your boss, who thinks you should be delivering features instead. Here are a few tricks you can do to make it work.</p>
-
-<ul>
-<li>Try to find another time slot. Ask people for their preferred moment. If you can negotiate food sponsorship with your boss, you might get everyone happy. He won&rsquo;t feel you&rsquo;re not delivering features, you&rsquo;ll have a free lunch and you&rsquo;ll improve your skills.</li>
-<li>If your boss or colleague doesn&rsquo;t want to spend 2 full hours on a dojo. Get them to start with smaller problems and a shorter time slot.</li>
-<li>Your colleagues might have doubts about the value of the dojo. Get them to try it once or a few times before committing to a recurring event.</li>
-<li>As a general rule of thumb, the more you manage to involve people in the preparation, the more they&rsquo;ll adhere.</li>
-<li>If you have 1 or 2 inveterate laggards, do it without them anyway. With time, they&rsquo;ll understand what they are missing !</li>
-</ul>
-
-
-<blockquote><p>💡 If you cannot get people to adopt a new practice, get them to try it once. You&rsquo;ll be more than halfway there.</p></blockquote>
-
-<h2>Dealing with TDD complaints</h2>
-
-<p><img src="../imgs/2018-03-08-coding-dojo-troubleshooting/skeptic-gorilla.jpg" alt="A gorilla with a skeptic look" /></p>
-
-<p>As you&rsquo;ll start your first Randori, you&rsquo;ll have some complaints about <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>. Whether they come from newbies or skeptics, they usually look like :</p>
-
-<ul>
-<li>Why do we stick to TDD ? We&rsquo;d go so much faster if we coded this straight away.</li>
-<li>We don&rsquo;t need TDD for such a simple problem.</li>
-<li>We don&rsquo;t need such small baby steps on this simple problem.</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>My answer is more or less always the same. I try to re-frame everyone in the context of a learning exercice of deliberate practice. It could sound something like :</p>
-
-<blockquote><p>Yes, sure. I know you are professional developers and that you could easily solve this little problem. Keep in mind that we are here to deliberately practice TDD and friends. Solving the problem is only a side effect.</p>
-
-<p>We are going to apply TDD by the book, for the sake of learning. It&rsquo;s a lot easier to learn to swim in 1 meter of water than in the middle of the sea. Once we&rsquo;ll master it in the safe dojo environment, you&rsquo;ll know how to adapt it to your production code.</p>
-
-<p>Please, play by the rules here !</p></blockquote>
-
-<p>As you can see, I don&rsquo;t try to convince them. The last thing I want is to get into a pro vs cons of TDD. 95% of the time, this answer is enough to get people over their skepticism and try it for the time of the dojo. Unfortunately, the last 5% might result in a difficult session. There&rsquo;s no single way to deal with these 5%. You can try to discuss with them in private, or run next session without them.</p>
-
-<blockquote><p>💡 Reframe the coding dojo as a learning exercice relying on TDD to go beyond skepticism.</p></blockquote>
-
-<h2>How to avoid getting bogged down in details</h2>
-
-<p>One last advice, especially for your first sessions. It&rsquo;s a common rookie mistake to waste 80% of the coding time on error handling. The key is to focus on what you want to learn. You are not writing production code, so don&rsquo;t hesitate to omit certain aspects. For example, assume that correct arguments are provided to skip error handling. This will save you time, be more fun and increase what you learn.</p>
-
-<h2>What&rsquo;s next ?</h2>
-
-<p>This was part 3 of this <a href="/blog/categories/team-randori-series/">series on team coding dojo</a>. In <a href="/how-to-get-the-max-out-of-your-team-coding-dojo/">the next post</a>, I&rsquo;ll write how to maximize the benefits we can get out of coding dojos.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -2083,6 +2628,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a>
       </li>
     
@@ -2096,10 +2645,6 @@
     
       <li class="post">
         <a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight Mocks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a>
       </li>
     
   </ul>

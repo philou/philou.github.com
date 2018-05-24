@@ -102,6 +102,117 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-i-fixed-devicemapper-error-when-deploying-my-docker-app/">How I Fixed &#8216;Devicemapper&#8217; Error When Deploying My Docker App</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-02-01T17:41:00+01:00" pubdate data-updated="true">Feb 1<span>st</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A few months ago, I started continuously deploying my <a href="https://github.com/philou/planning-poker">latest side project</a> to a <a href="https://cloud.digitalocean.com">Digital Ocean</a> box. If you are interested, <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">here</a> is the full story of how I did it. All was going pretty well until last week, when the builds unexpectedly started to fail. I wasn&rsquo;t getting the same error at every build, but it was always the <a href="https://www.docker.com/">Docker</a> deployment that failed. Here are the kind of errors I got :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># At first, it could not connect to the db container</span>
+</span><span class='line'>PG::ConnectionBad: could not translate host name <span class="s2">&quot;db&quot;</span> to address: Name or service not known
+</span><span class='line'>
+</span><span class='line'><span class="c"># Then I started to have weird EOF errors</span>
+</span><span class='line'>docker stderr: failed to register layer: ApplyLayer <span class="nb">exit </span>status 1 stdout:  stderr: unexpected EOF
+</span><span class='line'>
+</span><span class='line'><span class="c"># Eventually, I got some devicemapper errors</span>
+</span><span class='line'>docker stderr: failed to register layer: devicemapper: Error running deviceCreate <span class="o">(</span>createSnapDevice<span class="o">)</span> dm_task_run failed
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can read the full error logs <a href="https://circleci.com/gh/philou/planning-poker/tree/master">here</a>.</p>
+
+<h2>That&rsquo;s what happens when you go cheap !</h2>
+
+<p>After searching the internet a bit, I found <a href="https://github.com/docker/docker/issues/6325">this issue</a> which made me understand that my server had ran out of disk space because of old versions of my docker images. I tried to remove them, but the commands were failing. After some more search, I found <a href="https://github.com/docker/docker/issues/26015">this other issue</a> and came to the conclusion that there was no solution except resetting docker completely. Hopefully, Digital Ocean has a button for rebuilding the VM.</p>
+
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg" title="A screenshot of the rebuild screen on digitalocean" ></a></p>
+
+<p>Once the VM was rebuilt, the first thing that I did was to try to connect from my shell on my local machine. I had to clean up my known host file, but that was simple enough.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nano ~/.ssh/known_hosts
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Once this was done, I just followed the steps I had documented in my <a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">previous blog post</a></p>
+
+<p>Was I all done ?</p>
+
+<p>Almost &hellip; I ran into another kind of errors this time. Processes kept getting killed on my VM.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>INFO <span class="o">[</span>cc536697<span class="o">]</span> Running /usr/bin/env docker-compose -f docker-compose.production.yml run app bundle <span class="nb">exec </span>rake db:migrate as root@104.131.47.10
+</span><span class='line'>rake aborted!
+</span><span class='line'>SSHKit::Runner::ExecuteError: Exception <span class="k">while </span>executing as root@104.131.47.10: docker-compose <span class="nb">exit </span>status: 137
+</span><span class='line'>docker-compose stdout: Nothing written
+</span><span class='line'>docker-compose stderr: Starting root_db_1
+</span><span class='line'>bash: line 1: 18576 Killed
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After some more Google searching, I discovered that this time, the VM was running out of memory ! The fast fix was to upgrade the VM (at the extra cost of 5$ / month).</p>
+
+<p><a href="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg"><img class="center" src="/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg" title="A screenshot of the resize screen on digitalocean" ></a></p>
+
+<p>After increasing the memory (and disk space) of the VM, deployment went like a charm. Others have fixed the same issue for free by <a href="https://www.digitalocean.com/community/questions/npm-gets-killed-no-matter-what">adding a swap partition to the VM</a>.</p>
+
+<h2>The end of the story</h2>
+
+<p>I wasted quite some time on this, but it taught me some lessons :</p>
+
+<ol>
+<li>I should have taken care of cleaning up the old images and containers, at least manually, at best automatically</li>
+<li>I should write a script to provision a new server</li>
+<li>The cheap options always come at a cost</li>
+<li>For an open source side project like this one, it might be a better strategy to only use Docker to setup my dev env, and use free services like <a href="https://travis-ci.org/">Travis-ci</a> and <a href="https://www.heroku.com/">Heroku</a> for production</li>
+<li>Doing everything myself is not a good recipe to getting things done &hellip; I well past time I leave my developer hat for an entrepreneur cap</li>
+<li>In order to keep learning and experimenting, focused <a href="/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">20h sessions</a> of deliberate practice might be the most time effective solution</li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">5 Minutes Hack to Speed Up RSpec in Rails 5 Using In-memory SQLite</a></h1>
     
     
@@ -1107,92 +1218,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/rexp-remote-extreme-programming/">ReXP : Remote eXtreme Programming</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-10-18T04:27:00+02:00" pubdate data-updated="true">Oct 18<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My colleague <a href="https://ahmadatwi.me/">Ahmad</a> from Beirut gave a talk at <a href="http://www.agiletourbeirut.org/">Agile Tour Beirut</a> on Saturday about how we adopted <a href="http://www.extremeprogramming.org/">XP</a> to a distributed team <a href="http://www.murex.com">at work</a>. I gave him a hand and played the remote guy during the talk.</p>
-
-<blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr">If Marvel wants to create coding superheroes I propose <a href="https://twitter.com/ahmadatwi">@ahmadatwi</a> and <a href="https://twitter.com/pbourgau">@pbourgau</a> from <a href="https://twitter.com/Work_at_Murex">@Work_at_Murex</a>. &quot;Ballsy&quot; pres at <a href="https://twitter.com/hashtag/Agiletourbeirut?src=hash">#Agiletourbeirut</a> <a href="https://t.co/SkVMPPGcrq">pic.twitter.com/SkVMPPGcrq</a></p>&mdash; Xavier René-Corail (@XCorail) <a href="https://twitter.com/XCorail/status/787223833405161473">15 octobre 2016</a></blockquote>
-
-
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-<p>With me through Skype, we did a first demo of remote pair programming on <a href="https://en.wikipedia.org/wiki/Fizz_buzz">FizzBuzz</a> using <a href="https://www.jetbrains.com/idea/">IDEA</a> and <a href="https://floobits.com">Floobits</a></p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/5nKyfeq9CY0" frameborder="0" allowfullscreen></iframe>
-
-
-<p>We then did a demo of <a href="/trellospectives-remote-retrospectives-with-trello/">remote retrospectives</a> using <a href="https://trello.com/">Trello</a></p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NCRM3rvb8WA" frameborder="0" allowfullscreen></iframe>
-
-
-<h2>When should I use ReXP</h2>
-
-<p>The conclusion is that :</p>
-
-<ul>
-<li>If people are spread over 2 or a few cities, and that they are enough at every place to build a teams, just build different teams at every location</li>
-<li>If people are spread over a lot of places, maybe involving many time zones, then the open source, pull request based work-flow seems the best</li>
-<li>Otherwise, if there are not enough people to build 2 teams, that they are spread over only a few locations, that the time difference is not too big, then stretching XP to Remote will work best</li>
-</ul>
-
-
-<p>As it is said that &ldquo;nothing beats XP for small collocated teams&rdquo;, I guess &ldquo;nothing beats ReXP for small almost collocated teams&rdquo;.</p>
-
-<h2>Tools to make it better</h2>
-
-<p>As Ahmad said in his talk, tools already exist. We could add that more would be welcome :</p>
-
-<ul>
-<li>Floobits or <a href="http://www.saros-project.org/">Saros</a> help tremendously for remote pairing, but maybe cloud based IDEs like <a href="http://www.eclipse.org/che/">Eclipse Che</a> or <a href="https://c9.io/">Cloud 9</a> will make all these tools useless !</li>
-<li>Trello works well for remote retrospectives, but some great activities like the <a href="https://en.wikipedia.org/wiki/5_Whys">5 whys</a> are still difficult to do with Trello. I&rsquo;m sure new tools could do better.</li>
-<li>I&rsquo;m currently building a <a href="https://github.com/philou/planning-poker">remote planning poker app</a></li>
-<li>My other colleague <a href="https://twitter.com/mc_moe">Morgan</a> wants to build a virtual stand up token to make it flow</li>
-</ul>
-
-
-<p>Finally, here are the slides :</p>
-
-<iframe src="//www.slideshare.net/slideshow/embed_code/key/vfbIUiRZNHqHo1" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
-
-
-<p> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/aatwi/extreme-practices-agiletourbeirut-2016" title="Extreme Practices - AgileTourBeirut - 2016" target="_blank">Extreme Practices &ndash; AgileTourBeirut &ndash; 2016</a> </strong> from <strong><a target="_blank" href="//www.slideshare.net/aatwi">Ahmad Atwi</a></strong> </div></p>
-
-<p>EDIT 2016/11/23 : <a href="https://www.youtube.com/watch?v=oJsukJhxt7E">the full video</a> is now on YouTube</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1273,6 +1298,10 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a>
       </li>
     
@@ -1286,10 +1315,6 @@ compare x to the highest seq number proposal it has already agreed to, say P2(y,
     
       <li class="post">
         <a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight Mocks</a>
-      </li>
-    
-      <li class="post">
-        <a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a>
       </li>
     
   </ul>
