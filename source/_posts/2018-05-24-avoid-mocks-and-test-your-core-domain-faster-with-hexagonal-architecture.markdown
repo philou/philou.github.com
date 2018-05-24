@@ -72,6 +72,8 @@ class Task < ApplicationRecord
 end
 ```
 
+Thanks Jason Charnes for the [change attribute technique](https://jasoncharnes.com/changed-attributes-rails/).
+
 ###### spec/models/task_spec.rb
 
 ```ruby
@@ -221,7 +223,7 @@ end
 
 ####### lib/infrastructure/task_repo.rb
 
-To read and save with the database, we now go through an adapter.
+To read and save with the database, we now go through an adapter. This is not considered to be part of our core domain.
 
 ```ruby
 module Infrastructure
@@ -276,7 +278,7 @@ end
 
 ####### app/controllers/tasks_controller.rb
 
-Finally, all the pieces interact together in the controller. Obviously, we'll need to adapt the views and the tests.
+Finally, all the pieces interact together in the controller. This controller basically does what the previous version was, it's just using different classes. Obviously, we'll need to adapt the views and the tests.
 
 ```ruby
 require 'core/task'
