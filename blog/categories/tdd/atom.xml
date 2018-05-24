@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-24T08:58:59+02:00</updated>
+  <updated>2018-05-24T12:14:37+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -80,6 +80,8 @@ end
 <p>  end
 end
 ```</p>
+
+<p>Thanks Jason Charnes for the <a href="https://jasoncharnes.com/changed-attributes-rails/">change attribute technique</a>.</p>
 
 <h6>spec/models/task_spec.rb</h6>
 
@@ -268,7 +270,7 @@ end
 
 <h6># lib/infrastructure/task_repo.rb</h6>
 
-<p>To read and save with the database, we now go through an adapter.</p>
+<p>To read and save with the database, we now go through an adapter. This is not considered to be part of our core domain.</p>
 
 <p>```ruby
 module Infrastructure
@@ -324,7 +326,7 @@ end
 
 <h6># app/controllers/tasks_controller.rb</h6>
 
-<p>Finally, all the pieces interact together in the controller. Obviously, we&rsquo;ll need to adapt the views and the tests.</p>
+<p>Finally, all the pieces interact together in the controller. This controller basically does what the previous version was, it&rsquo;s just using different classes. Obviously, we&rsquo;ll need to adapt the views and the tests.</p>
 
 <p>```ruby
 require &lsquo;core/task&rsquo;
