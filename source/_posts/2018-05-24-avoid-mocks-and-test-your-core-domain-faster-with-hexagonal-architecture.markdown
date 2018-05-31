@@ -360,6 +360,4 @@ As you can see, we are now wiring everything together at the controller level. W
 
 ## Next post
 
-As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it's easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we'll see in the next post about in-memory fakes.
-
-[Stay tuned !](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)
+As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it's easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we'll see in the [next post about in-memory fakes](/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/).

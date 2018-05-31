@@ -12,7 +12,6 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Test Data Builders, Custom Matchers, Assertion Matchers, Custom Assertion Matchers, Ruby"
 description: "An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point."
-description: 
 ---
 I cannot write a [series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/) without mentioning Custom Assertion Matchers. If you don't know what custom assertions are, here is pseudo code that uses a custom assertion :
 

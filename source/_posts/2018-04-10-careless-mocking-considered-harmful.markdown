@@ -62,5 +62,5 @@ In [this series of posts](/blog/categories/how-to-avoid-mocks-series/), I'll go 
 4.  [How to use Test Data Builders to avoid mocks and keep your tests clear](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)
 5.  [How Custom Assertion Matchers will keep mocks away](/how-custom-assertion-matchers-will-keep-mocks-away/)
 6.  [Avoid mocks and test your core domain faster with Hexagonal Architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)
-7.  Other large scale techniques to avoid mocks
+7.  [Get rid of mock maintenance with full fledged in-memory fakes](/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/)
 8.  Mocking in special contexts like legacy and dynamically or statically typed languages
