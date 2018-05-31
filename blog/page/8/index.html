@@ -102,6 +102,132 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">Continuously Deliver a Rails App to Your DigitalOcean Box Using Docker</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-10-25T20:39:00+02:00" pubdate data-updated="true">Oct 25<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I decided to use <a href="https://github.com/philou/planning-poker">my latest side project</a> as an occasion to learn <a href="https://www.docker.com/">Docker</a>. I first used <a href="https://www.heroku.com/">Heroku</a> as a platform for deployment (see <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous post</a>). It works fine but I discovered the following shortcomings :</p>
+
+<ul>
+<li>Heroku does not deploy with Docker, which means that I&rsquo;d get quite different configurations between dev and prod, which is one of the promises of Docker :(</li>
+<li>The dockerfile provided by docker runs bundle install in a directory outside of the docker main shared volume, this forces to do bundle update twice (once to update Gemfile.lock and a second time to update the actual gems &hellip;)</li>
+</ul>
+
+
+<p>None of these issues could be fixed without moving away from Heroku.</p>
+
+<h2>A great Tutorial / Guide</h2>
+
+<p>I followed <a href="http://chrisstump.online/">Chris Stump</a>&rsquo;s great tutorials to <a href="http://chrisstump.online/2016/02/20/docker-existing-rails-application/">setup Docker for my app</a>, to <a href="http://chrisstump.online/2016/03/03/continuous-integration-docker-rails/">continuously integrate</a> on <a href="https://circleci.com/">CircleCI</a> and to <a href="http://chrisstump.online/2016/03/17/continuous-deployment-docker-rails/">continuously deploy</a> on a private virtual server on <a href="https://www.digitalocean.com/">DigitalOcean</a>.</p>
+
+<p>The first 2 steps (Docker &amp; CI) worked really out of the box after following the tutorial. Dealing with step 3 (CD) was a bit more complicated, because of :</p>
+
+<ol>
+<li>the specificities of DigitalOcean</li>
+<li>the fact that I&rsquo;m a no deployment expert &hellip;</li>
+</ol>
+
+
+<p><img class="center" src="/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg" title="The logos of Docker, CircleCI and DigitalOcean" ></p>
+
+<h2>What did I need to do to make it work</h2>
+
+<h3>Setup SSH on the DigitalOcean box</h3>
+
+<p>I started by creating a <a href="https://cloud.digitalocean.com/droplets/new?size=2gb&amp;region=nyc3&amp;appId=20423249&amp;type=applications">one-click DigitalOcean box</a> with Docker pre-installed. That&rsquo;s the moment where I had to setup SSH in order to make CircleCI deploy to my box. DigitalOcean has a <a href="https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets">guide for this</a>, but here is how I did it :</p>
+
+<ol>
+<li>Create a special user on my dev machine <code>adduser digitaloceanssh</code></li>
+<li>Log as this user <code>su digitaloceanssh</code>, and generated ssh keys for it <code>ssh-keygen</code></li>
+<li>Print the public key <code>cat ~/.ssh/id_rsa.pub</code> and copy paste it in your DigitalOcean box setup</li>
+<li>Print the private key <code>cat ~/.ssh/id_rsa</code> and copy past it in your circle-ci job ssh keys</li>
+</ol>
+
+
+<p>The benefit of this is that you should now be able to ssh in your DigitalOcean box from your digitaloceanssh user <code>ssh root@&lt;ip.to.digital.ocean&gt;</code></p>
+
+<h3>Optional : update the box</h3>
+
+<p>The first time I logged into my box, I noted that packages were out of date. If you need it, updating the packages is a simple matter of <code>apt-get update &amp;&amp; apt-get upgrade</code></p>
+
+<h3>Fix deployment directory</h3>
+
+<p>By default, the home dir of the root user on the DigitalOcean box is <code>/root/</code>. Unfortunately, Chris Stump&rsquo;s tutorial assumes it to be <code>/home/root/</code>. In order to fix that, I ssh-ed in the box and created a symbolic link : <code>ln -s /root /home/root</code>.</p>
+
+<h3>Install docker-compose on the box</h3>
+
+<p>Chris Stump&rsquo;s tutorial expects docker-compose on the deployment box, but DigitalOcean only installs Docker on its boxes &hellip; Install instructions for docker-compose can be found <a href="https://docs.docker.com/compose/install/">here</a>. Don&rsquo;t use the container option, it does not inherit environment variables, and will fail the deployment, just use the first curl based alternative.</p>
+
+<h3>Warning : replace ALL dockerexample</h3>
+
+<p>This comes as an evidence, but be sure to replace all the references to &lsquo;dockerexample&rsquo; to your own app name in all of Chris Stump&rsquo;s templates (I forgot some and lost a few rebuilds for that)</p>
+
+<h3>Create the production DB</h3>
+
+<p>Chris Stump&rsquo;s deployment script works with an existing production DB. The first migration will fail. To fix this, just do the following :</p>
+
+<ol>
+<li>ssh into the DigitalOcean server</li>
+<li>run <code>DEPLOY_TAG=&lt;latest_deploy_tag&gt; RAILS_ENV=production docker-compose -f docker-compose.production.yml run app bundle exec rake db:create</code></li>
+</ol>
+
+
+<p>You can find the latest DEPLOY_TAG from the CircleCi step <code>bundle exec rake docker:deploy</code></p>
+
+<h3>How to access the logs</h3>
+
+<p>It might come handy to check the logs of your production server ! Here is how to do this :</p>
+
+<ol>
+<li>ssh in your production server</li>
+<li>run the following to tail on the logs <code>DEPLOY_TAG=`cat deploy.tag` RAILS_ENV=production docker-compose -f docker-compose.production.yml run app tail -f log/production.log</code></li>
+</ol>
+
+
+<p>Obviously, tail is just an example, use anything else at your convenience.</p>
+
+<h3>Generate a secret token</h3>
+
+<p>Eventually, the build and deployment job succeeded &hellip; I had still one last error when I tried to access the web site : <code>An unhandled lowlevel error occurred. The application logs may have details.</code>. After some googling, I understood that this error occurs when you did not set a secret key base for your rails app (<a href="http://stackoverflow.com/questions/37112804/an-unhandled-lowlevel-error-occurred-the-application-logs-may-have-details">details</a>). There is a <a href="http://www.jamesbadger.ca/2012/12/18/generate-new-secret-token/">rails task to generate a token</a>, all that was needed was to create a .env file on the server with the following :</p>
+
+<p><code>SECRET_KEY_BASE=&lt;GENERATED_SECRET...&gt;</code></p>
+
+<h2>What&rsquo;s next ?</h2>
+
+<p>Obviously, I learned quite a lot with this Docker exploration. I am still in the discovery phase, but my planning poker side project is now continuously built on <a href="https://circleci.com/gh/philou/planning-poker">circleci</a>, and deployed to a <a href="http://104.131.47.10/">DigitalOcean box</a>.</p>
+
+<p>The next steps (first, find a better subdomain, second, speed up the build job) will tell me if this kind of deployment is what I need for my pet projects. If it turns out too complicated or too difficult to maintain, <a href="http://dokku.viewdocs.io/dokku/">Dokku</a> is on my radar.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/rexp-remote-extreme-programming/">ReXP : Remote eXtreme Programming</a></h1>
     
     
@@ -1001,78 +1127,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-prepare-a-new-ruby-env-in-3-minutes-using-docker/">How to Prepare a New Ruby Env in 3 Minutes Using Docker</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2016-08-17T05:21:00+02:00" pubdate data-updated="true">Aug 17<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>One or two weeks ago, I registered to the <a href="http://www.meetup.com/fr-FR/Paris-Ruby-Workshop/">Paris Ruby Workshop Meetup</a> and needed a Ruby env. I have been using <a href="https://www.vagrantup.com/">Vagrant</a> quite a lot to isolate my different dev envs from each other and from my main machine. As I&rsquo;ve been digging more into <a href="http://www.docker.com">Docker</a> lately, I thought I&rsquo;d simply use Docker and Docker Compose instead.</p>
-
-<p>I turned out to be dead simple. All that is needed is a <code>docker-compose.yml</code> file to define the container, record the shared volume and set a bundle path inside it :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">rubybox</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ruby:2.3</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">command</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">bash</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">working_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/usr/src/app</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">BUNDLE_PATH</span><span class="p-Indicator">:</span> <span class="s">&#39;vendor/bundle&#39;</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">volumes</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="s">&#39;.:/usr/src/app&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Without the custom bundle path, bundled gems would be installed elsewhere in the container, and lost at every restart.</p>
-
-<p>To use the Rubybox, just type <code>docker-compose run rubybox</code> and you&rsquo;ll get a shell from within your ruby machine, where you can do everything you want.</p>
-
-<p>In fact, I found the thing so useful, that I created the <a href="https://github.com/philou/rubybox">Rubybox</a> git repo to simplify cloning and reusing. I&rsquo;ve already cloned it at least 3 times since then !</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git clone git@github.com:philou/rubybox.git
-</span><span class='line'><span class="nb">cd </span>rubybox
-</span><span class='line'>docker-compose run rubybox
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/9/">&larr; Older</a>
@@ -1153,6 +1207,10 @@ Check the speaker&rsquo;s comments for all the details.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
+      </li>
+    
+      <li class="post">
         <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
       </li>
     
@@ -1166,10 +1224,6 @@ Check the speaker&rsquo;s comments for all the details.</p>
     
       <li class="post">
         <a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight Mocks</a>
       </li>
     
   </ul>

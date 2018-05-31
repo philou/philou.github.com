@@ -102,6 +102,518 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get Rid of Mock Maintenance With Full Fledged In-memory Fakes</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-05-28T19:15:00+02:00" pubdate data-updated="true">May 28<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Last week&rsquo;s post</a> was about how <a href="http://alistair.cockburn.us/Hexagonal+architecture">hexagonal architecture</a> results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week&rsquo;s code sample, this was the controller. I concluded that at least, this was easier to manage. Let&rsquo;s see how.</p>
+
+<p><img src="../imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg" alt="Hand written 'In-memory fake' with memory replaced by a RAM board" /></p>
+
+<p>This is the 7th post in <a href="/blog/categories/how-to-avoid-mocks-series/">a series about avoiding mocks</a>. If you haven&rsquo;t, you might start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<h2>Mock concentration</h2>
+
+<p>Let&rsquo;s get back to the <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">last post</a>&rsquo;s code sample. As a reminder, it&rsquo;s a very basic TODO app built on <a href="https://rubyonrails.org/">Rails</a>. I extracted the domain part, the tasks, in a core domain area. This allowed to push all mocks out of this section. A consequence though, is that all mocks gathered in the controller test. Here is the controller code :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;core/task&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;infrastructure/task_repo&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+</span><span class='line'><span class="err"> </span><span class="n">before_action</span> <span class="ss">:set_task</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">index</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@tasks</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">all</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/1  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">show</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/new  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">new</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/1/edit  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">edit</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># POST /tasks  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">create</span>
+</span><span class='line'><span class="err">   </span><span class="k">begin</span>
+</span><span class='line'><span class="err">     </span><span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
+</span><span class='line'><span class="err">     </span><span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">     </span><span class="n">redirect_to</span> <span class="n">task_url</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">db_id</span><span class="p">),</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully created.&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="k">rescue</span> <span class="no">ArgumentError</span>
+</span><span class='line'><span class="err">     </span><span class="n">render</span> <span class="ss">:new</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># PATCH/PUT /tasks/1  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">update</span>
+</span><span class='line'><span class="err">   </span><span class="k">begin</span>
+</span><span class='line'><span class="err">     </span><span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
+</span><span class='line'><span class="err">     </span><span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">     </span><span class="n">redirect_to</span> <span class="n">task_url</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">db_id</span><span class="p">),</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully updated.&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="k">rescue</span> <span class="no">ArgumentError</span>
+</span><span class='line'><span class="err">     </span><span class="n">render</span> <span class="ss">:edit</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># DELETE /tasks/1  </span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">destroy</span>
+</span><span class='line'><span class="err">   </span><span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">redirect_to</span> <span class="n">tasks_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully destroyed.&#39;</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="kp">private</span>
+</span><span class='line'><span class="err">   </span><span class="k">def</span> <span class="nf">set_task</span>
+</span><span class='line'><span class="err">     </span><span class="vi">@task</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="err">     </span><span class="vi">@task</span><span class="o">.</span><span class="n">notify_when_done</span> <span class="k">do</span> <span class="o">|</span><span class="n">task</span><span class="o">|</span>
+</span><span class='line'><span class="err">       </span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</span><span class='line'><span class="err">     </span><span class="k">end</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="c1"># Never trust parameters from the scary internet, only allow the white list through.  </span>
+</span><span class='line'><span class="err">   </span><span class="k">def</span> <span class="nf">task_params</span>
+</span><span class='line'><span class="err">     </span><span class="n">params</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:description</span><span class="p">,</span> <span class="ss">:done</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The controller is now dealing both with the Twitter connection and the database. This is visible in the controller test :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="no">TasksController</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:controller</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="c1"># ...  </span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">describe</span> <span class="s2">&quot;PUT #update&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">context</span> <span class="s2">&quot;with valid params&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">     </span><span class="n">let</span><span class="p">(</span><span class="ss">:new_attributes</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'><span class="err">       </span><span class="p">{</span><span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">}</span>
+</span><span class='line'><span class="err">     </span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">     </span><span class="n">it</span> <span class="s2">&quot;updates the requested task&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">       </span><span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create!</span> <span class="n">valid_attributes</span>
+</span><span class='line'><span class="err">       </span><span class="n">put</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">params</span><span class="p">:</span> <span class="n">new_attributes</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">to_param</span><span class="p">)</span>
+</span><span class='line'><span class="err">       </span><span class="n">task</span><span class="o">.</span><span class="n">reload</span>
+</span><span class='line'><span class="err">       </span><span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
+</span><span class='line'><span class="err">     </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">     </span><span class="n">it</span> <span class="s2">&quot;tweets about completed tasks&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">       </span><span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create!</span> <span class="n">valid_attributes</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">       </span><span class="n">expect</span><span class="p">(</span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">       </span><span class="n">put</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">params</span><span class="p">:</span> <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">to_param</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">}</span>
+</span><span class='line'><span class="err">     </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">     </span><span class="n">it</span> <span class="s2">&quot;redirects to the task&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">       </span><span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create!</span> <span class="n">valid_attributes</span>
+</span><span class='line'><span class="err">       </span><span class="n">put</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">params</span><span class="p">:</span> <span class="n">valid_attributes</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">to_param</span><span class="p">)</span>
+</span><span class='line'><span class="err">       </span><span class="n">expect</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">redirect_to</span><span class="p">(</span><span class="n">task_url</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">))</span>
+</span><span class='line'><span class="err">     </span><span class="k">end</span>
+</span><span class='line'><span class="err">   </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="c1"># ... </span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We need to <a href="https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da">stub out</a> the twitter API for most tests. We are also still using a mock to verify that the tweet is sent. Finally, as we can see from the test execution times, we are still using the database in some tests.</p>
+
+<p><img src="../imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/test-timings.jpg" alt="Screen capture of the tests execution time" /></p>
+
+<p>If the project grew large this would become an issue. Sadly, mocking is often the fix people jump on &hellip;</p>
+
+<blockquote><p>💡 Mocking is the unfortunate quick fix to slow tests.</p></blockquote>
+
+<p>From a mocking point of view, our current controller test can seem worse than before ! There&rsquo;s something pretty effective we can do though !</p>
+
+<h2>In memory fakes</h2>
+
+<p>Instead of stubbing and mocking in every test, let&rsquo;s write a full fledged in-memory <a href="https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da">fake</a> that does the job we need. We could then install it once and for all, and forget about it !</p>
+
+<p>Actually, this is nothing new. This is exactly what Rails provides out of the box with <code>ActionMailer::Base.delivery_method = :test</code>.</p>
+
+<p>Here&rsquo;s how we could do the same thing for our Twitter Client.</p>
+
+<h6>spec/rails_helper.rb</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">FakeTwitterClient</span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@tweets</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="kp">attr_accessor</span> <span class="ss">:tweets</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@tweets</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="c1"># ...  </span>
+</span><span class='line'><span class="err"> </span><span class="n">config</span><span class="o">.</span><span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">stub_const</span><span class="p">(</span><span class="s2">&quot;TwitterClient::Client&quot;</span><span class="p">,</span> <span class="no">FakeTwitterClient</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h6>spec/controllers/tasks_controller_spec.rb</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s2">&quot;tweets about completed tasks&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create!</span> <span class="n">valid_attributes</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">put</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">params</span><span class="p">:</span> <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">to_param</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">expect</span><span class="p">(</span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">tweets</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simple isn&rsquo;t it ?</p>
+
+<h2>Wait a sec &hellip;</h2>
+
+<p>There&rsquo;s a catch though &hellip; How do we make sure that this fake is behaving the same way as the real thing ?</p>
+
+<p>Let&rsquo;s run the same tests on both ! We could mimic the twitter API in our fake, but that might not be a great idea. Do you remember the moto &ldquo;Always wrap your 3rd parties&rdquo; ? It takes all its meaning here, for 2 reasons.</p>
+
+<p>The first is to make faking easier. We can build a minimal wrapper API that is just enough for our use. By keeping this interface small, we&rsquo;ll make it a lot easier to fake.</p>
+
+<p>The second reason is that we can write real integration tests on the 3rd party through this wrapper. They&rsquo;d look like ordinary unit tests, except that they&rsquo;d end up calling the real 3rd party in a sandbox. They are usually pretty slow, but as 3rd parties don&rsquo;t change everyday, that&rsquo;s ok. We can ensure up-front that integration will go well. As a bonus, we can be very fast to detect and contain changes to online services. (I&rsquo;m looking at you <a href="https://en.wikipedia.org/wiki/Web_scraping">Scrappers</a>!)</p>
+
+<p>Here is what it would look like for our Twitter client :</p>
+
+<h6>lib/infrastructure/twitter_client.rb</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">FakeTwitterClient</span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@tweets</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="kp">attr_accessor</span> <span class="ss">:tweets</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">tweet</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@tweets</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">search_tweets</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@tweets</span><span class="o">.</span><span class="n">select</span> <span class="p">{</span><span class="o">|</span><span class="n">tweet</span><span class="o">|</span> <span class="n">tweet</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">RealTwitterClient</span>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@client</span> <span class="o">=</span> <span class="ss">Twitter</span><span class="p">:</span><span class="ss">:REST</span><span class="o">::</span><span class="no">Client</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">tweet</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">search_tweets</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="vi">@client</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;from:test_user </span><span class="si">#{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, we renamed <code>update</code> to <code>tweet</code> in the wrapper. We&rsquo;d have to update the calls accordingly. Let&rsquo;s look at the tests.</p>
+
+<h6>spec/lib/Infrastructure/twitter_client_spec.rb</h6>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;infrastructure/twitter_client&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;securerandom&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">shared_examples</span> <span class="s2">&quot;a twitter client&quot;</span> <span class="k">do</span> <span class="o">|</span><span class="n">new_client_instance</span><span class="o">|</span>
+</span><span class='line'><span class="err"> </span><span class="n">let</span><span class="p">(</span><span class="ss">:client</span><span class="p">)</span> <span class="p">{</span> <span class="n">new_client_instance</span> <span class="p">}</span>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s2">&quot;sends tweets&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">token</span> <span class="o">=</span> <span class="no">SecureRandom</span><span class="o">.</span><span class="n">uuid</span>
+</span><span class='line'><span class="err">   </span><span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Philippe was here </span><span class="si">#{</span><span class="n">token</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="err">   </span><span class="n">client</span><span class="o">.</span><span class="n">tweet</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">search_tweets</span><span class="p">(</span><span class="n">token</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="kp">include</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">context</span> <span class="no">FakeTwitterClient</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it_behaves_like</span> <span class="s2">&quot;a twitter client&quot;</span><span class="p">,</span> <span class="no">FakeTwitterClient</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">context</span> <span class="no">RealTwitterClient</span><span class="p">,</span> <span class="ss">integration</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">speed</span><span class="p">:</span> <span class="ss">:slow</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it_behaves_like</span> <span class="s2">&quot;a twitter client&quot;</span><span class="p">,</span> <span class="p">(</span><span class="no">RealTwitterClient</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+</span><span class='line'><span class="err">   </span><span class="n">config</span><span class="o">.</span><span class="n">consumer_key</span> <span class="err">       </span><span class="o">=</span> <span class="s2">&quot;TEST_CONSUMER_KEY&quot;</span>
+</span><span class='line'><span class="err">   </span><span class="n">config</span><span class="o">.</span><span class="n">consumer_secret</span> <span class="err">    </span><span class="o">=</span> <span class="s2">&quot;TEST_CONSUMER_SECRET&quot;</span>
+</span><span class='line'><span class="err">   </span><span class="n">config</span><span class="o">.</span><span class="n">access_token</span> <span class="err">       </span><span class="o">=</span> <span class="s2">&quot;TEST_ACCESS_TOKEN&quot;</span>
+</span><span class='line'><span class="err">   </span><span class="n">config</span><span class="o">.</span><span class="n">access_token_secret</span> <span class="o">=</span> <span class="s2">&quot;TEST_ACCESS_SECRET&quot;</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>We had to add a search method to our interface for the sake of testing. This should remain &ldquo;For testing only&rdquo;. We&rsquo;d also adapt the controller test to use this <code>search_tweets</code> method.</p>
+
+<p>Let&rsquo;s look at where we stand now. We&rsquo;re injecting each mock only once. Tests are fast yet straightforward, almost as if they were testing the real thing. Doing so, we&rsquo;ve split our system in cohesive parts and we&rsquo;ve wrapped our 3rd parties. We&rsquo;ve actually done a lot more than removing mocks ! <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">Mocking really is a design smell</a>.</p>
+
+<blockquote><p>💡 Merciless mock hunting will improve the design of your system !</p></blockquote>
+
+<h2>Last word about implementation</h2>
+
+<p>Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We&rsquo;re far better <a href="http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">plugin it on top of SQLite</a> instead !</p>
+
+<h2>References</h2>
+
+<p>Smart people have already spoken and written about this subject. If you want to learn more, I recommend that you have a look at <a href="https://twitter.com/aslak_hellesoy">Aslak Hellesøy</a>&rsquo;s <a href="https://skillsmatter.com/skillscasts/9971-testable-software-architecture-with-aslak-hellesoy">Testable Architecture talk</a>. <a href="http://www.jamesshore.com/">James Shore</a>, the author of <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1527568833&amp;sr=8-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a>, also wrote a pattern language called <a href="http://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mock</a>.</p>
+
+<h2>Next week</h2>
+
+<p>This was the 7th blog post in <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a>. Hopefully, I&rsquo;m reaching the end ! Next week&rsquo;s post should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ? What changes when mocking with statically typed languages ?</p>
+
+<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid Mocks and Test Your Core Domain Faster With Hexagonal Architecture</a></h1>
     
     
@@ -722,9 +1234,7 @@
 
 <h2>Next post</h2>
 
-<p>As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it&rsquo;s easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we&rsquo;ll see in the next post about in-memory fakes.</p>
-
-<p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a></p>
+<p>As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it&rsquo;s easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we&rsquo;ll see in the <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">next post about in-memory fakes</a>.</p>
 </div>
   
   
@@ -2190,7 +2700,7 @@
 <li><a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to use Test Data Builders to avoid mocks and keep your tests clear</a></li>
 <li><a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a></li>
 <li><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a></li>
-<li>Other large scale techniques to avoid mocks</li>
+<li><a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a></li>
 <li>Mocking in special contexts like legacy and dynamically or statically typed languages</li>
 </ol>
 
@@ -2462,96 +2972,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-get-the-max-out-of-your-team-coding-dojo/">How to Get the Max Out of Your Team Coding Dojo ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2018-03-22T06:42:00+01:00" pubdate data-updated="true">Mar 22<span>nd</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you&rsquo;ve read my <a href="/blog/categories/team-randori-series/">previous posts about Team Randori Coding Dojos</a>, you should know why and how to run a successful one.</p>
-
-<p>Did you manage to setup the team <a href="http://codingdojo.org/RandoriKata/">Randori coding dojo</a> as a recurring event ? Congratulations ! Your team is on the road to continuous learning and improvement. To close this series of posts, here are battle tested tricks for greatest impact. Let&rsquo;s boost your teamwork, your production code and a few other things.</p>
-
-<p><img src="../imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/yoda.jpg" alt="Yoda doing the Fizz Buzz kata" /></p>
-
-<h2>Boost your teamwork</h2>
-
-<p>I stated <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">before</a> that the team Randori is a perfect occasion to improve your teamwork. By itself, just doing it will already take you a long way towards better collaboration. As instigator of the coding dojo though, you can push the topic faster and further.</p>
-
-<h3>Coding and Design Conventions</h3>
-
-<p>Whenever you see the opportunity during the dojo, raise design discussions. It&rsquo;s a good way to share best practices. It often ends up in new coding conventions for the team.</p>
-
-<p>Also don&rsquo;t forget to use the retrospective. It&rsquo;s the perfect time to agree on best practices for the dojo <em>and</em> for production code. Push people to dig into what they are mentioning. Ask them if they are willing to adhere to a particular practice. You can use <a href="http://www.plays-in-business.com/thumb-voting/">thumb vote</a> to get a quick agreement. Once the team agrees on something, record it somewhere and make sure it is visible to everyone.</p>
-
-<h3>Egoless Programming</h3>
-
-<p><a href="https://blog.codinghorror.com/the-ten-commandments-of-egoless-programming/">Egoless Programming</a> makes collaboration a lot easier within a team. In the dojo, demonstrate Egoless Programming yourself. In particular if you already enjoy good peer recognition, adopt a &ldquo;low attitude&rdquo;. Don&rsquo;t hesitate to encourage others to delete your code when they have a better idea. Yourself, don&rsquo;t hesitate to delete code if it makes sense, but don&rsquo;t make a fuss about it.</p>
-
-<blockquote><p>💡 Be a champion of Egoless Programming in Coding Dojo to bring this practice in your team.</p></blockquote>
-
-<p>Be careful if your workplace is too competitive or if your reputation is not yet strong enough. I&rsquo;d go slow on this aspect in such situations.</p>
-
-<p>During the dojo, you might notice people who have difficulties with egoless programming. In this case, remind its principes to everyone and that you are here to learn and practice. You can also mention that this is a TDD exercice and that deleting and changing code is the way to go.</p>
-
-<p><a href="https://www.amazon.com/Psychology-Computer-Programming-Silver-Anniversary/dp/0932633420"><img src="../imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/psychology-computer-programming.jpg" alt="The cover of &quot;The psychology of computer programming&quot;" /></a></p>
-
-<h2>Going further</h2>
-
-<p>After enough successful sessions, you&rsquo;ll want to push further and experiment new things. Absolutely do it ! There&rsquo;s a lot more to discover about the coding dojos.</p>
-
-<h3>Variations</h3>
-
-<p>You can try new formats like the <a href="http://codingdojo.org/PreparedKata/">Prepared Kata</a> or Randori in Pairs. You can learn a new language by redoing your favorite problems in this language. You can add constraints like &ldquo;No If&rdquo;, &ldquo;Always Compiles&rdquo; or even exotic things like &ldquo;No Heap Allocation&rdquo;. You might also give <a href="https://leanpub.com/codingdojohandbook">Emily Bache&rsquo;s book</a> a read for tons of others ideas.</p>
-
-<h3>Production code</h3>
-
-<p>If you continue long enough, your team will get particularly good at Randoris. At that point, you might wonder how you could apply this to production code ? It turns you can !</p>
-
-<p>One way I found, which I wrote about in <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">my first post</a>, is to try to fix a local smell or static analysis issue in the code. Get all the team to do a Randori to fix that, discuss the design and conventions, and commit at the end of the session.</p>
-
-<p>Particularly difficult legacy code refactorings are also pretty good candidates for Randoris. </p>
-
-<blockquote><p>💡 Given enough eyeballs, all bugs are shallow. <a href="https://en.wikipedia.org/wiki/Linus%27s_Law">Linus&rsquo;s Law</a></p></blockquote>
-
-<p>Once you are there, you might altogether jump into mob programming ! Randoris are by nature, like timeboxed mobs. Replace the Randori rule &ldquo;Driver decides what to code&rdquo; with <a href="https://code.joejag.com/2018/three-constraints-for-mobbing.html">Strong Style pairing</a> (Make the driver code your idea) and that&rsquo;s it, you are a mob !</p>
-
-<h2>Spread the word</h2>
-
-<p>One last thing before closing this series on team coding dojos. If the practice is useful to your team, spread it. Chances are that there are other development teams working next to you. Invite members of other teams to your dojo. This will build up their envy for their own team coding dojo. Propose your help to boot their first session !</p>
-
-<p>In the long run, the improved practices of this team might benefit you ! For example, if your teams start collaborating. Or perhaps you&rsquo;ll join this team some day !</p>
-
-<p>Whatever happens, I wish you a lot of fun in your teams Coding Dojos. Happy Coding !</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -2630,6 +3050,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
+      </li>
+    
+      <li class="post">
         <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
       </li>
     
@@ -2643,10 +3067,6 @@
     
       <li class="post">
         <a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight Mocks</a>
       </li>
     
   </ul>

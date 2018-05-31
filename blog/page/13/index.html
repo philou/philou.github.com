@@ -102,6 +102,61 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/silosis/">Silosis</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-09-05T06:17:00+02:00" pubdate data-updated="true">Sep 5<span>th</span>, 2015</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I just invented the word, I found it funny :</p>
+
+<blockquote><p>Silosis: an internal organization of an enterprise in which people are grouped by job titles. Although not obvious at first sight, it usually involves excessively high communication costs. Worst cases can create vicious circles where more &lsquo;communication people&rsquo; are added which in turn increase the overall communication costs &hellip;</p></blockquote>
+
+<p><img class="center" src="/imgs/2015-09-05-silosis/silos.jpg" title="&#34;Silos under a grey sky&#34;" alt="&#34;Silos under a grey sky&#34;"></p>
+
+<p>Here are other reasons I don&rsquo;t like silos :</p>
+
+<ul>
+<li>Silos create local optimums, which <a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/B00CAYOX3O/ref=sr_1_sc_2?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1441546057&amp;sr=8-2-spell&amp;keywords=reinsertsen+flow">lean theory</a> (and mathematics) taught us is bad</li>
+<li>Silos create specialists, which bring the whole system to a halt when they leave</li>
+<li>Silos create work queue, which increase cycle time</li>
+<li>Silos create some form of black market in the organization, through which people can bypass the official communication channel and actually get the job done</li>
+<li>Silos hides the big picture to anyone, thus removing autonomy from and <a href="http://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1441546115&amp;sr=8-1&amp;keywords=daniel+pink+drive">demotivating people</a></li>
+</ul>
+
+
+<p>I could go one for hours &hellip; I just hate silos.</p>
+
+<p><img class="center" src="/imgs/2015-09-05-silosis/no-silos.png" title="&#34;No Silos Logo&#34;" alt="&#34;No Silos Logo&#34;"></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/feedback-on-360-degrees-feedback-session/">Feedback on 360° Feedback Session</a></h1>
     
     
@@ -1392,270 +1447,6 @@ The @Waste annotation is a way to log time wasted because of this bad code.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What Optimization Should We Work on (Lean Software Development Part 5)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-03-26T20:30:00+01:00" pubdate data-updated="true">Mar 26<span>th</span>, 2015</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>At work, we are building a risk aggregation system. As it&rsquo;s dealing with a large bunch of numbers, it&rsquo;s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
-
-<p>That&rsquo;s were we are now doing.</p>
-
-<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" title="A turtle with a rocket on the back" ></p>
-
-<h1>How do we choose which optimization to work on ?</h1>
-
-<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage &hellip;</p>
-
-<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
-
-<h2>Let&rsquo;s walk through an example</h2>
-
-<h3>I. List the optimizations you are thinking of</h3>
-
-<p>Let&rsquo;s suppose we are thinking of the following 3 optimizations for our engine</p>
-
-<ul>
-<li>Create better data structures to speed up the reconciliation algorithm</li>
-<li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
-<li>Minimize boxing and unboxing</li>
-</ul>
-
-
-<h3>II. Poker estimate the story points and speedup</h3>
-
-<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
-As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
-We will then just have to work on the stories with the highest speedup rate first.</p>
-
-<table>
-<thead>
-<tr>
-<th>Title                   </th>
-<th> Story Points  </th>
-<th> /10    </th>
-<th> /2     </th>
-<th> -10%    </th>
-<th> ~  </th>
-<th> +10%   </th>
-<th> x2      </th>
-<th> x10     </th>
-<th> Expected Speedup ratio* </th>
-<th> Speedup rate / story point**</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data Structures     </td>
-<td> 13        </td>
-<td>        </td>
-<td>        </td>
-<td>             </td>
-<td>        </td>
-<td> 4 votes</td>
-<td> 5 votes </td>
-<td>         </td>
-<td> x 1.533                 </td>
-<td> x 1.033</td>
-</tr>
-<tr>
-<td>Algorithm           </td>
-<td> 13        </td>
-<td>    </td>
-<td> 1 vote </td>
-<td> 1 vote      </td>
-<td> 2 votes</td>
-<td> 1 vote </td>
-<td> 2 votes </td>
-<td> 2 votes </td>
-<td> x 1.799                 </td>
-<td> x 1.046</td>
-</tr>
-<tr>
-<td>Boxing                  </td>
-<td> 8     </td>
-<td>    </td>
-<td>        </td>
-<td>             </td>
-<td>        </td>
-<td> 9 votes</td>
-<td>         </td>
-<td>         </td>
-<td> x 1.1                   </td>
-<td> x 1.012</td>
-</tr>
-</tbody>
-</table>
-
-
-<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br>
-<sup><em>** Speedup rate is &ldquo;speedup<sup>(1/ story points)</sup>&rdquo;</em></sup></p>
-
-<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
-
-<ol>
-<li>Algorithm</li>
-<li>Data Structures</li>
-<li>Boxing</li>
-</ol>
-
-
-<h3>III. And what about the risks ?</h3>
-
-<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" title="A danger zone panel" ></p>
-
-<p>This poker estimation tells us something else &hellip;</p>
-
-<blockquote><p>We don&rsquo;t have a clue about the speedup we will get by trying to optimize the algorithm !</p></blockquote>
-
-<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
-
-<table>
-<thead>
-<tr>
-<th>Title </th>
-<th> Story points </th>
-<th> Expected Speedup rate</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Algorithm spike : measure out of context CPU cache optimization speedup </td>
-<td> 2 </td>
-<td>   ?</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>In order to compute the expected speedup rate, let&rsquo;s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
-
-<p>They are computed by splitting the votes in 2 :</p>
-
-<ul>
-<li><em>low_speedup = 0.846</em></li>
-<li><em>high_speedup = 3.827</em></li>
-</ul>
-
-
-<h4>If the spike succeeds</h4>
-
-<p>We&rsquo;ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
-
-<ul>
-<li><em>spike_high_speedup = high_speedup = 3.827</em></li>
-</ul>
-
-
-<h4>If the spike fails</h4>
-
-<p>We&rsquo;ll also start by working on the spike. Afterwards, instead of the algorithm story, we&rsquo;ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
-
-<ul>
-<li><em>average_speedup_rate = (1.033 * 1.011)<sup>&frac12;</sup> = 1.022</em></li>
-<li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
-</ul>
-
-
-<h4>Spike speedup rate</h4>
-
-<p>We can now compute the average expected speedup rate for the full period &lsquo;spike &amp; algorithm&rsquo; stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
-
-<ul>
-<li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>&frac12;</sup> = 2.253</em></li>
-<li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
-</ul>
-
-
-<h3>IV. Putting it all together</h3>
-
-<p>Here are all the speedup rate for the different stories.</p>
-
-<table>
-<thead>
-<tr>
-<th>Title </th>
-<th> Speedup rate / story point</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Data Structure  </td>
-<td> x 1.033</td>
-</tr>
-<tr>
-<td>Algorithm           </td>
-<td> x 1.046</td>
-</tr>
-<tr>
-<td>Boxing                  </td>
-<td> x 1.012</td>
-</tr>
-<tr>
-<td>Algorithm spike         </td>
-<td> x 1.056</td>
-</tr>
-</tbody>
-</table>
-
-
-<br>
-
-
-<p>Finally, here is the optimal order through which we should perform the stories :</p>
-
-<ul>
-<li>Algorithm spike</li>
-<li>Algorithm (only if the spike proved it would work)</li>
-<li>Data Structures</li>
-<li>Boxing</li>
-</ul>
-
-
-<h2>Summary</h2>
-
-<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
-
-<p><img class="center" src="/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" title="Formula for a spike speedup rate" ></p>
-
-<p>I think most experienced engineers would have come to the same conclusion by gut feeling &hellip;</p>
-
-<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
-
-<p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/14/">&larr; Older</a>
@@ -1736,6 +1527,10 @@ We will then just have to work on the stories with the highest speedup rate firs
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
+      </li>
+    
+      <li class="post">
         <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
       </li>
     
@@ -1749,10 +1544,6 @@ We will then just have to work on the stories with the highest speedup rate firs
     
       <li class="post">
         <a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight Mocks</a>
       </li>
     
   </ul>
