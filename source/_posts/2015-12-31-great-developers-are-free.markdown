@@ -11,7 +11,7 @@ categories:
  - hiring
  - enterprise
 keywords: "Software, Hiring, Developers, Great Developers, Hiring Developers"
-description: "A comparision of a junior and an experienced software developers teams, with conclusions and follow up about how to hire them"
+description: "A comparison of a junior and an experienced software developers teams, with conclusions and follow up about how to hire them"
 ---
 For many reasons. But mostly because they are key to efficiently growing a software organization.
 
@@ -25,7 +25,7 @@ Let's have a look at 2 software teams in the world of corporate finance.
 
 [{% img center /imgs/2015-12-31-great-developers-are-free/open-space.jpg A big corporate open space %}](http://www.lefigaro.fr/emploi/2013/12/07/09005-20131207ARTFIG00309-bruit-temperature-air8230-les-salaries-reserves-sur-l-open-space.php)
 
-One is an in-house software development team in a large bank. The project already has a bad reputation among developers.The bank has difficulties to hire so the team is constituted of 10 rather junior developers. Unfortunately, without guidance and long term vision, the quality of the code suffers. It looks like an ad-hoc composition of various technolgies, glue code, and reinvented frameworks. The overall result is a barely good enough product that costs a small fortune in maintainance and support. The user experience is awful, which make it difficult to the the team leaders and the users to collaborate effectively. As a result of all this, the project is suffering from high turnover. Managing this project is really challenging ... and kind of depressing.
+One is an in-house software development team in a large bank. The project already has a bad reputation among developers.The bank has difficulties to hire so the team is constituted of 10 rather junior developers. Unfortunately, without guidance and long term vision, the quality of the code suffers. It looks like an ad-hoc composition of various technologies, glue code, and reinvented frameworks. The overall result is a barely good enough product that costs a small fortune in maintenance and support. The user experience is awful, which make it difficult to the team leaders and the users to collaborate effectively. As a result of all this, the project is suffering from high turnover. Managing this project is really challenging ... and kind of depressing.
 
 ### The experienced software team
 
@@ -37,7 +37,7 @@ Now let's imagine the same product developed at a software house. It's been on t
 * Is this gold plating or plain technical debt ?
 * Which technology should we use to build this ?
 
-In the end, that makes the product even better. The humane side of the team is also completely different. These experienced developers have all been exposed to the big picture during their careers, and they know things like :
+In the end, that makes the product even better. The human side of the team is also completely different. These experienced developers have all been exposed to the big picture during their careers, and they know things like :
 
 * 'Business talk' and so they can discuss product topics with the product managers
 * The best way to go through chores at work is to do them right now
@@ -57,7 +57,7 @@ Let's then have a look at the longer term, organizational aspect of things. Obvi
 
 Obviously, I've worked with people that were experienced on paper, but not in practice. I [read](http://www.jrothman.com/htp/interview/2004/12/whats-a-year-of-experience/) that repeating 10 times the same year of work only amounts to 1 year of experience.
 
-If I was asked to give a definition, I'd say that experienced developers have worked on different kind of systems (embeded, web, client, server ...) using different technologies (Java, Ruby, C, Spring, Rails, Javascript ...). Their experiences need not be professional, I've seen a physics teacher that hacked himself into a great hacker through side projects and open source. Speaking of the subject, good developers always spent a lot of time learning, reading, doing side projects and contributing to open source. Some can be found in local user groups and online programming communities.
+If I was asked to give a definition, I'd say that experienced developers have worked on different kind of systems (embedded, web, client, server ...) using different technologies (Java, Ruby, C, Spring, Rails, Javascript ...). Their experiences need not be professional, I've seen a physics teacher that hacked himself into a great hacker through side projects and open source. Speaking of the subject, good developers always spent a lot of time learning, reading, doing side projects and contributing to open source. Some can be found in local user groups and online programming communities.
 
 ## So How do you get them ?
 
