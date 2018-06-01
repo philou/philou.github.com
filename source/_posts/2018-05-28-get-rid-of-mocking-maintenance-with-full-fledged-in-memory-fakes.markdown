@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Get rid of mock maintenance with full fledged in-memory fakes"
-date: 2018-05-28 19:15
+date: 2018-05-31 19:15
 comments: true
 categories: 
  - tdd
