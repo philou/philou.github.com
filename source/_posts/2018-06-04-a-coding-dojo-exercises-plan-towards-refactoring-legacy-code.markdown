@@ -7,7 +7,7 @@ categories:
  - tdd
  - technical debt
  - coding dojo
-keywords: "Legacy Code Refactoring, Coding Dojo Exercises, Coding Dojo, Legacy Code, Regactoring, Code Kata, TDD, Test Driven Development"
+keywords: "Legacy Code Refactoring, Coding Dojo Exercises, Coding Dojo, Legacy Code, Refactoring, Code Kata, TDD, Test Driven Development"
 description: "Learn how to do Legacy Code Refactoring through Coding Dojo Exercises. Refactoring Legacy Code is hard. Although very effective on new code, Test Driven Development can seem impossible to apply on Legacy Code. Going through this Coding Dojo Exercises plan should bring your skills up to the task."
 published: false
 ---
@@ -69,7 +69,7 @@ From then on, it's possible to tackle advanced katas and styles :
    * [Kata Lags](http://codingdojo.org/kata/Lags/)
    * [anagrams](http://codingdojo.org/kata/Anagram/)
 
-After all this, it is possible to practice legacy refactoring katas :
+All this opens the gate to legacy code refactoring katas :
 
 * [Gilded Rose](https://github.com/emilybache/GildedRose-Refactoring-Kata)
 * [Race Car Katas](https://github.com/emilybache/Racing-Car-Katas)
@@ -84,7 +84,7 @@ At that point, the team can [mob](https://en.wikipedia.org/wiki/Mob_programming)
 
 ## What changed in practice ?
 
-We tried to split the teamwork and the coding dojos exercises. The team is now doing mob programming sessions on their usual stories twice a week (I'll blog about that some day). But also doing regular coding dojos exercises in pairs.
+We wanted to split the teamwork and the coding dojos exercises. The team is now doing mob programming sessions on their usual stories twice a week (I'll blog about that someday). But also doing regular coding dojos exercises in pairs.
 
 Even if they did not go through all the TDD katas yet, mobbing on real stories helps the team to take on legacy code.
 
