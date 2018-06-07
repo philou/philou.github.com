@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-31T06:09:27+02:00</updated>
+  <updated>2018-06-07T06:01:01+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,9 +14,151 @@
 
   
   <entry>
+    <title type="html"><![CDATA[When is testing using mocks still a good idea ?]]></title>
+    <link href="http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/"/>
+    <updated>2018-06-07T06:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea</id>
+    <content type="html"><![CDATA[<p>In the previous 7 articles of <a href="/blog/categories/how-to-avoid-mocks-series/">this series</a>, I&rsquo;ve tried my best get rid of mocks. I&rsquo;m pretty sure that using these techniques will get you a long way out of <a href="/careless-mocking-considered-harmful/">mock hell</a>. Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven&rsquo;t already, I encourage you to start reading from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<p>One question remains though : Is it realistic to get rid of <em>all</em> mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?</p>
+
+<h2>When mocking still makes sense</h2>
+
+<p>Let&rsquo;s to through a few examples.</p>
+
+<h3>Testing a generic wrapper</h3>
+
+<p>A few years ago, I had to write a service for an enterprise system. As any service, I had to ensure that it was returning nice errors. We decided to capture and wrap all errors from a few &lsquo;gate&rsquo; points in the code. We built a generic wrapper that did only delegation plus exception wrapping. In this case, it made a lot more sense to test this with a mocking framework.</p>
+
+<p>```ruby</p>
+
+<p>context ServiceErrorWrapper do</p>
+
+<p> specify &lsquo;converts all kinds of exceptions&rsquo; do<br/>
+   failing_object = object_double(&ldquo;Failing object&rdquo;)<br/>
+   allow(failing_object).to receive(:long_computation).and_raise(Exception.new(&ldquo;Something terrible happened&rdquo;))</p>
+
+<p>   expect{ ServiceErrorWrapper.new(failing_object).long_computation }.to raise_error(ServiceError).with_message(&ldquo;Something terrible happened&rdquo;)<br/>
+ end</p>
+
+<p> # &hellip;<br/>
+end</p>
+
+<p>```</p>
+
+<p>Not only did we reuse the wrapper many times in my service. We also ended up using it in other services as well !</p>
+
+<h3>Injecting a hand written in-memory fake</h3>
+
+<p>As you might have noticed, in <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">the previous article</a>, I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)</p>
+
+<blockquote><p>💡 By making mocking so easy, mocking frameworks often do more harm than good.</p></blockquote>
+
+<p>Still, I used <code>const_stub(...)</code> to inject the in-memory fake.</p>
+
+<p>```ruby</p>
+
+<p>config.before(:each) do  </p>
+
+<p>  stub_const(&ldquo;TwitterClient::Client&rdquo;, FakeTwitterClient.new)  </p>
+
+<p>end  </p>
+
+<p>```</p>
+
+<p>I did this for 2 reasons :</p>
+
+<ul>
+<li>Production code can continue to use a straightforward constant</li>
+<li>I don&rsquo;t risk forgetting to remove the mock at the end of its lifecycle, the framework does this for me</li>
+<li>As I&rsquo;m injecting the same fake for all tests, there is not much risk of test conflict (for the moment)</li>
+</ul>
+
+
+<h3>Testing a cache</h3>
+
+<p>The &ldquo;raison d'être&rdquo; of a cache is to avoid doing something twice. It should also return the same results as if it was not there. This is by nature almost impossible to test with state based assertions. Mock frameworks are great for this situation though. Here is an example :</p>
+
+<p>```ruby</p>
+
+<p>context &ldquo;UsersController&rdquo; do<br/>
+ it &lsquo;caches users&rsquo; do<br/>
+   expect(User).to receive(:load).once.and_return(User.new(name: &ldquo;Joe&rdquo;))</p>
+
+<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+ end<br/>
+end<br/>
+```</p>
+
+<p>The assertion could not be more explicit, we are checking that the expensive load was only done once.</p>
+
+<h3>Legacy code</h3>
+
+<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
+
+<p>In <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a> <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> explains how to exploit <a href="http://www.informit.com/articles/article.aspx?p=359417&amp;seqNum=2">&ldquo;seams&rdquo;</a> in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.</p>
+
+<p>Mocking is a pretty good starting point but we need to be careful and keep a few things in mind. Legacy or not, we must not forget that too many mocks will make tests unmaintainable !</p>
+
+<ul>
+<li>It&rsquo;s a good idea to refer to a target design or architecture blueprint to know where to inject mocks. (I&rsquo;ll write a post about this one day). This increases the chances to replace them with an in-memory fake later down the road.</li>
+<li>Plan to replace the mocks with a better design as soon as possible.</li>
+</ul>
+
+
+<h3>It depends &hellip;</h3>
+
+<p>As with anything in software, there is no absolute rule about mocking. Even if I prefer not to 99% of the time, there are situation when testing using mocks is the thing to do. Knowing the risks, it&rsquo;s up to you to decide !</p>
+
+<h2>If using a mock, prefer spy / proxies</h2>
+
+<p><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
+
+<p>As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.</p>
+
+<p>It turns out there is a flavor of mocks for that : <a href="https://martinfowler.com/articles/mocksArentStubs.html">spies</a> and <a href="https://relishapp.com/rspec/rspec-mocks/docs/configuring-responses/calling-the-original-implementation">overlooked proxies</a>. Proxies do the real thing but also record the calls and return values. It&rsquo;s as non-intrusive as mocks can be.</p>
+
+<blockquote><p>💡 Proxy mocks are as unintrusive as mocks can be.</p></blockquote>
+
+<p>For example, here is how our cache test would look like using a proxy :</p>
+
+<p>```ruby</p>
+
+<p>context &ldquo;UsersController&rdquo; do<br/>
+ it &lsquo;caches users&rsquo; do<br/>
+   allow(User).to receive(:load).and_call_original</p>
+
+<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)</p>
+
+<p>   expect(User).to have_received(:load).once<br/>
+ end<br/>
+end<br/>
+```</p>
+
+<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philippe.bourgau.net/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
+
+<h2>This is the end</h2>
+
+<p>This was the 8th and last post in a series about how to avoid mocks. Before closing here is a list of other references about the topic.</p>
+
+<ul>
+<li>In the <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">RailsConf 2014 keynote</a>, <a href="https://twitter.com/dhh">DHH </a> explains how mocking made their test harness unreliable.</li>
+<li><a href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD dead</a> is a well known online discussion about the Classic vs Mockist TDD approach</li>
+<li>Have a look at what <a href="https://blog.cleancoder.com/">Uncle Bob</a> says about <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">When To Mock</a></li>
+<li>For JS expert <a href="https://medium.com/@_ericelliott">Eric Elliott</a>, <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">Mocking is a Code Smell</a></li>
+<li>In this talk  <a href="https://skillsmatter.com/skillscasts/9971-testable-software-architecture-with-aslak-hellesoy">Testable Architecture talk</a>, <a href="https://twitter.com/aslak_hellesoy">Aslak Hellesøy</a> explains how to build a full architecture for fast tests</li>
+<li><a href="http://www.jamesshore.com/">James Shore</a> recently published a full pattern language entitled <a href="http://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mock</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Get rid of mock maintenance with full fledged in-memory fakes]]></title>
     <link href="http://philippe.bourgau.net/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/"/>
-    <updated>2018-05-28T19:15:00+02:00</updated>
+    <updated>2018-05-31T19:15:00+02:00</updated>
     <id>http://philippe.bourgau.net/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes</id>
     <content type="html"><![CDATA[<p><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Last week&rsquo;s post</a> was about how <a href="http://alistair.cockburn.us/Hexagonal+architecture">hexagonal architecture</a> results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week&rsquo;s code sample, this was the controller. I concluded that at least, this was easier to manage. Let&rsquo;s see how.</p>
 
@@ -1346,249 +1488,6 @@ end
 <p>This is the fourth post of <a href="/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a> in automated tests. Next week I&rsquo;ll dig into Custom Assertion Matchers and how they avoid mock expectations.</p>
 
 <p><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US">Stay tuned !</a> !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Immutable Value Objects vs Mocks : Fizz Buzz]]></title>
-    <link href="http://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/"/>
-    <updated>2018-05-03T19:28:00+02:00</updated>
-    <id>http://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz</id>
-    <content type="html"><![CDATA[<p>In my <a href="/how-immutable-value-objects-fight-mocks/">previous post</a> I explained how <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a> help us to avoid mocks. In this post, I&rsquo;ll illustrate this in practice with real code.</p>
-
-<p>This is the third post on a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to avoid mocks</a>. If you haven&rsquo;t, you can start reading the full story <a href="/careless-mocking-considered-harmful/">here</a>.</p>
-
-<p><img src="../imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg" alt="A drawing &quot;FIZZ BUZZ&quot; rock fallen and sealed in the ground" /></p>
-
-<h2>Fizz Buzz Example</h2>
-
-<p>As a simple example, I&rsquo;ll go through the classic <a href="http://codingdojo.org/kata/FizzBuzz/">Fizz Buzz</a>. I&rsquo;ve implemented and tested it with and without immutable value objects. Please keep in mind that this is a toy example, where problems are obvious and easily fixed. I try to highlight at small scale the same problems that get hidden by the complexity of a large scale program.</p>
-
-<p>Let&rsquo;s start with a typical FizzBuzz implementation.</p>
-
-<p>```ruby
-1.upto(100) do |i|
-  if (i%3 == 0 and i%5 == 0)</p>
-
-<pre><code>STDOUT.puts("FizzBuzz\n")
-</code></pre>
-
-<p>  elsif (i%3 == 0)</p>
-
-<pre><code>STDOUT.puts("Fizz\n")
-</code></pre>
-
-<p>  elsif (i%5 == 0)</p>
-
-<pre><code>STDOUT.puts("Buzz\n")
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>STDOUT.puts("#{i}\n")
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>Suppose you need to add some tests around the code. The most straightforward way is to mock <code>STDOUT</code> :</p>
-
-<p>```ruby
-require &lsquo;rspec&rsquo;</p>
-
-<p>def fizzBuzz(max, out)
-  1.upto(max) do |i|</p>
-
-<pre><code>if (i%3 == 0 and i%5 == 0)
-  out.puts("FizzBuzz\n")
-elsif (i%3 == 0)
-  out.puts("Fizz\n")
-elsif (i%5 == 0)
-  out.puts("Buzz\n")
-else
-  out.puts("#{i}\n")
-end
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>main</h1>
-
-<p>fizzBuzz(100,STDOUT)</p>
-
-<p>describe &lsquo;Mockist Fizz Buzz&rsquo; do</p>
-
-<p>  it &lsquo;should print numbers, fizz and buzz&rsquo; do</p>
-
-<pre><code>out = double("out")
-expect(out).to receive(:puts).with("1\n").ordered
-expect(out).to receive(:puts).with("2\n").ordered
-expect(out).to receive(:puts).with("Fizz\n").ordered
-expect(out).to receive(:puts).with("4\n").ordered
-expect(out).to receive(:puts).with("Buzz\n").ordered
-expect(out).to receive(:puts).with("Fizz\n").ordered
-expect(out).to receive(:puts).with("7\n").ordered
-expect(out).to receive(:puts).with("8\n").ordered
-expect(out).to receive(:puts).with("Fizz\n").ordered
-expect(out).to receive(:puts).with("Buzz\n").ordered
-expect(out).to receive(:puts).with("11\n").ordered
-expect(out).to receive(:puts).with("Fizz\n").ordered
-expect(out).to receive(:puts).with("13\n").ordered
-expect(out).to receive(:puts).with("14\n").ordered
-expect(out).to receive(:puts).with("FizzBuzz\n").ordered
-
-fizzBuzz(15, out)
-</code></pre>
-
-<p>  end
-end</p>
-
-<p>```</p>
-
-<p>Unfortunately, there are a few problems with this code :</p>
-
-<ul>
-<li>With nested logic and complicated mock setup, both code and tests aren&rsquo;t very readable</li>
-<li>They both seem to violate the single responsibility principle as well</li>
-<li>It&rsquo;s depending on a mutable output. Within a larger program, something could be messing around with this output stream. That would break FizzBuzz.</li>
-</ul>
-
-
-<p>Let&rsquo;s now try to use as many immutable values objects as possible, and see what happens to the mocks.</p>
-
-<p>```ruby
-require &lsquo;rspec&rsquo;</p>
-
-<h1>We extracted a function to do the fizz buzz on a single number</h1>
-
-<p>def fizzBuzzN(i)
-  if (i%3 == 0 and i%5 == 0)</p>
-
-<pre><code>"FizzBuzz"
-</code></pre>
-
-<p>  elsif (i%3 == 0)</p>
-
-<pre><code>"Fizz"
-</code></pre>
-
-<p>  elsif (i%5 == 0)</p>
-
-<pre><code>"Buzz"
-</code></pre>
-
-<p>  else</p>
-
-<pre><code>i.to_s
-</code></pre>
-
-<p>  end
-end</p>
-
-<h1>We replaced the many calls to STDOUT.puts by building a single</h1>
-
-<h1>large (and immutable) string</h1>
-
-<p>def fizzBuzz(max)
-  ((1..max).map {|i| fizzBuzzN(i)}).join(&ldquo;\n&rdquo;)
-end</p>
-
-<h1>main, with a single call to STDOUT.puts</h1>
-
-<p>STDOUT.puts fizzBuzz(100)</p>
-
-<p>describe &lsquo;Statist Fizz Buzz&rsquo; do</p>
-
-<p>  it &lsquo;should print numbers not multiples of 3 or 5&rsquo; do</p>
-
-<pre><code>expect(fizzBuzzN(1)).to eq("1")
-expect(fizzBuzzN(2)).to eq("2")
-expect(fizzBuzzN(4)).to eq("4")
-</code></pre>
-
-<p>  end</p>
-
-<p>  it &lsquo;should print Fizz for multiples of 3&rsquo; do</p>
-
-<pre><code>expect(fizzBuzzN(3)).to eq("Fizz")
-expect(fizzBuzzN(6)).to eq("Fizz")
-</code></pre>
-
-<p>  end</p>
-
-<p>  it &lsquo;should print Buzz for multiples of 5&rsquo; do</p>
-
-<pre><code>expect(fizzBuzzN(5)).to eq("Buzz")
-expect(fizzBuzzN(10)).to eq("Buzz")
-</code></pre>
-
-<p>  end</p>
-
-<p>  it &lsquo;should print FizzBuzz for multiples of 3 and 5&rsquo; do</p>
-
-<pre><code>expect(fizzBuzzN(15)).to eq("FizzBuzz")
-expect(fizzBuzzN(30)).to eq("FizzBuzz")
-</code></pre>
-
-<p>  end</p>
-
-<p>  it &lsquo;should print numbers, fizz and buzz&rsquo; do</p>
-
-<pre><code>expect(fizzBuzz(15)).to start_with("1\n2\nFizz").and(end_with("14\nFizzBuzz"))
-</code></pre>
-
-<p>  end
-end
-```</p>
-
-<p>As we can see, using immutable value objects got us rid of the mocks. Obviously, this new code will not be as efficient as the original version, but most of the time, this does not matter. As a bonus though we get finer grain and more readable tests.</p>
-
-<h3>Other testing advantages</h3>
-
-<p>Appart from preventing mocks, Immutable Value Objects have other advantages related to testing.</p>
-
-<ul>
-<li>We can directly assert their equality, without having to dig into their guts</li>
-<li>We can call methods as many times as we want, without the risk of changing anything and breaking the tests</li>
-<li>Immutable Value Objects are a lot less likely to contain invalid state. This removes the need for a whole range of validity tests.</li>
-</ul>
-
-
-<blockquote><p>💡 Immutable Value Objects simplify testing in many ways.</p></blockquote>
-
-<h3>Convincing your teammates</h3>
-
-<p>We&rsquo;ve seen that Immutable Value Objects have a ton of advantages when testing. People have found that they also have many other benefits :</p>
-
-<ul>
-<li><a href="https://www.linkedin.com/pulse/20140528113353-16837833-6-benefits-of-programming-with-immutable-objects-in-java/">6 Benefits of Programming with Immutable Objects in Java</a></li>
-<li><a href="https://hackernoon.com/5-benefits-of-immutable-objects-worth-considering-for-your-next-project-f98e7e85b6ac">5 Benefits of Immutable Objects Worth Considering for Your Next Project</a></li>
-</ul>
-
-
-<p>Surprisingly though, it&rsquo;s difficult to persuade programmers to use more immutability. It&rsquo;s tricky to explain why returning a modified copy is simpler than just adding a setter.</p>
-
-<blockquote><p>💡 Why is it so hard to persuade other developers to use immutable data structures ?</p></blockquote>
-
-<p>I had the most success by far when encountering a bug resulting of share mutable state. When this happens, the long term benefits and safety of the immutable design wins people over. The good thing is that as you convince more people in the team, immutability will spread like a virus !</p>
-
-<p>Outside of this situation, you might try some of the following arguments to move people :</p>
-
-<ul>
-<li>Immutable values prevent bugs caused by different parts of the system changing the same mutable state</li>
-<li>They make it easier to deal with the program in smaller parts and to reason about the system in general</li>
-<li>Immutable values don&rsquo;t need any synchronization and make multithreaded programming easier</li>
-<li>When tempted to add a simple setter instead of keeping a class immutable, highlight the stressful debugging time to come</li>
-<li>If you&rsquo;re dealing with a Design By Contract adept, explain how <a href="/almost-15-years-of-using-design-by-contract/">immutability has it built-in</a></li>
-<li>Admit that mainstream languages have bad support for Immutable Value. Point to patterns like <a href="https://dzone.com/articles/immutability-with-builder-design-pattern">Data Builders</a> that work around these limitation</li>
-</ul>
-
-
-<h2>Next post</h2>
-
-<p>I&rsquo;m done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. In <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">next post</a>, I&rsquo;ll dig into another small scale mock fighting pattern : <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a>.</p>
 ]]></content>
   </entry>
   

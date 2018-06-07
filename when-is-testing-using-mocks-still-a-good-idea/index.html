@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>When is testing using mocks still a good idea ? - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="Learn when testing using mocks still makes sense. Doing too much testing using mocks can become a maintenance nightmare, but there are situations &hellip;">
+
+  
+  <meta name="keywords" content="Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Ruby, Testing using mocks, Testing without mocks">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-me">About Me</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">When Is Testing Using Mocks Still a Good Idea ?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-06-07T06:29:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>In the previous 7 articles of <a href="/blog/categories/how-to-avoid-mocks-series/">this series</a>, I&rsquo;ve tried my best get rid of mocks. I&rsquo;m pretty sure that using these techniques will get you a long way out of <a href="/careless-mocking-considered-harmful/">mock hell</a>. Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven&rsquo;t already, I encourage you to start reading from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<p>One question remains though : Is it realistic to get rid of <em>all</em> mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?</p>
+
+<h2>When mocking still makes sense</h2>
+
+<p>Let&rsquo;s to through a few examples.</p>
+
+<h3>Testing a generic wrapper</h3>
+
+<p>A few years ago, I had to write a service for an enterprise system. As any service, I had to ensure that it was returning nice errors. We decided to capture and wrap all errors from a few &lsquo;gate&rsquo; points in the code. We built a generic wrapper that did only delegation plus exception wrapping. In this case, it made a lot more sense to test this with a mocking framework.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="no">ServiceErrorWrapper</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">specify</span> <span class="s1">&#39;converts all kinds of exceptions&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">failing_object</span> <span class="o">=</span> <span class="n">object_double</span><span class="p">(</span><span class="s2">&quot;Failing object&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="n">failing_object</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:long_computation</span><span class="p">)</span><span class="o">.</span><span class="n">and_raise</span><span class="p">(</span><span class="no">Exception</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Something terrible happened&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">{</span> <span class="no">ServiceErrorWrapper</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">failing_object</span><span class="p">)</span><span class="o">.</span><span class="n">long_computation</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ServiceError</span><span class="p">)</span><span class="o">.</span><span class="n">with_message</span><span class="p">(</span><span class="s2">&quot;Something terrible happened&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># ...  </span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Not only did we reuse the wrapper many times in my service. We also ended up using it in other services as well !</p>
+
+<h3>Injecting a hand written in-memory fake</h3>
+
+<p>As you might have noticed, in <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">the previous article</a>, I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)</p>
+
+<blockquote><p>💡 By making mocking so easy, mocking frameworks often do more harm than good.</p></blockquote>
+
+<p>Still, I used <code>const_stub(...)</code> to inject the in-memory fake.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span> <span class="err"> </span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="n">stub_const</span><span class="p">(</span><span class="s2">&quot;TwitterClient::Client&quot;</span><span class="p">,</span> <span class="no">FakeTwitterClient</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="err"> </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span> <span class="err"> </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I did this for 2 reasons :</p>
+
+<ul>
+<li>Production code can continue to use a straightforward constant</li>
+<li>I don&rsquo;t risk forgetting to remove the mock at the end of its lifecycle, the framework does this for me</li>
+<li>As I&rsquo;m injecting the same fake for all tests, there is not much risk of test conflict (for the moment)</li>
+</ul>
+
+
+<h3>Testing a cache</h3>
+
+<p>The &ldquo;raison d&#8217;être&rdquo; of a cache is to avoid doing something twice. It should also return the same results as if it was not there. This is by nature almost impossible to test with state based assertions. Mock frameworks are great for this situation though. Here is an example :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s2">&quot;UsersController&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">once</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Joe&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The assertion could not be more explicit, we are checking that the expensive load was only done once.</p>
+
+<h3>Legacy code</h3>
+
+<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
+
+<p>In <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a> <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> explains how to exploit <a href="http://www.informit.com/articles/article.aspx?p=359417&amp;seqNum=2">&ldquo;seams&rdquo;</a> in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.</p>
+
+<p>Mocking is a pretty good starting point but we need to be careful and keep a few things in mind. Legacy or not, we must not forget that too many mocks will make tests unmaintainable !</p>
+
+<ul>
+<li>It&rsquo;s a good idea to refer to a target design or architecture blueprint to know where to inject mocks. (I&rsquo;ll write a post about this one day). This increases the chances to replace them with an in-memory fake later down the road.</li>
+<li>Plan to replace the mocks with a better design as soon as possible.</li>
+</ul>
+
+
+<h3>It depends &hellip;</h3>
+
+<p>As with anything in software, there is no absolute rule about mocking. Even if I prefer not to 99% of the time, there are situation when testing using mocks is the thing to do. Knowing the risks, it&rsquo;s up to you to decide !</p>
+
+<h2>If using a mock, prefer spy / proxies</h2>
+
+<p><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
+
+<p>As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.</p>
+
+<p>It turns out there is a flavor of mocks for that : <a href="https://martinfowler.com/articles/mocksArentStubs.html">spies</a> and <a href="https://relishapp.com/rspec/rspec-mocks/docs/configuring-responses/calling-the-original-implementation">overlooked proxies</a>. Proxies do the real thing but also record the calls and return values. It&rsquo;s as non-intrusive as mocks can be.</p>
+
+<blockquote><p>💡 Proxy mocks are as unintrusive as mocks can be.</p></blockquote>
+
+<p>For example, here is how our cache test would look like using a proxy :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s2">&quot;UsersController&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">and_call_original</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_received</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philippe.bourgau.net/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
+
+<h2>This is the end</h2>
+
+<p>This was the 8th and last post in a series about how to avoid mocks. Before closing here is a list of other references about the topic.</p>
+
+<ul>
+<li>In the <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">RailsConf 2014 keynote</a>, <a href="https://twitter.com/dhh">DHH </a> explains how mocking made their test harness unreliable.</li>
+<li><a href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD dead</a> is a well known online discussion about the Classic vs Mockist TDD approach</li>
+<li>Have a look at what <a href="https://blog.cleancoder.com/">Uncle Bob</a> says about <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">When To Mock</a></li>
+<li>For JS expert <a href="https://medium.com/@_ericelliott">Eric Elliott</a>, <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">Mocking is a Code Smell</a></li>
+<li>In this talk  <a href="https://skillsmatter.com/skillscasts/9971-testable-software-architecture-with-aslak-hellesoy">Testable Architecture talk</a>, <a href="https://twitter.com/aslak_hellesoy">Aslak Hellesøy</a> explains how to build a full architecture for fast tests</li>
+<li><a href="http://www.jamesshore.com/">James Shore</a> recently published a full pattern language entitled <a href="http://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mock</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-06-07T06:29:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2018</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/architecture/'>architecture</a>, <a class='category' href='/blog/categories/how-to-avoid-mocks-series/'>how-to-avoid-mocks-series</a>, <a class='category' href='/blog/categories/mocking/'>mocking</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/testing/'>testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/" title="Previous Post: Get rid of mock maintenance with full fledged in-memory fakes">&laquo; Get rid of mock maintenance with full fledged in-memory fakes</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1><a href="/about-me">About Me</a></h1>
+  <p>Philippe Bourgau, eXtreme Programmer and Coach, pushing the limits of XP</p>
+  <p>I build high performing and sustainable teams by adapting XP to their unique challenges and context.</p>
+  <ul>
+    <li><a href="/about-me">Read more ...</a></li>
+    <li><a href="http://twitter.com/pbourgau">Twitter</a></li>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin</a></li>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="http://philous-planning-poker.herokuapp.com">Philou's Planning Poker</a> : Better poker estimates for remote teams !</li>
+    <li><a href="/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/when-is-testing-using-mocks-still-a-good-idea/">When is testing using mocks still a good idea ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to use Test Data Builders to avoid mocks and keep your tests clear</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/';
+        var disqus_url = 'http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

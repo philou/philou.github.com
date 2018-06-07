@@ -4,7 +4,7 @@
   <title><![CDATA[Category: architecture | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/architecture/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-05-31T06:09:27+02:00</updated>
+  <updated>2018-06-07T06:01:01+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,9 +14,151 @@
 
   
   <entry>
+    <title type="html"><![CDATA[When is testing using mocks still a good idea ?]]></title>
+    <link href="http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea/"/>
+    <updated>2018-06-07T06:29:00+02:00</updated>
+    <id>http://philippe.bourgau.net/when-is-testing-using-mocks-still-a-good-idea</id>
+    <content type="html"><![CDATA[<p>In the previous 7 articles of <a href="/blog/categories/how-to-avoid-mocks-series/">this series</a>, I&rsquo;ve tried my best get rid of mocks. I&rsquo;m pretty sure that using these techniques will get you a long way out of <a href="/careless-mocking-considered-harmful/">mock hell</a>. Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven&rsquo;t already, I encourage you to start reading from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<p>One question remains though : Is it realistic to get rid of <em>all</em> mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?</p>
+
+<h2>When mocking still makes sense</h2>
+
+<p>Let&rsquo;s to through a few examples.</p>
+
+<h3>Testing a generic wrapper</h3>
+
+<p>A few years ago, I had to write a service for an enterprise system. As any service, I had to ensure that it was returning nice errors. We decided to capture and wrap all errors from a few &lsquo;gate&rsquo; points in the code. We built a generic wrapper that did only delegation plus exception wrapping. In this case, it made a lot more sense to test this with a mocking framework.</p>
+
+<p>```ruby</p>
+
+<p>context ServiceErrorWrapper do</p>
+
+<p> specify &lsquo;converts all kinds of exceptions&rsquo; do<br/>
+   failing_object = object_double(&ldquo;Failing object&rdquo;)<br/>
+   allow(failing_object).to receive(:long_computation).and_raise(Exception.new(&ldquo;Something terrible happened&rdquo;))</p>
+
+<p>   expect{ ServiceErrorWrapper.new(failing_object).long_computation }.to raise_error(ServiceError).with_message(&ldquo;Something terrible happened&rdquo;)<br/>
+ end</p>
+
+<p> # &hellip;<br/>
+end</p>
+
+<p>```</p>
+
+<p>Not only did we reuse the wrapper many times in my service. We also ended up using it in other services as well !</p>
+
+<h3>Injecting a hand written in-memory fake</h3>
+
+<p>As you might have noticed, in <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">the previous article</a>, I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)</p>
+
+<blockquote><p>💡 By making mocking so easy, mocking frameworks often do more harm than good.</p></blockquote>
+
+<p>Still, I used <code>const_stub(...)</code> to inject the in-memory fake.</p>
+
+<p>```ruby</p>
+
+<p>config.before(:each) do  </p>
+
+<p>  stub_const(&ldquo;TwitterClient::Client&rdquo;, FakeTwitterClient.new)  </p>
+
+<p>end  </p>
+
+<p>```</p>
+
+<p>I did this for 2 reasons :</p>
+
+<ul>
+<li>Production code can continue to use a straightforward constant</li>
+<li>I don&rsquo;t risk forgetting to remove the mock at the end of its lifecycle, the framework does this for me</li>
+<li>As I&rsquo;m injecting the same fake for all tests, there is not much risk of test conflict (for the moment)</li>
+</ul>
+
+
+<h3>Testing a cache</h3>
+
+<p>The &ldquo;raison d'être&rdquo; of a cache is to avoid doing something twice. It should also return the same results as if it was not there. This is by nature almost impossible to test with state based assertions. Mock frameworks are great for this situation though. Here is an example :</p>
+
+<p>```ruby</p>
+
+<p>context &ldquo;UsersController&rdquo; do<br/>
+ it &lsquo;caches users&rsquo; do<br/>
+   expect(User).to receive(:load).once.and_return(User.new(name: &ldquo;Joe&rdquo;))</p>
+
+<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+ end<br/>
+end<br/>
+```</p>
+
+<p>The assertion could not be more explicit, we are checking that the expensive load was only done once.</p>
+
+<h3>Legacy code</h3>
+
+<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
+
+<p>In <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a> <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> explains how to exploit <a href="http://www.informit.com/articles/article.aspx?p=359417&amp;seqNum=2">&ldquo;seams&rdquo;</a> in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.</p>
+
+<p>Mocking is a pretty good starting point but we need to be careful and keep a few things in mind. Legacy or not, we must not forget that too many mocks will make tests unmaintainable !</p>
+
+<ul>
+<li>It&rsquo;s a good idea to refer to a target design or architecture blueprint to know where to inject mocks. (I&rsquo;ll write a post about this one day). This increases the chances to replace them with an in-memory fake later down the road.</li>
+<li>Plan to replace the mocks with a better design as soon as possible.</li>
+</ul>
+
+
+<h3>It depends &hellip;</h3>
+
+<p>As with anything in software, there is no absolute rule about mocking. Even if I prefer not to 99% of the time, there are situation when testing using mocks is the thing to do. Knowing the risks, it&rsquo;s up to you to decide !</p>
+
+<h2>If using a mock, prefer spy / proxies</h2>
+
+<p><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
+
+<p>As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.</p>
+
+<p>It turns out there is a flavor of mocks for that : <a href="https://martinfowler.com/articles/mocksArentStubs.html">spies</a> and <a href="https://relishapp.com/rspec/rspec-mocks/docs/configuring-responses/calling-the-original-implementation">overlooked proxies</a>. Proxies do the real thing but also record the calls and return values. It&rsquo;s as non-intrusive as mocks can be.</p>
+
+<blockquote><p>💡 Proxy mocks are as unintrusive as mocks can be.</p></blockquote>
+
+<p>For example, here is how our cache test would look like using a proxy :</p>
+
+<p>```ruby</p>
+
+<p>context &ldquo;UsersController&rdquo; do<br/>
+ it &lsquo;caches users&rsquo; do<br/>
+   allow(User).to receive(:load).and_call_original</p>
+
+<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)</p>
+
+<p>   expect(User).to have_received(:load).once<br/>
+ end<br/>
+end<br/>
+```</p>
+
+<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philippe.bourgau.net/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
+
+<h2>This is the end</h2>
+
+<p>This was the 8th and last post in a series about how to avoid mocks. Before closing here is a list of other references about the topic.</p>
+
+<ul>
+<li>In the <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">RailsConf 2014 keynote</a>, <a href="https://twitter.com/dhh">DHH </a> explains how mocking made their test harness unreliable.</li>
+<li><a href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD dead</a> is a well known online discussion about the Classic vs Mockist TDD approach</li>
+<li>Have a look at what <a href="https://blog.cleancoder.com/">Uncle Bob</a> says about <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">When To Mock</a></li>
+<li>For JS expert <a href="https://medium.com/@_ericelliott">Eric Elliott</a>, <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">Mocking is a Code Smell</a></li>
+<li>In this talk  <a href="https://skillsmatter.com/skillscasts/9971-testable-software-architecture-with-aslak-hellesoy">Testable Architecture talk</a>, <a href="https://twitter.com/aslak_hellesoy">Aslak Hellesøy</a> explains how to build a full architecture for fast tests</li>
+<li><a href="http://www.jamesshore.com/">James Shore</a> recently published a full pattern language entitled <a href="http://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mock</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Get rid of mock maintenance with full fledged in-memory fakes]]></title>
     <link href="http://philippe.bourgau.net/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/"/>
-    <updated>2018-05-28T19:15:00+02:00</updated>
+    <updated>2018-05-31T19:15:00+02:00</updated>
     <id>http://philippe.bourgau.net/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes</id>
     <content type="html"><![CDATA[<p><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Last week&rsquo;s post</a> was about how <a href="http://alistair.cockburn.us/Hexagonal+architecture">hexagonal architecture</a> results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week&rsquo;s code sample, this was the controller. I concluded that at least, this was easier to manage. Let&rsquo;s see how.</p>
 
