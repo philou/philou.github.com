@@ -63,4 +63,4 @@ In [this series of posts](/blog/categories/how-to-avoid-mocks-series/), I'll go 
 5.  [How Custom Assertion Matchers will keep mocks away](/how-custom-assertion-matchers-will-keep-mocks-away/)
 6.  [Avoid mocks and test your core domain faster with Hexagonal Architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)
 7.  [Get rid of mock maintenance with full fledged in-memory fakes](/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/)
-8.  When is testing using mocks still a good idea ?
+8.  [When is testing using mocks still a good idea ?](/when-is-testing-using-mocks-still-a-good-idea/)

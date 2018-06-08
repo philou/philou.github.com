@@ -305,6 +305,4 @@ Smart people have already spoken and written about this subject. If you want to 
 
 ## Next week
 
-This was the 7th blog post in [a series about how to avoid mocks](http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/). Hopefully, I'm reaching the end ! Next week's post should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ? What changes when mocking with statically typed languages ?
-
-[Stay tuned !](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)
+This was the 7th blog post in [a series about how to avoid mocks](http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/). Hopefully, I'm reaching the end ! [Next week's post](/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?
