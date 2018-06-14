@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A coding dojo exercises plan towards refactoring legacy code - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="Learn how to do Legacy Code Refactoring through Coding Dojo Exercises. Refactoring Legacy Code is hard. Although very effective on new code, Test &hellip;">
+
+  
+  <meta name="keywords" content="Legacy Code Refactoring, Coding Dojo Exercises, Coding Dojo, Legacy Code, Refactoring, Code Kata, TDD, Test Driven Development">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/PhilippeBourgau" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/PhilippeBourgau" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&amp;loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-me">About Me</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Coding Dojo Exercises Plan Towards Refactoring Legacy Code</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-06-14T06:29:00+02:00" pubdate data-updated="true">Jun 14<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>My current job <a href="http://www.murex.com">at work</a> is technical coach. I&rsquo;m available for teams that need help to adopt incremental coding practices.</p>
+
+<h2>Problems with refactoring legacy code</h2>
+
+<p>A few months ago, a team which was struggling with a lot of legacy code asked for help. As you might know if you read my blog, I&rsquo;m a big fan of <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a> because it has made my <a href="http://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">life as a developer so much more easy</a>. I&rsquo;m so used to TDD now, that even if I don&rsquo;t have tests yet (as is the case when refactoring legacy code), TDD helps me :</p>
+
+<ul>
+<li>To stick to baby steps which are a lot less likely to fail than larges changes.</li>
+<li>Write testable code. I know what testable code looks like, and when refactoring, I&rsquo;ll try to change it towards that.</li>
+</ul>
+
+
+<p>That&rsquo;s why we started to run regular, all team, <a href="http://philippe.bourgau.net/blog/categories/team-randori-series/">coding dojo randoris</a>. It was nice for the <a href="http://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">team dynamics</a>, and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !</p>
+
+<blockquote><p>💡 Test Driven Development also teaches you what testable code looks like.</p></blockquote>
+
+<h2>The coding dojo exercices</h2>
+
+<p>It turned out that a coding dojo exercises plan was enough to answer their questions. This is what it looks like.</p>
+
+<h3>Drawing</h3>
+
+<p><a href="../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk.jpg"><img src="../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk-small.jpg" alt="An illustrated Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring" /></a></p>
+
+<h3>Mind Map</h3>
+
+<p>Here is another, more concrete, version, with sample names of katas we can find online.</p>
+
+<p><a href="../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan.jpg"><img src="../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan-small.jpg" alt="An mind map of Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring" /></a></p>
+
+<h3>Text</h3>
+
+<p>It starts with simple greenfield katas :</p>
+
+<ul>
+<li><a href="http://codingdojo.org/kata/FizzBuzz/">Fizz Buzz</a></li>
+<li><a href="http://codingdojo.org/kata/RomanNumerals/">Roman Numerals</a></li>
+<li><a href="http://codingdojo.org/kata/Bowling/">Bowling</a></li>
+</ul>
+
+
+<p>It goes on to intermediate katas, where we can use TDD to do design :</p>
+
+<ul>
+<li><a href="http://kata-log.rocks/mars-rover-kata">Mars Rover</a></li>
+<li><a href="http://codingdojo.org/kata/PokerHands/">Poker Hands</a></li>
+<li><a href="http://codingdojo.org/kata/TradingCardGame/">trading card game</a></li>
+</ul>
+
+
+<p>From then on, it&rsquo;s possible to tackle advanced katas and styles :</p>
+
+<ul>
+<li>Refactoring fresh code
+
+<ul>
+<li>Continue design katas on 2 or more sessions</li>
+<li>Always compile Constraint</li>
+</ul>
+</li>
+<li>Bottom-up TDD
+
+<ul>
+<li><a href="http://codingdojo.org/kata/GameOfLife/">Game of Life</a></li>
+<li>Median of a list of lists (with no concatenation)</li>
+<li><a href="http://codingdojo.org/kata/LangtonAnt/">Langton ant</a></li>
+</ul>
+</li>
+<li>Top-Down TDD
+
+<ul>
+<li><a href="http://codingdojo.org/kata/Potter/">Kata Potter</a></li>
+<li><a href="http://codingdojo.org/kata/NumberToLCD/">LCD</a></li>
+</ul>
+</li>
+<li>TDD on algorithms
+
+<ul>
+<li><a href="http://codingdojo.org/kata/Diamond/">Diamond</a></li>
+<li><a href="http://codingdojo.org/kata/Lags/">Kata Lags</a></li>
+<li><a href="http://codingdojo.org/kata/Anagram/">anagrams</a></li>
+</ul>
+</li>
+</ul>
+
+
+<p>All this opens the gate to legacy code refactoring katas :</p>
+
+<ul>
+<li><a href="https://github.com/emilybache/GildedRose-Refactoring-Kata">Gilded Rose</a></li>
+<li><a href="https://github.com/emilybache/Racing-Car-Katas">Race Car Katas</a></li>
+<li><a href="https://github.com/jbrains/trivia">Ugly trivia game</a></li>
+<li>Others from <a href="http://kata-log.rocks">http://kata-log.rocks</a></li>
+</ul>
+
+
+<p>At that point, the team can <a href="https://en.wikipedia.org/wiki/Mob_programming">mob</a> to refactor production code :</p>
+
+<ul>
+<li>Real life, static analysis issue, mob programming session</li>
+<li>Real life, code smell, mob programming session</li>
+<li>Real life, larger mob Refactoring</li>
+</ul>
+
+
+<h2>What changed in practice ?</h2>
+
+<p>We wanted to split the teamwork and the coding dojos exercises. The team is now doing mob programming sessions on their usual stories twice a week (I&rsquo;ll blog about that someday). But also doing regular coding dojos exercises in pairs.</p>
+
+<p>Even if they did not go through all the TDD katas yet, mobbing on real stories helps the team to take on legacy code.</p>
+
+<blockquote><p>Given enough eyeballs, all bugs are shallow. Linus&rsquo;s Law</p></blockquote>
+
+<p>Working in pairs on the code katas allows them to be more engaged in the exercises. In the end, it brings faster learning.</p>
+
+<blockquote><p>💡 A mix of Coding Dojos in pairs and Mob Programming sessions is a good way to teach TDD in a Legacy Code context.</p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-06-14T06:29:00+02:00" pubdate data-updated="true">Jun 14<span>th</span>, 2018</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/coding-dojo/'>coding dojo</a>, <a class='category' href='/blog/categories/tdd/'>tdd</a>, <a class='category' href='/blog/categories/technical-debt/'>technical debt</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/when-is-testing-using-mocks-still-a-good-idea/" title="Previous Post: When is testing using mocks still a good idea ?">&laquo; When is testing using mocks still a good idea ?</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+<section>
+  <h1><a href="/about-me">About Me</a></h1>
+  <p>Philippe Bourgau, eXtreme Programmer and Coach, pushing the limits of XP</p>
+  <p>I build high performing and sustainable teams by adapting XP to their unique challenges and context.</p>
+  <ul>
+    <li><a href="/about-me">Read more ...</a></li>
+    <li><a href="http://twitter.com/pbourgau">Twitter</a></li>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin</a></li>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="http://philous-planning-poker.herokuapp.com">Philou's Planning Poker</a> : Better poker estimates for remote teams !</li>
+    <li><a href="/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">A coding dojo exercises plan towards refactoring legacy code</a>
+      </li>
+    
+      <li class="post">
+        <a href="/when-is-testing-using-mocks-still-a-good-idea/">When is testing using mocks still a good idea ?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/';
+        var disqus_url = 'http://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>
