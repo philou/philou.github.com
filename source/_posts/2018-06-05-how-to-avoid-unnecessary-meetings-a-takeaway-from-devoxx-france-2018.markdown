@@ -48,7 +48,7 @@ Until the decision is taken, the process can move forward but also backward.
 We need only two tools to make this possible :
 
 1.  For discussion, brainstorming and emergence of options, use a very open and chatty tool. The speaker called this a "shared asynchronous communication channel". This can be an online chat, a mailing list or Github issues ([ex](https://github.com/apache/cordova-discuss/issues)). It could even be a real life whiteboard if you all had access to it.
-2.  From drafting the proposal to the end, prefer a structured and chronological tool. The speaker suggests using a "shared case management tool". Draft the proposal in this tool, and use comments to log the latest steps of the decision taking. He had examples using Jira issues ([ex](https://issues.apache.org/jira/browse/SLING-7231)) or Github pull requests ([ex](https://github.com/apache/cordova-discuss/pulls)). To confirm the decision, close the case.
+2.  From drafting the proposal to the end, prefer a structured and chronological tool. The speaker suggests using a "shared case management tool". Draft the proposal in this tool, and use comments to log the latest steps of the decision taking. He had examples using Jira issues ([ex](https://issues.apache.org/jira/browse/SLING-7231)) or Github pull requests ([ex](https://github.com/apache/cordova-discuss/pulls)). To confirm the decision, close the case. The tool will record which version of the decision was exactly taken.
 
 ## Architecture Decision Record
 
