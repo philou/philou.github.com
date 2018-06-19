@@ -23,7 +23,7 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 
 ## How do we end up in this silly situation ?
 
-![Drawing of a '5 whys' mind map explaining why it is difficult to get sponsorship for a large scale refactoring](TODO)
+[![Drawing of a '5 whys' mind map explaining why it is difficult to get sponsorship for a large scale refactoring](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized-small.jpg)](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized.jpg)
 
 ### Only developers see the bad code
 
