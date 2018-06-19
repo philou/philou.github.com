@@ -29,8 +29,10 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 
 As I've [already been joking about](/the-size-of-code/), code is invisible. Mess in the code even more so, especially to people who don't code. The code could look like that and no one would notice.
 
-![Inside of a kitchen from someone suffering from Diogenes syndrome](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg)
-<div class="image-credits">Par <a href="//commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1" class="new" title="User:Un Touriste (page does not exist)">Un Touriste</a> — <span class="int-own-work">Photographie personnelle</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15988115">Lien</a></div>
+[![Inside of a kitchen from someone suffering from Diogenes syndrome](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg)](https://en.wikipedia.org/wiki/Diogenes_syndrome)
+<div class="image-credits">Par <a href="//commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1" class="new" title="User:Un Touriste (page does not exist)">Un Touriste</a> — <span class="int-own-work">Photographie personnelle</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15988115">Lien</a></div><br>
+
+
 
 If someone put his own office in that state, he would get fired, but not for the source code. The good side is that we, developers, are safe, we can continue to wreak chaos without fear ! That's pretty weird when we think that this is what we ship to customers ...
 
@@ -42,7 +44,7 @@ The worse part of all this is that if devs don't have the time to keep their cod
 
 ### Business has been burnt in the past !
 
-Bad experiences are another reason why business is unwilling to sponsor refactoring. Did someone sell them an unrealistic productivity boost that turned in a never-ending tunnel project ? Badly managed large scale refactorings deliver late, create no value, and a lot of bugs. At one company I worked for, business gave devs 1 full year (‼️) to clean up the code ... We took 2 ! Meanwhile, the CEO had to dilute the stocks a bit to keep the boat afloat ! I'd think twice before giving this kind of mandate myself.
+Bad experiences are another reason why business is unwilling to sponsor refactoring. Did someone sell them an unrealistic productivity boost that turned in a never-ending tunnel project ? Badly managed large scale refactorings deliver late, create no value, and a lot of bugs. At one company I worked for, business gave devs 1 full year (!) to clean up the code ... We took 2 !! Meanwhile, the CEO had to dilute the stocks a bit to keep the boat afloat ! I'd think twice before giving this kind of mandate myself.
 
 Performing a large scale refactoring is not easy, and involves specific skills. These skills are about refactoring in baby steps, alongside feature delivery.
 
@@ -68,4 +70,4 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money
 
-[Stay tuned !](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US)
+[Stay tuned !](http://eepurl.com/dxKE95)
