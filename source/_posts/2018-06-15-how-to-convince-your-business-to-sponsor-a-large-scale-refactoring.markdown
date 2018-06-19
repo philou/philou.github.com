@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "How to convince your business to sponsor a large scale refactoring"
-date: 2018-06-15 06:14
+date: 2018-06-28 06:14
 comments: true
 categories: 
  - refactoring
