@@ -7,7 +7,7 @@ categories:
  - agile
  - coaching
  - large scale
- - management 3.0
+ - management30
  - agile-transformations-fail-series
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning, Management 3.0, Transparent compensation"
 description: "After going over the typical problems in large scale Agile transformations, I add transparency of vision and information to the pre-requisite"
