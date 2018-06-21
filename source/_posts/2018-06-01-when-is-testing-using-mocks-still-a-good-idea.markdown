@@ -3,7 +3,7 @@ layout: post
 title: "When is testing using mocks still a good idea ?"
 date: 2018-06-07 06:29
 comments: true
-categories: 
+categories:
  - tdd
  - mocking
  - testing
@@ -28,16 +28,16 @@ A few years ago, I had to write a service for an enterprise system. As any servi
 
 ```ruby
 
-context ServiceErrorWrapper do  
+context ServiceErrorWrapper do
 
- specify 'converts all kinds of exceptions' do  
-   failing_object = object_double("Failing object")  
-   allow(failing_object).to receive(:long_computation).and_raise(Exception.new("Something terrible happened"))  
+ specify 'converts all kinds of exceptions' do
+   failing_object = object_double("Failing object")
+   allow(failing_object).to receive(:long_computation).and_raise(Exception.new("Something terrible happened"))
 
-   expect{ ServiceErrorWrapper.new(failing_object).long_computation }.to raise_error(ServiceError).with_message("Something terrible happened")  
- end  
+   expect{ ServiceErrorWrapper.new(failing_object).long_computation }.to raise_error(ServiceError).with_message("Something terrible happened")
+ end
 
- # ...  
+ # ...
 end
 
 ```
@@ -74,14 +74,14 @@ The "raison d'être" of a cache is to avoid doing something twice. It should als
 
 ```ruby
 
-context "UsersController" do  
- it 'caches users' do  
-   expect(User).to receive(:load).once.and_return(User.new(name: "Joe"))  
+context "UsersController" do
+ it 'caches users' do
+   expect(User).to receive(:load).once.and_return(User.new(name: "Joe"))
 
-   controller.login('Joe', 'secret')  
-   controller.login('Joe', 'secret')  
- end  
-end  
+   controller.login('Joe', 'secret')
+   controller.login('Joe', 'secret')
+ end
+end
 ```
 
 The assertion could not be more explicit, we are checking that the expensive load was only done once.
@@ -115,19 +115,19 @@ For example, here is how our cache test would look like using a proxy :
 
 ```ruby
 
-context "UsersController" do  
- it 'caches users' do  
-   allow(User).to receive(:load).and_call_original  
+context "UsersController" do
+ it 'caches users' do
+   allow(User).to receive(:load).and_call_original
 
-   controller.login('Joe', 'secret')  
-   controller.login('Joe', 'secret')  
+   controller.login('Joe', 'secret')
+   controller.login('Joe', 'secret')
 
-   expect(User).to have_received(:load).once  
- end  
-end  
+   expect(User).to have_received(:load).once
+ end
+end
 ```
 
-It's more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote [rspecproxies](http://philippe.bourgau.net/rspecproxies), a wrapper on top of [rspec](http://rspec.info/) to make this easier.
+It's more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote [rspecproxies](http://philou.github.io/rspecproxies), a wrapper on top of [rspec](http://rspec.info/) to make this easier.
 
 ## This is the end
 
