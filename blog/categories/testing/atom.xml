@@ -4,7 +4,7 @@
   <title><![CDATA[Category: testing | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-06-21T05:59:36+02:00</updated>
+  <updated>2018-06-21T06:46:44+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -34,14 +34,14 @@
 
 <p>context ServiceErrorWrapper do</p>
 
-<p> specify &lsquo;converts all kinds of exceptions&rsquo; do<br/>
-   failing_object = object_double(&ldquo;Failing object&rdquo;)<br/>
+<p> specify &lsquo;converts all kinds of exceptions&rsquo; do
+   failing_object = object_double(&ldquo;Failing object&rdquo;)
    allow(failing_object).to receive(:long_computation).and_raise(Exception.new(&ldquo;Something terrible happened&rdquo;))</p>
 
-<p>   expect{ ServiceErrorWrapper.new(failing_object).long_computation }.to raise_error(ServiceError).with_message(&ldquo;Something terrible happened&rdquo;)<br/>
+<p>   expect{ ServiceErrorWrapper.new(failing_object).long_computation }.to raise_error(ServiceError).with_message(&ldquo;Something terrible happened&rdquo;)
  end</p>
 
-<p> # &hellip;<br/>
+<p> # &hellip;
 end</p>
 
 <p>```</p>
@@ -81,14 +81,14 @@ end</p>
 
 <p>```ruby</p>
 
-<p>context &ldquo;UsersController&rdquo; do<br/>
- it &lsquo;caches users&rsquo; do<br/>
+<p>context &ldquo;UsersController&rdquo; do
+ it &lsquo;caches users&rsquo; do
    expect(User).to receive(:load).once.and_return(User.new(name: &ldquo;Joe&rdquo;))</p>
 
-<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
-   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
- end<br/>
-end<br/>
+<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)
+   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)
+ end
+end
 ```</p>
 
 <p>The assertion could not be more explicit, we are checking that the expensive load was only done once.</p>
@@ -125,19 +125,19 @@ end<br/>
 
 <p>```ruby</p>
 
-<p>context &ldquo;UsersController&rdquo; do<br/>
- it &lsquo;caches users&rsquo; do<br/>
+<p>context &ldquo;UsersController&rdquo; do
+ it &lsquo;caches users&rsquo; do
    allow(User).to receive(:load).and_call_original</p>
 
-<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)<br/>
+<p>   controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)
    controller.login(&lsquo;Joe&rsquo;, &lsquo;secret&rsquo;)</p>
 
-<p>   expect(User).to have_received(:load).once<br/>
- end<br/>
-end<br/>
+<p>   expect(User).to have_received(:load).once
+ end
+end
 ```</p>
 
-<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philippe.bourgau.net/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
+<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philou.github.io/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
 
 <h2>This is the end</h2>
 
