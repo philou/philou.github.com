@@ -12,7 +12,7 @@ description: "Praise and installation instructions for SimpleScreenRecorder on U
 ---
 It is easy to record and share great screencasts on [Ubuntu](http://www.ubuntu.com) (and I guess on Linux in general).
 
-Recently, I had to create a screencast to demonstrate how to use [Storexplore](/storexplore/), a gem I wrote that transforms online stores into APIs. Here is the result
+Recently, I had to create a screencast to demonstrate how to use [Storexplore](http://philou.github.io/storexplore/), a gem I wrote that transforms online stores into APIs. Here is the result
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/O30xReGgdVU" frameborder="0" allowfullscreen></iframe>
 
