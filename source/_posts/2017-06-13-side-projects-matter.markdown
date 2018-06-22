@@ -18,7 +18,7 @@ I finished my [latest side project](https://philous-planning-poker.herokuapp.com
 2. Since 2011, [this blog](/)
 2. 2015 [www.agileavatars.com](/agileavatars-dot-com-magnets-for-real/), a custom magnet shop for agile team boards. This was a lean startup style business project
 3. 2016 [complexity-asserts](/verify-the-big-o-complexity-of-ruby-code-in-rspec/) a unit test matcher to enforce algorithm complexity. This was a technical project time boxed to 20h.
-4. 2016-2017 [Philou's Planning Poker](/planning-poker/), a technical product, that I built to solve my own problem.
+4. 2016-2017 [Philou's Planning Poker](http://philou.github.io/planning-poker/), a technical product, that I built to solve my own problem.
 
 The more I do side projects, the more I am certain of their value to my employer.
 
@@ -84,7 +84,7 @@ The conclusion is that side projects make people more productive and adaptive. W
 
 ### Understand what technical debt is
 
-![A technical debt iceberg](../imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg)<div class="image-credits"><a href='https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code'>Image from Vector Software</a></div> 
+![A technical debt iceberg](../imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg)<div class="image-credits"><a href='https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code'>Image from Vector Software</a></div>
 
 The bottleneck in a side project is always time. In this context, to deliver fast enough to keep my motivation high, I tend to take technical debt. Particularly because I ignore how long I'll be maintaining this code.
 
