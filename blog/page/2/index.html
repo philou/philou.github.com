@@ -102,6 +102,102 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-04-19T13:13:00+02:00" pubdate data-updated="true">Apr 19<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>💡 Mock hell : when excessive use of test mocks makes <a href="https://en.wikipedia.org/wiki/Code_refactoring">refactoring</a> extremely slow or difficult.</p></blockquote>
+
+<p>A few years ago, I managed to get a side project out of mock hell. Since then, I&rsquo;ve been using what I learned to avoid mocks in all the projects I&rsquo;ve worked on. This is the start of a series of posts about my mock-avoiding techniques.</p>
+
+<p><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg" alt="A tag &quot;Mocks don't rock !&quot;" /></p>
+
+<h2>Escape from Mock Hell</h2>
+
+<p>Between 2010 and 2014, I was working on a side project I called <a href="https://github.com/philou/mes-courses">http://mes-courses.fr</a>. Which actually means &ldquo;my house shopping&rdquo; in English. I wanted people to be able to do their house shopping in 5 minutes, by using a better UI for online groceries. I was using Ruby, and I had just read <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1523422024&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a>. I got a bit too excited with mocking, and was using it way too much.</p>
+
+<p>I&rsquo;d been practicing <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> for more than 5 years and I was expecting great results with a language like Ruby. After a few months though, I could feel that something was not going as well as it should. The test initialization code was getting longer and longer, as it included a lot of mock setup. This made the tests more complex and less readable. It also made them unreliable, as it was not rare for all my unit tests to pass while the system was not working. I was taking the habit of running my end to end test more and more often. I was also losing a lot of time maintaining the mock setup code in line with the real classes. Mocks also tricked me into the bad practice of keeping a 1 to 1 mapping between code and test files. That again increased my maintenance burden when moving code from one file to another.</p>
+
+<p>It reached a point where I could not take it anymore. All these problems were pointing at mocks, so I tried to remove them from a test file. Here are the techniques I ended up using to remove them mocks : </p>
+
+<ul>
+<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value Objects</a></li>
+<li><a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a></li>
+<li><a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Test Matchers</a></li>
+<li><a href="http://alistair.cockburn.us/Hexagonal+architecture">Hexagonal architecture</a></li>
+<li><a href="https://www.martinfowler.com/articles/mocksArentStubs.html">In-memory fakes</a></li>
+<li><a href="https://wincent.com/wiki/Proxy_(test_double">Proxy doubles</a>)</li>
+</ul>
+
+
+<p>The end result was beyond my hopes, as my problems almost magically disappeared. The code got simpler, I became a lot more confident about my unit tests, and they got easier to maintain. As an illustration, here is an excerpts from the diff of a rails controller test file which went through this mock diet.</p>
+
+<p><a href="https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split"><img src="../imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg" alt="A screen capture of a Github diff showing a test file going on a mock diet" /></a></p>
+
+<h2>What&rsquo;s the long term risk ?</h2>
+
+<p>Basically, excessive mocking arms the maintainability of the tests. Here is what would have happened if I&rsquo;d done nothing. Tests would have become so painful to maintain that I would have started to ignore or delete them. As coverage would decrease, more and more code would become untested. That&rsquo;s exactly Michael Feathers&#8217; definition of Legacy Code :</p>
+
+<blockquote><p>Legacy Code is code without tests. <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1523422039&amp;sr=1-1&amp;keywords=legacy+code">Michael Feathers</a></p></blockquote>
+
+<p>To summarize, excessive use of mocks leads to legacy code ! As most of us have learned the hard way, the further a system drifts into legacy, the lower the productivity.</p>
+
+<blockquote><p>💡 Excessive use of mocks leads to legacy code</p></blockquote>
+
+<h2>Next posts</h2>
+
+<p>Others already spoke about the dangers of mocks :</p>
+
+<ul>
+<li>Uncle Bob through <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">his blog</a></li>
+<li>DHH in the <a href="https://www.google.fr/search?q=is+TDD+dead&amp;safe=active&amp;tbm=vid">&ldquo;Is TDD Dead&rdquo; series</a></li>
+</ul>
+
+
+<p>In <a href="/blog/categories/how-to-avoid-mocks-series/">this series of posts</a>, I&rsquo;ll go through the details of the different techniques I used to remove mocks. Here is my plan :</p>
+
+<ol>
+<li><a href="/careless-mocking-considered-harmful/">Careless Mocking considered Harmful</a></li>
+<li><a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects fight mocks</a></li>
+<li><a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a></li>
+<li><a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to use Test Data Builders to avoid mocks and keep your tests clear</a></li>
+<li><a href="/how-custom-assertion-matchers-will-keep-mocks-away/">How Custom Assertion Matchers will keep mocks away</a></li>
+<li><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a></li>
+<li><a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a></li>
+<li><a href="/when-is-testing-using-mocks-still-a-good-idea/">When is testing using mocks still a good idea ?</a></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/frequently-asked-questions-about-the-20-hours-of-code-katas/">Frequently Asked Questions About the 20 Hours of Code Katas</a></h1>
     
     
@@ -959,80 +1055,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">Reducing the Risks of Large Organization Changes With the Mikado Method - Part 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2018-02-08T11:53:00+01:00" pubdate data-updated="true">Feb 8<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Large scale agile transformations are often painful, stressful and &hellip; failed ! Mixing the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">Improvement Kata</a> and the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> can make them more successful.</p>
-
-<p><img src="../imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/mikado.jpg" alt="A drawing of entangled mikado sticks" /></p>
-
-<p>The Mikado Method is a programming technique to reduce the risks of large code changes. Let&rsquo;s see how to apply it to organization changes.</p>
-
-<h2><a href="https://dzone.com/articles/if-it-aint-broke-dont-fix-it">&ldquo;If it&rsquo;s not broke, don&rsquo;t touch it !&rdquo;</a></h2>
-
-<p>A lot of programmers have learned this maxim the hard way. Here is how it goes.</p>
-
-<p>It all starts with a shitty piece of code that gets into everyone&rsquo;s way as soon as they have to deal with it. It&rsquo;s badly written, difficult to understand, and very difficult to change. One day, a brave programmer suggests to rewrite or revamp it so that it gets easy to work with. This is not a small task, but after some discussion and negotiation, he gets a &lsquo;go&rsquo; from his team.</p>
-
-<p>A few hours in this refactoring, he discovers that he needs to adapt other pieces of the code before he moves on. He leaves his work in progress as it is, and starts to change these pre-requisites. Unfortunately, these too have pre-requisite. Little by little, he builds up <a href="https://en.wikipedia.org/wiki/Work_in_process">work in progress</a>(WIP) on different parts of the code. He still has nothing working though ! He&rsquo;s beginning to have troubles keeping track of all his WIP. On top of that, he&rsquo;s wasting time integrating the work done by his colleagues with his WIP. As days pass by with nothing to show, his team begins to doubt that he&rsquo;ll be able to bring this to its end ! The situation as a whole accumulates an awful lot of stress on the developer. In the end, it is pretty likely that the team will abandon the whole thing.</p>
-
-<blockquote><p>💡 By never changing the code, programmers make it even harder to change</p></blockquote>
-
-<p>The problem with this maxim is that by never changing the code, programmers make it even harder to change. In the end, this makes new features too expensive to build, which is pretty bad for the business.</p>
-
-<p>Let&rsquo;s see how this related to large organization changes.</p>
-
-<h2>The typical large scale agile transformation</h2>
-
-<p>It all starts when a leader decides that Agile is the way to go. It could be because everyone is doing it or that he got convinced by someone. It could also be because consultants sold him a 10% productivity increase. The reason does not matter. What matters is that in a few months, all the company should switch to an Agile method. Large groups of people will have to switch to <a href="https://www.agilealliance.org/glossary/scrum-of-scrums/">Scrum of Scrum</a>, <a href="https://less.works/">LeSS</a>, <a href="http://www.scaledagileframework.com/">SAFe</a> or any other framework. Even if the transformation is split in product teams, these will still be big.</p>
-
-<p>One great thing about these frameworks is that they show problems. After a few sprints people discover that they have troubles delivering incrementally. After analysis, they understand another deeper problem. Examples : bad management, legacy code, outdated tooling, bad underlying processes &hellip; As Agile is the new <a href="https://sourcemaking.com/antipatterns/golden-hammer">Golden Hammer</a>, the teams responsible of these problems in turn jump to Agile X method. Unfortunately, these too might fall into deeper problems &hellip; and the pattern repeats itself. Meanwhile, the top down transformation team sticks its own objectives. It continues to onboard new product teams to Agile, fueling the mess that is spreading.</p>
-
-<p><img src="../imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/hammer.jpg" alt="A golden hammer" /></p>
-
-<p>At any moment, a very large proportion of the people in the company are in a state of transformation. This is pretty bad for productivity. What is even worse is that they are all facing the same root problems. They are all blocked in a sub-optimal state, impeded by the root problems. Following agile principles, they all start similar initiatives to workaround these issues ! They then need to coordinate with other teams, to avoid duplicate efforts. On top of that, as agile newbies, all these teams need coaches to help them at the same time.</p>
-
-<blockquote><p>💡 Large scale Agile transformations are too often stressful for everyone &hellip;</p></blockquote>
-
-<p>Needless to say that this situation is pretty stressful for everyone. It costs a lot, in productivity and consulting, for results yet to come. Despite reassurance that things will get better, the leader&rsquo;s trust is eroding.</p>
-
-<p>The story ends bad when it goes on for too long. When the leader loses faith in the initiative, he cancels it, and goes back to the old ways. That&rsquo;s what we call the <a href="https://www.google.fr/search?q=agile+hangover">Agile hangover</a> : &ldquo;We tried it, but it was a mess. It does not work for us.&rdquo;</p>
-
-<h2>To be continued</h2>
-
-<p>As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a <a href="/blog/categories/mikado-method-organization-series/">series about the Mikado Method and large scale organization changes</a>. In <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">next post</a>, we&rsquo;ll detail this technique, and see how to apply it on organization changes.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -1113,6 +1135,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">How to convince your business of sponsoring a large scale refactoring</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/">How to avoid unnecessary meetings (a takeaway from Devoxx France 2018)</a>
       </li>
     
@@ -1126,10 +1152,6 @@
     
       <li class="post">
         <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
-      </li>
-    
-      <li class="post">
-        <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid mocks and test your core domain faster with Hexagonal Architecture</a>
       </li>
     
   </ul>
