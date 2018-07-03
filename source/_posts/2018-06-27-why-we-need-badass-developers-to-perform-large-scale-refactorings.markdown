@@ -5,10 +5,9 @@ date: 2018-07-05 13:28
 comments: true
 categories: 
  - refactoring
- - planning
- - technical-debt
+ - badass-developer
  - large-scale-refactoring-sponsorship-series
-keywords: "Large Scale Refactoring, Badass Developper, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, how to convince a business of sponsoring you, Planning refactoring"
+keywords: "Large Scale Refactoring, Badass Developper, Become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, how to convince a business of sponsoring you, Planning refactoring"
 description: "Having a badass developer onboard will help to get sponsorship for a large scale refactoring. By knowing what they talk about and understanding   interests, they are able to get business people's trust. This trust can be used to get a large scale refactoring prioritized and performed well."
 published: false
 ---
@@ -19,7 +18,7 @@ published: false
 
 This post (and the next) will be about how to gain the business's trust. This is exactly where badass developers can help. Let me start with a story.
 
-![Drawing of 2 fists of a badass developer, with ">badass" tatooed on fingers](TODO)
+![Drawing of 2 hands of a badass developer over his keyboard, with ">badass<" tatooed on his fingers](../imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/badass-dev.jpg)
 
 Back in 2002, at my first job, I started to read [Refactoring, Improving the Design of Existing code](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?ie=UTF8). That's where I read about unit testing. I found it so great that I made a demo to other programmers. Being the junior dev in the team, my co-workers reaction was something between "Meh" and "Maybe". Fortunately, a more experienced and respected developer gave it a try. A few weeks after my demo, he announced to the team that unit testing worked great on new code. This time, people showed no questioning about his opinion : he if said so, it must have been true. Even business people blessed the practice !
 

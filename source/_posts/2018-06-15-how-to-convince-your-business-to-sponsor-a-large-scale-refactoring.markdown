@@ -65,7 +65,10 @@ That said, 'overestimating' so that you can write clean code is ok. It's not ove
 
 You might wonder what these other techniques are ! That's exactly what I'll go through with the next posts. This was the first one in a [series about how to get sponsorship for a large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). The series will cover topics like :
 
-*   In search of the bad ass developers
+1.   [How to convince your business of sponsoring a large scale refactoring](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/)
+*   Why we need Badass developers to perform large scale refactorings
+*   5 mistakes badass developers never do
+*   Principles that will make you a badass developer
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money
 
