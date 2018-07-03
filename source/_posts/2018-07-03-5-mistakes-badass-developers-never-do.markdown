@@ -50,7 +50,7 @@ As an interesting side note, I was at the [Paris DDD Meetup](https://www.meetup.
 
 > 💡 Some of my biggest mistakes were not backtracking soon enough a few times as I was drifting in quagmire. Eric Evans
 
-[![Eric Evans, the father of DDD, a true badass developer, answering questions at the Paris DDD meetup](../imgs/2018-07-03-5-mistakes-badass-developers-never-do/eric-evans-ddd-paris.jpg)](https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/)
+[![Eric Evans, the father of DDD, a true badass developer, answering questions at the Paris DDD meetup](../imgs/2018-07-03-5-mistakes-badass-developers-never-do/eric-evans-ddd-paris.jpg)](https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/)<div class="image-credits">By <a href="https://www.grodziski.com/">Jérémie Grodziski</a>, on <a href="https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/">Paris DDD Meetup</a></div><br>
 
 ## Let the team down
 
