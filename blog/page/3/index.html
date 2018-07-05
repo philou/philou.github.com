@@ -102,6 +102,99 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">Reducing the Risks of Large Organization Changes With the Mikado Method - Part 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2018-02-15T06:45:00+01:00" pubdate data-updated="true">Feb 15<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous post</a>, I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge <a href="https://en.wikipedia.org/wiki/Work_in_process">Work In Progress</a>. Let&rsquo;s see how programmers deal with these problems.</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg" alt="A drawing of a wipe, with the text &quot;Mind your WIP&quot;" /></p>
+
+<h2>The mikado method algorithm</h2>
+
+<p>The <a href="https://mikadomethod.wordpress.com/">mikado method</a> is a programming technique to perform large <a href="https://en.wikipedia.org/wiki/Code_refactoring">code refactoring</a> one step at a time. It fixes the problematic situation we raised at the beginning of these posts. It enables developers to integrate their work with their teammates&#8217; continuously. It allows to build features and do the refactoring in parallel. Developers can also pause a mikado refactoring for a while if needed. On top of all this, it makes it easier for the full team to collaborate on the same refactoring.</p>
+
+<blockquote><p>💡 Developers can pause a Mikado Method refactoring for a while if needed.</p></blockquote>
+
+<p>Here is how it goes, but you can get a more detailed (and technical) description <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">here</a>.</p>
+
+<ol>
+<li>Try to do the change you want</li>
+<li>If it the tests pass, great, you&rsquo;re done</li>
+<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
+<li>Write down the errors you faced</li>
+<li>Revert your change</li>
+<li>Recurse from 1 for every error</li>
+<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
+</ol>
+
+
+<p>The catch is that developers should revert the work they could not finish to move on !</p>
+
+<h2>How to apply it to an organization change</h2>
+
+<p>In some way, the Mikado Method is very similar to the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>. The flow of the Improvement kata goes on like that :</p>
+
+<ol>
+<li>Determine a target condition</li>
+<li>Try to work with the target condition in place</li>
+<li>If it works, you&rsquo;re done</li>
+<li>Otherwise, understand the main impediment, and revert to the old way of doing things</li>
+<li>Work to remove the impediment</li>
+<li>Start again from step 2</li>
+</ol>
+
+
+<p>Have a look at <a href="http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">these blog posts</a> for a more practical presentation of the improvement kata.</p>
+
+<blockquote><p>💡 The Mikado Method and the Improvement Kata are more than similar.</p></blockquote>
+
+<p>Granted, the Mikado method and the improvement kata look similar. They are in fact more than similar. The improvement kata does not prescribe how you should fix your impediments. What&rsquo;s not explicit is that we can use it recursively to fix impediments ! That makes it almost identical to the Mikado Method, but for organization instead of code. It won&rsquo;t be a surprise to know that some companies have used the improvement kata for that. For example, <a href="https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726?pd_rd_wg=UdZ7n&amp;pd_rd_r=ea4d5912-c825-432a-b633-ac6822a475f4&amp;pd_rd_w=rQ1LZ&amp;ref_=pd_gw_psimh&amp;pf_rd_r=0N5KT332R3TD0DWK8FM0&amp;pf_rd_p=a1e8e44e-a6a8-5785-afd0-7f174f0d74f9">HP used it to drive its Laser Jet team transformation</a>. Others have already used the <a href="http://nomad8.com/organisational-change-with-mikado/">Mikado Method for organization transformation</a>.</p>
+
+<p><a href="http://nomad8.com/organisational-change-with-mikado/"><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg" alt="Extract of the orga mikado graph used by the Sandy Mamoli" /></a><div class="image-credits"><a href="http://nomad8.com/organisational-change-with-mikado/">Original Post</a> by Sandy Mamoli</div></p>
+
+<p>Suppose your organization wants to move to full <a href="https://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a>. It could start by trying to integrate all their devs in 10 minutes on a small group of teams. If it works, fine, other large teams can try it as well. Let&rsquo;s see what to do if it fails though. Thanks to a <a href="/blog/categories/retrospectives/">retrospective</a> teams understand that they need to master CI themselves first. In this case, they could revert large scale CI, and have one of the teams try to do continuous integration. If it works, fine, another team can try it too. If it does not, they&rsquo;ll do a post-mortem of some sort to understand the root issue, and work on it. For example, here the main impediment could be a coupled architecture. The fun thing would be to apply the Mikado Method to do this refactoring 😉.</p>
+
+<p>As with the Mikado Method, it is possible to draw an organization change Mikado graph along the way :</p>
+
+<p><img src="../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png" alt="The mikado graph for the story above" /></p>
+
+<p>The graph is a living artifact. As we try and revert new experiments, we should expand and collapse the graph. This creates a global and shared view of the state of the change. Needless to say that this is great for collaboration.</p>
+
+<h2>To be continued (again)</h2>
+
+<p>This was part 2 of a <a href="/blog/categories/mikado-method-organization-series/">series on applying the Mikado Method to organization changes</a>. I&rsquo;ll end this series up with <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/">next post</a>, where I&rsquo;ll go through the pros and cons of the approach.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">Reducing the Risks of Large Organization Changes With the Mikado Method - Part 1</a></h1>
     
     
@@ -921,93 +1014,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/sustainable-productivity-in-extreme-programming/">Sustainable Productivity in eXtreme Programming</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2017-10-27T18:21:00+02:00" pubdate data-updated="true">Oct 27<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://extremeprogramming.org/">eXtreme programming</a> will not improve your short term productivity. But it will drastically improve your long term productivity.</p>
-
-<p>My <a href="/are-software-developers-overworked-or-undecided/">last post</a> detailed how prioritization and Work In Progress limits are the keys to less work and higher productivity.</p>
-
-<blockquote><p>XP is an experiment in answer to the question, &ldquo;How would you program if you had enough time?” <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&amp;qid=1509114442&amp;sr=8-1&amp;keywords=xp+explained">Kent Beck</a></p></blockquote>
-
-<p><img src="../imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg" alt="Cost of changes over time, for traditional and XP ways of building software" /><div class="image-credits">From <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&amp;qid=1510040835&amp;sr=8-1&amp;keywords=extreme+programming+explained">&ldquo;Extreme Programming Explained: Embrace Change&rdquo;</a> by Kent Beck</div></p>
-
-<h2>The best jam is made in old jars</h2>
-
-<p>As I was writing the post, I could not stop thinking :</p>
-
-<blockquote><p>Once again, XP has been addressing these WIP and prioritization issues for 20 years now !</p></blockquote>
-
-<p>Let&rsquo;s see exactly how.</p>
-
-<h3>WIP limitation</h3>
-
-<p>XP has a drastic way to reduce WIP by 2 : pair programming. Instead of 6 developers taking on 6 stories at the same time, they only tackle 3. I won&rsquo;t dive into the ton of other advantages to pair programming here. If you want to learn more, these <a href="http://philippe.bourgau.net/blog/categories/pair-programming/">blog posts</a> might help.</p>
-
-<p>Although it is now seen as a Scrum practice, Planning Game was part of original XP. Sticking to a basic planning game will give room for slack at the end of iterations. The trick is to leave the <a href="https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2">infamous focus factor</a> away.</p>
-
-<blockquote><p>💡 A simple planning game will give room for slack.</p></blockquote>
-
-<p>Suppose a team member takes vacations for a sprint. The team should deliver less user stories that sprint. They&rsquo;ll have less story points to schedule on next sprint. This leaves room for slack and long term improvements such as refactoring, learning &hellip; If half the team goes on holiday, that&rsquo;s a different story, adapt your schedule with gut feeling.</p>
-
-<p>A funny aspect of this is that XP teams are now the most likely to switch to the more extreme <a href="https://twitter.com/hashtag/noestimates">#NoEstimates</a>.</p>
-
-<h3>Priorities</h3>
-
-<p>XP&rsquo;s on-site customer is a straightforward way to work only on the most valuable features. Who better than an end user would be able to make this estimation ?</p>
-
-<p>The YAGNI (<a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">You Ain&rsquo;t Gonna Need It</a>) and simple design principles avoid building unnecessary features. TDD&rsquo;s strict point of not writing code before a failing test prevents over-engineering.</p>
-
-<h2>Modern XP</h2>
-
-<iframe src="https://player.vimeo.com/video/221024846" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-
-<p>In this wonderful talk from <a href="http://rachelcdavies.github.io/">Rachel C. Davies</a>, she presents how her team has been improving XP for 15 years. She explains how they organize as 2 mobs and 1 solo. At any moment, one mob is working on stories. The other mob works on important long term technical improvements. The solo does some learning. This is an even greater WIP reduction technique than pair programming.</p>
-
-<p>Having a dev doing learning all the time is a form of continuous slack. If the team feels that they cannot deliver something by an important date, he can join the mob to help them.</p>
-
-<p>There&rsquo;s even more to this learning. It can be about anything. Developers work on their technical skills, but they also learn about the domain. Little by little this turns them into domain experts. Guess what : domain experts are great at optimizing value !</p>
-
-<blockquote><p>💡 With time and efforts, developers can become domain experts !</p></blockquote>
-
-<h2>Afterthoughts</h2>
-
-<p>Unfortunately, there is no easy way to prove the long term productivity of XP. We cannot split the world to run the same project with and without XP. Another difficulty is that after a years of XP, work remains smooth and sustainable. Nothing like crunch mode. People used to the hero culture are hard to convince that they can be more productive by doing less.</p>
-
-<p>Hopefully, lean theory and gut feeling of programmers who have switched to XP can back up my claims.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1088,6 +1094,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/why-we-need-badass-developers-to-perform-large-scale-refactorings/">Why we need Badass developers to perform large scale refactorings</a>
+      </li>
+    
+      <li class="post">
         <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">How to convince your business of sponsoring a large scale refactoring</a>
       </li>
     
@@ -1101,10 +1111,6 @@
     
       <li class="post">
         <a href="/when-is-testing-using-mocks-still-a-good-idea/">When is testing using mocks still a good idea ?</a>
-      </li>
-    
-      <li class="post">
-        <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get rid of mock maintenance with full fledged in-memory fakes</a>
       </li>
     
   </ul>
