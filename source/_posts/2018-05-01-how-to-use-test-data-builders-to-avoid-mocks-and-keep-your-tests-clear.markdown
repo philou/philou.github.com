@@ -371,5 +371,3 @@ It's easy to create a specific tests for every assertion with Test Data Builders
 ## Next week
 
 This is the fourth post of [a series about how to avoid mocks](/blog/categories/how-to-avoid-mocks-series/) in automated tests. Next week I'll dig into Custom Assertion Matchers and how they avoid mock expectations.
-
-[Stay tuned !](https://feedburner.google.com/fb/a/mailverify?uri=PhilippeBourgau&loc=en_US) !
