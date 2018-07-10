@@ -22,13 +22,13 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 
 ## How do we end up in this silly situation ?
 
-[![Drawing of a '5 whys' mind map explaining why it is difficult to get sponsorship for a large scale refactoring](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized-small.jpg)](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized.jpg)
+[![Drawing of a '5 whys' mind map explaining why it is difficult to get sponsorship for a large scale refactoring]({{site.url}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized-small.jpg)](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized.jpg)
 
 ### Only developers see the bad code
 
 As I've [already been joking about](/the-size-of-code/), code is invisible. Mess in the code even more so, especially to people who don't code. The code could look like that and no one would notice.
 
-[![Inside of a kitchen from someone suffering from Diogenes syndrome](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg)](https://en.wikipedia.org/wiki/Diogenes_syndrome)
+[![Inside of a kitchen from someone suffering from Diogenes syndrome]({{site.url}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg)](https://en.wikipedia.org/wiki/Diogenes_syndrome)
 <div class="image-credits">Par <a href="//commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1" class="new" title="User:Un Touriste (page does not exist)">Un Touriste</a> — <span class="int-own-work">Photographie personnelle</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15988115">Lien</a></div><br>
 
 
@@ -68,7 +68,7 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 1.   [How to convince your business of sponsoring a large scale refactoring](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/)
 *   [Why we need Badass developers to perform large scale refactorings](/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
 *   5 mistakes badass developers never do
-*   Principles that will make you a badass developer
+*   Principles That Will Make You Become a Badass Developer
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money
 
