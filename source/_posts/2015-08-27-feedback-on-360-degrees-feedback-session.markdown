@@ -14,7 +14,7 @@ description: "My quick feedback on our first 360° feedback session, as describe
 
 In [Management 3.0](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0), [Jurgen Appelo](http://jurgenappelo.com/) suggests doing full team 360° feedback sessions instead of more traditional manager-collaborator meetings.
 
-[{% img center /imgs/2015-08-27-feedback-on-360-degrees-feedback-session/management30.jpg "The cover of Management 3.0 book" %}](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0)
+[![The cover of Management 3.0 book]({{site.url}}/imgs/2015-08-27-feedback-on-360-degrees-feedback-session/management30.jpg)](http://www.amazon.com/Management-3-0-Leading-Developers-Developing-ebook/dp/B004ISL6JY/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1438085414&sr=8-1&keywords=management+3.0)
 
 He argues in favor of this practice in order to :
 
@@ -46,6 +46,6 @@ A few last minute advises  :
    * [Our company](http://www.murex.com) provides trainings on non violent communication and positive feedback, maybe yours does too !
    * Appelo explains how to give written feedback in his other book [#Workout](http://www.amazon.com/gp/product/9492032023). Though better suited for email feedback, I found it a great way to prepare for the session.
 
-[{% img center /imgs/2015-08-27-feedback-on-360-degrees-feedback-session/feedback-wrap.jpg "The front page of #Workout chapter about written feedback" %}](https://management30.com/product/workouts/)
+[![The front page of #Workout chapter about written feedback]({{site.url}}/imgs/2015-08-27-feedback-on-360-degrees-feedback-session/feedback-wrap.jpg)](https://management30.com/product/workouts/)
 
 I'd like to ear about your experiences with such collaborative feedbacks.

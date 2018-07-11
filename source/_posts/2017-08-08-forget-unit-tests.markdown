@@ -46,7 +46,7 @@ This means that not only unit tests are fast, but also that fast tests usually s
 
 My guess is that 'unit tests' were explicitly defined as a recipe for fast tests ! If you stick to the definition of unit tests, you'll get fast tests and all their benefits.
 
-![A speedometer](../imgs/2017-08-08-forget-unit-tests/speedometer.jpg)
+![A speedometer]({{site.url}}/imgs/2017-08-08-forget-unit-tests/speedometer.jpg)
 
 ## Fast tests
 

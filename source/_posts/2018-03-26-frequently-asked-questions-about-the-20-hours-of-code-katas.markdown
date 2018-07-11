@@ -14,7 +14,7 @@ description: "Answers to frequently asked questions about the 20 hours of Code K
 ---
 In my [previous posts](/blog/categories/20-hours-code-kata-series/), I explained how to use the 20 hours of Code Katas technique to learn new languages. If you did not read these yet, start by [the beginning](/how-to-learn-a-programming-language-in-just-20-hours/).
 
-![A drawing of FAQ in a lightbulb](../imgs/2018-03-26-frequently-asked-questions-about-the-20-hours-of-code-katas/faq-bulb.jpg)
+![A drawing of FAQ in a lightbulb]({{site.url}}/imgs/2018-03-26-frequently-asked-questions-about-the-20-hours-of-code-katas/faq-bulb.jpg)
 
 To close [this series](/blog/categories/20-hours-code-kata-series/), here are a few tips and suggestions presented as questions and answers.
 
@@ -40,7 +40,7 @@ You can even use the technique to learn other things like frameworks or tools, b
 
 Build one yourself ! I'm not joking, building a kata, especially one where you start from scratch is not too difficult. Inspiration comes from anything you happen to do in your daily work. Trim down a programming challenge you had to work, and you might have a kata ! Went to a programming interview ? The question you had to answer might do a nice kata.
 
-!["Make things happen" written on a blackboard](../imgs/2018-03-26-frequently-asked-questions-about-the-20-hours-of-code-katas/make-things-happen.jpg)
+!["Make things happen" written on a blackboard]({{site.url}}/imgs/2018-03-26-frequently-asked-questions-about-the-20-hours-of-code-katas/make-things-happen.jpg)
 
 Once you've created and tested your kata, share it ! There are online kata repositories where you could get a chance to publish it.
 

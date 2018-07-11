@@ -30,17 +30,17 @@ That could explain why techniques that work well for small problems don't work w
 
 Just for fun, let's suppose that we could deduce a unique constant C for every language such that
 
-{% img center /imgs/2014-02-21-programming-as-an-exponential-problem/formula.png Secret formula linking problem and solution complexities %}
+![Secret formula linking problem and solution complexities]({{site.url}}/imgs/2014-02-21-programming-as-an-exponential-problem/formula.png)
 
 Here is a plot of this formula with different values of C (0.5, 1 and 2)
 
-{% img center /imgs/2014-02-21-programming-as-an-exponential-problem/close-plot.png Plot of the formula for different C constant values %}
+![Plot of the formula for different C constant values]({{site.url}}/imgs/2014-02-21-programming-as-an-exponential-problem/close-plot.png)
 
 We can see that small values of C are best for small problems, whereas greater values are evolve better with larger problems. For a given problem, there is quite a difference in the solution complexity, if the formula was true, and that we knew in which zone of complexity our problem will always be, we could choose the appropriate technology ! Experienced engineers already have the gut knowledge about how to chose the right tool for the job !
 
 That's not all, let's have a bird's eye view of the same formulas
 
-{% img center /imgs/2014-02-21-programming-as-an-exponential-problem/wide-plot.png Same plot at a larger scale %}
+![Same plot at a larger scale]({{site.url}}/imgs/2014-02-21-programming-as-an-exponential-problem/wide-plot.png)
 
 I increased the maximum problem complexity by a factor of 3, I had to multiply the solution complexity by 100 ! In the end, these exponential curves all seem frighteningly vertical. This could explain why the divide and conquer approach works so well in software : 2e^x < e^(2x). Abstract and powerful APIs might be our best weapon against complexity.
 

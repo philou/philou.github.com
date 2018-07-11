@@ -18,7 +18,7 @@ In [The First 20 Hours](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/
 
 The effectiveness of the 20 hours of Code Katas relies a few key points.
 
-![Drawing of "Why ?" mixed up with the inside of a clock](../imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/why.jpg)
+![Drawing of "Why ?" mixed up with the inside of a clock]({{site.url}}/imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/why.jpg)
 
 ## Time-boxing
 
@@ -40,7 +40,7 @@ Routine is a magic trick to get things done. Once we have a routine in place, we
 
 Some exemples from "The first 20 hours" highlight the benefits of deliberate practice. When learning the [Colemak keyboard](https://en.wikipedia.org/wiki/Colemak), the author went through typing exercices. When studying the game of Go, he did practices specific situation puzzles. In both cases, deliberate practice made him learn faster. Code katas are typical deliberate practice exercices for programmers.
 
-![Picture of a golfer deliberately practicing](../imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/golf-practice.jpg)
+![Picture of a golfer deliberately practicing]({{site.url}}/imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/golf-practice.jpg)
 
 ## Test Driven Development
 

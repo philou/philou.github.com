@@ -15,7 +15,7 @@ We write tons of [legacy code](https://en.wikipedia.org/wiki/Legacy_code) everyd
 
 Should we abandon all hope as we enter legacy code ? Would that be professional ? In the end, code is only a bunch of bytes, somewhere on a drive. We are the software professionals. We need to deal with that.
 
-![Keep Calm and Take The Power Back](../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/keep-calm-and-take-the-power-back-4.jpg)
+![Keep Calm and Take The Power Back]({{site.url}}/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/keep-calm-and-take-the-power-back-4.jpg)
 
 ## 1\. Master non legacy refactoring first
 
@@ -47,7 +47,7 @@ This is the most straightforward way to deal with legacy code. It's an iterative
 
 Depending on the initial state of your tests, this might take more or less time. Your first tests might even be manual. This is the bulldozer of refactoring. Very effective, but slow.
 
-![Bulldozer](../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/bulldozer.jpg)
+![Bulldozer]({{site.url}}/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/bulldozer.jpg)
 
 ## 4\. Pair or mob program
 
@@ -77,7 +77,7 @@ The savings in interruptions are greater than up front cost of mob or pair progr
 
 This is one of the many interesting things I learned from Michael's book about legacy code.
 
-[![Cover of Working Effectively with Legacy Code](../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/legacy-code.jpg)](https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0131177052&linkCode=as2&tag=pbourgau-20&linkId=edaadc6370c2c8c9e943348d9fbdafb9)
+[![Cover of Working Effectively with Legacy Code]({{site.url}}/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/legacy-code.jpg)](https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0131177052&linkCode=as2&tag=pbourgau-20&linkId=edaadc6370c2c8c9e943348d9fbdafb9)
 
 Object polymorphism is only one kind of seam. Depending on your language, many other types of seams can be available. 
 
@@ -106,7 +106,7 @@ Before anything else, you'll need a large sheet of paper to draw the graph. Then
 
 Once you built the full graph, tackle the refactorings from the leaves. As leafs have no dependencies, it should be easy to do and commit them.
 
-![A Sample Mikado Graph](../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado.jpg)
+![A Sample Mikado Graph]({{site.url}}/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado.jpg)
 
 When I first read about the mikado method, it seemed very simple and powerful. Things got more complex when I tried to apply it. For example, the fact that some changes don't compile hide future test failures. That means that very often, the "Build the graph" and "Walk the graph" phases overlap. In real life, the graph evolves and changes over time. 
 
@@ -115,7 +115,7 @@ My advice about the Mikado Method is not to take it to the letter. It's a fantas
 It is not a strict algorithm though. Build and tests are not the only way to build the graph. Very often, a bit of thinking and expert knowledge are the best tools at hand.
 
 
-[![Cover of The Mikado Method book](../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado-book.jpg)](https://www.amazon.com/gp/product/1617291218/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1617291218&linkCode=as2&tag=pbourgau-20&linkId=f7405cd74335b3cbb8b263f1a5c37c1d)
+[![Cover of The Mikado Method book]({{site.url}}/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado-book.jpg)](https://www.amazon.com/gp/product/1617291218/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1617291218&linkCode=as2&tag=pbourgau-20&linkId=f7405cd74335b3cbb8b263f1a5c37c1d)
 
 ## 7\. Bubble Context
 
@@ -144,7 +144,7 @@ The strangler is particularly well suited for refactoring technical components. 
 
 This is more of a trick than a long term strategy. The idea is to use the initial (legacy) version of the code as a reference for your refactoring. Run both and check that they are doing the same thing.
 
-![Parallel Railroads](../imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/railroad.jpg)
+![Parallel Railroads]({{site.url}}/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/railroad.jpg)
 
 Here are some variations around this idea.
 

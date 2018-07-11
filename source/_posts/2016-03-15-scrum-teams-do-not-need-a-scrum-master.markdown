@@ -13,7 +13,7 @@ description: "How our team switch to a round robin scrum master role, in order t
 ---
 We don't have an official scrum master in our team anymore. We now have 7 ! A different team member assumes the full scrum master role at every sprint.
 
-{% img center /imgs/2016-03-15-scrum-teams-do-not-need-a-scrum-master/round-robin.jpg A fat round robin bird %}
+![A fat round robin bird]({{site.url}}/imgs/2016-03-15-scrum-teams-do-not-need-a-scrum-master/round-robin.jpg)
 
 ## Why did we switch to Scrum Master round robin ?
 

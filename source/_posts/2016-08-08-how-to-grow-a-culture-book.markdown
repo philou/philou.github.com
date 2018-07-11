@@ -13,7 +13,7 @@ description: "The story of our culture book and how it emerged from disparate do
 ---
 Have you read valve's [Handbook for new employees](http://www.valvesoftware.com/company/Valve_Handbook_LowRes.pdf) ?
 
-[{% img center /imgs/2016-08-08-how-to-grow-a-culture-book/valve-handbook-for-new-employees.jpg A stack of Valve's Handbook for new employees %}](http://www.valvesoftware.com/company/Valve_Handbook_LowRes.pdf)
+[![A stack of Valve's Handbook for new employees]({{site.url}}/imgs/2016-08-08-how-to-grow-a-culture-book/valve-handbook-for-new-employees.jpg)](http://www.valvesoftware.com/company/Valve_Handbook_LowRes.pdf)
 
 In [Management 3.0](https://management30.com) terms, that's a [culture book](https://management30.com/practice/value-stories/). It's a great way to build and crystallize a culture, and it serves as a guide for newcomers, and can later serve as an hiring ad for your team or company.
 
@@ -45,7 +45,7 @@ At that point, we had fairly extensive and formal descriptions of our working pr
 
 Wondering how we could write our own culture book, I had an "Aha !" moment and realized that all I had to do was to create a wiki page pointing to all our different agreement pages. This only took 5 minutes.
 
-{% img center /imgs/2016-08-08-how-to-grow-a-culture-book/content.jpg The table of content of our culture book %}
+![The table of content of our culture book]({{site.url}}/imgs/2016-08-08-how-to-grow-a-culture-book/content.jpg)
 
 At the moment, our culture book serves 3 purposes :
 

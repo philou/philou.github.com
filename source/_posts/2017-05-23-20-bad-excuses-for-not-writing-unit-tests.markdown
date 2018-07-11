@@ -24,7 +24,7 @@ description: "A list of 20 somehow funny excuses why not to write unit tests"
 9. I should not test my own code, I'll be biased. *Start testing other people's code right now then !*
 10. I'm a programmer, not a tester. *[Professional programmers write tests](https://softwareengineering.stackexchange.com/questions/159572/as-a-professional-developer-is-it-acceptable-to-not-write-unit-tests).*
 
-![A quote 'Be Stronger Than Your Excuses'](../imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/stronger_than_excuses_quote.jpg)<div class="image-credits">From [todayiwillbefit.com](https://todayiwillbefit.com/2013/10/30/excuses-suck-top-10-bad-excuses-to-not-exercise/)</div>
+![A quote 'Be Stronger Than Your Excuses']({{site.url}}/imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/stronger_than_excuses_quote.jpg)<div class="image-credits">From [todayiwillbefit.com](https://todayiwillbefit.com/2013/10/30/excuses-suck-top-10-bad-excuses-to-not-exercise/)</div>
 
 11. I'm using a REPL, it replaces unit tests. *Sure, and you're running your REPL buffers on the CI ? and keeping your them for the next time someone modifies your code.*
 12. My type system is strong enough to replace tests. *Does it detect when you use '+' instead of '\*' ?*
@@ -37,4 +37,4 @@ description: "A list of 20 somehow funny excuses why not to write unit tests"
 19. I find more issues doing manual testing. *[Exploratory Testing](/how-we-started-exploratory-testing/) is a valuable testing, even more so on top of automated tests.*
 20. Because my teammates don't run them. *Time for a [retrospective](/most-scrum-teams-are-not-agile/).*
 
-!['Just Do It' written on a board](../imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/just-do-it.jpg)
+!['Just Do It' written on a board]({{site.url}}/imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/just-do-it.jpg)

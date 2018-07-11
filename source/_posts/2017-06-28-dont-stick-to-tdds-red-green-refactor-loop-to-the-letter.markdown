@@ -17,7 +17,7 @@ The Red - Green - Refactor loop is useful to introduce TDD to new developers. Di
 
 The Red - Green - Refactor loop is not a dogma !
 
-[![The famous red, green, refactor TDD loop](../imgs/2017-06-28-dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/red-green-refactor.jpg)](http://www.natpryce.com/)
+[![The famous red, green, refactor TDD loop]({{site.url}}/imgs/2017-06-28-dont-stick-to-tdds-red-green-refactor-loop-to-the-letter/red-green-refactor.jpg)](http://www.natpryce.com/)
 
 ## Refactor - Red - Green
 

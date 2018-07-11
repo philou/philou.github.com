@@ -14,7 +14,7 @@ This is the second post of a [series about the #ZeroBugs policy](/blog/categorie
 
 Here is a quick summary of where we stood. We had tried to apply a #ZeroBugs policy with exploratory testing. We had discovered a lot of bugs, and we had agreed to tackle them little by little. We hoped to finish in a few months.
 
-![The Bug Panic game](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-2/bug-panic.jpg)
+![The Bug Panic game]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-2/bug-panic.jpg)
 
 ## The final bug rules
 
@@ -43,7 +43,7 @@ Spending less time on bugs made our velocity more stable. Our product owner was 
 
 It also made the team happier. First, because we had a lot less of stressful emergencies to answer to. Second, because programming new features is more interesting than fixing bugs.
 
-![A relaxed developer](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-2/happy-developer.jpg)
+![A relaxed developer]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-2/happy-developer.jpg)
 
 It also made the other teams happier and more productive ! They encountered a lot less bugs when using our product. When they had problems, they usually got a clear error message. They would fix it on their side, or suggest us a new feature.
 

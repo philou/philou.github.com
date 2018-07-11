@@ -15,7 +15,7 @@ This is the third post of a [series about the #ZeroBugs policy](/blog/categories
 
 I hope that by now, I have convinced you that applying a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is good for you and your team. I'll surprise you by arguing that it's a lot easier than people first think. This post will be about how to inject it in your team.
 
-![A funny formula for zero bugs](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-3/zero-bug-formula.jpg)
+![A funny formula for zero bugs]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-3/zero-bug-formula.jpg)
 
 ## Build quality in
 
@@ -63,7 +63,7 @@ Finally, there's a last, very effective solution : archive all the bugs ! Some b
 
 ## Going further
 
-[![Cover of the book "Explore It"](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-3/explore-it.jpg)](https://www.amazon.com/Explore-Increase-Confidence-Exploratory-Testing/dp/1937785025/ref=sr_1_1?s=books&ie=UTF8&qid=1511346285&sr=1-1&keywords=explore+it)
+[![Cover of the book "Explore It"]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-3/explore-it.jpg)](https://www.amazon.com/Explore-Increase-Confidence-Exploratory-Testing/dp/1937785025/ref=sr_1_1?s=books&ie=UTF8&qid=1511346285&sr=1-1&keywords=explore+it)
 
 It's great to fix the bugs very fast. It's even better if to fix them before the users see them ! [Exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) is the way to do that. It will also provide you a measure of how many bugs escape your development process. I encourage you to try this very interesting practice. I wrote [a guide](/how-we-started-exploratory-testing/) about how to start exploratory testing.
 

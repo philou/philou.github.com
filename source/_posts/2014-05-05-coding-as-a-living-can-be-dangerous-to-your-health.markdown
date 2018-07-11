@@ -18,4 +18,4 @@ violent psychopath who knows where you live.  Code for readability.
 
 Here is how it might go :
 
-{% img center /imgs/2014-05-05-coding-as-a-living-can-be-dangerous-to-your-health/psychopath-coworker.JPG Simple drawing of the psychopath coworker begging his teammate for a speak ... with an axe ! %}
+![Simple drawing of the psychopath coworker begging his teammate for a speak ... with an axe !]({{site.url}}/imgs/2014-05-05-coding-as-a-living-can-be-dangerous-to-your-health/psychopath-coworker.JPG)

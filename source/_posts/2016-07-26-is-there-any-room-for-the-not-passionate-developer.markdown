@@ -11,7 +11,7 @@ categories:
 keywords: "Software, Programming, Career, Passion for software, experience"
 description: "A reflection on the software industry, on the place it leaves for non-passionate programmers, and the consequences"
 ---
-[{% img center /imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/passionate-programmer.jpg The cover of The Passionate Programmer book %}](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic-ebook/dp/B00AYQNR5U/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470025727&sr=8-1&keywords=the+passionate+programmer)
+[![The cover of The Passionate Programmer book]({{site.url}}/imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/passionate-programmer.jpg)](https://www.amazon.com/Passionate-Programmer-Remarkable-Development-Pragmatic-ebook/dp/B00AYQNR5U/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1470025727&sr=8-1&keywords=the+passionate+programmer)
 
 In [Rework](https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1469597091&sr=8-1&keywords=rework), [Basecamp](https://basecamp.com/) guys David Heinemeier Hansson and Jason Fried advise to ["Fire the workaholics"](https://signalvnoise.com/posts/902-fire-the-workaholics), while in [Zero to One](https://www.amazon.com/Zero-One-Notes-Startups-Future/dp/0804139296/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1469801854&sr=8-1&keywords=zero+to+one) Peter Thiel argues that great working conditions (as described within Google for example) result from 10x technological advantages, not the other way round.
 
@@ -24,7 +24,7 @@ Where do we stand now ? Do you need to live and breath programming to remain a g
 
 ## What about the 40h per week rule ?
 
-{% img center /imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/productivity.jpg A graph of the productivity when working overtime %}
+![A graph of the productivity when working overtime]({{site.url}}/imgs/2016-07-26-is-there-any-room-for-the-not-passionate-developer/productivity.jpg)
 
 Studies have repeatedly demonstrated that 40h per week is the most productive work load, but in [Outliers, the Story of Success](https://www.amazon.com/Outliers-Story-Success-Malcolm-Gladwell/dp/0316017930) Malcolm Gladwell explains that getting fast to the 10000 hours of practice is a required road to success. As my Aïkido professor says, the more you practice, the better you get ...
 

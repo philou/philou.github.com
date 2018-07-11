@@ -14,7 +14,7 @@ description: "A guide to deal with the most common complaints and mistakes when 
 ---
 In my last 2 blog posts, I've detailed [why](/why-you-should-start-a-team-coding-dojo-randori-right-now/) and [how](/how-to-start-a-team-coding-dojo-randori-today/) to start a team Randori Coding Dojo. That's the easy part. As soon as you start your first dojo, you'll face trickier issues, especially people issues.
 
-![A martial artist with a tool belt](../imgs/2018-03-08-coding-dojo-troubleshooting/tool-belt.jpg)
+![A martial artist with a tool belt]({{site.url}}/imgs/2018-03-08-coding-dojo-troubleshooting/tool-belt.jpg)
 
 ## What if my team (or my boss) does not want to ?
 
@@ -30,7 +30,7 @@ Very often some of your team mates won't see the value of the coding dojo upfron
 
 ## Dealing with TDD complaints
 
-![A gorilla with a skeptic look](../imgs/2018-03-08-coding-dojo-troubleshooting/skeptic-gorilla.jpg)
+![A gorilla with a skeptic look]({{site.url}}/imgs/2018-03-08-coding-dojo-troubleshooting/skeptic-gorilla.jpg)
 
 As you'll start your first Randori, you'll have some complaints about [Test Driven Development](https://en.wikipedia.org/wiki/Test-driven_development). Whether they come from newbies or skeptics, they usually look like :
 

@@ -50,7 +50,7 @@ Here are [the slides](http://www.slideshare.net/HollyCummins/software-developers
 
 Bernard Traversat, Antoine Chambille
 
-[{% img center /imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc-small.jpg Slide of the memory regions in G1 %}](/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc.jpg)
+[![Slide of the memory regions in G1]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc-small.jpg)]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/java-9-gc.jpg)
 
 This talk might not be of interest for all, but it is for us [at work](http://murex.com). It went through the improvement to come to Java 9's G1 garbage collector. To summarize, to scale to very large heaps, it will split the memory into regions. Objects should be allocated on different regions depending on their specificities, which might help to build NUMA aware applications. Having the heap split up in smaller chunks enables the GC to run in parallel, which can speed up the old generation GC by up to 50 times !
 
@@ -75,7 +75,7 @@ But specs are a lot more than predicates ! They can be used to :
 
 He went on to compare the virtues of Clojure spec with static typing (à la Java) and example based testing :
 
-{% img center /imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/clojure-spec.jpg Slide comparing Clojure spec with example based testing and static typing %}
+![Slide comparing Clojure spec with example based testing and static typing]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attended-at-javaone-2016-part-2/clojure-spec.jpg)
 
 Although I don't believe that generative testing can ever replace example based testing altogether, it certainly can help.
 

@@ -34,7 +34,7 @@ In his post [Maker's Schedule, Manager's Schedule](http://paulgraham.com/makerss
 
 I had previously been using Swim-lanes to track work from different projects. This turned out not to scale very well to more projects : it made the board messy, and I kept being distracted by all these other tasks. I ditched all the Swim-lanes (not exactly, I kept one for urgent issues only). Instead of Swim-lanes for tracking projects, I now use Quick Filters. I created such filters as `With Project X` and `Without Project X`. During the day, when I want to focus on Project X, I use quick filters to only show tasks related to it.
 
-![Quick filters screen capture](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/quick-filters.jpg)
+![Quick filters screen capture]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/quick-filters.jpg)
 
 ### Day markers
 
@@ -42,7 +42,7 @@ I have a daily routine of checking what's on my plate and deciding what I'd like
 
 Again, this helps me to focus on today's activities, and to do just enough prioritization.
 
-![Day marker tasks screen capture](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/day-markers.jpg)
+![Day marker tasks screen capture]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/day-markers.jpg)
 
 One last thing here, you'll have noticed the Epic for these special tasks. It's a way to identify them in JQL queries.
 
@@ -52,19 +52,19 @@ Quite often, you have tasks waiting for someone else. That's surely not the most
 
 Again, leaving them in my board created useless distraction. I have now taken the habit of renaming the tasks I'm waiting for with a `[WAITING] ...` prefix. On top of that, I created 2 quick filters `WAITING` and `Without WAITING` to quickly check and then forget about waiting tasks.
 
-![Waiting tasks screen capture](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/waiting-tasks.jpg)
+![Waiting tasks screen capture]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/waiting-tasks.jpg)
 
 ### Watching tasks I'm not the assignee of
 
 On some occasions, we might be two of us working on the same task, or I might want to keep an eye on a task to know if something is needed from me. As there is only a single possible assignee in Jira, I changed my global filters to also include tasks with a custom label `pbourgau-watch`. Any time I want to add a task in my board, I just add this label to it.
 
-![Screen capture of a task description I'm not the assignee of](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/pbourgau-watch.jpg)
+![Screen capture of a task description I'm not the assignee of]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/pbourgau-watch.jpg)
 
 ### Getting the Lean reports back
 
 In order not to have too many old tasks in my board, I used to filter out old items in the global filter. This did the job, but at the cost of invalidating the lean reports (cumulative flow and control charts). In order to get these back, I removed this constraint from the global filter, and created yet another quick filter `Without Old` which I almost always keep on.
 
-![Control chart screen capture](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/control-chart.jpg)
+![Control chart screen capture]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/control-chart.jpg)
 
 ## Scripts
 
@@ -113,6 +113,6 @@ duedate is not EMPTY
 
 Overall, this is how my board looks like :
 
-[![Full board screen capture](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board-small.jpg)](../imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board.jpg)
+[![Full board screen capture]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board-small.jpg)]({{site.url}}/imgs/2017-03-03-my-ultimate-jira-personal-kanban/full-board.jpg)
 
 I guess I'm a kind of personal productivity geek ... but I believe it's a skill of utter importance for developers, especially when they get a bit of experience and are not fed ready made tasks to do.

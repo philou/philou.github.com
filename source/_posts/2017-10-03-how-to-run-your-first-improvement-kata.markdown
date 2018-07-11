@@ -15,7 +15,7 @@ The [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Ka
 
 During the last few weeks, I've been blogging about the improvement kata. You can read [the full story](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/) of the first time we applied it in our team to gain 25% of productivity. If you are more interested by what it taught us, check this [other post](/lessons-learned-from-running-our-first-improvement-kata/).
 
-![Illustration of the improvement kata cookbook](../imgs/2017-10-03-how-to-run-your-first-improvement-kata/cookbook.jpg)
+![Illustration of the improvement kata cookbook]({{site.url}}/imgs/2017-10-03-how-to-run-your-first-improvement-kata/cookbook.jpg)
 
 ## A 5 bullets summary
 
@@ -27,7 +27,7 @@ Here is how I would explain what the improvement kata is :
 *   It's 100% scientific. It uses data analysis and deduction. Not gut feeling and community best practices.
 *   It can be part of the backlog, as any other item. It does not have to be a special event like retrospectives usually are.
 
-![The main steps of the improvement kata](../imgs/2017-10-03-how-to-run-your-first-improvement-kata/katapattern.jpg)
+![The main steps of the improvement kata]({{site.url}}/imgs/2017-10-03-how-to-run-your-first-improvement-kata/katapattern.jpg)
 
 > 💡 The improvement kata is 100% scientific, it uses data and deduction, not gut feeling and best practices
 
@@ -55,7 +55,7 @@ Expect the first time to be a bit rocky, and to feel lost from time to time ...
 
 ## Start today !
 
-![The main steps of the improvement kata](../imgs/2017-10-03-how-to-run-your-first-improvement-kata/rocket-launch.jpg)
+![The main steps of the improvement kata]({{site.url}}/imgs/2017-10-03-how-to-run-your-first-improvement-kata/rocket-launch.jpg)
 
 Many practices and techniques seem daunting at first. Remember the first time you wrote a test before the code. The first time you tried to program using only immutable data structures. Or the time you wrote your first "hello world" program !
 

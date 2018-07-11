@@ -16,7 +16,7 @@ description: "Details of what I stopped to Docker for when developing an open so
 ---
 A few months ago, I started [Philou's Planning Poker](https://github.com/philou/planning-poker), an open source side project to run [planning poker estimate sessions](https://en.wikipedia.org/wiki/Planning_poker) remotely. The main technology is [Rails](http://rubyonrails.org/), and I'd been planning to use [Docker](https://www.docker.com/) as much as possible as a way to learn it. Indeed, I learned that Docker is no Silver Bullet !
 
-{% img center /imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg The Docker logo next to a silver bullet %}
+![The Docker logo next to a silver bullet]({{site.url}}/imgs/2017-02-16-how-i-finally-use-docker-on-small-open-source-side-projects/docker-silver-bullet.jpg)
 
 
 ## The Docker love phase

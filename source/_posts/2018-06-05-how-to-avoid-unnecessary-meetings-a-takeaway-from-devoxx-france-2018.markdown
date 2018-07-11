@@ -16,7 +16,7 @@ I had the chance to attend [Devoxx France](https://www.devoxx.fr/) this year in 
 
 [Bertrand Delacretaz](https://twitter.com/bdelacretaz), a member of the Apache foundation. He gave a great talk about how the open source community handles decision taking. Open source developers are often all over the world, often in different timezones. Meetings are not an option for them. Still, they manage to make great decisions !
 
-![Drawing of a decision hammer](../imgs/2018-06-05-how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/decision.jpg)
+![Drawing of a decision hammer]({{site.url}}/imgs/2018-06-05-how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/decision.jpg)
 
 Even if you don't work remotely, avoiding unnecessary meetings is always a great thing !
 
@@ -51,7 +51,7 @@ We need only two tools to make this possible :
 
 ## Architecture Decision Record
 
-![Drawing of an Architecture Decision Record which work great with asynchronous decision making](../imgs/2018-06-05-how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/adr.jpg)
+![Drawing of an Architecture Decision Record which work great with asynchronous decision making]({{site.url}}/imgs/2018-06-05-how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/adr.jpg)
 
 [ADR](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions) is the practice of documenting architecture decisions. It makes sure we remember why we took a decision. This can be very useful to know how to deal with the existing software. A widespread practice for ADRs is to use simple text files in git. There are even [tools for that](https://github.com/npryce/adr-tools). This looks like a perfect fit for decision making using git pull requests ! I'll write a post about that when I get the chance to try.
 

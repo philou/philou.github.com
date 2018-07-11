@@ -13,13 +13,13 @@ A few weeks ago, I posted my latest article [Is There Any Room for the Not-Passi
 
 ## How it started
 
-{% img center /imgs/2016-09-05-how-to-use-hackernews-and-reddit-for-blogging/soft-skills.jpg The cover of 'Soft Skills, the software developer's life manual' %}
+![The cover of 'Soft Skills, the software developer's life manual']({{site.url}}/imgs/2016-09-05-how-to-use-hackernews-and-reddit-for-blogging/soft-skills.jpg)
 
 In [Soft Skills, the software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1473135683&sr=8-1&keywords=soft+skills) John Somnez explains that posting your blog articles on HN or Reddit might bring you a ton of traffic, but that comments can be hard to swallow at time. Within a few hours of writing my blog post it had generated some positive activity on twitter (favorites and retweets) from my regular followers. That's a good sign that the post is good enough. As I had promised myself in such case, I submitted the post to both HN and Reddit.
 
 ## What happened ?
 
-{% img center /imgs/2016-09-05-how-to-use-hackernews-and-reddit-for-blogging/google-analytics.jpg A Google Analytics screenshot, with the traffic spike %}
+![A Google Analytics screenshot, with the traffic spike]({{site.url}}/imgs/2016-09-05-how-to-use-hackernews-and-reddit-for-blogging/google-analytics.jpg)
 
 I don't know for sure on Reddit, but I know my post stayed on the first page of HN for a few hours, it even went up to the third place for a while. In the process I got a lot of traffic, a lot more than I am used to. I also got a ton of comments, on HN, Reddit and directly on my post. John Somnez had warned that comments on HN and Reddit can be very harsh, so I went through these quickly, took notes about the points that seemed interesting, but I only responded to comments on my website.
 

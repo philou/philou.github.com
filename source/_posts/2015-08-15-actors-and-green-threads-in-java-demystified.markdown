@@ -112,7 +112,7 @@ As with any implementation of the Actors Model, the neet thing is the separation
 
 Here is a performance summary of this implementation compared to others on a "throughput vs clients" benchmark of the style "Enter while others are talking"
 
-[{% img center https://raw.githubusercontent.com/philou/concurrency-kata/master/enter-while-others-are-talking.png Result graphs of benchmark enter while others are talking %}](https://github.com/philou/concurrency-kata)
+[![Result graphs of benchmark enter while others are talking](https://raw.githubusercontent.com/philou/concurrency-kata/master/enter-while-others-are-talking.png)](https://github.com/philou/concurrency-kata)
 
 Results can be disappointing compared to other implementations but the example itself is a bit misleading. The chatroom does exclusively message passing, there is not much computation to parallelize, in a different setting, the results would have been completely different.
 

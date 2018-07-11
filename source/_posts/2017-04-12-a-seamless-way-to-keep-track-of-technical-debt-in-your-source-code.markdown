@@ -12,7 +12,7 @@ description: "How to use simple TODO comments in code to track technical debt"
 ---
 I eventually stumbled upon a way to keep track of technical debt in source code that is both straightforward and already built-in most tools : simple `TODO` comments !
 
-![Photo of a screen displaying source code with #TODO comments](../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/todo-comment.jpg)
+![Photo of a screen displaying source code with #TODO comments]({{site.url}}/imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/todo-comment.jpg)
 
 ## How it happened ?
 
@@ -30,7 +30,7 @@ When I started my [current side project](https://github.com/philou/planning-poke
 
 ### The pros
 
-![Screenshot of the CodeClimate issue dashboard displaying TODO comments](../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/codeclimate.jpg)
+![Screenshot of the CodeClimate issue dashboard displaying TODO comments]({{site.url}}/imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/codeclimate.jpg)
 
 The great thing about `TODO` comments is that, as a very old programming trick, they are already supported out of the box by most tools [IntelliJ](https://www.jetbrains.com/), [SonarQube](https://www.sonarqube.org/), [Rails](http://rubyonrails.org/), [CodeClimate](https://codeclimate.com) and I guess many others. Only one day after I refactored to `TODO` comments, a team mate fixed one that had appeared in his IDE's TODO tab !
 
@@ -52,7 +52,7 @@ It is worth first validating the practice with your colleagues though. There are
 * Or if you think you need it, create some wiki page explaining the practice and detailing its rationals in your context, add a yes/no poll, and finally share this page with your team
 * Eventually, if you think that this topic deserves it, setup a meeting with everyone and discuss the point. It might be worth sharing information about the practice beforehand to make the meeting more efficient. You can end the vote with a [thumb vote](http://www.plays-in-business.com/thumb-voting/) (up : yes, down : no, side : whatever)
 
-![Thumbs voting positions](../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg)<div class="image-credits">Photo from [Plays in Business](http://www.plays-in-business.com/thumb-voting/)</div>
+![Thumbs voting positions]({{site.url}}/imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg)<div class="image-credits">Photo from [Plays in Business](http://www.plays-in-business.com/thumb-voting/)</div>
 
 Don't wait for unanimity to start the practice, majority is enough ! Make sure that people who voted the other way will follow the team practice in the end though. Remember that whatever the answer, discussing team practices is good.
 
@@ -71,7 +71,7 @@ Some tools might require small tweaks to improve the experience :
 
 * In IntelliJ, in the commit window, uncheck the 'Check TODO' checkbox to avoid getting a warning at every commit
 
-![IntelliJ's commit window, with its 'Check TODO' check box](../imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/intellij-commit.jpg)
+![IntelliJ's commit window, with its 'Check TODO' check box]({{site.url}}/imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/intellij-commit.jpg)
 
 * SonarQube uses the same fixed remediation cost for every TODO comment. It's up to you to adapt this remediation cost to your context.
 

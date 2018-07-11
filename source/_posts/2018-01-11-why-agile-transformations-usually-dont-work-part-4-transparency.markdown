@@ -16,7 +16,7 @@ This is the fourth and last post in a [series about making large organizations m
 
 In the previous posts, I presented why large scale "Agile" transformation usually fail. Part of the solution is about giving people the time to learn and a safe environment. That's not enough though.
 
-![A squirrel with a helmet](../imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-4-transparency/squirrel-with-helmet.jpg)
+![A squirrel with a helmet]({{site.url}}/imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-4-transparency/squirrel-with-helmet.jpg)
 
 ## Provide the data
 
@@ -28,7 +28,7 @@ Management By Objectives is not only about compensation. It also cascades busine
 
 Let me introduce Objectives and Key Results, aka [OKRs](https://en.wikipedia.org/wiki/OKR). Intel invented OKRs. Nowadays, among many other companies, Google is famous for using them.
 
-[![A visual comparision of MBO and OKRs](../imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-4-transparency/MBO_OKR.jpg)](http://upraise.io/blog/difference-mbo-okr/)
+[![A visual comparision of MBO and OKRs]({{site.url}}/imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-4-transparency/MBO_OKR.jpg)](http://upraise.io/blog/difference-mbo-okr/)
 
 > 💡 OKRs have nothing to do with compensation !
 

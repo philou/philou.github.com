@@ -12,13 +12,13 @@ description: "Using the lean principles, let's analyse the 12 XP core practices 
 ---
 I've been programming for quite some time now, in different teams, using various methodologies. I also had the luck to do XP for at least 3 different projects. To me the conclusion is obvious, [XP](http://www.extremeprogramming.org/) delivers more. Even better, programmers working with XP seem to be happier. The only thing I've seen that works better than XP, is fine tunning it once the team has mastered the main principles.
 
-{% img center /imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/lean-extreme.jpg "An extreme diet pill bottle" %}
+![An extreme diet pill bottle]({{site.url}}/imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/lean-extreme.jpg)
 
 [XP was first put in place](http://en.wikipedia.org/wiki/Extreme_programming#History) at the Chrysler C3 project for SmallTalk performance issues. After being called for performance issues, [Kent Beck](http://www.threeriversinstitute.org/) discovered that these were only the tip of the iceberg, everything was going astray. As the expert in the room, people started to ask him how to organize. I remember reading some time ago that without having thought about it before, he gathered all the most efficient programming techniques he knew together into a new process. XP was born.
 
 So the question is : what did Kent Beck put in XP so that it works so well ? Let's go through the Flow book and its 175 lean product development principles, to see if we get some explanations.
 
-{% img center /imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/circles.jpg Concentric circles featuring the 12 core xp practices" %}
+![Concentric circles featuring the 12 core xp practices"]({{site.url}}/imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/circles.jpg)
 
 Going through [the 12 core XP practices](http://c2.com/cgi/wiki?ExtremeProgrammingCorePractices), the main Scrum ceremonies and a few common additions, I'll try to explain why they work through the Flow book's principles.
 

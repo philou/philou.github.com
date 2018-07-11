@@ -13,7 +13,7 @@ description: "Presents software debt workarounds as ponzi schemes"
 ---
 Madoff would have been better off managing software projects than investing on Wall Street !
 
-{% img center /imgs/2015-10-01-the-technical-debt-ponzi-scheme/bernie.jpg "Madoff's photo in jail" %}
+![Madoff's photo in jail]({{site.url}}/imgs/2015-10-01-the-technical-debt-ponzi-scheme/bernie.jpg)
 
 Whereas in finance, a Ponzi scheme is a sure road to jail, it seems to be the de-facto standard in software development.
 
@@ -28,6 +28,6 @@ Thinking of it, I can remember of such [Ponzi Schemes](https://en.wikipedia.org/
 
 If this goes on for too long, you can end up in a technical debt death spiral : you know debt is out of control, so taking debt becomes the only way of actually getting anything done. "Let's win this client now, because we won't be able to later ...". It's like running to one's own ruin.
 
-{% img center /imgs/2015-10-01-the-technical-debt-ponzi-scheme/road-wall.jpg "A road going straight in a wall" %}
+![A road going straight in a wall]({{site.url}}/imgs/2015-10-01-the-technical-debt-ponzi-scheme/road-wall.jpg)
 
 If your organization is in this stage, you might think at the ['time horizon'](/a-plan-for-technical-debt-lean-software-development-part-7/) of your product, and discover that fixing the technical debt sometimes brings more value than getting this new client !

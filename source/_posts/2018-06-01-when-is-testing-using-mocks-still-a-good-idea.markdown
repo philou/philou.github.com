@@ -88,7 +88,7 @@ The assertion could not be more explicit, we are checking that the expensive loa
 
 ### Legacy code
 
-[![Michael C.Feathers explains that testing using mocks is a key practice in "Working Effectively with Legacy Code"](../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg)](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052)
+[![Michael C.Feathers explains that testing using mocks is a key practice in "Working Effectively with Legacy Code"]({{site.url}}/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg)](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052)
 
 In [Working Effectively with Legacy Code](https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052) [Michael Feathers](https://michaelfeathers.silvrback.com/) explains how to exploit ["seams"](http://www.informit.com/articles/article.aspx?p=359417&seqNum=2) in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.
 
@@ -103,7 +103,7 @@ As with anything in software, there is no absolute rule about mocking. Even if I
 
 ## If using a mock, prefer spy / proxies
 
-![Spies and proxies make testing using mocks less intrusive](../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg)
+![Spies and proxies make testing using mocks less intrusive]({{site.url}}/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg)
 
 As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.
 

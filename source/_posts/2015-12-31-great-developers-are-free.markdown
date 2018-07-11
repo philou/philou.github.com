@@ -15,7 +15,7 @@ description: "A comparison of a junior and an experienced software developers te
 ---
 For many reasons. But mostly because they are key to efficiently growing a software organization.
 
-{% img center /imgs/2015-12-31-great-developers-are-free/cat-codes-for-food.jpg A funny picture sleeping on a keyboard, with the mention 'Will code for food' %}
+![A funny picture sleeping on a keyboard, with the mention 'Will code for food']({{site.url}}/imgs/2015-12-31-great-developers-are-free/cat-codes-for-food.jpg)
 
 ## A tale of 2 teams
 
@@ -23,13 +23,13 @@ Let's have a look at 2 software teams in the world of corporate finance.
 
 ### The junior in-house team
 
-[{% img center /imgs/2015-12-31-great-developers-are-free/open-space.jpg A big corporate open space %}](http://www.lefigaro.fr/emploi/2013/12/07/09005-20131207ARTFIG00309-bruit-temperature-air8230-les-salaries-reserves-sur-l-open-space.php)
+[![A big corporate open space]({{site.url}}/imgs/2015-12-31-great-developers-are-free/open-space.jpg)](http://www.lefigaro.fr/emploi/2013/12/07/09005-20131207ARTFIG00309-bruit-temperature-air8230-les-salaries-reserves-sur-l-open-space.php)
 
 One is an in-house software development team in a large bank. The project already has a bad reputation among developers.The bank has difficulties to hire so the team is constituted of 10 rather junior developers. Unfortunately, without guidance and long term vision, the quality of the code suffers. It looks like an ad-hoc composition of various technologies, glue code, and reinvented frameworks. The overall result is a barely good enough product that costs a small fortune in maintenance and support. The user experience is awful, which make it difficult to the team leaders and the users to collaborate effectively. As a result of all this, the project is suffering from high turnover. Managing this project is really challenging ... and kind of depressing.
 
 ### The experienced software team
 
-[{% img center /imgs/2015-12-31-great-developers-are-free/experienced-team.jpg An experienced software team %}](http://www.personalized-software.ie/aboutus)
+[![An experienced software team]({{site.url}}/imgs/2015-12-31-great-developers-are-free/experienced-team.jpg)](http://www.personalized-software.ie/aboutus)
 
 Now let's imagine the same product developed at a software house. It's been on the market for a while now, but new features are regularly added to it at a good pace. The product is solid and the users are happy using it. The structure of the team is completely different : 5 developers, mainly experienced, coming from various backgrounds. As a result, the team builds on all their different expertises to build real competitive advantages. They tend to get into healthy debates about a lot of things, such as :
 
@@ -69,7 +69,7 @@ I can only think of 3 obvious ways :
 
 I'm pretty sure training them will not be an issue if you already have enough of them. So that brings us to the 2 other points.
 
-[{% img center /imgs/2015-12-31-great-developers-are-free/prestashop.jpg The prestashop offices in Paris %}](https://www.prestashop.com/blog/en/guided-visit-prestashops-new-paris-headquarters/)
+[![The prestashop offices in Paris]({{site.url}}/imgs/2015-12-31-great-developers-are-free/prestashop.jpg)](https://www.prestashop.com/blog/en/guided-visit-prestashops-new-paris-headquarters/)
 
 Lot's of articles have been written about attracting and keeping the best developers. Some companies even made it [their differentiating point](http://www.joelonsoftware.com/articles/HighNotes.html). Here are a few links :
 

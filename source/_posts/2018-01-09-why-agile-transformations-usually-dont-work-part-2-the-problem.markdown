@@ -19,7 +19,7 @@ Let's summarize the previous post. I illustrated the typical disappointment with
 
 An organization is agile if it is able to respond and take advantage of changes fast. An organization where decisions need to go up and down the ladder will be slow. To thrive in this complex world, everyone needs to be able to take faster and bigger decisions. To do so, people need the good data, but also the right to fail, and the chance to learn new ways of working.
 
-![A sign post with 2 directions : a convoluted 'centralized decision making' road, and a simpler 'agile decision making' road](../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/decision-making.jpg)
+![A sign post with 2 directions : a convoluted 'centralized decision making' road, and a simpler 'agile decision making' road]({{site.url}}/imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/decision-making.jpg)
 
 People with the right authority could make data available fast enough. Learning new habits and convincing every one of their right to fail takes time though.
 
@@ -27,7 +27,7 @@ People with the right authority could make data available fast enough. Learning 
 
 In "Turn the shop around" Navy captain David Marquet explains how he empowered his crew. They would take decisions and inform him with "I intend to ...". Doing that, he also took on him the responsibility of his subordinates errors !
 
-[![Cover of the book "Turn the ship around"](../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/turn-the-ship-around.jpg)](https://www.amazon.com/Turn-Ship-Around-Turning-Followers/dp/1591846404)
+[![Cover of the book "Turn the ship around"]({{site.url}}/imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/turn-the-ship-around.jpg)](https://www.amazon.com/Turn-Ship-Around-Turning-Followers/dp/1591846404)
 
 There are always people who put the organization's interests before theirs. They will try new experiments, even if could backfire in their faces, because it's the right thing to do. Unfortunately, these people are pretty rare. The vast majority will not try things that would get them troubles. They need a safe environment to unleash autonomy.
 
@@ -45,7 +45,7 @@ Real learning comes from experimentation.
 
 > 💡 “Never help a child with a task at which he feels he can succeed.” Maria Montessori
 
-[![Photograph of educator Maria Montessori](../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/Maria_Montessori.jpg)](https://en.wikipedia.org/wiki/Maria_Montessori)
+[![Photograph of educator Maria Montessori]({{site.url}}/imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/Maria_Montessori.jpg)](https://en.wikipedia.org/wiki/Maria_Montessori)
 
 This is still true for adults at work. Every time management pushes top-down incentives to speed up change, general understanding suffers. There is a limit to what an organization can withstand before it falls prey to cargo cult.
 

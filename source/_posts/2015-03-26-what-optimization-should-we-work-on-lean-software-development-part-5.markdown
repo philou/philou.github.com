@@ -15,7 +15,7 @@ At work, we are building a risk aggregation system. As it's dealing with a large
 
 That's were we are now doing.
 
-{% img center /imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg A turtle with a rocket on the back %}
+![A turtle with a rocket on the back]({{site.url}}/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg)
 
 # How do we choose which optimization to work on ?
 
@@ -56,7 +56,7 @@ So based on speedup rate, here is the order in which we should perform the stori
 
 ### III. And what about the risks ?
 
-{% img center /imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg A danger zone panel %}
+![A danger zone panel]({{site.url}}/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg)
 
 This poker estimation tells us something else ...
 
@@ -121,7 +121,7 @@ Finally, here is the optimal order through which we should perform the stories :
 
 The math are not that complex, and a simple formula can be written to compute the spike speedup rate :
 
-{% img center /imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png Formula for a spike speedup rate %}
+![Formula for a spike speedup rate]({{site.url}}/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png)
 
 I think most experienced engineers would have come to the same conclusion by gut feeling ...
 

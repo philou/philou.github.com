@@ -29,13 +29,13 @@ It turned out that a coding dojo exercises plan was enough to answer their quest
 
 ### Drawing
 
-[![An illustrated Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring](../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk-small.jpg)](../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk.jpg)
+[![An illustrated Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring]({{site.url}}/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk-small.jpg)]({{site.url}}/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk.jpg)
 
 ### Mind Map
 
 Here is another, more concrete, version, with sample names of katas we can find online.
 
-[![An mind map of Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring](../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan-small.jpg)](../imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan.jpg)
+[![An mind map of Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring]({{site.url}}/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan-small.jpg)]({{site.url}}/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan.jpg)
 
 ### Text
 

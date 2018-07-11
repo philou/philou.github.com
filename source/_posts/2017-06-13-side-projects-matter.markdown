@@ -22,7 +22,7 @@ I finished my [latest side project](https://philous-planning-poker.herokuapp.com
 
 The more I do side projects, the more I am certain of their value to my employer.
 
-![Hand drawing with stating 'creative business idea'](../imgs/2017-06-13-side-projects-matter/side-project.jpg)<div class="image-credits"><a href='http://fr.freepik.com/vecteurs-libre/dessines-a-la-main-business-icons_769576.htm'>Designed by Freepik</a></div>
+![Hand drawing with stating 'creative business idea']({{site.url}}/imgs/2017-06-13-side-projects-matter/side-project.jpg)<div class="image-credits"><a href='http://fr.freepik.com/vecteurs-libre/dessines-a-la-main-business-icons_769576.htm'>Designed by Freepik</a></div>
 
 
 ## Reasons companies discourage side projects
@@ -84,7 +84,7 @@ The conclusion is that side projects make people more productive and adaptive. W
 
 ### Understand what technical debt is
 
-![A technical debt iceberg](../imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg)<div class="image-credits"><a href='https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code'>Image from Vector Software</a></div>
+![A technical debt iceberg]({{site.url}}/imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg)<div class="image-credits"><a href='https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code'>Image from Vector Software</a></div>
 
 The bottleneck in a side project is always time. In this context, to deliver fast enough to keep my motivation high, I tend to take technical debt. Particularly because I ignore how long I'll be maintaining this code.
 
@@ -118,7 +118,7 @@ There are many ways a company can help its employees with their side projects :
 * Sponsoring internal communities can enable employees with side-projects to help each other. Sponsorship could be free lunch, premises or a regular small slice of time on work hours.
 * Providing a clear legal framework around side projects reduces the risks for everyone. Questions like the ownership of intellectual property are better dealt with upfront.
 
-[![A photo of Spotify's open space during a Hackathon](../imgs/2017-06-13-side-projects-matter/spotify-hackathon.jpg)](https://labs.spotify.com/2013/02/15/organizing-a-hack-week/)
+[![A photo of Spotify's open space during a Hackathon]({{site.url}}/imgs/2017-06-13-side-projects-matter/spotify-hackathon.jpg)](https://labs.spotify.com/2013/02/15/organizing-a-hack-week/)
 
 If you are a developer looking for a side project idea, suggest slack time in retrospective ! You could also ask for sponsorship and organize a startup week-end or a lunch time community.
 

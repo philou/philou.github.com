@@ -21,7 +21,7 @@ This is the second post [of a series about how to avoid mocks](/blog/categories/
 
 The first mock fighting small-scale technique I'll go over is [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html).
 
-![A drawing of a rock written "Immutable Value Object"](../imgs/2018-04-17-how-immutable-value-objects-fight-mocks/immutable-rock.jpg)
+![A drawing of a rock written "Immutable Value Object"]({{site.url}}/imgs/2018-04-17-how-immutable-value-objects-fight-mocks/immutable-rock.jpg)
 
 ## What are Immutable Value Objects ?
 
@@ -39,7 +39,7 @@ Eric Evans popularized the name in the [Domain-Driven Design Blue Book](https://
 
 These by itself, can already be handy when testing.
 
-[![Cover of Eric Evans's DDD book](../imgs/2018-04-17-how-immutable-value-objects-fight-mocks/ddd.jpg)](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&qid=1523985269&sr=8-2&keywords=domain+driven+design)
+[![Cover of Eric Evans's DDD book]({{site.url}}/imgs/2018-04-17-how-immutable-value-objects-fight-mocks/ddd.jpg)](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&qid=1523985269&sr=8-2&keywords=domain+driven+design)
 
 ## How do they prevent mocks ?
 

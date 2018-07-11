@@ -17,13 +17,13 @@ One of them then suggests an idea. 
 
 > With enough people around the world, we could run a mob that never stops!
 
-![A drawing of a mob walking around a binary world](../imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/mob-drawing.jpg)
+![A drawing of a mob walking around a binary world]({{site.url}}/imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/mob-drawing.jpg)
 
 ## What's the point ?
 
 In [The Ultimate Guide To Remote Work](https://zapier.com/learn/remote-work/) the [Zapier](https://zapier.com/) team explains how to take advantage of time zones and remote work. We can get a feature done faster by having a pair of programmers from different time zones work on it ! Instead of a single day of work in 24h, you get 2 ! We could get features in half the time.
 
-[![The cover of The Ultimate Guide To Remote Work](../imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/ultimate-guide-remote-work.png)](https://zapier.com/learn/remote-work/)
+[![The cover of The Ultimate Guide To Remote Work]({{site.url}}/imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/ultimate-guide-remote-work.png)](https://zapier.com/learn/remote-work/)
 
 In Lean Management, the time to get a feature is called the cycle time. A short cycle time has a lot of benefits. You get feedback faster. The needs of the users have less risk of changing. You'll get less interruptions, which increases your focus and effectiveness.
 
@@ -45,7 +45,7 @@ And what about the team structure ? Could a team of 30 be effective in this sett
 *   More resilient 
 *   Less synchronization and coordination overhead
 
-[![A screen capture of 'Far from the mobbing crowd'](../imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/far-from-mobbing-crowd.jpg)](https://www.infoq.com/presentations/distributed-teams-remote-collaboration)
+[![A screen capture of 'Far from the mobbing crowd']({{site.url}}/imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/far-from-mobbing-crowd.jpg)](https://www.infoq.com/presentations/distributed-teams-remote-collaboration)
 
 
 ## Let's try it !

@@ -12,7 +12,7 @@ description: "Explanation of how we started to do exploratory testing and how we
 ---
 Manual testing is important. Here is how we got to love exploratory testing.
 
-{% img center /imgs/2016-01-08-how-we-started-exploratory-testing/explore.jpg A map and a telescope for exploration %}
+![A map and a telescope for exploration]({{site.url}}/imgs/2016-01-08-how-we-started-exploratory-testing/explore.jpg)
 
 ## Initial situation
 
@@ -22,7 +22,7 @@ With 90% of automated test coverage, Cucumber scenarios to verify quality, every
 
 ## First try at exploratory testing
 
-[{% img center /imgs/2016-01-08-how-we-started-exploratory-testing/art-of-agile-development.jpg The cover of the Art Of Agile Development %}](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development)
+[![The cover of the Art Of Agile Development]({{site.url}}/imgs/2016-01-08-how-we-started-exploratory-testing/art-of-agile-development.jpg)](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development)
 
 In [The art of agile development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1452279644&sr=8-1&keywords=the+art+of+agile+development), James Shore details the practice of exploratory testing as a great way of both :
 
@@ -44,7 +44,7 @@ Obviously, we also added our special sauce
 
 This transformed developers into ferocious testers ! I guarantee that with such incentives you'll find bugs ... as we did.
 
-[{% img center /imgs/2016-01-08-how-we-started-exploratory-testing/fruits-basket.jpg Our weekly fruit basket at work %}](/how-to-setup-a-weekly-fruit-basket-in-no-time/)
+[![Our weekly fruit basket at work]({{site.url}}/imgs/2016-01-08-how-we-started-exploratory-testing/fruits-basket.jpg)](/how-to-setup-a-weekly-fruit-basket-in-no-time/)
 
 ## Doing it systematically
 

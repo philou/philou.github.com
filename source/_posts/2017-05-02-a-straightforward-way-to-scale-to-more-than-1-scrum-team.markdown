@@ -15,7 +15,7 @@ Being agile should be about taking baby steps, doing things incrementally, start
 
 Here's a real-life 2 hours change that kicks-off a very efficient organization for a few scrum teams.
 
-![A guy jumping from a cliff into the sea](../imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/dive-jump.jpg)<div class="image-credits">"SafeLess" : everything will go fine as long as you follow the principles</div>
+![A guy jumping from a cliff into the sea]({{site.url}}/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/dive-jump.jpg)<div class="image-credits">"SafeLess" : everything will go fine as long as you follow the principles</div>
 
 ## A classic story
 
@@ -115,7 +115,7 @@ One full day of meetings is long. People get tired. In order to keep the energy 
 * Board games during breaks
 * End of day celebration outside the office. You could go out and have a drink all together for exemple.
 
-[![The Timeline board game box](../imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/timeline.jpg)](https://www.amazon.com/Asmodee-TIM01USASM-Timeline/dp/B005N57CNU/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493870547&sr=8-1&keywords=timeline)<div class="image-credits">We had fun playing this game between the meetings</div>
+[![The Timeline board game box]({{site.url}}/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/timeline.jpg)](https://www.amazon.com/Asmodee-TIM01USASM-Timeline/dp/B005N57CNU/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493870547&sr=8-1&keywords=timeline)<div class="image-credits">We had fun playing this game between the meetings</div>
 
 ### Preparing the product Backlog
 
@@ -137,7 +137,7 @@ The most important thing to do is to start ! There are always a ton of reasons w
 
 With a product retrospective every sprint, important issues will get addressed !
 
-![Just Do It](../imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/just-do-it.jpg)
+![Just Do It]({{site.url}}/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/just-do-it.jpg)
 
 ## Does 'Agile Scaling' even exist ?
 

@@ -29,7 +29,7 @@ Pair programming can be painful. It can feel like a waste of time or extremely f
 
 ### The Wandering Buddies
 
-{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/going_nowhere.jpg A 'going nowhere' sign %}
+![A 'going nowhere' sign]({{site.url}}/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/going_nowhere.jpg)
 
 That's what you'd get if you asked to newcomers straight out of school to pair program on existing source code on day 1. They'd be dabbling here and there, without going anywhere. Each one would try to get the keyboard to try his way, but in the end, no general direction would be followed.
 
@@ -44,7 +44,7 @@ By starting that, the pair will quickly move into the 'mates' state.
 
 ### The Export / The Novice
 
-{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/race.jpg A race where Usain Bolt leave everyone meters behind %}
+![A race where Usain Bolt leave everyone meters behind]({{site.url}}/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/race.jpg)
 
 That's when a 'lone wolf kind of' expert pairs with a junior. The expert picks the keyboard, dashes through the tasks, doesn't make sure his pair follows (which usually means it does not).
 
@@ -56,13 +56,13 @@ The is where we want to be. When it happens, pair programming feels productive, 
 
 ### The Mates
 
-{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/to-do-list.jpg A Todo list %}
+![A Todo list]({{site.url}}/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/to-do-list.jpg)
 
 The programmers have equivalent skills on the subject at hand. They organized in a way that they are both learning from each other. By having to verbalize what and why they are doing things, by challenging each others assumptions and by sometimes doing differently than what they'd alone.
 
 ### The Mentor & The Apprentice
 
-{% img center /imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/help.jpg People helping each other to climb a mountain %}
+![People helping each other to climb a mountain]({{site.url}}/imgs/2016-05-06-pair-programming-from-pain-zone-to-skill-zone/help.jpg)
 
 Other times, there can be a real difference in skills for what the pair is attempting to do. In this situation, the goal of the most knowledgeable is to train his pair, who's goal is to learn. The task becomes some kind of exercise on which to practice.
 

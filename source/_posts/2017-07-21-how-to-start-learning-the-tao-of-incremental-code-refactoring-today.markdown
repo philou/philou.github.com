@@ -25,7 +25,7 @@ The most famous practice to learn TDD also works very well to learn refactoring.
 
 There are many ways to do your first coding kata. You could find a coding dojo near you (ask [meetup.com](https://www.meetup.com/)). Or you could find motivated colleagues to start one at your company ... I wrote in more details about how to attend a coding dojo in [this post](/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/).
 
-[![Emily Bache's Coding Dojo book cover](../imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/coding-dojo.jpg)](https://www.amazon.com/gp/product/919811803X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=919811803X&linkCode=as2&tag=pbourgau-20&linkId=340ea938a5e4f00178676804ac6c2278)
+[![Emily Bache's Coding Dojo book cover]({{site.url}}/imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/coding-dojo.jpg)](https://www.amazon.com/gp/product/919811803X/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=919811803X&linkCode=as2&tag=pbourgau-20&linkId=340ea938a5e4f00178676804ac6c2278)
 
 You can also practice katas on your own. My friend [Thomas Pierrain](https://twitter.com/tpierrain) rehearses the same katas to discover deeper insights.
 
@@ -53,7 +53,7 @@ Within the fast TDD - Refactoring loop, taste is the tool of choice to drive the
 
 Spotting problems is nice, but finding solutions is better ! [Design Patterns](https://en.wikipedia.org/wiki/Software_design_pattern) are just that ... There has been a lot of controversy around Design Patterns. If overusing them leads to bloated code, using them to fix strong smells makes a lot of sense. There is even a book about the subject :
 
-[![Joshua Kerievsky's Refactoring To Patterns book cover](../imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/refactoring-to-patterns.jpg)](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=pbourgau-20&linkId=d79d093008fb9e77f75ea2089d6cbdae)
+[![Joshua Kerievsky's Refactoring To Patterns book cover]({{site.url}}/imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/refactoring-to-patterns.jpg)](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=pbourgau-20&linkId=d79d093008fb9e77f75ea2089d6cbdae)
 
 Finally, there's a third and most common way to improve our design taste. It's to read code ! The more code we read, the better our brain becomes at picking small clues about what nice and what is not. It's important to read clean code but also bad code. To read code in different languages. Code built on different frameworks. 
 
@@ -63,7 +63,7 @@ So, read code at work, read code in books, read code in open source libraries, g
 
 As with most topics in programming there is a reference book about refactoring. It's Martin Fowlers's [Refactoring, improving the design of existing code](https://www.amazon.com/gp/product/0201485672/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201485672&linkCode=as2&tag=pbourgau-20&linkId=73fc09a5a451402a7036509ae62e8c66). Everything is in there, smells, unit testing and a repository of refactoring walkthroughs.
 
-[![Martin Fowler's refactoring book cover](../imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/refactoring.jpg)](https://www.amazon.com/gp/product/0201485672/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201485672&linkCode=as2&tag=pbourgau-20&linkId=73fc09a5a451402a7036509ae62e8c66)
+[![Martin Fowler's refactoring book cover]({{site.url}}/imgs/2017-07-21-how-to-start-learning-the-tao-of-incremental-code-refactoring-today/refactoring.jpg)](https://www.amazon.com/gp/product/0201485672/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201485672&linkCode=as2&tag=pbourgau-20&linkId=73fc09a5a451402a7036509ae62e8c66)
 
 The book is said to be a difficult read, but the content is worth gold. If you have the grit, give it a try ! At the end, you should understand how your IDE does automated refactoring. You should also be able to perform all the refactorings that your IDE does not provide by hand ! This will enlarge your refactoring toolbox, and help you to drive larger refactorings from A to B.
 

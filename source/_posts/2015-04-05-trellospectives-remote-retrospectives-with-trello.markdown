@@ -13,7 +13,7 @@ description: "The story of an agile team adapting their retrospectives for remot
 ---
 As a distributed team working from Paris and Beirut, after [pair programming](/from-zero-to-pair-programming-hero/), it was time for our retrospectives to get remote !
 
-[{% img center /imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup-small.jpg A remote retrospective meeting with Trello setup%}](/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup.jpg)
+[![A remote retrospective meeting with Trello setup]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup-small.jpg)]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/setup.jpg)
 
 ## Initial setup
 
@@ -48,7 +48,7 @@ When Mohamad joined the team in Beirut, we thought that this was not going to sc
 
 ## Trello
 
-[{% img center /imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat-small.jpg The boat activity on Trello%}](/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat.jpg)
+[![The boat activity on Trello]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat-small.jpg)]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/boat.jpg)
 
 [Asking Google](https://www.google.fr/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=remote%20retrospective), we discovered that some teams were having success using [Trello](https://trello.com/) for their remote retrospectives. We decided to give it a try. Ahmad from Beirut got to work on our first retrospective with it. He had to prepare it beforehand (as we always have been doing). In practice :
 
@@ -79,11 +79,11 @@ When Mohamad joined the team in Beirut, we thought that this was not going to sc
 
 ## Conclusion
 
-[{% img center /imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti-small.jpg The Return On Time Invested activity on Trello%}](/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti.jpg)
+[![The Return On Time Invested activity on Trello]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti-small.jpg)]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/roti.jpg)
 
 While missing a few features that would make it awesome, Trello is the best tool we found for remote retrospective, and is better than our initial physical setup. We're continuing to use it, and we now have to figure out
 
 * If we could find a way to speed up the meeting preparation
 * How to handle 'graph oriented' activities such as the '5 whys'
 
-[{% img center /imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys-small.jpg The 5 why activity on a physical whiteboard%}](/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys.jpg)
+[![The 5 why activity on a physical whiteboard]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys-small.jpg)]({{site.url}}/imgs/2015-04-05-trellospectives-remote-retrospectives-with-trello/5-whys.jpg)

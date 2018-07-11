@@ -13,7 +13,7 @@ description: "A summary / review of the book 'Petit guide de management lean a l
 ---
 A few weeks ago, as I was looking the internet for Lean principles to improve our way of working, I fell upon this book [Petit guide de management lean a l'usage des équipes agiles](http://www.leanagilecamp.fr/) (NB: the book is in French, the title means 'Little lean management guide at the usage of agile teams'). It made me think and I thought it deserved a blog post.
 
-[{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/cover.svg The book cover %}](http://leanagilecamp.fr)
+[![The book cover]({{site.url}}/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/cover.svg)](http://leanagilecamp.fr)
 
 It explains that agility can be though of as a set of practices and principles, shared through a huge community. This makes it a great production system, where improvement are mostly brought by gut feeling retrospectives and trial of other teams practices. At the contrary, Lean is very light framework for continuous improvement, relying on a more systematic waste elimination.
 
@@ -21,7 +21,7 @@ After this introduction, the bulk of the book is composed of a set of 9 detailed
 
 ## [Unknown Category at Project Condor](http://leanagilecamp.fr/guide.html#scène-de-crime-la-catégorie-mystère-du-projet-condor)
 
-{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/condor.jpg Issue indicators %}
+![Issue indicators]({{site.url}}/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/condor.jpg)
 
 The team maintains a virtual call center of poor quality, resulting in lots of incidents in production. Here is how they deal with the situation :
 
@@ -41,7 +41,7 @@ An author is called to help a team which is working on unifying reimbursement sy
 
 The first step he takes is to visualize a target (next batch in 3 months) and the flow
 
-{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/target.jpg Details of the 3 months target %}
+![Details of the 3 months target]({{site.url}}/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/target.jpg)
 
 The flow whiteboard shows that tasks get stuck when in need of clarifications from business analysts. Tension between people is already increasing. They Team decides to visualize this with 'blocker' post-its.
 
@@ -49,7 +49,7 @@ After an inquire with the BAs, it turns out that they don't see the waiting task
 
 The final step is to agree all together (developers and BAs) on an uniform way of defining and following blocking issues
 
-{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/blockers.jpg The shared blocked issues follow up wall board %}
+![The shared blocked issues follow up wall board]({{site.url}}/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/blockers.jpg)
 
 Tickets are discussed at the stand-up, and unblocked issues are also visualized. As a result in only 2 weeks, the process fluidifies, and the tensions decrease.
 
@@ -75,8 +75,8 @@ It turns out that writing tests accounts for 5,5% of the time, refactoring for o
 
 For 20 half days, the author embarks on the tedious task of keeping a very detailed log of activities while taking the role of [navigator](https://en.wikipedia.org/wiki/Pair_programming#Remote_pair_programming) in pair programming sessions.
 
-{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/log.jpg The detailed log of programming activities %}
-{% img center /imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/activities.jpg Ratio of different programming activities %}
+![The detailed log of programming activities]({{site.url}}/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/log.jpg)
+![Ratio of different programming activities]({{site.url}}/imgs/2016-03-06-are-most-agile-teams-doing-continuous-improvement-the-silly-way/activities.jpg)
 
 They clearly understand that most time is taken not in writing tests, doing refactoring or writing complicated code, but in understanding existing code, third-parties and APIs
 

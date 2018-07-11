@@ -21,7 +21,7 @@ assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
 
 For more details, have a look at these examples for your preferred language : [Java](http://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html), [Ruby](https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers) or [Javascript](http://tonylukasavage.com/blog/2014/05/29/custom-assertions-in-should-dot-js/).
 
-![A drawing of a box of matches, branded 'Matchers' on top](../imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg)
+![A drawing of a box of matches, branded 'Matchers' on top]({{site.url}}/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg)
 
 That custom assertion matchers have an effect on mock usage might seem puzzling at first. Let me explain. Us, mere human developers, get lured into mocking when tests become too complicated. By keeping the tests simpler, Custom Assertion Matchers help use to avoid mocks. It's a bit like why test data builders keep mocks at bay.
 

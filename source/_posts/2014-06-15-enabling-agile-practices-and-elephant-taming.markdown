@@ -16,7 +16,7 @@ Everybody knows about the agile software development promise "Regularly and cont
 * Release as soon as possible
 * Planning small stories according to the team's velocity
 
-{% img center /imgs/2014-06-15-enabling-agile-practices-and-elephant-taming/squirrel.jpg A business A squirrel jumping from one tree to another (source mayamumu.centerblog.net) %}
+![A business A squirrel jumping from one tree to another (source mayamumu.centerblog.net)]({{site.url}}/imgs/2014-06-15-enabling-agile-practices-and-elephant-taming/squirrel.jpg)
 
 It all seems common sense and simple. Especialy for people who don't code. That's not the whole story though, let's have a look at a few variations :
 
@@ -35,7 +35,7 @@ Which is a must have to regularly **deliver value** on commitment !
 
 It turns out that all of the other original [XP practices](http://www.extremeprogramming.org/rules.html) help to achieve the agile promise.
 
-{% img center /imgs/2014-06-15-enabling-agile-practices-and-elephant-taming/elephant-in-the-room.jpg A business meeting with a real elephant in the room %}
+![A business meeting with a real elephant in the room]({{site.url}}/imgs/2014-06-15-enabling-agile-practices-and-elephant-taming/elephant-in-the-room.jpg)
 
 After a lot of time spent writing software, I now tend to think of the code as the elephant in the room. It directly or indirectly constrains every decision that is make. Recognize and tame your elephant or you'll get carted away ...
 

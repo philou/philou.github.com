@@ -17,7 +17,7 @@ We are sometimes tempted to use mocks to shortcut test data initialization. Unfo
 
 Hopefully, [Test Data Builders](http://www.natpryce.com/articles/000714.html) both shortcut test data setup and avoid mocks.
 
-![Drawing of a crate](../imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg)
+![Drawing of a crate]({{site.url}}/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg)
 
 This is the fourth post [of a series about how to avoid mocks](/blog/categories/how-to-avoid-mocks-series/) in automated tests. If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
 
@@ -205,7 +205,7 @@ As often, when design is not satisfying, adding an indirection solves the issue.
 
 The idea is to use the builder pattern to build the test data. [Growing Object Oriented Software Guided by Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&qid=1525160355&sr=8-1&keywords=growing+object-oriented+software+guided+by+tests) covers this technique in great length.
 
-[![Cover of the book Growing Object Oriented Software Guided By Tests](../imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&qid=1525160355&sr=8-1&keywords=growing+object-oriented+software+guided+by+tests)
+[![Cover of the book Growing Object Oriented Software Guided By Tests]({{site.url}}/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&qid=1525160355&sr=8-1&keywords=growing+object-oriented+software+guided+by+tests)
 
 Here is the previous code re-written using the test data builder pattern.
 

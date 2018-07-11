@@ -21,13 +21,13 @@ Enters the binary hand poker !
 
  Score | Sign |
 -------|------|
-1| <br/> ![Sign for 1](/imgs/2015-09-23-binary-hand-planning-poker/01.jpg)
-2| ![Sign for 2](/imgs/2015-09-23-binary-hand-planning-poker/02.jpg)
-3| ![Sign for 3](/imgs/2015-09-23-binary-hand-planning-poker/03.jpg)
-5| ![Sign for 5](/imgs/2015-09-23-binary-hand-planning-poker/05.jpg)
-8| ![Sign for 8](/imgs/2015-09-23-binary-hand-planning-poker/08.jpg)
-13| ![Sign for 13](/imgs/2015-09-23-binary-hand-planning-poker/13.jpg)
-20| ![Sign for 20](/imgs/2015-09-23-binary-hand-planning-poker/20.jpg)
+1| <br/> ![Sign for 1]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/01.jpg)
+2| ![Sign for 2]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/02.jpg)
+3| ![Sign for 3]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/03.jpg)
+5| ![Sign for 5]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/05.jpg)
+8| ![Sign for 8]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/08.jpg)
+13| ![Sign for 13]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/13.jpg)
+20| ![Sign for 20]({{site.url}}/imgs/2015-09-23-binary-hand-planning-poker/20.jpg)
 <br/>
 
 Now that's geeky ! I still have to find a symbol for the coffee cup and the question mark though ...

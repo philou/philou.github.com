@@ -21,7 +21,7 @@ Warning: Authentication failure. Retrying
 ...
 ```
 
-{% img center /imgs/2016-01-31-how-i-fixed-warning-authentication-failure-retrying-with-vagrant/ssh.jpg A screen with the ssh prompt %}
+![A screen with the ssh prompt]({{site.url}}/imgs/2016-01-31-how-i-fixed-warning-authentication-failure-retrying-with-vagrant/ssh.jpg)
 
 
 I tried to destroy and re-create my box with the same result : it eventually timedout, but the provisions were not executed.

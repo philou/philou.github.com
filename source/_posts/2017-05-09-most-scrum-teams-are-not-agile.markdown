@@ -21,7 +21,7 @@ One of the agile principle [explicitly states](http://agilemanifesto.org/princip
 
 Although continuous improvement at all levels is one of the most important element in your process, it needs a bit of practice to setup right. After trying different approach in different teams, I compiled a list of the things that worked for me :
 
-[![The cover of the Daniel Pink's "Drive" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg)](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494561757&sr=8-1&keywords=pink+drive)
+[![The cover of the Daniel Pink's "Drive" book]({{site.url}}/imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg)](https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494561757&sr=8-1&keywords=pink+drive)
 
 ## How to do successful retrospectives
 
@@ -31,7 +31,7 @@ Sounds obvious ! The first step is to schedule a recurring meeting and invite al
 
 [Here](/how-we-introduced-efficient-agile-retrospectives/) is a crash-course about how to organize and drive your first retrospective. If your team is distributed, you'll need a slightly different setup. In my previous team, we had success using [Trello](https://trello.com), you can read more about it [here](/trellospectives-remote-retrospectives-with-trello/).
 
-![Just Do It picture](../imgs/2017-05-09-most-scrum-teams-are-not-agile/just-do-it.jpg)
+![Just Do It picture]({{site.url}}/imgs/2017-05-09-most-scrum-teams-are-not-agile/just-do-it.jpg)
 
 ### Make sure everyone talks
 
@@ -52,7 +52,7 @@ Here are a few tricks to guide a team there :
 
 Dealing with "bad" behavior in retros is a wide topic which I am only scratching the surface here. I guess I could write a full post about it.
 
-[![The cover of the "Fun Retrospectives" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/fun-retro.jpeg)](http://www.funretrospectives.com/)
+[![The cover of the "Fun Retrospectives" book]({{site.url}}/imgs/2017-05-09-most-scrum-teams-are-not-agile/fun-retro.jpeg)](http://www.funretrospectives.com/)
 
 ### Get out of with actionable tasks
 
@@ -69,7 +69,7 @@ It's also a good habit to book the rooms for extra time after the official retro
 
 Finally, I think it's a good practice to review what happened of the improvements that were selected during last retro. It stresses the importance of doing what was scheduled in retrospective. It also gives a chance to investigate the reason why they were not done !
 
-[![The cover of the "Mikado Method" book](../imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg)](https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494562230&sr=1-1&keywords=mikado+method)
+[![The cover of the "Mikado Method" book]({{site.url}}/imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg)](https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494562230&sr=1-1&keywords=mikado+method)
 
 ### Put them in the sprint
 

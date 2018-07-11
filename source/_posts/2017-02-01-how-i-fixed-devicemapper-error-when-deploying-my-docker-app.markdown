@@ -28,7 +28,7 @@ You can read the full error logs [here](https://circleci.com/gh/philou/planning-
 
 After searching the internet a bit, I found [this issue](https://github.com/docker/docker/issues/6325) which made me understand that my server had ran out of disk space because of old versions of my docker images. I tried to remove them, but the commands were failing. After some more search, I found [this other issue](https://github.com/docker/docker/issues/26015) and came to the conclusion that there was no solution except resetting docker completely. Hopefully, Digital Ocean has a button for rebuilding the VM.
 
-[{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg A screenshot of the rebuild screen on digitalocean %}](/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg)
+[![A screenshot of the rebuild screen on digitalocean]({{site.url}}/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean-small.jpg)]({{site.url}}/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/reset-digitalocean.jpg)
 
 Once the VM was rebuilt, the first thing that I did was to try to connect from my shell on my local machine. I had to clean up my known host file, but that was simple enough.
 
@@ -53,7 +53,7 @@ bash: line 1: 18576 Killed
 
 After some more Google searching, I discovered that this time, the VM was running out of memory ! The fast fix was to upgrade the VM (at the extra cost of 5$ / month).
 
-[{% img center /imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg A screenshot of the resize screen on digitalocean %}](/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg)
+[![A screenshot of the resize screen on digitalocean]({{site.url}}/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean-small.jpg)]({{site.url}}/imgs/2017-02-01-how-i-fixed-devicemapper-error-when-deploying-my-docker-app/resize-digitalocean.jpg)
 
 After increasing the memory (and disk space) of the VM, deployment went like a charm. Others have fixed the same issue for free by [adding a swap partition to the VM](https://www.digitalocean.com/community/questions/npm-gets-killed-no-matter-what).
 

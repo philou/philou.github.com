@@ -17,7 +17,7 @@ In my [previous post](/how-immutable-value-objects-fight-mocks/) I explained how
 
 This is the third post on a [series about how to avoid mocks](/blog/categories/how-to-avoid-mocks-series/). If you haven't, you can start reading the full story [here](/careless-mocking-considered-harmful/).
 
-![A drawing "FIZZ BUZZ" rock fallen and sealed in the ground](../imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg)
+![A drawing "FIZZ BUZZ" rock fallen and sealed in the ground]({{site.url}}/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg)
 
 ## Fizz Buzz Example
 

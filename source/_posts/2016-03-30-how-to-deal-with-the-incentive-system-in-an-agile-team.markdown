@@ -12,7 +12,7 @@ description: "How we tackled the company incentive system in our agile team"
 ---
 For an organization, there's something schizophrenic about valuing team work, wanting agility but sticking to individual objectives and assessments.
 
-{% img center /imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/schizophrenic-smiley.jpg A schizophrenic :(: smiley %}
+![A schizophrenic :(: smiley]({{site.url}}/imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/schizophrenic-smiley.jpg)
 
 As highlighted in [Build To Last](http://www.amazon.com/Built-Last-Successful-Visionary-Essentials/dp/0060516402/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1459922545&sr=8-1&keywords=build+to+last) genuine company values must permeate all aspects of the organization. Being agile also means putting teamwork first and that is quite incompatible with typical individual management by objectives and bonuses.
 
@@ -53,7 +53,7 @@ Every 2 months, we are doing [360° feedback sessions](/feedback-on-360-degrees-
 
 Optionally, we setup [Kudo boxes](https://management30.com/product/workouts/intrinsic-motivation/kudo-box/) to give and receive thanks from others.
 
-{% img center /imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/kudo.jpg A kudo card %}
+![A kudo card]({{site.url}}/imgs/2016-03-30-how-to-deal-with-the-incentive-system-in-an-agile-team/kudo.jpg)
 
 ### At the end of the year
 

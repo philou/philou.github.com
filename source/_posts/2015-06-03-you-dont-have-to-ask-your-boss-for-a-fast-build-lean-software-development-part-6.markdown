@@ -15,7 +15,7 @@ Spending some time to speed up the build is like an investment, you'll pay some 
 
 With a bit of maths, you can even get what [Reinertsen](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1432909293&sr=8-1&keywords=reinertsen+flow) calls a "Decentralized Decision Rule", making it possible for anyone in the organization to figure out if he should spend some time on the build or not; without the need to ask the permission to anyone.
 
-[{% img center /imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Balance_ordinaire.jpg A 2-pan balance (From Wikipedia) %}](http://fr.wikipedia.org/wiki/Balance_%28instrument%29)
+[![A 2-pan balance (From Wikipedia)]({{site.url}}/imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Balance_ordinaire.jpg)](http://fr.wikipedia.org/wiki/Balance_%28instrument%29)
 
 ## Our example
 
@@ -44,7 +44,7 @@ Another hidden benefit concerns the [Cost of Delay](http://en.wikipedia.org/wiki
 
 ## Variations
 
-[{% img center /imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Boeing_777.jpg A Boeing 777 in flight over the mountains (From Wikipedia) %}](http://en.wikipedia.org/wiki/Boeing_777)
+[![A Boeing 777 in flight over the mountains (From Wikipedia)]({{site.url}}/imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Boeing_777.jpg)](http://en.wikipedia.org/wiki/Boeing_777)
 
 If your sponsor agrees, you can negotiate a longer return on investment period for your decision rule. For example, if he agreed to increase the horizon to 2 sprints, we could undertake more build time speed-up tasks. You might also prefer only to discuss really long ROI investments with him.
 

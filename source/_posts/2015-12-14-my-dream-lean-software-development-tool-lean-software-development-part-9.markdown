@@ -13,7 +13,7 @@ description: "A vision of a software project tool providing business insights by
 ---
 Current software project tracking tools suck !
 
-{% img center /imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/it-sucks.jpg A stamp that writes "SUCKS" %}
+![A stamp that writes "SUCKS"]({{site.url}}/imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/it-sucks.jpg)
 
 By writing [this series of posts](/the-flow-book-summary-lean-software-development_part_1/), I realized that they should help us to prioritize rather than just serving as a nice GUIs on top of a ticket database.
 
@@ -34,7 +34,7 @@ Now suppose you had a tool that estimates the expected values of all different t
 
 Here is what the backlog could look like :
 
-{% img center /imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/mockup.jpg A mockup of the backlog view of such a product %}
+![A mockup of the backlog view of such a product]({{site.url}}/imgs/2015-12-14-my-dream-lean-software-development-tool-lean-software-development-part-9/mockup.jpg)
 
 All different kind of activities (developments, marketing, experiments, refactorings) would fit in the backlog. The system would estimate the value of every task for Joe, advising him what to work on first. It would make it obvious just how much market experiments are important when starting ! With such a tool, he is a lot more likely to build his new life.
 

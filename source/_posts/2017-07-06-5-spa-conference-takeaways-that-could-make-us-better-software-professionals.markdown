@@ -16,7 +16,7 @@ Last week, my colleague [Ahmad Atwi](https://ahmadatwi.me/) and I went to the Lo
 
 The London [eXtreme Programming](http://www.extremeprogramming.org/) is one of the most active in the world. You could feel an XP atmosphere at the conference. For example, people like [Nat Pryce](http://www.natpryce.com/) and [Steve Freeman](https://twitter.com/sf105), authors of [GOOSGT](https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321503627&linkCode=as2&tag=pbourgau-20&linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3) book were speakers.
 
-[![The cover of Growing Object-Oriented Software, Guided By Tests](../imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/growing.jpg)](https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321503627&linkCode=as2&tag=pbourgau-20&linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3)
+[![The cover of Growing Object-Oriented Software, Guided By Tests]({{site.url}}/imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/growing.jpg)](https://www.amazon.com/gp/product/0321503627/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321503627&linkCode=as2&tag=pbourgau-20&linkId=fcdd83a07a3cfb190f2c8e7e8b9f72c3)
 
 To summarize, we had the chance to attend a lot of very interesting sessions during the 3 days of the conference. Here are 5 pearls of wisdom I took back with me.
 
@@ -75,7 +75,7 @@ We hear a lot about servant leadership nowadays. Scrum Master should be servant 
 
 This reminded me of what Jim Collins says in [Built to last](http://www.wikisummaries.org/wiki/Built_to_Last#Chapter_6_.E2.80.93_Cult-like_Cultures) : "People who don't fit are expelled like viruses !"
 
-[![The cover of Built to Last](../imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/built-to-last.jpg)](https://www.amazon.com/gp/product/0060516402/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0060516402&linkCode=as2&tag=pbourgau-20&linkId=e83ad8e3dcf7bdb7f875d5b22e8eb4c6)
+[![The cover of Built to Last]({{site.url}}/imgs/2017-07-06-5-spa-conference-takeaways-that-could-make-us-better-software-professionals/built-to-last.jpg)](https://www.amazon.com/gp/product/0060516402/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0060516402&linkCode=as2&tag=pbourgau-20&linkId=e83ad8e3dcf7bdb7f875d5b22e8eb4c6)
 
 ## 1/3000 ideas succeeds
 

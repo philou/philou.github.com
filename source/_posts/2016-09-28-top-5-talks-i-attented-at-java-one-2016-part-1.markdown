@@ -11,7 +11,7 @@ description: "Summary of the best talks I had the chance to assist at JavaOne 20
 ---
 With a few other colleagues, I had the chance to be sent to San Francisco last week to attend the [JavaOne 2016](https://www.oracle.com/javaone/index.html) conferences by my [company](http://www.murex.com).
 
-[{% img center /imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall-small.jpg Photo of the JavaOne exhibition hall %}](/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall.jpg)
+[![Photo of the JavaOne exhibition hall]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall-small.jpg)]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall.jpg)
 
 Here is super short list of the conferences I attended which I found really interesting
 
@@ -26,7 +26,7 @@ Here are a few example :
 * declare ```@Immutable MyObject myObject``` to make sure that myObject won't be muted
 * declare ```@NonNull MyObject myObject``` to make sure that myObject is never null
 
-[{% img center /imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems-small.jpg Architecture of the type checker %}](/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems.jpg)
+[![Architecture of the type checker]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems-small.jpg)]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems.jpg)
 
 Under the hood, the compiler behaves as if ```@Immutable MyObject``` and ```MyObject``` where completely separate types, and it knows and tracks specific ways of converting between the two. The framework provides a simple API to define your own type systems. They did a live demo showing how to quickly define things like ```@Regex String```, ```@Encrypted String``` or ```@Untainted String``` (which forbids user input strings to avoid SQL injections).
 
@@ -40,7 +40,7 @@ Here are [the slides](http://types.cs.washington.edu/checker-framework/2016-java
 
 Continuous Delivery and Microservices are what you need to do, aren't they ? Well, when actually trying to setup a CI / CD pipeline for all your code, things quickly get complicated pretty fast ! The speaker presented how to deal with this complexity by using metrics from your VCS and build servers to draw an annotated graph of your build pipeline.
 
-[{% img center /imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline-small.jpg Graph of the build pipeline %}](/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline.jpg)
+[![Graph of the build pipeline]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline-small.jpg)]({{site.url}}/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline.jpg)
 
 * He used the build time to set the size of every node : the longer, the larger
 * The color for the change rate : the more often it was built the warmer the color

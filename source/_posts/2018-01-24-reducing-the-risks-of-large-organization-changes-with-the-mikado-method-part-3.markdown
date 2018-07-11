@@ -14,7 +14,7 @@ description: "Last post of a series about applying the Mikado Method for large o
 ---
 In the [previous posts](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/), I presented how to use the [Mikado Method](https://mikadomethod.wordpress.com/) to large organization changes. Drawn from the programming world, this technique keeps a low transformation [WIP](https://en.wikipedia.org/wiki/Work_in_process). In theory, this should reduce risk and the time to see return on investment. Let's see the pros and cons in more detail.
 
-![A weighting machine comparing big bang and midado](../imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/mikado-weighter.jpg)
+![A weighting machine comparing big bang and midado]({{site.url}}/imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/mikado-weighter.jpg)
 
 ## An experiment culture
 
@@ -28,7 +28,7 @@ As I read in [Freedom, Inc.](https://www.amazon.com/Freedom-Inc-Employees-Busine
 
 We should also pay special attention to how we name mikado (sub) goals. If the general goal is to adopt [LeSS](https://less.works/), jumping in and out of LeSS will be very painful ! Instead of "How" goals, we should use specific "What" goals. For example, we could replace "Adopting LeSS" with "All teams integrate in less than 10 minutes". It is a lot easier (and faster) to try to integrate in 10 minutes for a day. In one day, we should know if it works, and if not, what's blocking. In this case, experiments will be standard improvement items in the backlogs of teams. Teams could try to integrate every 10 minutes by hand for example !
 
-[![The Management 3.0 celebration grid poster](../imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/celebration-grid.jpg)](http://noop.nl/2015/06/success-and-failure.html)<div class="image-credits">[Original Poster](http://noop.nl/2015/06/success-and-failure.html) By Jurgen Appelo</div>
+[![The Management 3.0 celebration grid poster]({{site.url}}/imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/celebration-grid.jpg)](http://noop.nl/2015/06/success-and-failure.html)<div class="image-credits">[Original Poster](http://noop.nl/2015/06/success-and-failure.html) By Jurgen Appelo</div>
 
 ## Reduced WIP
 
@@ -55,7 +55,7 @@ Granted, if the goal is just to move to "Agile", then it might be slower than sw
 
 One final advantage I see with this technique is that it's sustainable. As it's a lot less stressful than a typical large re-org, it is possible to keep it going all the time ! It's a gateway to continuous improvement. It's no wonder Toyota (see [Toyota Kata](https://www.amazon.com/Toyota-Kata-Managing-Improvement-Adaptiveness/dp/0071635238/ref=sr_1_1?ie=UTF8&qid=1516857324&sr=8-1&keywords=toyota+kata)) people say that the [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html) is their main management tool !
 
-[![The cover of the 'Mikado Method' book](../imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/mikado-method-cover.jpg)](https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1)
+[![The cover of the 'Mikado Method' book]({{site.url}}/imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/mikado-method-cover.jpg)](https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1)
 
 ## Closing thought
 

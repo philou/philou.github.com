@@ -33,7 +33,7 @@ He then explained that there are 3 ways to deal with the issue :
  Join a foundation | Joining an existing open source foundation, with a framework | Everything out of the box (infra, governance), builds trust | Rules can be heavy, Ownership is given to the foundation | +++ | [Linkedin](https://www.linkedin.com/) put [Kafka](https://kafka.apache.org/) in the [Apache Foundation](https://www.apache.org/) |
  Build tools | Use your own tools to mitigate the main risks associated with the 'Do nothing' strategy | Built on top of Github, Keep control, Keeps things easy | Need to develop, test and operate the tools | + | Demo of a tool plugged into Github to enforce a contributor license agreement for anyone pushing a pull request |
 
-[{% img center /imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA-small.jpg Slide with a Github capture for Contributor License Agreement %}](/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA.jpg)
+[![Slide with a Github capture for Contributor License Agreement]({{site.url}}/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA-small.jpg)]({{site.url}}/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/CLA.jpg)
 
 The 'build tools' strategy looks promising, even if it is not yet widely used !
 
@@ -45,7 +45,7 @@ Here are [the talk](https://www.youtube.com/watch?v=X71HrW6vC_0) and [the slides
 
 This is what a flame graph looks like :
 
-[{% img center /imgs/2016-10-14-3-more-great-talks-from-javaone-2016/flamegraph.png An example of a Java flame graph %}](http://www.brendangregg.com/FlameGraphs/cpu-mixedmode-vertx.svg)
+[![An example of a Java flame graph]({{site.url}}/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/flamegraph.png)](http://www.brendangregg.com/FlameGraphs/cpu-mixedmode-vertx.svg)
 
 Technically, it's just an SVG with some Javascript. It shows the performance big picture. It aggregates data from Linux and JVM profilers. Vertically, you can see the call stacks in your system. The larger a block, the more time is taken inside a function (or in a sub call). The top border is where the CPU time is actually taken. If you want to speed up your system, speed up the wider zones at the top of the graph.
 
@@ -85,7 +85,7 @@ He went on to demonstrate two games that are based on Jenkins and Sonar that aim
 * One mobile app developed during a 24h Hackathon at CGI which might be open sourced at some point
 * Another one called 'Dev Cube' created at an university, where you get to decorate you virtual cubicle
 
-[{% img center /imgs/2016-10-14-3-more-great-talks-from-javaone-2016/quincy-adams.jpg The speaker demoing his code quality game %}](https://www.youtube.com/watch?v=hfT2_HxOQdk)
+[![The speaker demoing his code quality game]({{site.url}}/imgs/2016-10-14-3-more-great-talks-from-javaone-2016/quincy-adams.jpg)](https://www.youtube.com/watch?v=hfT2_HxOQdk)
 
 At the end of the talk, he gave the following recommendations :
 

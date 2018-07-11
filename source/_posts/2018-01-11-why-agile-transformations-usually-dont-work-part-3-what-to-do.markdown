@@ -16,7 +16,7 @@ This is the third post in a [series about making large organizations more agile]
 
 Let's summarize the previous posts. Large scale "Agile" transformation programs usually fall short of their promise. One reason is that leaders forget to provide a safe context to learn.
 
-![A kid trying to drive a donkey with a carrot and a stick](../imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-3-what-to-do/donkey-carrot-stick.jpg)
+![A kid trying to drive a donkey with a carrot and a stick]({{site.url}}/imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-3-what-to-do/donkey-carrot-stick.jpg)
 
 ## What should we do ?
 
@@ -40,7 +40,7 @@ First, I need to have a word about the workload in this section. If people are [
 
 Communication skills alone take months or years to improve. A communication training campaign can help to make the company ready to be more agile. In a previous team, new joiners used to attend a [Non-Violent Communication](https://en.wikipedia.org/wiki/Nonviolent_Communication) training. Being transparent a constructive is a foundation of an agile organization.
 
-[![Pyramid of the 5 dysfunctions of a team book"](../imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-3-what-to-do/5-dysfunctions-of-a-team.jpg)](https://www.amazon.com/Five-Dysfunctions-Team-Leadership-Fable/dp/0787960756/ref=sr_1_2?ie=UTF8&qid=1515736081&sr=8-2&keywords=five+dysfunctions+of+a+team)
+[![Pyramid of the 5 dysfunctions of a team book"]({{site.url}}/imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-3-what-to-do/5-dysfunctions-of-a-team.jpg)](https://www.amazon.com/Five-Dysfunctions-Team-Leadership-Fable/dp/0787960756/ref=sr_1_2?ie=UTF8&qid=1515736081&sr=8-2&keywords=five+dysfunctions+of+a+team)
 
 Finally, root cause analysis and problem solving skills take practice to get around. Some organizations, used to [carrots and sticks](https://en.wikipedia.org/wiki/Carrot_and_stick), have been avoiding this for years ! Good coaches can teach this to teams. People first need to learn that it's OK to look into problems and to experiment solutions though. That's where a safe environment helps.
 
@@ -54,7 +54,7 @@ People should have the means to experiment. By far the greatest experimentation 
 
 The situation is only slightly better with [management by objectives](https://en.wikipedia.org/wiki/Management_by_objectives). One of the reason is that as people start to expect their bonus, they also start to fear not having it next year ! We're back at the fear problem. There's a more direct issue with MBO though. A good experiment should be ambitious and have a high likelihood of failure. Unfortunately, people will negotiate unambitious objectives, to secure their bonus. In the end, people do far too few bold experiments and don't raise problems to safeguard their bonuses. Eventually, both people and the organization fail to learn.
 
-[![Cover of the book "Punished by rewards"](../imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-3-what-to-do/punished-by-rewards.jpg)](https://www.amazon.com/Punished-Rewards-Trouble-Incentive-Praise/dp/0618001816)
+[![Cover of the book "Punished by rewards"]({{site.url}}/imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-3-what-to-do/punished-by-rewards.jpg)](https://www.amazon.com/Punished-Rewards-Trouble-Incentive-Praise/dp/0618001816)
 
 Instead of using MBO, we need to find a different way to deal with compensation. The management 3.0 literature has plenty of ideas for that. For example :
 

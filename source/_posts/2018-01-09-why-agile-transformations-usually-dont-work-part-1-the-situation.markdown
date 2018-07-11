@@ -15,7 +15,7 @@ In [Aesop's famous tale](https://en.wikipedia.org/wiki/The_Goose_That_Laid_the_G
 
 I've seen the same pattern happen many times in the software industry. A team decides to become more agile. After a few years of continuous improvement, it shows largely above average performances. Managers start to notice and ask how the team got there, to replicate this success. Unfortunately, they don't want to wait a few years for the other teams to find their own way. As a result, an "Agile" process is copy printed to all teams. Follows only ephemeral improvement, at the same time that the initial team gets drowned in a company "Scaled Agile" initiative ...
 
-![Drawing of a street tag 'Let's all do this Agile thing !"](../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-1-the-situation/lets-all-do-this-agile-thing.jpg)
+![Drawing of a street tag 'Let's all do this Agile thing !"]({{site.url}}/imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-1-the-situation/lets-all-do-this-agile-thing.jpg)
 
 ## Examples
 
@@ -25,7 +25,7 @@ In the 60's, [Toyota](https://en.wikipedia.org/wiki/History_of_Toyota) was innov
 
 Let's think of other agile companies like Google, Apple or Spotify. Did they copy an existing Agile framework or recipe ? No, they rather learned to embrace change in their own way. The HP LaserJet team did not become more agile by sticking to best practices either, they also did it their own way.
 
-[![The cover of "A Practical Approach to Large-Scale Agile Development. How HP Transformed LaserJet FutureSmart Firmware"](../imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-1-the-situation/hp-large-scale-agile-dev.jpg)](https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726/ref=sr_1_1?ie=UTF8&qid=1515476483&sr=8-1&keywords=hp+large+scale+agile)
+[![The cover of "A Practical Approach to Large-Scale Agile Development. How HP Transformed LaserJet FutureSmart Firmware"]({{site.url}}/imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-1-the-situation/hp-large-scale-agile-dev.jpg)](https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726/ref=sr_1_1?ie=UTF8&qid=1515476483&sr=8-1&keywords=hp+large+scale+agile)
 
 
 Thinking about it, I never read a single story of how a team succeeded by sticking to method X, Y or Z.

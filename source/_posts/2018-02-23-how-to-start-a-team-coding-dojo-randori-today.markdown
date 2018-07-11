@@ -13,7 +13,7 @@ description: "A very practical guide as to how to start a Randori Coding Dojo to
 ---
 In my [previous post](/why-you-should-start-a-team-coding-dojo-randori-right-now/), I explained why you should start a team [coding dojo](http://codingdojo.org/) [Randori](http://codingdojo.org/RandoriKata/) as soon as you can. Here is a step by step guide to set one up today.
 
-![A white belt](../imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/white-belt.jpg)
+![A white belt]({{site.url}}/imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/white-belt.jpg)
 
 ## Logistics
 
@@ -71,7 +71,7 @@ As a first problem, I like the [Roman Numerals](http://codingdojo.org/kata/Roman
 *   [kata-log.rocks](http://kata-log.rocks)
 *   [The Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1519279127&sr=8-1&keywords=coding+dojo+handbook) (Where you'll also find tons of other valuable advices)
 
-[![The Coding Dojo Handbook cover](../imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1519279127&sr=8-1&keywords=coding+dojo+handbook)
+[![The Coding Dojo Handbook cover]({{site.url}}/imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?ie=UTF8&qid=1519279127&sr=8-1&keywords=coding+dojo+handbook)
 
 Whatever the topic you chose for your first session, make sure it is not too difficult.
 

@@ -14,7 +14,7 @@ description: "A description of the self development plan we practice in our team
 ---
 Maybe your company too has a development program you can use to track and organize your training path. That's already great ! It is often not perfect though. Sometimes, the initiative in itself can feel like an afterthought. Some other times, the process is completely left to the employee and his manager, with varying results, from great to forced upon everyone.
 
-{% img center /imgs/2016-04-18-how-we-decentralized-our-companys-training-program/learning.jpg A 'learning' word cloud %}
+![A 'learning' word cloud]({{site.url}}/imgs/2016-04-18-how-we-decentralized-our-companys-training-program/learning.jpg)
 
 ## How did we rebuild this program in our team
 
@@ -28,7 +28,7 @@ The idea is to try to find a win-win combinations, were employees are motivated 
 
 ## What did we came us with ?
 
-{% img center /imgs/2016-04-18-how-we-decentralized-our-companys-training-program/mentor-mentee.jpg A lion and a lion cub side by side %}
+![A lion and a lion cub side by side]({{site.url}}/imgs/2016-04-18-how-we-decentralized-our-companys-training-program/mentor-mentee.jpg)
 
 This workshop was quite effective :
 

@@ -16,7 +16,7 @@ description: "Example showing how it is simpler to use a full fledged in-memory 
 ---
 [Last week's post](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/) was about how [hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture) results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week's code sample, this was the controller. I concluded that at least, this was easier to manage. Let's see how.
 
-![Hand written 'In-memory fake' with memory replaced by a RAM board](../imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg)
+![Hand written 'In-memory fake' with memory replaced by a RAM board]({{site.url}}/imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg)
 
 This is the 7th post in [a series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/). If you haven't, you might start from [the beginning](/careless-mocking-considered-harmful/).
 
@@ -149,7 +149,7 @@ end
 
 We need to [stub out](https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da) the twitter API for most tests. We are also still using a mock to verify that the tweet is sent. Finally, as we can see from the test execution times, we are still using the database in some tests.
 
-![Screen capture of the tests execution time](../imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/test-timings.jpg)
+![Screen capture of the tests execution time]({{site.url}}/imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/test-timings.jpg)
 
 If the project grew large this would become an issue. Sadly, mocking is often the fix people jump on ...
 

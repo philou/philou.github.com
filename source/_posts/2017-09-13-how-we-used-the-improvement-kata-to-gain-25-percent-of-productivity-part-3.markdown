@@ -18,7 +18,7 @@ In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-p
 
 > Are we spending too much time on bugs ?
 
-![Bugs drawn on top of code](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg)
+![Bugs drawn on top of code]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/code-and-bugs.jpg)
 
 ## More understanding
 
@@ -26,13 +26,13 @@ In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-p
 
 To answer this question, we decided to plot the different types of tasks we had completed per sprint.
 
-[![Bar chart with the types of tasks over sprints](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg)](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg)
+[![Bar chart with the types of tasks over sprints]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks-small.jpg)]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/types-of-tasks.jpg)
 
 Think again of the velocity curve we started with. We see an almost exact correlation between story count (green bars above) and story points (blue curve below).
 
 > 💡#NoEstimates works
 
-[![Velocity graph](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg)](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg)
+[![Velocity graph]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity-small.jpg)]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/velocity.jpg)
 
 We can also see that after sprint 56, we were spending more time on bugs and improvements. Improvements are supposed to improve productivity, so we decided to focus on bugs first. Here is what we get if we compute the average number of bugs per sprint :
 
@@ -55,7 +55,7 @@ We started by listing more questions :
 * Could it be that we just got a lot better at testing ? Since sprint 56, we had been doing [regular exploratory testing](/how-we-started-exploratory-testing/). Exploratory testing sessions were very effective at finding bugs.
 * Were we paying back a bug debt ? The created versus resolved trend seemed to show so. But it could also be that we weren't testing as well as we used to !
 
-[![Created vs Resolved Bugs graph](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png)](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png)
+[![Created vs Resolved Bugs graph]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved-small.png)]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/created-vs-resolved.png)
 
 * If we were paying back a bug debt, how close were we to the end of the payback ?
 * Were we creating too many flaws in the software ?
@@ -90,7 +90,7 @@ So we did a 1 hour, fruit-powered, exploratory testing session. And we found onl
 
 A linear regression on the created vs resolved bug trend showed that we still had 15 more months to go !
 
-[![Bug trend graph](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png)](../imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png)
+[![Bug trend graph]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend-small.png)]({{site.url}}/imgs/2017-09-13-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/bug-trend.png)
 
 ## Target condition
 

@@ -13,7 +13,7 @@ description: "A story of how a team coding dojo Randori can improve team work, a
 ---
 [Coding Dojos](http://codingdojo.org/) are easy to start and have a high return on investment. They will improve everyone's technical skills. That's only the start though. Practiced as a team Randori, they will also be a tremendous boost to team work.
 
-![An Aïkidoka holding a keyboard instead of a boken](../imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/aikidoka-keyboard.jpg)
+![An Aïkidoka holding a keyboard instead of a boken]({{site.url}}/imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/aikidoka-keyboard.jpg)
 
 ## My own story
 
@@ -50,7 +50,7 @@ In a Randori, you'll be using a single machine, a wide screen and a timer. Pairs
 
 5 minutes are very short, and force people to use real baby steps. If they try to do something too big, they will not reach a stable state before the end of their turn. If their change is too complex, others will get lost, and remove the code. The pair needs to collaborate a lot for others to understand and continue in the same direction. They have to explain what they are doing, and take feedback into account as much as they write code.
 
-[![Programmers doing a randori](../imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/randori.jpg)](https://www.youtube.com/watch?v=vqnwQ3oVM1M)<div class="image-credits">From a [YouTube video](https://www.youtube.com/watch?v=vqnwQ3oVM1M) by [globo.com](http://globo.com)</div>
+[![Programmers doing a randori]({{site.url}}/imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/randori.jpg)](https://www.youtube.com/watch?v=vqnwQ3oVM1M)<div class="image-credits">From a [YouTube video](https://www.youtube.com/watch?v=vqnwQ3oVM1M) by [globo.com](http://globo.com)</div>
 
 ### Your team
 

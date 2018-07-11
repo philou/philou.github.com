@@ -15,7 +15,7 @@ Sharing what your developer job is about with others can be very frustrating. So
 
 ## The book metaphor
 
-{% img center /imgs/2016-05-23-software-is-like-writing-and-revising-a-giant-book/book.jpg An old book %}
+![An old book]({{site.url}}/imgs/2016-05-23-software-is-like-writing-and-revising-a-giant-book/book.jpg)
 
 I explain to people that writing software is not unlike writing a huge book. A book long many millions of lines. I explain that the challenge is to maintain the whole story of the book coherent. I stress how difficult this is given that no one can take the time to read the full book, that the authors come and go, and that the book is under constant heavy revision.
 

@@ -12,7 +12,7 @@ description: "4 practical tricks about how to tune algorithm without having to d
 ---
 Algorithms are *hard*, and making them fast is even harder ... But there are shortcuts that work quite often !
 
-{% img center /imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg A street panel called Short Cut Road %}
+![A street panel called Short Cut Road]({{site.url}}/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/shortcut-road.jpg)
 
 ## The Challenge
 
@@ -65,7 +65,7 @@ Again, this reduces the complexity from O(2) to O(1). Every language has variant
 
 This is called [memoization](https://en.wikipedia.org/wiki/Memoization). Some algorithms (especially recursive algorithms) repeatedly compute the same thing again and again. Spotting this pattern is an opportunity to move an algorithm out of exponential complexity. For example, [Dijsktra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) for finding the shortest path in a graph uses this technique to go from O(e<sup>n</sup>) to O(n<sup>2</sup>) complexity. If you suspect this could be helpful, your best friend is logging to trace actual parameters and results.
 
-[{% img center /imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif Dijsktra's path finding algorithm animated (from Wikipedia) %}](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif)
+[![Dijsktra's path finding algorithm animated (from Wikipedia)]({{site.url}}/imgs/2016-01-20-most-common-ways-to-speed-up-an-algorithm/Dijkstras_progress_animation.gif)](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#/media/File:Dijkstras_progress_animation.gif)
 
 A word of caution : using memoization with mutable inputs or outputs will harm your mental health.
 

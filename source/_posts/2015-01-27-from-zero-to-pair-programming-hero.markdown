@@ -12,7 +12,7 @@ description: "The story about how our software development team went from not re
 ---
 In my team at [Murex](http://www.murex.com), we've been doing Pair programming 75% of our time for the past 9 months now.
 
-[{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.resized.JPG Photo of all the team doing pair programming%}](/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.JPG)
+[![Photo of all the team doing pair programming]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.resized.JPG)]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/real-teamwork.JPG)
 
 Before I explain how we got there, let's summarize our observations :
 
@@ -47,7 +47,7 @@ Code Collaborator spamming was certainly an issue, but using Code Collaborator S
 
 _Bonus_ : As everyone was doing reviews, and that reviews of small changes are easier, submits became smaller.
 
-[{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.resized.png A screenshot of our code collaborator installation%}](/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.png)
+[![A screenshot of our code collaborator installation]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.resized.png)]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/code-collaborator.png)
 
 This was certainly an improvement, but it remained time consuming. We believed we could do better.
 
@@ -75,7 +75,7 @@ At the beginning, we were using [Lync](http://products.office.com/en-us/Lync/lyn
 
 As a result, Ahmad became productive a lot more quickly. We are not 2 sub teams focusing on their own area of expertise, but 1 single distributed team sharing everything.
 
-[{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.resized.jpg My remote pair programming setup%}](/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.jpg)
+[![My remote pair programming setup]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.resized.jpg)]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-setup.jpg)
 
 ### Improved Setup
 
@@ -85,7 +85,7 @@ Remote pair programming as such is workable, but does not feel as easy as being 
 * In order to allow eye contact, place your cam next to the window containing the video of your pair.
 * Using 2 cameras, [ManyCams](http://download.manycam.com/) and a small whiteboard allows to share drawings !
 
-[{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.resized.jpg A screenshot of my pair programming environment%}](/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.jpg)
+[![A screenshot of my pair programming environment]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.resized.jpg)]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/remote-pairing-screenshot.jpg)
 
 * We started using the [Pomodoro technique](http://pomodorotechnique.com/) for control switching. [MarinaraTimer](http://www.marinaratimer.com/) provides an online and shareable timer.
 * We also started maintaining a todo list with an online shareable editor such as [CollabEdit](http://collabedit.com/) or [Google Docs](https://docs.google.com/).
@@ -96,7 +96,7 @@ We are currently welcoming a new engineer in Beirut, and as we will be doing mor
 
 * [Saros](http://www.saros-project.org/) is an [Eclipse](https://eclipse.org/) plugin for remote concurrent and real time editing of files. Many people can edit the files at the same time. We are waiting for the [Intellij](https://www.jetbrains.com/idea/) version that is still under development
 
-[{% img center /imgs/2015-01-27-from-zero-to-pair-programming-hero/saros.resized.png A screenshot from Eclipse with Saros plugin%}](http://www.saros-project.org/screenshots)
+[![A screenshot from Eclipse with Saros plugin]({{site.url}}/imgs/2015-01-27-from-zero-to-pair-programming-hero/saros.resized.png)](http://www.saros-project.org/screenshots)
 
 * [Floobits](https://floobits.com/) is a commercial equivalent of saros. We tried it and it seems great. It's not cheap though, especially with in-house servers.
 * [Screenhero](https://screenhero.com/) is a commercial low-lag, multi cursor screen sharing tool. Unfortunately, it currently does not work behind a proxy, and so we were not able to evaluate it yet.

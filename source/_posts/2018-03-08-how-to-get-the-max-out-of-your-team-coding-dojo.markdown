@@ -15,7 +15,7 @@ If you've read my [previous posts about Team Randori Coding Dojos](/blog/categor
 
 Did you manage to setup the team [Randori coding dojo](http://codingdojo.org/RandoriKata/) as a recurring event ? Congratulations ! Your team is on the road to continuous learning and improvement. To close this series of posts, here are battle tested tricks for greatest impact. Let's boost your teamwork, your production code and a few other things.
 
-![Yoda doing the Fizz Buzz kata](../imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/yoda.jpg)
+![Yoda doing the Fizz Buzz kata]({{site.url}}/imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/yoda.jpg)
 
 ## Boost your teamwork
 
@@ -37,7 +37,7 @@ Be careful if your workplace is too competitive or if your reputation is not yet
 
 During the dojo, you might notice people who have difficulties with egoless programming. In this case, remind its principes to everyone and that you are here to learn and practice. You can also mention that this is a TDD exercice and that deleting and changing code is the way to go.
 
-[![The cover of "The psychology of computer programming"](../imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/psychology-computer-programming.jpg)](https://www.amazon.com/Psychology-Computer-Programming-Silver-Anniversary/dp/0932633420)
+[![The cover of "The psychology of computer programming"]({{site.url}}/imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/psychology-computer-programming.jpg)](https://www.amazon.com/Psychology-Computer-Programming-Silver-Anniversary/dp/0932633420)
 
 ## Going further
 

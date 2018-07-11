@@ -20,7 +20,7 @@ A lot has already been written (and discussed) about these two approaches. I mys
 
 That's the reason why I wrote this post. This is the main difference I found between my style and my pair's. Let me explain.
 
-{% img center /imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg Top-Down vs Bottom-Up %}
+![Top-Down vs Bottom-Up]({{site.url}}/imgs/2016-09-20-flavours-of-tdd/topdown-vs-bottomup.jpg)
 
 ### Top-Down
 
@@ -28,7 +28,7 @@ Doing TDD top-down means starting with high level end to end tests, implementing
 
 Here is another example, from coding dojos this time. Having had success with the top-down approach during previous dojos, we once intentionally tried to code [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#) using a top-down approach. We did so by writing high level tests that were checking special patterns (gliders ...). That was a nightmare ! It felt like trying to reverse engineer the rules of the game from real use cases. It did not bring us anywhere.
 
-{% img center /imgs/2016-09-20-flavours-of-tdd/glider.gif Conway's game of life gliders %}
+![Conway's game of life gliders]({{site.url}}/imgs/2016-09-20-flavours-of-tdd/glider.gif)
 
 ### Bottom-Up
 
@@ -57,6 +57,6 @@ It's possible to intentionally practice this in coding dojos as well. Most kata 
 
 If during the dojo, you've just written a test, suddenly realize that it won't be easy to get it passing, and that you've got the elements spread out in your code, this is the time ! Comment the test, get the green bar, refactor, uncomment the test, try to make it pass, repeat ... Eventually, you'll have all the bricks to make it easy to pass your test.
 
-{% img center /imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly %}
+![Cargo Cult : People thought that by building something that looks like a plane, they would be able to fly]({{site.url}}/imgs/2016-09-20-flavours-of-tdd/cargo-cult.jpg)
 
 Some might say this is not 'pure' TDD, but that sounds like cargo cult to me ! As long as you make sure you are not building useless stuff, and that you keep the feedback loop as short as possible, you're on the right track.

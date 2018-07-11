@@ -18,7 +18,7 @@ A team of programmers inherits a piece of code from one of their bosses. They fi
 
 ### The Antipattern
 
-{% img center /imgs/2014-08-10-the-holy-code-antipattern/grenade.jpg A picture from the Monty Python's Holy Grail movie featuring the holy hand grenade of antioch %}
+![A picture from the Monty Python's Holy Grail movie featuring the holy hand grenade of antioch]({{site.url}}/imgs/2014-08-10-the-holy-code-antipattern/grenade.jpg)
 
 As this piece of code seems too complex to be maintained by a team of simple programmers, as the boss, just forbid them :
 

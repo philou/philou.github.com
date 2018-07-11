@@ -20,7 +20,7 @@ We had gone through the first phase of the improvement kata : set the end goal.
 
 Time to start the second phase : Understand.
 
-![Drawing of a question mark transforming into a light bulb](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/question-light.jpeg)
+![Drawing of a question mark transforming into a light bulb]({{site.url}}/imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/question-light.jpeg)
 
 ## Understand
 
@@ -34,7 +34,7 @@ We started with available data : story points and velocity. For sure this is a p
 
 Here is our velocity curve over 2 years.
 
-[![Velocity graph](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg)](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg)
+[![Velocity graph]({{site.url}}/imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-small.jpg)]({{site.url}}/imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity.jpg)
 
 It's obvious that something changed. There are 2 parts to this graph. The velocity dropped between sprint 54 and 16.01. That's a clue that our gut feeling was not completely wrong. Our productivity did change.
 
@@ -42,7 +42,7 @@ It's obvious that something changed. There are 2 parts to this graph. The veloci
 
 Our first hypothesis was that team members turnover was the cause. As with any team, some people came, and some people left. Let's superpose the man days and velocity curves.
 
-[![Velocity vs Manpower graph](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower-small.jpg)](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower.jpg)
+[![Velocity vs Manpower graph]({{site.url}}/imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower-small.jpg)]({{site.url}}/imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/velocity-vs-manpower.jpg)
 
 That could only explain _part_ of the problem !
 
@@ -74,7 +74,7 @@ It was the first time we tried the improvement kata. More than that, we did not 
 
 To summarize, we felt a bit lost, we had gathered data from here and there, and we did not know what to look at next. On top of that, the quality of the data we were collecting was not great. We were wondering if we would get anything out of these investigations.
 
-[![The cover of the book 'The First 20 Hours'](../imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/the-first-20-hours.jpg)](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours)
+[![The cover of the book 'The First 20 Hours']({{site.url}}/imgs/2017-09-12-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/the-first-20-hours.jpg)](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1483258282&sr=8-1&keywords=the+first+20+hours)
 
 It felt a bit like when I did the [20 hours experiment to learn anything](/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/). We did exactly what had worked with the learning experiment : we pushed through !
 

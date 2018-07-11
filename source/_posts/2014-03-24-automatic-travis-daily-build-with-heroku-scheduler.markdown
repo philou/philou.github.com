@@ -25,4 +25,4 @@ Details are in the [README](https://github.com/philou/daily-travis/blob/master/R
 
 @Travis : Thanks again for your service.
 
-{% img center /imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg I love Travis logo %}
+![I love Travis logo]({{site.url}}/imgs/2014-03-24-automatic-travis-daily-build-with-heroku-scheduler/travis-ci.jpeg)

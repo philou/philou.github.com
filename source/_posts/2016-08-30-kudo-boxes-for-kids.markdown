@@ -17,7 +17,7 @@ At work, we've been using [Kudo Boxes](https://management30.com/practice/intrins
 
 Why not try the same thing at home ? During the summer holidays, we've build kudo boxes for everyone in the family.
 
-{% img center /imgs/2016-08-30-kudo-boxes-for-kids/kudo-box.jpg Our family Kudo Box %}
+![Our family Kudo Box]({{site.url}}/imgs/2016-08-30-kudo-boxes-for-kids/kudo-box.jpg)
 
 It's a nice and easy way to express gratitude for any good stuff our kids do. The great thing is that it's cheap, it's easy to carry cards around and to hand one out at any moment.
 
@@ -29,7 +29,7 @@ To summarize, it seems it brought a lot of joy and love in the house.
 
 ## How we started ?
 
-{% img center /imgs/2016-08-30-kudo-boxes-for-kids/typical-kudo-box.jpg The typical employee's kudo box, as can be found on the management 3.0 website %}
+![The typical employee's kudo box, as can be found on the management 3.0 website]({{site.url}}/imgs/2016-08-30-kudo-boxes-for-kids/typical-kudo-box.jpg)
 
 They are many ways to build a kudo box. The simplest way might be to get an old shoe box, and to cut a hole in the cover. We bought a wooden box with four drawers, and spent some time all together to decorate it. This in itself was already fun.
 
@@ -39,4 +39,4 @@ We started using simple pieces of paper as kudo cards, but I later downloaded an
 
 An unexpected, but great, side effect is that my spouse and I started to get kudos as well ! It's really nice to receive a word from your kids. For example, here is a drawing I got from my daughter.
 
-{% img center /imgs/2016-08-30-kudo-boxes-for-kids/kudo-drawing.jpg A nice drawing from my daughter that I found in my kudo box %}
+![A nice drawing from my daughter that I found in my kudo box]({{site.url}}/imgs/2016-08-30-kudo-boxes-for-kids/kudo-drawing.jpg)

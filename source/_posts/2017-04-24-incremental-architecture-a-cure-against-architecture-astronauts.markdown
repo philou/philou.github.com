@@ -17,7 +17,7 @@ When I was asked to re-engineer the 'wizards UI', I paused my coding to design s
 
 That's how I started to look for another way to design software. At about the same time the [eXtreme Programming book](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming) fell into my hands. That's where I discovered the idea of incremental design and architecture.
 
-[![Front cover of the first edition of the XP book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg)](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming)
+[![Front cover of the first edition of the XP book]({{site.url}}/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg)](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&qid=1493096057&sr=8-3&keywords=extreme+programming)
 
 ## What is Incremental Archi
 
@@ -53,7 +53,7 @@ In all the other cases (and that means most of the time), here is what you get :
 * That in turn, will keep your code simpler, decreasing time to release new features
 * As change is built-in, you'll be able to improve your architecture in ways you could not have imagined from the start !
 
-[![Front cover of the Art of Agile Software Development book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493096137&sr=1-1&keywords=the+art+of+agile+development)
+[![Front cover of the Art of Agile Software Development book]({{site.url}}/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493096137&sr=1-1&keywords=the+art+of+agile+development)
 
 If you cannot see how this could possibly work ? Read on !
 
@@ -65,7 +65,7 @@ As I said earlier, incremental architecture emerged from eXtreme Programming. It
 
 Don't expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !
 
-[![Front cover of the Martin Fowler's refactoring book](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493096197&sr=1-1&keywords=fowler+refactoring)
+[![Front cover of the Martin Fowler's refactoring book]({{site.url}}/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1493096197&sr=1-1&keywords=fowler+refactoring)
 
 ### Architecture Vision
 
@@ -91,7 +91,7 @@ Obviously, you should think about these questions up-front. Hopefully, there are
 
 [Unix had the answer](https://en.wikipedia.org/wiki/Unix_philosophy) : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.
 
-[![Ken Thompson and Dennis Ritchie, the creators of Unix](../imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg)](https://en.wikipedia.org/wiki/Unix_philosophy)<div class="image-credits">Photo from [WikiMedia](https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg)</div>
+[![Ken Thompson and Dennis Ritchie, the creators of Unix]({{site.url}}/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg)](https://en.wikipedia.org/wiki/Unix_philosophy)<div class="image-credits">Photo from [WikiMedia](https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg)</div>
 
 The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road ... without the safety !
 

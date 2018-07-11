@@ -12,7 +12,7 @@ description: "How we managed to self-organized the hiring in our team"
 ---
 Let me tell you a typical hiring story. A bit more than 10 years ago, I was contractor at a bank on a C++ front office application. The system had initially been well engineer, but it had been ~~stuffed together~~ merged with another system that had a completely different architecture. Ha, and there were no automated tests. As you'd guess, we had quite our dose of bugs, and maintaining this application was not easy.
 
-{% img center /imgs/2016-03-21-make-hiring-everyones-business/now-hiring.jpg A 'Now Hiring' sign %}
+![A 'Now Hiring' sign]({{site.url}}/imgs/2016-03-21-make-hiring-everyones-business/now-hiring.jpg)
 
 The manager wanted to hire a C++ programmer to beef up the team. Along with the division's architect he was conducting interviews to find just that guy. A few weeks later, he found a known C++ & Windows local expert. A few weeks later, the team unanimously declared that we could not work with him because he was both pretentious and incompetent.
 
@@ -33,7 +33,7 @@ As I already explained in a [previous post](/stop-feeling-like-a-kid-everytime-y
 
 In order to fix that, we started a workshop for 1 hour per day with a sub group of the team. We started with a brainstorming, then we voted, and finally presented our proposition to the rest of the team, which actually validated it. The whole thing lasted for one week (5 hours).
 
-[{% img center /imgs/2016-03-21-make-hiring-everyones-business/dilbert.jpg A Dilbert cartoon about hiring based on internet profile %}](http://dilbert.com)
+[![A Dilbert cartoon about hiring based on internet profile]({{site.url}}/imgs/2016-03-21-make-hiring-everyones-business/dilbert.jpg)](http://dilbert.com)
 
 ## What we decided for hiring
 

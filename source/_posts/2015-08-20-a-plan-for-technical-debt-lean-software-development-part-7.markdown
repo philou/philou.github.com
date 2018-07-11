@@ -16,7 +16,7 @@ The sad truth :
 
 > The [technical debt](http://en.wikipedia.org/wiki/Technical_debt) metaphor does not help me to fix it.
 
-{% img center /imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/debt.jpg "A desperate man counting his debts" %}
+![A desperate man counting his debts]({{site.url}}/imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/debt.jpg)
 
 Here is my modest 2€ plan about how to try to get out of this.
 
@@ -32,7 +32,7 @@ They are very good reason why we cannot measure how much the technical debt cost
 
 No surprise it's difficult to convince anyone else why fixing your debt is a good investment.
 
-[{% img center /imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/dilbert.jpg "A dilbert cartoon about a programmer killed by technical debt" %}](http://www.dilbert.com)
+[![A dilbert cartoon about a programmer killed by technical debt]({{site.url}}/imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/dilbert.jpg)](http://www.dilbert.com)
 
 ## The Plan
 
@@ -122,7 +122,7 @@ We are thinking of writing a sonar plugin to keep track of this technical debt r
 
 We just started using those, and I cannot give enough feedback for the moment. I bet not enough @Waste items will be entered though ... again, it might just be too boring
 
-[{% img center /imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/sonar-sqale.jpg "A screenshot of Sonar Qube Sqale technical debt plugin" %}](http://www.sonarqube.org/)
+[![A screenshot of Sonar Qube Sqale technical debt plugin]({{site.url}}/imgs/2015-08-20-a-plan-for-technical-debt-lean-software-development-part-7/sonar-sqale.jpg)](http://www.sonarqube.org/)
 
 ## Idea 3 : Sonar and IDE Plugins
 

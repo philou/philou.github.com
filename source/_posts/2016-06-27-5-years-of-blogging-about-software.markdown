@@ -19,7 +19,7 @@ description: "A summary of where I stand after 5 years of blogging about softwar
 
 6 months ago, after reading [Soft Skills: The software developer's life manual](https://www.amazon.com/Soft-Skills-software-developers-manual/dp/1617292397/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1467000033&sr=8-1&keywords=soft+skills), I set up the practice of writing at least one article per week, and here is my (very encouraging) graph of sessions since then:
 
-{% img center /imgs/2016-06-27-5-years-of-blogging-about-software/analytics.jpg The steadily increase curve of the sessions on my blog per month %}
+![The steadily increase curve of the sessions on my blog per month]({{site.url}}/imgs/2016-06-27-5-years-of-blogging-about-software/analytics.jpg)
 
 # Excuses Why Not To Blog
 
@@ -61,7 +61,7 @@ Once you've decided that you want to blog, starting should not be an issue.
 
 There are a lot of blogging platforms out there. For programmers, I would recommend a few though :
 
-{% img center /imgs/2016-06-27-5-years-of-blogging-about-software/platforms.jpg Logos of my recommended blogging platforms %}
+![Logos of my recommended blogging platforms]({{site.url}}/imgs/2016-06-27-5-years-of-blogging-about-software/platforms.jpg)
 
 Platform | Pros | Cons
 ----------|------|-----

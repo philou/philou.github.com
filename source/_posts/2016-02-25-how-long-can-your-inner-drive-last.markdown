@@ -12,7 +12,7 @@ description: "Discover how long your motivation can hold, and take this into acc
 ---
 Any software project (job, startup or side project) will require some time before one can get real feedback from real users.
 
-{% img center /imgs/2016-02-25-how-long-can-your-inner-drive-last/exhausted-runner.jpg An exhausted runner %}
+![An exhausted runner]({{site.url}}/imgs/2016-02-25-how-long-can-your-inner-drive-last/exhausted-runner.jpg)
 
 ## The hard truth
 
@@ -32,7 +32,7 @@ I once started a [side project](http://philippe.bourgau.net/rip-mes-courses-dot-
 
 ### Use Lean Startup techniques
 
-[{% img center /imgs/2016-02-25-how-long-can-your-inner-drive-last/ux-for-lean-startups.jpg The cover of the book 'UX For Lean Startups' %}](http://www.amazon.com/UX-Lean-Startups-Experience-Research/dp/1449334911)
+[![The cover of the book 'UX For Lean Startups']({{site.url}}/imgs/2016-02-25-how-long-can-your-inner-drive-last/ux-for-lean-startups.jpg)](http://www.amazon.com/UX-Lean-Startups-Experience-Research/dp/1449334911)
 
 [Lean Startup](http://theleanstartup.com/) is all about getting constant user feedback, even before having any user. I especially liked the book [UX for Lean Startups](http://www.amazon.com/UX-Lean-Startups-Experience-Research/dp/1449334911) that explains all the ways to get feedback from the cheapest (interviews) to the most expensive (HTML mockups) without actually coding anything
 

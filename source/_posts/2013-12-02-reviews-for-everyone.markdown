@@ -16,7 +16,7 @@ I have already been doing code reviews in other jobs, but the experience has bee
 
 * Even with review tools, they involved too much manual efforts
 * I've been in jobs with reinforcing loops :
-{% img center /imgs/2013-12-02-reviews-for-everyone/graph.png Schema of a vicious circle : poor quality, bugs, not enough time, poor quality ...  %}
+![Schema of a vicious circle : poor quality, bugs, not enough time, poor quality ... ]({{site.url}}/imgs/2013-12-02-reviews-for-everyone/graph.png)
 In this kind of environment, even mandatory code reviews tend to become a useless "tick in the box" operation
 * Often they are used as a control mechanism rather than a share tool
 

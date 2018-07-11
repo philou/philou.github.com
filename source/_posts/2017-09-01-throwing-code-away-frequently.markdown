@@ -15,7 +15,7 @@ Here is the main feedback I got about my previous post [eXtreme eXtreme Programm
 
 > What do you actually mean by throwing code away ? Does it mean stoping unit testing and refactoring ?
 
-![A drawing of a shredder destroying some code](../imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg)
+![A drawing of a shredder destroying some code]({{site.url}}/imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg)
 
 So I guess it deserves a bit of explanation.
 
@@ -44,7 +44,7 @@ Wait a minute, isn't that [cowboy coding](https://en.wikipedia.org/wiki/Cowboy_c
 
 ## How to make it work
 
-[![A graph with all the practices from my previous article eXtreme eXtreme Programming](../imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg)](/extreme-extreme-programming-2017/)
+[![A graph with all the practices from my previous article eXtreme eXtreme Programming]({{site.url}}/imgs/2017-09-01-throwing-code-away-frequently/xxp.jpg)](/extreme-extreme-programming-2017/)
 
 ### How to ensure quality without unit tests ?
 
@@ -54,7 +54,7 @@ TDD and unit testing is a cornerstone of XP. If we remove it, we need something 
 
 What about Remote ? Martin Fowler [explains](https://martinfowler.com/articles/remote-or-co-located.html) that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.
 
-[![People vs methodology impact on productivity](../imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg)](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)<div class="image-credits">Photo from Steve McConnell on [Construx](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)</div>
+[![People vs methodology impact on productivity]({{site.url}}/imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg)](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)<div class="image-credits">Photo from Steve McConnell on [Construx](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)</div>
 
 Finally, the Cucumber team [reported](https://cucumber.io/blog/2015/12/21/the-mob-rules-ok) that Mob Programming works well for remote teams.
 

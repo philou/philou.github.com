@@ -36,7 +36,7 @@ As its name suggests it, [Personal Kanban](http://personalkanban.com) is simply 
 
 In our team, [TAYARA Bilal](http://bilal.eltayara.net) had already experimented the approach and asked to JIRA admins to create us a custom project for our todo lists. I piggybacked on it and created my own kanban board. Here is what it looks like.
 
-{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/board.png Screenshot of the full JIRA board %}
+![Screenshot of the full JIRA board]({{site.url}}/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/board.png)
 
 ### Mixing Project Stories And Personnal Tasks
 
@@ -50,13 +50,13 @@ This makes it possible to see *all* of my work at a glance on the same board.
 
 ### Work In Progress Limit
 
-{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/wip.png Zoom on the wip constraints of the JIRA column %}
+![Zoom on the wip constraints of the JIRA column]({{site.url}}/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/wip.png)
 
 JIRA allows WIP limits, warning me with a red background when I am multitasking or when I am getting late on my tasks
 
 ### Color Conventions
 
-{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/color-cards.png Different colors of JIRA cards %}
+![Different colors of JIRA cards]({{site.url}}/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/color-cards.png)
 
 JIRA makes it possible to assign different colors to cards, for example
 
@@ -68,7 +68,7 @@ JIRA makes it possible to assign different colors to cards, for example
 
 ### Swimlanes
 
-{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/swimlanes.png Closup on a JIRA swimlane %}
+![Closup on a JIRA swimlane]({{site.url}}/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/swimlanes.png)
 
 JIRA has swimlanes, separating project from personal tasks
 
@@ -76,7 +76,7 @@ JIRA has swimlanes, separating project from personal tasks
 
 An extra bonus with JIRA Kanban board is that they have reports ! Here is my cumulative flow diagram for my first week of usage :
 
-{% img center /imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/cumulative-flow.png A screenshot of the JIRA cumulative flow diagram %}
+![A screenshot of the JIRA cumulative flow diagram]({{site.url}}/imgs/2015-08-17-bye-bye-programmers-todo-list-hello-personnal-kanban-on-jira/cumulative-flow.png)
 
 ### Configuration
 

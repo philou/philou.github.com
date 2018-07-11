@@ -15,7 +15,7 @@ description: "Second post of a series about applying the Mikado Method for large
 ---
 In the [previous post](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/), I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge [Work In Progress](https://en.wikipedia.org/wiki/Work_in_process). Let's see how programmers deal with these problems.
 
-![A drawing of a wipe, with the text "Mind your WIP"](../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg)
+![A drawing of a wipe, with the text "Mind your WIP"]({{site.url}}/imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg)
 
 ## The mikado method algorithm
 
@@ -52,13 +52,13 @@ Have a look at [these blog posts](http://philippe.bourgau.net/how-we-used-the-im
 
 Granted, the Mikado method and the improvement kata look similar. They are in fact more than similar. The improvement kata does not prescribe how you should fix your impediments. What's not explicit is that we can use it recursively to fix impediments ! That makes it almost identical to the Mikado Method, but for organization instead of code. It won't be a surprise to know that some companies have used the improvement kata for that. For example, [HP used it to drive its Laser Jet team transformation](https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726?pd_rd_wg=UdZ7n&pd_rd_r=ea4d5912-c825-432a-b633-ac6822a475f4&pd_rd_w=rQ1LZ&ref_=pd_gw_psimh&pf_rd_r=0N5KT332R3TD0DWK8FM0&pf_rd_p=a1e8e44e-a6a8-5785-afd0-7f174f0d74f9). Others have already used the [Mikado Method for organization transformation](http://nomad8.com/organisational-change-with-mikado/).
 
-[![Extract of the orga mikado graph used by the Sandy Mamoli](../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg)](http://nomad8.com/organisational-change-with-mikado/)<div class="image-credits">[Original Post](http://nomad8.com/organisational-change-with-mikado/) by Sandy Mamoli</div>
+[![Extract of the orga mikado graph used by the Sandy Mamoli]({{site.url}}/imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg)](http://nomad8.com/organisational-change-with-mikado/)<div class="image-credits">[Original Post](http://nomad8.com/organisational-change-with-mikado/) by Sandy Mamoli</div>
 
 Suppose your organization wants to move to full [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration). It could start by trying to integrate all their devs in 10 minutes on a small group of teams. If it works, fine, other large teams can try it as well. Let's see what to do if it fails though. Thanks to a [retrospective](/blog/categories/retrospectives/) teams understand that they need to master CI themselves first. In this case, they could revert large scale CI, and have one of the teams try to do continuous integration. If it works, fine, another team can try it too. If it does not, they'll do a post-mortem of some sort to understand the root issue, and work on it. For example, here the main impediment could be a coupled architecture. The fun thing would be to apply the Mikado Method to do this refactoring 😉.
 
 As with the Mikado Method, it is possible to draw an organization change Mikado graph along the way :
 
-![The mikado graph for the story above](../imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png)
+![The mikado graph for the story above]({{site.url}}/imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png)
 
 The graph is a living artifact. As we try and revert new experiments, we should expand and collapse the graph. This creates a global and shared view of the state of the change. Needless to say that this is great for collaboration.
 

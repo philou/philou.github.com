@@ -24,7 +24,7 @@ Our team at work is already rather agile : we're using a blend of XP and Scrumba
 
 We started by doing [delegation poker](https://management30.com/product/delegation-poker/), we created a [delegation board](https://management30.com/product/workouts/delegation-employee-engagement/), and set out to move all cards we could to the right side of the board.
 
-[{% img center /imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/delegation-board.jpg Our trello delegation board %}](/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/delegation-board-large.jpg)
+[![Our trello delegation board]({{site.url}}/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/delegation-board.jpg)]({{site.url}}/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/delegation-board-large.jpg)
 
 We spotted the following topics that could be more self organized
 
@@ -42,6 +42,6 @@ We decided to tackle vacations first, because it seemed easy. We did a quick bra
 * I'll validate anything asked !
 * Our internal system allows to check the other team member's vacations, so everyone in the team is responsible to check that there will always be at least 2 people at work before taking a day off
 
-[{% img center /imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.jpg Screenshot of our vacation dashboard %}](/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.png)
+[![Screenshot of our vacation dashboard]({{site.url}}/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.jpg)]({{site.url}}/imgs/2016-03-12-stop-feeling-like-a-kid-everytime-you-ask-a-day-off/mxopal.png)
 
 It's been 6 months, and it's been working like a charm. I think it made everything simpler once we had a clear rule about when vacations were OK or not.

@@ -16,7 +16,7 @@ EDIT 2017-03-03 : This article is old, I am now using an [improved Jira Personna
 
 Productive programmers maintain a todo list. No Exception.
 
-{% img center /imgs/2015-04-20-real-programmers-have-todo-lists/programmer.jpg A programmer concentrating on his code %}
+![A programmer concentrating on his code]({{site.url}}/imgs/2015-04-20-real-programmers-have-todo-lists/programmer.jpg)
 
 ## Why is it so important
 
@@ -43,7 +43,7 @@ Maintaining all this in a todo list frees us some brainpower !
 
 Quite a lot in fact :
 
-{% img center /imgs/2015-04-20-real-programmers-have-todo-lists/check.gif A tick in a check box %}
+![A tick in a check box]({{site.url}}/imgs/2015-04-20-real-programmers-have-todo-lists/check.gif)
 
 - It's satisfying to check something as done !
 - Our programming gets better, because we can fully concentrate on it
@@ -63,7 +63,7 @@ There are many ways to maintain a todo list. Which to choose is not as important
 
 For example, I am now using a simple TODAY ... TOMORROW ... LATER ... scheme. I tend to avoid deep hierarchies as it gets in the way of my second principle. I like to keep DONE items visible to keep track of what I did for up to 1 day.
 
-{% img center /imgs/2015-04-20-real-programmers-have-todo-lists/org-mode.jpg A screen shot of my org-mode todo list %}
+![A screen shot of my org-mode todo list]({{site.url}}/imgs/2015-04-20-real-programmers-have-todo-lists/org-mode.jpg)
 
 Here is a list of tools you can use to set up a todo list :
 

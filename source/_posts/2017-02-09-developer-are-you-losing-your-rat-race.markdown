@@ -14,7 +14,7 @@ description: "A portrait of the software development job landscape, its over-rel
 
 Are we building our own ~~maze~~ self defeating landscape by our exacerbated focus on technology ? Let me explain.
 
-{% img center /imgs/2017-02-09-developer-are-you-losing-your-rat-race/rat-maze.jpg A rat in a maze %}
+![A rat in a maze]({{site.url}}/imgs/2017-02-09-developer-are-you-losing-your-rat-race/rat-maze.jpg)
 
 ## The context
 
@@ -71,7 +71,7 @@ Here's my try : the next time I'll polish my resume, I'll try to put forward my 
 
 ### Independence
 
-[{% img center /imgs/2017-02-09-developer-are-you-losing-your-rat-race/the-end-of-jobs.jpg Cover of the book 'The End of Jobs' %}](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs)
+[![Cover of the book 'The End of Jobs']({{site.url}}/imgs/2017-02-09-developer-are-you-losing-your-rat-race/the-end-of-jobs.jpg)](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs)
 
 Being your own boss could be a solution in the long term. I recently listened to [The End of Jobs](https://www.amazon.com/End-Jobs-Meaning-9-5/dp/1619613352/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1486713381&sr=8-1&keywords=the+end+of+jobs) in which the author explains that entrepreneurship is an accessible alternative these days, and that like any skill, it's learnable. The catch is that there are no schools, no diplomas, and that it seems a lot riskier in the short run. Despite that, he makes the point that the skills you'll learn makes it quite safe in the long run !
 

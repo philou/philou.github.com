@@ -9,7 +9,7 @@ categories:
 keywords: "fruits, fruit basket, weekly fruit basket, do it yourself fruit basket"
 description: "My story about how we setup a weekly fruit basket at work, without waiting for the company"
 ---
-[{% img center /imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruit.jpg "A multi-fruit sandwich" %}](http://www.groupe-patus.fr/wp-content/uploads/2014/03/07-Beautiful-Fruit-Wallpapers.jpg)
+[![A multi-fruit sandwich]({{site.url}}/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruit.jpg)](http://www.groupe-patus.fr/wp-content/uploads/2014/03/07-Beautiful-Fruit-Wallpapers.jpg)
 
 If you're interested in agile software development, just read Kent Beck's [Extreme Programming Explained : Embrace Change 1st edition](http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/B00CF6EJG8/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1417609208&sr=8-1&keywords=embrace+change+1st+edition). It's only 200 pages, it was written in 1999, but it's still tremendously relevent, and it's got the highest ratio of information per page on the subject.
 
@@ -29,7 +29,7 @@ As my company already provides free drinks, my first attempt was to asked for we
 * Hold the accounting public and visible in your wiki for example
 * Repeat every monday
 
-{% img center /imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruits-basket.jpg "Our fruit basket at my desk" %}
+![Our fruit basket at my desk]({{site.url}}/imgs/2014-12-17-how-to-setup-a-weekly-fruit-basket-in-no-time/fruits-basket.jpg)
 
 ### Then, verify that it is sustainable
 

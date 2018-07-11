@@ -11,7 +11,7 @@ description: "The pitfalls and a guide about how to write performance stories in
 ---
 If you're having difficulties writing good performance related stories for your project, that's no surprise ! We've been through the same troubles and we found a way that works a lot better.
 
-{% img center /imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg A Mb speed counter %}
+![A Mb speed counter]({{site.url}}/imgs/2016-01-08-how-to-write-good-performance-stories/speed.jpg)
 
 ## Solution 1 : [Performance is a feature](/performance-is-a-feature/)
 
@@ -48,7 +48,7 @@ It's now estimable, we know what it's there for. It's obviously not enough thoug
 
 ## Embrace uncertainty
 
-{% img center /imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg A Maserati engine %}
+![A Maserati engine]({{site.url}}/imgs/2016-01-08-how-to-write-good-performance-stories/engine.jpg)
 
 The fact is that in our context, getting better performances is *hard* :
 

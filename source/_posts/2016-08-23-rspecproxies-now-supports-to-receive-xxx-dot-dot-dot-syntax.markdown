@@ -13,7 +13,7 @@ categories:
 keywords: "RSpec, Mocks, RSpec Mocks, Test, Test Proxies, Ruby, TDD, RSpecProxies"
 description: "Features of the new v1.0 of RSpecProxies, a gem that simplifies RSpec mocking with proxies"
 ---
-{% img center /imgs/2016-08-23-rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/test_probes.jpg Hardware test probes %}
+![Hardware test probes]({{site.url}}/imgs/2016-08-23-rspecproxies-now-supports-to-receive-xxx-dot-dot-dot-syntax/test_probes.jpg)
 
 Pure mocks are dangerous. They let defect go through, give a false sense of security and are difficult to maintain.
 

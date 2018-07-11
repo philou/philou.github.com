@@ -14,7 +14,7 @@ There is a rather widespread [TDD](https://en.wikipedia.org/wiki/Test-driven_dev
 
 The same goes with the test names. When a test fails, a readable test name in the report simplifies the diagnostic. Some testing frameworks allow the use of plain strings as test names. In others, people use [underscores](https://en.wikipedia.org/wiki/Naming_convention_(programming)#Multiple-word_identifiers) instead of [CamelCase](https://en.wikipedia.org/wiki/Camel_case) in test names.
 
-![RubyMine test report](../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/rubymine.jpg)
+![RubyMine test report]({{site.url}}/imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/rubymine.jpg)
 
 ## A 4th step in TDD: Fail, *Fail better*, Pass, Refactor
 
@@ -34,7 +34,7 @@ I lived the same kind of story with wrong failures many times. The test fails, b
 
 The idea is to make sure to have good enough error messages before moving on to the "pass" step.
 
-[![Cover of GOOSGT](../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
+[![Cover of GOOSGT]({{site.url}}/imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
 
 There's nothing groundbreaking about this practice. It's not a step as explicit as the other 3 steps of TDD. The first place I read about this idea was in [Growing Object Oriented Software Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests).
 
@@ -160,4 +160,4 @@ Providing good error messages is a small effort compared to unit testing in gene
 
 Spread the word ! Leave comments in code reviews, demo the practice to your pair buddy. Prepare a team coding dojo about custom assertion matchers. Discuss the issue in a retro !
 
-!['Just Do It' written on a board](../imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/just-do-it.jpg)
+!['Just Do It' written on a board]({{site.url}}/imgs/2017-05-29-speed-up-the-tdd-feedback-loop-with-better-assertion-messages/just-do-it.jpg)

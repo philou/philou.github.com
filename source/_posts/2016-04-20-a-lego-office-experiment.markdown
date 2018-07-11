@@ -25,14 +25,14 @@ I wrote about Lego office in a previous post, as a concept and a set of material
 
 ## Our experiment
 
-{% img center /imgs/2016-04-20-a-lego-office-experiment/empty-meeting-area.jpg Meeting area in the empty office %}
-{% img center /imgs/2016-04-20-a-lego-office-experiment/empty-work-area.jpg Work area in the empty office %}
+![Meeting area in the empty office]({{site.url}}/imgs/2016-04-20-a-lego-office-experiment/empty-meeting-area.jpg)
+![Work area in the empty office]({{site.url}}/imgs/2016-04-20-a-lego-office-experiment/empty-work-area.jpg)
 
 The last floor of our building in Paris has a nice (really) open space area with rolling tables that we could use. We moved all the team there for one week. As we don't have laptops with Wifi, we simply asked for enough power and network plugs.
 
-{% img center /imgs/2016-04-20-a-lego-office-experiment/setup-work-area.jpg Setup work area %}
-{% img center /imgs/2016-04-20-a-lego-office-experiment/setup-meeting-area.jpg Setup meeting area %}
-{% img center /imgs/2016-04-20-a-lego-office-experiment/setup-rest-area.jpg Setup rest area %}
+![Setup work area]({{site.url}}/imgs/2016-04-20-a-lego-office-experiment/setup-work-area.jpg)
+![Setup meeting area]({{site.url}}/imgs/2016-04-20-a-lego-office-experiment/setup-meeting-area.jpg)
+![Setup rest area]({{site.url}}/imgs/2016-04-20-a-lego-office-experiment/setup-rest-area.jpg)
 
 The place is large enough to have dedicated rest and meeting space. We managed to create a visio setup using our build monitor. We even had a remote lunch once, which we should repeat more often !
 
@@ -40,7 +40,7 @@ The place is large enough to have dedicated rest and meeting space. We managed t
 
 Obviously, this was a quick experiment, nothing like a fully architectured Lego workspace, still it helped us to discover issues and blocking points. It turns out that cables *are* an issue !
 
-{% img center /imgs/2016-04-20-a-lego-office-experiment/cables.jpg Cables on the floor %}
+![Cables on the floor]({{site.url}}/imgs/2016-04-20-a-lego-office-experiment/cables.jpg)
 
 After getting some feedback throughout the company, it turns out that some developers would never trade their high end connected desktop workstation for a Wifi laptop. Our C++ build can be pretty CPU and network intensive ... I guess that means that a real Lego office might require one of the following :
 

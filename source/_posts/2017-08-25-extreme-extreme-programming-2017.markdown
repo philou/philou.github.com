@@ -63,7 +63,7 @@ This is how to drive the system evolution. Instead of relying on projects, backl
 
 Incremental improvements, in either product or organization, is not enough. As [Tim Hardford](http://timharford.com/) explained in [Adapt](https://www.amazon.com/gp/product/1250007550/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1250007550&linkCode=as2&tag=pbourgau-20&linkId=1f1a29f9454328c6606e12b40399eb06), survival requires testing completely new ideas. [Lean startup](https://en.wikipedia.org/wiki/Lean_startup) & [hackathons](https://en.wikipedia.org/wiki/Hackathon) experiments can do just that.
 
-[![The cover of the Adapt book](../imgs/2017-08-25-extreme-extreme-programming-2017/adapt.jpg)](https://www.amazon.com/gp/product/1250007550/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1250007550&linkCode=as2&tag=pbourgau-20&linkId=1f1a29f9454328c6606e12b40399eb06)
+[![The cover of the Adapt book]({{site.url}}/imgs/2017-08-25-extreme-extreme-programming-2017/adapt.jpg)](https://www.amazon.com/gp/product/1250007550/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1250007550&linkCode=as2&tag=pbourgau-20&linkId=1f1a29f9454328c6606e12b40399eb06)
 
 ### [Improvement kata](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/)
 

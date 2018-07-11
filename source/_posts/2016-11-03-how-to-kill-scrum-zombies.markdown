@@ -14,7 +14,7 @@ First of all, what is that ? Usually, Scrum zombies go in groups, and quite ofte
 
 A typical team of Scrum Zombies follows Scrum pretty well, does all the ceremonies, adopted good engineering practices, and might even be delivering OK. But all the fun is gone, everyone is on autopilot, no continuous improvement is happening anymore, retrospectives are dull and repetitive ... There's a gut feeling in the air that sooner or later, the project will miss a turn.
 
-{% img center /imgs/2016-11-03-how-to-kill-scrum-zombies/sad-fans.jpg A team of sad fans, looking like lost zombies %}
+![A team of sad fans, looking like lost zombies]({{site.url}}/imgs/2016-11-03-how-to-kill-scrum-zombies/sad-fans.jpg)
 
 Sounds familiar ?
 
@@ -54,6 +54,6 @@ By leaving time for other things than just cranking out stories, life will come 
 
 Software projects are pretty complex beasts. One of the most counter-intuitive thing with these complex system is that they make planning very difficult. Focusing too much on your main goal might be slowing you down !
 
-{% img center /imgs/2016-11-03-how-to-kill-scrum-zombies/large-tunnels-in-a-mine.jpg Crossroad of large tunnels in a mine %}
+![Crossroad of large tunnels in a mine]({{site.url}}/imgs/2016-11-03-how-to-kill-scrum-zombies/large-tunnels-in-a-mine.jpg)
 
 In the face of complexity your project landscape is like a maze of tunnels ! Who said you're choosing the best ones ? By keeping free time to explore other, seemingly unrelated, topics you might discover opportunities that will remove a lot of the work to get to your final destination !

@@ -14,7 +14,7 @@ description: "First post of a series about applying the Mikado Method for large 
 ---
 Large scale agile transformations are often painful, stressful and ... failed ! Mixing the [Improvement Kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html) and the [Mikado Method](https://mikadomethod.wordpress.com/) can make them more successful.
 
-![A drawing of entangled mikado sticks](../imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/mikado.jpg)
+![A drawing of entangled mikado sticks]({{site.url}}/imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/mikado.jpg)
 
 The Mikado Method is a programming technique to reduce the risks of large code changes. Let's see how to apply it to organization changes.
 
@@ -38,7 +38,7 @@ It all starts when a leader decides that Agile is the way to go. It could be bec
 
 One great thing about these frameworks is that they show problems. After a few sprints people discover that they have troubles delivering incrementally. After analysis, they understand another deeper problem. Examples : bad management, legacy code, outdated tooling, bad underlying processes ... As Agile is the new [Golden Hammer](https://sourcemaking.com/antipatterns/golden-hammer), the teams responsible of these problems in turn jump to Agile X method. Unfortunately, these too might fall into deeper problems ... and the pattern repeats itself. Meanwhile, the top down transformation team sticks its own objectives. It continues to onboard new product teams to Agile, fueling the mess that is spreading.
 
-![A golden hammer](../imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/hammer.jpg)
+![A golden hammer]({{site.url}}/imgs/2018-01-21-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/hammer.jpg)
 
 At any moment, a very large proportion of the people in the company are in a state of transformation. This is pretty bad for productivity. What is even worse is that they are all facing the same root problems. They are all blocked in a sub-optimal state, impeded by the root problems. Following agile principles, they all start similar initiatives to workaround these issues ! They then need to coordinate with other teams, to avoid duplicate efforts. On top of that, as agile newbies, all these teams need coaches to help them at the same time.
 

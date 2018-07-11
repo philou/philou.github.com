@@ -16,7 +16,7 @@ This is the forth and last post of a [series about the #ZeroBugs policy](/blog/c
 
 There's a catch though, even if you are sure that [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) is a good thing, people around you might not agree ! As with any kind of change, one of the trickiest thing is overcoming people's fear about your idea. This post will be about dealing with people's resistance.
 
-![Drawing of people arguing over the #ZeroBugs policy](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-4/bug-dilemna.jpg)
+![Drawing of people arguing over the #ZeroBugs policy]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-4/bug-dilemna.jpg)
 
 ## A few general change advices
 
@@ -30,7 +30,7 @@ With time, I discovered general best practices to bring change. The first is tha
 
 Another invaluable trick is to be patient : change takes time. Finally, if you are stuck, suggest testing your idea for a while, people are more likely to adopt it this way.
 
-[![Cover of the book "Enchantment: The Art of Changing Hearts, Minds and Actions"](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-4/enchantment.jpg)](https://www.amazon.com/Enchantment-Changing-Hearts-Minds-Actions-ebook/dp/B004S26HB2/ref=sr_1_1?s=books&ie=UTF8&qid=1511346442&sr=1-1&keywords=the+art+of+enchantment)
+[![Cover of the book "Enchantment: The Art of Changing Hearts, Minds and Actions"]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-4/enchantment.jpg)](https://www.amazon.com/Enchantment-Changing-Hearts-Minds-Actions-ebook/dp/B004S26HB2/ref=sr_1_1?s=books&ie=UTF8&qid=1511346442&sr=1-1&keywords=the+art+of+enchantment)
 
 ## Winning the devs over
 

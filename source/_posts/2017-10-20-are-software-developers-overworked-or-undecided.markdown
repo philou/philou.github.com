@@ -11,13 +11,13 @@ description: "A short discussion of how work in progress limitation and serious 
 ---
 During the last 15 years, I've worked in many different teams. Every team has its own way of working. I've been at places where everyone seemed busy all the time. Did we deliver more ? No. Often quite the opposite ! The most productive teams I've been in used to do no more than 6 hours of solid work every day ...
 
-![A developer in a mouse wheel](../imgs/2017-10-20-are-software-developers-overworked-or-undecided/dev-in-mouse-wheel.jpg)
+![A developer in a mouse wheel]({{site.url}}/imgs/2017-10-20-are-software-developers-overworked-or-undecided/dev-in-mouse-wheel.jpg)
 
 ## What's the reason behind that ?
 
 In Lean Management theory, lead time is the time it takes to get a feature from customer request to delivery. Here is a graph that draws typical lead time over factory load (1 - idle time percentage).
 
-![A graph of the lead time versus utilization](../imgs/2017-10-20-are-software-developers-overworked-or-undecided/cycle-time-vs-utilization.jpg)
+![A graph of the lead time versus utilization]({{site.url}}/imgs/2017-10-20-are-software-developers-overworked-or-undecided/cycle-time-vs-utilization.jpg)
 
 What does all this tell us ? 
 
@@ -29,13 +29,13 @@ Every software product is new product development ([Craig Larman](https://www.am
 
 The answer is obvious : prioritization ! Only work on the most important item at a time. It's not because we start everything now that they'll sell them earlier ! It's quite the opposite in fact !
 
-![A comparision of sequential and concurrent product development](../imgs/2017-10-20-are-software-developers-overworked-or-undecided/concurrent-vs-sequential.jpg)
+![A comparision of sequential and concurrent product development]({{site.url}}/imgs/2017-10-20-are-software-developers-overworked-or-undecided/concurrent-vs-sequential.jpg)
 
 Here is another advantage to prioritization. It decreases the time between start and completion of a feature. This, in turn, decreases the likelihood of building something obsolete.
 
 One last thing about prioritization ...
 
-![A graph of values of features in decreasing order](../imgs/2017-10-20-are-software-developers-overworked-or-undecided/Cost-of-Delay-distribution.png)<div class="image-credits">["Black Swan Farming Using Cost of Delay"](http://blackswanfarming.com/experience-report-maersk-line/) Joshua J.Arnold and Özlem Yüce</div>
+![A graph of values of features in decreasing order]({{site.url}}/imgs/2017-10-20-are-software-developers-overworked-or-undecided/Cost-of-Delay-distribution.png)<div class="image-credits">["Black Swan Farming Using Cost of Delay"](http://blackswanfarming.com/experience-report-maersk-line/) Joshua J.Arnold and Özlem Yüce</div>
 
 
 This graph tells us that a small fraction of the features bring most of the value, while a very large portion of the features bring almost no value ... As puzzling as this graph may be, it's also a wonderful opportunity. If we manage to focus one the most valuable features only, we can save a ton of work, while being more effective ! [Lean startup](http://theleanstartup.com/) and market research are techniques to identify these features up-front.

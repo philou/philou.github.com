@@ -17,7 +17,7 @@ If you are serious about continuous improvement, you should learn the [improveme
 
 [Retrospectives](/blog/categories/retrospectives/) are great to pick all the low hanging improvements. Once you've caught up with the industry's best practices, retrospectives risk drying up. Untapped improvement opportunities likely still exist in your specific context. The improvement kata can find those.
 
-![Low and high hangling fruits on a tree](../imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/low-hanging-fruits.jpeg)
+![Low and high hangling fruits on a tree]({{site.url}}/imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/low-hanging-fruits.jpeg)
 
 Here is how we applied the improvement kata to gain 25% of productivity in my previous team.
 
@@ -54,11 +54,11 @@ Here is how the improvement kata goes :
         *   Either drop the experiment and plan a new one (go back to 'Plan').
         *   Or spread the change at a larger scale.
 
-[![The Improvement Kata Pattern](../imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/katapattern.jpg)](http://www-personal.umich.edu/~mrother/Homepage.html)<div class="image-credits">Image from Mike Rother on [Toyota Kata Website](http://www-personal.umich.edu/~mrother/Homepage.html)</div>
+[![The Improvement Kata Pattern]({{site.url}}/imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/katapattern.jpg)](http://www-personal.umich.edu/~mrother/Homepage.html)<div class="image-credits">Image from Mike Rother on [Toyota Kata Website](http://www-personal.umich.edu/~mrother/Homepage.html)</div>
 
 The coaching kata is a way to coach someone into applying the improvement kata. The fun thing is that you can coach yourself ! The idea is to ask questions to the coachee to remind him of where he stands in his improvement kata.
 
-[![The Coaching Kata Questions](../imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/The-coaching-Kata-questions.jpg)](https://traccsolution.com/resources/coaching-infographic/)
+[![The Coaching Kata Questions]({{site.url}}/imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/The-coaching-Kata-questions.jpg)](https://traccsolution.com/resources/coaching-infographic/)
 
 You'll find tons of details and material about these katas on the [Toyota Kata website](http://www-personal.umich.edu/~mrother/Homepage.html).
 

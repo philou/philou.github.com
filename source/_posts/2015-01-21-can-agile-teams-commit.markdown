@@ -22,13 +22,13 @@ Grossly speaking, you have 2 options :
 
 Discuss with your experts, take some margin, do whatever voodoo you are used to. This will not be worse than it used to be. It might turn out better, thanks to your agile process, you should be able to deploy with a reduced the scope if needed.
 
-{% img center /imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg A guy entranced with voodoo %}
+![A guy entranced with voodoo]({{site.url}}/imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg)
 
 ## Use your agile process metrics
 
 This technique is explained in [The Art of Agile Development](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development), in section "Risk Management", page 227.
 
-[{% img center /imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg The cover of The Art of Agile Development%}](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development)
+[![The cover of The Art of Agile Development]({{site.url}}/imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg)](http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1411140759&sr=1-1&keywords=the+art+of+agile+development)
 
 ### Let's estimate the time you'll need before the release
 

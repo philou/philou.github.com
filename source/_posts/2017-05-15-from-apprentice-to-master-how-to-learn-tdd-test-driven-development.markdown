@@ -19,7 +19,7 @@ TDD also enables safe refactoring. Refactoring enables [incremental design](/inc
 
 Finally, writing tests before the code is both easier and more fun. Among compilation errors and never ending customer demands, the recurring green barre tastes like pure candy to the poor programmer !
 
-![A long winding road](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/road.jpg)<div class="image-credits">From [Pinterest winding road catalog](https://fr.pinterest.com/explore/winding-road/)</div>
+![A long winding road]({{site.url}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/road.jpg)<div class="image-credits">From [Pinterest winding road catalog](https://fr.pinterest.com/explore/winding-road/)</div>
 
 ## The TDD Road
 
@@ -39,7 +39,7 @@ TDD newbies might ask a few questions like :
 * Is making the code compile in step 1 or 2 ? Honestly, that does not matter. Write the test as if you had the code, then make it compile, make sure it fails, and continue.
 * How much should I refactor ? It often takes a good amount of experimentation to find your good balance. If you don't refactor enough, you going to drown in dirty code. If you refactor too much, you're going to waste your time ([YAGNI](https://martinfowler.com/bliki/Yagni.html)). As a rule of thumb, [Kent Beck's](https://martinfowler.com/bliki/BeckDesignRules.html) rules on simple design are a very good starting point :
 
-[![A visual graph of Kent Beck's rules of simple design](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/beck-rules.jpg)](https://martinfowler.com/bliki/BeckDesignRules.html)<div class="image-credits">[From Martin Fowler : Beck Design Rules](https://martinfowler.com/bliki/BeckDesignRules.html)</div>
+[![A visual graph of Kent Beck's rules of simple design]({{site.url}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/beck-rules.jpg)](https://martinfowler.com/bliki/BeckDesignRules.html)<div class="image-credits">[From Martin Fowler : Beck Design Rules](https://martinfowler.com/bliki/BeckDesignRules.html)</div>
 
 ### Find your tools
 
@@ -53,7 +53,7 @@ Find and setup a tool. Which one should be rather obvious, if your team already 
 
 If you are serious about learning TDD, attend coding dojos. Whether you find one in your city (ask [meetup.com](https://www.meetup.com/)) or in your company does not really matter. If you cannot find any, just start one at work ! Send a public call for interested people (use wiki, mail, posters or whatever), book a room and start hacking ! [Emily Bache's Coding Dojo Handbook](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo) seems a very good reference about how to start a coding dojo (Disclaimer : I did not read the book, I only know it by reputation.)
 
-[![Cover of The Coding Dojo Handbook](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo)
+[![Cover of The Coding Dojo Handbook]({{site.url}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/coding-dojo.jpg)](https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1494908749&sr=8-1&keywords=coding+dojo)
 
 ### Use it
 
@@ -75,7 +75,7 @@ Meanwhile I was doing all this, I also spent a lot of time reading on the subjec
 * I got very useful advices from [TDD, a practical guide](https://www.amazon.com/Test-Driven-Development-Practical-Guide/dp/0131016490/ref=sr_1_3?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1494911486&sr=1-3&keywords=test+driven+practical+guide) especially the section about UI testing, which really saved me at some point
 * Finally, [Growing Object Oriented Software Guided By Tests](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests) is now a classic about what is called "The London school of testing", which uses mocks as a design tool. Definitely a must read.
 
-[![Cover of GOOSGT](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
+[![Cover of GOOSGT]({{site.url}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/growing.jpg)](https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;s=books&ie=UTF8&qid=1495080583&sr=1-1&keywords=growing+object-oriented+software+guided+by+tests)
 
 ### Practice advanced topics
 
@@ -119,7 +119,7 @@ As an indicator, less than 5% of my tests use mocks.
 
 In his [keynote at RailsConf 2014](https://www.youtube.com/watch?v=9LfmrkyP81M) DHH explains the danger of testing metrics.
 
-[![DHH's keynote at RailsConf 2014](../imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/dhh.jpg)](https://www.youtube.com/watch?v=9LfmrkyP81M)
+[![DHH's keynote at RailsConf 2014]({{site.url}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/dhh.jpg)](https://www.youtube.com/watch?v=9LfmrkyP81M)
 
 By using TDD correctly, you should get a high code coverage as a side effect. If you get below 80%, you must be doing something wrong. The other metric you should keep an eye on is the total build time. Original [eXtreme Programming](http://www.extremeprogramming.org/) had the [10 minutes build rule](http://www.jamesshore.com/Agile-Book/ten_minute_build.html) which states that if your build + tests takes more than 10 minutes, you should refactor it.
 

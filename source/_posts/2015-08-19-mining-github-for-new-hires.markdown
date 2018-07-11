@@ -15,7 +15,7 @@ description: "A quick explanation about how we mined github in an attempt to hir
 
 We have been trying to hire such a profile for the last year ... The position is hopefully filled now. During that year, we have tried to mine [github](https://github.com/) for candidates. Here is how we did it.
 
-{% img center /imgs/2015-08-19-mining-github-for-new-hires/github.png Github's banner %}
+![Github's banner]({{site.url}}/imgs/2015-08-19-mining-github-for-new-hires/github.png)
 
 Software engineers, especially experienced, are known to be hard to find. Over the past months, we had steadily been improving our hiring process :
 

@@ -15,7 +15,7 @@ description: "Stories and a guide about the 20 hours of Code Kata, a technique t
 ---
 We should not panic when asked to work with a new language. We should be bold enough to answer to job openings requiring technologies we are not used to. In one word, we should not be afraid of new techs. Here is why : by scheduling 20 hours of Code Kata routine sessions, we can get a decent level of mastery on most topics.
 
-![A book with built-in clock](../imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/timed-book.jpg)
+![A book with built-in clock]({{site.url}}/imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/timed-book.jpg)
 
 ## How I learned some Haskell
 
@@ -29,7 +29,7 @@ Many times afterwards, I learned new languages quickly by practicing them in the
 
 Fast forward to the end of last year. Someone asked me if I could work at coaching a team doing some Javascript. I've done some Javascript in the past, but my skills definitely needed a serious update. I decided to use Code Katas to refresh my Javascript. To try to make this even more effective, I decided to mix in a bit of the ["First 20 hours"](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours) technique.
 
-[![The cover of the book "The first 20 hours"](../imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/the-first-20-hours.jpg)](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours)
+[![The cover of the book "The first 20 hours"]({{site.url}}/imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/the-first-20-hours.jpg)](https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&qid=1521785371&sr=8-2&keywords=the+first+20+hours)
 
 I started by defining a plan of 10 sessions of 2 hours long code katas :
 

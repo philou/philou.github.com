@@ -25,7 +25,7 @@ Suppose we printed all the source code every Monday, and then keep it around for
 It's possible to print 50 lines on a sheet of paper, that's 100 on both sides.
 That's 50 000 in a pack of 500 pages. And eventually, 200 000 in this kind of standard case :
 
-{% img center /imgs/2016-06-08-the-size-of-code/paper-case.jpg A 2000 sheets paper case %}
+![A 2000 sheets paper case]({{site.url}}/imgs/2016-06-08-the-size-of-code/paper-case.jpg)
 
 Keeping these printouts in sync with the real cost would make the thing even more ~~painful~~ realistic. Imagine all the printings costs, and moving around cases of paper every day ... ;)
 
@@ -33,13 +33,13 @@ Keeping these printouts in sync with the real cost would make the thing even mor
 
 What about an inflatable device linked to [SonarQube](http://www.sonarqube.org/) (or any other code metrics tracking system) ? It could grow as new code is written. We could make it as large as we want : 1m<sup>3</sup> for every 10K lines of Code, making the whole office a difficult place to walk around. Try to figure out how to work with this thing in the office :
 
-[{% img center /imgs/2016-06-08-the-size-of-code/Large_Inflatable_Art.jpg Large Inflatable Art (Jimmy Kuehnle) %}](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/)<div class="image-credits">[By Jimmy Kuehnle](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/) </div>
+[![Large Inflatable Art (Jimmy Kuehnle)]({{site.url}}/imgs/2016-06-08-the-size-of-code/Large_Inflatable_Art.jpg)](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/)<div class="image-credits">[By Jimmy Kuehnle](http://www.jimmykuehnle.com/artblog/inflatable-bigger-than-the-studio/) </div>
 
 ### Third Idea : Sand
 
 For maximum pain, let's use real sand instead of an inflatable device ! Imagine the mess with some sand lying around in the office. If the only way to clean up the mess was to clean up the code, surely everyone would take the issue seriously !
 
-{% img center /imgs/2016-06-08-the-size-of-code/sand-pile.jpg A sand pile on the pavement %}
+![A sand pile on the pavement]({{site.url}}/imgs/2016-06-08-the-size-of-code/sand-pile.jpg)
 
 ## Final Word
 

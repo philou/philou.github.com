@@ -32,7 +32,7 @@ As [someone famous](http://quoteinvestigator.com/2010/12/21/doing-good-selfless/
 
 I won't go in the details about how to be trustworthy, which could be a post of its own. Basically, putting our customers interests first, speaking the truth and avoiding to appear dogmatic can get us a long way already. [The Clean Coder](https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1) is an excellent read on the subject.
 
-[![Front cover of the Clean Coder book](../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/clean-coder.jpg)](https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
+[![Front cover of the Clean Coder book]({{site.url}}/imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/clean-coder.jpg)](https://www.amazon.fr/dp/B0050JLC9Y/ref=dp-kindle-redirect?_encoding=UTF8&btkr=1)
 
 ## Strategies
 
@@ -52,7 +52,7 @@ You'll need to stick to doing code reviews long enough before people actually st
 
 Remember to always try to get some feedback : ask people what they think of the exercise, keep note of the good points, and adapt to smooth out the rest.
 
-![Illustration of a team working collectively](../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/collective.jpg)<div class="image-credits">Photo from [emotuit](https://www.emotuit.com/blog)</div>
+![Illustration of a team working collectively]({{site.url}}/imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/collective.jpg)<div class="image-credits">Photo from [emotuit](https://www.emotuit.com/blog)</div>
 
 Once you won over your first team mate, involve him in your grand plan to spread the practice, explaining how much you think this could make a difference. As more and more people get convinced, the practice will eventually tacitly become part of your working conventions.
 
@@ -94,7 +94,7 @@ As people gradually get convinced of the value of code reviews, regularly meet a
 
 As a code review champion, it's very important that you provide great reviews to your team mates. You must become the local expert on the subject ! You don't want all your efforts to be ruined because one of your reviews has been perceived as aggressive.
 
-[![A slide from Atlassian presentation about styles of code reviews](../imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/atlassian.jpg)](https://static.rainfocus.com/oracle/oow16/sess/1473264722807001CoS2/ppt/code-reviews-vs-pull-requests.pdf)
+[![A slide from Atlassian presentation about styles of code reviews]({{site.url}}/imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/atlassian.jpg)](https://static.rainfocus.com/oracle/oow16/sess/1473264722807001CoS2/ppt/code-reviews-vs-pull-requests.pdf)
 
 
 There is a ton of resources on the internet about how to perform good code reviews, here are a few :

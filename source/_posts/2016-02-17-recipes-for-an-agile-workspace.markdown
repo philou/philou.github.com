@@ -14,7 +14,7 @@ description: "A walk through of different practices for agile workplace design, 
 ---
 Nowadays, start-ups and tech companies seem to be competing for the most beautiful offices in order to attract top talents.
 
-{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/open-space.jpg A nice modern and beautiful co-working space %}
+![A nice modern and beautiful co-working space]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/open-space.jpg)
 
 Unfortunately, sometimes, it's just the good old office in disguise. At the opposite, some teams or companies actually think and decide how to organize their offices. For example, here is what [Kent Beck](https://twitter.com/kentbeck) says about office setup in [XP embrace change](http://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1456177035&sr=8-2&keywords=extreme+programming+embrace+change)
 
@@ -23,11 +23,11 @@ between a good space for the team and a bad space for the team is immediate and 
 
 Joel Spolsky has been blogging a lot about the office setups at [FogBugz](http://www.joelonsoftware.com/articles/BionicOffice.html)
 
-[{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/fog-bugz.jpg The beautiful FogBugz office %}](http://www.joelonsoftware.com/articles/BionicOffice.html)
+[![The beautiful FogBugz office]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/fog-bugz.jpg)](http://www.joelonsoftware.com/articles/BionicOffice.html)
 
 While defining its agile culture, [Spotify too designed custom offices](http://fr.slideshare.net/JoakimSunden/agile-at-spotify)
 
-[{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/spotify.jpg Spotify offices %}](http://fr.slideshare.net/JoakimSunden/agile-at-spotify)
+[![Spotify offices]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify.jpg)](http://fr.slideshare.net/JoakimSunden/agile-at-spotify)
 
 ## How does it work ?
 
@@ -37,13 +37,13 @@ Let's review a few office design practices to understand how they work :
 
 Having a delimited room helps to build a real team. First, by isolating from noises, it helps the team to focus on its work and current topics. Second, by providing a visual barrier to cross before anyone can disturb the team. Finally, it allows the team to organize its own visual management.
 
-{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-team-room.jpg Team private work place at spotify %}
+![Team private work place at spotify]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-team-room.jpg)
 
 ### Private team gathering area
 
 An area where the team (and only the team) can meet at any time is great to do on the spot meetings (without the hassle of finding a room). This area should be comfortable and provide a relaxed and creative atmosphere (which is very important to conduct efficient retrospectives). It can also be used to take breaks and lunches, fostering team spirit again.
 
-{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-gathering-area.jpg Team gathering area with writable walls and a wall screen at spotify %}
+![Team gathering area with writable walls and a wall screen at spotify]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/spotify-gathering-area.jpg)
 
 ### Writable walls
 
@@ -57,7 +57,7 @@ Lean manufacturing favors simple, versatile and configurable machines over power
 
 Agile and Lean thinkings both heavily use visual management. Having a lot of wall screens dedicated to displaying team relevant information in the team space brings a lot of value. To get the maximum benefit, these wall screens should be fully configurable and movable by the team.
 
-{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/wall-screens.jpg Our own wall screens at work %}
+![Our own wall screens at work]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/wall-screens.jpg)
 
 ### Team budget
 
@@ -75,7 +75,7 @@ If your team is split between 2 places (as our team is at [Murex](http://www.mur
 
 Connecting gathering areas through visio is a great way to build the distributed team. It prevents loosing time when a meeting is required. It also builds the team by showing what's happening on the other side and by making it possible to take distributed lunches and breaks !
 
-[{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/distributed-lunch.jpg A team sharing food remotely between offices %}](http://www.infoq.com/presentations/distributed-team-agile)
+[![A team sharing food remotely between offices]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/distributed-lunch.jpg)](http://www.infoq.com/presentations/distributed-team-agile)
 
 ### Distributed whiteboards
 
@@ -98,4 +98,4 @@ design, yet for most organizations with productivity problems, there is no more 
 
 Instead of designing offices, furniture departments in companies could provide a constant stock of building blocks for office building. Teams could use a workplace budget to build the workspace that suits them most. A good Wifi, laptops, enough floor power plugs, extra screens, movable tables, movable walls and easy to fix wall monitors are all things that would make this possible.
 
-{% img center /imgs/2016-02-17-recipes-for-an-agile-workspace/lego-office.jpg A miniature office in Legos %}
+![A miniature office in Legos]({{site.url}}/imgs/2016-02-17-recipes-for-an-agile-workspace/lego-office.jpg)

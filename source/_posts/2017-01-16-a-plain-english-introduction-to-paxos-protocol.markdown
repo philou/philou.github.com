@@ -17,7 +17,7 @@ The best overall description I found is [this answer by Vineet Gupta on Quora](h
 
 As a way to both help others to understand Paxos faster and to burn all this in my own memory, I though it would he a good idea to illustrate it as a story (I was inspired by [A plain English introduction to CAP Theorem](http://ksat.me/a-plain-english-introduction-to-cap-theorem/) which I found really instructive; I also later discovered that the [original Paxos paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/12/The-Part-Time-Parliament.pdf) itself related the protocol using the metaphor of a parliament).
 
-{% img center /imgs/2017-01-16-a-plain-english-introduction-to-paxos-protocol/greek.jpg A drawing of an ancient Greek hero typing at a computer %}
+![A drawing of an ancient Greek hero typing at a computer]({{site.url}}/imgs/2017-01-16-a-plain-english-introduction-to-paxos-protocol/greek.jpg)
 
 ## Once upon a time ...
 
@@ -43,7 +43,7 @@ She sends new letters, called accept letters this time, to her brothers to final
 
 At the time when Kath receives the accept letters from her brothers, everyone knows that the price has been agreed.
 
-[{% img center /imgs/2017-01-16-a-plain-english-introduction-to-paxos-protocol/grimm-brothers.jpg Cover of the book "The Fairy Tales of the Grimm Brothers" %}](https://www.taschen.com/pages/en/catalogue/children/all/06787/facts.the_fairy_tales_of_the_brothers_grimm.htm)
+[![Cover of the book "The Fairy Tales of the Grimm Brothers"]({{site.url}}/imgs/2017-01-16-a-plain-english-introduction-to-paxos-protocol/grimm-brothers.jpg)](https://www.taschen.com/pages/en/catalogue/children/all/06787/facts.the_fairy_tales_of_the_brothers_grimm.htm)
 
 ### After
 
@@ -81,7 +81,7 @@ Unfortunately, when they receive his proposal, they have already agreed to Kath'
 
 ### River flood split between brothers and Kath
 
-[{% img center /imgs/2017-01-16-a-plain-english-introduction-to-paxos-protocol/fairytale-map.jpg A drawing of a fairy tale map with a wide river in the middle %}](http://riniwuzhere.deviantart.com/art/Fairytale-Map-of-Wurzburg-393850325)
+[![A drawing of a fairy tale map with a wide river in the middle]({{site.url}}/imgs/2017-01-16-a-plain-english-introduction-to-paxos-protocol/fairytale-map.jpg)](http://riniwuzhere.deviantart.com/art/Fairytale-Map-of-Wurzburg-393850325)
 
 There's a wide river that separates Kath from Joe and Tom. While they were trying to reach consensus, the river flood, cutting all communication between the brothers and their sister. Kath might abort the consensus as she won't be able to get answers from the majority. On their side, Joe or Tom can takeover the consensus, take on the master role, and still reach a price, as they form a majority. As soon as the river would settle, the messages would arrive to both parties, eventually informing Kath that a price was accepted.
 

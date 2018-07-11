@@ -13,7 +13,7 @@ I don't know if you noticed, but [Octopress 2](http://octopress.org/) preview is
 
 Hell loose !
 
-{% img center /imgs/2016-02-10-how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/upgrade_hell.jpg A naughty dog with a banner "I'm in upgrade hell" %}
+![A naughty dog with a banner "I'm in upgrade hell"]({{site.url}}/imgs/2016-02-10-how-i-fixed-invalid-byte-sequence-in-us-ascii-exception-with-octopress-and-vagrant/upgrade_hell.jpg)
 
 I know all open source software needs to be kept up to date at all time, but it's not that easy. Especialy when the versions in the [Ubuntu](http://www.ubuntu.com/) repostiories are really old and you had to install them manually. Anyway, after a bit of tedious work, I finally got to the point where my Octopress blog was running on a brand new stack. And I got this error :
 

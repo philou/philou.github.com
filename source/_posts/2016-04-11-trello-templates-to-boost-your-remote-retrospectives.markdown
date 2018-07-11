@@ -13,7 +13,7 @@ description: "An update on new template for trello based agile retrospectives"
 ---
 I already wrote how we started to use [Trello](http://trello.com) to do our [remote retrospectives](/trellospectives-remote-retrospectives-with-trello/). A while ago, my team mate [Bilal Tayara](http://bilal.eltayara.net/blog/2015/09/20/agile-retrospectives-using-trello/) started to collect our activities into [trello templates](https://trello.com/agileretrospectives).
 
-{% img center /imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/retrospective_meetings.jpg 'Stop Doing', 'Continue Doing' & 'Start doing' panels of a retrospective activity %}
+!['Stop Doing', 'Continue Doing' & 'Start doing' panels of a retrospective activity]({{site.url}}/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/retrospective_meetings.jpg)
 
 ## New activities
 
@@ -57,14 +57,14 @@ Clone the template to your organization every time you want to use it. There are
 
 * [Agile Retrospectives, Making Good Teams Great](https://pragprog.com/book/dlret/agile-retrospectives) by Esther Derby and Diana Larsen, Foreword by Ken Schwaber
 
-[{% img center /imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/AgileRetrospectives.jpg The cover of Agile Retrospectives %}](https://pragprog.com/book/dlret/agile-retrospectives)
+[![The cover of Agile Retrospectives]({{site.url}}/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/AgileRetrospectives.jpg)](https://pragprog.com/book/dlret/agile-retrospectives)
 
 * [Getting Value out of Agile Retrospectives, Second Edition](http://www.infoq.com/minibooks/agile-retrospectives-value) by Luis Gonçalves and Ben Linders
 
-[{% img center /imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/GettingAgileOutOfAgileRetrospectives.jpg The cover of Getting Agile Out Of Agile Retrospectives %}](http://www.infoq.com/minibooks/agile-retrospectives-value)
+[![The cover of Getting Agile Out Of Agile Retrospectives]({{site.url}}/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/GettingAgileOutOfAgileRetrospectives.jpg)](http://www.infoq.com/minibooks/agile-retrospectives-value)
 
 * [Fun Retrospectives](https://leanpub.com/funretrospectives) by Taina Caetano and Paulo Caroli
 
-[{% img center /imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/FunRetrospectives.jpg The cover of Fun Retrospectives %}](https://leanpub.com/funretrospectives)
+[![The cover of Fun Retrospectives]({{site.url}}/imgs/2016-04-11-trello-templates-to-boost-your-remote-retrospectives/FunRetrospectives.jpg)](https://leanpub.com/funretrospectives)
 
 One last thing : in order to improve this collection, we'd like to have your feedback on existing activities, or your own new templates for other activities.

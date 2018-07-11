@@ -33,7 +33,7 @@ From [Reinertsen's Flow book](http://www.amazon.com/The-Principles-Product-Devel
 
 [This other article](http://fr.slideshare.net/jchyip/estimating-cost-of-delay/27) suggests that they are different types of tasks that corresponds to the different terms of the formula above.
 
-{% img center /imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/task-types.jpeg "Different kind of tasks" %}
+![Different kind of tasks]({{site.url}}/imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/task-types.jpeg)
 
 Here is how we could link the 2 articles :
 
@@ -67,7 +67,7 @@ Before actually selling and getting the money, it's just an estimation. With the
 * Create some business value $ poker estimate cards, write an app for this, or bring in some Poker Chips to estimate the value
 * Invite some business people (sales, marketting ...) to the meeting to get real knowledge (being organized as a feature team will help)
 
-[{% img center /imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/all-in.jpg "Hands pushing poker chips for an all-in" %}](https://gigaom.com/2012/05/16/social-gaming-to-gambling-states-inch-forward/poker-chips-by-sanzar-murzin/)
+[![Hands pushing poker chips for an all-in]({{site.url}}/imgs/2014-10-16-how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/all-in.jpg)](https://gigaom.com/2012/05/16/social-gaming-to-gambling-states-inch-forward/poker-chips-by-sanzar-murzin/)
 
 At the end, when you have the estimated cost of delay and duration of every task, you can directly prioritize using the WSJF (Weighted Shortest Job First) :
 

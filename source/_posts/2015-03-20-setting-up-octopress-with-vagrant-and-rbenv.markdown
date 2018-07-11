@@ -12,7 +12,7 @@ description:  "I present how I managed to setup a Vagrant environment for my per
 ---
 I recently got hands on an abandonned laptop that was better than the one I was currently using for my personnal hackings, so I decided to switch to this one. I felt this was the time to learn Vagrant and save me some time later on. I settled on creating a [Vagrant](https://www.vagrantup.com/) environment for this [Octopress](http://octopress.org/) blogging. That proved a lot longer than I thought it would.
 
-{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png Vagrant logo + Octopress logo%}
+![Vagrant logo + Octopress logo]({{site.url}}/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/vagrant-octopress.png)
 
 If you want to jump to the solution, just have a look at this [git change](https://github.com/philou/philou.github.com/commit/67b17f7702c213ff40313fc7bd0cbfa8a6e8e29b). Here is the slightly longer version.
 
@@ -112,6 +112,6 @@ I'll tell you if this does not do the trick.
 
 I admit it was a lot longer than I expected it to be, but at least now it's repeatable !
 
-[{% img center /imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png The Docker logo%}](http://docker.io)
+[![The Docker logo]({{site.url}}/imgs/2015-03-20-setting-up-octopress-with-vagrant-and-rbenv/docker.png)](http://docker.io)
 
 Next steps will be to use [Docker](http://docker.io) providers and Dockerfile to factorize provisioning and speedup up VM startup.

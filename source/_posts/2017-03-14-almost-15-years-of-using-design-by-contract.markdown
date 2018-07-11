@@ -23,7 +23,7 @@ That's why I started to read books such as the [Gang Of Four Design Patterns](ht
 
 ## Phase 2 : DbC enlightenment
 
-[![The cover of the Object Oriented Software Construction 2](../imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg)](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer)
+[![The cover of the Object Oriented Software Construction 2]({{site.url}}/imgs/2017-03-14-almost-15-years-of-using-design-by-contract/OOSC2.jpg)](https://www.amazon.com/Object-Oriented-Software-Construction-Book-CD-ROM/dp/0136291554/ref=sr_1_2?tag=pbourgau-20&amp;ie=UTF8&qid=1490073815&sr=8-2&keywords=object+oriented+software+construction+meyer)
 
 Reading this book was a profound experience to me. My programming changed fundamentally before and after reading it. The chapter about contracts, taught me what objects are.
 

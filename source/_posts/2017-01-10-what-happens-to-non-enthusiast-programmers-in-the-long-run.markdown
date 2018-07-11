@@ -14,7 +14,7 @@ A few months ago, after receiving good feedback from my regular readers, I poste
 
 I also got a lot more comments, some nice, some tough, some agreeable and some challenging !
 
-{% img center /imgs/2017-01-10-what-happens-to-non-enthusiast-programmers-in-the-long-run/professional.jpg A logo of a guy wearing a suit %}
+![A logo of a guy wearing a suit]({{site.url}}/imgs/2017-01-10-what-happens-to-non-enthusiast-programmers-in-the-long-run/professional.jpg)
 
 ## First, a summary
 
@@ -38,7 +38,7 @@ As a result, people are weary of any statement of 'passion' in the workplace, an
 
 ### The particular question of France
 
-{% img center /imgs/2017-01-10-what-happens-to-non-enthusiast-programmers-in-the-long-run/france.jpg A photo of the Eiffel tower %}
+![A photo of the Eiffel tower]({{site.url}}/imgs/2017-01-10-what-happens-to-non-enthusiast-programmers-in-the-long-run/france.jpg)
 
 I received some comments from all over the world, but my observations came from where I work : in France. Here, all in all, we have at least 7 weeks of paid leaves per year. It's a lot more than in other parts of the world. I think it's around 2 weeks in the US (other [sources](https://www.bloomberg.com/news/articles/2016-10-18/americans-work-25-more-than-europeans-study-finds) point the same fact). Imagine two companies, one from France, and one from the US. The one in the US can invest 5 weeks per year in exploratory learning (which can result in good things for both the business and the employee) while still producing as much as the french one.
 

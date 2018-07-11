@@ -12,7 +12,7 @@ description: "Given performance requirements are a feature, what are the consequ
 ---
 Now that is a widespread title for blog articles ! Just [search Google](https://www.google.fr/search?sourceid=chrome-psyapi2&ion=1&espv=2&ie=UTF-8&q=performance%20is%20a%20feature), and you'll find "Performance is a feature" in [Coding Horror](http://blog.codinghorror.com/performance-is-a-feature/) and [others](http://coffeeonthekeyboard.com/performance-is-a-feature-623/).
 
-[{% img center /imgs/2015-01-19-performance-is-a-feature/dragster.jpg A Dragster at full speed %}](http://www.motorstown.com/50701-dragster-jet.html)
+[![A Dragster at full speed]({{site.url}}/imgs/2015-01-19-performance-is-a-feature/dragster.jpg)](http://www.motorstown.com/50701-dragster-jet.html)
 
 # What's in it for us ?
 

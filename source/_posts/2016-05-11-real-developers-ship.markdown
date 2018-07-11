@@ -11,7 +11,7 @@ description: "A quick reflection on the consequences of not shipping if you are 
 ---
 If you are a developer and you are not shipping, you're in the danger zone. I believe it's mostly your fault, and it's time to act.
 
-{% img center /imgs/2016-05-11-real-developers-ship/deliver.jpg A delivery key on a keyboard %}
+![A delivery key on a keyboard]({{site.url}}/imgs/2016-05-11-real-developers-ship/deliver.jpg)
 
 ## Nothing new
 

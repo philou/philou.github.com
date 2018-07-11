@@ -20,7 +20,7 @@ We ended the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percen
 
 Currently, 1 pair (one quarter of the team) is constantly busy fixing bugs. If we manage to find a way to spend less time on bugs, we can expect a productivity increase of about 25%.
 
-![Anti bug insecticide can](../imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/x-bugs.jpg)
+![Anti bug insecticide can]({{site.url}}/imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/x-bugs.jpg)
 
 Next step in the improvement kata is to run [Plan-Do-Check-Act (PDCA)](https://en.wikipedia.org/wiki/PDCA) experiments. Before you run experiments, you need ideas !
 
@@ -48,7 +48,7 @@ In the light of all this, stoping exploratory testing did not seem like a great 
 
 > 💡Saving time by not fixing bugs might not be a great idea
 
-![Exploration map with a red cross](../imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/exploration.jpg)
+![Exploration map with a red cross]({{site.url}}/imgs/2017-09-22-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/exploration.jpg)
 
 ## Idea 2 : Review what a bug is
 

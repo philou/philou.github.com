@@ -26,7 +26,7 @@ The first 2 steps (Docker & CI) worked really out of the box after following the
 1. the specificities of DigitalOcean
 2. the fact that I'm a no deployment expert ...
 
-{% img center /imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg The logos of Docker, CircleCI and DigitalOcean %}
+![The logos of Docker, CircleCI and DigitalOcean]({{site.url}}/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg)
 
 ## What did I need to do to make it work
 

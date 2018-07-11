@@ -22,7 +22,7 @@ On the other side, enterprise customers need advanced features, absolute data sa
 
 In order to know if we can make our todo list system available and fast enough for the individuals market, we are planning to conduct a pre-study, so as not to waste time on an unreachable goal. In [XP](http://www.extremeprogramming.org/) terms, this is a [spike](http://www.extremeprogramming.org/rules/spike.html), and it's a bunch of experiments rather than a theoretical study.
 
-[{% img center /imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study-petit.jpg Photo of someone studying behind piles of books%}](/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study.jpg)
+[![Photo of someone studying behind piles of books]({{site.url}}/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study-petit.jpg)]({{site.url}}/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/study.jpg)
 
 ## When should we prioritize this spike ?
 
@@ -194,7 +194,7 @@ So the cost of delay for the spike is around 226/7 = 32 $/m
 
 #### 2.c. Compute overall Cost of Delay of the Spike
 
-[{% img center /imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD-petit.jpg Bank notes going through an hourglass%}](/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD.jpg)
+[![Bank notes going through an hourglass]({{site.url}}/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD-petit.jpg)]({{site.url}}/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/CoD.jpg)
 
 Given that we estimate that there is a 50% chances of making the latency, the overall expected cost of delay is
 
@@ -241,6 +241,6 @@ As everything is quantitative though, one could imagine that with other figures,
 * The spike is not worth doing (it costs more than it might save)
 * The spike can wait a bit
 
-[{% img center /imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/dt140330.jpg A dilbert strip about gut feeling at work%}](http://dilbert.com/strip/2014-03-30)
+[![A dilbert strip about gut feeling at work]({{site.url}}/imgs/2015-01-31-measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/dt140330.jpg)](http://dilbert.com/strip/2014-03-30)
 
 This was part 4 of my [Lean Software Development Series](/the-flow-book-summary-lean-software-development_part_1/). Part 3 was [How to measure your speed with your business value](/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/), continue on Part 5 : [What optimization should we work on ?](/what-optimization-should-we-work-on-lean-software-development-part-5/).

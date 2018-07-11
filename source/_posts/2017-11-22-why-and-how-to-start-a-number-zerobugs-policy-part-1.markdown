@@ -18,7 +18,7 @@ At the other end of the spectrum, some [eXtreme Programming teams](http://leanag
 
 Wouldn't it be great for everyone if we had less bugs to fix ? Programmers would do more interesting work. Business people would get more valuable features. People would do less overtime. All this while users get a better product !
 
-![A bug in a viewfinder](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg)
+![A bug in a viewfinder]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg)
 
 Last year, in my team, we reached and maintained a #ZeroBugs state. Here is how we did it.
 
@@ -44,7 +44,7 @@ We were an R&D team, building a data management system. Our product was moving o
 
 We'd first read about #ZeroBugs in [The Art of Agile Software Development](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1511342870&sr=8-1&keywords=the+art+of+agile). Given enough automated testing, XP teams could almost stop doing bug fixing !
 
-[![Cover of the book "The Art of Agile Software Development"](../imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1511342870&sr=8-1&keywords=the+art+of+agile)
+[![Cover of the book "The Art of Agile Software Development"]({{site.url}}/imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1511342870&sr=8-1&keywords=the+art+of+agile)
 
 As we had very solid automated testing in place, we decided to take the extra steps to save time on bug fixing.
 

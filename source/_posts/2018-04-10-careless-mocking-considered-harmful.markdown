@@ -16,7 +16,7 @@ description: "The problems I got into on a side project after using too much moc
 
 A few years ago, I managed to get a side project out of mock hell. Since then, I've been using what I learned to avoid mocks in all the projects I've worked on. This is the start of a series of posts about my mock-avoiding techniques.
 
-![A tag "Mocks don't rock !"](../imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg)
+![A tag "Mocks don't rock !"]({{site.url}}/imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg)
 
 ## Escape from Mock Hell
 
@@ -35,7 +35,7 @@ It reached a point where I could not take it anymore. All these problems were po
 
 The end result was beyond my hopes, as my problems almost magically disappeared. The code got simpler, I became a lot more confident about my unit tests, and they got easier to maintain. As an illustration, here is an excerpts from the diff of a rails controller test file which went through this mock diet.
 
-[![A screen capture of a Github diff showing a test file going on a mock diet](../imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg)](https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split)
+[![A screen capture of a Github diff showing a test file going on a mock diet]({{site.url}}/imgs/2018-04-10-careless-mocking-considered-harmful/diff.jpg)](https://github.com/philou/mes-courses/commit/2c9fce17f9b59d0b3828f309015c07b17cceddf4?diff=split)
 
 ## What's the long term risk ?
 

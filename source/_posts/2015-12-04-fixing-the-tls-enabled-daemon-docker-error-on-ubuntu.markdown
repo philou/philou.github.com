@@ -12,7 +12,7 @@ categories:
 keywords: "ubuntu, vagrant, docker, unix, workaround, TLS, troubleshooting"
 description: "How I fixed a 'TLS-enabled daemon' Docker error when using Vagrant on Ubuntu"
 ---
-{% img center /imgs/2015-12-04-fixing-the-tls-enabled-daemon-docker-error-on-ubuntu/docker-vagrant-ubuntu.jpg "The 3 logos of Docker, Vagrant and Docker" %}
+![The 3 logos of Docker, Vagrant and Docker]({{site.url}}/imgs/2015-12-04-fixing-the-tls-enabled-daemon-docker-error-on-ubuntu/docker-vagrant-ubuntu.jpg)
 
 I am using [Ubuntu](http://www.ubuntu.com/), [Vagrant](https://www.vagrantup.com/) and [Docker](https://www.docker.com/) together to handle my various development environments. It usually works just fine : it's fast, low weight, it keeps my machine clean and it's quite simple once you've setup your first VM. Until last time ... read on !
 

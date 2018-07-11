@@ -15,7 +15,7 @@ More than ever, the cheapest way to build a framework is to refactor it out of a
 
 [Rails](http://rubyonrails.org/) is a web development server side framework built in [Ruby](https://www.ruby-lang.org/). It's been and remains very popular. It set the tone for all the [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) web frameworks that followed. People have ported it to many other languages. Rails is now in it's 5th version, what is less known is how it was built in the first place.
 
-![Drawing of a train being detached from its rails](../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/train-and-rails.jpg)
+![Drawing of a train being detached from its rails]({{site.url}}/imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/train-and-rails.jpg)
 
 ## The story of Rails
 
@@ -27,7 +27,7 @@ More than ever, the cheapest way to build a framework is to refactor it out of a
 
 We all know the end of the story, Rails adoption exploded. Many successful companies like [Github](https://github.com/), [Airbnb](https://www.airbnb.com/), [Twitter](https://twitter.com) & [Shopify](https://www.shopify.com) have used it. It evolved a lot, through the darwinism of open source. Today, Rails might not be the latest and coolest web framework, but it is still very productive and popular.
 
-![The Rails logo](../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rails-logo.jpg)
+![The Rails logo]({{site.url}}/imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rails-logo.jpg)
 
 ## Economic sense
 
@@ -49,7 +49,7 @@ If you are not a programmers, you're likely to assume that the cost of reusing s
 
 ## How can it work ?
 
-[![Cover of Rework book](../imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rework-cover.jpg)](https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?ie=UTF8&qid=1507610064&sr=8-1&keywords=rework)
+[![Cover of Rework book]({{site.url}}/imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/rework-cover.jpg)](https://www.amazon.com/Rework-Jason-Fried/dp/0307463745/ref=sr_1_1?ie=UTF8&qid=1507610064&sr=8-1&keywords=rework)
 
 Ok, enough for common sense. Let's see what happens when you take into account the real cost of changing software ? All software developers know that changing software is far from cheap. Very often, it's more expensive to adapt than to rebuild
 

@@ -10,7 +10,7 @@ categories:
 keywords: "Coverall for developers, Legacy code day"
 description: "A joke about developers wearing coveralls to protect against legacy code"
 ---
-{% img center /imgs/2016-06-06-legacy-code-coverall-day/miners.jpg Miners going to work in Coveralls %}
+![Miners going to work in Coveralls]({{site.url}}/imgs/2016-06-06-legacy-code-coverall-day/miners.jpg)
 
 Some days, coding feels like speleology or mining ... Dealing with weird and undocumented old logic can even some time be [damaging to the mind](https://www.quora.com/How-do-you-keep-your-sanity-while-working-on-a-Super-Dirty-Rotten-Spaghetti-codebase) ! I think we should go to work wearing the adequate protection !
 

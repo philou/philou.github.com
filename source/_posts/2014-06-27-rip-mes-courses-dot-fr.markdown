@@ -12,7 +12,7 @@ description: "Obituary to a failed side project, with what I learned and what I 
 ---
 Rest In Peace [mes-courses.fr](https://dl.dropboxusercontent.com/u/206938/mes-courses.fr/archives/index.html). Here is what it looked like :
 
-{% img center /imgs/2014-06-27-rip-mes-courses-dot-fr/screenshot.png Screen shot of the home page of mes-courses.fr %}
+![Screen shot of the home page of mes-courses.fr]({{site.url}}/imgs/2014-06-27-rip-mes-courses-dot-fr/screenshot.png)
 
 I wanted to create a really fast on-line grocery front-end, where people could shop for the week in only 5 minutes. It supported shopping recipes instead of individual items but I also envisioned to allow automatic menus recommendations, and automatic item preference selection. I started 4 years ago, and this is my last doing on the subject :). If you're thinking about starting your own side project, this post is for you.
 
@@ -57,7 +57,7 @@ I wanted to create a really fast on-line grocery front-end, where people could s
 
 It is sure that doing a side project seriously is a heavy time investment, but there's also a lot of benefits !
 
-{% img center /imgs/2014-06-27-rip-mes-courses-dot-fr/side-projects-are-important.gif Side projects are important blackboard %}
+![Side projects are important blackboard]({{site.url}}/imgs/2014-06-27-rip-mes-courses-dot-fr/side-projects-are-important.gif)
 
 ### Here is what I gained
 

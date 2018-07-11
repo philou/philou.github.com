@@ -16,7 +16,7 @@ Side projects rely on 2 things : time and motivation. If motivation goes down, y
 
 Over the years, I accumulated best practices that increase the chances of success. Here is a shortlist of 13 of these.
 
-[![A comic strip about side projects](../imgs/2017-06-19-13-tricks-for-successful-side-projects/Strip-Side-project.jpg)](http://www.commitstrip.com/en/2014/11/25/west-side-project-story/)
+[![A comic strip about side projects]({{site.url}}/imgs/2017-06-19-13-tricks-for-successful-side-projects/Strip-Side-project.jpg)](http://www.commitstrip.com/en/2014/11/25/west-side-project-story/)
 
 ## 1\. Know your goal
 
@@ -52,7 +52,7 @@ To get the technical aspect of delivery out of the picture once and for all, I u
 
 Once this is up and running, as long as I split my work in baby steps, I'll be delivering.
 
-[![The cover of the continuous delivery book](../imgs/2017-06-19-13-tricks-for-successful-side-projects/continuous-delivery.jpg)](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1498106027&sr=8-1&keywords=continuous+delivery)
+[![The cover of the continuous delivery book]({{site.url}}/imgs/2017-06-19-13-tricks-for-successful-side-projects/continuous-delivery.jpg)](https://www.amazon.com/Continuous-Delivery-Deployment-Automation-Addison-Wesley/dp/0321601912/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1498106027&sr=8-1&keywords=continuous+delivery)
 
 ## 5\. Use SasS tools
 
@@ -76,7 +76,7 @@ Depending on your project, you'll have a choice in which programming language to
 
 Paul Graham advices to [use dynamic languages](http://www.paulgraham.com/power.html). I tend to do the same, especially after watching ["The Unreasonable Effectiveness of Dynamic Typing for Practical Programs"](https://www.infoq.com/presentations/dynamic-static-typing).
 
-[![A presentation about dynamic typing](../imgs/2017-06-19-13-tricks-for-successful-side-projects/dynamic-typing-pres.jpg)](https://www.infoq.com/presentations/dynamic-static-typing)
+[![A presentation about dynamic typing]({{site.url}}/imgs/2017-06-19-13-tricks-for-successful-side-projects/dynamic-typing-pres.jpg)](https://www.infoq.com/presentations/dynamic-static-typing)
 
 In the end, I guess it's a matter of personal preference. Pick the language you'll be the most productive with.
 
@@ -150,4 +150,4 @@ That's again a case for building your system in baby steps. The faster you get t
 
 If I needed a 14th best practice it would be to start today ! As with most things, just do it !
 
-![Just Do It !](../imgs/2017-06-19-13-tricks-for-successful-side-projects/just-do-it.jpg)
+![Just Do It !]({{site.url}}/imgs/2017-06-19-13-tricks-for-successful-side-projects/just-do-it.jpg)

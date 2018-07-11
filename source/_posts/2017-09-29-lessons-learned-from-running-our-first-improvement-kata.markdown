@@ -17,7 +17,7 @@ During the past few weeks, I blogged the [story of our first improvement kata](/
 
 Doing this first [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html) taught us many lessons. We re-discovered best practices of the software industry. We also learned more general things about the improvement kata itself.
 
-![Drawing of books](../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/lessons.jpg)
+![Drawing of books]({{site.url}}/imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/lessons.jpg)
 
 ## Rediscovered best practices
 
@@ -29,7 +29,7 @@ As we went through the kata, we 'proved' many known best practices. We did not h
 
 We also pushed the #NoBug policy further than it is usually done. We defined a clear definition for bugs that anyone could use. Doing so, we removed the product owner (or on-site customer) from the picture. Very often, the PO is the only one who can sort stories from bugs out. We created what [Donald Reinertsen](http://reinertsenassociates.com/category/tips/) calls a distributed rule in the [flow book](https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009). It increased empowerment, removes bottlenecks, while ensuring alignment.
 
-[![The 'Flow' book cover](../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/flow-book-cover.jpg)](https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009)
+[![The 'Flow' book cover]({{site.url}}/imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/flow-book-cover.jpg)](https://www.amazon.fr/Principles-Product-Development-Flow-Generation/dp/1935401009)
 
 ## The improvement kata
 
@@ -71,7 +71,7 @@ As the saying goes, "The cobbler's children go barefoot". We are building such s
 
 Hopefully, new tools like [CodeScene](https://codescene.io/) are emerging to fill this gap. You can learn more about CodeScene on their [website](https://codescene.io/), or from the [founder's book](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384). It analyses the version control history to find hot spots and other things in your code.
 
-[![The 'Code as a Crime Scene' book cover](../imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/code-as-crime-scene.jpg)](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384)
+[![The 'Code as a Crime Scene' book cover]({{site.url}}/imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/code-as-crime-scene.jpg)](https://www.amazon.com/Your-Code-Crime-Scene-Bottlenecks/dp/1680500384)
 
 While we keep dreaming of such tool, I'll continue to blog. Next week, I will write a short guide of [how to run your first improvement kata](/how-to-run-your-first-improvement-kata/).
 

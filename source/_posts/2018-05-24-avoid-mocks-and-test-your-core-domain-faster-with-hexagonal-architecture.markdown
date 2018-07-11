@@ -19,7 +19,7 @@ As I've written in my last few posts, we can get a long way to avoid mocks with 
 
 This is the 6th post of a [series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/). If you haven't, you can start by [the beginning](/careless-mocking-considered-harmful/).
 
-![A drawing of a hexagon-shaped building](../imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg)
+![A drawing of a hexagon-shaped building]({{site.url}}/imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg)
 
 ## Why do we end up with mocks in large systems ?
 

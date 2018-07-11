@@ -14,7 +14,7 @@ description: "Description of a kind of hack to increase the size of a Scrum team
 
 It is said that Scrum teams work best at 7 people, and that they break at about 10. The trouble is that sometimes there is just too much work for 7 people, but no enough for a full Scrum of Scrums. What if there was a simple way to hack this number up to 12 ?
 
-{% img center /imgs/2016-12-21-overclocking-a-scrum-team-to-12/overclocking.jpg An overclocked motherboard working with extra fans and cellar tape %}
+![An overclocked motherboard working with extra fans and cellar tape]({{site.url}}/imgs/2016-12-21-overclocking-a-scrum-team-to-12/overclocking.jpg)
 
 ## An Idea
 
@@ -42,7 +42,7 @@ Why not, there's not nothing really new here, but the challenge is to run such a
 
 Obviously, for this to work, you'll also need to have enough tooling work to do for a 3 people team. That's usually the case, the CI alone can take quite some time (see Jez Humble's talk [Why Agile Doesn't Work](https://www.youtube.com/watch?v=2zYxWEZ0gYg)) and any team will have its own custom tools to do. For example, in our team, we built our own benchmark framework and we could benefit a lot from [Saros](http://www.saros-project.org/) on IntelliJ.
 
-[{% img center /imgs/2016-12-21-overclocking-a-scrum-team-to-12/why-agile-doesnt-work.jpg The slide in Jez Humble's Why Agile Doesn't Work about the time taken for CI %}](https://www.youtube.com/watch?v=2zYxWEZ0gYg)
+[![The slide in Jez Humble's Why Agile Doesn't Work about the time taken for CI]({{site.url}}/imgs/2016-12-21-overclocking-a-scrum-team-to-12/why-agile-doesnt-work.jpg)](https://www.youtube.com/watch?v=2zYxWEZ0gYg)
 
 ## Not quite there yet
 

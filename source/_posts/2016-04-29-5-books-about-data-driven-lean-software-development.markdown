@@ -35,31 +35,31 @@ Hopefully, some people are thinking differently, they believe it is possible to 
 
 ### [Running Lean: Iterate from Plan A to a Plan That Works](http://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461906957&sr=8-1&keywords=running+lean) by [Ash Maurya](https://ashmaurya.com/)
 
-[{% img center /imgs/2016-04-29-5-books-about-data-driven-lean-software-development/running_lean.jpg The cover of the Running Lean book %}](http://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461906957&sr=8-1&keywords=running+lean)
+[![The cover of the Running Lean book]({{site.url}}/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/running_lean.jpg)](http://www.amazon.com/Running-Lean-Iterate-Works-OReilly/dp/1449305172/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461906957&sr=8-1&keywords=running+lean)
 
 Details a very practical guide about the lean startup process, which is a very good starting point to any kind of lean software development.
 
 ### [Kanban: Successful Evolutionary Change for Your Technology Business](http://www.amazon.com/Kanban-Successful-Evolutionary-Technology-Business/dp/0984521402/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461906998&sr=8-1&keywords=kanban+anderson) by [David J. Anderson](http://www.djaa.com/)
 
-[{% img center /imgs/2016-04-29-5-books-about-data-driven-lean-software-development/kanban.jpg The cover of the Kanban book %}](http://www.amazon.com/Kanban-Successful-Evolutionary-Technology-Business/dp/0984521402/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461906998&sr=8-1&keywords=kanban+anderson)
+[![The cover of the Kanban book]({{site.url}}/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/kanban.jpg)](http://www.amazon.com/Kanban-Successful-Evolutionary-Technology-Business/dp/0984521402/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461906998&sr=8-1&keywords=kanban+anderson)
 
 This book explains with real world examples how to use Kanban board to control your work queues and improve your flow of work, a real basic for any lean product development.
 
 ### [The Principles of Product Development Flow: Second Generation Lean Product Development](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461907905&sr=8-1&keywords=principles+of+product+development+flow) by [Donald G. Reinertsen](http://reinertsenassociates.com/)
 
-[{% img center /imgs/2016-04-29-5-books-about-data-driven-lean-software-development/flow.jpg The cover of the Flow book %}](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461907905&sr=8-1&keywords=principles+of+product+development+flow)
+[![The cover of the Flow book]({{site.url}}/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/flow.jpg)](http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461907905&sr=8-1&keywords=principles+of+product+development+flow)
 
 This book is rather theoretical, but it links all subjects together : lean startup, risk management, Kanban, and economics. I guess it's a must read on the subject.
 
 ### [How to Measure Anything: Finding the Value of Intangibles in Business](http://www.amazon.com/How-Measure-Anything-Intangibles-Business/dp/1118539273/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461908177&sr=8-1&keywords=how+to+measure+anything) by [Douglas W. Hubbard](http://www.hubbardresearch.com/)
 
-[{% img center /imgs/2016-04-29-5-books-about-data-driven-lean-software-development/how_to_measure_anything.jpg The cover of How to measure anything %}](http://www.amazon.com/How-Measure-Anything-Intangibles-Business/dp/1118539273/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461908177&sr=8-1&keywords=how+to+measure+anything)
+[![The cover of How to measure anything]({{site.url}}/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/how_to_measure_anything.jpg)](http://www.amazon.com/How-Measure-Anything-Intangibles-Business/dp/1118539273/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461908177&sr=8-1&keywords=how+to+measure+anything)
 
 If the flow book gives a big picture view of what you want, this one explains how you can actually measure all the aspects of your product development in $ value.
 
 ### [Waltzing With Bears: Managing Risk on Software Projects](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_sc_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461908398&sr=8-1-spell&keywords=walzting+with+bears) by [Tom DeMarco and Timothy Lister](http://www.systemsguild.com/)
 
-[{% img center /imgs/2016-04-29-5-books-about-data-driven-lean-software-development/waltzing_with_bears.jpg The cover of Waltzing with bears %}](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_sc_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461908398&sr=8-1-spell&keywords=walzting+with+bears)
+[![The cover of Waltzing with bears]({{site.url}}/imgs/2016-04-29-5-books-about-data-driven-lean-software-development/waltzing_with_bears.jpg)](http://www.amazon.com/Waltzing-Bears-Managing-Software-Projects/dp/0932633609/ref=sr_1_sc_1?tag=pbourgau-20&amp;ie=UTF8&qid=1461908398&sr=8-1-spell&keywords=walzting+with+bears)
 
 Although this book is getting old, and is a bit outdated when compared to agile development practices, it provides real world examples of how scientific measurement can be applied to software product development.
 

@@ -23,7 +23,7 @@ As an added benefit, if ever someone else joins me in my side-project, it will b
 
 Heroku provides a [tutorial](https://devcenter.heroku.com/articles/local-development-with-docker) about how to deploy an existing [Rails](http://rubyonrails.org/) app to heroku using containers. Unfortunately, I did yet have an existing rails app ... So the first challenge I faced, was how to create a Rails app without actually installing Rails on my machine. The trick is to bootstrap rails in docker itself before packaging all this for Heroku.
 
-{% img center /imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg The 3 logos of Rails, Docker and Heroku %}
+![The 3 logos of Rails, Docker and Heroku]({{site.url}}/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/logos.jpg)
 
 ## 1. Install the required software
 
@@ -170,7 +170,7 @@ docker-compose up web
 ```
 The app should be accessible at http://0.0.0.0:8080
 
-{% img center /imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg The default homepage for a new Rails application %}
+![The default homepage for a new Rails application]({{site.url}}/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/rails-homepage.jpg)
 
 ## 5. Deploying to heroku
 
@@ -201,7 +201,7 @@ heroku container:release --app <your-app-name>
 
 Your app should be accessible on line at https://<your-app-name>.herokuapp.com/
 
-{% img center /imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg The typical error message when you deploy a new Rails app to heroku %}
+![The typical error message when you deploy a new Rails app to heroku]({{site.url}}/imgs/2016-07-13-how-to-boot-a-new-rails-project-with-docker-and-heroku/deployed-to-heroku.jpg)
 
 Rails does not provide a default homepage in production. But you can check the logs with
 

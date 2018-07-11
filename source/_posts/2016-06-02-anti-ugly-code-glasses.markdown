@@ -14,7 +14,7 @@ I think I found a way to fix the dirty code problem once and for all ...
 
 In [The Hitchhiker's Guide to the Galaxy](https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy) Zaphod Beeblebrox has some anti panic glasses. They feature some special danger detection mechanism that turns them opaque black to save their bearer from panicking.
 
-{% img center /imgs/2016-06-02-anti-ugly-code-glasses/zaphod.jpg Zaphod Beeblebrox %}
+![Zaphod Beeblebrox]({{site.url}}/imgs/2016-06-02-anti-ugly-code-glasses/zaphod.jpg)
 
 *(It turns out that Zaphod has two heads ...)*
 
