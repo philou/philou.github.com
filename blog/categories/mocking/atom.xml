@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mocking | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/mocking/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-07-10T06:54:04+02:00</updated>
+  <updated>2018-07-11T06:51:19+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -95,7 +95,7 @@ end
 
 <h3>Legacy code</h3>
 
-<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
+<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="http://philippe.bourgau.net/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
 
 <p>In <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a> <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> explains how to exploit <a href="http://www.informit.com/articles/article.aspx?p=359417&amp;seqNum=2">&ldquo;seams&rdquo;</a> in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.</p>
 
@@ -113,7 +113,7 @@ end
 
 <h2>If using a mock, prefer spy / proxies</h2>
 
-<p><img src="../imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
+<p><img src="http://philippe.bourgau.net/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
 
 <p>As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.</p>
 
@@ -162,7 +162,7 @@ end
     <id>http://philippe.bourgau.net/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes</id>
     <content type="html"><![CDATA[<p><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Last week&rsquo;s post</a> was about how <a href="http://alistair.cockburn.us/Hexagonal+architecture">hexagonal architecture</a> results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week&rsquo;s code sample, this was the controller. I concluded that at least, this was easier to manage. Let&rsquo;s see how.</p>
 
-<p><img src="../imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg" alt="Hand written 'In-memory fake' with memory replaced by a RAM board" /></p>
+<p><img src="http://philippe.bourgau.net/imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg" alt="Hand written 'In-memory fake' with memory replaced by a RAM board" /></p>
 
 <p>This is the 7th post in <a href="/blog/categories/how-to-avoid-mocks-series/">a series about avoiding mocks</a>. If you haven&rsquo;t, you might start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
 
@@ -295,7 +295,7 @@ end</p>
 
 <p>We need to <a href="https://blog.pragmatists.com/test-doubles-fakes-mocks-and-stubs-1a7491dfa3da">stub out</a> the twitter API for most tests. We are also still using a mock to verify that the tweet is sent. Finally, as we can see from the test execution times, we are still using the database in some tests.</p>
 
-<p><img src="../imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/test-timings.jpg" alt="Screen capture of the tests execution time" /></p>
+<p><img src="http://philippe.bourgau.net/imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/test-timings.jpg" alt="Screen capture of the tests execution time" /></p>
 
 <p>If the project grew large this would become an issue. Sadly, mocking is often the fix people jump on &hellip;</p>
 
@@ -464,7 +464,7 @@ end</p>
 
 <p>This is the 6th post of a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. If you haven&rsquo;t, you can start by <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
 
-<p><img src="../imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg" alt="A drawing of a hexagon-shaped building" /></p>
+<p><img src="http://philippe.bourgau.net/imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg" alt="A drawing of a hexagon-shaped building" /></p>
 
 <h2>Why do we end up with mocks in large systems ?</h2>
 
@@ -885,7 +885,7 @@ assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
 
 <p>For more details, have a look at these examples for your preferred language : <a href="http://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html">Java</a>, <a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Ruby</a> or <a href="http://tonylukasavage.com/blog/2014/05/29/custom-assertions-in-should-dot-js/">Javascript</a>.</p>
 
-<p><img src="../imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg" alt="A drawing of a box of matches, branded 'Matchers' on top" /></p>
+<p><img src="http://philippe.bourgau.net/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg" alt="A drawing of a box of matches, branded 'Matchers' on top" /></p>
 
 <p>That custom assertion matchers have an effect on mock usage might seem puzzling at first. Let me explain. Us, mere human developers, get lured into mocking when tests become too complicated. By keeping the tests simpler, Custom Assertion Matchers help use to avoid mocks. It&rsquo;s a bit like why test data builders keep mocks at bay.</p>
 
@@ -1057,7 +1057,7 @@ end
 
 <p>Hopefully, <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a> both shortcut test data setup and avoid mocks.</p>
 
-<p><img src="../imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg" alt="Drawing of a crate" /></p>
+<p><img src="http://philippe.bourgau.net/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg" alt="Drawing of a crate" /></p>
 
 <p>This is the fourth post <a href="/blog/categories/how-to-avoid-mocks-series/">of a series about how to avoid mocks</a> in automated tests. If you haven&rsquo;t yet, I recommend you to start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
 
@@ -1270,7 +1270,7 @@ end
 
 <p>The idea is to use the builder pattern to build the test data. <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a> covers this technique in great length.</p>
 
-<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="../imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/growing.jpg" alt="Cover of the book Growing Object Oriented Software Guided By Tests" /></a></p>
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="http://philippe.bourgau.net/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/growing.jpg" alt="Cover of the book Growing Object Oriented Software Guided By Tests" /></a></p>
 
 <p>Here is the previous code re-written using the test data builder pattern.</p>
 
