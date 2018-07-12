@@ -67,7 +67,7 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 
 1.   [How to convince your business of sponsoring a large scale refactoring](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/)
 *   [Why we need Badass developers to perform large scale refactorings](/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
-*   5 mistakes badass developers never do
+*   [5 mistakes badass developers never do](/5-mistakes-badass-developers-never-do/)
 *   Principles That Will Make You Become a Badass Developer
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money

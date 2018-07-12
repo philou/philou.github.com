@@ -21,7 +21,7 @@ This post (and the next) will be about how to gain the business's trust. This is
 
 Back in 2002, at my first job, I started to read [Refactoring, Improving the Design of Existing code](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?ie=UTF8). That's where I read about unit testing. I found it so great that I made a demo to other programmers. Being the junior dev in the team, my co-workers reaction was something between "Meh" and "Maybe". Fortunately, a more experienced and respected developer gave it a try. A few weeks after my demo, he announced to the team that unit testing worked great on new code. This time, people showed no questioning about his opinion : he if said so, it must have been true. Even business people blessed the practice !
 
-[![The "Refactoring, improving the design of existing code" cover. Badass developers know how to perform large scale refactoring](../imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?ie=UTF8)
+[![The "Refactoring, improving the design of existing code" cover. Badass developers know how to perform large scale refactoring]({{site.url}}/imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?ie=UTF8)
 
 I had given a good live coding demo, but it was this respected developer's opinion that won the point. To convince business people of sponsoring a large scale refactoring, we need their trust. That's why we need badass developers around.
 
