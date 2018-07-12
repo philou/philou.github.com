@@ -71,5 +71,3 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   Principles That Will Make You Become a Badass Developer
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money
-
-[Stay tuned !](http://eepurl.com/dxKE95)

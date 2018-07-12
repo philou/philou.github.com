@@ -52,6 +52,5 @@ These concepts, though, are very close to my definition of a badass developer. C
 
 ## To be continued
 
-This was why badass developers matter to the success of large scale refactorings. This was the second post in a [series about how to get sponsorship for a large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/).  In the next post, we'll look at what we can do to all become Badass developers.
+This was why badass developers matter to the success of large scale refactorings. This was the second post in a [series about how to get sponsorship for a large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/).  In the [next post](/5-mistakes-badass-developers-never-do/), we'll look at what we can do to all become Badass developers.
 
-[Stay tuned !](http://eepurl.com/dxKE95)
