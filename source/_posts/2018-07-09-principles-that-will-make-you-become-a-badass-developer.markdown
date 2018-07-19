@@ -9,7 +9,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Large Scale Refactoring, Badass Developper, become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects"
 description: "Having a badass developer onboard will help to get sponsorship for a large scale refactoring. They help with their experience, but also by the way they communicate and negotiate with the business people. If you want to become a badass developer yourself, here are a five principles to live by."
-published: false
 ---
 In my [last post](/5-mistakes-badass-developers-never-do/), I went over things we should avoid if we want to become badass developers. As I said though, this is far from enough. Once we've stoped losing trust from the business, it's time to build some more ! This is the forth post in [a series about how to get sponsorship for a large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't, start reading from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
 

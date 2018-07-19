@@ -57,6 +57,6 @@ It's not only about getting the business's trust. We must also build trust from 
 
 ## There's more to a badass developer
 
-I'm done with this list of things badass developers don't do. Avoiding these is only the first step to become a badass developer. In [next post](http://eepurl.com/dxKE95), I'll write about what we need to do if we want to build strong trust with the business.
+I'm done with this list of things badass developers don't do. Avoiding these is only the first step to become a badass developer. In [next post](/principles-that-will-make-you-become-a-badass-developer/), I'll write about what we need to do if we want to build strong trust with the business.
 
 This post is the third post in a [series about how to get sponsorship for a large scale refactoring.](/blog/categories/large-scale-refactoring-sponsorship-series/)

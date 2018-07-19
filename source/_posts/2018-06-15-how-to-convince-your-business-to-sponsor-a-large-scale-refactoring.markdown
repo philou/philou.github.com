@@ -22,7 +22,7 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 
 ## How do we end up in this silly situation ?
 
-[![Drawing of a '5 whys' mind map explaining why it is difficult to get sponsorship for a large scale refactoring]({{site.url}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized-small.jpg)](../imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized.jpg)
+[![Drawing of a '5 whys' mind map explaining why it is difficult to get sponsorship for a large scale refactoring]({{site.url}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized-small.jpg)]({{site.url}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/why-are-large-scale-refactorings-not-prioritized.jpg)
 
 ### Only developers see the bad code
 
@@ -68,6 +68,6 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 1.   [How to convince your business of sponsoring a large scale refactoring](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/)
 *   [Why we need Badass developers to perform large scale refactorings](/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
 *   [5 mistakes badass developers never do](/5-mistakes-badass-developers-never-do/)
-*   Principles That Will Make You Become a Badass Developer
+*   [Principles That Will Make You Become a Badass Developer](/principles-that-will-make-you-become-a-badass-developer/)
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money
