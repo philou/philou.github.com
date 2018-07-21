@@ -69,5 +69,6 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   [Why we need Badass developers to perform large scale refactorings](/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
 *   [5 mistakes badass developers never do](/5-mistakes-badass-developers-never-do/)
 *   [Principles That Will Make You Become a Badass Developer](/principles-that-will-make-you-become-a-badass-developer/)
+*   Incremental Software Development for Large Scale Refactoring
 *   Techniques to refactor in parallel with features
 *   Nothing convinces business people like money
