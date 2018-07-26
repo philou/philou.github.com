@@ -102,6 +102,147 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/incremental-architecture-a-cure-against-architecture-astronauts/">Incremental Architecture, a Cure Against Architecture Astronauts</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-04-24T06:52:00+02:00" pubdate data-updated="true">Apr 24<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a>. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding &hellip;</p>
+
+<p>When I was asked to re-engineer the &lsquo;wizards UI&rsquo;, I paused my coding to design something clean from scratch. It worked quite well at first : the overall code was a lot simpler and contained a lot less duplication than before. Seeing this new shiny UI, product people asked for new features. Unfortunately, I hadn&rsquo;t thought of them when designing this little framework. I was almost back at my initial situation.</p>
+
+<p>That&rsquo;s how I started to look for another way to design software. At about the same time the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming">eXtreme Programming book</a> fell into my hands. That&rsquo;s where I discovered the idea of incremental design and architecture.</p>
+
+<p><a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming"><img src="http://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg" alt="Front cover of the first edition of the XP book" /></a></p>
+
+<h2>What is Incremental Archi</h2>
+
+<p>Let&rsquo;s start with the antithesis of incremental architecture :</p>
+
+<h3>Astronaut Architecture</h3>
+
+<p>The term &ldquo;Architecture Astronaut&rdquo; was coined by <a href="https://www.joelonsoftware.com">Joel Spolsky</a> back in 2001. If you haven&rsquo;t read this <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">classic post</a> yet, I strongly encourage you to do so. Basically, he explains that we should not be impressed by architects going over their heads talking about too abstract stuff.</p>
+
+<p>Incremental is the exact opposite of astronaut architecture</p>
+
+<h3>Two Schools to Software Architecture</h3>
+
+<p>Traditional architecture is about taking up-front choices that will be difficult to change. Incremental architecture is about preparing for non-stop change and taking decisions as late as possible.</p>
+
+<p>The idea in incremental architecture is really simple : keep your code simple, clean and automatically tested in order to be able to simply adapt your code and architecture when definitely needed.</p>
+
+<h3>Pros and Cons of incremental architecture</h3>
+
+<p>The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I&rsquo;m not alone, <a href="http://www.jamesshore.com/Agile-Book/incremental_design.html">James Shore</a> (who wrote the more on the subject) also shares my view:</p>
+
+<blockquote><p>Common thought is that distributed processing, persistence, internationalization, security, and transaction structure are so complex that you must consider them from the start of your project. I disagree; I&rsquo;ve dealt with all of them incrementally.</p>
+
+<p>Two issues that remain difficult to change are choice of programming language and platform. I wouldn&rsquo;t want to make those decisions incrementally!</p></blockquote>
+
+<p>I would add published APIs to this list.</p>
+
+<p>Granted, there are situations that incremental architecture alone cannot handle, what about its good points then ?</p>
+
+<p>In all the other cases (and that means most of the time), here is what you get :</p>
+
+<ul>
+<li>As you won&rsquo;t need to deal with future use cases, you&rsquo;ll do less work</li>
+<li>That in turn, will keep your code simpler, decreasing time to release new features</li>
+<li>As change is built-in, you&rsquo;ll be able to improve your architecture in ways you could not have imagined from the start !</li>
+</ul>
+
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1493096137&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img src="http://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg" alt="Front cover of the Art of Agile Software Development book" /></a></p>
+
+<p>If you cannot see how this could possibly work ? Read on !</p>
+
+<h2>How to do it</h2>
+
+<h3>eXtreme Programming</h3>
+
+<p>As I said earlier, incremental architecture emerged from eXtreme Programming. It won&rsquo;t come as a surprise that in order to work well incremental architecture requires the XP practices to be in place. In particular, the code base should be automatically tested, the continuous integration cycle should take less than 10 minutes, the design should be simple. The team should be good at doing refactoring.</p>
+
+<p>Don&rsquo;t expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !</p>
+
+<p><a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1493096197&amp;sr=1-1&amp;keywords=fowler+refactoring"><img src="http://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg" alt="Front cover of the Martin Fowler's refactoring book" /></a></p>
+
+<h3>Architecture Vision</h3>
+
+<p>At work, where our team consists of 9 developers, it&rsquo;s not always that simple to coordinate and all pull in the same direction. That&rsquo;s why we find it useful to share a very long term architecture vision (<a href="https://www.thoughtworks.com/insights/blog/enabling-incremental-design-and-evolutionary-architecture">Enabling Incremental Design and Evolutionary Architecture</a>). This will help people to make coherent decisions when hesitating between 2 alternate designs.</p>
+
+<p>The vision can be the result of the work of a pair, or a mob brainstorming or whatever. Building this vision is typically an activity where experienced programmers can contribute a lot of value.</p>
+
+<p>Once this vision is shared and understood by the team, every time a pair has to work on a story, they can orient the design towards it. But always as little as possible to finish the work at hand, remember the XP motos <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS (Keep It Simple &amp; Stupid)</a> &amp; <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI (You Ain&rsquo;t Gonna Need It</a>.</p>
+
+<p>One final word &hellip; a vision is just that : a vision ! It might turn out true, or false, be ready to change it as circumstances change.</p>
+
+<h3>Spikes</h3>
+
+<p>At times, even with a story in your hands and a long term architecture sketch on the whiteboard, you might have difficulties to know how to change your design to fulfill both.</p>
+
+<p>As always in XP, in case of uncertainty, use <a href="http://agiledictionary.com/209/spike/">Spikes</a> ! Spikes are short time-boxed experiments of throwaway code, which goal is to answer a specific design question.</p>
+
+<h3>How to mitigate the risks</h3>
+
+<p>What about these topics that don&rsquo;t yield to incremental architecture ? What if you discover late that you need to change your platform ? Or your API ?</p>
+
+<p>Obviously, you should think about these questions up-front. Hopefully, there are usually not that difficult to answer. But, over time, Non-Functional-Requirements and technologies change. Large and long living systems are particularly likely to need to change to a new platform someday.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix had the answer</a> : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy"><img src="http://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg" alt="Ken Thompson and Dennis Ritchie, the creators of Unix" /></a><div class="image-credits">Photo from <a href="https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg">WikiMedia</a></div></p>
+
+<p>The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road &hellip; without the safety !</p>
+
+<h3>The Architect</h3>
+
+<p>Good news : no more PowerPoints and a lot more coding with the team ! Here is what&rsquo;s expected from an incremental architect :</p>
+
+<ul>
+<li>To code with the team. As Bertrand Meyer once said &ldquo;<a href="http://stal.blogspot.fr/2008/08/architect-always-implements.html">Bubbles (aka. diagrams) don&rsquo;t crash</a>&rdquo;, it&rsquo;s plain too easy, and wrong, to mandate architecture without living with the consequences</li>
+<li>To come up with more ideas when drafting the long term vision</li>
+<li>To keep an eye on the &lsquo;long term&rsquo; while being the navigator in pair programming</li>
+<li>In the second edition of the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-1&amp;keywords=extreme+programming">XP book</a> Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team</li>
+<li>To delegate as much as possible to the team. However smart the architect, the team as a whole is smarter ! Delegating architecture increases motivation and the quality of the outcome.</li>
+</ul>
+
+
+<h2>End of the story</h2>
+
+<p>I&rsquo;ve been practicing incremental architecture and design for a long time now. It made my life a lot simpler ! Most architecture questions become backlog items to prioritize.</p>
+
+<p>One last advice : be prepared to re-read <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky&rsquo;s article</a> whenever you get caught up in architecture meetings &hellip;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-get-your-team-to-do-code-reviews/">How to Get Your Team to Do Code Reviews</a></h1>
     
     
@@ -1440,128 +1581,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">5 Minutes Hack to Speed Up RSpec in Rails 5 Using In-memory SQLite</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2017-01-25T07:53:00+01:00" pubdate data-updated="true">Jan 25<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Here is the story : you have a <a href="http://rubyonrails.org/">Rails 5</a> app that uses <a href="http://rspec.info/">RSpec</a>, but your RSpec suite is getting slower and slower to run. You&rsquo;ve already considered some solutions :</p>
-
-<ul>
-<li>Use <a href="https://sqlite.org/">SQLite</a> in memory for your test env.</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">sqlite3</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="s">&quot;:memory:&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&rsquo;s the most straightforward thing to do, but unfortunately, if you are sharing your test env with <a href="https://cucumber.io/">Cucumber</a>, you might want to use a production like DB with Cucumber (<a href="https://www.postgresql.org/">PostgreSQL</a> or whatever). So unless you are ready to setup a new env for cucumber (which I tried and don&rsquo;t recommend) you&rsquo;re stuck.</p>
-
-<ul>
-<li>Use mocks. That&rsquo;s surely going to work, it&rsquo;s going to make your test hell of a lot faster ! It will also make your tests a lot more fragile and more expensive to maintain &hellip; If you want to read more about why I think mocks are a bad idea, just have a look at <a href="/blog/categories/mocking/">these posts</a>.</li>
-</ul>
-
-
-<h2>The hack</h2>
-
-<p>Here is a third alternative, I&rsquo;ve <a href="/simplest-way-to-speed-up-rspec-with-in-memory-sqlite-db/">already written about it</a>, but here it comes updated and tested for Rails 5 :</p>
-
-<ol>
-<li>Don&rsquo;t change anything to your <code>config/database.yml</code></li>
-<li>Obviously, you&rsquo;ll need to add <code>sqlite3</code> to your <code>Gemfile</code></li>
-<li>At the beginning of your <code>spec/rails_helper.rb</code>, replace</li>
-</ol>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Checks for pending migration and applies them before tests are run.</span>
-</span><span class='line'><span class="c1"># If you are not using ActiveRecord, you can remove this line.</span>
-</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Migration</span><span class="o">.</span><span class="n">maintain_test_schema!</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>with</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># In order to keep the same RAILS_ENV for rspec and cucumber, and to make rspec</span>
-</span><span class='line'><span class="c1"># faster, patch the connection to use sqlite in memory when running rspec</span>
-</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Schema</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class='line'><span class="nb">load</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="s2">/db/schema.rb&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&rsquo;s it ! Run your specs &hellip; not bad for a 5 minutes investment !</p>
-
-<h4>Rails 5.1 (2017-03-29 Edit)</h4>
-
-<p>My fresh hack started to fail on Rails 5.1 ! If <code>schema.rb</code> is generated with the Postgres adapter, it is now incompatible with this injected Sqlite adapter. Here is a patch that removes the glitches :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># In order to keep the same RAILS_ENV for rspec and cucumber, and to make rspec</span>
-</span><span class='line'><span class="c1"># faster, patch the connection to use sqlite in memory when running rspec</span>
-</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Base</span><span class="o">.</span><span class="n">establish_connection</span><span class="p">(</span><span class="ss">adapter</span><span class="p">:</span> <span class="s1">&#39;sqlite3&#39;</span><span class="p">,</span> <span class="ss">database</span><span class="p">:</span> <span class="s1">&#39;:memory:&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="ss">ActiveRecord</span><span class="p">:</span><span class="ss">:Schema</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class='line'><span class="c1"># load db agnostic schema by default. Needed to remove the &quot;, id: :serial&quot; from</span>
-</span><span class='line'><span class="c1"># the table definitions to make it load on sqlite</span>
-</span><span class='line'><span class="nb">eval</span><span class="p">(</span><span class="sb">`cat </span><span class="si">#{</span><span class="no">Rails</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">to_s</span><span class="si">}</span><span class="sb">/db/schema.rb | sed &#39;s/,[^:]*: :serial\//g&#39;`</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I admit this is getting a bit crappy, and I don&rsquo;t know how long it is going to work &hellip;</p>
-
-<h2>One more thing &hellip;</h2>
-
-<p>If you need even more speed, you can now run your specs in parallel in different processes ! Each in-memory SQLite DB is bound to its process, so unlike a real PostgreSQL dev DB, you won&rsquo;t get any conflicts between your tests ;&ndash;)</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/8/">&larr; Older</a>
@@ -1644,6 +1663,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactorings</a>
+      </li>
+    
+      <li class="post">
         <a href="/principles-that-will-make-you-become-a-badass-developer/">Principles that will make you become a badass developer</a>
       </li>
     
@@ -1657,10 +1680,6 @@
     
       <li class="post">
         <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">How to convince your business of sponsoring a large scale refactoring</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/">How to avoid unnecessary meetings (a takeaway from Devoxx France 2018)</a>
       </li>
     
   </ul>

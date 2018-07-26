@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: incremental-software-development | Philippe Bourgau's blog]]></title>
+  <link href="http://philippe.bourgau.net/blog/categories/incremental-software-development/atom.xml" rel="self"/>
+  <link href="http://philippe.bourgau.net/"/>
+  <updated>2018-07-26T09:15:27+02:00</updated>
+  <id>http://philippe.bourgau.net/</id>
+  <author>
+    <name><![CDATA[Philippe Bourgau]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental Software Development for Large Scale Refactorings]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings/"/>
+    <updated>2018-07-26T09:32:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings</id>
+    <content type="html"><![CDATA[<p>My <a href="/principles-that-will-make-you-become-a-badass-developer/">previous post</a> was about the badass developer attitude. More specifically, how it can buy sponsorship for large scale refactorings. Unfortunately, attitude is not enough. We also need to be able to deliver in a way that builds trust with the business. Most of all, business <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">is scared of the tunnel effect</a>. <a href="https://en.wikipedia.org/wiki/Iterative_and_incremental_development">Incremental software development</a> techniques allows to deliver large scale refactoring step by step. Not only that, but it also allows to do so alongside business features. That&rsquo;s how badass developers walk their talk and gain the business people&rsquo;s trust.</p>
+
+<p>This is the fifth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-07-20-incremental-software-development-techniques-for-large-scale-refactorings/incremental-plant.jpg" alt="Drawing of a plant at different stages of growth, illustrating Incremental Software Development" /></p>
+
+<h2>Why do incremental software development matter ?</h2>
+
+<h3>A short story</h3>
+
+<p>A few years ago, I joined a team whose work involved a <a href="https://en.wikipedia.org/wiki/Domain-specific_language">Domain Specific Language</a> and a parser. The parser had grown in an ad-hoc way for a few years, and was now both very brittle and difficult to extend. We knew the way to go was to adopt a more solid parsing approach. We wanted to migrate to <a href="http://www.antlr.org/">ANTLR</a> and a <a href="https://en.wikipedia.org/wiki/Multi-pass_compiler">multi pass parser</a>.</p>
+
+<p>As always, the business was very pushy for new features. There was no way we could have stoped everything for a full parser re-write. We explained to them that some of their features would be impossible to write without the new parser. We suggested that we work on migrating the parser as a background technical Epic. We did so using incremental software development techniques.</p>
+
+<p>It took us a few months to migrate the parser. Meanwhile, we kept the software in a releasable state. This allowed us to validate our progress on the refactoring. We could continue to release features. We were able to share our progress on the refactoring with  the business people. They were very happy with the way we did this refactoring. In fact, it set a standard about how to prepare the software for big features later on.</p>
+
+<h3>The real problems</h3>
+
+<p>To understand why incremental software development works, let&rsquo;s understand the alternatives' problems. The main alternative it to do the refactoring in one massive task. This kind of initiative screams &ldquo;Tunnel effect waiting to happen&rdquo; ! The <a href="http://www.wethetalent.co/data-robots-ai/the-tunnel-effect-and-the-abstruse-trap/">tunnel effect</a> scares business people for 3 reasons :</p>
+
+<ol>
+<li>Because they don&rsquo;t know how much money they&rsquo;ll need to put in the tunnel to get out of it</li>
+<li>Because they don&rsquo;t know when they&rsquo;ll get the other features which they are also waiting for</li>
+<li>To be blocked in the tunnel if something unexpected and important comes along</li>
+</ol>
+
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-07-20-incremental-software-development-techniques-for-large-scale-refactorings/tunnel-effect.jpg" alt="Picture of someone holding a light, alone in a tunnel. Incremental Software Development helps to avoid the tunnel effect when performing a large scale refactoring" /></p>
+
+<p>Delivering a large scale refactoring with incremental software development fixes these 3 points.</p>
+
+<ul>
+<li>Every commit is a step forward while keeping the system in a releasable state. If ever something unexpected comes along, we can pause the refactoring for a while. (point 3)</li>
+<li>Not all the team has to work on refactoring at the same time. Working on the refactoring does not block the delivery of other features. (point 2)</li>
+<li>Finally, after working on a refactoring for a while, it becomes easier to have an idea of how long it will take. (point 1)</li>
+</ul>
+
+
+<blockquote><p>💡 Incremental software development fixes the business people&rsquo;s fear of refactoring tunnel.</p></blockquote>
+
+<p>It is true that performing the refactoring in one team-wide batch would be more efficient. It would reduce the overall Work In Progress and get it done quicker. Unfortunately, it&rsquo;s also a lot more scary for business people !</p>
+
+<h2>Incremental Software Development techniques</h2>
+
+<p>Like any skills, we can learn these techniques. Some are easy, and we can learn them from books. Others are more difficult and are usually learned through hard won experience. They can also be learned from a veteran developer in your team who&rsquo;s been through all this already. If you aren&rsquo;t or don&rsquo;t have a veteran around, we can still manage. <a href="https://medium.com/the-crossover-cast/deliberate-practice-learn-like-an-expert-cc3114b8a10e">Deliberate practice</a> is a great way to <a href="http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">learn almost anything</a>. <a href="http://philippe.bourgau.net/blog/categories/coding-dojo/">Coding dojos</a> are the thing here (I&rsquo;ll write more about this later).</p>
+
+<p>Once we master these skills, a lot of things change. First, we can do refactoring without harming our relationship with business people. Second, it builds enough self confidence among developers to negotiate with business people. This in itself, makes us more credible in their eyes. As a result, they are more likely to compromise on prioritizing refactoring.</p>
+
+<blockquote><p>💡 Mastering incremental software development builds self-confidence for developers.</p></blockquote>
+
+<h2>To be continued</h2>
+
+<p>This was the fifth post about <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>. In the next post, I&rsquo;ll deal headlong with the actual techniques. How to get bandwidth ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so <a href="http://eepurl.com/dxKE95">stay tuned</a> !</p>
+]]></content>
+  </entry>
+  
+</feed>
