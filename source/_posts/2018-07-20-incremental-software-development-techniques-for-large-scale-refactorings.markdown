@@ -9,7 +9,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Large Scale Refactoring, become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies"
 description: "When negotiating a large scale refactoring with business people, it's very important to know how to deliver. Incremental Software Development is the best way to mitigate risks and keep business people happy while performing a large scale refactoring. Here is why !"
-published: false
 ---
 My [previous post](/principles-that-will-make-you-become-a-badass-developer/) was about the badass developer attitude. More specifically, how it can buy sponsorship for large scale refactorings. Unfortunately, attitude is not enough. We also need to be able to deliver in a way that builds trust with the business. Most of all, business [is scared of the tunnel effect](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/). [Incremental software development](https://en.wikipedia.org/wiki/Iterative_and_incremental_development) techniques allows to deliver large scale refactoring step by step. Not only that, but it also allows to do so alongside business features. That's how badass developers walk their talk and gain the business people's trust.
 
@@ -44,6 +43,8 @@ Delivering a large scale refactoring with incremental software development fixes
 *   Finally, after working on a refactoring for a while, it becomes easier to have an idea of how long it will take. (point 1)
 
 > 💡 Incremental software development fixes the business people's fear of refactoring tunnel.
+
+It is true that performing the refactoring in one team-wide batch would be more efficient. It would reduce the overall Work In Progress and get it done quicker. Unfortunately, it's also a lot more scary for business people !
 
 ## Incremental Software Development techniques
 
