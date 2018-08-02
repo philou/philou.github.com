@@ -16,7 +16,7 @@ This is the fifth post in [a series about how to get sponsorship for large scale
 
 ![Drawing of a plant at different stages of growth, illustrating Incremental Software Development]({{site.url}}/imgs/2018-07-20-incremental-software-development-techniques-for-large-scale-refactorings/incremental-plant.jpg)
 
-## Why do incremental software development matter ?
+## Why does incremental software development matter ?
 
 ### A short story
 
@@ -56,4 +56,4 @@ Once we master these skills, a lot of things change. First, we can do refactorin
 
 ## To be continued
 
-This was the fifth post about [how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). In the next post, I'll deal headlong with the actual techniques. How to get bandwidth ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so [stay tuned](http://eepurl.com/dxKE95) !
+This was the fifth post about [how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). In the next posts, I'll deal headlong with the actual techniques. [How to get bandwidth](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/) ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so [stay tuned](http://eepurl.com/dxKE95) !
