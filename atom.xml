@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml?utm_source=blog&amp;utm_medium=rss" rel="self"/>
   <link href="http://philippe.bourgau.net/?utm_source=blog&amp;utm_medium=rss"/>
-  <updated>2018-07-27T00:23:55+02:00</updated>
+  <updated>2018-08-02T09:28:45+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,84 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/?utm_source=blog&amp;utm_medium=rss"/>
+    <updated>2018-08-02T08:31:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring</id>
+    <category term="incremental-software-development" /><category term="large-scale-refactoring-sponsorship-series" /><category term="planning" /><category term="refactoring" />
+    <content type="html"><![CDATA[<p><a href="http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings/">My previous post</a> advocated incremental software development for large scale refactorings. It&rsquo;s less risky and it prevents tunnel effects. Most of all, it&rsquo;s a lot easier to convince business people of engaging in a refactoring this way.</p>
+
+<p>It&rsquo;s one thing to understand why it&rsquo;s the way to go, but it&rsquo;s another to be able to do it ! In this post, I&rsquo;ll start by explaining how to find the time to do constant <a href="http://www.extremeprogramming.org/rules/refactor.html">merciless refactoring</a>.</p>
+
+<p>This is the sixth post in <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="http://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/recurring-cleanup.jpg" alt="Constant Merciless Refactoring illustrated as a recurring cleanup activity" /></p>
+
+<h2><del>Steal</del> Take the time for constant merciless refactoring</h2>
+
+<blockquote><p>If it hurts, do it more often ! <a href="https://martinfowler.com/bliki/FrequencyReducesDifficulty.html">Wisdom of the internet</a></p></blockquote>
+
+<p>As a child, I used to be a very untidy kid. Every few week, my room would get in a real mess, and my mum would order me to clean all this mess. I would then lose 1 or 2 hours tidying my room up. She used to tell me that if I kept things tidy as I used them, I would not have to lose this time. From the top of my 10 years old, I would judge this advice as nonsense. </p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/messy-bedroom.jpg" alt="This is the kind of mess my bedroom used to be in, when I was a kid, before I learned the virtues of constant merciless refactoring" /></p>
+
+<p>Fast forward a few years, I am myself a parent and I&rsquo;ve been working with legacy code for many years. These years have taught me how much I was wrong &hellip;</p>
+
+<blockquote><p>💡 The easiest refactorings to negotiate are the ones we don&rsquo;t have to talk about !</p></blockquote>
+
+<p>The more refactoring we embed in &lsquo;Business As Usual&rsquo;, the more we&rsquo;ll do, and the less we&rsquo;ll argue with the business. We can wonder if this is still &lsquo;professional&rsquo; ? In <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1533190334&amp;sr=8-1&amp;keywords=the+art+of+agile">The Art Of Agile Development</a>, <a href="http://www.jamesshore.com/">James Shore</a> explains that managing technical debt is the key to long term productivity. (Details in the <a href="http://www.jamesshore.com/Agile-Book/risk_management.html">Risk Management section of his book</a>). As developers, <em>we</em> are the only experts in the code, the responsibility to keep it clean falls on us.</p>
+
+<blockquote><p>Never ask the permission to do a good job ! <a href="http://docondev.com/">Doc Norton</a></p></blockquote>
+
+<p>There&rsquo;s more to constant merciless refactoring ! It also keeps us in a good position to accept new features or refactorings later down the road.</p>
+
+<p>Following are the 3 practices that make up constant merciless refactoring.</p>
+
+<h2>Yesterday&rsquo;s weather and slack time</h2>
+
+<p>20 years ago, a promises of agile software development was to stick to a <a href="http://www.sustainablepace.net/what-is-sustainable-pace">sustainable pace</a>. When we are working with a flavor of <a href="https://www.scrum.org/">Scrum</a>, we can rely on it&rsquo;s literature to inject some <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a>.  Slack time is buffer time at the end of every iteration. We should not plan any work during the slack, to accommodate with the unexpected. It&rsquo;s a way to deliver on forecasts, whatever happens.</p>
+
+<p>In short, if your velocity chart looks something like that :</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/velocity.jpg" alt="Drawing of a fluctuating team velocity. This is often the result of not enough constant merciless refactoring" /></p>
+
+<p>Scrum tells us to plan what you delivered in your worst iteration for the next one ! When things will work bad, we&rsquo;re still pretty likely to deliver what we wanted. When things work well, we&rsquo;ll have time to tackle refactoring.</p>
+
+<p>There&rsquo;s a lot more to say about slack time. How to take some when you are using <a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> ? How to make sure you keep some when your velocity becomes pretty stable ? How to do you increase your velocity in the long term ? (I guess I&rsquo;ll have to write a full blog post about this some day.)</p>
+
+<h2>The Boy Scout Rule</h2>
+
+<p>I already blogged about the <a href="http://www.informit.com/articles/article.aspx?p=1235624&amp;seqNum=6">Boy Scout Rule</a>. Here is how <a href="https://blog.cleancoder.com/">Uncle Bob</a> wrote it :</p>
+
+<blockquote><p>Always leave the file you are editing a little better than you found it. Bob Martin</p></blockquote>
+
+<p>Following this simple rule goes a long way to keep the code clean and ready for larger refactorings. It works arm in arm with Yesterday&rsquo;s weather principle. The extra time we take for clean up impacts our capacity to plan stories and features. This creates time to keep on doing the boy scout rule in future iterations.</p>
+
+<p>How &lsquo;clean&rsquo; the code should be is a team decision. Coding conventions and a static code analyzer are very important to track the boy scout rule. I learned that code reviews, pairing, mobbing and <a href="http://philippe.bourgau.net/blog/categories/team-randori-series/">coding dojos</a> are great to agree on coding conventions.</p>
+
+<h2>Embedding refactoring in features</h2>
+
+<p>The Test Driven Development loop goes as Red-Green-Refactor.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/red-green-refactor.jpg" alt="TDD's Red-Green-Refactor loop. Itself highlighting Constant Merciless Refactoring as a recurring activity" /></p>
+
+<p>The same loop goes on at larger scale for Acceptance or Feature Test. When repeated many times, the loop could as well be Refactor &ndash; Red &ndash; Green. In fact, it&rsquo;s a lot easier to refactor when you know what feature you want to build than at the end of the previous one. (Nat Pryce <a href="http://natpryce.com/articles/000780.html">wrote about that</a> in more details)</p>
+
+<blockquote><p>💡 &ldquo;Disguise&rdquo; refactoring as first technical sub tasks of features to get them prioritized.</p></blockquote>
+
+<p>All this to say, we should start our features with the pre-requisite refactoring ! We should not build features on shaky foundations. We should also impact our estimates. In fact, it&rsquo;s a lot easier to justify to business people at that moment. We don&rsquo;t need to mention &lsquo;refactoring&rsquo; or &lsquo;clean up&rsquo;. We can use technical sub-tasks to track these technical refactorings. Technical sub-tasks are the team&rsquo;s and don&rsquo;t need to be understandable by business people.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/tech-tasks-sea-level.jpg" alt="Technical tasks drawn &quot;Under the sea&quot; and visible to devs only. This leaves them room to do constant merciless refactoring" /></p>
+
+<h2>To be continued</h2>
+
+<p>Finding the time for constant merciless refactoring is one thing, but how do we fit the work in these short slots ? In the <a href="http://eepurl.com/dxKE95">next post</a>, I&rsquo;ll continue about how to actually work in baby steps.</p>
+
+<p>This was the sixth post about <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Incremental Software Development for Large Scale Refactorings]]></title>
@@ -71,7 +149,7 @@
 
 <h2>To be continued</h2>
 
-<p>This was the fifth post about <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>. In the next post, I&rsquo;ll deal headlong with the actual techniques. How to get bandwidth ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so <a href="http://eepurl.com/dxKE95">stay tuned</a> !</p>
+<p>This was the fifth post about <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>. In the next posts, I&rsquo;ll deal headlong with the actual techniques. <a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">How to get bandwidth</a> ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so <a href="http://eepurl.com/dxKE95">stay tuned</a> !</p>
 ]]></content>
   </entry>
   
@@ -326,7 +404,8 @@
 <li><a href="http://philippe.bourgau.net/why-we-need-badass-developers-to-perform-large-scale-refactorings/">Why we need Badass developers to perform large scale refactorings</a></li>
 <li><a href="http://philippe.bourgau.net/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a></li>
 <li><a href="http://philippe.bourgau.net/principles-that-will-make-you-become-a-badass-developer/">Principles That Will Make You Become a Badass Developer</a></li>
-<li>Incremental Software Development for Large Scale Refactoring</li>
+<li><a href="http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactoring</a></li>
+<li><a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></li>
 <li>Techniques to refactor in parallel with features</li>
 <li>Nothing convinces business people like money</li>
 </ol>
@@ -3371,67 +3450,6 @@
 <p>In the long run, the improved practices of this team might benefit you ! For example, if your teams start collaborating. Or perhaps you&rsquo;ll join this team some day !</p>
 
 <p>Whatever happens, I wish you a lot of fun in your teams Coding Dojos. Happy Coding !</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Coding Dojo Troubleshooting]]></title>
-    <link href="http://philippe.bourgau.net/coding-dojo-troubleshooting/?utm_source=blog&amp;utm_medium=rss"/>
-    <updated>2018-03-15T06:41:00+01:00</updated>
-    <id>http://philippe.bourgau.net/coding-dojo-troubleshooting</id>
-    <category term="coding dojo" /><category term="psychology" /><category term="tdd" /><category term="team building" /><category term="team-randori-series" />
-    <content type="html"><![CDATA[<p>In my last 2 blog posts, I&rsquo;ve detailed <a href="http://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">why</a> and <a href="http://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/">how</a> to start a team Randori Coding Dojo. That&rsquo;s the easy part. As soon as you start your first dojo, you&rsquo;ll face trickier issues, especially people issues.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-03-08-coding-dojo-troubleshooting/tool-belt.jpg" alt="A martial artist with a tool belt" /></p>
-
-<h2>What if my team (or my boss) does not want to ?</h2>
-
-<p>Very often some of your team mates won&rsquo;t see the value of the coding dojo upfront and will prefer to work on other tasks. It can also be your boss, who thinks you should be delivering features instead. Here are a few tricks you can do to make it work.</p>
-
-<ul>
-<li>Try to find another time slot. Ask people for their preferred moment. If you can negotiate food sponsorship with your boss, you might get everyone happy. He won&rsquo;t feel you&rsquo;re not delivering features, you&rsquo;ll have a free lunch and you&rsquo;ll improve your skills.</li>
-<li>If your boss or colleague doesn&rsquo;t want to spend 2 full hours on a dojo. Get them to start with smaller problems and a shorter time slot.</li>
-<li>Your colleagues might have doubts about the value of the dojo. Get them to try it once or a few times before committing to a recurring event.</li>
-<li>As a general rule of thumb, the more you manage to involve people in the preparation, the more they&rsquo;ll adhere.</li>
-<li>If you have 1 or 2 inveterate laggards, do it without them anyway. With time, they&rsquo;ll understand what they are missing !</li>
-</ul>
-
-
-<blockquote><p>💡 If you cannot get people to adopt a new practice, get them to try it once. You&rsquo;ll be more than halfway there.</p></blockquote>
-
-<h2>Dealing with TDD complaints</h2>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-03-08-coding-dojo-troubleshooting/skeptic-gorilla.jpg" alt="A gorilla with a skeptic look" /></p>
-
-<p>As you&rsquo;ll start your first Randori, you&rsquo;ll have some complaints about <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>. Whether they come from newbies or skeptics, they usually look like :</p>
-
-<ul>
-<li>Why do we stick to TDD ? We&rsquo;d go so much faster if we coded this straight away.</li>
-<li>We don&rsquo;t need TDD for such a simple problem.</li>
-<li>We don&rsquo;t need such small baby steps on this simple problem.</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>My answer is more or less always the same. I try to re-frame everyone in the context of a learning exercice of deliberate practice. It could sound something like :</p>
-
-<blockquote><p>Yes, sure. I know you are professional developers and that you could easily solve this little problem. Keep in mind that we are here to deliberately practice TDD and friends. Solving the problem is only a side effect.</p>
-
-<p>We are going to apply TDD by the book, for the sake of learning. It&rsquo;s a lot easier to learn to swim in 1 meter of water than in the middle of the sea. Once we&rsquo;ll master it in the safe dojo environment, you&rsquo;ll know how to adapt it to your production code.</p>
-
-<p>Please, play by the rules here !</p></blockquote>
-
-<p>As you can see, I don&rsquo;t try to convince them. The last thing I want is to get into a pro vs cons of TDD. 95% of the time, this answer is enough to get people over their skepticism and try it for the time of the dojo. Unfortunately, the last 5% might result in a difficult session. There&rsquo;s no single way to deal with these 5%. You can try to discuss with them in private, or run next session without them.</p>
-
-<blockquote><p>💡 Reframe the coding dojo as a learning exercice relying on TDD to go beyond skepticism.</p></blockquote>
-
-<h2>How to avoid getting bogged down in details</h2>
-
-<p>One last advice, especially for your first sessions. It&rsquo;s a common rookie mistake to waste 80% of the coding time on error handling. The key is to focus on what you want to learn. You are not writing production code, so don&rsquo;t hesitate to omit certain aspects. For example, assume that correct arguments are provided to skip error handling. This will save you time, be more fun and increase what you learn.</p>
-
-<h2>What&rsquo;s next ?</h2>
-
-<p>This was part 3 of this <a href="http://philippe.bourgau.net/blog/categories/team-randori-series/">series on team coding dojo</a>. In <a href="http://philippe.bourgau.net/how-to-get-the-max-out-of-your-team-coding-dojo/">the next post</a>, I&rsquo;ll write how to maximize the benefits we can get out of coding dojos.</p>
 ]]></content>
   </entry>
   

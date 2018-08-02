@@ -102,6 +102,111 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-08-02T08:31:00+02:00" pubdate data-updated="true">Aug 2<span>nd</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">My previous post</a> advocated incremental software development for large scale refactorings. It&rsquo;s less risky and it prevents tunnel effects. Most of all, it&rsquo;s a lot easier to convince business people of engaging in a refactoring this way.</p>
+
+<p>It&rsquo;s one thing to understand why it&rsquo;s the way to go, but it&rsquo;s another to be able to do it ! In this post, I&rsquo;ll start by explaining how to find the time to do constant <a href="http://www.extremeprogramming.org/rules/refactor.html">merciless refactoring</a>.</p>
+
+<p>This is the sixth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/recurring-cleanup.jpg" alt="Constant Merciless Refactoring illustrated as a recurring cleanup activity" /></p>
+
+<h2><del>Steal</del> Take the time for constant merciless refactoring</h2>
+
+<blockquote><p>If it hurts, do it more often ! <a href="https://martinfowler.com/bliki/FrequencyReducesDifficulty.html">Wisdom of the internet</a></p></blockquote>
+
+<p>As a child, I used to be a very untidy kid. Every few week, my room would get in a real mess, and my mum would order me to clean all this mess. I would then lose 1 or 2 hours tidying my room up. She used to tell me that if I kept things tidy as I used them, I would not have to lose this time. From the top of my 10 years old, I would judge this advice as nonsense. </p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/messy-bedroom.jpg" alt="This is the kind of mess my bedroom used to be in, when I was a kid, before I learned the virtues of constant merciless refactoring" /></p>
+
+<p>Fast forward a few years, I am myself a parent and I&rsquo;ve been working with legacy code for many years. These years have taught me how much I was wrong &hellip;</p>
+
+<blockquote><p>💡 The easiest refactorings to negotiate are the ones we don&rsquo;t have to talk about !</p></blockquote>
+
+<p>The more refactoring we embed in &lsquo;Business As Usual&rsquo;, the more we&rsquo;ll do, and the less we&rsquo;ll argue with the business. We can wonder if this is still &lsquo;professional&rsquo; ? In <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1533190334&amp;sr=8-1&amp;keywords=the+art+of+agile">The Art Of Agile Development</a>, <a href="http://www.jamesshore.com/">James Shore</a> explains that managing technical debt is the key to long term productivity. (Details in the <a href="http://www.jamesshore.com/Agile-Book/risk_management.html">Risk Management section of his book</a>). As developers, <em>we</em> are the only experts in the code, the responsibility to keep it clean falls on us.</p>
+
+<blockquote><p>Never ask the permission to do a good job ! <a href="http://docondev.com/">Doc Norton</a></p></blockquote>
+
+<p>There&rsquo;s more to constant merciless refactoring ! It also keeps us in a good position to accept new features or refactorings later down the road.</p>
+
+<p>Following are the 3 practices that make up constant merciless refactoring.</p>
+
+<h2>Yesterday&rsquo;s weather and slack time</h2>
+
+<p>20 years ago, a promises of agile software development was to stick to a <a href="http://www.sustainablepace.net/what-is-sustainable-pace">sustainable pace</a>. When we are working with a flavor of <a href="https://www.scrum.org/">Scrum</a>, we can rely on it&rsquo;s literature to inject some <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a>.  Slack time is buffer time at the end of every iteration. We should not plan any work during the slack, to accommodate with the unexpected. It&rsquo;s a way to deliver on forecasts, whatever happens.</p>
+
+<p>In short, if your velocity chart looks something like that :</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/velocity.jpg" alt="Drawing of a fluctuating team velocity. This is often the result of not enough constant merciless refactoring" /></p>
+
+<p>Scrum tells us to plan what you delivered in your worst iteration for the next one ! When things will work bad, we&rsquo;re still pretty likely to deliver what we wanted. When things work well, we&rsquo;ll have time to tackle refactoring.</p>
+
+<p>There&rsquo;s a lot more to say about slack time. How to take some when you are using <a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> ? How to make sure you keep some when your velocity becomes pretty stable ? How to do you increase your velocity in the long term ? (I guess I&rsquo;ll have to write a full blog post about this some day.)</p>
+
+<h2>The Boy Scout Rule</h2>
+
+<p>I already blogged about the <a href="http://www.informit.com/articles/article.aspx?p=1235624&amp;seqNum=6">Boy Scout Rule</a>. Here is how <a href="https://blog.cleancoder.com/">Uncle Bob</a> wrote it :</p>
+
+<blockquote><p>Always leave the file you are editing a little better than you found it. Bob Martin</p></blockquote>
+
+<p>Following this simple rule goes a long way to keep the code clean and ready for larger refactorings. It works arm in arm with Yesterday&rsquo;s weather principle. The extra time we take for clean up impacts our capacity to plan stories and features. This creates time to keep on doing the boy scout rule in future iterations.</p>
+
+<p>How &lsquo;clean&rsquo; the code should be is a team decision. Coding conventions and a static code analyzer are very important to track the boy scout rule. I learned that code reviews, pairing, mobbing and <a href="/blog/categories/team-randori-series/">coding dojos</a> are great to agree on coding conventions.</p>
+
+<h2>Embedding refactoring in features</h2>
+
+<p>The Test Driven Development loop goes as Red-Green-Refactor.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/red-green-refactor.jpg" alt="TDD's Red-Green-Refactor loop. Itself highlighting Constant Merciless Refactoring as a recurring activity" /></p>
+
+<p>The same loop goes on at larger scale for Acceptance or Feature Test. When repeated many times, the loop could as well be Refactor &ndash; Red &ndash; Green. In fact, it&rsquo;s a lot easier to refactor when you know what feature you want to build than at the end of the previous one. (Nat Pryce <a href="http://natpryce.com/articles/000780.html">wrote about that</a> in more details)</p>
+
+<blockquote><p>💡 &ldquo;Disguise&rdquo; refactoring as first technical sub tasks of features to get them prioritized.</p></blockquote>
+
+<p>All this to say, we should start our features with the pre-requisite refactoring ! We should not build features on shaky foundations. We should also impact our estimates. In fact, it&rsquo;s a lot easier to justify to business people at that moment. We don&rsquo;t need to mention &lsquo;refactoring&rsquo; or &lsquo;clean up&rsquo;. We can use technical sub-tasks to track these technical refactorings. Technical sub-tasks are the team&rsquo;s and don&rsquo;t need to be understandable by business people.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/tech-tasks-sea-level.jpg" alt="Technical tasks drawn &quot;Under the sea&quot; and visible to devs only. This leaves them room to do constant merciless refactoring" /></p>
+
+<h2>To be continued</h2>
+
+<p>Finding the time for constant merciless refactoring is one thing, but how do we fit the work in these short slots ? In the <a href="http://eepurl.com/dxKE95">next post</a>, I&rsquo;ll continue about how to actually work in baby steps.</p>
+
+<p>This was the sixth post about <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactorings</a></h1>
     
     
@@ -178,7 +283,7 @@
 
 <h2>To be continued</h2>
 
-<p>This was the fifth post about <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>. In the next post, I&rsquo;ll deal headlong with the actual techniques. How to get bandwidth ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so <a href="http://eepurl.com/dxKE95">stay tuned</a> !</p>
+<p>This was the fifth post about <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>. In the next posts, I&rsquo;ll deal headlong with the actual techniques. <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">How to get bandwidth</a> ? How to work in baby steps ? How to track the progress ? How to deal with the large scale ? Finally how to go further ? As you can see, there is still a lot to come, so <a href="http://eepurl.com/dxKE95">stay tuned</a> !</p>
 </div>
   
   
@@ -541,7 +646,8 @@
 <li><a href="/why-we-need-badass-developers-to-perform-large-scale-refactorings/">Why we need Badass developers to perform large scale refactorings</a></li>
 <li><a href="/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a></li>
 <li><a href="/principles-that-will-make-you-become-a-badass-developer/">Principles That Will Make You Become a Badass Developer</a></li>
-<li>Incremental Software Development for Large Scale Refactoring</li>
+<li><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactoring</a></li>
+<li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></li>
 <li>Techniques to refactor in parallel with features</li>
 <li>Nothing convinces business people like money</li>
 </ol>
@@ -1510,640 +1616,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Avoid Mocks and Test Your Core Domain Faster With Hexagonal Architecture</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-05-24T06:43:00+02:00" pubdate data-updated="true">May 24<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>As I&rsquo;ve written in my last few posts, we can get a long way to avoid mocks with small scale coding best practices. Unfortunately, when systems reach a certain size, we need something at architecture scale.</p>
-
-<p>This is the 6th post of a <a href="/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. If you haven&rsquo;t, you can start by <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg" alt="A drawing of a hexagon-shaped building" /></p>
-
-<h2>Why do we end up with mocks in large systems ?</h2>
-
-<p>A few years ago, I joined a team working in a legacy system. We wanted to apply <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> and refactoring. As expected, adding tests legacy code proved a real challenge. With a lot of effort we could manage to add a few. Unfortunately, this did not seem to have any positive effect on our maintainability ! The tests we were writing all involved a lot of mocking. The system was such a large mass of spaghetti code that there was no clear place to mock. We were actually mocking where it seemed the easiest on a test by test basis. We were making progress at small scale, but the big picture was not improving at all !</p>
-
-<p>Large systems are beasts with many faces. They  involve a lot of IOs. They write and read data from the disk and databases. They call 3rd parties and remote services.</p>
-
-<p>As we test these large systems, we&rsquo;ll need to stub out these IOs. Even if the tests are fast enough, we usually don&rsquo;t want to call external services for real. Most of the time though, tests are slow. That&rsquo;s 2 reasons why end up adding some mocks.</p>
-
-<p>Here comes the nasty part. These large systems are so complex that we, developers, don&rsquo;t have the full picture. When we test, we tend to mock at different places, depending on our knowledge. This is bad for maintenance. Mocks duplicate production code behavior. When many different mocks are in place to isolate an external dependency, we end up with &lsquo;n&rsquo; versions of the code. That&rsquo;s a nightmare to refactor !</p>
-
-<blockquote><p>💡 When many different mocks are in place to isolate an external dependency, we end up with &lsquo;n&rsquo; versions of the code !</p></blockquote>
-
-<h2>Hexagonal architecture to the rescue</h2>
-
-<p><a href="http://alistair.cockburn.us/Hexagonal+architecture">Alistair Cockburn</a> coined the term. The idea is pretty simple :  isolate a piece of code from all dependencies. This is particularly useful for the core functional areas. With this in place, it becomes straightforward (and fast) to test the core domain logic.</p>
-
-<p>To main techniques to isolate a piece of code from any dependency are :</p>
-
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency injection</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Observer_pattern">Observers</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapters</a></li>
-</ul>
-
-
-<p>It&rsquo;s also possible to split a system in many &lsquo;hexagons&rsquo; and glue them together with adapters at startup. If you want to learn more on this style of architecture, have a look into the <a href="https://www.infoq.com/articles/ddd-contextmapping">Domain Driven Design lore</a>. This community has been building systems this way for years now.</p>
-
-<h2>Enough talk, show me the code !</h2>
-
-<p>This post was the occasion to try to inject a Hexagonal Architecture and a dash of DDD in a Rails application. There&rsquo;s one caveat though : DDD shines on complex systems. Unfortunately, large and complex systems make very poor didactic examples. The following code highlights the gains about mocking. We would not use DDD for such a small app in real life.</p>
-
-<h3>The starting point</h3>
-
-<p>I chose a simple TODO app. I started by generating a scaffold for a Task with a description and a done/not-done status. As third party interaction, completing a task sends an automatic tweet. Here is the only specific code I wrote on top of the Rails scaffold :</p>
-
-<h6>app/models/task.rb</h6>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="no">ApplicationRecord</span>
-</span><span class='line'>  <span class="kp">include</span> <span class="ss">ActiveModel</span><span class="p">:</span><span class="ss">:Dirty</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">validates</span> <span class="ss">:description</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="kp">true</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">before_save</span> <span class="ss">:tweet_if_done</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">private</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">tweet_if_done</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">done_changed?</span>
-</span><span class='line'>      <span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">self</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Thanks Jason Charnes for the <a href="https://jasoncharnes.com/changed-attributes-rails/">change attribute technique</a>.</p>
-
-<h6>spec/models/task_spec.rb</h6>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">describe</span> <span class="no">Task</span><span class="p">,</span> <span class="ss">type</span><span class="p">:</span> <span class="ss">:model</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;is valid with all attributes set&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Finish presentation&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_valid</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;requires a description&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="kp">nil</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_invalid</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_invalid</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;tweets when a task is finished&quot;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Wash the car&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">false</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Wash the car&quot;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">save</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This is pretty simple and to the point !</p>
-
-<h3>5 years later</h3>
-
-<p>Now let&rsquo;s imagine that the app grew to tens of thousands of lines. We added a lot of features to the app, which transformed the TODO domain into a very complex thing. Now suppose that, for the sake of maintenance, we want to isolate the domain logic into its own hexagon. Unlike traditional Rails ActiveRecords, we want to make it independent from the database. We also want it to be independent from the Twitter API.</p>
-
-<p>Here is what the code might look like.</p>
-
-<h6>lib/core/task.rb</h6>
-
-<p>First, we have a core task class, independent from anything else. The Core module is our hexagon.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Core</span>
-</span><span class='line'>  <span class="k">class</span> <span class="nc">Task</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kp">attr_reader</span> <span class="ss">:description</span>
-</span><span class='line'>    <span class="kp">attr_accessor</span> <span class="ss">:db_id</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">attributes</span> <span class="o">=</span> <span class="p">{})</span>
-</span><span class='line'>      <span class="vi">@description</span><span class="o">=</span> <span class="s2">&quot;What do you need to do ?&quot;</span>
-</span><span class='line'>      <span class="vi">@done</span> <span class="o">=</span> <span class="kp">false</span>
-</span><span class='line'>      <span class="vi">@done_subscribers</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">done?</span>
-</span><span class='line'>      <span class="vi">@done</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">mark_as_done</span>
-</span><span class='line'>      <span class="vi">@done</span> <span class="o">=</span> <span class="kp">true</span>
-</span><span class='line'>      <span class="vi">@done_subscribers</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span><span class="o">|</span><span class="nb">proc</span><span class="o">|</span> <span class="nb">proc</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">attributes</span><span class="o">=</span><span class="p">{})</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">description</span><span class="o">=</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:description</span><span class="o">]</span> <span class="k">unless</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:description</span><span class="o">].</span><span class="n">nil?</span>
-</span><span class='line'>      <span class="nb">self</span><span class="o">.</span><span class="n">mark_as_done</span> <span class="k">if</span> <span class="n">attributes</span><span class="o">[</span><span class="ss">:done</span><span class="o">]</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">notify_when_done</span><span class="p">(</span><span class="o">&amp;</span><span class="nb">proc</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@done_subscribers</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="nb">proc</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">description</span><span class="o">=</span><span class="p">(</span><span class="n">desc</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">raise</span> <span class="no">ArgumentError</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Task description cannot be blank&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">desc</span><span class="o">.</span><span class="n">blank?</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="vi">@description</span> <span class="o">=</span> <span class="n">desc</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As we can see, it contains only domain logic and nothing else.</p>
-
-<h6># spec/lib/core/task_spec.rb</h6>
-
-<p>Here is the corresponding test, fast, mock-free and independent from the database and any external system.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rails_helper&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;core/task&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">context</span> <span class="s1">&#39;Task&#39;</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">let</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span> <span class="p">{</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;is not done by default&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_done</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;comes with a default description&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">not_to</span> <span class="n">be_blank</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;it can be initialized from a hash&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Old description&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Old description&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;can have a custom description&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="o">=</span> <span class="s2">&quot;Clean up the house&quot;</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Clean up the house&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;forbids empty descriptions&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">{</span><span class="n">task</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="kp">nil</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">{</span><span class="n">task</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;can be done&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">mark_as_done</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;publishes when done&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">done_task</span> <span class="o">=</span> <span class="kp">nil</span>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">notify_when_done</span> <span class="p">{</span><span class="o">|</span><span class="n">t</span><span class="o">|</span> <span class="n">done_task</span> <span class="o">=</span> <span class="n">t</span><span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">mark_as_done</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">done_task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;can be updated with a hash&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;New description&quot;</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;New description&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_done</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">specify</span> <span class="s1">&#39;has no DB id by default&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be_nil</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h6># lib/infrastructure/task_repo.rb</h6>
-
-<p>To read and save with the database, we now go through an adapter. This is not considered to be part of our core domain.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Infrastructure</span>
-</span><span class='line'>  <span class="k">class</span> <span class="nc">TaskRepo</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">all</span>
-</span><span class='line'>      <span class="no">Task</span><span class="o">.</span><span class="n">all</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">db_task</span><span class="o">|</span>
-</span><span class='line'>        <span class="n">from_db</span><span class="p">(</span><span class="n">db_task</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">load</span><span class="p">(</span><span class="n">db_id</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">from_db</span><span class="p">(</span><span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">db_id</span><span class="p">))</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">save</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="o">.</span><span class="n">nil?</span>
-</span><span class='line'>        <span class="n">db_task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create!</span><span class="p">(</span><span class="n">to_db_attributes</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
-</span><span class='line'>        <span class="n">task</span><span class="o">.</span><span class="n">db_id</span> <span class="o">=</span> <span class="n">db_task</span><span class="o">.</span><span class="n">id</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>        <span class="n">db_task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">db_task</span><span class="o">.</span><span class="n">update!</span><span class="p">(</span><span class="n">to_db_attributes</span><span class="p">(</span><span class="n">task</span><span class="p">))</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>      <span class="n">task</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">unless</span> <span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="o">.</span><span class="n">nil?</span>
-</span><span class='line'>        <span class="n">db_task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">db_id</span><span class="p">)</span>
-</span><span class='line'>        <span class="n">db_task</span><span class="o">.</span><span class="n">destroy!</span>
-</span><span class='line'>        <span class="n">task</span><span class="o">.</span><span class="n">db_id</span> <span class="o">=</span> <span class="kp">nil</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="kp">private</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">to_db_attributes</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
-</span><span class='line'>      <span class="p">{</span><span class="ss">description</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">done?</span><span class="p">}</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">from_db</span><span class="p">(</span><span class="n">db_task</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">result</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>      <span class="n">result</span><span class="o">.</span><span class="n">db_id</span> <span class="o">=</span> <span class="n">db_task</span><span class="o">.</span><span class="n">id</span>
-</span><span class='line'>      <span class="n">result</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">db_task</span><span class="o">.</span><span class="n">description</span>
-</span><span class='line'>      <span class="n">result</span><span class="o">.</span><span class="n">mark_as_done</span> <span class="k">if</span> <span class="n">db_task</span><span class="o">.</span><span class="n">done?</span>
-</span><span class='line'>      <span class="n">result</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h6># app/controllers/tasks_controller.rb</h6>
-
-<p>Finally, all the pieces interact together in the controller. This controller basically does what the previous version was, it&rsquo;s just using different classes. Obviously, we&rsquo;ll need to adapt the views and the tests.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;core/task&#39;</span>
-</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;infrastructure/task_repo&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
-</span><span class='line'>  <span class="n">before_action</span> <span class="ss">:set_task</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># GET /tasks</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">index</span>
-</span><span class='line'>    <span class="vi">@tasks</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">all</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># GET /tasks/1</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">show</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># GET /tasks/new</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">new</span>
-</span><span class='line'>    <span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># GET /tasks/1/edit</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">edit</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># POST /tasks</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">create</span>
-</span><span class='line'>    <span class="k">begin</span>
-</span><span class='line'>      <span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
-</span><span class='line'>      <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">task_url</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">db_id</span><span class="p">),</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully created.&#39;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">rescue</span> <span class="no">ArgumentError</span>
-</span><span class='line'>      <span class="n">render</span> <span class="ss">:new</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># PATCH/PUT /tasks/1</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">update</span>
-</span><span class='line'>    <span class="k">begin</span>
-</span><span class='line'>      <span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
-</span><span class='line'>      <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'>      <span class="n">redirect_to</span> <span class="n">task_url</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">db_id</span><span class="p">),</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully updated.&#39;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">rescue</span> <span class="no">ArgumentError</span>
-</span><span class='line'>      <span class="n">render</span> <span class="ss">:edit</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># DELETE /tasks/1</span>
-</span><span class='line'>  <span class="k">def</span> <span class="nf">destroy</span>
-</span><span class='line'>    <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">redirect_to</span> <span class="n">tasks_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully destroyed.&#39;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="kp">private</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">set_task</span>
-</span><span class='line'>      <span class="vi">@task</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-</span><span class='line'>      <span class="vi">@task</span><span class="o">.</span><span class="n">notify_when_done</span> <span class="k">do</span> <span class="o">|</span><span class="n">task</span><span class="o">|</span>
-</span><span class='line'>        <span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="c1"># Never trust parameters from the scary internet, only allow the white list through.</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">task_params</span>
-</span><span class='line'>      <span class="n">params</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:description</span><span class="p">,</span> <span class="ss">:done</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The main gain here is that our core domain, our most valuable asset is now easy to test without mocks. This means that we are able to write and execute fast tests for this area of the code. This puts us in a great position to increase our competitive advantage in our core business !</p>
-
-<blockquote><p>💡 By keeping your tests around your core domain fast, Hexagonal Architecture increases your competitive advantage.</p></blockquote>
-
-<p>As you can see, we are now wiring everything together at the controller level. We could later build a facade to isolate the controller from the inside of our domain. A <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter">presenter</a> might do, but it seemed over-engineered, even in this made up example. (I&rsquo;ll post something about that some day)</p>
-
-<h2>Next post</h2>
-
-<p>As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it&rsquo;s easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we&rsquo;ll see in the <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">next post about in-memory fakes</a>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -2224,6 +1696,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactorings</a>
       </li>
     
@@ -2237,10 +1713,6 @@
     
       <li class="post">
         <a href="/why-we-need-badass-developers-to-perform-large-scale-refactorings/">Why we need Badass developers to perform large scale refactorings</a>
-      </li>
-    
-      <li class="post">
-        <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">How to convince your business of sponsoring a large scale refactoring</a>
       </li>
     
   </ul>

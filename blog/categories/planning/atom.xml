@@ -4,7 +4,7 @@
   <title><![CDATA[Category: planning | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/planning/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-07-27T00:23:55+02:00</updated>
+  <updated>2018-08-02T09:28:45+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,83 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/"/>
+    <updated>2018-08-02T08:31:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring</id>
+    <content type="html"><![CDATA[<p><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">My previous post</a> advocated incremental software development for large scale refactorings. It&rsquo;s less risky and it prevents tunnel effects. Most of all, it&rsquo;s a lot easier to convince business people of engaging in a refactoring this way.</p>
+
+<p>It&rsquo;s one thing to understand why it&rsquo;s the way to go, but it&rsquo;s another to be able to do it ! In this post, I&rsquo;ll start by explaining how to find the time to do constant <a href="http://www.extremeprogramming.org/rules/refactor.html">merciless refactoring</a>.</p>
+
+<p>This is the sixth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/recurring-cleanup.jpg" alt="Constant Merciless Refactoring illustrated as a recurring cleanup activity" /></p>
+
+<h2><del>Steal</del> Take the time for constant merciless refactoring</h2>
+
+<blockquote><p>If it hurts, do it more often ! <a href="https://martinfowler.com/bliki/FrequencyReducesDifficulty.html">Wisdom of the internet</a></p></blockquote>
+
+<p>As a child, I used to be a very untidy kid. Every few week, my room would get in a real mess, and my mum would order me to clean all this mess. I would then lose 1 or 2 hours tidying my room up. She used to tell me that if I kept things tidy as I used them, I would not have to lose this time. From the top of my 10 years old, I would judge this advice as nonsense. </p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/messy-bedroom.jpg" alt="This is the kind of mess my bedroom used to be in, when I was a kid, before I learned the virtues of constant merciless refactoring" /></p>
+
+<p>Fast forward a few years, I am myself a parent and I&rsquo;ve been working with legacy code for many years. These years have taught me how much I was wrong &hellip;</p>
+
+<blockquote><p>💡 The easiest refactorings to negotiate are the ones we don&rsquo;t have to talk about !</p></blockquote>
+
+<p>The more refactoring we embed in &lsquo;Business As Usual&rsquo;, the more we&rsquo;ll do, and the less we&rsquo;ll argue with the business. We can wonder if this is still &lsquo;professional&rsquo; ? In <a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&amp;qid=1533190334&amp;sr=8-1&amp;keywords=the+art+of+agile">The Art Of Agile Development</a>, <a href="http://www.jamesshore.com/">James Shore</a> explains that managing technical debt is the key to long term productivity. (Details in the <a href="http://www.jamesshore.com/Agile-Book/risk_management.html">Risk Management section of his book</a>). As developers, <em>we</em> are the only experts in the code, the responsibility to keep it clean falls on us.</p>
+
+<blockquote><p>Never ask the permission to do a good job ! <a href="http://docondev.com/">Doc Norton</a></p></blockquote>
+
+<p>There&rsquo;s more to constant merciless refactoring ! It also keeps us in a good position to accept new features or refactorings later down the road.</p>
+
+<p>Following are the 3 practices that make up constant merciless refactoring.</p>
+
+<h2>Yesterday&rsquo;s weather and slack time</h2>
+
+<p>20 years ago, a promises of agile software development was to stick to a <a href="http://www.sustainablepace.net/what-is-sustainable-pace">sustainable pace</a>. When we are working with a flavor of <a href="https://www.scrum.org/">Scrum</a>, we can rely on it&rsquo;s literature to inject some <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a>.  Slack time is buffer time at the end of every iteration. We should not plan any work during the slack, to accommodate with the unexpected. It&rsquo;s a way to deliver on forecasts, whatever happens.</p>
+
+<p>In short, if your velocity chart looks something like that :</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/velocity.jpg" alt="Drawing of a fluctuating team velocity. This is often the result of not enough constant merciless refactoring" /></p>
+
+<p>Scrum tells us to plan what you delivered in your worst iteration for the next one ! When things will work bad, we&rsquo;re still pretty likely to deliver what we wanted. When things work well, we&rsquo;ll have time to tackle refactoring.</p>
+
+<p>There&rsquo;s a lot more to say about slack time. How to take some when you are using <a href="https://en.wikipedia.org/wiki/Kanban">Kanban</a> ? How to make sure you keep some when your velocity becomes pretty stable ? How to do you increase your velocity in the long term ? (I guess I&rsquo;ll have to write a full blog post about this some day.)</p>
+
+<h2>The Boy Scout Rule</h2>
+
+<p>I already blogged about the <a href="http://www.informit.com/articles/article.aspx?p=1235624&amp;seqNum=6">Boy Scout Rule</a>. Here is how <a href="https://blog.cleancoder.com/">Uncle Bob</a> wrote it :</p>
+
+<blockquote><p>Always leave the file you are editing a little better than you found it. Bob Martin</p></blockquote>
+
+<p>Following this simple rule goes a long way to keep the code clean and ready for larger refactorings. It works arm in arm with Yesterday&rsquo;s weather principle. The extra time we take for clean up impacts our capacity to plan stories and features. This creates time to keep on doing the boy scout rule in future iterations.</p>
+
+<p>How &lsquo;clean&rsquo; the code should be is a team decision. Coding conventions and a static code analyzer are very important to track the boy scout rule. I learned that code reviews, pairing, mobbing and <a href="/blog/categories/team-randori-series/">coding dojos</a> are great to agree on coding conventions.</p>
+
+<h2>Embedding refactoring in features</h2>
+
+<p>The Test Driven Development loop goes as Red-Green-Refactor.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/red-green-refactor.jpg" alt="TDD's Red-Green-Refactor loop. Itself highlighting Constant Merciless Refactoring as a recurring activity" /></p>
+
+<p>The same loop goes on at larger scale for Acceptance or Feature Test. When repeated many times, the loop could as well be Refactor &ndash; Red &ndash; Green. In fact, it&rsquo;s a lot easier to refactor when you know what feature you want to build than at the end of the previous one. (Nat Pryce <a href="http://natpryce.com/articles/000780.html">wrote about that</a> in more details)</p>
+
+<blockquote><p>💡 &ldquo;Disguise&rdquo; refactoring as first technical sub tasks of features to get them prioritized.</p></blockquote>
+
+<p>All this to say, we should start our features with the pre-requisite refactoring ! We should not build features on shaky foundations. We should also impact our estimates. In fact, it&rsquo;s a lot easier to justify to business people at that moment. We don&rsquo;t need to mention &lsquo;refactoring&rsquo; or &lsquo;clean up&rsquo;. We can use technical sub-tasks to track these technical refactorings. Technical sub-tasks are the team&rsquo;s and don&rsquo;t need to be understandable by business people.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/tech-tasks-sea-level.jpg" alt="Technical tasks drawn &quot;Under the sea&quot; and visible to devs only. This leaves them room to do constant merciless refactoring" /></p>
+
+<h2>To be continued</h2>
+
+<p>Finding the time for constant merciless refactoring is one thing, but how do we fit the work in these short slots ? In the <a href="http://eepurl.com/dxKE95">next post</a>, I&rsquo;ll continue about how to actually work in baby steps.</p>
+
+<p>This was the sixth post about <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">how to get sponsorship for large scale refactoring</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to convince your business of sponsoring a large scale refactoring]]></title>
@@ -82,7 +159,8 @@
 <li><a href="/why-we-need-badass-developers-to-perform-large-scale-refactorings/">Why we need Badass developers to perform large scale refactorings</a></li>
 <li><a href="/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a></li>
 <li><a href="/principles-that-will-make-you-become-a-badass-developer/">Principles That Will Make You Become a Badass Developer</a></li>
-<li>Incremental Software Development for Large Scale Refactoring</li>
+<li><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactoring</a></li>
+<li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></li>
 <li>Techniques to refactor in parallel with features</li>
 <li>Nothing convinces business people like money</li>
 </ol>
@@ -406,132 +484,6 @@ The @Waste annotation is a way to log time wasted because of this bad code.</p>
 
 
 <p>This was part 7 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 6 was <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don&rsquo;t have to ask your boss for a fast build</a>, Part 8 will be <a href="/how-ill-measure-the-lean-startup-value-of-information-in-my-next-side-project-lean-software-development-part-8/">How I&rsquo;ll Measure the Lean Startup Value of Information in My Next Side Project</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Can agile teams commit?]]></title>
-    <link href="http://philippe.bourgau.net/can-agile-teams-commit/"/>
-    <updated>2015-01-21T06:57:00+01:00</updated>
-    <id>http://philippe.bourgau.net/can-agile-teams-commit</id>
-    <content type="html"><![CDATA[<p>Making commitments to deliver software is always difficult. Whatever the margin you might take, it invariably seems wrong afterward &hellip;</p>
-
-<p>Most Scrum, XP or Kanban litterature does not adress the issue, simply saying that commitment is not required, as long as you continuously deliver value (faster than your competition). That&rsquo;s kind of true, but sometimes you need commitments, for example if your customer is not yet ready to deploy your new software every friday worldwide &hellip;</p>
-
-<p>So how can you do it while remaining agile ?</p>
-
-<p>Grossly speaking, you have 2 options :</p>
-
-<h2>Do it as usual</h2>
-
-<p>Discuss with your experts, take some margin, do whatever voodoo you are used to. This will not be worse than it used to be. It might turn out better, thanks to your agile process, you should be able to deploy with a reduced the scope if needed.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2015-01-21-can-agile-teams-commit/voodoo.jpg" alt="A guy entranced with voodoo" /></p>
-
-<h2>Use your agile process metrics</h2>
-
-<p>This technique is explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a>, in section &ldquo;Risk Management&rdquo;, page 227.</p>
-
-<p><a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img src="http://philippe.bourgau.net/imgs/2015-01-21-can-agile-teams-commit/art-of-agile-development.jpg" alt="The cover of The Art of Agile Development" /></a></p>
-
-<h3>Let&rsquo;s estimate the time you&rsquo;ll need before the release</h3>
-
-<ul>
-<li>First, list all the stories you want it your release</li>
-<li>Then estimate them with story points.</li>
-<li>Now that you have the total number of story points you&rsquo;ll have to deliver before the release, apply a generic risk multiplier :</li>
-</ul>
-
-
-<table>
-<thead>
-<tr>
-<th>Chances of making it </th>
-<th> Using XP practices </th>
-<th> Otherwise </th>
-<th> Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>10%              </td>
-<td>x1              </td>
-<td> x1        </td>
-<td> Almost impossible (ignore)</td>
-</tr>
-<tr>
-<td>50%              </td>
-<td>x1.4            </td>
-<td> x2        </td>
-<td> 50-50 chance (stretch goal)</td>
-</tr>
-<tr>
-<td>90%              </td>
-<td>x1.8            </td>
-<td> x4        </td>
-<td> Virtually certain (commit)</td>
-</tr>
-</tbody>
-</table>
-
-
-<p><em>As explained in <a href="http://www.amazon.com/Art-Agile-Development-James-Shore/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1411140759&amp;sr=1-1&amp;keywords=the+art+of+agile+development">The Art of Agile Development</a> page 227, these numbers com from <a href="http://www.systemsguild.com/riskology/">DeMarco&rsquo;s Riskology</a> system. Using XP practices means fixing all bugs at all iteration, sticking rigorously to DONE-DONE, and having a stable velocity over iterations.</em></p>
-
-<p>This factor will account for unavoidable scope creep and wrong estimations.
-* Use you iteration velocity to know how many sprints you&rsquo;ll need to finish.</p>
-
-<h4>For example :</h4>
-
-<p>Suppose you have 45 stories that account for a total of 152 story points, and that your velocity is 23 story points per iteration. You need to do a commitment, but hopefully, you are applying all the XP practices. So you can compute :</p>
-
-<blockquote><p>Number of sprints = 152*1.8/23 = 12 sprints, (24 weeks, or about 5.5 months)</p></blockquote>
-
-<h3>What about unknown risks ?</h3>
-
-<p>Unfortunately, using just the previous, you might miss some unavoidable important tasks you&rsquo;ll need to do before you can release. Think about monitoring tools and stress testing, when did your product owner prioritize these ? These are risk management activities that need to be added to your backlog in the first place. Here is how to list most of them.</p>
-
-<ul>
-<li>Do a full team brainstorming about anything that could possibly go bad for your project</li>
-<li>For every item discovered, estimate
-
-<ul>
-<li>It&rsquo;s probability of occurrence (low, medium, high)</li>
-<li>It&rsquo;s consequences (delay, cost, cancellation of the project)</li>
-</ul>
-</li>
-<li>For every item, decide whether to
-
-<ul>
-<li>avoid it : you have to find a way to make sure this will not happen</li>
-<li>contain it : you&rsquo;ll deal with the risk when it occurs</li>
-<li>mitigate it : you have to find a way to reduce it&rsquo;s impact</li>
-<li>ignore it : don&rsquo;t bother with unlikely risks of no importance</li>
-</ul>
-</li>
-<li>Finally, create stories to match your risk management decisions. These might be :
-
-<ul>
-<li>Monitoring systems helps to contain a risk</li>
-<li>Logging helps to mitigate a risk</li>
-<li>An automated scaling in script for situations of high demand helps both mitigate and contain the risk</li>
-</ul>
-</li>
-<li>Simply add these stories to your backlog, and repeat the previous section. You can now make your commitment</li>
-</ul>
-
-
-<h2>Afterthoughts</h2>
-
-<p>Contrary to the widespread belief, agile practices and metrics actually helps to make commitments.</p>
-
-<p>It would be better if we had project specific statistics instead of generic risk multipliers. It&rsquo;s a shame that task tracking tools (JIRA &amp; friends) still don&rsquo;t help us with this.</p>
-
-<p>We should keep in mind though, that estimating all your backlog in advance takes some time and is actually some kind of waste. If possible, just sticking to build (and sell) the thing that is the most useful now is more simple (<a href="http://vimeo.com/75196281">this guy calls it drunken stumble</a>).</p>
-
-<iframe src="http://philippe.bourgau.net//player.vimeo.com/video/75196281" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-
-
-<p> <p><a href="http://vimeo.com/75196281">Tech Mesh 2012 &ndash; Building an Application Platform: Lessons from CloudBees &ndash; Garrett Smith</a> from <a href="http://vimeo.com/erlang">Erlang Solutions</a> on <a href="https://vimeo.com">Vimeo</a>.</p></p>
 ]]></content>
   </entry>
   
