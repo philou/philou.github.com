@@ -71,5 +71,7 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   [Principles That Will Make You Become a Badass Developer](/principles-that-will-make-you-become-a-badass-developer/)
 *   [Incremental Software Development for Large Scale Refactoring](/incremental-software-development-techniques-for-large-scale-refactorings/)
 *   [Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/)
-*   Techniques to refactor in parallel with features
+*   Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps
+*   Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !
+*   Incremental Software Development Strategies for Large Scale Refactoring #4 : Patterns
 *   Nothing convinces business people like money
