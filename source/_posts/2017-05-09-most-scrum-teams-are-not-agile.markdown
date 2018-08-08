@@ -8,6 +8,7 @@ categories:
  - agile
  - scrum
  - retrospectives
+ - mikado-method
 keywords: "Continuous improvement, Software, Agile Software, Agile, Retrospectives, Scrum"
 description: "Continuous improvement is key to be agile. Here are a few advices to continuously improve using retrospectives."
 ---

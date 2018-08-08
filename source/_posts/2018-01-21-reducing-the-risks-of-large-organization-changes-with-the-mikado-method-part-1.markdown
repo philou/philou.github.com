@@ -8,6 +8,7 @@ categories:
  - lean
  - coaching
  - large scale
+ - mikado-method
  - mikado-method-organization-series
 keywords: "Mikado Method, Agile, Agile transformation, Large Scale Transformation, Large Scale Agile"
 description: "First post of a series about applying the Mikado Method for large organization changes. Here I draw parallels between large scale code and organization changes."

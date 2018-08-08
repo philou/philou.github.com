@@ -9,6 +9,7 @@ categories:
  - software
  - technical debt
  - planning
+ - mikado-method
 keywords: "Lean, Software, Software Development, Agile, Technical Debt, Planning, Estimation"
 description: "I explain ideas I have to better manage technical debt"
 ---

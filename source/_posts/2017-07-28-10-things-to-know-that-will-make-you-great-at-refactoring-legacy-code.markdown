@@ -8,6 +8,7 @@ categories:
  - refactoring
  - learning
  - technical debt
+ - mikado-method
 keywords: "Refactoring, Incremental Refactoring, TDD, Programming, Software, Legacy Code, Technical Debt"
 description: "A tour of some effective techniques to refactor legacy code"
 ---

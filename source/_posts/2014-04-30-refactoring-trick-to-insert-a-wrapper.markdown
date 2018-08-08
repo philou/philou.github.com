@@ -6,6 +6,7 @@ comments: true
 categories:
  - refactoring
  - anticorruption layer
+ - mikado-method
 keywords: "refactoring, agile, software, agile software, craftsmanship, software craftsmanship, wrapper, anticorruption layer"
 description: "Summary of a refactoring trick that save a lot of time when creating a wrapper around an existing class"
 ---
@@ -14,7 +15,7 @@ Last week at work, we decided that we needed an [Anticorruption Layer](http://st
 * to provide an explicit API layer, controlling what is accessible from the outside
 * to allow us to improve our implementation independently of this API
 
-The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :
+The first step all the team agreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :
 
 1. Make sure you have a clean SCC state
 2. Rename the class to be wrapped (let's call it Foo) into FooWrapper
@@ -29,7 +30,7 @@ That saved us a whole lot of time. If your layer contains several classes with r
 
 Often you'll find out that to complete the wrapping of a class, you'll first need to wrap another class, you can :
 
-* Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental
+* Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completely incremental
 * Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward
 * Insert temporary calls to wrap() and unwrap() : they'll be removed when you'll later wrap the other class. This might be the only way if the classes have cyclic dependencies.
 
