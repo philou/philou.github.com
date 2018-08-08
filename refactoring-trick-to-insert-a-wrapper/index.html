@@ -131,7 +131,7 @@
 </ul>
 
 
-<p>The first step all the team aggreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
+<p>The first step all the team agreed on is to provide direct wrappers around our classes. Unfortunately, some of these classes had more than a thousand references to it and our IDE does not provide any automated refactoring for this (introduce a wrapper class, and only use it in some part of the code). We found a trick ! Here it is :</p>
 
 <ol>
 <li>Make sure you have a clean SCC state</li>
@@ -150,7 +150,7 @@
 <p>Often you&rsquo;ll find out that to complete the wrapping of a class, you&rsquo;ll first need to wrap another class, you can :</p>
 
 <ul>
-<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completly incremental</li>
+<li>Follow the mikado method strictly : upgrade your mikado graph, revert all your changes, and try to wrap this other class. It can seem slow, but it is completely incremental</li>
 <li>Wrap the 2 classes at the same time : this is the best way when wrapping this other class is rather straightforward</li>
 <li>Insert temporary calls to wrap() and unwrap() : they&rsquo;ll be removed when you&rsquo;ll later wrap the other class. This might be the only way if the classes have cyclic dependencies.</li>
 </ul>
@@ -183,7 +183,7 @@
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/anticorruption-layer/'>anticorruption layer</a>, <a class='category' href='/blog/categories/refactoring/'>refactoring</a>
+    <a class='category' href='/blog/categories/anticorruption-layer/'>anticorruption layer</a>, <a class='category' href='/blog/categories/mikado-method/'>mikado-method</a>, <a class='category' href='/blog/categories/refactoring/'>refactoring</a>
   
 </span>
 
