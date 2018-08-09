@@ -102,6 +102,207 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">10 Things to Know That Will Make You Great at Refactoring Legacy Code</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-07-28T06:35:00+02:00" pubdate data-updated="true">Jul 28<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We write tons of <a href="https://en.wikipedia.org/wiki/Legacy_code">legacy code</a> everyday. Experienced developers understand that legacy code is not something special. Legacy code is our daily bread and butter.</p>
+
+<p>Should we abandon all hope as we enter legacy code ? Would that be professional ? In the end, code is only a bunch of bytes, somewhere on a drive. We are the software professionals. We need to deal with that.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/keep-calm-and-take-the-power-back-4.jpg" alt="Keep Calm and Take The Power Back" /></p>
+
+<h2>1. Master non legacy refactoring first</h2>
+
+<p>Please calm down before this &ldquo;Bring &lsquo;em out&rdquo; energy goes to your head.</p>
+
+<p>I did not say that refactoring legacy code is easy. Legacy code can bite &hellip; bad. I&rsquo;ve been in teams which literally spent nights fixing a bad refactoring gone to production &hellip;</p>
+
+<p>Before you can refactor legacy code, you need to be good at refactoring new code. We all learned to swim in the shallow pool, it&rsquo;s the same with refactoring. Mastering green code refactoring will help you when tackling legacy code.</p>
+
+<p>First, you&rsquo;ll know the ideal you&rsquo;d like to get to. Knowing how productive a fast feedback loop is will motivate you to keep on refactoring.</p>
+
+<p>Second, you&rsquo;ll have a better idea of the baby steps to take you through a tricky refactoring.</p>
+
+<p>If you are not yet at ease with greenfield refactoring, have a look at <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">my previous post</a>.</p>
+
+<h2>2. Understand that refactoring legacy code is different</h2>
+
+<p>The next thing to remember is that refactoring legacy code is different. Let&rsquo;s assume <a href="https://stackoverflow.com/questions/4174867/what-is-the-definition-of-legacy-code">Michael Feather&rsquo;s definition of legacy code</a> : &ldquo;Code without tests&rdquo;. Getting rid of legacy code means adding automated tests.</p>
+
+<p>Unfortunately, trying to force push unit tests in legacy code usually results in a mess. It introduces lot&rsquo;s of artificial mocks in a meaningless design. It also creates brittle and unmaintainable tests. More harm than good. This might be an intermediate step, but it is usually not the quickest way to master your legacy code beast.</p>
+
+<p>Here are alternatives I prefer.</p>
+
+<h2>3. Divide and conquer</h2>
+
+<p>This is the most straightforward way to deal with legacy code. It&rsquo;s an iterative process to repeat until you get things under control. Here is how it goes :</p>
+
+<p>(1) Rely on the tests you have, (2) to refactor enough, (3) to test sub-parts in isolation. (4) Repeat until you are happy with the speed of the feedback loop.</p>
+
+<p>Depending on the initial state of your tests, this might take more or less time. Your first tests might even be manual. This is the bulldozer of refactoring. Very effective, but slow.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/bulldozer.jpg" alt="Bulldozer" /></p>
+
+<h2>4. Pair or mob program</h2>
+
+<blockquote><p>Given enough eyeballs, all bugs are shallow.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Linus%27s_Law">Linus&rsquo;s Law</a></p></blockquote>
+
+<p>Changing legacy code is a lot easier when you team up. First, it creates a motivating &ldquo;we&rsquo;re all in this together&rdquo; mindset. Second, it guards us against silly mistakes.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Mob_programming">Mob programming</a>, might seem very expensive, so let me explain why it is not. Suppose you want to introduce some tests in a tricky section of code.</p>
+
+<p>With mob programming, all the team gathers for half a day to work on this change. Together, they find and avoid most of the pitfalls. They commit a high quality change, which creates only one bug down the road.</p>
+
+<p>Let&rsquo;s see the alternative.</p>
+
+<p>Using solo programming, a poor programmer tries to tackle the change all by himself. He spends a few days to understand and double check all the traps he can think of. Finally, he commits his change, which results in many bugs later on. Every time a bug pops up, it interrupts someone to fix it ASAP.</p>
+
+<p>The savings in interruptions are greater than up front cost of mob or pair programming. </p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/p_pvslS4gEI" frameborder="0" allowfullscreen></iframe>
+
+
+<h2>5. Seams</h2>
+
+<blockquote><p>A software seam is <em>a place where you can alter behavior in your program without editing in that place.</em></p>
+
+<p><a href="http://wiki.c2.com/?SoftwareSeam">Michael Feathers</a></p></blockquote>
+
+<p>This is one of the many interesting things I learned from Michael&rsquo;s book about legacy code.</p>
+
+<p><a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=edaadc6370c2c8c9e943348d9fbdafb9"><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/legacy-code.jpg" alt="Cover of Working Effectively with Legacy Code" /></a></p>
+
+<p>Object polymorphism is only one kind of seam. Depending on your language, many other types of seams can be available. </p>
+
+<ul>
+<li>Type seam for generic languages</li>
+<li>Static link seam for static libraries</li>
+<li>Dynamic link seam for dynamic libraries</li>
+<li>&hellip;</li>
+</ul>
+
+
+<p>Finding seams in your program is something opportunistic. Keep in mind though that testing through seams is not the end goal. It is only a step to bootstrap the test-refactor loop and start your refactoring journey.</p>
+
+<h2>6. Mikado Method</h2>
+
+<p>How do you get to your end then ? How to you refactor only what&rsquo;s useful for your features ? How do you do large refactorings in baby steps ?</p>
+
+<p>Over time, I found that the mikado method is a good answer to all these issues. The goal of the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> is to build a graph of dependent refactoring. It can then use it to perform all these refactorings one by one. Here is the mikado method by the book.</p>
+
+<p>Before anything else, you&rsquo;ll need a large sheet of paper to draw the graph. Then repeat the following :</p>
+
+<ol>
+<li>try to do the change you want</li>
+<li>If it builds and the tests pass, great, commit and you&rsquo;re done</li>
+<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
+<li>Write down the compilation and test errors </li>
+<li>Revert your change</li>
+<li>Recurse from 1 for every compilation or test error</li>
+<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
+</ol>
+
+
+<p>Once you built the full graph, tackle the refactorings from the leaves. As leafs have no dependencies, it should be easy to do and commit them.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado.jpg" alt="A Sample Mikado Graph" /></p>
+
+<p>When I first read about the mikado method, it seemed very simple and powerful. Things got more complex when I tried to apply it. For example, the fact that some changes don&rsquo;t compile hide future test failures. That means that very often, the &ldquo;Build the graph&rdquo; and &ldquo;Walk the graph&rdquo; phases overlap. In real life, the graph evolves and changes over time. </p>
+
+<p>My advice about the Mikado Method is not to take it to the letter. It&rsquo;s a fantastic communication tool. It helps not to get lost and to avoid a refactoring tunnel. It also helps to tackle refactoring as a team.</p>
+
+<p>It is not a strict algorithm though. Build and tests are not the only way to build the graph. Very often, a bit of thinking and expert knowledge are the best tools at hand.</p>
+
+<p><a href="https://www.amazon.com/gp/product/1617291218/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1617291218&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=f7405cd74335b3cbb8b263f1a5c37c1d"><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado-book.jpg" alt="Cover of The Mikado Method book" /></a></p>
+
+<h2>7. Bubble Context</h2>
+
+<p>Refactoring needs to be opportunistic. Sometimes there are shortcuts in your refactoring path.</p>
+
+<p>If you have access to a domain expert, the <a href="http://dddcommunity.org/library/evans_2011_2/2">Bubble Context</a> will cut the amount of refactoring to do. It&rsquo;s also an occasion to get rid of all the features that are in your software but that are not required anymore. </p>
+
+<p>The Bubble Context originated from the <a href="http://dddcommunity.org/library/evans_2011_2/">DDD community</a>, as a way to grow a domain in an existing code base. It goes like that :</p>
+
+<ol>
+<li>Find a domain expert</li>
+<li>(Re)write clean code for a very tiny sub domain</li>
+<li>Protect it from the outside with an <a href="https://softwareengineering.stackexchange.com/questions/184464/what-is-an-anti-corruption-layer-and-how-is-it-used">anticorruption layer</a></li>
+<li>Grow it little by little</li>
+</ol>
+
+
+<p>I have friends who are fans of the bubble context. It is super effective provided you have a domain expert. It is a method of choice in complex domain software.</p>
+
+<h2>8. Strangler</h2>
+
+<p>Bubble Context works great when refactoring domain specific code, what about the rest ? I had good results with the <a href="https://www.martinfowler.com/bliki/StranglerApplication.html">Strangler pattern</a>.</p>
+
+<p>For example, we had to refactor a rather complex parser for an internal DSL. It was very difficult to incrementally change the old parser, so we started to build a new one aside. It would try to parse, but delegate to the old one when it failed. Little by little, the new parser was handling more and more of the grammar. When it supported all the inputs, we removed the old one.</p>
+
+<p>The strangler is particularly well suited for refactoring technical components. They have more stable interfaces and can be very difficult to change incrementally.</p>
+
+<h2>9. Parallel Run</h2>
+
+<p>This is more of a trick than a long term strategy. The idea is to use the initial (legacy) version of the code as a reference for your refactoring. Run both and check that they are doing the same thing.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/railroad.jpg" alt="Parallel Railroads" /></p>
+
+<p>Here are some variations around this idea.</p>
+
+<p>If the code you want to refactor is side effect free, it should be easy to duplicate it before refactoring. This enables running both to check that they compute the same thing.</p>
+
+<p>Put this in a unit test to bootstrap a test-refactor loop. You can also run both in production and log any difference. You&rsquo;ll need access to production logs &hellip; Devops teams have a refactoring advantage !</p>
+
+<p>Here is another use of your logs. If the code writes a lot of logs, we can use them as a reference. Capture the logs of the old version, and unit test that the refactored version prints the same logs out. That&rsquo;s an unmaintainable test, but good enough to bootstrap the test-refactor loop.</p>
+
+<p>The <a href="https://github.com/emilybache/GildedRose-Refactoring-Kata">Gilded Rose kata</a> is a good exercise to practice this last technique.</p>
+
+<h2>10. Dead code is better off dead</h2>
+
+<p>You don&rsquo;t need to refactor dead code ! Again, access to production logs is a great advantage for refactoring.</p>
+
+<p>Add logs to learn how the real code runs. If it&rsquo;s never called, then delete it. If it&rsquo;s only called with some set of values, simplify it.</p>
+
+<h2>No silver bullet</h2>
+
+<p>That was a whirlwind tour of the legacy code refactoring techniques I know. It&rsquo;s no promise that refactoring will become easy or fast. I hope it is a good starting point to set up and walk a refactoring plan.</p>
+
+<p>This was the last post of a series of 3 about how to learn refactoring techniques. If you didn&rsquo;t already, check part 1 <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a> and part 2 <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to Start Learning the Tao of Incremental Code Refactoring Today</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to Start Learning the Tao of Incremental Code Refactoring Today</a></h1>
     
     
@@ -1518,139 +1719,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/most-scrum-teams-are-not-agile/">Most Scrum Teams Are Not Agile</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2017-05-09T06:36:00+02:00" pubdate data-updated="true">May 9<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Being agile is about adapting to change and continuously improving. I&rsquo;ve seen (and been) in too many teams blindly following Scrum (<a href="/how-to-kill-scrum-zombies/">Scrum Zombies</a>) without figuring out how to continuous improve. The most obvious symptom is a boring (or no) retrospective.</p>
-
-<p>Usually, it did not start that way, people had good intentions, and tried to follow the Scrum cookbook. Unfortunately, without any guidance or extreme perseverance, it is plain too easy to mess up the retrospective. If no concrete actions are scheduled at the end of the retro, if the same problems keep coming up at every retro, or if no problems at all are raised during the retro : your Scrum is somehow broken !</p>
-
-<p>One of the promises of Scrum is to keep code quality high, in order to be able to adapt to late changes. Without a good retro to update the coding standards, the working agreements, or to spot and organize large scale refactoring, this will not happen.</p>
-
-<p>One of the agile principle <a href="http://agilemanifesto.org/principles.html">explicitly states</a> the need for motivated team members. In <a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494561757&amp;sr=8-1&amp;keywords=pink+drive">Drive</a> Daniel Pink explains that one of the ingredient for motivation is autonomy. As a way to fix recurring problems, effective retrospectives will create autonomy, and enable motivation. Dysfunctional retros will slowly kill both &hellip;</p>
-
-<p>Although continuous improvement at all levels is one of the most important element in your process, it needs a bit of practice to setup right. After trying different approach in different teams, I compiled a list of the things that worked for me :</p>
-
-<p><a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494561757&amp;sr=8-1&amp;keywords=pink+drive"><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg" alt="The cover of the Daniel Pink's &quot;Drive&quot; book" /></a></p>
-
-<h2>How to do successful retrospectives</h2>
-
-<h3>Start !</h3>
-
-<p>Sounds obvious ! The first step is to schedule a recurring meeting and invite all the team. Someone should take care of facilitating. If you want to improve things, do this yourself at the beginning ! Once the practice is in place and everyone sees the benefits, you&rsquo;ll be able to get some help.</p>
-
-<p><a href="/how-we-introduced-efficient-agile-retrospectives/">Here</a> is a crash-course about how to organize and drive your first retrospective. If your team is distributed, you&rsquo;ll need a slightly different setup. In my previous team, we had success using <a href="https://trello.com">Trello</a>, you can read more about it <a href="/trellospectives-remote-retrospectives-with-trello/">here</a>.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/just-do-it.jpg" alt="Just Do It picture" /></p>
-
-<h3>Make sure everyone talks</h3>
-
-<p>Retros should not be &ldquo;just-another-boring-meeting&rdquo; ! People should be excited to be there and to solve their recurring problems. I&rsquo;ve seen retros where no one would speak, as if there was absolutely nothing to improve ! I&rsquo;ve also been in retros where people raised collaboration issues, and came up with drastic improvements to the way they work, like adopting pair-programming for example.</p>
-
-<p>There can be many reason why people don&rsquo;t speak : habit, organizational culture &hellip; Whatever the cause, if you show them the path, if you demonstrate that retro work and that it is safe to speak, you&rsquo;ll get them to participate.</p>
-
-<p>Here are a few tricks to guide a team there :</p>
-
-<ul>
-<li>It is said that if someone does not speak in the first 5 minutes of a meeting, he&rsquo;ll remain silent for the rest. That&rsquo;s why <a href="www.funretrospectives.com/category/energizer/">energizers</a> work. They force everyone to participate to a Fun activity right from the start. <a href="http://www.funretrospectives.com/">Fun Retrospective</a> contains a lot of engaging energizers.</li>
-<li>Bring food ! Having food at work was one of Kent Beck&rsquo;s main advises in <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494561932&amp;sr=1-2&amp;keywords=extreme+programming+explained+embrace+change">eXtreme Programming, Embrace Change</a>. Food is social and create a more relaxed and safer atmosphere.</li>
-<li>Before you start the meeting, it might be useful to repeat the <a href="http://www.retrospectives.com/pages/retroPrimeDirective.html">Retrospective&rsquo;s Prime Directive</a>.</li>
-</ul>
-
-
-<blockquote><p>Regardless of what we discover, we understand and truly believe that everyone did the best job they could, given what they knew at the time, their skills and abilities, the resources available, and the situation at hand.</p></blockquote>
-
-<ul>
-<li>As the animator, you should make sure the discussions don&rsquo;t degenerate into some kind of trolling or blaming. If it&rsquo;s the case, remind that this is not the way the retro is meant to work. In worst case, give a 5 minutes break to everyone to calm down.</li>
-<li>If needed, have a private discussion with people outside the retro to make sure that they understand the &ldquo;Blame the process, not the people&rdquo; principle of the retro well enough.</li>
-</ul>
-
-
-<p>Dealing with &ldquo;bad&rdquo; behavior in retros is a wide topic which I am only scratching the surface here. I guess I could write a full post about it.</p>
-
-<p><a href="http://www.funretrospectives.com/"><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/fun-retro.jpeg" alt="The cover of the &quot;Fun Retrospectives&quot; book" /></a></p>
-
-<h3>Get out of with actionable tasks</h3>
-
-<p>If you want a sure way to screw up your retros here it is : end the first one with no actionable things to do ! People will learn that it&rsquo;s a useless pscho-blabla meeting for agile softies.</p>
-
-<p>This should be the absolute priority during the first retros. There are various kind of actionable tasks. Teams can adopt new conventions, decide to tackle some specific refactoring, or build a small new tool &hellip;</p>
-
-<p>Actionable items should be small enough to be completed in one sprint. This is fine for refactoring a class, adding a <a href="https://www.sonarqube.org/">SonarQube</a> rule or asking for something from another team. What about larger tasks ? Suppose you just identified a large refactoring to do, how do you get started ? I know 2 strategies for that :</p>
-
-<ul>
-<li>Only identify the first step of what you want to start. At least, that&rsquo;s enough to get started and learn what to do later.</li>
-<li>Agree on a <a href="https://mikadomethod.wordpress.com/">Mikado</a> discovery task to understand what needs to be done. Code is not the only thing that can be refactored with the Mikado method ! People have used it to transform <a href="http://nomad8.com/organisational-change-with-mikado/">organizations</a> !</li>
-</ul>
-
-
-<p>It&rsquo;s also a good habit to book the rooms for extra time after the official retro time. Nothing is as frustrating as being interrupted while investigating a promising improvement !</p>
-
-<p>Finally, I think it&rsquo;s a good practice to review what happened of the improvements that were selected during last retro. It stresses the importance of doing what was scheduled in retrospective. It also gives a chance to investigate the reason why they were not done !</p>
-
-<p><a href="https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494562230&amp;sr=1-1&amp;keywords=mikado+method"><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg" alt="The cover of the &quot;Mikado Method&quot; book" /></a></p>
-
-<h3>Put them in the sprint</h3>
-
-<p>When actions are selected in the retro, you should add them to the coming sprint before it starts. Obviously, you&rsquo;ll add non business related items in your sprint backlog. Whatever you might have hear from agile zealots, do it ! Process improvements are fist class backlog citizens, just don&rsquo;t discuss them with your <a href="https://www.scrum.org/resources/blog/who-professional-scrum-product-owner">product owner</a>.</p>
-
-<p>If you want a chance to deliver what you committed to in your sprint backlog, you&rsquo;ll need bandwidth for that ! They are many ways to do get that. Some teams use <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a>, others reserve an &lsquo;improvement day&rsquo; every sprint. My personal favorite (and the one we&rsquo;ve been doing at work) is to estimate the improvements in story points and reserve a fraction (ex 20%) of your story points for improvements.</p>
-
-<p>You can try to negotiate your improvement ratio with your product owner &hellip; or you might also just set it yourself ! The team is responsible for the quality of its work. Better be sorry than ineffective. If you stick to your ratio and only work on the most important improvements, it&rsquo;s usually pretty easy to justify working on them. Plus if you manage to go under the radar for a few sprints, the results of the improvements should speak by themselves.</p>
-
-<h3>Do them as soon as the sprint starts</h3>
-
-<p>One last thing. Start to work on your improvements as soon as the sprint starts.</p>
-
-<p>Improvements are similar to investments : you invest in process, tools or code in exchange for more value creation downstream. Once you&rsquo;ve decided to invest in something, what&rsquo;s the point of waiting 1 week ? Plus if you wait for later in the sprint, you run the risk of having unfinished improvements at the next retro, which might interfere when prioritizing new ones.</p>
-
-<h2>Continuously improving teams</h2>
-
-<p>Being part of a continuously improving team is easier to live than to describe. It feels like the future is bright. Once a team has mastered continuous improvement, people can be optimistic that they&rsquo;ll manage to adapt to change later down the road :</p>
-
-<ul>
-<li>They could switch gears and go full speed on a particular re-architecture</li>
-<li>They could change their working agreements to adapt to new constraints</li>
-<li>They could re-focus their efforts to handle a maintenance pike</li>
-</ul>
-
-
-<p>At the end of the day, bottom-up continuous improvement makes everyone&rsquo;s lives easier. Developers experience more autonomy while improving their productivity, they can do good work (which also means spending less time bug-fixing). Product owners learn that they can trust the team to do their best. Sponsors get more value for their money.</p>
-
-<blockquote><p>Agile teams bend so they don&rsquo;t break !</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/7/">&larr; Older</a>
@@ -1733,6 +1801,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a>
       </li>
     
@@ -1746,10 +1818,6 @@
     
       <li class="post">
         <a href="/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a>
-      </li>
-    
-      <li class="post">
-        <a href="/why-we-need-badass-developers-to-perform-large-scale-refactorings/">Why we need Badass developers to perform large scale refactorings</a>
       </li>
     
   </ul>

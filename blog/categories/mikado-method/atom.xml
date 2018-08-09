@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mikado-method | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/mikado-method/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-08-08T13:37:42+02:00</updated>
+  <updated>2018-08-09T07:40:39+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/"/>
+    <updated>2018-08-09T08:50:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps</id>
+    <content type="html"><![CDATA[<p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous post</a> was about how to get slots of time in your daily (or weekly) work to do some refactoring. I left my readers with the promise of techniques to fit the refactoring work into these small slots.</p>
+
+<p>Obviously, it won&rsquo;t be possible to perform any refactoring of any size in this way. With a bit of discipline and know-how though, it is possible to deal with quite a lot by splitting them up.</p>
+
+<p>Baby steps are small increments of working software. The idea is that we test, commit, integrate and even deploy every small code change ! Using baby steps, we can perform large scale refactorings little by little. Refactoring in this way might seem involved, but it&rsquo;s so much safer that it&rsquo;s <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">a no brainer once you&rsquo;ve tried it</a> ! Refactoring in baby steps can be challenging to master though.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/baby-steps.jpg" alt="Baby footprints. Taking really small baby steps when going through a large scale refactoring is safer" /></p>
+
+<p>10 years ago, I used to work in a large bank in Paris. I had been dabbling on my own with <a href="https://en.wikipedia.org/wiki/Extreme_programming">eXtreme Programming</a> for a few years, when we started a small project. I was to become the informal XP coach. The project was about connecting to an online brokering service. It involved adapting an existing domain library. It went out pretty well. More precisely, we created very few bugs in production, which was very different from the norm at the time. I remember this feedback from the manager :</p>
+
+<blockquote><p>We managed to move the code from X to Y through a succession of working baby steps ! That&rsquo;s pretty uncommon ! A manager in 2006</p></blockquote>
+
+<p>Keep in mind that this was 10 years ago. We had not done anything special except trying to apply eXtreme Programming. Nowadays, as Continuous Integration has become mainstream these skills are becoming more common. That said, we still need to learn how to apply incremental software development to large scale refactoring. This is what I&rsquo;m going to write about today.</p>
+
+<p>This is the seventh post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2>Team TDD Coding Dojos</h2>
+
+<p>Learning to work in baby steps is not as complicated as it might first seem. The safest and easiest way is to setup a <a href="/blog/categories/team-randori-series/">team TDD coding dojo</a>. With its Red-Green-Refactor loop TDD sets up a baby steps rhythm. As I&rsquo;ll explain in <a href="http://eepurl.com/dxKE95">my next post</a>, baby steps work best when all the team uses them. That&rsquo;s another thing the team Coding Dojo helps with.</p>
+
+<blockquote><p>💡 TDD has a baby steps rhythm baked in.</p></blockquote>
+
+<p>We can push the learning further. For example, we can use the <a href="http://kata-log.rocks/baby-steps">baby steps constraint</a> during a few coding dojo sessions. With this constraint, we revert the code if tests fail for more than 2 minutes ! Here is a way to go at it :</p>
+
+<ol>
+<li>Setup <a href="https://www.amazon.com/Continuous-Testing-Ruby-Rails-JavaScript/dp/1934356700/ref=sr_1_4?ie=UTF8&amp;qid=1533638529&amp;sr=8-4&amp;keywords=continuous+testing">continuous testing</a> : <a href="https://www.ncrunch.net/">NCrunch</a> in <a href="https://www.microsoft.com/net">.Net</a>, <a href="https://github.com/guard/guard">Guard</a> in <a href="https://www.ruby-lang.org/fr/">Ruby</a> or <a href="http://infinitest.github.io/">Infinitest</a> in <a href="https://en.wikipedia.org/wiki/Java_(programming_language">Java</a>)</li>
+<li>Only use automated refactorings or extremely simple code changes in order to &hellip;.</li>
+<li>&hellip; keep the code compiling all the time &hellip;</li>
+<li>&hellip; and cut the time the tests fail as much as possible</li>
+</ol>
+
+
+<h2>Mikado Method</h2>
+
+<p>One way to keep the tests green all the time is to use a slightly different TDD loop, as <a href="http://natpryce.com/articles/000780.html">Nat Pryce suggests</a> :</p>
+
+<p><a href="http://natpryce.com/articles/000780.html"><img src="http://philippe.bourgau.net/imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/listening-to-the-tests.png" alt="The red-green-refactor loop of TDD with an extra green arrow from failing test to refactor. This alternate TDD loop illustrates how to take baby steps with the Mikado Method" /></a></p>
+
+<div class="image-credits">From <a href="http://natpryce.com">Nat Pryce's</a> <a href="http://natpryce.com/articles/000780.html">blog</a></div>
+
+
+<br>
+
+
+<p>Here is how it goes. </p>
+
+<ol>
+<li>Add a new failing test </li>
+<li>If it&rsquo;s trivial to fix, fix it. We are done</li>
+<li>If not, see what&rsquo;s missing in the code</li>
+<li>Comment the test to get back to a green state</li>
+<li>Refactor the code to add what&rsquo;s missing (and use other tests if needed)</li>
+<li>Uncomment the test</li>
+<li>Repeat from step 2</li>
+</ol>
+
+
+<p>When doing this at the scale of a real life story or feature, we&rsquo;d use <code>git stash</code> instead of comments. This way of working has a name, it&rsquo;s called the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a>. It is at the heart of making baby steps work in real life.</p>
+
+<blockquote><p>💡 The Mikado Method is at the heart of making baby steps work in real life</p></blockquote>
+
+<h2>Take a break</h2>
+
+<p>With TDD and the Mikado Method we can put the refactoring on pause. We can perform a small increment of the refactoring, commit and deploy it &hellip; and pause ! We&rsquo;ll work on business features for a while, and resume the refactoring later on.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/coffee-break.jpg" alt="A cup of coffee next to a computer. Developers can pause their large scale refactoring if they work in small enough baby steps" /></p>
+
+<p>When done well, it feels slow. We have to remember that the alternative is to convince business people of prioritizing a refactoring &hellip; As we&rsquo;ll regularly ship baby steps of a large scale refactoring, we&rsquo;ll know we&rsquo;re on the good track !</p>
+
+<h2>More to come</h2>
+
+<p>Unfortunately, even with bandwidth and skills, we are not there yet &hellip; It&rsquo;s one thing for developers to do incremental software development of large scale refactoring on their own. It&rsquo;s another to do it as a team !</p>
+
+<p>This was the seventh post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. <a href="http://eepurl.com/dxKE95">Next post</a> will be about how to manage constant merciless refactoring and baby steps as a team.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 3]]></title>
@@ -358,111 +440,6 @@
 <p>That was a whirlwind tour of the legacy code refactoring techniques I know. It&rsquo;s no promise that refactoring will become easy or fast. I hope it is a good starting point to set up and walk a refactoring plan.</p>
 
 <p>This was the last post of a series of 3 about how to learn refactoring techniques. If you didn&rsquo;t already, check part 1 <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a> and part 2 <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to Start Learning the Tao of Incremental Code Refactoring Today</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Most Scrum teams are not agile]]></title>
-    <link href="http://philippe.bourgau.net/most-scrum-teams-are-not-agile/"/>
-    <updated>2017-05-09T06:36:00+02:00</updated>
-    <id>http://philippe.bourgau.net/most-scrum-teams-are-not-agile</id>
-    <content type="html"><![CDATA[<p>Being agile is about adapting to change and continuously improving. I&rsquo;ve seen (and been) in too many teams blindly following Scrum (<a href="/how-to-kill-scrum-zombies/">Scrum Zombies</a>) without figuring out how to continuous improve. The most obvious symptom is a boring (or no) retrospective.</p>
-
-<p>Usually, it did not start that way, people had good intentions, and tried to follow the Scrum cookbook. Unfortunately, without any guidance or extreme perseverance, it is plain too easy to mess up the retrospective. If no concrete actions are scheduled at the end of the retro, if the same problems keep coming up at every retro, or if no problems at all are raised during the retro : your Scrum is somehow broken !</p>
-
-<p>One of the promises of Scrum is to keep code quality high, in order to be able to adapt to late changes. Without a good retro to update the coding standards, the working agreements, or to spot and organize large scale refactoring, this will not happen.</p>
-
-<p>One of the agile principle <a href="http://agilemanifesto.org/principles.html">explicitly states</a> the need for motivated team members. In <a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494561757&amp;sr=8-1&amp;keywords=pink+drive">Drive</a> Daniel Pink explains that one of the ingredient for motivation is autonomy. As a way to fix recurring problems, effective retrospectives will create autonomy, and enable motivation. Dysfunctional retros will slowly kill both &hellip;</p>
-
-<p>Although continuous improvement at all levels is one of the most important element in your process, it needs a bit of practice to setup right. After trying different approach in different teams, I compiled a list of the things that worked for me :</p>
-
-<p><a href="https://www.amazon.com/Drive-Surprising-Truth-About-Motivates/dp/1594484805/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494561757&amp;sr=8-1&amp;keywords=pink+drive"><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/drive.jpg" alt="The cover of the Daniel Pink's &quot;Drive&quot; book" /></a></p>
-
-<h2>How to do successful retrospectives</h2>
-
-<h3>Start !</h3>
-
-<p>Sounds obvious ! The first step is to schedule a recurring meeting and invite all the team. Someone should take care of facilitating. If you want to improve things, do this yourself at the beginning ! Once the practice is in place and everyone sees the benefits, you&rsquo;ll be able to get some help.</p>
-
-<p><a href="/how-we-introduced-efficient-agile-retrospectives/">Here</a> is a crash-course about how to organize and drive your first retrospective. If your team is distributed, you&rsquo;ll need a slightly different setup. In my previous team, we had success using <a href="https://trello.com">Trello</a>, you can read more about it <a href="/trellospectives-remote-retrospectives-with-trello/">here</a>.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/just-do-it.jpg" alt="Just Do It picture" /></p>
-
-<h3>Make sure everyone talks</h3>
-
-<p>Retros should not be &ldquo;just-another-boring-meeting&rdquo; ! People should be excited to be there and to solve their recurring problems. I&rsquo;ve seen retros where no one would speak, as if there was absolutely nothing to improve ! I&rsquo;ve also been in retros where people raised collaboration issues, and came up with drastic improvements to the way they work, like adopting pair-programming for example.</p>
-
-<p>There can be many reason why people don&rsquo;t speak : habit, organizational culture &hellip; Whatever the cause, if you show them the path, if you demonstrate that retro work and that it is safe to speak, you&rsquo;ll get them to participate.</p>
-
-<p>Here are a few tricks to guide a team there :</p>
-
-<ul>
-<li>It is said that if someone does not speak in the first 5 minutes of a meeting, he&rsquo;ll remain silent for the rest. That&rsquo;s why <a href="www.funretrospectives.com/category/energizer/">energizers</a> work. They force everyone to participate to a Fun activity right from the start. <a href="http://www.funretrospectives.com/">Fun Retrospective</a> contains a lot of engaging energizers.</li>
-<li>Bring food ! Having food at work was one of Kent Beck&rsquo;s main advises in <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494561932&amp;sr=1-2&amp;keywords=extreme+programming+explained+embrace+change">eXtreme Programming, Embrace Change</a>. Food is social and create a more relaxed and safer atmosphere.</li>
-<li>Before you start the meeting, it might be useful to repeat the <a href="http://www.retrospectives.com/pages/retroPrimeDirective.html">Retrospective&rsquo;s Prime Directive</a>.</li>
-</ul>
-
-
-<blockquote><p>Regardless of what we discover, we understand and truly believe that everyone did the best job they could, given what they knew at the time, their skills and abilities, the resources available, and the situation at hand.</p></blockquote>
-
-<ul>
-<li>As the animator, you should make sure the discussions don&rsquo;t degenerate into some kind of trolling or blaming. If it&rsquo;s the case, remind that this is not the way the retro is meant to work. In worst case, give a 5 minutes break to everyone to calm down.</li>
-<li>If needed, have a private discussion with people outside the retro to make sure that they understand the &ldquo;Blame the process, not the people&rdquo; principle of the retro well enough.</li>
-</ul>
-
-
-<p>Dealing with &ldquo;bad&rdquo; behavior in retros is a wide topic which I am only scratching the surface here. I guess I could write a full post about it.</p>
-
-<p><a href="http://www.funretrospectives.com/"><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/fun-retro.jpeg" alt="The cover of the &quot;Fun Retrospectives&quot; book" /></a></p>
-
-<h3>Get out of with actionable tasks</h3>
-
-<p>If you want a sure way to screw up your retros here it is : end the first one with no actionable things to do ! People will learn that it&rsquo;s a useless pscho-blabla meeting for agile softies.</p>
-
-<p>This should be the absolute priority during the first retros. There are various kind of actionable tasks. Teams can adopt new conventions, decide to tackle some specific refactoring, or build a small new tool &hellip;</p>
-
-<p>Actionable items should be small enough to be completed in one sprint. This is fine for refactoring a class, adding a <a href="https://www.sonarqube.org/">SonarQube</a> rule or asking for something from another team. What about larger tasks ? Suppose you just identified a large refactoring to do, how do you get started ? I know 2 strategies for that :</p>
-
-<ul>
-<li>Only identify the first step of what you want to start. At least, that&rsquo;s enough to get started and learn what to do later.</li>
-<li>Agree on a <a href="https://mikadomethod.wordpress.com/">Mikado</a> discovery task to understand what needs to be done. Code is not the only thing that can be refactored with the Mikado method ! People have used it to transform <a href="http://nomad8.com/organisational-change-with-mikado/">organizations</a> !</li>
-</ul>
-
-
-<p>It&rsquo;s also a good habit to book the rooms for extra time after the official retro time. Nothing is as frustrating as being interrupted while investigating a promising improvement !</p>
-
-<p>Finally, I think it&rsquo;s a good practice to review what happened of the improvements that were selected during last retro. It stresses the importance of doing what was scheduled in retrospective. It also gives a chance to investigate the reason why they were not done !</p>
-
-<p><a href="https://www.amazon.com/Mikado-Method-Ola-Ellnestam/dp/1617291218/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494562230&amp;sr=1-1&amp;keywords=mikado+method"><img src="http://philippe.bourgau.net/imgs/2017-05-09-most-scrum-teams-are-not-agile/mikado-method.jpg" alt="The cover of the &quot;Mikado Method&quot; book" /></a></p>
-
-<h3>Put them in the sprint</h3>
-
-<p>When actions are selected in the retro, you should add them to the coming sprint before it starts. Obviously, you&rsquo;ll add non business related items in your sprint backlog. Whatever you might have hear from agile zealots, do it ! Process improvements are fist class backlog citizens, just don&rsquo;t discuss them with your <a href="https://www.scrum.org/resources/blog/who-professional-scrum-product-owner">product owner</a>.</p>
-
-<p>If you want a chance to deliver what you committed to in your sprint backlog, you&rsquo;ll need bandwidth for that ! They are many ways to do get that. Some teams use <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a>, others reserve an &lsquo;improvement day&rsquo; every sprint. My personal favorite (and the one we&rsquo;ve been doing at work) is to estimate the improvements in story points and reserve a fraction (ex 20%) of your story points for improvements.</p>
-
-<p>You can try to negotiate your improvement ratio with your product owner &hellip; or you might also just set it yourself ! The team is responsible for the quality of its work. Better be sorry than ineffective. If you stick to your ratio and only work on the most important improvements, it&rsquo;s usually pretty easy to justify working on them. Plus if you manage to go under the radar for a few sprints, the results of the improvements should speak by themselves.</p>
-
-<h3>Do them as soon as the sprint starts</h3>
-
-<p>One last thing. Start to work on your improvements as soon as the sprint starts.</p>
-
-<p>Improvements are similar to investments : you invest in process, tools or code in exchange for more value creation downstream. Once you&rsquo;ve decided to invest in something, what&rsquo;s the point of waiting 1 week ? Plus if you wait for later in the sprint, you run the risk of having unfinished improvements at the next retro, which might interfere when prioritizing new ones.</p>
-
-<h2>Continuously improving teams</h2>
-
-<p>Being part of a continuously improving team is easier to live than to describe. It feels like the future is bright. Once a team has mastered continuous improvement, people can be optimistic that they&rsquo;ll manage to adapt to change later down the road :</p>
-
-<ul>
-<li>They could switch gears and go full speed on a particular re-architecture</li>
-<li>They could change their working agreements to adapt to new constraints</li>
-<li>They could re-focus their efforts to handle a maintenance pike</li>
-</ul>
-
-
-<p>At the end of the day, bottom-up continuous improvement makes everyone&rsquo;s lives easier. Developers experience more autonomy while improving their productivity, they can do good work (which also means spending less time bug-fixing). Product owners learn that they can trust the team to do their best. Sponsors get more value for their money.</p>
-
-<blockquote><p>Agile teams bend so they don&rsquo;t break !</p></blockquote>
 ]]></content>
   </entry>
   
