@@ -77,6 +77,6 @@ All this to say, we should start our features with the pre-requisite refactoring
 
 ## To be continued
 
-Finding the time for constant merciless refactoring is one thing, but how do we fit the work in these short slots ? In the [next post](http://eepurl.com/dxKE95), I'll continue about how to actually work in baby steps.
+Finding the time for constant merciless refactoring is one thing, but how do we fit the work in these short slots ? In the [next post](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/), I'll continue about how to actually work in baby steps.
 
 This was the sixth post about [how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/).

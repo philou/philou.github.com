@@ -11,7 +11,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Baby steps, Baby steps software, Baby steps software development, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "Learn to split a large scale refactoring in tiny baby steps to be able to deliver it alongside features. Slack time, the Boy Scout Rule and embedding refactoring in features creates many small time slots. Cutting large scale refactorings in baby steps is mandatory to take advantage of these slots."
-published: false
 ---
 [My previous post](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/) was about how to get slots of time in your daily (or weekly) work to do some refactoring. I left my readers with the promise of techniques to fit the refactoring work into these small slots.
 
