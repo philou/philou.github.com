@@ -102,6 +102,145 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage It !</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-08-16T06:53:00+02:00" pubdate data-updated="true">Aug 16<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous posts</a> where about how to find and use small time slots for large scale refactorings. <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Refactoring step by step</a> is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own.</p>
+
+<p>Here is a little story of what can go bad. I used to work in a team which <a href="/refactoring-trick-to-insert-a-wrapper/">had a high &lsquo;refactoring culture&rsquo;.</a> Everyone in the team wanted to apply the kind of practices I mentioned in my previous posts. To make things more tricky, we were <a href="/from-zero-to-pair-programming-hero/">working from 2 cities</a>. We had introduced slack time and developers would tackle refactoring at the end of every iteration. As we did not particularly organize or collaborate on slack time, we soon ran into conflicts. People wanted to refactor the same code, maybe in different ways ! After a while we also had too many large scale refactorings going on at the same time. This slowed down progress, increased the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a> and the failure rate. Worst of all, it made it difficult to refocus on a newly discovered but urgent refactoring.</p>
+
+<p>With a bit of organization though, we got things to work. Let&rsquo;s see how we managed it.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/manage-it.jpg" alt="Drawing of a calendar entitled &quot;Manage It !&quot;. Collaboration and organization are key to succeed to use incremental software development for large scale refactorings." /></p>
+
+<p>This is the eighth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2>Manage it with a Design Vision</h2>
+
+<p>To succeed at anything, we need to know where we are going. It&rsquo;s the same for large scale refactorings. We don&rsquo;t need to have all the details of what we want to build. We do need a good enough draft to avoid going in the wrong direction. That&rsquo;s even more true when we work as a team. Without a shared design vision, people will refactor in conflicting directions.</p>
+
+<p>It&rsquo;s very important to share the vision with all the team. We can stick high level UML sketches on the walls for example. As <a href="https://twitter.com/kentbeck">Kent Beck</a> suggests, we can also use <a href="http://www.extremeprogramming.org/rules/metaphor.html">metaphores</a> to communicate the design. In <a href="https://vimeo.com/275530146">this talk</a>, <a href="http://www.natpryce.com/">Nat Pryce</a> explains that it&rsquo;s a great way start, but that we will have to drop the metaphore later.</p>
+
+<iframe src="https://player.vimeo.com/video/275530146?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<div class="image-credits">By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a></div>
+
+
+<br>
+
+
+<p>The idea is not to waste time in a <a href="https://en.wikipedia.org/wiki/Big_Design_Up_Front">Big Design Up Front</a>. We just want to draft a vision :</p>
+
+<ul>
+<li>We can run a Design level Event Storming (I guess I&rsquo;ll have to blog about this some day)</li>
+<li>We can grab a copy of <a href="https://www.amazon.com/Gamestorming-Playbook-Innovators-Rulebreakers-Changemakers/dp/0596804172/ref=sr_1_1?ie=UTF8&amp;qid=1534409953&amp;sr=8-1&amp;keywords=gamestorming">Gamestorming</a> and run another kind of collaborative design game</li>
+<li>Or a few team members could work on something the way they prefer</li>
+</ul>
+
+
+<p>Whatever the technique we start with, we&rsquo;ll be able to refine and evolve the vision down the road.</p>
+
+<h2>Manage it with Mikado Graphs</h2>
+
+<p>Remember the &lsquo;<a href="http://mikadomethod.info/">Mikado Method</a>&rsquo; from <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">my previous post</a> ? It&rsquo;s a technique to code and deploy large scale refactorings in baby steps. If you had a look at the reference links, you&rsquo;ll might seen mentions of a &lsquo;Mikado Graph&rsquo;. Here is what it looks like :</p>
+
+<p><a href="http://mikadomethod.info/"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/mikado-graph.png" alt="Sample Mikado Graph. The Mikado graph is a great tool to manage and collaborate on incremental software development of large scale refactoring." /></a></p>
+
+<div class="image-credits">Sample mikado graph from <a href="http://mikadomethod.info/">http://mikadomethod.info/</a></div>
+
+
+<br>
+
+
+<p>As the number of refactoring steps grows, it becomes tricky to keep track of them all. A simple way is to draw them as nodes in a graph, and tackle the work from the leaves. If you are interested, check <a href="/blog/categories/mikado-method/">these posts about the Mikado Method</a>. In my previous team, we became fans of the Mikado Method. We even built a tool to generate mikado graph from <a href="https://www.atlassian.com/software/jira">JIRA</a> (our ticket management system) dependencies ! Using colors, we could track where we stood in the refactoring.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/generated-mikado-graph.jpg" alt="Sample Mikado Graph generated by our tool. Automating around Mikado graphs is of great help for large scale refactoring." /></p>
+
+<p>The key advantage of mikado graphs is that we can stick them on the wall. This enables all the team to know where we stand in a refactoring. This way, team members can collaborate during their slack. It can also make the boy scout rule more effective. When a developer happens to touch a file that appears in the graph, he or she can move it further in the good direction.</p>
+
+<blockquote><p>💡 A key benefit of mikado graphs is that we can stick them on the wall for everyone to know where we stand in a refactoring.</p></blockquote>
+
+<h2>Manage it with Metrics</h2>
+
+<p>I mentioned coding conventions and a clear <a href="https://www.agilealliance.org/glossary/definition-of-done/">Definition of Done</a> in <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">a previous post</a>.  Having code quality constraints is the compass of constant merciless refactoring. To make this actionable and real, we should take the time to setup an automatic metrics system. For example :</p>
+
+<p><a href="https://youtu.be/Env47tQewIA?t=2685"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/tech-debt-trap.jpg" alt="Doc Norton's talk about &quot;The Technical Debt trap&quot;. His metrics are very useful to manage large scale refactoring." /></a></p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Env47tQewIA">Doc Norton suggests</a> to track maintainability, coverage, complexity and coupling over time.</li>
+<li>The <a href="https://www.agilealliance.org/the-agile-alliance-debt-analysis-model/">A2DAM model</a> suggests using specific rules to create Definition of Done constraints</li>
+</ul>
+
+
+<p>Putting this in place will help everyone in the team to know if she or he should do more or less refactoring. The first benefit is that it prevents under and over engineering on new code. The second benefit is progress validation through metrics changes as we refactor.</p>
+
+<p><a href="https://codeclimate.com/github/philou/planning-poker"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/code-climate-dashboard.jpg" alt="Sample metrics dashboard. Out of the box, Code Climate supports 3 out of the 4 metrics suggested by Doc Norton. This can be really helpful to manage incremental software development." /></a></p>
+
+<h2>Manage it with a bit of Planning</h2>
+
+<p>Granted, planning is not the most fun part of our job. It can save us a ton of work though. <a href="https://code.joejag.com/2018/lego-workstream-visualisation.html">Joe Wright explains</a> how they doubled their productivity by spending more time planning. If we want to make a good job of incremental refactoring, we&rsquo;ll need to spend enough time preparing it. Important questions are :</p>
+
+<ul>
+<li>What are the most important refactorings to work on ?</li>
+<li>How many refactorings should we tackle at the same time ?</li>
+<li>Are we making good progress on our refactorings ?</li>
+<li>Why is this refactoring not yielding any visible results through our metrics system ?</li>
+<li>Are there any news that should change our plans ?</li>
+<li>Are we doing enough refactoring to keep things under control ?</li>
+<li>What are the next steps in these refactorings ?</li>
+<li>etc</li>
+</ul>
+
+
+<p>I&rsquo;m not talking about a big 6 month planning but rather regular short planning sessions. In <a href="https://www.scrum.org/">Scrum</a> this kind of planning happens every sprint. To make plannings more visual, engaging and fun, we might us something like <a href="https://jpattonassociates.com/user-story-mapping/">Story Mapping</a>. (I guess I should blog about this someday.)</p>
+
+<blockquote><p>💡 Keeping a Work In Progress limit on refactorings is essential.</p></blockquote>
+
+<h2>Manage it through Time-Boxing</h2>
+
+<p>One last advice before I&rsquo;m done. We must be very careful to time-box our work on refactoring increments. It&rsquo;s all too easy, to get caught up in a refactoring during the slack at the end of the iteration. If we let the refactoring spill on features we risk loosing the business people&rsquo;s trust.</p>
+
+<p>Here again, using extra small baby steps helps to pause the refactoring. Another way is to do <a href="https://en.wikipedia.org/wiki/Kanban_(development">Kanban</a>) style slack. Replace end of sprint slack by a fixed number of people slacking all the time. But I&rsquo;ll come back to this in more details in a future post.</p>
+
+<h2>Next post</h2>
+
+<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="http://eepurl.com/dxKE95">next post</a>.</p>
+
+<p>This was the eighth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. I&rsquo;ve already been through why it&rsquo;s so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important ? How to deliver refactorings steps by steps ? If you haven&rsquo;t start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> !</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a></h1>
     
     
@@ -144,7 +283,7 @@
 
 <h2>Team TDD Coding Dojos</h2>
 
-<p>Learning to work in baby steps is not as complicated as it might first seem. The safest and easiest way is to setup a <a href="/blog/categories/team-randori-series/">team TDD coding dojo</a>. With its Red-Green-Refactor loop TDD sets up a baby steps rhythm. As I&rsquo;ll explain in <a href="http://eepurl.com/dxKE95">my next post</a>, baby steps work best when all the team uses them. That&rsquo;s another thing the team Coding Dojo helps with.</p>
+<p>Learning to work in baby steps is not as complicated as it might first seem. The safest and easiest way is to setup a <a href="/blog/categories/team-randori-series/">team TDD coding dojo</a>. With its Red-Green-Refactor loop TDD sets up a baby steps rhythm. As I&rsquo;ll explain in <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">my next post</a>, baby steps work best when all the team uses them. That&rsquo;s another thing the team Coding Dojo helps with.</p>
 
 <blockquote><p>💡 TDD has a baby steps rhythm baked in.</p></blockquote>
 
@@ -199,7 +338,7 @@
 
 <p>Unfortunately, even with bandwidth and skills, we are not there yet &hellip; It&rsquo;s one thing for developers to do incremental software development of large scale refactoring on their own. It&rsquo;s another to do it as a team !</p>
 
-<p>This was the seventh post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. <a href="http://eepurl.com/dxKE95">Next post</a> will be about how to manage constant merciless refactoring and baby steps as a team.</p>
+<p>This was the seventh post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Next post</a> will be about how to manage constant merciless refactoring and baby steps as a team.</p>
 </div>
   
   
@@ -759,8 +898,8 @@
 <li><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactoring</a></li>
 <li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></li>
 <li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a></li>
-<li>Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</li>
-<li>Incremental Software Development Strategies for Large Scale Refactoring #4 : Patterns</li>
+<li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a></li>
+<li>Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</li>
 <li>Nothing convinces business people like money</li>
 </ol>
 
@@ -1019,204 +1158,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/when-is-testing-using-mocks-still-a-good-idea/">When Is Testing Using Mocks Still a Good Idea ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-06-07T06:29:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In the previous 7 articles of <a href="/blog/categories/how-to-avoid-mocks-series/">this series</a>, I&rsquo;ve tried my best get rid of mocks. I&rsquo;m pretty sure that using these techniques will get you a long way out of <a href="/careless-mocking-considered-harmful/">mock hell</a>. Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven&rsquo;t already, I encourage you to start reading from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
-
-<p>One question remains though : Is it realistic to get rid of <em>all</em> mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?</p>
-
-<h2>When mocking still makes sense</h2>
-
-<p>Let&rsquo;s to through a few examples.</p>
-
-<h3>Testing a generic wrapper</h3>
-
-<p>A few years ago, I had to write a service for an enterprise system. As any service, I had to ensure that it was returning nice errors. We decided to capture and wrap all errors from a few &lsquo;gate&rsquo; points in the code. We built a generic wrapper that did only delegation plus exception wrapping. In this case, it made a lot more sense to test this with a mocking framework.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="no">ServiceErrorWrapper</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="n">specify</span> <span class="s1">&#39;converts all kinds of exceptions&#39;</span> <span class="k">do</span>
-</span><span class='line'><span class="err">   </span><span class="n">failing_object</span> <span class="o">=</span> <span class="n">object_double</span><span class="p">(</span><span class="s2">&quot;Failing object&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="n">failing_object</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:long_computation</span><span class="p">)</span><span class="o">.</span><span class="n">and_raise</span><span class="p">(</span><span class="no">Exception</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Something terrible happened&quot;</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">{</span> <span class="no">ServiceErrorWrapper</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">failing_object</span><span class="p">)</span><span class="o">.</span><span class="n">long_computation</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ServiceError</span><span class="p">)</span><span class="o">.</span><span class="n">with_message</span><span class="p">(</span><span class="s2">&quot;Something terrible happened&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="err"> </span><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># ...</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Not only did we reuse the wrapper many times in my service. We also ended up using it in other services as well !</p>
-
-<h3>Injecting a hand written in-memory fake</h3>
-
-<p>As you might have noticed, in <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">the previous article</a>, I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)</p>
-
-<blockquote><p>💡 By making mocking so easy, mocking frameworks often do more harm than good.</p></blockquote>
-
-<p>Still, I used <code>const_stub(...)</code> to inject the in-memory fake.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span> <span class="err"> </span>
-</span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="n">stub_const</span><span class="p">(</span><span class="s2">&quot;TwitterClient::Client&quot;</span><span class="p">,</span> <span class="no">FakeTwitterClient</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="err"> </span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span> <span class="err"> </span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>I did this for 2 reasons :</p>
-
-<ul>
-<li>Production code can continue to use a straightforward constant</li>
-<li>I don&rsquo;t risk forgetting to remove the mock at the end of its lifecycle, the framework does this for me</li>
-<li>As I&rsquo;m injecting the same fake for all tests, there is not much risk of test conflict (for the moment)</li>
-</ul>
-
-
-<h3>Testing a cache</h3>
-
-<p>The &ldquo;raison d&#8217;être&rdquo; of a cache is to avoid doing something twice. It should also return the same results as if it was not there. This is by nature almost impossible to test with state based assertions. Mock frameworks are great for this situation though. Here is an example :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s2">&quot;UsersController&quot;</span> <span class="k">do</span>
-</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
-</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">once</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Joe&quot;</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="err"> </span><span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The assertion could not be more explicit, we are checking that the expensive load was only done once.</p>
-
-<h3>Legacy code</h3>
-
-<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="http://philippe.bourgau.net/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
-
-<p>In <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a> <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> explains how to exploit <a href="http://www.informit.com/articles/article.aspx?p=359417&amp;seqNum=2">&ldquo;seams&rdquo;</a> in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.</p>
-
-<p>Mocking is a pretty good starting point but we need to be careful and keep a few things in mind. Legacy or not, we must not forget that too many mocks will make tests unmaintainable !</p>
-
-<ul>
-<li>It&rsquo;s a good idea to refer to a target design or architecture blueprint to know where to inject mocks. (I&rsquo;ll write a post about this one day). This increases the chances to replace them with an in-memory fake later down the road.</li>
-<li>Plan to replace the mocks with a better design as soon as possible.</li>
-</ul>
-
-
-<h3>It depends &hellip;</h3>
-
-<p>As with anything in software, there is no absolute rule about mocking. Even if I prefer not to 99% of the time, there are situation when testing using mocks is the thing to do. Knowing the risks, it&rsquo;s up to you to decide !</p>
-
-<h2>If using a mock, prefer spy / proxies</h2>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
-
-<p>As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.</p>
-
-<p>It turns out there is a flavor of mocks for that : <a href="https://martinfowler.com/articles/mocksArentStubs.html">spies</a> and <a href="https://relishapp.com/rspec/rspec-mocks/docs/configuring-responses/calling-the-original-implementation">overlooked proxies</a>. Proxies do the real thing but also record the calls and return values. It&rsquo;s as non-intrusive as mocks can be.</p>
-
-<blockquote><p>💡 Proxy mocks are as unintrusive as mocks can be.</p></blockquote>
-
-<p>For example, here is how our cache test would look like using a proxy :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s2">&quot;UsersController&quot;</span> <span class="k">do</span>
-</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
-</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">and_call_original</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_received</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
-</span><span class='line'><span class="err"> </span><span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philou.github.io/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
-
-<h2>This is the end</h2>
-
-<p>This was the 8th and last post in a series about how to avoid mocks. Before closing here is a list of other references about the topic.</p>
-
-<ul>
-<li>In the <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">RailsConf 2014 keynote</a>, <a href="https://twitter.com/dhh">DHH </a> explains how mocking made their test harness unreliable.</li>
-<li><a href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD dead</a> is a well known online discussion about the Classic vs Mockist TDD approach</li>
-<li>Have a look at what <a href="https://blog.cleancoder.com/">Uncle Bob</a> says about <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">When To Mock</a></li>
-<li>For JS expert <a href="https://medium.com/@_ericelliott">Eric Elliott</a>, <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">Mocking is a Code Smell</a></li>
-<li>In this talk  <a href="https://skillsmatter.com/skillscasts/9971-testable-software-architecture-with-aslak-hellesoy">Testable Architecture talk</a>, <a href="https://twitter.com/aslak_hellesoy">Aslak Hellesøy</a> explains how to build a full architecture for fast tests</li>
-<li><a href="http://www.jamesshore.com/">James Shore</a> recently published a full pattern language entitled <a href="http://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mock</a></li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1297,6 +1238,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a>
       </li>
     
@@ -1310,10 +1255,6 @@
     
       <li class="post">
         <a href="/principles-that-will-make-you-become-a-badass-developer/">Principles that will make you become a badass developer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a>
       </li>
     
   </ul>

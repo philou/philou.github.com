@@ -102,6 +102,204 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/when-is-testing-using-mocks-still-a-good-idea/">When Is Testing Using Mocks Still a Good Idea ?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-06-07T06:29:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In the previous 7 articles of <a href="/blog/categories/how-to-avoid-mocks-series/">this series</a>, I&rsquo;ve tried my best get rid of mocks. I&rsquo;m pretty sure that using these techniques will get you a long way out of <a href="/careless-mocking-considered-harmful/">mock hell</a>. Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven&rsquo;t already, I encourage you to start reading from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<p>One question remains though : Is it realistic to get rid of <em>all</em> mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?</p>
+
+<h2>When mocking still makes sense</h2>
+
+<p>Let&rsquo;s to through a few examples.</p>
+
+<h3>Testing a generic wrapper</h3>
+
+<p>A few years ago, I had to write a service for an enterprise system. As any service, I had to ensure that it was returning nice errors. We decided to capture and wrap all errors from a few &lsquo;gate&rsquo; points in the code. We built a generic wrapper that did only delegation plus exception wrapping. In this case, it made a lot more sense to test this with a mocking framework.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="no">ServiceErrorWrapper</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="n">specify</span> <span class="s1">&#39;converts all kinds of exceptions&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">failing_object</span> <span class="o">=</span> <span class="n">object_double</span><span class="p">(</span><span class="s2">&quot;Failing object&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="n">failing_object</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:long_computation</span><span class="p">)</span><span class="o">.</span><span class="n">and_raise</span><span class="p">(</span><span class="no">Exception</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Something terrible happened&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">{</span> <span class="no">ServiceErrorWrapper</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">failing_object</span><span class="p">)</span><span class="o">.</span><span class="n">long_computation</span> <span class="p">}</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ServiceError</span><span class="p">)</span><span class="o">.</span><span class="n">with_message</span><span class="p">(</span><span class="s2">&quot;Something terrible happened&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="err"> </span><span class="c1"># ...</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Not only did we reuse the wrapper many times in my service. We also ended up using it in other services as well !</p>
+
+<h3>Injecting a hand written in-memory fake</h3>
+
+<p>As you might have noticed, in <a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">the previous article</a>, I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)</p>
+
+<blockquote><p>💡 By making mocking so easy, mocking frameworks often do more harm than good.</p></blockquote>
+
+<p>Still, I used <code>const_stub(...)</code> to inject the in-memory fake.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">config</span><span class="o">.</span><span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span> <span class="err"> </span>
+</span><span class='line'>
+</span><span class='line'><span class="err">  </span><span class="n">stub_const</span><span class="p">(</span><span class="s2">&quot;TwitterClient::Client&quot;</span><span class="p">,</span> <span class="no">FakeTwitterClient</span><span class="o">.</span><span class="n">new</span><span class="p">)</span> <span class="err"> </span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span> <span class="err"> </span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I did this for 2 reasons :</p>
+
+<ul>
+<li>Production code can continue to use a straightforward constant</li>
+<li>I don&rsquo;t risk forgetting to remove the mock at the end of its lifecycle, the framework does this for me</li>
+<li>As I&rsquo;m injecting the same fake for all tests, there is not much risk of test conflict (for the moment)</li>
+</ul>
+
+
+<h3>Testing a cache</h3>
+
+<p>The &ldquo;raison d&#8217;être&rdquo; of a cache is to avoid doing something twice. It should also return the same results as if it was not there. This is by nature almost impossible to test with state based assertions. Mock frameworks are great for this situation though. Here is an example :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s2">&quot;UsersController&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">once</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="no">User</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s2">&quot;Joe&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The assertion could not be more explicit, we are checking that the expensive load was only done once.</p>
+
+<h3>Legacy code</h3>
+
+<p><a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052"><img src="http://philippe.bourgau.net/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/legacy-code.jpg" alt="Michael C.Feathers explains that testing using mocks is a key practice in &quot;Working Effectively with Legacy Code&quot;" /></a></p>
+
+<p>In <a href="https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052">Working Effectively with Legacy Code</a> <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> explains how to exploit <a href="http://www.informit.com/articles/article.aspx?p=359417&amp;seqNum=2">&ldquo;seams&rdquo;</a> in the code to put it under test. Mocking is straightforward way to inject behavior through a seam.</p>
+
+<p>Mocking is a pretty good starting point but we need to be careful and keep a few things in mind. Legacy or not, we must not forget that too many mocks will make tests unmaintainable !</p>
+
+<ul>
+<li>It&rsquo;s a good idea to refer to a target design or architecture blueprint to know where to inject mocks. (I&rsquo;ll write a post about this one day). This increases the chances to replace them with an in-memory fake later down the road.</li>
+<li>Plan to replace the mocks with a better design as soon as possible.</li>
+</ul>
+
+
+<h3>It depends &hellip;</h3>
+
+<p>As with anything in software, there is no absolute rule about mocking. Even if I prefer not to 99% of the time, there are situation when testing using mocks is the thing to do. Knowing the risks, it&rsquo;s up to you to decide !</p>
+
+<h2>If using a mock, prefer spy / proxies</h2>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg" alt="Spies and proxies make testing using mocks less intrusive" /></p>
+
+<p>As I explained in previous posts, mocks duplicate behavior. If we could use mocks without duplicating behavior, they would do less harm.</p>
+
+<p>It turns out there is a flavor of mocks for that : <a href="https://martinfowler.com/articles/mocksArentStubs.html">spies</a> and <a href="https://relishapp.com/rspec/rspec-mocks/docs/configuring-responses/calling-the-original-implementation">overlooked proxies</a>. Proxies do the real thing but also record the calls and return values. It&rsquo;s as non-intrusive as mocks can be.</p>
+
+<blockquote><p>💡 Proxy mocks are as unintrusive as mocks can be.</p></blockquote>
+
+<p>For example, here is how our cache test would look like using a proxy :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">context</span> <span class="s2">&quot;UsersController&quot;</span> <span class="k">do</span>
+</span><span class='line'><span class="err"> </span><span class="n">it</span> <span class="s1">&#39;caches users&#39;</span> <span class="k">do</span>
+</span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">and_call_original</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="err">   </span><span class="n">controller</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s1">&#39;Joe&#39;</span><span class="p">,</span> <span class="s1">&#39;secret&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="no">User</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">have_received</span><span class="p">(</span><span class="ss">:load</span><span class="p">)</span><span class="o">.</span><span class="n">once</span>
+</span><span class='line'><span class="err"> </span><span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s more verbose, but simpler. Most mock frameworks provide some form of spy or proxies. A few years ago, I also wrote <a href="http://philou.github.io/rspecproxies">rspecproxies</a>, a wrapper on top of <a href="http://rspec.info/">rspec</a> to make this easier.</p>
+
+<h2>This is the end</h2>
+
+<p>This was the 8th and last post in a series about how to avoid mocks. Before closing here is a list of other references about the topic.</p>
+
+<ul>
+<li>In the <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">RailsConf 2014 keynote</a>, <a href="https://twitter.com/dhh">DHH </a> explains how mocking made their test harness unreliable.</li>
+<li><a href="https://martinfowler.com/articles/is-tdd-dead/">Is TDD dead</a> is a well known online discussion about the Classic vs Mockist TDD approach</li>
+<li>Have a look at what <a href="https://blog.cleancoder.com/">Uncle Bob</a> says about <a href="http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html">When To Mock</a></li>
+<li>For JS expert <a href="https://medium.com/@_ericelliott">Eric Elliott</a>, <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">Mocking is a Code Smell</a></li>
+<li>In this talk  <a href="https://skillsmatter.com/skillscasts/9971-testable-software-architecture-with-aslak-hellesoy">Testable Architecture talk</a>, <a href="https://twitter.com/aslak_hellesoy">Aslak Hellesøy</a> explains how to build a full architecture for fast tests</li>
+<li><a href="http://www.jamesshore.com/">James Shore</a> recently published a full pattern language entitled <a href="http://www.jamesshore.com/Blog/Testing-Without-Mocks.html">Testing Without Mock</a></li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/">Get Rid of Mock Maintenance With Full Fledged In-memory Fakes</a></h1>
     
     
@@ -2877,107 +3075,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-learn-a-programming-language-in-just-20-hours/">How to Learn a Programming Language in Just 20 Hours</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-03-29T06:35:00+02:00" pubdate data-updated="true">Mar 29<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>We should not panic when asked to work with a new language. We should be bold enough to answer to job openings requiring technologies we are not used to. In one word, we should not be afraid of new techs. Here is why : by scheduling 20 hours of Code Kata routine sessions, we can get a decent level of mastery on most topics.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/timed-book.jpg" alt="A book with built-in clock" /></p>
-
-<h2>How I learned some Haskell</h2>
-
-<p>Quite a few years ago, we used to do weekly <a href="http://codingdojo.org/">Coding Dojos</a> at <a href="https://www.murex.com/">Murex</a>. <a href="https://twitter.com/dr_c0d3">Arnaud Bailly</a> was among us, and as he is an <a href="https://www.haskell.org/">Haskell</a> fan, we ended up doing quite a lot of katas with Haskell. To my astonishment, after a few sessions, I understood of the fundamentals of the language. Without ever studying it !</p>
-
-<blockquote><p>💡 I learned a lot of Haskell by just going to Coding Dojos !</p></blockquote>
-
-<p>Many times afterwards, I learned new languages quickly by practicing them in the Dojo.</p>
-
-<h2>How I set out to refresh my javascript</h2>
-
-<p>Fast forward to the end of last year. Someone asked me if I could work at coaching a team doing some Javascript. I&rsquo;ve done some Javascript in the past, but my skills definitely needed a serious update. I decided to use Code Katas to refresh my Javascript. To try to make this even more effective, I decided to mix in a bit of the <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&amp;qid=1521785371&amp;sr=8-2&amp;keywords=the+first+20+hours">&ldquo;First 20 hours&rdquo;</a> technique.</p>
-
-<p><a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&amp;qid=1521785371&amp;sr=8-2&amp;keywords=the+first+20+hours"><img src="http://philippe.bourgau.net/imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/the-first-20-hours.jpg" alt="The cover of the book &quot;The first 20 hours&quot;" /></a></p>
-
-<p>I started by defining a plan of 10 sessions of 2 hours long code katas :</p>
-
-<ol>
-<li><a href="http://codingdojo.org/kata/RomanNumerals/">Roman Numeral</a> &ndash; <a href="https://mochajs.org/">Mocha</a> &ndash; JS 5</li>
-<li><a href="http://codingdojo.org/kata/GameOfLife/">Game of Life</a> &ndash; <a href="https://mochajs.org/">Mocha</a> &ndash; JS 5</li>
-<li><a href="http://kata-log.rocks/mars-rover-kata">Mars Rover</a> &ndash; <a href="https://mochajs.org/">Mocha</a> &ndash; JS 5</li>
-<li><a href="http://codingdojo.org/kata/Bowling/">Bowling Score</a> &ndash; <a href="https://mochajs.org/">Mocha</a> &ndash; JS 5</li>
-<li>Median of a list of lists &ndash; <a href="https://mochajs.org/">Mocha</a> &ndash; <a href="http://es6-features.org/">ES 6</a></li>
-<li><a href="http://codingdojo.org/kata/NumberToLCD/">LCD Numbers</a> &ndash; <a href="https://jasmine.github.io/">Jasmine</a> &ndash; <a href="http://es6-features.org/">ES 6</a></li>
-<li><a href="http://codingdojo.org/kata/Potter/">Kata Potter</a> &ndash; <a href="https://jasmine.github.io/">Jasmine</a> &ndash; <a href="http://es6-features.org/">ES 6</a></li>
-<li>T9 &ndash; Jasmine &ndash; <a href="http://www.typescriptlang.org/">Typescript</a></li>
-<li><a href="http://codingdojo.org/kata/PokerHands/">Poker hand</a> &ndash; <a href="https://jasmine.github.io/">Jasmine</a> &ndash; <a href="http://www.typescriptlang.org/">Typescript</a></li>
-<li>Egg cooker with <a href="https://reactjs.org/">React</a> &ndash; <a href="https://jasmine.github.io/">Jasmine</a> &ndash; <a href="http://www.typescriptlang.org/">Typescript</a></li>
-</ol>
-
-
-<p>The plan felt pretty ambitious at the beginning. The first session was a bit hectic as I struggled to find a quick setup I could use to code my kata in. After only 3 sessions though, I could feel I&rsquo;d already made a lot of progress. I had become confident I would get most of the plan done in 20 hours.</p>
-
-<h2>How to start ?</h2>
-
-<p>A good thing about the 20 hours technique is that it&rsquo;s pretty easy to start with ! There&rsquo;s a catch though ! At the start, it&rsquo;s puzzling to be on your own with no clear track on how to tackle the topic. Here is the fix : start anyway, stick through, and you&rsquo;ll work it out 99% of the time.</p>
-
-<p>Here is, in more details, how to use code kata with the 20 hours technique :</p>
-
-<ol>
-<li>Start by setting up a routine. It could be 2 hours at lunch time, 1 hour in the morning or 3 hours at night. Do whatever is best for you. It should be enough to finish in a few days or weeks.</li>
-<li>Use the first hours of your 20 hours to setup a code kata plan. It might be very fast if you already have an idea of your learning space. It will take longer if you are a complete newbie. Skim through the literature for the main concepts until you have a plan. Try to keep this phase under 6 hours, otherwise you won&rsquo;t have any time left for actual learning.</li>
-<li><a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> plays a key role in fast learning ! Next step is to setup a development environment with TDD to use in your Code Kata sessions.</li>
-<li>Finally, do you code kata sessions. Time-box them for something less than 2 hours and run a mini-retrospective at the end of every session. Don&rsquo;t hesitate to adapt your plan if it makes sense.</li>
-<li>When you reach 20 hours of learning, stop your sessions. It will be time to think a bit about what you accomplished.</li>
-</ol>
-
-
-<blockquote><p>💡 TDD plays a key role in fast learning.</p></blockquote>
-
-<p>If all went well, you should have learned quite a lot in only 20 hours. At that point, it&rsquo;s up to you to decide what to do next. You can either decide to dig deeper. In this case, setup a new run of 20 hours of code katas ! It could also be a good time to read a bit of theory about what you just learned. Casting a different light on the topic will make it stick and deepen your understanding. Otherwise, you could stop there and start whatever is on your mind. I don&rsquo;t recommend continuing on the same topic without rethinking a new plan though. That would kill your focus and be a less efficient use of your time.</p>
-
-<h2>To be continued</h2>
-
-<p>This was the first post in <a href="/blog/categories/20-hours-code-kata-series/">a series about applying the 20 hours technique and Code Katas to learn new programming languages</a>. Here is the what to expect in the coming posts.</p>
-
-<ol>
-<li><a href="/how-to-learn-a-programming-language-in-just-20-hours/">How to learn a programming languages in just 20 hours</a></li>
-<li><a href="/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/">Why 20 hours of code kata are so effective for learning new languages</a></li>
-<li><a href="/frequently-asked-questions-about-the-20-hours-of-code-katas/">Frequently asked questions about the 20 hours of Code Katas</a></li>
-</ol>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -3060,6 +3157,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a>
       </li>
     
@@ -3073,10 +3174,6 @@
     
       <li class="post">
         <a href="/principles-that-will-make-you-become-a-badass-developer/">Principles that will make you become a badass developer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a>
       </li>
     
   </ul>
