@@ -72,6 +72,6 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   [Incremental Software Development for Large Scale Refactoring](/incremental-software-development-techniques-for-large-scale-refactorings/)
 *   [Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/)
 *   [Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/)
-*   Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !
-*   Incremental Software Development Strategies for Large Scale Refactoring #4 : Patterns
+*   [Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/)
+*   Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language
 *   Nothing convinces business people like money

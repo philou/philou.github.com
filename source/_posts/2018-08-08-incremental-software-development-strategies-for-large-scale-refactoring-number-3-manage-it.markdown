@@ -3,7 +3,7 @@ layout: post
 title: "Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !"
 date: 2018-08-16 06:53
 comments: true
-categories: 
+categories:
  - refactoring
  - incremental-software-development
  - mikado-method
@@ -12,7 +12,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Manage it, Managing large scale refactoring, Planning large scale refactoring, Organizing large scale refactoring, Managing incremental software development, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "Here are a few best practices to manage incremental software development of large scale refactoring for self organized teams. Maintaining collaboration and focus on only the most important initiatives is key to make constant merciless refactoring efficient."
-published: false
 ---
 [My previous posts](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/) where about how to find and use small time slots for large scale refactorings. [Refactoring step by step](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/) is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own.
 
@@ -23,6 +22,23 @@ With a bit of organization though, we got things to work. Let's see how we manag
 ![Drawing of a calendar entitled "Manage It !". Collaboration and organization are key to succeed to use incremental software development for large scale refactorings.]({{site.url}}/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/manage-it.jpg)
 
 This is the eighth post in a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
+
+##Manage it with a Design Vision
+
+To succeed at anything, we need to know where we are going. It's the same for large scale refactorings. We don't need to have all the details of what we want to build. We do need a good enough draft to avoid going in the wrong direction. That's even more true when we work as a team. Without a shared design vision, people will refactor in conflicting directions.
+
+It's very important to share the vision with all the team. We can stick high level UML sketches on the walls for example. As [Kent Beck](https://twitter.com/kentbeck) suggests, we can also use [metaphores](http://www.extremeprogramming.org/rules/metaphor.html) to communicate the design. In [this talk](https://vimeo.com/275530146), [Nat Pryce](http://www.natpryce.com/) explains that it's a great way start, but that we will have to drop the metaphore later.
+
+<iframe src="https://player.vimeo.com/video/275530146?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<div class="image-credits">By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a></div><br>
+
+The idea is not to waste time in a [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front). We just want to draft a vision :
+
+* We can run a Design level Event Storming (I guess I'll have to blog about this some day)
+* We can grab a copy of [Gamestorming](https://www.amazon.com/Gamestorming-Playbook-Innovators-Rulebreakers-Changemakers/dp/0596804172/ref=sr_1_1?ie=UTF8&qid=1534409953&sr=8-1&keywords=gamestorming) and run another kind of collaborative design game
+* Or a few team members could work on something the way they prefer
+
+Whatever the technique we start with, we'll be able to refine and evolve the vision down the road.
 
 ## Manage it with Mikado Graphs
 

@@ -30,7 +30,7 @@ This is the seventh post in a [series about how to get sponsorship for large sca
 
 ## Team TDD Coding Dojos
 
-Learning to work in baby steps is not as complicated as it might first seem. The safest and easiest way is to setup a [team TDD coding dojo](/blog/categories/team-randori-series/). With its Red-Green-Refactor loop TDD sets up a baby steps rhythm. As I'll explain in [my next post](http://eepurl.com/dxKE95), baby steps work best when all the team uses them. That's another thing the team Coding Dojo helps with.
+Learning to work in baby steps is not as complicated as it might first seem. The safest and easiest way is to setup a [team TDD coding dojo](/blog/categories/team-randori-series/). With its Red-Green-Refactor loop TDD sets up a baby steps rhythm. As I'll explain in [my next post](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/), baby steps work best when all the team uses them. That's another thing the team Coding Dojo helps with.
 
 > 💡 TDD has a baby steps rhythm baked in.
 
@@ -74,4 +74,4 @@ When done well, it feels slow. We have to remember that the alternative is to co
 
 Unfortunately, even with bandwidth and skills, we are not there yet ... It's one thing for developers to do incremental software development of large scale refactoring on their own. It's another to do it as a team !
 
-This was the seventh post in a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). [Next post](http://eepurl.com/dxKE95) will be about how to manage constant merciless refactoring and baby steps as a team.
+This was the seventh post in a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). [Next post](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/) will be about how to manage constant merciless refactoring and baby steps as a team.
