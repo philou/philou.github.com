@@ -22,9 +22,9 @@ What about when it is not easy to split the work into incremental steps ? It can
 
 Do you remember the DSL parser refactoring story in mentioned in [another post](/incremental-software-development-techniques-for-large-scale-refactorings/) ? Switching to a different parser technology incrementally sounds like an impossible mission. Even so, that's what we did ! 
 
-Here's another example. A long time ago, I was working in a bank. We were to migrate imperative C++(TODO) financial contract models into declarative definitions in C#. (TODO) We had to maintain an ugly adaptation layer. It made it possible migrate and deliver step by step. In the end, we suffered almost no bugs resulting from this transition.
+Here's another story. A long time ago, I was working in a bank. We were to migrate imperative C++(TODO) financial contract models into declarative definitions in C#. (TODO) We had to maintain an ugly adaptation layer. It made it possible migrate and deliver step by step. In the end, we suffered almost no bugs resulting from this transition.
 
-![Drawing of a T-shirt pattern. Patterns can be useful for Incremental Software Developmen of Large Scale Refactoring](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/pattern.jpg)
+![Drawing of the pattern for a T-shirt. Patterns can be useful for Incremental Software Development of Large Scale Refactoring]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/pattern.jpg)
 
 ## Why the effort ?
 
@@ -34,7 +34,7 @@ Incremental refactoring implies going through Frankensteinesk intermediate situa
 2.  It's also safer in term of priorities. The system keeps working during all the refactoring. There's no pressure to finish it before we can move on to the next 'valuable' feature. As [I explained before](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/) it makes it possible to pause, and why not stop there for the moment. This can be helpful if we hit a new urgent priority.
 3.  Finally, it creates value earlier. Instead of having to wait 2 months to get all the value, you start getting a bit of this value every week. Even refactoring create value ! They reduce the time wasted to fix bugs. They increase our productivity. Sometimes, they even improve Non Functional Requirements of the system.
 
-![Plot of value over time in incremental vs big-bang. We can see that incremental software development creates more value.](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/value.jpg)
+![Plot of value over time in incremental vs big-bang. We can see that incremental software development creates more value.]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/value.jpg)
 
 As we can see, the goal of incremental refactoring is not only to work in small steps. We also want to find a way to deliver *value* incrementally !
 
@@ -66,13 +66,13 @@ Have regular discussions with the domain expert to find the best modeling possib
 #### Difficulties
 It can sometimes be difficult to find a domain expert ...
 
-A lot of the presentations at the July Paris DDD meetup were about how to find domain experts. Who actually seem to be pretty rare beasts ! Here are my notes.
+A lot of the presentations at the July Paris DDD Meetup were about how to find domain experts. Who actually seem to be pretty rare beasts ! Here are my notes.
 
-[![Mind map of my notes at July Paris DDD Meetup. The point was how to find a domain expert](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches-small.jpg)](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches.jpg)
+[![Mind map of my notes at July Paris DDD Meetup. The point was how to find a domain expert]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches-small.jpg)]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches.jpg)
 
 ### Bubble context (TODO link ref)
 
-![Drawing of developer and business expert inflating a bubble together. The bubble context is a way to incrementally grow a large scale refactoring from within the software](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/bubble-context.jpg)
+![Drawing of developer and business expert inflating a bubble together. The bubble context is a way to incrementally grow a large scale refactoring from within the software]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/bubble-context.jpg)
 
 #### Goal
 We want to refactor a large piece of code with no Big-Bang
@@ -82,7 +82,7 @@ We have access to the internals of the code to refactor
 
 #### Therefore
 *   Create a new bubble of clean code (a namespace, a package ...)
-*   Re-write a piece of legacy code in the bubble
+*   Rewrite a piece of legacy code in the bubble
 *   From the legacy code, delegate to the bubble
 *   Repeat until the legacy code is not used anymore
 
@@ -122,13 +122,13 @@ We can keep the same interface (API) for the legacy and the refactored versions
 
 Remember my story about how we switched our DSL parser to ANTLR(TODO) ? We used a Strangler to do this.
 
-![Drawings of a strangler plant growing around legacy code. The strangler is very effective to do incremental software development of doing large scale refactorings](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/strangler.jpg)
+![Drawings of a strangler plant growing around legacy code. The strangler is very effective to do incremental software development of doing large scale refactorings]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/strangler.jpg)
 
 ### Feature toggles (TODO link ref)
 
 Sometimes, we just don't find a way to deliver a refactoring to users step by step. I've seen situations where all incremental paths implied a temporary impact on NFRs. Ex : Keeping both versions of the code implied an increase in resource consumption.
 
-![Drawings of an electric switch. Feature toogles are sometimes the last resort to do incremental software development of large scale refactoring](../imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/switch.jpg)
+![Drawings of an electric switch. Feature toggles are sometimes the last resort to do incremental software development of large scale refactoring]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/switch.jpg)
 
 #### Goal
 Incrementally build a refactoring that we cannot deliver piece by piece to all our users.
@@ -154,7 +154,7 @@ Maintaining feature toggles is a mess (links). Thus, we need to
 *   Hunt down the number of active feature toggles at any given time
 *   Reduce the scope of toggles. Where possible, we should push things out of the toggle into stranglers or bubbles.
 
-Feature toggles are an alternate to branches. Even if toggles are painful to use, branches are worse ! I'm not going to go over branches. If you want to see why we should not use branches, check this talk. (TODO feature branches considered evil talk).
+Feature toggles are an alternate to branches. Even if toggles are painful to use, branches are worse ! I'm not going to go over branches. If you want to see why we should not use branches, check this talk. (TODO feature branches considered evil talk.)
 
 > 💡 Feature toggles are painful, but branches are worse !
 
