@@ -22,7 +22,7 @@ What about when it is not easy to split the work into incremental steps ? It can
 
 Do you remember the DSL parser refactoring story in mentioned in [another post](/incremental-software-development-techniques-for-large-scale-refactorings/) ? Switching to a different parser technology incrementally sounds like an impossible mission. Even so, that's what we did ! 
 
-Here's another story. A long time ago, I was working in a bank. We were to migrate imperative C++(TODO) financial contract models into declarative definitions in C#. (TODO) We had to maintain an ugly adaptation layer. It made it possible migrate and deliver step by step. In the end, we suffered almost no bugs resulting from this transition.
+Here's another story. A long time ago, I was working in a bank. We were to migrate imperative [C++](http://www.cplusplus.com/) financial contract models into declarative definitions in [C#](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)). We had to maintain an ugly adaptation layer. It made it possible migrate and deliver step by step. In the end, we suffered almost no bugs resulting from this transition.
 
 ![Drawing of the pattern for a T-shirt. Patterns can be useful for Incremental Software Development of Large Scale Refactoring]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/pattern.jpg)
 
@@ -46,7 +46,7 @@ As I said earlier, this is easier said than done. Some piece of code won't let y
 
 Here is a short pattern language to deliver large scale refactorings incrementally.
 
-### Discuss with a domain expert (TODO search for link ref)
+### [Discuss with a domain experts](https://www.infoq.com/news/2016/05/domain-experts-ddd)
 
 #### Goal
 We need to refactor code containing a lot of domain knowledge
@@ -55,7 +55,7 @@ We need to refactor code containing a lot of domain knowledge
 We have a domain expert available
 
 #### Therefore
-Have regular discussions with the domain expert to find the best modeling possible
+Have regular discussions with the domain expert to find the best modeling possible.
 
 #### Consequences
 *   💚 We get simpler code than by trying to replicate the twisted legacy logic
@@ -70,7 +70,7 @@ A lot of the presentations at the July Paris DDD Meetup were about how to find d
 
 [![Mind map of my notes at July Paris DDD Meetup. The point was how to find a domain expert]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches-small.jpg)]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches.jpg)
 
-### Bubble context (TODO link ref)
+### [Bubble context](http://dddcommunity.org/library/evans_2011_2/2)
 
 ![Drawing of developer and business expert inflating a bubble together. The bubble context is a way to incrementally grow a large scale refactoring from within the software]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/bubble-context.jpg)
 
@@ -95,7 +95,7 @@ We have access to the internals of the code to refactor
 *   Need to understand the legacy enough to find good delegation points
 *   Need to understand what the old small piece of code was doing to re-write it. A domain expert might be mandatory.
 
-### Strangler (TODO link ref)
+### [Strangler](https://www.martinfowler.com/bliki/StranglerApplication.html)
 
 The bubble context grows from the inside, but the strangler starts from the outside.
 
@@ -120,11 +120,11 @@ We can keep the same interface (API) for the legacy and the refactored versions
 *   Interaction between the legacy and the refactored version is not always as simple. For example when the wrapped code is stateful
 *   The granularity of the steps is the (method) calls to the interface. They need to be small enough for the whole process to be incremental
 
-Remember my story about how we switched our DSL parser to ANTLR(TODO) ? We used a Strangler to do this.
+Remember my story about how we switched our DSL parser to [ANTLR](http://www.antlr.org/) ? We used a Strangler to do this.
 
 ![Drawings of a strangler plant growing around legacy code. The strangler is very effective to do incremental software development of doing large scale refactorings]({{site.url}}/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/strangler.jpg)
 
-### Feature toggles (TODO link ref)
+### [Feature toggles](https://martinfowler.com/articles/feature-toggles.html)
 
 Sometimes, we just don't find a way to deliver a refactoring to users step by step. I've seen situations where all incremental paths implied a temporary impact on NFRs. Ex : Keeping both versions of the code implied an increase in resource consumption.
 
@@ -148,13 +148,16 @@ From the code, dynamically switch to the different versions depending on runtime
 *   ⚠️ Duplicate the Continuous Delivery pipeline to test different feature toggle sets
 
 #### Difficulties
-Maintaining feature toggles is a mess (links). Thus, we need to
 
-*   As much as possible, prepare the code to reduce the number of switches. Ref : Branch by abstraction (TODOlink)
+Maintaining [feature toggles is a mess](https://dzone.com/articles/feature-toggles-are-one-worst). Thus, we need to
+
+*   As much as possible, prepare the code to reduce the number of switches. Ref : [Branch by abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html)
 *   Hunt down the number of active feature toggles at any given time
 *   Reduce the scope of toggles. Where possible, we should push things out of the toggle into stranglers or bubbles.
 
-Feature toggles are an alternate to branches. Even if toggles are painful to use, branches are worse ! I'm not going to go over branches. If you want to see why we should not use branches, check this talk. (TODO feature branches considered evil talk.)
+Feature toggles are an alternate to branches. Even if toggles are painful to use, branches are worse ! I'm not going to go over branches. If you want to see why we should not use branches, check [this talk](http://videos.ncrafts.io/video/275529985). 
+
+<iframe src="https://player.vimeo.com/video/275529985" width="640" height="360" frameborder="0" allowfullscreen></iframe>
 
 > 💡 Feature toggles are painful, but branches are worse !
 
