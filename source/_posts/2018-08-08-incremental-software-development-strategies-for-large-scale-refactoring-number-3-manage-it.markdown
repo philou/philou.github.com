@@ -12,7 +12,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Manage it, Managing large scale refactoring, Planning large scale refactoring, Organizing large scale refactoring, Managing incremental software development, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "Here are a few best practices to manage incremental software development of large scale refactoring for self organized teams. Maintaining collaboration and focus on only the most important initiatives is key to make constant merciless refactoring efficient."
-published: false
 ---
 [My previous posts](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/) where about how to find and use small time slots for large scale refactorings. [Refactoring step by step](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/) is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own.
 
