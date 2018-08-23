@@ -29,11 +29,11 @@ We must be very careful about how we present refactorings. We don't want them to
 
 ### Presenting a similar success story and its impact on the business
 
-Most of our companies have been through similar refactorings in the past. We can try to find a successful one and draw parallels to forecast benefits for the business. If the company is too young to have any or they were all failures, we can have a look in the whole industry. When I was at [Devoxx in Paris](https://www.devoxx.fr/), [Hervé Lourdin](https://twitter.com/hervelourdin?lang=fr) the CTO of [VideDressing](https://www.videdressing.com/) presented how they managed to do a large scale refactoring. Among other things, he went over how he managed to get sponsorship from his board. If you understand French, have a look at [the full talk](https://www.youtube.com/watch?v=UZt07-dsTdU). In this case as in most, a high likelihood of reduction in the costs of bugs and new features is what made the point.
+Most of our companies have been through similar refactorings in the past. We can try to find a successful one and draw parallels to forecast benefits for the business. If the company is too young to have any or they were all failures, we can have a look in the whole industry. When I was at [Devoxx in Paris](https://www.devoxx.fr/), [Hervé Lourdin](https://twitter.com/hervelourdin?lang=fr) the CTO of [VideDressing](https://www.videdressing.com/) presented how they managed to do a large scale refactoring. Among other things, he went over how he managed to get sponsorship from his board. If you understand French, have a look at [the full talk](https://www.youtube.com/watch?v=UZt07-dsTdU). In this case as in most, a likely promise of reduction in the costs of bugs and new features is what made the point.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UZt07-dsTdU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-> 💡 In most cases, a high likelihood of reduction in the costs of bugs and new features is what gets a refactoring prioritized.
+> 💡 In most cases, a likely promise of reduction in the costs of bugs and new features is what gets a refactoring prioritized.
 
 ### Be a Badass Developer
 
