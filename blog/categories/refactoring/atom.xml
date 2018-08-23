@@ -4,7 +4,7 @@
   <title><![CDATA[Category: refactoring | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/refactoring/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-08-20T19:49:59+02:00</updated>
+  <updated>2018-08-23T06:46:11+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,9 +14,120 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/"/>
+    <updated>2018-08-23T06:53:00+01:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it</id>
+    <content type="html"><![CDATA[<p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous posts</a> where about how to find and use small time slots for large scale refactorings. <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Refactoring step by step</a> is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own.</p>
+
+<p>Here is a little story of what can go bad. I used to work in a team which <a href="/refactoring-trick-to-insert-a-wrapper/">had a high &lsquo;refactoring culture&rsquo;.</a> Everyone in the team wanted to apply the kind of practices I mentioned in my previous posts. To make things more tricky, we were <a href="/from-zero-to-pair-programming-hero/">working from 2 cities</a>. We had introduced slack time and developers would tackle refactoring at the end of every iteration. As we did not particularly organize or collaborate on slack time, we soon ran into conflicts. People wanted to refactor the same code, maybe in different ways ! After a while we also had too many large scale refactorings going on at the same time. This slowed down progress, increased the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a> and the failure rate. Worst of all, it made it difficult to refocus on a newly discovered but urgent refactoring.</p>
+
+<p>With a bit of organization though, we got things to work. Let&rsquo;s see how we managed it.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/manage-it.jpg" alt="Drawing of a calendar entitled &quot;Manage It !&quot;. Collaboration and organization are key to succeed to use incremental software development for large scale refactorings." /></p>
+
+<p>This is the eighth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2>Manage it with a Design Vision</h2>
+
+<p>To succeed at anything, we need to know where we are going. It&rsquo;s the same for large scale refactorings. We don&rsquo;t need to have all the details of what we want to build. We do need a good enough draft to avoid going in the wrong direction. That&rsquo;s even more true when we work as a team. Without a shared design vision, people will refactor in conflicting directions.</p>
+
+<p>It&rsquo;s very important to share the vision with all the team. We can stick high level UML sketches on the walls for example. As <a href="https://twitter.com/kentbeck">Kent Beck</a> suggests, we can also use <a href="http://www.extremeprogramming.org/rules/metaphor.html">metaphores</a> to communicate the design. In <a href="https://vimeo.com/275530146">this talk</a>, <a href="http://www.natpryce.com/">Nat Pryce</a> explains that it&rsquo;s a great way start, but that we will have to drop the metaphore later.</p>
+
+<iframe src="https://player.vimeo.com/video/275530146?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<div class="image-credits">By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a></div>
+
+
+<br>
+
+
+<p>The idea is not to waste time in a <a href="https://en.wikipedia.org/wiki/Big_Design_Up_Front">Big Design Up Front</a>. We just want to draft a vision :</p>
+
+<ul>
+<li>We can run a Design level Event Storming (I guess I&rsquo;ll have to blog about this some day)</li>
+<li>We can grab a copy of <a href="https://www.amazon.com/Gamestorming-Playbook-Innovators-Rulebreakers-Changemakers/dp/0596804172/ref=sr_1_1?ie=UTF8&amp;qid=1534409953&amp;sr=8-1&amp;keywords=gamestorming">Gamestorming</a> and run another kind of collaborative design game</li>
+<li>Or a few team members could work on something the way they prefer</li>
+</ul>
+
+
+<p>Whatever the technique we start with, we&rsquo;ll be able to refine and evolve the vision down the road.</p>
+
+<h2>Manage it with Mikado Graphs</h2>
+
+<p>Remember the &lsquo;<a href="http://mikadomethod.info/">Mikado Method</a>&rsquo; from <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">my previous post</a> ? It&rsquo;s a technique to code and deploy large scale refactorings in baby steps. If you had a look at the reference links, you&rsquo;ll might seen mentions of a &lsquo;Mikado Graph&rsquo;. Here is what it looks like :</p>
+
+<p><a href="http://mikadomethod.info/"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/mikado-graph.png" alt="Sample Mikado Graph. The Mikado graph is a great tool to manage and collaborate on incremental software development of large scale refactoring." /></a></p>
+
+<div class="image-credits">Sample mikado graph from <a href="http://mikadomethod.info/">http://mikadomethod.info/</a></div>
+
+
+<br>
+
+
+<p>As the number of refactoring steps grows, it becomes tricky to keep track of them all. A simple way is to draw them as nodes in a graph, and tackle the work from the leaves. If you are interested, check <a href="/blog/categories/mikado-method/">these posts about the Mikado Method</a>. In my previous team, we became fans of the Mikado Method. We even built a tool to generate mikado graph from <a href="https://www.atlassian.com/software/jira">JIRA</a> (our ticket management system) dependencies ! Using colors, we could track where we stood in the refactoring.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/generated-mikado-graph.jpg" alt="Sample Mikado Graph generated by our tool. Automating around Mikado graphs is of great help for large scale refactoring." /></p>
+
+<p>The key advantage of mikado graphs is that we can stick them on the wall. This enables all the team to know where we stand in a refactoring. This way, team members can collaborate during their slack. It can also make the boy scout rule more effective. When a developer happens to touch a file that appears in the graph, he or she can move it further in the good direction.</p>
+
+<blockquote><p>💡 A key benefit of mikado graphs is that we can stick them on the wall for everyone to know where we stand in a refactoring.</p></blockquote>
+
+<h2>Manage it with Metrics</h2>
+
+<p>I mentioned coding conventions and a clear <a href="https://www.agilealliance.org/glossary/definition-of-done/">Definition of Done</a> in <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">a previous post</a>.  Having code quality constraints is the compass of constant merciless refactoring. To make this actionable and real, we should take the time to setup an automatic metrics system. For example :</p>
+
+<p><a href="https://youtu.be/Env47tQewIA?t=2685"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/tech-debt-trap.jpg" alt="Doc Norton's talk about &quot;The Technical Debt trap&quot;. His metrics are very useful to manage large scale refactoring." /></a></p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Env47tQewIA">Doc Norton suggests</a> to track maintainability, coverage, complexity and coupling over time.</li>
+<li>The <a href="https://www.agilealliance.org/the-agile-alliance-debt-analysis-model/">A2DAM model</a> suggests using specific rules to create Definition of Done constraints</li>
+</ul>
+
+
+<p>Putting this in place will help everyone in the team to know if she or he should do more or less refactoring. The first benefit is that it prevents under and over engineering on new code. The second benefit is progress validation through metrics changes as we refactor.</p>
+
+<p><a href="https://codeclimate.com/github/philou/planning-poker"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/code-climate-dashboard.jpg" alt="Sample metrics dashboard. Out of the box, Code Climate supports 3 out of the 4 metrics suggested by Doc Norton. This can be really helpful to manage incremental software development." /></a></p>
+
+<h2>Manage it with a bit of Planning</h2>
+
+<p>Granted, planning is not the most fun part of our job. It can save us a ton of work though. <a href="https://code.joejag.com/2018/lego-workstream-visualisation.html">Joe Wright explains</a> how they doubled their productivity by spending more time planning. If we want to make a good job of incremental refactoring, we&rsquo;ll need to spend enough time preparing it. Important questions are :</p>
+
+<ul>
+<li>What are the most important refactorings to work on ?</li>
+<li>How many refactorings should we tackle at the same time ?</li>
+<li>Are we making good progress on our refactorings ?</li>
+<li>Why is this refactoring not yielding any visible results through our metrics system ?</li>
+<li>Are there any news that should change our plans ?</li>
+<li>Are we doing enough refactoring to keep things under control ?</li>
+<li>What are the next steps in these refactorings ?</li>
+<li>etc</li>
+</ul>
+
+
+<p>I&rsquo;m not talking about a big 6 month planning but rather regular short planning sessions. In <a href="https://www.scrum.org/">Scrum</a> this kind of planning happens every sprint. To make plannings more visual, engaging and fun, we might us something like <a href="https://jpattonassociates.com/user-story-mapping/">Story Mapping</a>. (I guess I should blog about this someday.)</p>
+
+<blockquote><p>💡 Keeping a Work In Progress limit on refactorings is essential.</p></blockquote>
+
+<h2>Manage it through Time-Boxing</h2>
+
+<p>One last advice before I&rsquo;m done. We must be very careful to time-box our work on refactoring increments. It&rsquo;s all too easy, to get caught up in a refactoring during the slack at the end of the iteration. If we let the refactoring spill on features we risk loosing the business people&rsquo;s trust.</p>
+
+<p>Here again, using extra small baby steps helps to pause the refactoring. Another way is to do <a href="https://en.wikipedia.org/wiki/Kanban_(development">Kanban</a>) style slack. Replace end of sprint slack by a fixed number of people slacking all the time. But I&rsquo;ll come back to this in more details in a future post.</p>
+
+<h2>Next post</h2>
+
+<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="http://eepurl.com/dxKE95">next post</a>.</p>
+
+<p>This was the eighth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. I&rsquo;ve already been through why it&rsquo;s so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important ? How to deliver refactorings steps by steps ? If you haven&rsquo;t start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> !</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps]]></title>
     <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/"/>
-    <updated>2018-08-09T08:50:00+02:00</updated>
+    <updated>2018-08-09T08:50:00+01:00</updated>
     <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps</id>
     <content type="html"><![CDATA[<p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous post</a> was about how to get slots of time in your daily (or weekly) work to do some refactoring. I left my readers with the promise of techniques to fit the refactoring work into these small slots.</p>
 
@@ -98,7 +209,7 @@
   <entry>
     <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring]]></title>
     <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/"/>
-    <updated>2018-08-02T08:31:00+02:00</updated>
+    <updated>2018-08-02T08:31:00+01:00</updated>
     <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring</id>
     <content type="html"><![CDATA[<p><a href="/incremental-software-development-techniques-for-large-scale-refactorings/">My previous post</a> advocated incremental software development for large scale refactorings. It&rsquo;s less risky and it prevents tunnel effects. Most of all, it&rsquo;s a lot easier to convince business people of engaging in a refactoring this way.</p>
 
@@ -175,7 +286,7 @@
   <entry>
     <title type="html"><![CDATA[Incremental Software Development for Large Scale Refactorings]]></title>
     <link href="http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings/"/>
-    <updated>2018-07-26T09:32:00+02:00</updated>
+    <updated>2018-07-26T09:32:00+01:00</updated>
     <id>http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings</id>
     <content type="html"><![CDATA[<p>My <a href="/principles-that-will-make-you-become-a-badass-developer/">previous post</a> was about the badass developer attitude. More specifically, how it can buy sponsorship for large scale refactorings. Unfortunately, attitude is not enough. We also need to be able to deliver in a way that builds trust with the business. Most of all, business <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">is scared of the tunnel effect</a>. <a href="https://en.wikipedia.org/wiki/Iterative_and_incremental_development">Incremental software development</a> techniques allows to deliver large scale refactoring step by step. Not only that, but it also allows to do so alongside business features. That&rsquo;s how badass developers walk their talk and gain the business people&rsquo;s trust.</p>
 
@@ -236,7 +347,7 @@
   <entry>
     <title type="html"><![CDATA[Principles that will make you become a badass developer]]></title>
     <link href="http://philippe.bourgau.net/principles-that-will-make-you-become-a-badass-developer/"/>
-    <updated>2018-07-19T12:57:00+02:00</updated>
+    <updated>2018-07-19T12:57:00+01:00</updated>
     <id>http://philippe.bourgau.net/principles-that-will-make-you-become-a-badass-developer</id>
     <content type="html"><![CDATA[<p>In my <a href="/5-mistakes-badass-developers-never-do/">last post</a>, I went over things we should avoid if we want to become badass developers. As I said though, this is far from enough. Once we&rsquo;ve stoped losing trust from the business, it&rsquo;s time to build some more ! This is the forth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for a large scale refactoring</a>. If you haven&rsquo;t, start reading from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
 
@@ -285,67 +396,6 @@
 <p>When we manage to negotiate a large scale refactoring, the team will need to do a good job of it. This boils down to delivering it piece by piece, alongside features. This is exactly what my <a href="http://eepurl.com/dxKE95">next post</a> will be about.</p>
 
 <p>This post was the forth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for a large scale refactoring</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[5 mistakes badass developers never do]]></title>
-    <link href="http://philippe.bourgau.net/5-mistakes-badass-developers-never-do/"/>
-    <updated>2018-07-12T12:51:00+02:00</updated>
-    <id>http://philippe.bourgau.net/5-mistakes-badass-developers-never-do</id>
-    <content type="html"><![CDATA[<p>Here is a one sentence summary of my <a href="/why-we-need-badass-developers-to-perform-large-scale-refactorings/">previous post</a>.</p>
-
-<blockquote><p>Badass developers negotiate large scale refactorings with the business better.</p></blockquote>
-
-<p> Unfortunately, not all of us are sitting next to a true badass developer &hellip; Hopefully, we can all become one ! Depending on our track record, it&rsquo;s going to be more or less difficult, but with time and the good attitude, we can all do it. Becoming a badass developer is all about trustworthiness.</p>
-
-<p>This post is the third in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for a large scale refactoring</a>. If you haven&rsquo;t, I recommend you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
-
-<p>The first thing to become trustworthy is to avoid things that kill trust. Sounds obvious, but it&rsquo;s very easy to forget. Here are 5 examples of trust killers you should never do if you want to become a badass developer.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-07-03-5-mistakes-badass-developers-never-do/mistake.jpg" alt="Drawing of a hurt finger after someone made a mistake with a hammer. Badass developer don't do this kind of mistakes !" /></p>
-
-<h2>Resume Driven Development</h2>
-
-<p>We should pick the best tools for the job. The best tools are often a bit old, precisely because they&rsquo;ve been battle tested in production for a while ! That&rsquo;s exactly the kind of technologies you want your business to rely on.</p>
-
-<p>To keep his skills up to date, a badass developer will not add a funky new tech in the production code. He would rather negotiate <a href="http://www.jamesshore.com/Agile-Book/slack.html">slack time</a> with the business. He might also openly <em>take</em> his Friday afternoons to experiment the latest techs ! He would simply explain that it&rsquo;s to avoid polluting the production system.</p>
-
-<blockquote><p>💡 A badass developer will not add a funky new tech in the production code.</p></blockquote>
-
-<h2>Over-engineering</h2>
-
-<p>Gold plating or over-engineering are similar anti-patterns. A badass developer always keeps the business&rsquo;s interest in mind. This means he knows how to balance long term design and short term features. A good rule of thumb is to keep a vision in sight, but to get there in baby steps.</p>
-
-<h2>Build features with no agreed upon value</h2>
-
-<p>Product managers are here to select what should and what should not be in the product. As product experts, they are the ones who know how much a feature is worth. Except (maybe) when we are building tools for others developers, they know better than us. Adding something of dubious value in the product is bad in two ways. </p>
-
-<ul>
-<li>First, it takes some time to build, time that we could use to build valuable features instead. Remember : <a href="/real-developers-ship/">Real developers ship</a> !</li>
-<li>Second, it creates unnecessary code to maintain. In the worst case, it can <a href="/incremental-architecture-a-cure-against-architecture-astronauts/">constraint the architecture</a>. Which might eventually prevent us from adding other more valuable features afterwards.</li>
-</ul>
-
-
-<h2>Hide in a tunnel</h2>
-
-<p>We should always be careful of the tunnel effect. Seeing their money vanishing with no visible output makes business people, understandably, creepy. As soon as things become too complicated, a badass developer will raise the alarm. The fact is that he has been in this kind of situation before, and knows how to recognize it. At that point, it&rsquo;s still possible to discuss the problem with everyone, and adjust the plan.</p>
-
-<p>As an interesting side note, I was at the <a href="https://www.meetup.com/fr-FR/DDD-Paris/">Paris DDD Meetup</a> last Thursday. We had the chance to welcome <a href="https://twitter.com/ericevans0">Eric Evans</a> as a surprise guest ! When asked what were his worst mistakes, he said something along this line :</p>
-
-<blockquote><p>💡 Some of my biggest mistakes were not backtracking soon enough a few times as I was drifting in quagmire. Eric Evans</p></blockquote>
-
-<p><a href="https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/"><img src="http://philippe.bourgau.net/imgs/2018-07-03-5-mistakes-badass-developers-never-do/eric-evans-ddd-paris.jpg" alt="Eric Evans, the father of DDD, a true badass developer, answering questions at the Paris DDD meetup" /></a><div class="image-credits">By <a href="https://www.grodziski.com/">Jérémie Grodziski</a>, on <a href="https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/">Paris DDD Meetup</a></div><br></p>
-
-<h2>Let the team down</h2>
-
-<p>It&rsquo;s not only about getting the business&rsquo;s trust. We must also build trust from our fellow developers. Whenever we break the build and leave, or worse, deploy and leave, that trust is gone for a long while&hellip; We should not do that !</p>
-
-<h2>There&rsquo;s more to a badass developer</h2>
-
-<p>I&rsquo;m done with this list of things badass developers don&rsquo;t do. Avoiding these is only the first step to become a badass developer. In <a href="/principles-that-will-make-you-become-a-badass-developer/">next post</a>, I&rsquo;ll write about what we need to do if we want to build strong trust with the business.</p>
-
-<p>This post is the third post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for a large scale refactoring.</a></p>
 ]]></content>
   </entry>
   

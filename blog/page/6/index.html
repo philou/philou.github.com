@@ -102,6 +102,125 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/forget-unit-tests/">Forget Unit Tests, Only Fast Tests Matter</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2017-08-08T06:24:00+01:00" pubdate data-updated="true">Aug 8<span>th</span>, 2017</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Don&rsquo;t worry if your unit tests go to the DB, that might not be so bad.</p>
+
+<p>When I started writing unit tests, I did not know what these were. I read <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923">the definition</a>, and strived to follow the recommandations :</p>
+
+<ul>
+<li>they should be independent from each other</li>
+<li>they should not access the DB</li>
+<li>they should not use the network</li>
+<li>they should only cover a small scope of your code</li>
+</ul>
+
+
+<p>I started to write unit tests on my own and became <a href="http://wiki.c2.com/?TestInfected">test infected</a> pretty fast. Once I got convinced of the benefits of unit testing, I tried to spread the practice around me. I used to explain to people that it is very important to write real unit tests by the book. Otherwise, <em>Bad Things</em> would happen &hellip;</p>
+
+<h2>How I changed my mind</h2>
+
+<p>A few years ago, I spent a few years working on a <a href="http://rubyonrails.org/">Rails</a> side project called <a href="https://github.com/philou/mes-courses">mes-courses.fr</a>. I was using a small test gem to enforce that no unit tests were accessing the db. I had to write a lot of mocks around the code. I ended up hating mocks : they are too painful to maintain and provide a false sense of security. I&rsquo;m not alone in this camp, check <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">DHH&rsquo;s keynote at RailsConf 2014</a>.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9LfmrkyP81M" frameborder="0" allowfullscreen></iframe>
+
+
+<p>At some point, the mock pain got so bad that I stopped all developments until I found another way. I found a pretty simple workaround : use in-memory SQLite. I got rid of all the DB access mocks. Not only were the tests easier to write and maintain, but they were as fast as before, and they covered more code.</p>
+
+<p>That changed something fundamental in my understanding of testing</p>
+
+<h2>It&rsquo;s all about speed baby</h2>
+
+<p>The only thing that makes unit tests so important is that they run fast.</p>
+
+<p>Unit tests as described in the literature run fast. Let&rsquo;s see what happens when you remove one of the recommandations for unit tests.</p>
+
+<ul>
+<li>If tests depend on each other, their outcome will change with the execution order. This wastes our time in analyzing the results. On top of that, independent unit tests are easy to run in parallel, providing an extra speedup. We lose this potential when our tests are dependent.</li>
+<li>Tests that rely on an out-of-process DB run slower. Tests need to start the DB before anything else. Data needs to be setup and cleaned at every test. Accessing the DB implies using the network, which takes time as well. There&rsquo;s also a risk of making the tests dependent by sharing the same DB. A last issue is troubleshooting the DB process when things don&rsquo;t work.</li>
+<li>Tests that use the network are slow too ! First, Network is slower than memory. Second, data serialization between processes is slow as well. Finally, these tests are likely to use some form of sleep or polling, which is slow, fragile, or both !</li>
+<li>Finally, there is always a scope past which a test will be too slow.</li>
+</ul>
+
+
+<p>This means that not only unit tests are fast, but also that fast tests usually show the features of unit tests.</p>
+
+<p>My guess is that &lsquo;unit tests&rsquo; were explicitly defined as a recipe for fast tests ! If you stick to the definition of unit tests, you&rsquo;ll get fast tests and all their benefits.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2017-08-08-forget-unit-tests/speedometer.jpg" alt="A speedometer" /></p>
+
+<h2>Fast tests</h2>
+
+<p>That also means that we should focus first on having fast tests rather than unit tests. Here is my real check to know if tests are fast enough :</p>
+
+<ul>
+<li>Is the build (and the tests and everything) less than 10 minutes ?</li>
+<li>Can I continuously run my tests while coding and stay in the flow ?</li>
+</ul>
+
+
+<p>If both answers are yes, then I won&rsquo;t question myself too much whether my tests are unit, integration or end to end.</p>
+
+<h2>So what ?</h2>
+
+<p>I&rsquo;ve been experimenting with these heuristics for some time. Side projects are great for experimenting since you don&rsquo;t have a team to convince ! Here are my main takeaways :</p>
+
+<ul>
+<li>Stick to end to end tests at the beginning of your project. They are easy to refactor to finer grained tests later on.</li>
+<li>In-memory DBs are great to speed tests up without wasting your time with mocking.  We can use a unique DB for every test to keep them independent.</li>
+<li>Large scope tests are not an issue provided 2 things.
+
+<ol>
+<li>The code contains very few side effects.</li>
+<li>It provides good exceptions and assertions messages</li>
+</ol>
+</li>
+</ul>
+
+
+<p>On the other side, there are things that I still recommend :</p>
+
+<ul>
+<li>Independent tests are easy to write from the beginning, difficult to fix later on. As they save a lot of headaches in diagnostic, I stick to them from the start.</li>
+<li>Avoid network, it makes the tests slow, fragile and tricky to diagnostic. But please, read <a href="http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/">this</a> before jumping to mocks.</li>
+</ul>
+
+
+<p>These rules have served me well, particularly in my side projects, where I don&rsquo;t have a lot of time. What about you ? Do you have your own testing rules ?</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">10 Things to Know That Will Make You Great at Refactoring Legacy Code</a></h1>
     
     
@@ -119,7 +238,7 @@
 
 
 
-<time datetime="2017-07-28T06:35:00+02:00" pubdate data-updated="true">Jul 28<span>th</span>, 2017</time>
+<time datetime="2017-07-28T06:35:00+01:00" pubdate data-updated="true">Jul 28<span>th</span>, 2017</time>
         
       </p>
     
@@ -320,7 +439,7 @@
 
 
 
-<time datetime="2017-07-21T08:05:00+02:00" pubdate data-updated="true">Jul 21<span>st</span>, 2017</time>
+<time datetime="2017-07-21T08:05:00+01:00" pubdate data-updated="true">Jul 21<span>st</span>, 2017</time>
         
       </p>
     
@@ -437,7 +556,7 @@
 
 
 
-<time datetime="2017-07-10T09:10:00+02:00" pubdate data-updated="true">Jul 10<span>th</span>, 2017</time>
+<time datetime="2017-07-10T09:10:00+01:00" pubdate data-updated="true">Jul 10<span>th</span>, 2017</time>
         
       </p>
     
@@ -540,7 +659,7 @@
 
 
 
-<time datetime="2017-07-06T22:17:00+02:00" pubdate data-updated="true">Jul 6<span>th</span>, 2017</time>
+<time datetime="2017-07-06T22:17:00+01:00" pubdate data-updated="true">Jul 6<span>th</span>, 2017</time>
         
       </p>
     
@@ -661,7 +780,7 @@
 
 
 
-<time datetime="2017-06-28T15:52:00+02:00" pubdate data-updated="true">Jun 28<span>th</span>, 2017</time>
+<time datetime="2017-06-28T15:52:00+01:00" pubdate data-updated="true">Jun 28<span>th</span>, 2017</time>
         
       </p>
     
@@ -934,7 +1053,7 @@
 
 
 
-<time datetime="2017-06-19T18:48:00+02:00" pubdate data-updated="true">Jun 19<span>th</span>, 2017</time>
+<time datetime="2017-06-19T18:48:00+01:00" pubdate data-updated="true">Jun 19<span>th</span>, 2017</time>
         
       </p>
     
@@ -1123,7 +1242,7 @@
 
 
 
-<time datetime="2017-06-13T09:13:00+02:00" pubdate data-updated="true">Jun 13<span>th</span>, 2017</time>
+<time datetime="2017-06-13T09:13:00+01:00" pubdate data-updated="true">Jun 13<span>th</span>, 2017</time>
         
       </p>
     
@@ -1280,7 +1399,7 @@
 
 
 
-<time datetime="2017-05-29T06:37:00+02:00" pubdate data-updated="true">May 29<span>th</span>, 2017</time>
+<time datetime="2017-05-29T06:37:00+01:00" pubdate data-updated="true">May 29<span>th</span>, 2017</time>
         
       </p>
     
@@ -1496,7 +1615,7 @@
 
 
 
-<time datetime="2017-05-23T06:08:00+02:00" pubdate data-updated="true">May 23<span>rd</span>, 2017</time>
+<time datetime="2017-05-23T06:08:00+01:00" pubdate data-updated="true">May 23<span>rd</span>, 2017</time>
         
       </p>
     
@@ -1536,182 +1655,6 @@
 
 
 <p><img src="http://philippe.bourgau.net/imgs/2017-05-23-20-bad-excuses-for-not-writing-unit-tests/just-do-it.jpg" alt="'Just Do It' written on a board" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">From Apprentice to Master, How to Learn TDD (Test Driven Development)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2017-05-15T06:53:00+02:00" pubdate data-updated="true">May 15<span>th</span>, 2017</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I started to learn <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a> a long time ago. Since then, even though I&rsquo;m still not a master, it&rsquo;s been my most useful programming skill, by far. TDD is the first trick every new programmer should learn. It made my whole career as a developer easier.</p>
-
-<p>I&rsquo;ve been working as a professional software engineer for more than 15 years, including around 10 years in the trading industry. Only once did I need to work on week ends or late into the night to fix emergency issues. I believe I largely owe this work-life balance to the high test coverage that TDD ensures by design.</p>
-
-<p>TDD also enables safe refactoring. Refactoring enables <a href="/incremental-architecture-a-cure-against-architecture-astronauts/">incremental design</a> which lets you decide late. Deciding late is how you make your customers happy by accepting late changes. Deciding late is how take up-front design easy, and improve your code as you go. Deciding late is how you build trustful and harmonious relationships with the stakeholders of your project.</p>
-
-<p>Finally, writing tests before the code is both easier and more fun. Among compilation errors and never ending customer demands, the recurring green barre tastes like pure candy to the poor programmer !</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/road.jpg" alt="A long winding road" /><div class="image-credits">From <a href="https://fr.pinterest.com/explore/winding-road/">Pinterest winding road catalog</a></div></p>
-
-<h2>The TDD Road</h2>
-
-<p>Here are the steps I took to learn TDD.</p>
-
-<h3>Learn the principles</h3>
-
-<p>The principles of Test Driven Development are fairly basic. 5 minutes is enough to know them forever :</p>
-
-<ol>
-<li>Write a failing test</li>
-<li>Make it pass by doing the simplest thing possible</li>
-<li>Refactor your code while keeping the tests passing</li>
-<li>Repeat until your acceptance test is green</li>
-</ol>
-
-
-<p>TDD newbies might ask a few questions like :</p>
-
-<ul>
-<li>Is making the code compile in step 1 or 2 ? Honestly, that does not matter. Write the test as if you had the code, then make it compile, make sure it fails, and continue.</li>
-<li>How much should I refactor ? It often takes a good amount of experimentation to find your good balance. If you don&rsquo;t refactor enough, you going to drown in dirty code. If you refactor too much, you&rsquo;re going to waste your time (<a href="https://martinfowler.com/bliki/Yagni.html">YAGNI</a>). As a rule of thumb, <a href="https://martinfowler.com/bliki/BeckDesignRules.html">Kent Beck&rsquo;s</a> rules on simple design are a very good starting point :</li>
-</ul>
-
-
-<p><a href="https://martinfowler.com/bliki/BeckDesignRules.html"><img src="http://philippe.bourgau.net/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/beck-rules.jpg" alt="A visual graph of Kent Beck's rules of simple design" /></a><div class="image-credits"><a href="https://martinfowler.com/bliki/BeckDesignRules.html">From Martin Fowler : Beck Design Rules</a></div></p>
-
-<h3>Find your tools</h3>
-
-<p>Back in 2003, after reading <a href="TODO">Martin Fowler</a>&rsquo;s <a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1495080119&amp;sr=1-1&amp;keywords=martin+fowler+refactoring">Refactoring: Improving the Design of Existing Code</a> book, I decided to give TDD a serious try. I was using C++ at work but we did not even have a nightly build. I had to download and setup <a href="https://en.wikipedia.org/wiki/CppUnit">CppUnit</a> on my own. As solo endeavor, this was a required step to get into TDD.</p>
-
-<p>Find and setup a tool. Which one should be rather obvious, if your team already uses a unit test framework, stick to it, otherwise, pick the most standard for your language, ex : <a href="http://junit.org/">JUnit</a> for <a href="https://www.java.com">Java</a> (you might as well start searching for a new job where they use a unit testing tool).</p>
-
-<h3>Train at a TDD coding dojo</h3>
-
-<p><a href="http://codingdojo.org/">Coding dojos</a> were first invented as a tool to <a href="http://www.peterprovost.org/blog/2012/05/02/kata-the-only-way-to-learn-tdd/">learn TDD</a>. They were started by two french eXtreme Programmers <a href="https://ut7.fr/">Emmanuel Gaillot</a> and <a href="http://institut-agile.fr/">Laurent Bossavit</a>. It happens that I live in Paris, and that Emmanuel came to work as a contractor at the same company I was. I learned that he was organizing a weekly coding dojo open to any developer. That&rsquo;s how I started attending coding dojos. Looking back, the TDD skills I learned at the coding dojo are just enormous !</p>
-
-<p>If you are serious about learning TDD, attend coding dojos. Whether you find one in your city (ask <a href="https://www.meetup.com/">meetup.com</a>) or in your company does not really matter. If you cannot find any, just start one at work ! Send a public call for interested people (use wiki, mail, posters or whatever), book a room and start hacking ! <a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494908749&amp;sr=8-1&amp;keywords=coding+dojo">Emily Bache&rsquo;s Coding Dojo Handbook</a> seems a very good reference about how to start a coding dojo (Disclaimer : I did not read the book, I only know it by reputation.)</p>
-
-<p><a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494908749&amp;sr=8-1&amp;keywords=coding+dojo"><img src="http://philippe.bourgau.net/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/coding-dojo.jpg" alt="Cover of The Coding Dojo Handbook" /></a></p>
-
-<h3>Use it</h3>
-
-<p>If you&rsquo;re a professional programmer, you must be spending most of your time writing code. Take this opportunity to use TDD. You&rsquo;ll be slowed down a bit at the beginning, but as both your code and your skills improve, you&rsquo;ll get your time back manyfold.</p>
-
-<p>I remember one of my first professional use of TDD was to write a small parser. A few weeks later I was asked to make it faster. Having tests around it made it easy to optimize it without breaking it.</p>
-
-<h3>Deliberate practice</h3>
-
-<p>In <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494910468&amp;sr=1-1&amp;keywords=the+first+20+hours">The first 20 hours</a>, Josh Kaufman explains that deliberately practicing specific topics is a more time effective way of learning than simply crunching hours of practice.</p>
-
-<p>My friend <a href="https://twitter.com/tpierrain">Thomas Pierrain</a> is used to regularly practice short 30 minutes katas to sharpen his programming skills. Katas can be found at <a href="http://codingdojo.org/KataCatalogue/">codingdojo.org</a>, at <a href="http://cyber-dojo.org/">cyber-dojo.org</a> or in <a href="https://www.amazon.com/Coding-Dojo-Handbook-Emily-Bache/dp/919811803X/ref=sr_1_1?tag=pbourgau-20&amp;amp;ie=UTF8&amp;qid=1494908749&amp;sr=8-1&amp;keywords=coding+dojo">The Coding Dojo Handbook</a>.</p>
-
-<h3>Read</h3>
-
-<p>Meanwhile I was doing all this, I also spent a lot of time reading on the subject. At the time, there was a lot of things about TDD in the <a href="http://wiki.c2.com/">C2 Wiki</a>, so I spent a lot of time there. Since then, I stumbled upon a few books that helped me to understand some aspects of TDD :</p>
-
-<ul>
-<li>Kent Beck&rsquo;s classic <a href="https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1495080564&amp;sr=1-1&amp;keywords=tdd+by+example">TDD by example</a> remains a great reference for beginners</li>
-<li>I got very useful advices from <a href="https://www.amazon.com/Test-Driven-Development-Practical-Guide/dp/0131016490/ref=sr_1_3?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1494911486&amp;sr=1-3&amp;keywords=test+driven+practical+guide">TDD, a practical guide</a> especially the section about UI testing, which really saved me at some point</li>
-<li>Finally, <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided By Tests</a> is now a classic about what is called &ldquo;The London school of testing&rdquo;, which uses mocks as a design tool. Definitely a must read.</li>
-</ul>
-
-
-<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;amp;s=books&amp;ie=UTF8&amp;qid=1495080583&amp;sr=1-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="http://philippe.bourgau.net/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/growing.jpg" alt="Cover of GOOSGT" /></a></p>
-
-<h3>Practice advanced topics</h3>
-
-<p>The TDD road goes on forever, testing has a lot of tricky topics. Once you&rsquo;ve mastered the basics, it&rsquo;s quite interesting to explore and practice more complex subjects. Here are a few things worth trying out :</p>
-
-<ul>
-<li>Use automated IDE refactorings to keep the code compiling all the way through a kata</li>
-<li>Do the same kata twice, using <a href="/flavours-of-tdd/">top-down and bottom-up</a> styles</li>
-<li>Do refactoring katas to learn how to work with legacy code</li>
-<li>Do UI katas, to learn how to test the UI</li>
-<li>Learn how to deal with DB</li>
-<li>Learn how to handle remote services</li>
-</ul>
-
-
-<p>If needed, invent your own katas to deliberately practice these topics and others.</p>
-
-<h2>The pitfalls</h2>
-
-<p>As any road worth walking, the TDD path is not linear and smooth. Before fully mastering TDD, you&rsquo;ll regularly wonder if you&rsquo;re on the right track. As any practice, TDD has pitfalls. I&rsquo;ve fell into some quite a few times. I guess that&rsquo;s part of the learning process.</p>
-
-<h3>Emerging Design</h3>
-
-<p>There&rsquo;s always been a lot of misunderstanding around this topic.</p>
-
-<p>Bad smells in your code make your tests harder to write. If adding a test is painful, that&rsquo;s an indication that something could be improved in your design. It&rsquo;s then up to you to know what. Once you&rsquo;ve figured out what you want to change, use your existing tests to refactor your design first. Only then, add this new test.</p>
-
-<p>As you can see, the tests will give you more feedback about the design of your code, but they won&rsquo;t tell you what to do. That&rsquo;s where your coding skills will help. This is particularly true about algorithms. Don&rsquo;t expect a good algorithm to magically appear as you do the simplest-thing-that-could-possibly-work &hellip;</p>
-
-<p>As with any rules, there are exceptions. At times, you&rsquo;ll walk into a problem which emerging design is great. For example, I&rsquo;ve done the <a href="http://agilekatas.co.uk/katas/RomanNumerals-Kata">Arab to Romans</a> kata many times, and that repeatedly doing the simplest-thing-that-could-possibly-work yields a good solution.</p>
-
-<h3>Mocks</h3>
-
-<p><a href="https://en.wikipedia.org/wiki/Mock_object">Mocks</a> are useful at times, but be careful not to overuse them. I already <a href="http://localhost:4000/blog/categories/mocking/">wrote about mocks</a>. Too much mocking makes your test suite brittle, ineffective and difficult to maintain ! I&rsquo;ve been bitten hard by this one on a personal <a href="https://github.com/philou/mes-courses">side project</a>, the day I decided to get rid of all the mocks, I shrank the test code size by 25%. Since then I learned about alternate techniques such as :</p>
-
-<ul>
-<li><a href="http://www.natpryce.com/articles/000714.html">Test data builders</a> which allow to easily build test data</li>
-<li><a href="https://martinfowler.com/bliki/ValueObject.html">Value objects</a> that are immutable and don&rsquo;t need mocking</li>
-<li><a href="/my-new-gem-for-creating-rspec-proxies/">test spies and proxies</a> as a way to mock and track calls while still calling the real code</li>
-<li><a href="http://localhost:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/">in-memory fake implementations</a> which make the tests independent and fast without unmaintainable proliferation of mock setup</li>
-</ul>
-
-
-<p>As an indicator, less than 5% of my tests use mocks.</p>
-
-<h3>Metrics</h3>
-
-<p>In his <a href="https://www.youtube.com/watch?v=9LfmrkyP81M">keynote at RailsConf 2014</a> DHH explains the danger of testing metrics.</p>
-
-<p><a href="https://www.youtube.com/watch?v=9LfmrkyP81M"><img src="http://philippe.bourgau.net/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/dhh.jpg" alt="DHH's keynote at RailsConf 2014" /></a></p>
-
-<p>By using TDD correctly, you should get a high code coverage as a side effect. If you get below 80%, you must be doing something wrong. The other metric you should keep an eye on is the total build time. Original <a href="http://www.extremeprogramming.org/">eXtreme Programming</a> had the <a href="http://www.jamesshore.com/Agile-Book/ten_minute_build.html">10 minutes build rule</a> which states that if your build + tests takes more than 10 minutes, you should refactor it.</p>
-
-<p>That&rsquo;s it ! Things like 100% test coverage or test ratio are complete nonsense.</p>
-
-<h2>Pushing it even further</h2>
-
-<p>My promise, at the beginning of this post, was that Test Driven Development would make your life as a developer easier. Now let&rsquo;s imagine that your whole team or company was using TDD. It&rsquo;s a foundation on which to build a sustainable agile organization.</p>
-
-<p>The mastery of automated testing at organization scale is a key element to continuous delivery, making releasing software a non-event, and as stress-free as possible.</p>
-
-<p>Full adoption of TDD can yield to <a href="/incremental-architecture-a-cure-against-architecture-astronauts/">incremental architecture</a> which delivers features faster, by skipping the conflictual arguments about supposed future needs.</p>
-
-<p>Finally, TDD can simplify your processes and tooling. Team-wide TDD results in a steady flow of features on top of which it is easier to create simple and effective processes and tools.</p>
-
-<p>The road is long, sinuous and at times rocky, but so are the rewards.</p>
 </div>
   
   
@@ -1801,6 +1744,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a>
       </li>
     
@@ -1814,10 +1761,6 @@
     
       <li class="post">
         <a href="/principles-that-will-make-you-become-a-badass-developer/">Principles that will make you become a badass developer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/5-mistakes-badass-developers-never-do/">5 mistakes badass developers never do</a>
       </li>
     
   </ul>

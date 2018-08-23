@@ -4,7 +4,7 @@
   <title><![CDATA[Category: mikado-method | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/mikado-method/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-08-20T19:49:59+02:00</updated>
+  <updated>2018-08-23T06:46:11+01:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -14,9 +14,120 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/"/>
+    <updated>2018-08-23T06:53:00+01:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it</id>
+    <content type="html"><![CDATA[<p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous posts</a> where about how to find and use small time slots for large scale refactorings. <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Refactoring step by step</a> is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own.</p>
+
+<p>Here is a little story of what can go bad. I used to work in a team which <a href="/refactoring-trick-to-insert-a-wrapper/">had a high &lsquo;refactoring culture&rsquo;.</a> Everyone in the team wanted to apply the kind of practices I mentioned in my previous posts. To make things more tricky, we were <a href="/from-zero-to-pair-programming-hero/">working from 2 cities</a>. We had introduced slack time and developers would tackle refactoring at the end of every iteration. As we did not particularly organize or collaborate on slack time, we soon ran into conflicts. People wanted to refactor the same code, maybe in different ways ! After a while we also had too many large scale refactorings going on at the same time. This slowed down progress, increased the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a> and the failure rate. Worst of all, it made it difficult to refocus on a newly discovered but urgent refactoring.</p>
+
+<p>With a bit of organization though, we got things to work. Let&rsquo;s see how we managed it.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/manage-it.jpg" alt="Drawing of a calendar entitled &quot;Manage It !&quot;. Collaboration and organization are key to succeed to use incremental software development for large scale refactorings." /></p>
+
+<p>This is the eighth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2>Manage it with a Design Vision</h2>
+
+<p>To succeed at anything, we need to know where we are going. It&rsquo;s the same for large scale refactorings. We don&rsquo;t need to have all the details of what we want to build. We do need a good enough draft to avoid going in the wrong direction. That&rsquo;s even more true when we work as a team. Without a shared design vision, people will refactor in conflicting directions.</p>
+
+<p>It&rsquo;s very important to share the vision with all the team. We can stick high level UML sketches on the walls for example. As <a href="https://twitter.com/kentbeck">Kent Beck</a> suggests, we can also use <a href="http://www.extremeprogramming.org/rules/metaphor.html">metaphores</a> to communicate the design. In <a href="https://vimeo.com/275530146">this talk</a>, <a href="http://www.natpryce.com/">Nat Pryce</a> explains that it&rsquo;s a great way start, but that we will have to drop the metaphore later.</p>
+
+<iframe src="https://player.vimeo.com/video/275530146?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+
+<div class="image-credits">By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a></div>
+
+
+<br>
+
+
+<p>The idea is not to waste time in a <a href="https://en.wikipedia.org/wiki/Big_Design_Up_Front">Big Design Up Front</a>. We just want to draft a vision :</p>
+
+<ul>
+<li>We can run a Design level Event Storming (I guess I&rsquo;ll have to blog about this some day)</li>
+<li>We can grab a copy of <a href="https://www.amazon.com/Gamestorming-Playbook-Innovators-Rulebreakers-Changemakers/dp/0596804172/ref=sr_1_1?ie=UTF8&amp;qid=1534409953&amp;sr=8-1&amp;keywords=gamestorming">Gamestorming</a> and run another kind of collaborative design game</li>
+<li>Or a few team members could work on something the way they prefer</li>
+</ul>
+
+
+<p>Whatever the technique we start with, we&rsquo;ll be able to refine and evolve the vision down the road.</p>
+
+<h2>Manage it with Mikado Graphs</h2>
+
+<p>Remember the &lsquo;<a href="http://mikadomethod.info/">Mikado Method</a>&rsquo; from <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">my previous post</a> ? It&rsquo;s a technique to code and deploy large scale refactorings in baby steps. If you had a look at the reference links, you&rsquo;ll might seen mentions of a &lsquo;Mikado Graph&rsquo;. Here is what it looks like :</p>
+
+<p><a href="http://mikadomethod.info/"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/mikado-graph.png" alt="Sample Mikado Graph. The Mikado graph is a great tool to manage and collaborate on incremental software development of large scale refactoring." /></a></p>
+
+<div class="image-credits">Sample mikado graph from <a href="http://mikadomethod.info/">http://mikadomethod.info/</a></div>
+
+
+<br>
+
+
+<p>As the number of refactoring steps grows, it becomes tricky to keep track of them all. A simple way is to draw them as nodes in a graph, and tackle the work from the leaves. If you are interested, check <a href="/blog/categories/mikado-method/">these posts about the Mikado Method</a>. In my previous team, we became fans of the Mikado Method. We even built a tool to generate mikado graph from <a href="https://www.atlassian.com/software/jira">JIRA</a> (our ticket management system) dependencies ! Using colors, we could track where we stood in the refactoring.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/generated-mikado-graph.jpg" alt="Sample Mikado Graph generated by our tool. Automating around Mikado graphs is of great help for large scale refactoring." /></p>
+
+<p>The key advantage of mikado graphs is that we can stick them on the wall. This enables all the team to know where we stand in a refactoring. This way, team members can collaborate during their slack. It can also make the boy scout rule more effective. When a developer happens to touch a file that appears in the graph, he or she can move it further in the good direction.</p>
+
+<blockquote><p>💡 A key benefit of mikado graphs is that we can stick them on the wall for everyone to know where we stand in a refactoring.</p></blockquote>
+
+<h2>Manage it with Metrics</h2>
+
+<p>I mentioned coding conventions and a clear <a href="https://www.agilealliance.org/glossary/definition-of-done/">Definition of Done</a> in <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">a previous post</a>.  Having code quality constraints is the compass of constant merciless refactoring. To make this actionable and real, we should take the time to setup an automatic metrics system. For example :</p>
+
+<p><a href="https://youtu.be/Env47tQewIA?t=2685"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/tech-debt-trap.jpg" alt="Doc Norton's talk about &quot;The Technical Debt trap&quot;. His metrics are very useful to manage large scale refactoring." /></a></p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=Env47tQewIA">Doc Norton suggests</a> to track maintainability, coverage, complexity and coupling over time.</li>
+<li>The <a href="https://www.agilealliance.org/the-agile-alliance-debt-analysis-model/">A2DAM model</a> suggests using specific rules to create Definition of Done constraints</li>
+</ul>
+
+
+<p>Putting this in place will help everyone in the team to know if she or he should do more or less refactoring. The first benefit is that it prevents under and over engineering on new code. The second benefit is progress validation through metrics changes as we refactor.</p>
+
+<p><a href="https://codeclimate.com/github/philou/planning-poker"><img src="http://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/code-climate-dashboard.jpg" alt="Sample metrics dashboard. Out of the box, Code Climate supports 3 out of the 4 metrics suggested by Doc Norton. This can be really helpful to manage incremental software development." /></a></p>
+
+<h2>Manage it with a bit of Planning</h2>
+
+<p>Granted, planning is not the most fun part of our job. It can save us a ton of work though. <a href="https://code.joejag.com/2018/lego-workstream-visualisation.html">Joe Wright explains</a> how they doubled their productivity by spending more time planning. If we want to make a good job of incremental refactoring, we&rsquo;ll need to spend enough time preparing it. Important questions are :</p>
+
+<ul>
+<li>What are the most important refactorings to work on ?</li>
+<li>How many refactorings should we tackle at the same time ?</li>
+<li>Are we making good progress on our refactorings ?</li>
+<li>Why is this refactoring not yielding any visible results through our metrics system ?</li>
+<li>Are there any news that should change our plans ?</li>
+<li>Are we doing enough refactoring to keep things under control ?</li>
+<li>What are the next steps in these refactorings ?</li>
+<li>etc</li>
+</ul>
+
+
+<p>I&rsquo;m not talking about a big 6 month planning but rather regular short planning sessions. In <a href="https://www.scrum.org/">Scrum</a> this kind of planning happens every sprint. To make plannings more visual, engaging and fun, we might us something like <a href="https://jpattonassociates.com/user-story-mapping/">Story Mapping</a>. (I guess I should blog about this someday.)</p>
+
+<blockquote><p>💡 Keeping a Work In Progress limit on refactorings is essential.</p></blockquote>
+
+<h2>Manage it through Time-Boxing</h2>
+
+<p>One last advice before I&rsquo;m done. We must be very careful to time-box our work on refactoring increments. It&rsquo;s all too easy, to get caught up in a refactoring during the slack at the end of the iteration. If we let the refactoring spill on features we risk loosing the business people&rsquo;s trust.</p>
+
+<p>Here again, using extra small baby steps helps to pause the refactoring. Another way is to do <a href="https://en.wikipedia.org/wiki/Kanban_(development">Kanban</a>) style slack. Replace end of sprint slack by a fixed number of people slacking all the time. But I&rsquo;ll come back to this in more details in a future post.</p>
+
+<h2>Next post</h2>
+
+<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="http://eepurl.com/dxKE95">next post</a>.</p>
+
+<p>This was the eighth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. I&rsquo;ve already been through why it&rsquo;s so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important ? How to deliver refactorings steps by steps ? If you haven&rsquo;t start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> !</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps]]></title>
     <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/"/>
-    <updated>2018-08-09T08:50:00+02:00</updated>
+    <updated>2018-08-09T08:50:00+01:00</updated>
     <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps</id>
     <content type="html"><![CDATA[<p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous post</a> was about how to get slots of time in your daily (or weekly) work to do some refactoring. I left my readers with the promise of techniques to fit the refactoring work into these small slots.</p>
 
@@ -98,7 +209,7 @@
   <entry>
     <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 3]]></title>
     <link href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/"/>
-    <updated>2018-02-22T08:53:00+01:00</updated>
+    <updated>2018-02-22T08:53:00+00:00</updated>
     <id>http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3</id>
     <content type="html"><![CDATA[<p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous posts</a>, I presented how to use the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> to large organization changes. Drawn from the programming world, this technique keeps a low transformation <a href="https://en.wikipedia.org/wiki/Work_in_process">WIP</a>. In theory, this should reduce risk and the time to see return on investment. Let&rsquo;s see the pros and cons in more detail.</p>
 
@@ -160,7 +271,7 @@
   <entry>
     <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 2]]></title>
     <link href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/"/>
-    <updated>2018-02-15T06:45:00+01:00</updated>
+    <updated>2018-02-15T06:45:00+00:00</updated>
     <id>http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2</id>
     <content type="html"><![CDATA[<p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous post</a>, I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge <a href="https://en.wikipedia.org/wiki/Work_in_process">Work In Progress</a>. Let&rsquo;s see how programmers deal with these problems.</p>
 
@@ -226,7 +337,7 @@
   <entry>
     <title type="html"><![CDATA[Reducing the risks of large organization changes with the Mikado Method - part 1]]></title>
     <link href="http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/"/>
-    <updated>2018-02-08T11:53:00+01:00</updated>
+    <updated>2018-02-08T11:53:00+00:00</updated>
     <id>http://philippe.bourgau.net/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1</id>
     <content type="html"><![CDATA[<p>Large scale agile transformations are often painful, stressful and &hellip; failed ! Mixing the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">Improvement Kata</a> and the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> can make them more successful.</p>
 
@@ -267,179 +378,6 @@
 <h2>To be continued</h2>
 
 <p>As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a <a href="/blog/categories/mikado-method-organization-series/">series about the Mikado Method and large scale organization changes</a>. In <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">next post</a>, we&rsquo;ll detail this technique, and see how to apply it on organization changes.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[10 things to know that will make you great at refactoring legacy code]]></title>
-    <link href="http://philippe.bourgau.net/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/"/>
-    <updated>2017-07-28T06:35:00+02:00</updated>
-    <id>http://philippe.bourgau.net/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code</id>
-    <content type="html"><![CDATA[<p>We write tons of <a href="https://en.wikipedia.org/wiki/Legacy_code">legacy code</a> everyday. Experienced developers understand that legacy code is not something special. Legacy code is our daily bread and butter.</p>
-
-<p>Should we abandon all hope as we enter legacy code ? Would that be professional ? In the end, code is only a bunch of bytes, somewhere on a drive. We are the software professionals. We need to deal with that.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/keep-calm-and-take-the-power-back-4.jpg" alt="Keep Calm and Take The Power Back" /></p>
-
-<h2>1. Master non legacy refactoring first</h2>
-
-<p>Please calm down before this &ldquo;Bring &lsquo;em out&rdquo; energy goes to your head.</p>
-
-<p>I did not say that refactoring legacy code is easy. Legacy code can bite &hellip; bad. I&rsquo;ve been in teams which literally spent nights fixing a bad refactoring gone to production &hellip;</p>
-
-<p>Before you can refactor legacy code, you need to be good at refactoring new code. We all learned to swim in the shallow pool, it&rsquo;s the same with refactoring. Mastering green code refactoring will help you when tackling legacy code.</p>
-
-<p>First, you&rsquo;ll know the ideal you&rsquo;d like to get to. Knowing how productive a fast feedback loop is will motivate you to keep on refactoring.</p>
-
-<p>Second, you&rsquo;ll have a better idea of the baby steps to take you through a tricky refactoring.</p>
-
-<p>If you are not yet at ease with greenfield refactoring, have a look at <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">my previous post</a>.</p>
-
-<h2>2. Understand that refactoring legacy code is different</h2>
-
-<p>The next thing to remember is that refactoring legacy code is different. Let&rsquo;s assume <a href="https://stackoverflow.com/questions/4174867/what-is-the-definition-of-legacy-code">Michael Feather&rsquo;s definition of legacy code</a> : &ldquo;Code without tests&rdquo;. Getting rid of legacy code means adding automated tests.</p>
-
-<p>Unfortunately, trying to force push unit tests in legacy code usually results in a mess. It introduces lot&rsquo;s of artificial mocks in a meaningless design. It also creates brittle and unmaintainable tests. More harm than good. This might be an intermediate step, but it is usually not the quickest way to master your legacy code beast.</p>
-
-<p>Here are alternatives I prefer.</p>
-
-<h2>3. Divide and conquer</h2>
-
-<p>This is the most straightforward way to deal with legacy code. It&rsquo;s an iterative process to repeat until you get things under control. Here is how it goes :</p>
-
-<p>(1) Rely on the tests you have, (2) to refactor enough, (3) to test sub-parts in isolation. (4) Repeat until you are happy with the speed of the feedback loop.</p>
-
-<p>Depending on the initial state of your tests, this might take more or less time. Your first tests might even be manual. This is the bulldozer of refactoring. Very effective, but slow.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/bulldozer.jpg" alt="Bulldozer" /></p>
-
-<h2>4. Pair or mob program</h2>
-
-<blockquote><p>Given enough eyeballs, all bugs are shallow.</p>
-
-<p><a href="https://en.wikipedia.org/wiki/Linus%27s_Law">Linus&rsquo;s Law</a></p></blockquote>
-
-<p>Changing legacy code is a lot easier when you team up. First, it creates a motivating &ldquo;we&rsquo;re all in this together&rdquo; mindset. Second, it guards us against silly mistakes.</p>
-
-<p><a href="https://en.wikipedia.org/wiki/Mob_programming">Mob programming</a>, might seem very expensive, so let me explain why it is not. Suppose you want to introduce some tests in a tricky section of code.</p>
-
-<p>With mob programming, all the team gathers for half a day to work on this change. Together, they find and avoid most of the pitfalls. They commit a high quality change, which creates only one bug down the road.</p>
-
-<p>Let&rsquo;s see the alternative.</p>
-
-<p>Using solo programming, a poor programmer tries to tackle the change all by himself. He spends a few days to understand and double check all the traps he can think of. Finally, he commits his change, which results in many bugs later on. Every time a bug pops up, it interrupts someone to fix it ASAP.</p>
-
-<p>The savings in interruptions are greater than up front cost of mob or pair programming. </p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/p_pvslS4gEI" frameborder="0" allowfullscreen></iframe>
-
-
-<h2>5. Seams</h2>
-
-<blockquote><p>A software seam is <em>a place where you can alter behavior in your program without editing in that place.</em></p>
-
-<p><a href="http://wiki.c2.com/?SoftwareSeam">Michael Feathers</a></p></blockquote>
-
-<p>This is one of the many interesting things I learned from Michael&rsquo;s book about legacy code.</p>
-
-<p><a href="https://www.amazon.com/gp/product/0131177052/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0131177052&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=edaadc6370c2c8c9e943348d9fbdafb9"><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/legacy-code.jpg" alt="Cover of Working Effectively with Legacy Code" /></a></p>
-
-<p>Object polymorphism is only one kind of seam. Depending on your language, many other types of seams can be available. </p>
-
-<ul>
-<li>Type seam for generic languages</li>
-<li>Static link seam for static libraries</li>
-<li>Dynamic link seam for dynamic libraries</li>
-<li>&hellip;</li>
-</ul>
-
-
-<p>Finding seams in your program is something opportunistic. Keep in mind though that testing through seams is not the end goal. It is only a step to bootstrap the test-refactor loop and start your refactoring journey.</p>
-
-<h2>6. Mikado Method</h2>
-
-<p>How do you get to your end then ? How to you refactor only what&rsquo;s useful for your features ? How do you do large refactorings in baby steps ?</p>
-
-<p>Over time, I found that the mikado method is a good answer to all these issues. The goal of the <a href="https://mikadomethod.wordpress.com/">Mikado Method</a> is to build a graph of dependent refactoring. It can then use it to perform all these refactorings one by one. Here is the mikado method by the book.</p>
-
-<p>Before anything else, you&rsquo;ll need a large sheet of paper to draw the graph. Then repeat the following :</p>
-
-<ol>
-<li>try to do the change you want</li>
-<li>If it builds and the tests pass, great, commit and you&rsquo;re done</li>
-<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
-<li>Write down the compilation and test errors </li>
-<li>Revert your change</li>
-<li>Recurse from 1 for every compilation or test error</li>
-<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
-</ol>
-
-
-<p>Once you built the full graph, tackle the refactorings from the leaves. As leafs have no dependencies, it should be easy to do and commit them.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado.jpg" alt="A Sample Mikado Graph" /></p>
-
-<p>When I first read about the mikado method, it seemed very simple and powerful. Things got more complex when I tried to apply it. For example, the fact that some changes don&rsquo;t compile hide future test failures. That means that very often, the &ldquo;Build the graph&rdquo; and &ldquo;Walk the graph&rdquo; phases overlap. In real life, the graph evolves and changes over time. </p>
-
-<p>My advice about the Mikado Method is not to take it to the letter. It&rsquo;s a fantastic communication tool. It helps not to get lost and to avoid a refactoring tunnel. It also helps to tackle refactoring as a team.</p>
-
-<p>It is not a strict algorithm though. Build and tests are not the only way to build the graph. Very often, a bit of thinking and expert knowledge are the best tools at hand.</p>
-
-<p><a href="https://www.amazon.com/gp/product/1617291218/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1617291218&amp;linkCode=as2&amp;tag=pbourgau-20&amp;linkId=f7405cd74335b3cbb8b263f1a5c37c1d"><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/mikado-book.jpg" alt="Cover of The Mikado Method book" /></a></p>
-
-<h2>7. Bubble Context</h2>
-
-<p>Refactoring needs to be opportunistic. Sometimes there are shortcuts in your refactoring path.</p>
-
-<p>If you have access to a domain expert, the <a href="http://dddcommunity.org/library/evans_2011_2/2">Bubble Context</a> will cut the amount of refactoring to do. It&rsquo;s also an occasion to get rid of all the features that are in your software but that are not required anymore. </p>
-
-<p>The Bubble Context originated from the <a href="http://dddcommunity.org/library/evans_2011_2/">DDD community</a>, as a way to grow a domain in an existing code base. It goes like that :</p>
-
-<ol>
-<li>Find a domain expert</li>
-<li>(Re)write clean code for a very tiny sub domain</li>
-<li>Protect it from the outside with an <a href="https://softwareengineering.stackexchange.com/questions/184464/what-is-an-anti-corruption-layer-and-how-is-it-used">anticorruption layer</a></li>
-<li>Grow it little by little</li>
-</ol>
-
-
-<p>I have friends who are fans of the bubble context. It is super effective provided you have a domain expert. It is a method of choice in complex domain software.</p>
-
-<h2>8. Strangler</h2>
-
-<p>Bubble Context works great when refactoring domain specific code, what about the rest ? I had good results with the <a href="https://www.martinfowler.com/bliki/StranglerApplication.html">Strangler pattern</a>.</p>
-
-<p>For example, we had to refactor a rather complex parser for an internal DSL. It was very difficult to incrementally change the old parser, so we started to build a new one aside. It would try to parse, but delegate to the old one when it failed. Little by little, the new parser was handling more and more of the grammar. When it supported all the inputs, we removed the old one.</p>
-
-<p>The strangler is particularly well suited for refactoring technical components. They have more stable interfaces and can be very difficult to change incrementally.</p>
-
-<h2>9. Parallel Run</h2>
-
-<p>This is more of a trick than a long term strategy. The idea is to use the initial (legacy) version of the code as a reference for your refactoring. Run both and check that they are doing the same thing.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2017-07-28-10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/railroad.jpg" alt="Parallel Railroads" /></p>
-
-<p>Here are some variations around this idea.</p>
-
-<p>If the code you want to refactor is side effect free, it should be easy to duplicate it before refactoring. This enables running both to check that they compute the same thing.</p>
-
-<p>Put this in a unit test to bootstrap a test-refactor loop. You can also run both in production and log any difference. You&rsquo;ll need access to production logs &hellip; Devops teams have a refactoring advantage !</p>
-
-<p>Here is another use of your logs. If the code writes a lot of logs, we can use them as a reference. Capture the logs of the old version, and unit test that the refactored version prints the same logs out. That&rsquo;s an unmaintainable test, but good enough to bootstrap the test-refactor loop.</p>
-
-<p>The <a href="https://github.com/emilybache/GildedRose-Refactoring-Kata">Gilded Rose kata</a> is a good exercise to practice this last technique.</p>
-
-<h2>10. Dead code is better off dead</h2>
-
-<p>You don&rsquo;t need to refactor dead code ! Again, access to production logs is a great advantage for refactoring.</p>
-
-<p>Add logs to learn how the real code runs. If it&rsquo;s never called, then delete it. If it&rsquo;s only called with some set of values, simplify it.</p>
-
-<h2>No silver bullet</h2>
-
-<p>That was a whirlwind tour of the legacy code refactoring techniques I know. It&rsquo;s no promise that refactoring will become easy or fast. I hope it is a good starting point to set up and walk a refactoring plan.</p>
-
-<p>This was the last post of a series of 3 about how to learn refactoring techniques. If you didn&rsquo;t already, check part 1 <a href="/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/">7 Reasons Why Learning Refactoring Techniques Will Improve Your Life as a Software Engineer</a> and part 2 <a href="/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/">How to Start Learning the Tao of Incremental Code Refactoring Today</a>.</p>
 ]]></content>
   </entry>
   
