@@ -75,5 +75,5 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   [Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/)
 *   Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language
 *   Presenting a large scale refactoring as a business opportunity
-*   Spread fear by making the mess visible, and get sponsorship for your large scale refactoring
+*   4 Effective warning signals that will get you sponsorship for a large scale refactoring
 *   Nothing convinces business people like money
