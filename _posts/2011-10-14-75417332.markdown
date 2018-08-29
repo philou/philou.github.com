@@ -1,0 +1,115 @@
+---
+keywords: "c#, testing, Automaticaly, rollback, static, overrides, legacy, code"
+layout: single
+title: Automaticaly rollback static overrides when testing legacy code
+published: true
+date: 2011-10-14
+categories:
+- c#
+- testing
+posterous_url: http://philippe.bourgau.net/75417332
+posterous_slug: '75417332'
+comments: true
+---
+<p>When working with legacy code, writing tests requires to exploit seams to -hack- inject custom behaviour. In his <a href="http://www.amazon.co.uk/Working-Effectively-Legacy-Robert-Martin/dp/0131177052/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1245554188&amp;sr=8-1" title="Great book about testing legacy code">book</a> Michael Feathers explains that singleton (the anti pattern) are often good starting seams. The idea is as follow :</p>
+<ol>
+<li>create a public method to override the singleton value</li>
+<li>make this method deprecated, obsolete or use a TEST_ONLY_ name prefix so that it is not called elsewhere in the code</li>
+<li>Call this method from your test code to inject a mock or whatever so that you can test in isolation</li>
+</ol>
+<p>This works fine ... until you end up with an unexpected failing test [long debugging session]&nbsp;that is in fact the result of a test not restoring a singleton it had overriden. You can try hard not to forget, or you can use some kind of auto restore test class. Here is how it could look like in C#</p>
+<p>
+```c#
+using System;
+using System.Collections.Generic;
+using NUnit.Framework;
+
+namespace Test.Utils
+{
+  public class CleanOverridesTest
+  {
+    private class StaticOverrider&lt;T&gt; : IDisposable
+    {
+      private readonly T _initialValue;
+      private readonly Action&lt;T&gt; _setter;
+
+      public StaticOverrider(T initialValue, Action&lt;T&gt; setter, T newValue)
+      {
+        _initialValue = initialValue;
+        _setter = setter;
+
+        _setter(newValue);
+      }
+
+      public void Dispose()
+      {
+        _setter(_initialValue);
+      }
+    }
+
+    private List&lt;IDisposable&gt; _toDisposeAfterEachTest;
+    private List&lt;IDisposable&gt; ToDisposeAfterEachTest
+    {
+      get
+      {
+        // NUnit enforces a single SetUp method, so we have to make sure the base SetUp method was called by subclasses
+        Assert.IsTrue(BaseSetUpCalled, "Override SetUp and TearDown, and call base implementation.");
+        return _toDisposeAfterEachTest;
+      }
+    }
+
+
+    [SetUp]
+    public virtual void SetUp()
+    {
+      _toDisposeAfterEachTest = new List&lt;IDisposable&gt;();
+    }
+    private bool BaseSetUpCalled
+    {
+      get { return _toDisposeAfterEachTest != null; }
+    }
+
+    [TearDown]
+    public virtual void TearDown()
+    {
+      // Overides and restores should be done in reverse order
+      ToDisposeAfterEachTest.Reverse();
+      foreach(var disposable in ToDisposeAfterEachTest)
+      {
+        try
+        {
+          disposable.Dispose();
+        }
+        catch (Exception)
+        { }
+
+      }
+      ToDisposeAfterEachTest.Clear();
+    }
+
+    protected void OverrideStatic&lt;T&gt;(T initialValue, Action&lt;T&gt; setter, T newValue)
+    {
+      ToDisposeAfterEachTest.Add(new StaticOverrider&lt;T&gt;(initialValue, setter, newValue));
+    }
+  }
+}
+```
+</p>
+<p>Later in an actual test :</p>
+<p>
+```c#
+[TestFixture]
+public class LegacyTest : CleanOverridesTest
+{
+  [Test]
+  public void LegacyShouldWorkWhenZingAndZang()
+  {
+    OverrideStatic(BigManager.Instance, BigManager.TestOnlySetInstance, new BigInstanceMock());
+
+    ...
+  }
+}
+```
+</p>
+<p>The singleton is automaticaly restored in the TearDown method of the base class. In C#, we are luky enough to have delegates so that we can pass the injection setter directly. In language without this feature, you could use reflection or anonymous class.</p>
+<p>Of course, when the code is more reliably tested, you should try to move away from all this hack ...</p>
