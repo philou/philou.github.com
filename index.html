@@ -102,6 +102,249 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : A Pattern Language</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-08-30T08:15:00+02:00" pubdate data-updated="true">Aug 30<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is the ninth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>. It&rsquo;s also the fourth about incremental software development strategies for large scale refactoring. My point is that it&rsquo;s not possible to sell a refactoring to business people until we master those :</p>
+
+<ol>
+<li>How to find the time to refactor in our daily work</li>
+<li>How to learn to work in baby steps</li>
+<li>How to organize and manage this ongoing effort as a team</li>
+</ol>
+
+
+<p>What about when it is not easy to split the work into incremental steps ? It can sometimes be a real challenge to integrate, let alone deploy, a refactoring step by step !</p>
+
+<p>Do you remember the DSL parser refactoring story in mentioned in <a href="/incremental-software-development-techniques-for-large-scale-refactorings/">another post</a> ? Switching to a different parser technology incrementally sounds like an impossible mission. Even so, that&rsquo;s what we did ! </p>
+
+<p>Here&rsquo;s another story. A long time ago, I was working in a bank. We were to migrate imperative <a href="http://www.cplusplus.com/">C++</a> financial contract models into declarative definitions in <a href="https://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>). We had to maintain an ugly adaptation layer. It made it possible migrate and deliver step by step. In the end, we suffered almost no bugs resulting from this transition.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/pattern.jpg" alt="Drawing of the pattern for a T-shirt. Patterns can be useful for Incremental Software Development of Large Scale Refactoring" /></p>
+
+<h2>Why the effort ?</h2>
+
+<p>Incremental refactoring implies going through Frankensteinesk intermediate situations. Situations where both the legacy and the new models exist in the software at the same time. This kind of adaptation layer costs time and energy, but doesn&rsquo;t add value to the product either ! What&rsquo;s the point of going through this ? Isn&rsquo;t a Big-Bang change cheaper ? Here is why it is still worth doing :</p>
+
+<ol>
+<li>It&rsquo;s safer. With incremental delivery, we confirm that what we are doing is working in production. On top of that, if something goes wrong, as we only delivered a small increment, the problem is easier to diagnose.</li>
+<li>It&rsquo;s also safer in term of priorities. The system keeps working during all the refactoring. There&rsquo;s no pressure to finish it before we can move on to the next &lsquo;valuable&rsquo; feature. As <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">I explained before</a> it makes it possible to pause, and why not stop there for the moment. This can be helpful if we hit a new urgent priority.</li>
+<li>Finally, it creates value earlier. Instead of having to wait 2 months to get all the value, you start getting a bit of this value every week. Even refactoring create value ! They reduce the time wasted to fix bugs. They increase our productivity. Sometimes, they even improve Non Functional Requirements of the system.</li>
+</ol>
+
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/value.jpg" alt="Plot of value over time in incremental vs big-bang. We can see that incremental software development creates more value." /></p>
+
+<p>As we can see, the goal of incremental refactoring is not only to work in small steps. We also want to find a way to deliver <em>value</em> incrementally !</p>
+
+<blockquote><p>💡 Incremental refactoring is not only about baby steps, it&rsquo;s also about early value delivery !</p></blockquote>
+
+<h2>A Mini pattern language</h2>
+
+<p>As I said earlier, this is easier said than done. Some piece of code won&rsquo;t let you refactor them step by step easily. Some will be too obscure to know where to start. Some will be just huge. Others will depend on an all encompassing third party. etc.</p>
+
+<p>Here is a short pattern language to deliver large scale refactorings incrementally.</p>
+
+<h3><a href="https://www.infoq.com/news/2016/05/domain-experts-ddd">Discuss with a domain experts</a></h3>
+
+<h4>Goal</h4>
+
+<p>We need to refactor code containing a lot of domain knowledge</p>
+
+<h4>Conditions</h4>
+
+<p>We have a domain expert available</p>
+
+<h4>Therefore</h4>
+
+<p>Have regular discussions with the domain expert to find the best modeling possible.</p>
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 We get simpler code than by trying to replicate the twisted legacy logic</li>
+<li>💚 Can save a lot of work by skipping deprecated aspects.</li>
+<li>💚 Chance to get bug fixes or new features for free</li>
+<li>⚠️ The system does not exactly behave as it used to, which can cause integration problems</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<p>It can sometimes be difficult to find a domain expert &hellip;</p>
+
+<p>A lot of the presentations at the July Paris DDD Meetup were about how to find domain experts. Who actually seem to be pretty rare beasts ! Here are my notes.</p>
+
+<p><a href="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches.jpg"><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches-small.jpg" alt="Mind map of my notes at July Paris DDD Meetup. The point was how to find a domain expert" /></a></p>
+
+<h3><a href="http://dddcommunity.org/library/evans_2011_2/2">Bubble context</a></h3>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/bubble-context.jpg" alt="Drawing of developer and business expert inflating a bubble together. The bubble context is a way to incrementally grow a large scale refactoring from within the software" /></p>
+
+<h4>Goal</h4>
+
+<p>We want to refactor a large piece of code with no Big-Bang</p>
+
+<h4>Conditions</h4>
+
+<p>We have access to the internals of the code to refactor</p>
+
+<h4>Therefore</h4>
+
+<ul>
+<li>Create a new bubble of clean code (a namespace, a package &hellip;)</li>
+<li>Rewrite a piece of legacy code in the bubble</li>
+<li>From the legacy code, delegate to the bubble</li>
+<li>Repeat until the legacy code is not used anymore</li>
+</ul>
+
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 Enables a step by step continuous delivery of the new version</li>
+<li>💚 It is possible to eventually transform the API of the system</li>
+<li>💚 It&rsquo;s easy to add new features in the bubble long before the refactoring is over</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<ul>
+<li>Need to understand the legacy enough to find good delegation points</li>
+<li>Need to understand what the old small piece of code was doing to re-write it. A domain expert might be mandatory.</li>
+</ul>
+
+
+<h3><a href="https://www.martinfowler.com/bliki/StranglerApplication.html">Strangler</a></h3>
+
+<p>The bubble context grows from the inside, but the strangler starts from the outside.</p>
+
+<h4>Goal</h4>
+
+<p>We want to refactor a large piece of code with no Big-Bang</p>
+
+<h4>Conditions</h4>
+
+<p>We can keep the same interface (API) for the legacy and the refactored versions</p>
+
+<h4>Therefore</h4>
+
+<ul>
+<li>Wrap the existing code</li>
+<li>Re-implement calls in the wrapper</li>
+<li>Delegate the rest to the legacy</li>
+<li>Repeat until you support all the interface</li>
+<li>Remove the legacy code</li>
+</ul>
+
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 Enables a step by step continuous delivery of the new version</li>
+<li>⚠️ Maintenance of the wrapper and both versions of the code during all the refactoring</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<ul>
+<li>Interaction between the legacy and the refactored version is not always as simple. For example when the wrapped code is stateful</li>
+<li>The granularity of the steps is the (method) calls to the interface. They need to be small enough for the whole process to be incremental</li>
+</ul>
+
+
+<p>Remember my story about how we switched our DSL parser to <a href="http://www.antlr.org/">ANTLR</a> ? We used a Strangler to do this.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/strangler.jpg" alt="Drawings of a strangler plant growing around legacy code. The strangler is very effective to do incremental software development of doing large scale refactorings" /></p>
+
+<h3><a href="https://martinfowler.com/articles/feature-toggles.html">Feature toggles</a></h3>
+
+<p>Sometimes, we just don&rsquo;t find a way to deliver a refactoring to users step by step. I&rsquo;ve seen situations where all incremental paths implied a temporary impact on NFRs. Ex : Keeping both versions of the code implied an increase in resource consumption.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/switch.jpg" alt="Drawings of an electric switch. Feature toggles are sometimes the last resort to do incremental software development of large scale refactoring" /></p>
+
+<h4>Goal</h4>
+
+<p>Incrementally build a refactoring that we cannot deliver piece by piece to all our users.</p>
+
+<h4>Conditions</h4>
+
+<p>When we cannot find a way to incrementally deliver our refactoring to bulk of our users</p>
+
+<h4>Therefore</h4>
+
+<p>From the code, dynamically switch to the different versions depending on runtime configuration. This way, we let most users stick to the legacy version. Yet, we can build, test, integrate and deploy the new version to beta testers.</p>
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 We can build, integrate and test our refactored code in baby steps</li>
+<li>💚 We can beta and A/B test our refactored code</li>
+<li>⚠️ We need to maintain and evolve both versions of the code for a long time</li>
+<li>⚠️ We need to maintain the switches in the code</li>
+<li>⚠️ We only deploy to beta testers, and don&rsquo;t get as much early value</li>
+<li>⚠️ Duplicate the Continuous Delivery pipeline to test different feature toggle sets</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<p>Maintaining <a href="https://dzone.com/articles/feature-toggles-are-one-worst">feature toggles is a mess</a>. Thus, we need to</p>
+
+<ul>
+<li>As much as possible, prepare the code to reduce the number of switches. Ref : <a href="https://martinfowler.com/bliki/BranchByAbstraction.html">Branch by abstraction</a></li>
+<li>Hunt down the number of active feature toggles at any given time</li>
+<li>Reduce the scope of toggles. Where possible, we should push things out of the toggle into stranglers or bubbles.</li>
+</ul>
+
+
+<p>Feature toggles are an alternate to branches. Even if toggles are painful to use, branches are worse ! I&rsquo;m not going to go over branches. If you want to see why we should not use branches, check <a href="http://videos.ncrafts.io/video/275529985">this talk</a>.</p>
+
+<iframe src="https://player.vimeo.com/video/275529985" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+
+<blockquote><p>💡 Feature toggles are painful, but branches are worse !</p></blockquote>
+
+<h2>Final word</h2>
+
+<p>I&rsquo;m done writing about Incremental Software Development Strategies for Large Scale Refactoring. This is only what I currently know about this very important topic. There&rsquo;s one last thing we need to do to be successful at it. We all need to keep an eye on new ideas from the community, and to share this with our teams as much as possible.</p>
+
+<p>This was the ninth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> ! In <a href="http://eepurl.com/dxKE95">next post</a>, I&rsquo;ll start to go over how to present a refactoring in financial terms to business people.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage It !</a></h1>
     
     
@@ -226,7 +469,7 @@
 
 <h2>Next post</h2>
 
-<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="http://eepurl.com/dxKE95">next post</a>.</p>
+<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">next post</a>.</p>
 
 <p>This was the eighth post in <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. I&rsquo;ve already been through why it&rsquo;s so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important ? How to deliver refactorings steps by steps ? If you haven&rsquo;t start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> !</p>
 </div>
@@ -899,7 +1142,7 @@
 <li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></li>
 <li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a></li>
 <li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a></li>
-<li>Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</li>
+<li><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a></li>
 <li>Presenting a large scale refactoring as a business opportunity</li>
 <li>4 Effective warning signals that will get you sponsorship for a large scale refactoring</li>
 <li>Nothing convinces business people like money</li>
@@ -1008,158 +1251,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">A Coding Dojo Exercises Plan Towards Refactoring Legacy Code</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-06-14T06:29:00+02:00" pubdate data-updated="true">Jun 14<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>My current job <a href="http://www.murex.com">at work</a> is technical coach. I&rsquo;m available for teams that need help to adopt incremental coding practices.</p>
-
-<h2>Problems with refactoring legacy code</h2>
-
-<p>A few months ago, a team which was struggling with a lot of legacy code asked for help. As you might know if you read my blog, I&rsquo;m a big fan of <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a> because it has made my <a href="http://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">life as a developer so much more easy</a>. I&rsquo;m so used to TDD now, that even if I don&rsquo;t have tests yet (as is the case when refactoring legacy code), TDD helps me :</p>
-
-<ul>
-<li>To stick to baby steps which are a lot less likely to fail than larges changes.</li>
-<li>Write testable code. I know what testable code looks like, and when refactoring, I&rsquo;ll try to change it towards that.</li>
-</ul>
-
-
-<p>That&rsquo;s why we started to run regular, all team, <a href="http://philippe.bourgau.net/blog/categories/team-randori-series/">coding dojo randoris</a>. It was nice for the <a href="http://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">team dynamics</a>, and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !</p>
-
-<blockquote><p>💡 Test Driven Development also teaches you what testable code looks like.</p></blockquote>
-
-<h2>The coding dojo exercices</h2>
-
-<p>It turned out that a coding dojo exercises plan was enough to answer their questions. This is what it looks like.</p>
-
-<h3>Drawing</h3>
-
-<p><a href="http://philippe.bourgau.net/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk.jpg"><img src="http://philippe.bourgau.net/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk-small.jpg" alt="An illustrated Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring" /></a></p>
-
-<h3>Mind Map</h3>
-
-<p>Here is another, more concrete, version, with sample names of katas we can find online.</p>
-
-<p><a href="http://philippe.bourgau.net/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan.jpg"><img src="http://philippe.bourgau.net/imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/TDD_Kata_Plan-small.jpg" alt="An mind map of Coding Dojo Exercises plan leading to the mastery of Legacy Code Refactoring" /></a></p>
-
-<h3>Text</h3>
-
-<p>It starts with simple greenfield katas :</p>
-
-<ul>
-<li><a href="http://codingdojo.org/kata/FizzBuzz/">Fizz Buzz</a></li>
-<li><a href="http://codingdojo.org/kata/RomanNumerals/">Roman Numerals</a></li>
-<li><a href="http://codingdojo.org/kata/Bowling/">Bowling</a></li>
-</ul>
-
-
-<p>It goes on to intermediate katas, where we can use TDD to do design :</p>
-
-<ul>
-<li><a href="http://kata-log.rocks/mars-rover-kata">Mars Rover</a></li>
-<li><a href="http://codingdojo.org/kata/PokerHands/">Poker Hands</a></li>
-<li><a href="http://codingdojo.org/kata/TradingCardGame/">trading card game</a></li>
-</ul>
-
-
-<p>From then on, it&rsquo;s possible to tackle advanced katas and styles :</p>
-
-<ul>
-<li>Refactoring fresh code
-
-<ul>
-<li>Continue design katas on 2 or more sessions</li>
-<li>Always compile Constraint</li>
-</ul>
-</li>
-<li>Bottom-up TDD
-
-<ul>
-<li><a href="http://codingdojo.org/kata/GameOfLife/">Game of Life</a></li>
-<li>Median of a list of lists (with no concatenation)</li>
-<li><a href="http://codingdojo.org/kata/LangtonAnt/">Langton ant</a></li>
-</ul>
-</li>
-<li>Top-Down TDD
-
-<ul>
-<li><a href="http://codingdojo.org/kata/Potter/">Kata Potter</a></li>
-<li><a href="http://codingdojo.org/kata/NumberToLCD/">LCD</a></li>
-</ul>
-</li>
-<li>TDD on algorithms
-
-<ul>
-<li><a href="http://codingdojo.org/kata/Diamond/">Diamond</a></li>
-<li><a href="http://codingdojo.org/kata/Lags/">Kata Lags</a></li>
-<li><a href="http://codingdojo.org/kata/Anagram/">anagrams</a></li>
-</ul>
-</li>
-</ul>
-
-
-<p>All this opens the gate to legacy code refactoring katas :</p>
-
-<ul>
-<li><a href="https://github.com/emilybache/GildedRose-Refactoring-Kata">Gilded Rose</a></li>
-<li><a href="https://github.com/emilybache/Racing-Car-Katas">Race Car Katas</a></li>
-<li><a href="https://github.com/jbrains/trivia">Ugly trivia game</a></li>
-<li>Others from <a href="http://kata-log.rocks">http://kata-log.rocks</a></li>
-</ul>
-
-
-<p>At that point, the team can <a href="https://en.wikipedia.org/wiki/Mob_programming">mob</a> to refactor production code :</p>
-
-<ul>
-<li>Real life, static analysis issue, mob programming session</li>
-<li>Real life, code smell, mob programming session</li>
-<li>Real life, larger mob Refactoring</li>
-</ul>
-
-
-<h2>What changed in practice ?</h2>
-
-<p>We wanted to split the teamwork and the coding dojos exercises. The team is now doing mob programming sessions on their usual stories twice a week (I&rsquo;ll blog about that someday). But also doing regular coding dojos exercises in pairs.</p>
-
-<p>Even if they did not go through all the TDD katas yet, mobbing on real stories helps the team to take on legacy code.</p>
-
-<blockquote><p>Given enough eyeballs, all bugs are shallow. Linus&rsquo;s Law</p></blockquote>
-
-<p>Working in pairs on the code katas allows them to be more engaged in the exercises. In the end, it brings faster learning.</p>
-
-<blockquote><p>💡 A mix of Coding Dojos in pairs and Mob Programming sessions is a good way to teach TDD in a Legacy Code context.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1240,6 +1331,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
       </li>
     
@@ -1253,10 +1348,6 @@
     
       <li class="post">
         <a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactorings</a>
-      </li>
-    
-      <li class="post">
-        <a href="/principles-that-will-make-you-become-a-badass-developer/">Principles that will make you become a badass developer</a>
       </li>
     
   </ul>

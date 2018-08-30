@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml?utm_source=blog&amp;utm_medium=rss" rel="self"/>
   <link href="http://philippe.bourgau.net/?utm_source=blog&amp;utm_medium=rss"/>
-  <updated>2018-08-28T06:26:10+02:00</updated>
+  <updated>2018-08-30T06:12:41+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,222 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language]]></title>
+    <link href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/?utm_source=blog&amp;utm_medium=rss"/>
+    <updated>2018-08-30T08:15:00+02:00</updated>
+    <id>http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language</id>
+    <category term="ddd" /><category term="incremental-software-development" /><category term="large-scale-refactoring-sponsorship-series" /><category term="refactoring" />
+    <content type="html"><![CDATA[<p>This is the ninth post in a <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t, I encourage you to start from <a href="http://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>. It&rsquo;s also the fourth about incremental software development strategies for large scale refactoring. My point is that it&rsquo;s not possible to sell a refactoring to business people until we master those :</p>
+
+<ol>
+<li>How to find the time to refactor in our daily work</li>
+<li>How to learn to work in baby steps</li>
+<li>How to organize and manage this ongoing effort as a team</li>
+</ol>
+
+
+<p>What about when it is not easy to split the work into incremental steps ? It can sometimes be a real challenge to integrate, let alone deploy, a refactoring step by step !</p>
+
+<p>Do you remember the DSL parser refactoring story in mentioned in <a href="http://philippe.bourgau.net/incremental-software-development-techniques-for-large-scale-refactorings/">another post</a> ? Switching to a different parser technology incrementally sounds like an impossible mission. Even so, that&rsquo;s what we did ! </p>
+
+<p>Here&rsquo;s another story. A long time ago, I was working in a bank. We were to migrate imperative <a href="http://www.cplusplus.com/">C++</a> financial contract models into declarative definitions in <a href="https://en.wikipedia.org/wiki/C_Sharp_(programming_language">C#</a>). We had to maintain an ugly adaptation layer. It made it possible migrate and deliver step by step. In the end, we suffered almost no bugs resulting from this transition.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/pattern.jpg" alt="Drawing of the pattern for a T-shirt. Patterns can be useful for Incremental Software Development of Large Scale Refactoring" /></p>
+
+<h2>Why the effort ?</h2>
+
+<p>Incremental refactoring implies going through Frankensteinesk intermediate situations. Situations where both the legacy and the new models exist in the software at the same time. This kind of adaptation layer costs time and energy, but doesn&rsquo;t add value to the product either ! What&rsquo;s the point of going through this ? Isn&rsquo;t a Big-Bang change cheaper ? Here is why it is still worth doing :</p>
+
+<ol>
+<li>It&rsquo;s safer. With incremental delivery, we confirm that what we are doing is working in production. On top of that, if something goes wrong, as we only delivered a small increment, the problem is easier to diagnose.</li>
+<li>It&rsquo;s also safer in term of priorities. The system keeps working during all the refactoring. There&rsquo;s no pressure to finish it before we can move on to the next &lsquo;valuable&rsquo; feature. As <a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">I explained before</a> it makes it possible to pause, and why not stop there for the moment. This can be helpful if we hit a new urgent priority.</li>
+<li>Finally, it creates value earlier. Instead of having to wait 2 months to get all the value, you start getting a bit of this value every week. Even refactoring create value ! They reduce the time wasted to fix bugs. They increase our productivity. Sometimes, they even improve Non Functional Requirements of the system.</li>
+</ol>
+
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/value.jpg" alt="Plot of value over time in incremental vs big-bang. We can see that incremental software development creates more value." /></p>
+
+<p>As we can see, the goal of incremental refactoring is not only to work in small steps. We also want to find a way to deliver <em>value</em> incrementally !</p>
+
+<blockquote><p>💡 Incremental refactoring is not only about baby steps, it&rsquo;s also about early value delivery !</p></blockquote>
+
+<h2>A Mini pattern language</h2>
+
+<p>As I said earlier, this is easier said than done. Some piece of code won&rsquo;t let you refactor them step by step easily. Some will be too obscure to know where to start. Some will be just huge. Others will depend on an all encompassing third party. etc.</p>
+
+<p>Here is a short pattern language to deliver large scale refactorings incrementally.</p>
+
+<h3><a href="https://www.infoq.com/news/2016/05/domain-experts-ddd">Discuss with a domain experts</a></h3>
+
+<h4>Goal</h4>
+
+<p>We need to refactor code containing a lot of domain knowledge</p>
+
+<h4>Conditions</h4>
+
+<p>We have a domain expert available</p>
+
+<h4>Therefore</h4>
+
+<p>Have regular discussions with the domain expert to find the best modeling possible.</p>
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 We get simpler code than by trying to replicate the twisted legacy logic</li>
+<li>💚 Can save a lot of work by skipping deprecated aspects.</li>
+<li>💚 Chance to get bug fixes or new features for free</li>
+<li>⚠️ The system does not exactly behave as it used to, which can cause integration problems</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<p>It can sometimes be difficult to find a domain expert &hellip;</p>
+
+<p>A lot of the presentations at the July Paris DDD Meetup were about how to find domain experts. Who actually seem to be pretty rare beasts ! Here are my notes.</p>
+
+<p><a href="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches.jpg"><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/ddd-from-the-trenches-small.jpg" alt="Mind map of my notes at July Paris DDD Meetup. The point was how to find a domain expert" /></a></p>
+
+<h3><a href="http://dddcommunity.org/library/evans_2011_2/2">Bubble context</a></h3>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/bubble-context.jpg" alt="Drawing of developer and business expert inflating a bubble together. The bubble context is a way to incrementally grow a large scale refactoring from within the software" /></p>
+
+<h4>Goal</h4>
+
+<p>We want to refactor a large piece of code with no Big-Bang</p>
+
+<h4>Conditions</h4>
+
+<p>We have access to the internals of the code to refactor</p>
+
+<h4>Therefore</h4>
+
+<ul>
+<li>Create a new bubble of clean code (a namespace, a package &hellip;)</li>
+<li>Rewrite a piece of legacy code in the bubble</li>
+<li>From the legacy code, delegate to the bubble</li>
+<li>Repeat until the legacy code is not used anymore</li>
+</ul>
+
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 Enables a step by step continuous delivery of the new version</li>
+<li>💚 It is possible to eventually transform the API of the system</li>
+<li>💚 It&rsquo;s easy to add new features in the bubble long before the refactoring is over</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<ul>
+<li>Need to understand the legacy enough to find good delegation points</li>
+<li>Need to understand what the old small piece of code was doing to re-write it. A domain expert might be mandatory.</li>
+</ul>
+
+
+<h3><a href="https://www.martinfowler.com/bliki/StranglerApplication.html">Strangler</a></h3>
+
+<p>The bubble context grows from the inside, but the strangler starts from the outside.</p>
+
+<h4>Goal</h4>
+
+<p>We want to refactor a large piece of code with no Big-Bang</p>
+
+<h4>Conditions</h4>
+
+<p>We can keep the same interface (API) for the legacy and the refactored versions</p>
+
+<h4>Therefore</h4>
+
+<ul>
+<li>Wrap the existing code</li>
+<li>Re-implement calls in the wrapper</li>
+<li>Delegate the rest to the legacy</li>
+<li>Repeat until you support all the interface</li>
+<li>Remove the legacy code</li>
+</ul>
+
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 Enables a step by step continuous delivery of the new version</li>
+<li>⚠️ Maintenance of the wrapper and both versions of the code during all the refactoring</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<ul>
+<li>Interaction between the legacy and the refactored version is not always as simple. For example when the wrapped code is stateful</li>
+<li>The granularity of the steps is the (method) calls to the interface. They need to be small enough for the whole process to be incremental</li>
+</ul>
+
+
+<p>Remember my story about how we switched our DSL parser to <a href="http://www.antlr.org/">ANTLR</a> ? We used a Strangler to do this.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/strangler.jpg" alt="Drawings of a strangler plant growing around legacy code. The strangler is very effective to do incremental software development of doing large scale refactorings" /></p>
+
+<h3><a href="https://martinfowler.com/articles/feature-toggles.html">Feature toggles</a></h3>
+
+<p>Sometimes, we just don&rsquo;t find a way to deliver a refactoring to users step by step. I&rsquo;ve seen situations where all incremental paths implied a temporary impact on NFRs. Ex : Keeping both versions of the code implied an increase in resource consumption.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/switch.jpg" alt="Drawings of an electric switch. Feature toggles are sometimes the last resort to do incremental software development of large scale refactoring" /></p>
+
+<h4>Goal</h4>
+
+<p>Incrementally build a refactoring that we cannot deliver piece by piece to all our users.</p>
+
+<h4>Conditions</h4>
+
+<p>When we cannot find a way to incrementally deliver our refactoring to bulk of our users</p>
+
+<h4>Therefore</h4>
+
+<p>From the code, dynamically switch to the different versions depending on runtime configuration. This way, we let most users stick to the legacy version. Yet, we can build, test, integrate and deploy the new version to beta testers.</p>
+
+<h4>Consequences</h4>
+
+<ul>
+<li>💚 We can build, integrate and test our refactored code in baby steps</li>
+<li>💚 We can beta and A/B test our refactored code</li>
+<li>⚠️ We need to maintain and evolve both versions of the code for a long time</li>
+<li>⚠️ We need to maintain the switches in the code</li>
+<li>⚠️ We only deploy to beta testers, and don&rsquo;t get as much early value</li>
+<li>⚠️ Duplicate the Continuous Delivery pipeline to test different feature toggle sets</li>
+</ul>
+
+
+<h4>Difficulties</h4>
+
+<p>Maintaining <a href="https://dzone.com/articles/feature-toggles-are-one-worst">feature toggles is a mess</a>. Thus, we need to</p>
+
+<ul>
+<li>As much as possible, prepare the code to reduce the number of switches. Ref : <a href="https://martinfowler.com/bliki/BranchByAbstraction.html">Branch by abstraction</a></li>
+<li>Hunt down the number of active feature toggles at any given time</li>
+<li>Reduce the scope of toggles. Where possible, we should push things out of the toggle into stranglers or bubbles.</li>
+</ul>
+
+
+<p>Feature toggles are an alternate to branches. Even if toggles are painful to use, branches are worse ! I&rsquo;m not going to go over branches. If you want to see why we should not use branches, check <a href="http://videos.ncrafts.io/video/275529985">this talk</a>.</p>
+
+<iframe src="https://player.vimeo.com/video/275529985" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+
+<blockquote><p>💡 Feature toggles are painful, but branches are worse !</p></blockquote>
+
+<h2>Final word</h2>
+
+<p>I&rsquo;m done writing about Incremental Software Development Strategies for Large Scale Refactoring. This is only what I currently know about this very important topic. There&rsquo;s one last thing we need to do to be successful at it. We all need to keep an eye on new ideas from the community, and to share this with our teams as much as possible.</p>
+
+<p>This was the ninth post in <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. If you haven&rsquo;t start by <a href="http://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> ! In <a href="http://eepurl.com/dxKE95">next post</a>, I&rsquo;ll start to go over how to present a refactoring in financial terms to business people.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !]]></title>
@@ -119,7 +335,7 @@
 
 <h2>Next post</h2>
 
-<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="http://eepurl.com/dxKE95">next post</a>.</p>
+<p>Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That&rsquo;s what I&rsquo;ll go over in the <a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">next post</a>.</p>
 
 <p>This was the eighth post in <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactoring</a>. I&rsquo;ve already been through why it&rsquo;s so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important ? How to deliver refactorings steps by steps ? If you haven&rsquo;t start by <a href="http://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> !</p>
 ]]></content>
@@ -603,7 +819,7 @@
 <li><a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a></li>
 <li><a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a></li>
 <li><a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a></li>
-<li>Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</li>
+<li><a href="http://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a></li>
 <li>Presenting a large scale refactoring as a business opportunity</li>
 <li>4 Effective warning signals that will get you sponsorship for a large scale refactoring</li>
 <li>Nothing convinces business people like money</li>
@@ -3455,62 +3671,6 @@
 <p>I just remembered I did not finish <a href="http://philippe.bourgau.net/how-to-learn-a-programming-language-in-just-20-hours/">my story about my Javascript kata plan</a>. For those wondering, here is the end of story. In the end I did not join this team to do Javascript coaching. After thinking through it for a while, I decided to stop the katas there, and move to something else. I was only 6 hours in, and what was the point to study Javascript not to use it straight away ? The day I&rsquo;ll need it, I&rsquo;m likely to have forgotten 80% of it and some of it will be outdated. The knowledge is only another 20 hours away anyway !</p>
 
 <p>That&rsquo;s what we could call &ldquo;Just In Time Learning&rdquo; ! We are drowning in knowledge nowadays. It&rsquo;s better to have a fast and effective way to learn anything than trying to know everything.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Why 20 hours of code kata are so effective for learning new languages]]></title>
-    <link href="http://philippe.bourgau.net/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/?utm_source=blog&amp;utm_medium=rss"/>
-    <updated>2018-04-05T08:53:00+02:00</updated>
-    <id>http://philippe.bourgau.net/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages</id>
-    <category term="20-hours-code-kata-series" /><category term="coding dojo" /><category term="learning" /><category term="personal-productivity" /><category term="tdd" />
-    <content type="html"><![CDATA[<p>In my <a href="http://philippe.bourgau.net/how-to-learn-a-programming-language-in-just-20-hours/">previous post</a>, I described how I&rsquo;ve been using 20 hours of Code Katas to learn new languages. If you did not read it yet, have a look at it first. Let&rsquo;s now look at why it works so well.</p>
-
-<p>In <a href="https://www.amazon.com/First-20-Hours-Learn-Anything/dp/1591846943/ref=sr_1_2?ie=UTF8&amp;qid=1521785371&amp;sr=8-2&amp;keywords=the+first+20+hours">The First 20 Hours</a> Josh Kaufman explains how he learned <a href="https://www.ruby-lang.org/">Ruby</a> in 20 hours. He did not become a Ruby expert, but he was able to build and maintain a static website generator. For my part, I have succeeded to learn <a href="http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/">a bit of machine learning</a> using the 20 hours technique.</p>
-
-<p>The effectiveness of the 20 hours of Code Katas relies a few key points.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/why.jpg" alt="Drawing of &quot;Why ?&quot; mixed up with the inside of a clock" /></p>
-
-<h2>Time-boxing</h2>
-
-<p>Time-boxing has 2 main benefits. First, it forces us to stick to what is the most important for us to learn. There is no time to waste slacking around in only 20 hours. Plus it&rsquo;s a lot easier to focus for 20 hours than over a very long period of time.</p>
-
-<p>There&rsquo;s a second great thing about time-boxing. The further you go, the less remains to do, and the less likely you are to drop the effort ! We are a lot less likely to abandon when we know we only need a few hours to finish the goal we had set to ourselves.</p>
-
-<blockquote><p>💡 Time-boxing creates focus</p></blockquote>
-
-<h2>A plan</h2>
-
-<p>Again, the plan helps us to focus. We&rsquo;ll need to choose what gets in a 20 hours plan. Building the plan itself forces us to get a grasp of the learning space. This will help to pick the good stuff to practice.</p>
-
-<h2>Routine</h2>
-
-<p>Routine is a magic trick to get things done. Once we have a routine in place, we don&rsquo;t have to think or do extra efforts to find time to learn. The time is already there, we just have to use it !</p>
-
-<h2>Deliberate practice</h2>
-
-<p>Some exemples from &ldquo;The first 20 hours&rdquo; highlight the benefits of deliberate practice. When learning the <a href="https://en.wikipedia.org/wiki/Colemak">Colemak keyboard</a>, the author went through typing exercices. When studying the game of Go, he did practices specific situation puzzles. In both cases, deliberate practice made him learn faster. Code katas are typical deliberate practice exercices for programmers.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/golf-practice.jpg" alt="Picture of a golfer deliberately practicing" /></p>
-
-<h2>Test Driven Development</h2>
-
-<p><a href="http://codingdojo.org/">Coding Dojos</a> are the programmers&#8217; deliberate practice. Coding Dojos traditionally rely on <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>. TDD sets up a fast feedback loop that is key to efficient learning. Think of all the time saved by not having to run and debug a full program every time ! Even dabbling around in the <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a> cannot beat running 20 or so test cases every few seconds.</p>
-
-<h2>We are already programmers</h2>
-
-<p>One last and obvious little detail : we don&rsquo;t have to learn it all ! When the author learned Ruby in 20 hours, he was starting from scratch ! Unlike us, who already know how to program, but want to extend our knowledge to a few more topics. Most of the times, we don&rsquo;t need to relearn everything, but to transpose what we know in a new context.</p>
-
-<p>For example, if we already know an object oriented language, learning a new one will be easier. It&rsquo;s a bit like with foreign languages, the more you know, and the easier it is to learn the next one. In fact, the more languages, frameworks, patterns and paradigms you know, the more the 20 hours code katas will work for you.</p>
-
-<blockquote><p>💡 The more you know about software, the easier it will be to learn your next programming language.</p></blockquote>
-
-<p>You might have a look at <a href="http://philippe.bourgau.net/how-to-keep-up-with-software-technologies/">this post</a> for advices about evergreen concepts to learn.</p>
-
-<h2>Next part</h2>
-
-<p>This was the second post on this <a href="http://philippe.bourgau.net/blog/categories/20-hours-code-kata-series/">series about the 20 hours of Code Katas technique</a>. The <a href="http://philippe.bourgau.net/frequently-asked-questions-about-the-20-hours-of-code-katas/">next, and last, post</a> will be compilation of answers to frequently asked questions.</p>
 ]]></content>
   </entry>
   
