@@ -3,8 +3,8 @@ source "https://rubygems.org"
 gem "minimal-mistakes-jekyll"
 
 group :jekyll_plugins do
-  gem "github-pages"
   gem "jekyll-feed"
+  gem "github-pages"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
