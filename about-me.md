@@ -3,6 +3,7 @@ layout: single
 title: About Me
 permalink: /about-me/
 comments: false
+author_profile: true
 ---
 Philippe Bourgau, sustainable productivity coach and developer
 
@@ -20,7 +21,10 @@ Finally, I love doing side projects, from wannabe businesses to open source.
 
 I'm currently technical coach at [Murex](http://www.murex.com).
 
-* [Github](https://github.com/philou)
-* [Twitter](http://twitter.com/pbourgau)
-* [LinkedIn](http://www.linkedin.com/pub/philippe-bourgau/8/a92/607)
-* [Resume](https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf)
+## Side projects
+
+Here are the main side projects I've been working on throughout the years
+
+* [Philou's Planning Poker](http://philous-planning-poker.herokuapp.com) : Better poker estimates for remote teams !
+* [Storexplore](http://philou.github.io/storexplore) : Transform online stores into APIs !
+* [RSpecProxies](http://philou.github.io/rspecproxies) : Simplify RSpec mocking with test proxies !
