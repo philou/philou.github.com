@@ -93,6 +93,6 @@ Here again, using extra small baby steps helps to pause the refactoring. Another
 
 ## Next post
 
-Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That's what I'll go over in the [next post](http://eepurl.com/dxKE95).
+Using this set of practices my team was able to deliver large scale refactorings in small steps. That said, some refactorings are very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That's what I'll go over in the [next post](/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/).
 
 This was the eighth post in [a series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). I've already been through why it's so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important ? How to deliver refactorings steps by steps ? If you haven't start by [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/) !

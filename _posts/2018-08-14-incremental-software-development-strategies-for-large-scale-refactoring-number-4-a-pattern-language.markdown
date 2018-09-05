@@ -10,7 +10,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Pattern Language, Design Pattern, Refactoring Pattern, Large Scale refactoring pattern, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "Here is a pattern language for incremental software development of large scale refactoring. Big bang refactorings are risky. Deploying a refactoring through a succession of baby steps is a lot safer. Learn ways to deliver a large refactoring incrementally with these refactoring patterns."
-published: false
 ---
 This is the ninth post in a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/). It's also the fourth about incremental software development strategies for large scale refactoring. My point is that it's not possible to sell a refactoring to business people until we master those :
 
