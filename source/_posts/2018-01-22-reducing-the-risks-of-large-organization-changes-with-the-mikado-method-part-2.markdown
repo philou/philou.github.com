@@ -3,7 +3,7 @@ layout: post
 title: "Reducing the risks of large organization changes with the Mikado Method - part 2"
 date: 2018-02-15 06:45
 comments: true
-categories: 
+categories:
  - agile
  - lean
  - coaching
@@ -47,7 +47,7 @@ In some way, the Mikado Method is very similar to the [improvement kata](http://
 5.  Work to remove the impediment
 6.  Start again from step 2
 
-Have a look at [these blog posts](http://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/) for a more practical presentation of the improvement kata.
+Have a look at [these blog posts](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/) for a more practical presentation of the improvement kata.
 
 > 💡 The Mikado Method and the Improvement Kata are more than similar.
 

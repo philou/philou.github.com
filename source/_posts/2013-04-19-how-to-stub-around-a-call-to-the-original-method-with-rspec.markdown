@@ -10,7 +10,7 @@ categories:
 - rspec
 - testing
 ---
-**Update 05/23/2014: I created a [gem](https://github.com/philou/rspecproxies) for this, read an introduction [here](http://philippe.bourgau.net/my-new-gem-for-creating-rspec-proxies/)**
+**Update 05/23/2014: I created a [gem](https://github.com/philou/rspecproxies) for this, read an introduction [here](/my-new-gem-for-creating-rspec-proxies/)**
 
 Rspec mocks now features a 'and_call_original' method to create simple proxy mocks. But how could we build more complex proxies ?
 

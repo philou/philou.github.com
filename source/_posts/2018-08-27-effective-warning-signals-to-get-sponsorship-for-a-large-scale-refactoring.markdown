@@ -58,4 +58,4 @@ We can draw parallels and forecasts, to highlight the high risk of failure.
 
 ## Almost there
 
-This was the 11th post in a [series about how to get sponsorship for large scale refactoring](http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/). Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That's going to be the topic of my [next post](http://eepurl.com/dxKE95).
+This was the 11th post in a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That's going to be the topic of my [next post](http://eepurl.com/dxKE95).

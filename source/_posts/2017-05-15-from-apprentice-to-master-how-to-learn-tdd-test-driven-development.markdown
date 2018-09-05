@@ -106,12 +106,12 @@ As with any rules, there are exceptions. At times, you'll walk into a problem wh
 
 ### Mocks
 
-[Mocks](https://en.wikipedia.org/wiki/Mock_object) are useful at times, but be careful not to overuse them. I already [wrote about mocks](http://localhost:4000/blog/categories/mocking/). Too much mocking makes your test suite brittle, ineffective and difficult to maintain ! I've been bitten hard by this one on a personal [side project](https://github.com/philou/mes-courses), the day I decided to get rid of all the mocks, I shrank the test code size by 25%. Since then I learned about alternate techniques such as :
+[Mocks](https://en.wikipedia.org/wiki/Mock_object) are useful at times, but be careful not to overuse them. I already [wrote about mocks](/blog/categories/mocking/). Too much mocking makes your test suite brittle, ineffective and difficult to maintain ! I've been bitten hard by this one on a personal [side project](https://github.com/philou/mes-courses), the day I decided to get rid of all the mocks, I shrank the test code size by 25%. Since then I learned about alternate techniques such as :
 
 * [Test data builders](http://www.natpryce.com/articles/000714.html) which allow to easily build test data
 * [Value objects](https://martinfowler.com/bliki/ValueObject.html) that are immutable and don't need mocking
 * [test spies and proxies](/my-new-gem-for-creating-rspec-proxies/) as a way to mock and track calls while still calling the real code
-* [in-memory fake implementations](http://localhost:4000/hitting-the-middle-ground-between-classicist-and-mockist-tdd/) which make the tests independent and fast without unmaintainable proliferation of mock setup
+* [in-memory fake implementations](/hitting-the-middle-ground-between-classicist-and-mockist-tdd/) which make the tests independent and fast without unmaintainable proliferation of mock setup
 
 As an indicator, less than 5% of my tests use mocks.
 
