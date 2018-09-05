@@ -55,7 +55,7 @@ In our fast moving tech world, learning remains key ! But instead of trying to k
 * concurrency
 * performance
 
-I wrote [this post](http://philippe.bourgau.net/how-to-keep-up-with-software-technologies/) that explains how I did learn some of these skills (by no mean would I say that this is the only way). Good mastery of these skills should be enough to quickly get up to speed in any project you are involved. This other article [In 2017, learn *every* language](https://blog.bradfieldcs.com/in-2017-learn-every-language-59b11f68eee#.l2n6kouuz), which I found through the excellent [hackernewsletter](http://www.hackernewsletter.com/), explains how this is possible.
+I wrote [this post](/how-to-keep-up-with-software-technologies/) that explains how I did learn some of these skills (by no mean would I say that this is the only way). Good mastery of these skills should be enough to quickly get up to speed in any project you are involved. This other article [In 2017, learn *every* language](https://blog.bradfieldcs.com/in-2017-learn-every-language-59b11f68eee#.l2n6kouuz), which I found through the excellent [hackernewsletter](http://www.hackernewsletter.com/), explains how this is possible.
 
 Unfortunately, knowing is not enough ...
 

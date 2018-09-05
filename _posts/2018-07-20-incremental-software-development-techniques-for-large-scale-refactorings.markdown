@@ -3,7 +3,7 @@ layout: single
 title: "Incremental Software Development for Large Scale Refactorings"
 date: 2018-07-26 09:32
 comments: true
-categories: 
+categories:
  - refactoring
  - incremental-software-development
  - large-scale-refactoring-sponsorship-series
@@ -48,7 +48,7 @@ It is true that performing the refactoring in one team-wide batch would be more 
 
 ## Incremental Software Development techniques
 
-Like any skills, we can learn these techniques. Some are easy, and we can learn them from books. Others are more difficult and are usually learned through hard won experience. They can also be learned from a veteran developer in your team who's been through all this already. If you aren't or don't have a veteran around, we can still manage. [Deliberate practice](https://medium.com/the-crossover-cast/deliberate-practice-learn-like-an-expert-cc3114b8a10e) is a great way to [learn almost anything](http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/). [Coding dojos](http://philippe.bourgau.net{{site.baseurl}}/categories/#coding-dojo) are the thing here (I'll write more about this later).
+Like any skills, we can learn these techniques. Some are easy, and we can learn them from books. Others are more difficult and are usually learned through hard won experience. They can also be learned from a veteran developer in your team who's been through all this already. If you aren't or don't have a veteran around, we can still manage. [Deliberate practice](https://medium.com/the-crossover-cast/deliberate-practice-learn-like-an-expert-cc3114b8a10e) is a great way to [learn almost anything](/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/). [Coding dojos](http://philippe.bourgau.net{{site.baseurl}}/categories/#coding-dojo) are the thing here (I'll write more about this later).
 
 Once we master these skills, a lot of things change. First, we can do refactoring without harming our relationship with business people. Second, it builds enough self confidence among developers to negotiate with business people. This in itself, makes us more credible in their eyes. As a result, they are more likely to compromise on prioritizing refactoring.
 

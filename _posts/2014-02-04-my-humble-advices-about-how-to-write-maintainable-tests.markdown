@@ -24,7 +24,7 @@ Here is how I try to make my tests as maintainable as possible :
 * Use test data builders. This will avoid duplicated and long context setup at the beginning of every test. Don't use factory methods or the object mother pattern, it just does not scale. In java, this usually means [rollying your own](http://www.natpryce.com/articles/000714.html), in ruby, just use [Factory Girl](https://github.com/thoughtbot/factory_girl)
 * Use custom assertion objects. This will avoid duplicated and complicated verification code at the end of every test. It will also help to improve assertion messages. In ruby, this comes built in [rspec](http://rspec.info/) and its [matcher dsl](https://www.relishapp.com/rspec/rspec-expectations/v/2-0/docs/matchers/define-matcher). Lately, in Java I have been using [Fest Assert](https://github.com/alexruiz/fest-assert-2.x)
 * Use the extended red -> red with explicit error message -> green -> refactor in place of the shorter red -> green -> refactor. By spending some time to improve your assertion messages, you'll eventually save time to understand what broke when the test fails
-* As [I already wrote about](http://philippe.bourgau.net/hitting-the-middle-ground-between-classicist-and-mockist-tdd/), only use mocks to
+* As [I already wrote about](/hitting-the-middle-ground-between-classicist-and-mockist-tdd/), only use mocks to
     * speed up a test that is too slow
     * cut off a dependency to an unavailable subsystem
     * simplify an overly complex test setup
@@ -38,4 +38,3 @@ Here is how I try to make my tests as maintainable as possible :
 All in all there is nothing new here. A lot of things come from [GOOS](http://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1391579113&sr=8-1&keywords=growing+object-oriented+software+guided+by+tests) others from [Clean Code](http://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/ref=pd_bxgy_b_text_y), the mocking 'requirements' come from [an article from Gregory Brown](http://blog.rubybestpractices.com/posts/gregory/052-issue-20-thoughts-on-mocking.html), I found others from my own experience and from a lot of other sources I cannot remember now ...
 
 Happy testing !
-

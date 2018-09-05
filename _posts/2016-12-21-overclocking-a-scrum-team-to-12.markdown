@@ -28,7 +28,7 @@ I admit that this idea sounds out-of-fashion in contrast with modern agile teams
 
 At work, we are working on a pretty technical and complex product which requires some time getting into both the code and the domain. We took a few interns during the past years, and a bit like Fred Brooks, we came to the conclusion that internships yield more results when focused on building supporting tools rather than joining the team and working on production code.
 
-We've also been doing [retrospectives](http://philippe.bourgau.net/how-we-introduced-efficient-agile-retrospectives/) for 3 years now, we've stolen a lot of best practices from the industry and the team is working a lot better than it used to. The pending side of this is that nowadays, the opportunities for improvement that we discover are a lot more specific, and they often need us to take some time to build new tools to support our work.
+We've also been doing [retrospectives](/how-we-introduced-efficient-agile-retrospectives/) for 3 years now, we've stolen a lot of best practices from the industry and the team is working a lot better than it used to. The pending side of this is that nowadays, the opportunities for improvement that we discover are a lot more specific, and they often need us to take some time to build new tools to support our work.
 
 ### The Agile Surgical Team
 

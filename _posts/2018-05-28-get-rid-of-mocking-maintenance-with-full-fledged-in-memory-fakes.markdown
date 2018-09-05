@@ -3,7 +3,7 @@ layout: single
 title: "Get rid of mock maintenance with full fledged in-memory fakes"
 date: 2018-05-31 19:15
 comments: true
-categories: 
+categories:
  - tdd
  - mocking
  - testing
@@ -26,74 +26,74 @@ Let's get back to the [last post](/avoid-mocks-and-test-your-core-domain-faster-
 
 ```ruby
 
-require 'core/task'  
-require 'infrastructure/task_repo'  
+require 'core/task'
+require 'infrastructure/task_repo'
 
-class TasksController < ApplicationController  
- before_action :set_task, only: [:show, :edit, :update, :destroy]  
+class TasksController < ApplicationController
+ before_action :set_task, only: [:show, :edit, :update, :destroy]
 
- # GET /tasks  
- def index  
-   @tasks = Infrastructure::TaskRepo.all  
- end  
+ # GET /tasks
+ def index
+   @tasks = Infrastructure::TaskRepo.all
+ end
 
- # GET /tasks/1  
- def show  
- end  
+ # GET /tasks/1
+ def show
+ end
 
- # GET /tasks/new  
- def new  
-   @task = Core::Task.new  
- end  
+ # GET /tasks/new
+ def new
+   @task = Core::Task.new
+ end
 
- # GET /tasks/1/edit  
- def edit  
- end  
+ # GET /tasks/1/edit
+ def edit
+ end
 
- # POST /tasks  
- def create  
-   begin  
-     @task = Core::Task.new(task_params)  
-     Infrastructure::TaskRepo.save(@task)  
+ # POST /tasks
+ def create
+   begin
+     @task = Core::Task.new(task_params)
+     Infrastructure::TaskRepo.save(@task)
 
-     redirect_to task_url(@task.db_id), notice: 'Task was successfully created.'  
+     redirect_to task_url(@task.db_id), notice: 'Task was successfully created.'
 
-   rescue ArgumentError  
-     render :new  
-   end  
- end  
+   rescue ArgumentError
+     render :new
+   end
+ end
 
- # PATCH/PUT /tasks/1  
- def update  
-   begin  
-     @task.update(task_params)  
-     Infrastructure::TaskRepo.save(@task)  
+ # PATCH/PUT /tasks/1
+ def update
+   begin
+     @task.update(task_params)
+     Infrastructure::TaskRepo.save(@task)
 
-     redirect_to task_url(@task.db_id), notice: 'Task was successfully updated.'  
+     redirect_to task_url(@task.db_id), notice: 'Task was successfully updated.'
 
-   rescue ArgumentError  
-     render :edit  
-   end  
- end  
+   rescue ArgumentError
+     render :edit
+   end
+ end
 
- # DELETE /tasks/1  
- def destroy  
-   Infrastructure::TaskRepo.delete(@task)  
-   redirect_to tasks_url, notice: 'Task was successfully destroyed.'  
- end  
+ # DELETE /tasks/1
+ def destroy
+   Infrastructure::TaskRepo.delete(@task)
+   redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+ end
 
- private  
-   def set_task  
-     @task = Infrastructure::TaskRepo.load(params[:id])  
-     @task.notify_when_done do |task|  
-       TwitterClient::Client.update(task.description)  
-     end  
-   end  
+ private
+   def set_task
+     @task = Infrastructure::TaskRepo.load(params[:id])
+     @task.notify_when_done do |task|
+       TwitterClient::Client.update(task.description)
+     end
+   end
 
-   # Never trust parameters from the scary internet, only allow the white list through.  
-   def task_params  
-     params.permit(:description, :done)  
-   end  
+   # Never trust parameters from the scary internet, only allow the white list through.
+   def task_params
+     params.permit(:description, :done)
+   end
 end
 
 ```
@@ -102,47 +102,47 @@ The controller is now dealing both with the Twitter connection and the database.
 
 ```ruby
 
-require 'rails_helper'  
+require 'rails_helper'
 
-RSpec.describe TasksController, type: :controller do  
+RSpec.describe TasksController, type: :controller do
 
- before :each do  
-   allow(TwitterClient::Client).to receive(:update)  
- end  
+ before :each do
+   allow(TwitterClient::Client).to receive(:update)
+ end
 
-  # ...  
+  # ...
 
- describe "PUT #update" do  
-   context "with valid params" do  
-     let(:new_attributes) {  
-       {done: true}  
-     }  
+ describe "PUT #update" do
+   context "with valid params" do
+     let(:new_attributes) {
+       {done: true}
+     }
 
-     it "updates the requested task" do  
-       task = Task.create! valid_attributes  
-       put :update, params: new_attributes.merge(id: task.to_param)  
-       task.reload  
-       expect(task).to be_done  
-     end  
+     it "updates the requested task" do
+       task = Task.create! valid_attributes
+       put :update, params: new_attributes.merge(id: task.to_param)
+       task.reload
+       expect(task).to be_done
+     end
 
-     it "tweets about completed tasks" do  
-       task = Task.create! valid_attributes  
+     it "tweets about completed tasks" do
+       task = Task.create! valid_attributes
 
-       expect(TwitterClient::Client).to receive(:update).with(task.description)  
+       expect(TwitterClient::Client).to receive(:update).with(task.description)
 
-       put :update, params: {id: task.to_param, done: true}  
-     end  
+       put :update, params: {id: task.to_param, done: true}
+     end
 
-     it "redirects to the task" do  
-       task = Task.create! valid_attributes  
-       put :update, params: valid_attributes.merge(id: task.to_param)  
-       expect(response).to redirect_to(task_url(task.id))  
-     end  
-   end  
+     it "redirects to the task" do
+       task = Task.create! valid_attributes
+       put :update, params: valid_attributes.merge(id: task.to_param)
+       expect(response).to redirect_to(task_url(task.id))
+     end
+   end
 
    # ... 
 
-  end  
+  end
 end
 
 ```
@@ -169,38 +169,38 @@ Here's how we could do the same thing for our Twitter Client.
 
 ```ruby
 
-class FakeTwitterClient  
- def initialize  
-   @tweets = []  
- end  
+class FakeTwitterClient
+ def initialize
+   @tweets = []
+ end
 
- attr_accessor :tweets  
+ attr_accessor :tweets
 
- def update(message)  
-   @tweets.push(message)  
- end  
+ def update(message)
+   @tweets.push(message)
+ end
 end
 
 RSpec.configure do |config|
 
-  # ...  
- config.before(:each) do  
-   stub_const("TwitterClient::Client", FakeTwitterClient.new)  
- end  
-end  
+  # ...
+ config.before(:each) do
+   stub_const("TwitterClient::Client", FakeTwitterClient.new)
+ end
+end
 ```
 
 ###### spec/controllers/tasks_controller_spec.rb
 
 ```ruby
 
-it "tweets about completed tasks" do  
- task = Task.create! valid_attributes  
+it "tweets about completed tasks" do
+ task = Task.create! valid_attributes
 
- put :update, params: {id: task.to_param, done: true}  
+ put :update, params: {id: task.to_param, done: true}
 
- expect(TwitterClient::Client.tweets).to include(task.description)  
-end  
+ expect(TwitterClient::Client.tweets).to include(task.description)
+end
 ```
 
 Simple isn't it ?
@@ -221,34 +221,34 @@ Here is what it would look like for our Twitter client :
 
 ```ruby
 
-class FakeTwitterClient  
- def initialize  
-   @tweets = []  
- end  
+class FakeTwitterClient
+ def initialize
+   @tweets = []
+ end
 
- attr_accessor :tweets  
+ attr_accessor :tweets
 
- def tweet(message)  
-   @tweets.push(message)  
- end  
+ def tweet(message)
+   @tweets.push(message)
+ end
 
- def search_tweets(text)  
-   @tweets.select {|tweet| tweet.include?(text) }  
- end  
-end  
+ def search_tweets(text)
+   @tweets.select {|tweet| tweet.include?(text) }
+ end
+end
 
-class RealTwitterClient  
- def initialize(&block)  
-   @client = Twitter::REST::Client.new(&block)  
- end  
+class RealTwitterClient
+ def initialize(&block)
+   @client = Twitter::REST::Client.new(&block)
+ end
 
- def tweet(message)  
-   @client.update(message)  
- end  
+ def tweet(message)
+   @client.update(message)
+ end
 
- def search_tweets(text)  
-   @client.search("from:test_user #{text}")  
- end  
+ def search_tweets(text)
+   @client.search("from:test_user #{text}")
+ end
 end
 
 ```
@@ -259,32 +259,32 @@ As you can see, we renamed `update` to `tweet` in the wrapper. We'd have to upda
 
 ```ruby
 
-require 'rails_helper'  
-require 'infrastructure/twitter_client'  
-require 'securerandom'  
+require 'rails_helper'
+require 'infrastructure/twitter_client'
+require 'securerandom'
 
-RSpec.shared_examples "a twitter client" do |new_client_instance|  
- let(:client) { new_client_instance }  
- it "sends tweets" do  
-   token = SecureRandom.uuid  
-   message = "Philippe was here #{token}"  
-   client.tweet(message)  
+RSpec.shared_examples "a twitter client" do |new_client_instance|
+ let(:client) { new_client_instance }
+ it "sends tweets" do
+   token = SecureRandom.uuid
+   message = "Philippe was here #{token}"
+   client.tweet(message)
 
-   expect(client.search_tweets(token)).to include(message)  
- end  
-end  
+   expect(client.search_tweets(token)).to include(message)
+ end
+end
 
-context FakeTwitterClient do  
- it_behaves_like "a twitter client", FakeTwitterClient.new  
-end  
+context FakeTwitterClient do
+ it_behaves_like "a twitter client", FakeTwitterClient.new
+end
 
-context RealTwitterClient, integration: true, speed: :slow do  
- it_behaves_like "a twitter client", (RealTwitterClient.new do |config|  
-   config.consumer_key        = "TEST_CONSUMER_KEY"  
-   config.consumer_secret     = "TEST_CONSUMER_SECRET"  
-   config.access_token        = "TEST_ACCESS_TOKEN"  
-   config.access_token_secret = "TEST_ACCESS_SECRET"  
- end)  
+context RealTwitterClient, integration: true, speed: :slow do
+ it_behaves_like "a twitter client", (RealTwitterClient.new do |config|
+   config.consumer_key        = "TEST_CONSUMER_KEY"
+   config.consumer_secret     = "TEST_CONSUMER_SECRET"
+   config.access_token        = "TEST_ACCESS_TOKEN"
+   config.access_token_secret = "TEST_ACCESS_SECRET"
+ end)
 end
 
 ```
@@ -297,7 +297,7 @@ Let's look at where we stand now. We're injecting each mock only once. Tests are
 
 ## Last word about implementation
 
-Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping), like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We're far better [plugin it on top of SQLite](http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/) instead !
+Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping), like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We're far better [plugin it on top of SQLite](/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/) instead !
 
 ## References
 
@@ -305,4 +305,4 @@ Smart people have already spoken and written about this subject. If you want to 
 
 ## Next week
 
-This was the 7th blog post in [a series about how to avoid mocks](http://philippe.bourgau.net{{site.baseurl}}/categories/#how-to-avoid-mocks-series). Hopefully, I'm reaching the end ! [Next week's post](/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?
+This was the 7th blog post in [a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). Hopefully, I'm reaching the end ! [Next week's post](/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?

@@ -28,7 +28,7 @@ Once you have an idea of how long you can keep on without much feedback, you're 
 
 ### Don't drown in the code
 
-I once started a [side project](http://philippe.bourgau.net/rip-mes-courses-dot-fr/) partly because I was fed up with the poor technologies I was asked to use at work. My project was some kind of salvation. The drawback of this situation is that I tended to dive into code way too early ! Building a real product takes time, and that's a sure way to get late feedback.
+I once started a [side project](/rip-mes-courses-dot-fr/) partly because I was fed up with the poor technologies I was asked to use at work. My project was some kind of salvation. The drawback of this situation is that I tended to dive into code way too early ! Building a real product takes time, and that's a sure way to get late feedback.
 
 ### Use Lean Startup techniques
 

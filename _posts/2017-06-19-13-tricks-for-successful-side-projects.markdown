@@ -3,7 +3,7 @@ layout: single
 title: "13 Tricks for Successful Side Projects"
 date: 2017-06-19 18:48
 comments: true
-categories: 
+categories:
  - side project
  - software
  - personal-productivity
@@ -24,7 +24,7 @@ As I said before, side projects are time constrained. If you try to follow many 
 
 To avoid this, you need to decide on a unique goal for your project. It can be anything : learning a new tech, building a tool, sell a simple product, maintain a blog.
 
-Depending on the nature of your goal, your side project can take different forms. [20 hours experiments](http://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/) are great for learning new techs. As a side note, [MOOCs](https://en.wiktionary.org/wiki/MOOC) can also be very effective for this. If you want to start a business, start a [lean startup concierge MVP](http://www.allencheng.com/concierge-mvp/). Finally, if you already know users who need a tool, build a minimalistic version for them.
+Depending on the nature of your goal, your side project can take different forms. [20 hours experiments](/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/) are great for learning new techs. As a side note, [MOOCs](https://en.wiktionary.org/wiki/MOOC) can also be very effective for this. If you want to start a business, start a [lean startup concierge MVP](http://www.allencheng.com/concierge-mvp/). Finally, if you already know users who need a tool, build a minimalistic version for them.
 
 ## 2\. Time box your work
 
@@ -105,7 +105,7 @@ When starting a new side project, you have no ideas how long it will last. Could
 
 Starting with all the practices that make large software systems manageable will fail. You won't deliver fast enough. By now, you know the story, if you don't deliver, you'll lose your motivation.
 
-I used [```TODO``` comments](http://philippe.bourgau.net/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/) in my latest side project to keep track of the shortcut I took. I found it had 2 main advantages in my situation :
+I used [```TODO``` comments](/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/) in my latest side project to keep track of the shortcut I took. I found it had 2 main advantages in my situation :
 
 *   I had a quick view of how much total technical debt I took
 *   if things get more serious, it will be easy to find improvement points

@@ -14,12 +14,12 @@ My current job [at work](http://www.murex.com) is technical coach. I'm available
 
 ## Problems with refactoring legacy code
 
-A few months ago, a team which was struggling with a lot of legacy code asked for help. As you might know if you read my blog, I'm a big fan of [Test Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) because it has made my [life as a developer so much more easy](http://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/). I'm so used to TDD now, that even if I don't have tests yet (as is the case when refactoring legacy code), TDD helps me :
+A few months ago, a team which was struggling with a lot of legacy code asked for help. As you might know if you read my blog, I'm a big fan of [Test Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) because it has made my [life as a developer so much more easy](/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/). I'm so used to TDD now, that even if I don't have tests yet (as is the case when refactoring legacy code), TDD helps me :
 
 *   To stick to baby steps which are a lot less likely to fail than larges changes.
 *   Write testable code. I know what testable code looks like, and when refactoring, I'll try to change it towards that.
 
-That's why we started to run regular, all team, [coding dojo randoris](http://philippe.bourgau.net{{site.baseurl}}/categories/#team-randori-series). It was nice for the [team dynamics](http://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/), and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !
+That's why we started to run regular, all team, [coding dojo randoris](http://philippe.bourgau.net{{site.baseurl}}/categories/#team-randori-series). It was nice for the [team dynamics](/why-you-should-start-a-team-coding-dojo-randori-right-now/), and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !
 
 > 💡 Test Driven Development also teaches you what testable code looks like.
 

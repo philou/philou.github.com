@@ -70,6 +70,6 @@ I've been experimenting with these heuristics for some time. Side projects are g
 On the other side, there are things that I still recommend :
 
 *   Independent tests are easy to write from the beginning, difficult to fix later on. As they save a lot of headaches in diagnostic, I stick to them from the start.
-*   Avoid network, it makes the tests slow, fragile and tricky to diagnostic. But please, read [this](http://philippe.bourgau.net/how-not-to-use-mocks-my-talk-at-paris-rb/) before jumping to mocks.
+*   Avoid network, it makes the tests slow, fragile and tricky to diagnostic. But please, read [this](/how-not-to-use-mocks-my-talk-at-paris-rb/) before jumping to mocks.
 
 These rules have served me well, particularly in my side projects, where I don't have a lot of time. What about you ? Do you have your own testing rules ?
