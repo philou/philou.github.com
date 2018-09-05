@@ -19,7 +19,7 @@ In the [previous posts](/reducing-the-risks-of-large-organization-changes-with-t
 
 ## An experiment culture
 
-A first interesting point is the "Try - Revert" attitude. No one is signing with his blood that the change will have to succeed ! It's liberating for everyone to have to try its best instead of having to succeed at all costs. In fact, it's an opportunity to show a "right to fail" mindset. (You can read more about the topic [here]({{site.baseurl}}/categories/#agile-transformations-fail-series/)). It's a clear message that leaders are proponents of experiments.
+A first interesting point is the "Try - Revert" attitude. No one is signing with his blood that the change will have to succeed ! It's liberating for everyone to have to try its best instead of having to succeed at all costs. In fact, it's an opportunity to show a "right to fail" mindset. (You can read more about the topic [here]({{site.baseurl}}/categories/#agile-transformations-fail-series)). It's a clear message that leaders are proponents of experiments.
 
 > 💡 Transforming large organization with the Mikado Method shows a "right to fail" mindset.
 
@@ -50,7 +50,7 @@ I can hear you think "But that's going to take forever !" It is quite the opposi
 
 > 💡 Transforming large organization with the Mikado Method helps to parallelize work.
 
-Granted, if the goal is just to move to "Agile", then it might be slower than switching all teams to "Agile method X". This is only faster on paper though. If you want more details about why becoming agile takes time, I encourage you to read these [other blog posts]({{site.baseurl}}/categories/#agile-transformations-fail-series/). Plus, as I said above we should prefer "What" goals.
+Granted, if the goal is just to move to "Agile", then it might be slower than switching all teams to "Agile method X". This is only faster on paper though. If you want more details about why becoming agile takes time, I encourage you to read these [other blog posts]({{site.baseurl}}/categories/#agile-transformations-fail-series). Plus, as I said above we should prefer "What" goals.
 
 ## Continuous improvement
 

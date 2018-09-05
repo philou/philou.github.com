@@ -13,7 +13,7 @@ categories:
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data, Bug Policy, Exploratory Testing"
 description: "Fifth post in a series relating our first improvement kata. Covers the end of the Plan-Do-Check-Act phase, when we decide to do more exploratory testing, and the end consequence on the team"
 ---
-This is the fifth (and last) post of a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series/) about the improvement kata. If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
+This is the fifth (and last) post of a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series) about the improvement kata. If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
 In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/), we decided to adjust our definition of a bug to limit the time lost on nice-to-have bug fixes.  
 
@@ -73,4 +73,4 @@ As we are still fixing bugs as they appear, the 25% productivity gain claim migh
 
 ## This is it !
 
-This was post 5 in a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series/) about the improvement kata. I'm not completely done writing about this improvement kata though. In the coming weeks, I'll post about the [lessons learned](/lessons-learned-from-running-our-first-improvement-kata/) and [how to start your own improvement kata](/how-to-run-your-first-improvement-kata/).
+This was post 5 in a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series) about the improvement kata. I'm not completely done writing about this improvement kata though. In the coming weeks, I'll post about the [lessons learned](/lessons-learned-from-running-our-first-improvement-kata/) and [how to start your own improvement kata](/how-to-run-your-first-improvement-kata/).

@@ -19,7 +19,7 @@ Hopefully, [Test Data Builders](http://www.natpryce.com/articles/000714.html) bo
 
 ![Drawing of a crate]({{site.url}}{{site.baseurl}}/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg)
 
-This is the fourth post [of a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/) in automated tests. If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
+This is the fourth post [of a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
 
 ## The problem with test data initialization
 
@@ -370,4 +370,4 @@ It's easy to create a specific tests for every assertion with Test Data Builders
 
 ## Next week
 
-This is the fourth post of [a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/) in automated tests. Next week I'll dig into Custom Assertion Matchers and how they avoid mock expectations.
+This is the fourth post of [a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. Next week I'll dig into Custom Assertion Matchers and how they avoid mock expectations.

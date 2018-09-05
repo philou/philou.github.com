@@ -11,7 +11,7 @@ categories:
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori, Teamwork, Programming"
 description: "Ideas about how to push your team coding dojo further in order to improve teamwork and production code."
 ---
-If you've read my [previous posts about Team Randori Coding Dojos]({{site.baseurl}}/categories/#team-randori-series/), you should know why and how to run a successful one.
+If you've read my [previous posts about Team Randori Coding Dojos]({{site.baseurl}}/categories/#team-randori-series), you should know why and how to run a successful one.
 
 Did you manage to setup the team [Randori coding dojo](http://codingdojo.org/RandoriKata/) as a recurring event ? Congratulations ! Your team is on the road to continuous learning and improvement. To close this series of posts, here are battle tested tricks for greatest impact. Let's boost your teamwork, your production code and a few other things.
 

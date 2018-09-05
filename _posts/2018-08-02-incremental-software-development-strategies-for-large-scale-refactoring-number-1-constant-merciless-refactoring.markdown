@@ -15,7 +15,7 @@ description: "The easiest refactorings to negotiate are the ones we don't have t
 
 It's one thing to understand why it's the way to go, but it's another to be able to do it ! In this post, I'll start by explaining how to find the time to do constant [merciless refactoring](http://www.extremeprogramming.org/rules/refactor.html).
 
-This is the sixth post in [a series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series/). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
+This is the sixth post in [a series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
 
 ![Constant Merciless Refactoring illustrated as a recurring cleanup activity]({{site.url}}{{site.baseurl}}/imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/recurring-cleanup.jpg)
 
@@ -59,7 +59,7 @@ I already blogged about the [Boy Scout Rule](http://www.informit.com/articles/ar
 
 Following this simple rule goes a long way to keep the code clean and ready for larger refactorings. It works arm in arm with Yesterday's weather principle. The extra time we take for clean up impacts our capacity to plan stories and features. This creates time to keep on doing the boy scout rule in future iterations.
 
-How 'clean' the code should be is a team decision. Coding conventions and a static code analyzer are very important to track the boy scout rule. I learned that code reviews, pairing, mobbing and [coding dojos]({{site.baseurl}}/categories/#team-randori-series/) are great to agree on coding conventions.
+How 'clean' the code should be is a team decision. Coding conventions and a static code analyzer are very important to track the boy scout rule. I learned that code reviews, pairing, mobbing and [coding dojos]({{site.baseurl}}/categories/#team-randori-series) are great to agree on coding conventions.
 
 ## Embedding refactoring in features
 
@@ -79,4 +79,4 @@ All this to say, we should start our features with the pre-requisite refactoring
 
 Finding the time for constant merciless refactoring is one thing, but how do we fit the work in these short slots ? In the [next post](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/), I'll continue about how to actually work in baby steps.
 
-This was the sixth post about [how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series/).
+This was the sixth post about [how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series).

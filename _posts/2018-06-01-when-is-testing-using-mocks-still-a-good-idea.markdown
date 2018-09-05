@@ -14,7 +14,7 @@ categories:
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Ruby, Testing using mocks, Testing without mocks"
 description: "Learn when testing using mocks still makes sense. Doing too much testing using mocks can become a maintenance nightmare, but there are situations when it remains the best thing to do. For example : legacy code, fake injection, caching, generic wrapping and spy or proxy mocks. Ruby code samples."
 ---
-In the previous 7 articles of [this series]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/), I've tried my best get rid of mocks. I'm pretty sure that using these techniques will get you a long way out of [mock hell](/careless-mocking-considered-harmful/). Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven't already, I encourage you to start reading from [the beginning](/careless-mocking-considered-harmful/).
+In the previous 7 articles of [this series]({{site.baseurl}}/categories/#how-to-avoid-mocks-series), I've tried my best get rid of mocks. I'm pretty sure that using these techniques will get you a long way out of [mock hell](/careless-mocking-considered-harmful/). Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven't already, I encourage you to start reading from [the beginning](/careless-mocking-considered-harmful/).
 
 One question remains though : Is it realistic to get rid of _all_ mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?
 

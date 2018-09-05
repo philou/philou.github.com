@@ -16,7 +16,7 @@ Here is a one sentence summary of my [previous post](/why-we-need-badass-develop
 
  Unfortunately, not all of us are sitting next to a true badass developer ... Hopefully, we can all become one ! Depending on our track record, it's going to be more or less difficult, but with time and the good attitude, we can all do it. Becoming a badass developer is all about trustworthiness.
 
-This post is the third in a [series about how to get sponsorship for a large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series/). If you haven't, I recommend you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
+This post is the third in a [series about how to get sponsorship for a large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). If you haven't, I recommend you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
 
 The first thing to become trustworthy is to avoid things that kill trust. Sounds obvious, but it's very easy to forget. Here are 5 examples of trust killers you should never do if you want to become a badass developer.
 
@@ -59,4 +59,4 @@ It's not only about getting the business's trust. We must also build trust from 
 
 I'm done with this list of things badass developers don't do. Avoiding these is only the first step to become a badass developer. In [next post](/principles-that-will-make-you-become-a-badass-developer/), I'll write about what we need to do if we want to build strong trust with the business.
 
-This post is the third post in a [series about how to get sponsorship for a large scale refactoring.]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series/)
+This post is the third post in a [series about how to get sponsorship for a large scale refactoring.]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series)

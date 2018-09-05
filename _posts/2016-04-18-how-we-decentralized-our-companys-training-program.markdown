@@ -18,7 +18,7 @@ Maybe your company too has a development program you can use to track and organi
 
 ## How did we rebuild this program in our team
 
-As you might remember if you read my [previous posts]({{site.baseurl}}/categories/#selforganizing/), we started a self organization initiative using a [delegation board](https://management30.com/product/workouts/delegation-employee-engagement/). When we tried to decentralize [the end of year evaluation](/how-to-deal-with-the-incentive-system-in-an-agile-team/), we started discussing the subjects of personal development. We decided to have a dedicated workshop about this subject
+As you might remember if you read my [previous posts]({{site.baseurl}}/categories/#selforganizing), we started a self organization initiative using a [delegation board](https://management30.com/product/workouts/delegation-employee-engagement/). When we tried to decentralize [the end of year evaluation](/how-to-deal-with-the-incentive-system-in-an-agile-team/), we started discussing the subjects of personal development. We decided to have a dedicated workshop about this subject
 
 ## Guiding principles
 

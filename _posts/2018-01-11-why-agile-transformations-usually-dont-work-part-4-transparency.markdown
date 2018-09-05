@@ -12,7 +12,7 @@ categories:
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning, Management 3.0, Transparent compensation"
 description: "After going over the typical problems in large scale Agile transformations, I add transparency of vision and information to the pre-requisite"
 ---
-This is the fourth and last post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series/). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
+This is the fourth and last post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 
 In the previous posts, I presented why large scale "Agile" transformation usually fail. Part of the solution is about giving people the time to learn and a safe environment. That's not enough though.
 

@@ -11,7 +11,7 @@ categories:
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning"
 description: "After going over the typical problems in large scale Agile transformations, I dig into the reasons underlying the failures."
 ---
-This is the second post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series/). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
+This is the second post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 
 Let's summarize the previous post. I illustrated the typical disappointment with large scale "Agile" transformations. At best they bring a small short term productivity improvement. At worst, they turn into micro-management.
 
@@ -63,4 +63,4 @@ Many leaders embark their organization in an Agile transformation for some busin
 
 It does not have to be that way. What if they followed massive decentralization of power. What if they made more data available ? What if they adapted the compensation scheme to encourage risk taking. What if they gave authority to their teams to experiment and learn from their own problems. Would people still feel it's just another re-org ? As a reference, see how [unions have been fighting lean manufacturing for decades](https://www.solidarity-us.org/leanproduction).
 
-That's what we'll look into the next posts. This was part 2 of a [series of posts on making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series/). [Further posts](/why-agile-transformations-usually-dont-work-part-3-what-to-do/) will propose what to do.
+That's what we'll look into the next posts. This was part 2 of a [series of posts on making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series). [Further posts](/why-agile-transformations-usually-dont-work-part-3-what-to-do/) will propose what to do.

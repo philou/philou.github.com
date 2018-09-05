@@ -15,7 +15,7 @@ description: "A walk through of the Fizz Buzz kata using immutable value objects
 ---
 In my [previous post](/how-immutable-value-objects-fight-mocks/) I explained how [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) help us to avoid mocks. In this post, I'll illustrate this in practice with real code.
 
-This is the third post on a [series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/). If you haven't, you can start reading the full story [here](/careless-mocking-considered-harmful/).
+This is the third post on a [series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you can start reading the full story [here](/careless-mocking-considered-harmful/).
 
 ![A drawing "FIZZ BUZZ" rock fallen and sealed in the ground]({{site.url}}{{site.baseurl}}/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg)
 
@@ -187,5 +187,5 @@ Outside of this situation, you might try some of the following arguments to move
 
 ## Next post
 
-I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/). In [next post](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/), I'll dig into another small scale mock fighting pattern : [Test Data Builders](http://www.natpryce.com/articles/000714.html).
+I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). In [next post](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/), I'll dig into another small scale mock fighting pattern : [Test Data Builders](http://www.natpryce.com/articles/000714.html).
     

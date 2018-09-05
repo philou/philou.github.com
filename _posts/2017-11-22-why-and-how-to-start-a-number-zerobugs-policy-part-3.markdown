@@ -11,7 +11,7 @@ categories:
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software, Change Management, How to"
 description: "An how-to guide to inject #ZeroBugs in your team"
 ---
-This is the third post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series/). In the [first 2 posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, and what were the consequences.
+This is the third post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series). In the [first 2 posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, and what were the consequences.
 
 I hope that by now, I have convinced you that applying a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is good for you and your team. I'll surprise you by arguing that it's a lot easier than people first think. This post will be about how to inject it in your team.
 
@@ -71,5 +71,5 @@ It's great to fix the bugs very fast. It's even better if to fix them before the
 
 ## Next week
 
-This was part 3 of a [series of posts about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series/). In [next week's post](/why-and-how-to-start-a-number-zerobugs-policy-part-4/), I'll provide arguments and advices to convince the people around you to give it a try.
+This was part 3 of a [series of posts about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series). In [next week's post](/why-and-how-to-start-a-number-zerobugs-policy-part-4/), I'll provide arguments and advices to convince the people around you to give it a try.
 

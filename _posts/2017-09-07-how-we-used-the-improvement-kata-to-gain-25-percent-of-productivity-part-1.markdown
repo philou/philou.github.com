@@ -15,7 +15,7 @@ description: "The first part of a 4 post series about how we applied the improve
 ---
 If you are serious about continuous improvement, you should learn the [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html).
 
-[Retrospectives]({{site.baseurl}}/categories/#retrospectives/) are great to pick all the low hanging improvements. Once you've caught up with the industry's best practices, retrospectives risk drying up. Untapped improvement opportunities likely still exist in your specific context. The improvement kata can find those.
+[Retrospectives]({{site.baseurl}}/categories/#retrospectives) are great to pick all the low hanging improvements. Once you've caught up with the industry's best practices, retrospectives risk drying up. Untapped improvement opportunities likely still exist in your specific context. The improvement kata can find those.
 
 ![Low and high hangling fruits on a tree]({{site.url}}{{site.baseurl}}/imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/low-hanging-fruits.jpeg)
 
@@ -70,4 +70,4 @@ That's how I started to apply the improvement kata in my team. I already had an 
 
 Retrospectives could not get us there. Would the improvement kata would succeed ?
 
-This is the first part of a [series of 4 posts]({{site.baseurl}}/categories/#first-improvement-kata-series/) relating our first use of the improvement kata. In the [next post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/), I'll explain what we did to understand the current situation.
+This is the first part of a [series of 4 posts]({{site.baseurl}}/categories/#first-improvement-kata-series) relating our first use of the improvement kata. In the [next post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/), I'll explain what we did to understand the current situation.

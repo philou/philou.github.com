@@ -25,7 +25,7 @@ test:
 
 That's the most straightforward thing to do, but unfortunately, if you are sharing your test env with [Cucumber](https://cucumber.io/), you might want to use a production like DB with Cucumber ([PostgreSQL](https://www.postgresql.org/) or whatever). So unless you are ready to setup a new env for cucumber (which I tried and don't recommend) you're stuck.
 
-* Use mocks. That's surely going to work, it's going to make your test hell of a lot faster ! It will also make your tests a lot more fragile and more expensive to maintain ... If you want to read more about why I think mocks are a bad idea, just have a look at [these posts]({{site.baseurl}}/categories/#mocking/).
+* Use mocks. That's surely going to work, it's going to make your test hell of a lot faster ! It will also make your tests a lot more fragile and more expensive to maintain ... If you want to read more about why I think mocks are a bad idea, just have a look at [these posts]({{site.baseurl}}/categories/#mocking).
 
 ## The hack
 

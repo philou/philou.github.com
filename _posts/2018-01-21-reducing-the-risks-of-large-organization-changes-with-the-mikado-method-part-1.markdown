@@ -51,4 +51,4 @@ The story ends bad when it goes on for too long. When the leader loses faith in 
 
 ## To be continued
 
-As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a [series about the Mikado Method and large scale organization changes]({{site.baseurl}}/categories/#mikado-method-organization-series/). In [next post](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/), we'll detail this technique, and see how to apply it on organization changes.
+As you can see, the two situations have a lot in common. Programmers have invented the Mikado Method to deal with large scale code changes. This was the first post of a [series about the Mikado Method and large scale organization changes]({{site.baseurl}}/categories/#mikado-method-organization-series). In [next post](/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/), we'll detail this technique, and see how to apply it on organization changes.

@@ -37,7 +37,7 @@ The first general lesson that we learned is that the improvement kata works !
 
 At the beginning, we were very uneasy not to have perfect data. Remember how we had to resort to velocity as a proxy measure for productivity. In the end, that was not a severe problem. It still allowed us to understand what was going on.
 
-We also learned that [retrospective](http://philippe.bourgau.net{{site.baseurl}}/categories/#retrospectives/) is not the only road to continuous improvement. In fact, the improvement kata and retrospectives are very different :
+We also learned that [retrospective](http://philippe.bourgau.net{{site.baseurl}}/categories/#retrospectives) is not the only road to continuous improvement. In fact, the improvement kata and retrospectives are very different :
 
 *   The time frame is different. A retrospective lasts for 1 or 2 hours and yield immediate results. An improvement kata is a background task that could take months in theory !
 *   But the improvement kata also digs a lot deeper in the topic and brings true understanding. In our case, it fixed a problem that retrospectives where failing to address.

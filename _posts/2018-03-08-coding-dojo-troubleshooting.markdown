@@ -57,4 +57,4 @@ One last advice, especially for your first sessions. It's a common rookie mistak
 
 ## What's next ?
 
-This was part 3 of this [series on team coding dojo]({{site.baseurl}}/categories/#team-randori-series/). In [the next post](/how-to-get-the-max-out-of-your-team-coding-dojo/), I'll write how to maximize the benefits we can get out of coding dojos.
+This was part 3 of this [series on team coding dojo]({{site.baseurl}}/categories/#team-randori-series). In [the next post](/how-to-get-the-max-out-of-your-team-coding-dojo/), I'll write how to maximize the benefits we can get out of coding dojos.

@@ -58,7 +58,7 @@ Incremental refactoring techniques offer an alternative. It enables to change an
 
 ## Ease pair programming
 
-eXtreme Programming contains a set of practices that reinforce each other. As I wrote at the beginning, refactoring goes hand in hand with TDD. [Pair programming]({{site.baseurl}}/categories/#pair-programming/) is another practice of XP.
+eXtreme Programming contains a set of practices that reinforce each other. As I wrote at the beginning, refactoring goes hand in hand with TDD. [Pair programming]({{site.baseurl}}/categories/#pair-programming) is another practice of XP.
 
 [![Tangled wool]({{site.url}}{{site.baseurl}}/imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/xp-practices.GIF)](http://www.extremeprogramming.org/map/code.html)<div class="image-credits">From [www.extremeprogramming.org/](http://www.extremeprogramming.org/)</div>
 
