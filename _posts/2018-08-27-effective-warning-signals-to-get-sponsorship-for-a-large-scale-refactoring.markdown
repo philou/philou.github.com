@@ -17,7 +17,7 @@ In 2005, professors Bizer and Petty showed something interesting about human beh
 
 ![Drawing of a warning panel with legacy code written below an awful monster. Sending effective warning signals is a good way to get sponsorship for large scale refactorings]({{site.url}}{{site.baseurl}}/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/legacy-monster.jpg)
 
-This is the 11th post of a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't already, start by [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
+This is the 11th post of a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series/). If you haven't already, start by [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
 
 From the inside, many systems are in such a messy state that seem like a catastrophe waiting to happen. Unfortunately, this mess is completely invisible to non-developers ! Here are a few techniques to show how close we are from a total breakdown !
 
@@ -58,4 +58,4 @@ We can draw parallels and forecasts, to highlight the high risk of failure.
 
 ## Almost there
 
-This was the 11th post in a [series about how to get sponsorship for large scale refactoring](http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/). Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That's going to be the topic of my [next post](http://eepurl.com/dxKE95).
+This was the 11th post in a [series about how to get sponsorship for large scale refactoring](http://philippe.bourgau.net{{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series/). Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That's going to be the topic of my [next post](http://eepurl.com/dxKE95).

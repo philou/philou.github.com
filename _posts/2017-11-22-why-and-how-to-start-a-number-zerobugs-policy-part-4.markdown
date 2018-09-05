@@ -12,7 +12,7 @@ categories:
 keywords: "ZeroBugs, NoBugs, Software, Change Management"
 description: "Arguments to win people over to try #ZeroBugs in your team"
 ---
-This is the forth and last post of a [series about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the [previous posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, what were the consequences and how you could do the same.
+This is the forth and last post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series/). In the [previous posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, what were the consequences and how you could do the same.
 
 There's a catch though, even if you are sure that [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) is a good thing, people around you might not agree ! As with any kind of change, one of the trickiest thing is overcoming people's fear about your idea. This post will be about dealing with people's resistance.
 
@@ -54,4 +54,4 @@ In [this blog post](https://medium.com/swlh/how-we-got-to-zero-bugs-and-implemen
 
 > 💡 #ZeroBugs policy makes work more sustainable
 
-I'm done with this [series about #ZeroBugs policy](/blog/categories/zero-bugs-series/). I hope I convinced you to give it a try. The developer's life is better without bugs ! If you do, or if you already did, I'd love to read about it. Thanks a lot for reading me so far.
+I'm done with this [series about #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series/). I hope I convinced you to give it a try. The developer's life is better without bugs ! If you do, or if you already did, I'd love to read about it. Thanks a lot for reading me so far.

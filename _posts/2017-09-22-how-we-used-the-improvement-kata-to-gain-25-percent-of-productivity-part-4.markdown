@@ -12,7 +12,7 @@ categories:
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data, Bug Policy, Exploratory Testing"
 description: "Fourth post in a series relating our first improvement kata. Covers the beginning of the Plan-Do-Check-Act phase, when we decide to stick to a strict bug policy, but review our definition of what a bug is"
 ---
-This is the fourth post on a [series of 5 about the improvement kata](/blog/categories/first-improvement-kata-series/). If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
+This is the fourth post on a [series of 5 about the improvement kata]({{site.baseurl}}/categories/#first-improvement-kata-series/). If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
 We ended the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/) with a target condition :
 
@@ -75,4 +75,4 @@ We decided to test this new bug definition for a while.
 
 We're getting closer to the end, but you're not done with PDCA yet.
 
-This was post 4 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. In the [next and last post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/) of this story you'll learn how we ended the PDCAs for great results. 
+This was post 4 in a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series/) about the improvement kata. In the [next and last post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/) of this story you'll learn how we ended the PDCAs for great results. 

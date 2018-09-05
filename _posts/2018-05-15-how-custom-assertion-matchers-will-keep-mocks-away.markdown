@@ -13,7 +13,7 @@ categories:
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Test Data Builders, Custom Matchers, Assertion Matchers, Custom Assertion Matchers, Ruby"
 description: "An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point."
 ---
-I cannot write a [series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/) without mentioning Custom Assertion Matchers. If you don't know what custom assertions are, here is pseudo code that uses a custom assertion :
+I cannot write a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/) without mentioning Custom Assertion Matchers. If you don't know what custom assertions are, here is pseudo code that uses a custom assertion :
 
 ```
 assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
@@ -29,7 +29,7 @@ That custom assertion matchers have an effect on mock usage might seem puzzling 
 
 I already blogged about [the benefits of Custom Assertion Matchers](/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/). Here I'm going to dive in their advantages against mocking.
 
-This is the fifth post in a [series about how to avoid mocks](/blog/categories/how-to-avoid-mocks-series/). If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
+This is the fifth post in a [series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/). If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
 
 ## Why would we end up with mocks when we don't have matchers ?
 

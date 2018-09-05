@@ -88,7 +88,7 @@ You should be using [Test Driven Development](https://en.wikipedia.org/wiki/Test
 * It teaches how to do baby steps refactorings
 * 🎁 Bonus : it demonstrates agile principles in practice (focus on outcome, incremental delivery, YAGNI ...)
 
-I've written a lot about TDD, have a look at [my posts](/blog/categories/tdd/) for more. Applying TDD means sticking to the Red-Green-Refactor loop. During first sessions, be particularly careful that people don't refactor on red tests.
+I've written a lot about TDD, have a look at [my posts]({{site.baseurl}}/categories/#tdd/) for more. Applying TDD means sticking to the Red-Green-Refactor loop. During first sessions, be particularly careful that people don't refactor on red tests.
 
 > 💡 Team Randori coding dojo demonstrates agile principles in practice (focus on outcome, incremental delivery, YAGNI ...)
 

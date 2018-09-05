@@ -12,7 +12,7 @@ categories:
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data"
 description: "Third post in a series relating our first improvement kata. Covers the second half of the 'understand' phase, where we understood that to be more productive, we had to have less bugs to fix."
 ---
-This is the third post on a [series of 5 about the improvement kata](/blog/categories/first-improvement-kata-series/). If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
+This is the third post on a [series of 5 about the improvement kata]({{site.baseurl}}/categories/#first-improvement-kata-series/). If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
 In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-2/), I explained how we started to understand what was going on. We were now questioning our way of handling bugs.
 
@@ -100,4 +100,4 @@ At that point, the target condition became obvious :
 
 Currently, around 1 pair (25% of the team) was busy fixing bugs. If we'd manage to bring this down, we'd have a 25% productivity boost.
 
-This was post 3 in a [series of 5](/blog/categories/first-improvement-kata-series/) about the improvement kata. [Next post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/) will be about PDCA.
+This was post 3 in a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series/) about the improvement kata. [Next post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/) will be about PDCA.

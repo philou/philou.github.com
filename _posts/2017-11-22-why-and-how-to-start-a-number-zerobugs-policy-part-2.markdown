@@ -10,7 +10,7 @@ categories:
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Conclusion of our story towards #ZeroBugs"
 ---
-This is the second post of a [series about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In the [previous post](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed what a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is and how we tried to apply it. I encourage you start [there](/why-and-how-to-start-a-number-zerobugs-policy-part-1/).
+This is the second post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series/). In the [previous post](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed what a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is and how we tried to apply it. I encourage you start [there](/why-and-how-to-start-a-number-zerobugs-policy-part-1/).
 
 Here is a quick summary of where we stood. We had tried to apply a #ZeroBugs policy with exploratory testing. We had discovered a lot of bugs, and we had agreed to tackle them little by little. We hoped to finish in a few months.
 
@@ -59,4 +59,4 @@ To summarize, sticking to #ZeroBugs is a win-win and sustainable situation for a
 
 ## Next week
 
-This was part 2 of a [series of posts about the #ZeroBugs policy](/blog/categories/zero-bugs-series/). In [next week's post](/why-and-how-to-start-a-number-zerobugs-policy-part-3/), I'll provide a step by step guide about how to inject a #ZeroBugs policy in your team.
+This was part 2 of a [series of posts about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series/). In [next week's post](/why-and-how-to-start-a-number-zerobugs-policy-part-3/), I'll provide a step by step guide about how to inject a #ZeroBugs policy in your team.

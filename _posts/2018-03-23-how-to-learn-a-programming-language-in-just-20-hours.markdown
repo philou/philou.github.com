@@ -64,7 +64,7 @@ If all went well, you should have learned quite a lot in only 20 hours. At that 
 
 ## To be continued
 
-This was the first post in [a series about applying the 20 hours technique and Code Katas to learn new programming languages](/blog/categories/20-hours-code-kata-series/). Here is the what to expect in the coming posts.
+This was the first post in [a series about applying the 20 hours technique and Code Katas to learn new programming languages]({{site.baseurl}}/categories/#20-hours-code-kata-series/). Here is the what to expect in the coming posts.
 
 1.  [How to learn a programming languages in just 20 hours](/how-to-learn-a-programming-language-in-just-20-hours/)
 2.  [Why 20 hours of code kata are so effective for learning new languages](/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/)

@@ -54,7 +54,7 @@ Others already spoke about the dangers of mocks :
 * Uncle Bob through [his blog](http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html)
 * DHH in the ["Is TDD Dead" series](https://www.google.fr/search?q=is+TDD+dead&safe=active&tbm=vid)
 
-In [this series of posts](/blog/categories/how-to-avoid-mocks-series/), I'll go through the details of the different techniques I used to remove mocks. Here is my plan :
+In [this series of posts]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/), I'll go through the details of the different techniques I used to remove mocks. Here is my plan :
 
 1.  [Careless Mocking considered Harmful](/careless-mocking-considered-harmful/)
 2.  [How Immutable Value Objects fight mocks](/how-immutable-value-objects-fight-mocks/)

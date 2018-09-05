@@ -4,6 +4,7 @@
 cp -r ~/Code/philou.github.com/source/_posts ~/Code/jekyll-sandbox
 find _posts -type f -name "*.markdown" | xargs sed -i '' 's/layout: post/layout: single/'
 find _posts -type f -name "*.markdown" | xargs sed -i '' 's/{{site.url}}/{{site.url}}{{site.baseurl}}/'
+find _posts -type f -name "*.markdown" | xargs sed -i '' 's:/blog/categories/:{{site.baseurl}}/categories/#:g'
 
 # Images
 cp -r ~/Code/philou.github.com/source/imgs ~/Code/jekyll-sandbox

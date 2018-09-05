@@ -18,7 +18,7 @@ description: "Example showing how it is simpler to use a full fledged in-memory 
 
 ![Hand written 'In-memory fake' with memory replaced by a RAM board]({{site.url}}{{site.baseurl}}/imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg)
 
-This is the 7th post in [a series about avoiding mocks](/blog/categories/how-to-avoid-mocks-series/). If you haven't, you might start from [the beginning](/careless-mocking-considered-harmful/).
+This is the 7th post in [a series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series/). If you haven't, you might start from [the beginning](/careless-mocking-considered-harmful/).
 
 ## Mock concentration
 
@@ -305,4 +305,4 @@ Smart people have already spoken and written about this subject. If you want to 
 
 ## Next week
 
-This was the 7th blog post in [a series about how to avoid mocks](http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/). Hopefully, I'm reaching the end ! [Next week's post](/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?
+This was the 7th blog post in [a series about how to avoid mocks](http://philippe.bourgau.net{{site.baseurl}}/categories/#how-to-avoid-mocks-series/). Hopefully, I'm reaching the end ! [Next week's post](/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?

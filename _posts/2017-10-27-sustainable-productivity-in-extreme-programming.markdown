@@ -28,7 +28,7 @@ Let's see exactly how.
 
 ### WIP limitation
 
-XP has a drastic way to reduce WIP by 2 : pair programming. Instead of 6 developers taking on 6 stories at the same time, they only tackle 3. I won't dive into the ton of other advantages to pair programming here. If you want to learn more, these [blog posts](http://philippe.bourgau.net/blog/categories/pair-programming/) might help.
+XP has a drastic way to reduce WIP by 2 : pair programming. Instead of 6 developers taking on 6 stories at the same time, they only tackle 3. I won't dive into the ton of other advantages to pair programming here. If you want to learn more, these [blog posts](http://philippe.bourgau.net{{site.baseurl}}/categories/#pair-programming/) might help.
 
 Although it is now seen as a Scrum practice, Planning Game was part of original XP. Sticking to a basic planning game will give room for slack at the end of iterations. The trick is to leave the [infamous focus factor](https://www.infoq.com/minibooks/scrum-xp-from-the-trenches-2) away.
 

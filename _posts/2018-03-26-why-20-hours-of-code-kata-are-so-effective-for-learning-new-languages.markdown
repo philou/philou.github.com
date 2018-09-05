@@ -58,5 +58,5 @@ You might have a look at [this post](/how-to-keep-up-with-software-technologies/
 
 ## Next part
 
-This was the second post on this [series about the 20 hours of Code Katas technique](/blog/categories/20-hours-code-kata-series/). The [next, and last, post](/frequently-asked-questions-about-the-20-hours-of-code-katas/) will be compilation of answers to frequently asked questions.
+This was the second post on this [series about the 20 hours of Code Katas technique]({{site.baseurl}}/categories/#20-hours-code-kata-series/). The [next, and last, post](/frequently-asked-questions-about-the-20-hours-of-code-katas/) will be compilation of answers to frequently asked questions.
 

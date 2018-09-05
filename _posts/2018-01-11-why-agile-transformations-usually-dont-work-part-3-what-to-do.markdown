@@ -12,7 +12,7 @@ categories:
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning, Management 3.0, Transparent compensation"
 description: "After going over the typical problems in large scale Agile transformations, I explain how patience and providing a right to fail are part of the answer."
 ---
-This is the third post in a [series about making large organizations more agile](/blog/categories/agile-transformations-fail-series/). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
+This is the third post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series/). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 
 Let's summarize the previous posts. Large scale "Agile" transformation programs usually fall short of their promise. One reason is that leaders forget to provide a safe context to learn.
 
@@ -71,4 +71,4 @@ We could worry that dropping MBO will drop people's motivation as well. It turns
 
 ## To be continued
 
-This was part 3 of a [series of posts on making large organizations more agile](/blog/categories/agile-transformations-fail-series/). We're almost at the end. [The last post](/why-agile-transformations-usually-dont-work-part-4-transparency/) will dig into how to provide the data to everyone.
+This was part 3 of a [series of posts on making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series/). We're almost at the end. [The last post](/why-agile-transformations-usually-dont-work-part-4-transparency/) will dig into how to provide the data to everyone.

@@ -10,7 +10,7 @@ categories:
 keywords: "Tests, RSpecProxies, RSpec, Test Proxies, Mocks, Ruby"
 description: "The slides of the talk I gave at Paris.rb meetup, about How not to use mocks"
 ---
-As I already [wrote about](/blog/categories/mocking/), mocks can be trecherous ... I gave a talk about how to avoid them last tuesday at [Paris.rb meetup](http://www.meetup.com/fr-FR/parisrb/). Here are the [slides](https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing).
+As I already [wrote about]({{site.baseurl}}/categories/#mocking/), mocks can be trecherous ... I gave a talk about how to avoid them last tuesday at [Paris.rb meetup](http://www.meetup.com/fr-FR/parisrb/). Here are the [slides](https://docs.google.com/presentation/d/1OH3eBgjyMcpupUnGWsHXm7kQjkckFpnJStYYYqBL6Yk/edit?usp=sharing).
 
 It talks about testing, mocking, but also [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design) and [test proxies à la RR](https://wincent.com/blog/proxies-with-rr) (but for rspec).
 
