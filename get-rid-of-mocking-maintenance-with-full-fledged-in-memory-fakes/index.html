@@ -208,25 +208,25 @@
 </span><span class='line'><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
 </span><span class='line'><span class="err"> </span><span class="n">before_action</span> <span class="ss">:set_task</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:edit</span><span class="p">,</span> <span class="ss">:update</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">index</span>
 </span><span class='line'><span class="err">   </span><span class="vi">@tasks</span> <span class="o">=</span> <span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">all</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/1  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/1</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">show</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/new  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/new</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">new</span>
 </span><span class='line'><span class="err">   </span><span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/1/edit  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># GET /tasks/1/edit</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">edit</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># POST /tasks  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># POST /tasks</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">create</span>
 </span><span class='line'><span class="err">   </span><span class="k">begin</span>
 </span><span class='line'><span class="err">     </span><span class="vi">@task</span> <span class="o">=</span> <span class="ss">Core</span><span class="p">:</span><span class="ss">:Task</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
@@ -239,7 +239,7 @@
 </span><span class='line'><span class="err">   </span><span class="k">end</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># PATCH/PUT /tasks/1  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># PATCH/PUT /tasks/1</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">update</span>
 </span><span class='line'><span class="err">   </span><span class="k">begin</span>
 </span><span class='line'><span class="err">     </span><span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">task_params</span><span class="p">)</span>
@@ -252,7 +252,7 @@
 </span><span class='line'><span class="err">   </span><span class="k">end</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err"> </span><span class="c1"># DELETE /tasks/1  </span>
+</span><span class='line'><span class="err"> </span><span class="c1"># DELETE /tasks/1</span>
 </span><span class='line'><span class="err"> </span><span class="k">def</span> <span class="nf">destroy</span>
 </span><span class='line'><span class="err">   </span><span class="ss">Infrastructure</span><span class="p">:</span><span class="ss">:TaskRepo</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="vi">@task</span><span class="p">)</span>
 </span><span class='line'><span class="err">   </span><span class="n">redirect_to</span> <span class="n">tasks_url</span><span class="p">,</span> <span class="ss">notice</span><span class="p">:</span> <span class="s1">&#39;Task was successfully destroyed.&#39;</span>
@@ -266,7 +266,7 @@
 </span><span class='line'><span class="err">     </span><span class="k">end</span>
 </span><span class='line'><span class="err">   </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">   </span><span class="c1"># Never trust parameters from the scary internet, only allow the white list through.  </span>
+</span><span class='line'><span class="err">   </span><span class="c1"># Never trust parameters from the scary internet, only allow the white list through.</span>
 </span><span class='line'><span class="err">   </span><span class="k">def</span> <span class="nf">task_params</span>
 </span><span class='line'><span class="err">     </span><span class="n">params</span><span class="o">.</span><span class="n">permit</span><span class="p">(</span><span class="ss">:description</span><span class="p">,</span> <span class="ss">:done</span><span class="p">)</span>
 </span><span class='line'><span class="err">   </span><span class="k">end</span>
@@ -326,7 +326,7 @@
 </span><span class='line'><span class="err">   </span><span class="n">allow</span><span class="p">(</span><span class="ss">TwitterClient</span><span class="p">:</span><span class="ss">:Client</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:update</span><span class="p">)</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># ...  </span>
+</span><span class='line'><span class="err">  </span><span class="c1"># ...</span>
 </span><span class='line'>
 </span><span class='line'><span class="err"> </span><span class="n">describe</span> <span class="s2">&quot;PUT #update&quot;</span> <span class="k">do</span>
 </span><span class='line'><span class="err">   </span><span class="n">context</span> <span class="s2">&quot;with valid params&quot;</span> <span class="k">do</span>
@@ -416,7 +416,7 @@
 </span><span class='line'>
 </span><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
 </span><span class='line'>
-</span><span class='line'><span class="err">  </span><span class="c1"># ...  </span>
+</span><span class='line'><span class="err">  </span><span class="c1"># ...</span>
 </span><span class='line'><span class="err"> </span><span class="n">config</span><span class="o">.</span><span class="n">before</span><span class="p">(</span><span class="ss">:each</span><span class="p">)</span> <span class="k">do</span>
 </span><span class='line'><span class="err">   </span><span class="n">stub_const</span><span class="p">(</span><span class="s2">&quot;TwitterClient::Client&quot;</span><span class="p">,</span> <span class="no">FakeTwitterClient</span><span class="o">.</span><span class="n">new</span><span class="p">)</span>
 </span><span class='line'><span class="err"> </span><span class="k">end</span>
@@ -589,7 +589,7 @@
 
 <h2>Last word about implementation</h2>
 
-<p>Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We&rsquo;re far better <a href="http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">plugin it on top of SQLite</a> instead !</p>
+<p>Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We&rsquo;re far better <a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">plugin it on top of SQLite</a> instead !</p>
 
 <h2>References</h2>
 
@@ -597,7 +597,7 @@
 
 <h2>Next week</h2>
 
-<p>This was the 7th blog post in <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a>. Hopefully, I&rsquo;m reaching the end ! <a href="/when-is-testing-using-mocks-still-a-good-idea/">Next week&rsquo;s post</a> should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?</p>
+<p>This was the 7th blog post in <a href="/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a>. Hopefully, I&rsquo;m reaching the end ! <a href="/when-is-testing-using-mocks-still-a-good-idea/">Next week&rsquo;s post</a> should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?</p>
 </div>
 
 
@@ -737,6 +737,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/presenting-a-large-scale-refactoring-as-a-business-opportunity/">Presenting a large scale refactoring as a business opportunity</a>
+      </li>
+    
+      <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
       </li>
     
@@ -750,10 +754,6 @@
     
       <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-techniques-for-large-scale-refactorings/">Incremental Software Development for Large Scale Refactorings</a>
       </li>
     
   </ul>

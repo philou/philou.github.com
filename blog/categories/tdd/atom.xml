@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tdd | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/tdd/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-08-30T06:12:41+02:00</updated>
+  <updated>2018-09-06T06:18:43+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -22,7 +22,7 @@
 
 <h2>Problems with refactoring legacy code</h2>
 
-<p>A few months ago, a team which was struggling with a lot of legacy code asked for help. As you might know if you read my blog, I&rsquo;m a big fan of <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a> because it has made my <a href="http://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">life as a developer so much more easy</a>. I&rsquo;m so used to TDD now, that even if I don&rsquo;t have tests yet (as is the case when refactoring legacy code), TDD helps me :</p>
+<p>A few months ago, a team which was struggling with a lot of legacy code asked for help. As you might know if you read my blog, I&rsquo;m a big fan of <a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development (TDD)</a> because it has made my <a href="/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">life as a developer so much more easy</a>. I&rsquo;m so used to TDD now, that even if I don&rsquo;t have tests yet (as is the case when refactoring legacy code), TDD helps me :</p>
 
 <ul>
 <li>To stick to baby steps which are a lot less likely to fail than larges changes.</li>
@@ -30,7 +30,7 @@
 </ul>
 
 
-<p>That&rsquo;s why we started to run regular, all team, <a href="http://philippe.bourgau.net/blog/categories/team-randori-series/">coding dojo randoris</a>. It was nice for the <a href="http://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">team dynamics</a>, and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !</p>
+<p>That&rsquo;s why we started to run regular, all team, <a href="http://philippe.bourgau.net/blog/categories/team-randori-series/">coding dojo randoris</a>. It was nice for the <a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">team dynamics</a>, and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !</p>
 
 <blockquote><p>💡 Test Driven Development also teaches you what testable code looks like.</p></blockquote>
 
@@ -296,74 +296,74 @@ end
 
 <p>```ruby</p>
 
-<p>require &lsquo;core/task'<br/>
-require 'infrastructure/task_repo&rsquo;</p>
+<p>require &lsquo;core/task&rsquo;
+require &lsquo;infrastructure/task_repo&rsquo;</p>
 
-<p>class TasksController &lt; ApplicationController<br/>
+<p>class TasksController &lt; ApplicationController
  before_action :set_task, only: [:show, :edit, :update, :destroy]</p>
 
-<p> # GET /tasks<br/>
- def index<br/>
-   @tasks = Infrastructure::TaskRepo.all<br/>
+<p> # GET /tasks
+ def index
+   @tasks = Infrastructure::TaskRepo.all
  end</p>
 
-<p> # GET /tasks/1<br/>
- def show<br/>
+<p> # GET /tasks/1
+ def show
  end</p>
 
-<p> # GET /tasks/new<br/>
- def new<br/>
-   @task = Core::Task.new<br/>
+<p> # GET /tasks/new
+ def new
+   @task = Core::Task.new
  end</p>
 
-<p> # GET /tasks/1/edit<br/>
- def edit<br/>
+<p> # GET /tasks/1/edit
+ def edit
  end</p>
 
-<p> # POST /tasks<br/>
- def create<br/>
-   begin<br/>
-     @task = Core::Task.new(task_params)<br/>
+<p> # POST /tasks
+ def create
+   begin
+     @task = Core::Task.new(task_params)
      Infrastructure::TaskRepo.save(@task)</p>
 
 <p>     redirect_to task_url(@task.db_id), notice: &lsquo;Task was successfully created.&rsquo;</p>
 
-<p>   rescue ArgumentError<br/>
-     render :new<br/>
-   end<br/>
+<p>   rescue ArgumentError
+     render :new
+   end
  end</p>
 
-<p> # PATCH/PUT /tasks/1<br/>
- def update<br/>
-   begin<br/>
-     @task.update(task_params)<br/>
+<p> # PATCH/PUT /tasks/1
+ def update
+   begin
+     @task.update(task_params)
      Infrastructure::TaskRepo.save(@task)</p>
 
 <p>     redirect_to task_url(@task.db_id), notice: &lsquo;Task was successfully updated.&rsquo;</p>
 
-<p>   rescue ArgumentError<br/>
-     render :edit<br/>
-   end<br/>
+<p>   rescue ArgumentError
+     render :edit
+   end
  end</p>
 
-<p> # DELETE /tasks/1<br/>
- def destroy<br/>
-   Infrastructure::TaskRepo.delete(@task)<br/>
-   redirect_to tasks_url, notice: &lsquo;Task was successfully destroyed.'<br/>
+<p> # DELETE /tasks/1
+ def destroy
+   Infrastructure::TaskRepo.delete(@task)
+   redirect_to tasks_url, notice: &lsquo;Task was successfully destroyed.&rsquo;
  end</p>
 
-<p> private<br/>
-   def set_task<br/>
-     @task = Infrastructure::TaskRepo.load(params[:id])<br/>
-     @task.notify_when_done do |task|<br/>
-       TwitterClient::Client.update(task.description)<br/>
-     end<br/>
+<p> private
+   def set_task
+     @task = Infrastructure::TaskRepo.load(params[:id])
+     @task.notify_when_done do |task|
+       TwitterClient::Client.update(task.description)
+     end
    end</p>
 
-<p>   # Never trust parameters from the scary internet, only allow the white list through.<br/>
-   def task_params<br/>
-     params.permit(:description, :done)<br/>
-   end<br/>
+<p>   # Never trust parameters from the scary internet, only allow the white list through.
+   def task_params
+     params.permit(:description, :done)
+   end
 end</p>
 
 <p>```</p>
@@ -376,43 +376,43 @@ end</p>
 
 <p>RSpec.describe TasksController, type: :controller do</p>
 
-<p> before :each do<br/>
-   allow(TwitterClient::Client).to receive(:update)<br/>
+<p> before :each do
+   allow(TwitterClient::Client).to receive(:update)
  end</p>
 
 <p>  # &hellip;</p>
 
-<p> describe &ldquo;PUT #update&rdquo; do<br/>
-   context &ldquo;with valid params&rdquo; do<br/>
-     let(:new_attributes) {<br/>
-       {done: true}<br/>
+<p> describe &ldquo;PUT #update&rdquo; do
+   context &ldquo;with valid params&rdquo; do
+     let(:new_attributes) {
+       {done: true}
      }</p>
 
-<p>     it &ldquo;updates the requested task&rdquo; do<br/>
-       task = Task.create! valid_attributes<br/>
-       put :update, params: new_attributes.merge(id: task.to_param)<br/>
-       task.reload<br/>
-       expect(task).to be_done<br/>
+<p>     it &ldquo;updates the requested task&rdquo; do
+       task = Task.create! valid_attributes
+       put :update, params: new_attributes.merge(id: task.to_param)
+       task.reload
+       expect(task).to be_done
      end</p>
 
-<p>     it &ldquo;tweets about completed tasks&rdquo; do<br/>
+<p>     it &ldquo;tweets about completed tasks&rdquo; do
        task = Task.create! valid_attributes</p>
 
 <p>       expect(TwitterClient::Client).to receive(:update).with(task.description)</p>
 
-<p>       put :update, params: {id: task.to_param, done: true}<br/>
+<p>       put :update, params: {id: task.to_param, done: true}
      end</p>
 
-<p>     it &ldquo;redirects to the task&rdquo; do<br/>
-       task = Task.create! valid_attributes<br/>
-       put :update, params: valid_attributes.merge(id: task.to_param)<br/>
-       expect(response).to redirect_to(task_url(task.id))<br/>
-     end<br/>
+<p>     it &ldquo;redirects to the task&rdquo; do
+       task = Task.create! valid_attributes
+       put :update, params: valid_attributes.merge(id: task.to_param)
+       expect(response).to redirect_to(task_url(task.id))
+     end
    end</p>
 
 <p>   # &hellip; </p>
 
-<p>  end<br/>
+<p>  end
 end</p>
 
 <p>```</p>
@@ -439,38 +439,38 @@ end</p>
 
 <p>```ruby</p>
 
-<p>class FakeTwitterClient<br/>
- def initialize<br/>
-   @tweets = []<br/>
+<p>class FakeTwitterClient
+ def initialize
+   @tweets = []
  end</p>
 
 <p> attr_accessor :tweets</p>
 
-<p> def update(message)<br/>
-   @tweets.push(message)<br/>
- end<br/>
+<p> def update(message)
+   @tweets.push(message)
+ end
 end</p>
 
 <p>RSpec.configure do |config|</p>
 
-<p>  # &hellip;<br/>
- config.before(:each) do<br/>
-   stub_const(&ldquo;TwitterClient::Client&rdquo;, FakeTwitterClient.new)<br/>
- end<br/>
-end<br/>
+<p>  # &hellip;
+ config.before(:each) do
+   stub_const(&ldquo;TwitterClient::Client&rdquo;, FakeTwitterClient.new)
+ end
+end
 ```</p>
 
 <h6>spec/controllers/tasks_controller_spec.rb</h6>
 
 <p>```ruby</p>
 
-<p>it &ldquo;tweets about completed tasks&rdquo; do<br/>
+<p>it &ldquo;tweets about completed tasks&rdquo; do
  task = Task.create! valid_attributes</p>
 
 <p> put :update, params: {id: task.to_param, done: true}</p>
 
-<p> expect(TwitterClient::Client.tweets).to include(task.description)<br/>
-end<br/>
+<p> expect(TwitterClient::Client.tweets).to include(task.description)
+end
 ```</p>
 
 <p>Simple isn&rsquo;t it ?</p>
@@ -491,34 +491,34 @@ end<br/>
 
 <p>```ruby</p>
 
-<p>class FakeTwitterClient<br/>
- def initialize<br/>
-   @tweets = []<br/>
+<p>class FakeTwitterClient
+ def initialize
+   @tweets = []
  end</p>
 
 <p> attr_accessor :tweets</p>
 
-<p> def tweet(message)<br/>
-   @tweets.push(message)<br/>
+<p> def tweet(message)
+   @tweets.push(message)
  end</p>
 
-<p> def search_tweets(text)<br/>
-   @tweets.select {|tweet| tweet.include?(text) }<br/>
- end<br/>
+<p> def search_tweets(text)
+   @tweets.select {|tweet| tweet.include?(text) }
+ end
 end</p>
 
-<p>class RealTwitterClient<br/>
- def initialize(&amp;block)<br/>
-   @client = Twitter::REST::Client.new(&amp;block)<br/>
+<p>class RealTwitterClient
+ def initialize(&amp;block)
+   @client = Twitter::REST::Client.new(&amp;block)
  end</p>
 
-<p> def tweet(message)<br/>
-   @client.update(message)<br/>
+<p> def tweet(message)
+   @client.update(message)
  end</p>
 
-<p> def search_tweets(text)<br/>
-   @client.search(&ldquo;from:test_user #{text}&rdquo;)<br/>
- end<br/>
+<p> def search_tweets(text)
+   @client.search(&ldquo;from:test_user #{text}&rdquo;)
+ end
 end</p>
 
 <p>```</p>
@@ -529,32 +529,32 @@ end</p>
 
 <p>```ruby</p>
 
-<p>require &lsquo;rails_helper'<br/>
-require 'infrastructure/twitter_client'<br/>
-require 'securerandom&rsquo;</p>
+<p>require &lsquo;rails_helper&rsquo;
+require &lsquo;infrastructure/twitter_client&rsquo;
+require &lsquo;securerandom&rsquo;</p>
 
-<p>RSpec.shared_examples &ldquo;a twitter client&rdquo; do |new_client_instance|<br/>
- let(:client) { new_client_instance }<br/>
- it &ldquo;sends tweets&rdquo; do<br/>
-   token = SecureRandom.uuid<br/>
-   message = &ldquo;Philippe was here #{token}"<br/>
+<p>RSpec.shared_examples &ldquo;a twitter client&rdquo; do |new_client_instance|
+ let(:client) { new_client_instance }
+ it &ldquo;sends tweets&rdquo; do
+   token = SecureRandom.uuid
+   message = &ldquo;Philippe was here #{token}&rdquo;
    client.tweet(message)</p>
 
-<p>   expect(client.search_tweets(token)).to include(message)<br/>
- end<br/>
+<p>   expect(client.search_tweets(token)).to include(message)
+ end
 end</p>
 
-<p>context FakeTwitterClient do<br/>
- it_behaves_like &ldquo;a twitter client&rdquo;, FakeTwitterClient.new<br/>
+<p>context FakeTwitterClient do
+ it_behaves_like &ldquo;a twitter client&rdquo;, FakeTwitterClient.new
 end</p>
 
-<p>context RealTwitterClient, integration: true, speed: :slow do<br/>
- it_behaves_like &ldquo;a twitter client&rdquo;, (RealTwitterClient.new do |config|<br/>
-   config.consumer_key        = &ldquo;TEST_CONSUMER_KEY"<br/>
-   config.consumer_secret     = "TEST_CONSUMER_SECRET"<br/>
-   config.access_token        = "TEST_ACCESS_TOKEN"<br/>
-   config.access_token_secret = "TEST_ACCESS_SECRET"<br/>
- end)<br/>
+<p>context RealTwitterClient, integration: true, speed: :slow do
+ it_behaves_like &ldquo;a twitter client&rdquo;, (RealTwitterClient.new do |config|
+   config.consumer_key        = &ldquo;TEST_CONSUMER_KEY&rdquo;
+   config.consumer_secret     = &ldquo;TEST_CONSUMER_SECRET&rdquo;
+   config.access_token        = &ldquo;TEST_ACCESS_TOKEN&rdquo;
+   config.access_token_secret = &ldquo;TEST_ACCESS_SECRET&rdquo;
+ end)
 end</p>
 
 <p>```</p>
@@ -567,7 +567,7 @@ end</p>
 
 <h2>Last word about implementation</h2>
 
-<p>Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We&rsquo;re far better <a href="http://philippe.bourgau.net/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">plugin it on top of SQLite</a> instead !</p>
+<p>Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an <a href="https://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We&rsquo;re far better <a href="/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/">plugin it on top of SQLite</a> instead !</p>
 
 <h2>References</h2>
 
@@ -575,7 +575,7 @@ end</p>
 
 <h2>Next week</h2>
 
-<p>This was the 7th blog post in <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a>. Hopefully, I&rsquo;m reaching the end ! <a href="/when-is-testing-using-mocks-still-a-good-idea/">Next week&rsquo;s post</a> should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?</p>
+<p>This was the 7th blog post in <a href="/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a>. Hopefully, I&rsquo;m reaching the end ! <a href="/when-is-testing-using-mocks-still-a-good-idea/">Next week&rsquo;s post</a> should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?</p>
 ]]></content>
   </entry>
   
