@@ -9,7 +9,6 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Presenting a Business Opportunity, Presenting Business opportunity, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects"
 description: "Learn some tricks to present a large scale refactoring as a business opportunity in order to get sponsorship. Using the wrong communication usually leads to no refactoring. Presenting a business opportunity, appearing trustful and delivering a powerful pitch is a lot more likely to be successful."
-published: false 
 ---
 Have you ever tried to talk about refactoring with business people ? Most of the time, the matter is pushed aside or received with rolling eyes ... A few weeks ago, someone on [Hacker News](https://news.ycombinator.com/) asked the question "[As a CTO, what is your most frustrating problem with technical debt?](https://news.ycombinator.com/item?id=17600503&utm_source=hackernewsletter&utm_medium=email&utm_term=ask_hn)". Here is the most voted answer
 

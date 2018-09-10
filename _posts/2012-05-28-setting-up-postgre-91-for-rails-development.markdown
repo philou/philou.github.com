@@ -12,9 +12,10 @@ posterous_url: http://philippe.bourgau.net/setting-up-postgre-91-for-rails-devel
 posterous_slug: setting-up-postgre-91-for-rails-development
 comments: true
 ---
-<p>I am using rails to build <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>. I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.</p>
-<p>I have a script in script/setup that installs dependencies and databases to setup a new dev environment :</p>
-<p>
+I am using rails to build [www.mes-courses.fr](http://www.mes-courses.fr). I use ubuntu for my development os, and heroku for deployment. As heroku enforces the usage of Postgre, I chose to use Postgre on my development setup also. When I upgraded from ubuntu 10.04, I had to review my database configuration.
+
+I have a script in script/setup that installs dependencies and databases to setup a new dev environment :
+
 ```sh
 #!/bin/sh
 
@@ -35,9 +36,9 @@ comments: true
  RAILS_ENV=test bundle exec rake db:migrate
  RAILS_ENV=production bundle exec rake db:migrate
 ```
-</p>
-<p>Here is the corresponding config/database.yml</p>
-<p>
+
+Here is the corresponding config/database.yml
+
 ```yaml
 development:
  adapter: postgresql
@@ -73,5 +74,5 @@ production:
  port: 5433
 
 ```
-</p>
-<p>Hope this helps !</p>
+
+Hope this helps !

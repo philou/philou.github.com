@@ -13,7 +13,7 @@ description: "A summary of where I stand after 5 years of blogging about softwar
 ---
 5 years ago, I started blogging. I started really casually, my posts were personal reminders and notes rather than real well thought of articles. Nevertheless, it did me great good :
 
-* I've been invited to talk at meetups
+* I've been invited to talk at Meetups
 * I've had the joy of seeing some articles being tweeted many times
 * I received interesting job offers from all over the world
 
