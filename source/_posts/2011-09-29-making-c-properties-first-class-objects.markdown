@@ -12,8 +12,10 @@ posterous_url: http://philippe.bourgau.net/making-c-properties-first-class-objec
 posterous_slug: making-c-properties-first-class-objects
 comments: true
 ---
-<p>Functions and methods have a better status in the .Net world than they had in the Java world ... They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It's a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
-<p>
+Functions and methods have a better status in the .Net world than they had in the Java world ... They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.
+
+What about properties ? It's a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :
+
 ```c#
 public event EventHandler NameChanged;
 private string _name;
@@ -33,14 +35,18 @@ public string Name
   }
 }
 ```
-<p />How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;T&gt; classes instances instead of raw properties.<p />
+
+How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property<> classes instances instead of raw properties.
+
 ```c#
 class Presenter
 {
   public readonly Property<string> Name = new Property<string>();
 }
 ```
-<p />The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :<p />
+
+The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :
+
 ```c#
 public partial class MyForm : Form
 {
@@ -65,7 +71,13 @@ public partial class MyForm : Form
    }
 }
 ```
-<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be "Value", and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
-<ul>
-<li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
-<p>I hope this will help someone</p>
+
+Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be "Value", and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :
+
+
+* No need to test property event notifications every time, just test it once on the Property<> class
+* Ultra simple property delegation</li><li>Reusable read only properties
+* Computed properties with dependencies, able to notify changes automaticaly
+* Properties able to validate their value, and notify precise errors to the UI
+
+I hope this will help someone

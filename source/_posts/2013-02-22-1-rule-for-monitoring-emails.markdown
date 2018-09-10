@@ -11,9 +11,14 @@ posterous_url: http://philippe.bourgau.net/1-rule-for-monitoring-emails
 posterous_slug: 1-rule-for-monitoring-emails
 comments: true
 ---
-<p>I just spent a few hours debugging my rails app on heroku to understand why the hell I did not systematicaly receive the monitoring emails that my app was sending ...</p>
-<p>My app was actually rendering the email template.</p>
-<p>Wether the mail came through actually dependend on the mail content !</p>
-<p>It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from 'ovh' and then forwarding emails to my gmail account, it was handy to apply automatic labels.</p>
-<p>Here is the #1 rule : always send your monitoring emails directly to the final recepient ! There will be less risk that some messages get lost.&nbsp;</p>
-<p>I changed the recipient to my gmail address, updated my label filter, and everything is back to normal (a lot of time lost for nothing).</p>
+I just spent a few hours debugging my rails app on Heroku to understand why the hell I did not systematically receive the monitoring emails that my app was sending ...
+
+My app was actually rendering the email template.
+
+Wether the mail came through actually depended on the mail content !
+
+It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from 'OVH' and then forwarding emails to my gmail account, it was handy to apply automatic labels.
+
+Here is the #1 rule : always send your monitoring emails directly to the final recipient ! There will be less risk that some messages get lost.
+
+I changed the recipient to my gmail address, updated my label filter, and everything is back to normal (a lot of time lost for nothing).

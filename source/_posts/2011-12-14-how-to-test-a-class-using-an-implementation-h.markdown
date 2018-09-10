@@ -11,7 +11,14 @@ posterous_url: http://philippe.bourgau.net/how-to-test-a-class-using-an-implemen
 posterous_slug: how-to-test-a-class-using-an-implementation-h
 comments: true
 ---
-<p>Suppose you have some duplicated code in the Foo &amp; Bar classes. You managed to extracted this code in an helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?<p />I though of injecting a mock on the helper class in Foo &amp; Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation ...<p />Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.<p />Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.<p />
+Suppose you have some duplicated code in the Foo & Bar classes. You managed to extracted this code in a helper class. Fine, the helper class can now be tested on its own, but how do I get rid of duplication in FooTest and BarTest ?
+
+I though of injecting a mock on the helper class in Foo & Bar when testing, to make sure the helper instance is correctly used, but sometimes, it just feel as if testing an implementation ...
+
+Here is what we eventually did at work : create an abstract base class to test the api of the helper class. Implement this abstract class once to test the helper class itself, and then implement it once each time it is reused.
+
+Here is an exemple with a ListBuilder helper class that wraps a list and returns a copy of it each time it is asked for.
+
 ```c#
 public class ListBuilder<T>
 {
@@ -42,7 +49,9 @@ public class ListBuilder<T>
 }
 
 ```
-<p />Here is the tests for ListBuilder class itself<p />
+
+Here is the tests for ListBuilder class itself
+
 ```
 public abstract class ListBuilderContractTest<T>
 {
@@ -116,7 +125,9 @@ public class ListBuilderTest : ListBuilderContractTest<string>
 }
 
 ```
-<p />And here are tests for other class using it. First a simple one :<p />
+
+And here are tests for other class using it. First a simple one :
+
 ```c#
 [TestFixture]
 public class OrderPresenterAsExecListBuilderTest : ListBuilderContractTest<IExecRowPresenter>
@@ -154,7 +165,9 @@ public class OrderPresenterAsExecListBuilderTest : ListBuilderContractTest<IExec
 }
 
 ```
-<p />Then a more complex one :<p />
+
+Then a more complex one :
+
 ```c#
 [TestFixture]
 public class StrategyPresenterAsOrderPresenterListBuilderTest : ListBuilderContractTest<IOrderPresenter>
@@ -199,4 +212,9 @@ public class StrategyPresenterAsOrderPresenterListBuilderTest : ListBuilderContr
   }
 }
 ```
-<p />The solution really pleases me :<p />&nbsp;&nbsp;&nbsp; No code duplication<br />&nbsp;&nbsp;&nbsp; Robust tests<br />&nbsp;&nbsp;&nbsp; No artificial mocking<p /></p>
+
+The solution really pleases me :
+
+* No code duplication
+* Robust tests
+* No artificial mocking

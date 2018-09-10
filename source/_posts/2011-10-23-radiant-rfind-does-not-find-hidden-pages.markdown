@@ -10,7 +10,8 @@ posterous_url: http://philippe.bourgau.net/radiant-rfind-does-not-find-hidden-pa
 posterous_slug: radiant-rfind-does-not-find-hidden-pages
 comments: true
 ---
-<p>Suppose you have a hidden newsletter folder in the file following file structure inside <a href="http://radiantcms.org/" title="Radiant is a no-fluff, open source content management system designed for small teams.">radiant</a>:<p />
+Suppose you have a hidden newsletter folder in the file following file structure inside [radiant](http://radiantcms.org/):
+
 ```
 home
   /newsletters
@@ -18,8 +19,11 @@ home
   /july-2011
   /rss
 ```
-<p />and that you want to use the following tag in your rss file<p />
+
+and that you want to use the following tag in your rss file
+
 ```xml
 <r:find url="/newsletters/"> ... </r:find>
 ```
-<p />r:find won't find newsletters because it is hidden, it has to be published to be found.</p>
+
+r:find won't find newsletters because it is hidden, it has to be published to be found.

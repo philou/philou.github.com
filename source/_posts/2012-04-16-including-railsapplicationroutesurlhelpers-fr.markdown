@@ -11,14 +11,8 @@ posterous_url: http://philippe.bourgau.net/including-railsapplicationroutesurlhe
 posterous_slug: including-railsapplicationroutesurlhelpers-fr
 comments: true
 ---
-<p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
-<p>
-```ruby
-undefined 'default_url_options'
-```
-</p>
-<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
-<p>
+When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of `ActionController::UrlWriter` to `Rails.application.routes.url_helpers`. I started to get strange errors like ``` undefined 'default_url_options' ``` when running my specs. The issue was that I was including a module himself including `Rails.application.routes.url_helpers`.
+
 ```ruby
 module PathBarHelper
 
@@ -27,9 +21,9 @@ module PathBarHelper
 
 end
 ```
-</p>
-<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
-<p>
+
+As if at module definition time, url_helpers was not yet completely ready. I changed the code to include url helpers through a hook :
+
 ```ruby
 module PathBarHelper
 
@@ -40,5 +34,5 @@ module PathBarHelper
 
 end
 ```
-</p>
-<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
+
+That did the trick, but I must admit I did not dig the issue completely. Tell me if you did ?
