@@ -11,3 +11,7 @@ cp -r ~/Code/philou.github.com/source/imgs ~/Code/jekyll-sandbox
 
 # Categories
 ls ~/Code/philou.github.com/_deploy/blog/categories/ | xargs -L1 ./_generate_redirect_to.sh
+
+# C# category
+find _posts/ -type f -name "*markdown" | xargs sed -i '' 's/\- c#/- c-sharp/'
+sed -i '' 's/c-number/c-sharp/' blog/categories/c-number.md

@@ -5,7 +5,7 @@ title: How to mock an out of process COM server with C#
 published: true
 date: 2012-02-14
 categories:
-- c#
+- c-sharp
 - mocking
 posterous_url: http://philippe.bourgau.net/how-to-mock-an-out-of-process-com-server-with
 posterous_slug: how-to-mock-an-out-of-process-com-server-with

@@ -1,4 +1,4 @@
 ---
 redirect_to:
-    - "/categories/#c-number"
+    - "/categories/#c-sharp"
 ---

@@ -5,7 +5,7 @@ title: How to test a class using an implementation helper ?
 published: true
 date: 2011-12-14
 categories:
-- c#
+- c-sharp
 - testing
 posterous_url: http://philippe.bourgau.net/how-to-test-a-class-using-an-implementation-h
 posterous_slug: how-to-test-a-class-using-an-implementation-h
@@ -52,7 +52,7 @@ public class ListBuilder<T>
 
 Here is the tests for ListBuilder class itself
 
-```
+```c#
 public abstract class ListBuilderContractTest<T>
 {
   protected abstract void AddAnItem();

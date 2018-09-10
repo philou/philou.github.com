@@ -6,7 +6,7 @@ published: true
 date: 2011-09-29
 categories:
 - binding
-- c#
+- c-sharp
 - UI
 posterous_url: http://philippe.bourgau.net/making-c-properties-first-class-objects
 posterous_slug: making-c-properties-first-class-objects

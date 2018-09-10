@@ -5,7 +5,7 @@ title: Windows licker like with C#
 published: true
 date: 2012-11-07
 categories:
-- c#
+- c-sharp
 - testing
 posterous_url: http://philippe.bourgau.net/windows-licker-like-with-c
 posterous_slug: windows-licker-like-with-c
