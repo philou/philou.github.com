@@ -52,7 +52,7 @@ public class ListBuilder<T>
 
 Here is the tests for ListBuilder class itself
 
-```
+```c#
 public abstract class ListBuilderContractTest<T>
 {
   protected abstract void AddAnItem();
