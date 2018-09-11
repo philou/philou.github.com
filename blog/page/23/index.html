@@ -126,8 +126,7 @@
   </header>
 
 
-  <div class="entry-content"><p>When working with legacy code, writing tests requires to exploit seams to -hack- inject custom behaviour. In his <a href="http://www.amazon.co.uk/Working-Effectively-Legacy-Robert-Martin/dp/0131177052/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1245554188&amp;sr=8-1" title="Great book about testing legacy code">book</a> Michael Feathers explains that singleton (the anti pattern) are often good starting seams. The idea is as follow :</p>
-
+  <div class="entry-content"><p>When working with legacy code, writing tests requires to exploit seams to -hack- inject custom behaviour. In <a href="http://www.amazon.co.uk/Working-Effectively-Legacy-Robert-Martin/dp/0131177052/ref=sr_1_1?ie=UTF8&amp;amp;s=books&amp;amp;qid=1245554188&amp;amp;sr=8-1">Working Effectively with Legacy Code</a>, Michael Feathers explains that singleton (the anti pattern) are often good starting seams. The idea is as follow :</p>
 
 <ol>
 <li>create a public method to override the singleton value</li>
@@ -136,10 +135,8 @@
 </ol>
 
 
-<p>This works fine &#8230; until you end up with an unexpected failing test [long debugging session]&nbsp;that is in fact the result of a test not restoring a singleton it had overriden. You can try hard not to forget, or you can use some kind of auto restore test class. Here is how it could look like in C#</p>
+<p>This works fine &hellip; until you end up with an unexpected failing test [long debugging session] that is in fact the result of a test not restoring a singleton it had overriden. You can try hard not to forget, or you can use some kind of auto restore test class. Here is how it could look like in C#</p>
 
-
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -221,12 +218,12 @@
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="k">public</span> <span class="k">class</span> <span class="nc">CleanOverridesTest</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">private</span> <span class="k">class</span> <span class="nc">StaticOverrider</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="p">:</span> <span class="n">IDisposable</span>
+</span><span class='line'>    <span class="k">private</span> <span class="k">class</span> <span class="nc">StaticOverrider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="p">:</span> <span class="n">IDisposable</span>
 </span><span class='line'>    <span class="p">{</span>
 </span><span class='line'>      <span class="k">private</span> <span class="k">readonly</span> <span class="n">T</span> <span class="n">_initialValue</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">private</span> <span class="k">readonly</span> <span class="n">Action</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">_setter</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">private</span> <span class="k">readonly</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">_setter</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>      <span class="k">public</span> <span class="nf">StaticOverrider</span><span class="p">(</span><span class="n">T</span> <span class="n">initialValue</span><span class="p">,</span> <span class="n">Action</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">setter</span><span class="p">,</span> <span class="n">T</span> <span class="n">newValue</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">public</span> <span class="nf">StaticOverrider</span><span class="p">(</span><span class="n">T</span> <span class="n">initialValue</span><span class="p">,</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">setter</span><span class="p">,</span> <span class="n">T</span> <span class="n">newValue</span><span class="p">)</span>
 </span><span class='line'>      <span class="p">{</span>
 </span><span class='line'>        <span class="n">_initialValue</span> <span class="p">=</span> <span class="n">initialValue</span><span class="p">;</span>
 </span><span class='line'>        <span class="n">_setter</span> <span class="p">=</span> <span class="n">setter</span><span class="p">;</span>
@@ -280,20 +277,17 @@
 </span><span class='line'>      <span class="n">ToDisposeAfterEachTest</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="k">protected</span> <span class="k">void</span> <span class="n">OverrideStatic</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">T</span> <span class="n">initialValue</span><span class="p">,</span> <span class="n">Action</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">setter</span><span class="p">,</span> <span class="n">T</span> <span class="n">newValue</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">protected</span> <span class="k">void</span> <span class="n">OverrideStatic</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">T</span> <span class="n">initialValue</span><span class="p">,</span> <span class="n">Action</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;</span> <span class="n">setter</span><span class="p">,</span> <span class="n">T</span> <span class="n">newValue</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="n">ToDisposeAfterEachTest</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">StaticOverrider</span><span class="p">&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">T</span><span class="p">&amp;</span><span class="n">gt</span><span class="p">;(</span><span class="n">initialValue</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">newValue</span><span class="p">));</span>
+</span><span class='line'>      <span class="n">ToDisposeAfterEachTest</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">StaticOverrider</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">initialValue</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="n">newValue</span><span class="p">));</span>
 </span><span class='line'>    <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
 <p>Later in an actual test :</p>
 
-
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -317,14 +311,11 @@
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
 <p>The singleton is automaticaly restored in the TearDown method of the base class. In C#, we are luky enough to have delegates so that we can pass the injection setter directly. In language without this feature, you could use reflection or anonymous class.</p>
 
-
-<p>Of course, when the code is more reliably tested, you should try to move away from all this hack &#8230;</p>
-
+<p>Of course, when the code is more reliably tested, you should try to move away from all this hack &hellip;</p>
 </div>
   
   
@@ -361,8 +352,9 @@
   </header>
 
 
-  <div class="entry-content"><p>There is a huge difference between reading about agile software developpment, and being an agile developper or team. There are a lot of practical best practices that one learns only through practice.<br />As I am currently building up a training about &#8220;practices of an agile developper&#8221; for <a href="http://www.keyconsulting.fr/" title="Key Consulting">my company</a>, I wanted to collect these best practices in <a href="https://github.com/philou/XP-Patterns/wiki" title="a wiki in github">a XP Patterns wiki</a>.</p>
+  <div class="entry-content"><p>There is a huge difference between reading about agile software developpment, and being an agile developper or team. There are a lot of practical best practices that one learns only through practice.</p>
 
+<p>As I am currently building up a training about &ldquo;practices of an agile developper&rdquo; for <a href="http://www.keyconsulting.fr">my company</a>, I wanted to collect these best practices in an <a href="https://github.com/philou/XP-Patterns/wiki">XP Patterns wiki</a></p>
 </div>
   
   
@@ -399,8 +391,10 @@
   </header>
 
 
-  <div class="entry-content"><p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
-<p>
+  <div class="entry-content"><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.</p>
+
+<p>What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -419,24 +413,27 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">event</span> <span class="n">EventHandler</span> <span class="n">NameChanged</span><span class="p">;</span>
-</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n"><em>name</span><span class="p">;</span>
+</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n">_name</span><span class="p">;</span>
 </span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="k">get</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n"></em>name</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_name</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>  <span class="k">set</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n"><em>name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">_name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="n"></em>name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">_name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
 </span><span class='line'>      <span class="n">InvokeNameChanged</span><span class="p">();</span>
 </span><span class='line'>     <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;T&gt; classes instances instead of raw properties.<p />
+
+
+<p>How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;> classes instances instead of raw properties.</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -446,7 +443,10 @@
 </span><span class='line'>  <span class="k">public</span> <span class="k">readonly</span> <span class="n">Property</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Name</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Property</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :<p />
+
+
+<p>The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -471,7 +471,7 @@
 <span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">MyForm</span> <span class="p">:</span> <span class="n">Form</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">Presenter</span> <span class="n"><em>presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
+</span><span class='line'>  <span class="n">Presenter</span> <span class="n">_presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
@@ -482,7 +482,7 @@
 </span><span class='line'>   <span class="p">{</span>
 </span><span class='line'>    <span class="k">base</span><span class="p">.</span><span class="n">OnLoad</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n"></em>presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox2</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
 </span><span class='line'>   <span class="p">}</span>
 </span><span class='line'>
@@ -492,10 +492,19 @@
 </span><span class='line'>   <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
+
+
+<p>Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :</p>
+
 <ul>
-<li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
-<p>I hope this will help someone</p></p>
+<li>No need to test property event notifications every time, just test it once on the Property&lt;> class</li>
+<li>Ultra simple property delegation</li><li>Reusable read only properties</li>
+<li>Computed properties with dependencies, able to notify changes automaticaly</li>
+<li>Properties able to validate their value, and notify precise errors to the UI</li>
+</ul>
+
+
+<p>I hope this will help someone</p>
 </div>
   
   
@@ -532,8 +541,9 @@
   </header>
 
 
-  <div class="entry-content"><p>I was getting  an &quot;undefined method &#39;find_by_path&#39;&quot; error when using &lt;r:related_by_tags&gt;.<br /> I rolled back to radiant-tags-extension v1.6.1 and it was fixed.</p>
+  <div class="entry-content"><p>I was getting an <code>undefined method 'find_by_path'</code> error when using <code>&lt;r:related_by_tags&gt;</code>.</p>
 
+<p>I rolled back to radiant-tags-extension v1.6.1 and it was fixed.</p>
 </div>
   
   
@@ -570,8 +580,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you&#8217;ve got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules &#8230; You are left with 2 choices :</p>
-
+  <div class="entry-content"><p>Heroku is great, you can have a rails app running live in a few minutes ! There are still a few tricky points you&rsquo;ve got to sort out a little differently. One of them is using rails plugins or extensions. The usage way is to have a submodule in your git repository, but heroku does not support submodules &hellip; You are left with 2 choices :</p>
 
 <ul>
 <li>Expand the submodule as classical files in your main git repository</li>
@@ -579,16 +588,23 @@
 </ul>
 
 
-<p><p>When I can, I&rsquo;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task<p />
+<p>When I can, I&rsquo;ll go the second route. Last time, I ran into a problem. I wanted to use radiant-tags-extension gem with my radiant app, but I could not launch the install rake task</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>rake radiant:extensions:tags:install
 </span></code></pre></td></tr></table></div></figure>
-<p />I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
-<p>in &lt;railsapproot&gt;/lib/tasks/gems.rake<br />
+
+
+<p>I eventually found out that rake tasks from gems are not automatically available from the mail rake command. I also found <a href="http://ggr.com/how-to-include-a-gems-rake-tasks-in-your-rails-app.html">this</a> and it did the trick.</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;#Gem.searcher.find(&#39;radiant-tags-extension&#39;).full_gem_path}/lib/tasks/*.rake&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">ext</span><span class="o">|</span> <span class="nb">load</span> <span class="n">ext</span> <span class="p">}</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># &lt;railsapproot&gt;/lib/tasks/gems.rake</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Dir</span><span class="o">[</span><span class="s2">&quot;#Gem.searcher.find(&#39;radiant-tags-extension&#39;).full_gem_path}/lib/tasks/*.rake&quot;</span><span class="o">].</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">ext</span><span class="o">|</span> <span class="nb">load</span> <span class="n">ext</span> <span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-</p></p>
+
 </div>
   
   
@@ -625,24 +641,23 @@
   </header>
 
 
-  <div class="entry-content"><p>I thought it was a good idea to specify a media in my stylesheet link : <br />
+  <div class="entry-content"><p>I thought it was a good idea to specify a media in my stylesheet link :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/tags.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;tags stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>but when I tried to add another stylesheet, it was ignored ! <br />
+<p>but when I tried to add another stylesheet, it was ignored !</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/common.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;main stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/stylesheets/tags.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">name=</span><span class="s">&quot;tags stylesheet&quot;</span> <span class="na">media=</span><span class="s">&quot;screen&quot;</span> <span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>It worked by removing the media attribute. It seems that only one <br />stylesheet per media is taken into account.</p>
-
+<p>It worked by removing the media attribute. It seems that only one stylesheet per media is taken into account.</p>
 </div>
   
   

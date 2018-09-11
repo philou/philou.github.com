@@ -123,20 +123,8 @@
   </header>
 
 
-<div class="entry-content"><p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of ActionController::UrlWriter to&nbsp;Rails.application.routes.url_helpers. I started to get strange errors like</p>
+<div class="entry-content"><p>When I migrated from rails 2.0 to rails 3.0, I had to change inclusion of <code>ActionController::UrlWriter</code> to <code>Rails.application.routes.url_helpers</code>. I started to get strange errors like <code>undefined 'default_url_options'</code> when running my specs. The issue was that I was including a module himself including <code>Rails.application.routes.url_helpers</code>.</p>
 
-
-<p>
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">undefined</span> <span class="s1">&#39;default_url_options&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-</p>
-
-
-<p>when running my specs. The issue was that I was including a module himself including&nbsp;Rails.application.routes.url_helpers.</p>
-
-
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -150,13 +138,10 @@
 </span><span class='line'>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>As if at module definition time, url_helpers was not yet completly ready. I changed the code to include url helpers through a hook :</p>
+<p>As if at module definition time, url_helpers was not yet completely ready. I changed the code to include url helpers through a hook :</p>
 
-
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -174,11 +159,9 @@
 </span><span class='line'>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>That did the trick, but I must admit I did not dig the issue completly. Tell me if you did ?</p>
-
+<p>That did the trick, but I must admit I did not dig the issue completely. Tell me if you did ?</p>
 </div>
 
 

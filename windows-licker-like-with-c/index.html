@@ -123,13 +123,10 @@
   </header>
 
 
-<div class="entry-content"><p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a>&nbsp;they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a>&nbsp;to pilot a gui running in&nbsp;test thread. Next time I started a new project, I&nbsp;wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
-
+<div class="entry-content"><p>In <a href="http://www.growing-object-oriented-software.com/">Growing object-oriented software guided by tests</a> they use a java library called <a href="http://code.google.com/p/windowlicker/">Window Licker</a> to pilot a gui running in test thread. Next time I started a new project, I wanted to apply the techniques I had learned in the book. As the project was in C#, I searched for a C# equivalent of Window Licker. I did not find any, but it turned out to be really simple to create an equivalent.</p>
 
 <p>Here is the user test code I wanted to be able to write (inside a <a href="http://www.specflow.org">SpecFlow</a> step) :</p>
 
-
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -141,19 +138,14 @@
 </span><span class='line'>  <span class="n">User</span><span class="p">.</span><span class="n">Enters</span><span class="p">(</span><span class="n">ScenarioContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">UserForm</span><span class="p">().</span><span class="n">EmailTextBox</span><span class="p">,</span> <span class="n">email</span><span class="p">);</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
 <p>Here UserForm is an extension method I added to the ScenarioContext that is responsible for returning the current user form.</p>
 
-
-<p>As you have noticed, the various gui components must be&nbsp;exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
-
+<p>As you have noticed, the various gui components must be exposed through some kind of public api. What I did was to expose the main gui window as a property on the application top level object, and then have properties to access all the sub windows and the controls that the tests needed to access. It kind of breaks encapsulation, but it allows to keep the tests working during refactoring !</p>
 
 <p>Eventually, I had to write the User class, and it turned out to be really simple :</p>
 
-
-<p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -169,13 +161,9 @@
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-</p>
 
 
-<p>That&#8217;s it, all that was needed was to ask the thread of the control to update the text !</p>
-
-
-
+<p>That&rsquo;s it, all that was needed was to ask the thread of the control to update the text !</p>
 </div>
 
 

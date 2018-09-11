@@ -123,8 +123,10 @@
   </header>
 
 
-<div class="entry-content"><p><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.<p /> What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
-<p>
+<div class="entry-content"><p>Functions and methods have a better status in the .Net world than they had in the Java world &hellip; They are now first class. This means that it is possible to assigne a function or an instance method to a variable, and pass it around as wished. Delegates are indeed very useful.</p>
+
+<p>What about properties ? It&rsquo;s a shame but they are not first class, they cannot be assigned to a variable, and if you ever used WinForms data bindings, I am sure you wrote the following quite a lot :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -143,24 +145,27 @@
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">event</span> <span class="n">EventHandler</span> <span class="n">NameChanged</span><span class="p">;</span>
-</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n"><em>name</span><span class="p">;</span>
+</span><span class='line'><span class="k">private</span> <span class="kt">string</span> <span class="n">_name</span><span class="p">;</span>
 </span><span class='line'><span class="k">public</span> <span class="kt">string</span> <span class="n">Name</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>  <span class="k">get</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n"></em>name</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">_name</span><span class="p">;</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>  <span class="k">set</span>
 </span><span class='line'>  <span class="p">{</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n"><em>name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">_name</span> <span class="p">!=</span> <span class="k">value</span><span class="p">)</span>
 </span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>      <span class="n"></em>name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
+</span><span class='line'>      <span class="n">_name</span> <span class="p">=</span> <span class="k">value</span><span class="p">;</span>
 </span><span class='line'>      <span class="n">InvokeNameChanged</span><span class="p">();</span>
 </span><span class='line'>     <span class="p">}</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;T&gt; classes instances instead of raw properties.<p />
+
+
+<p>How great would it be if we could define base property types, inherit and override them ! This is how I came up with the idea of using Property&lt;> classes instances instead of raw properties.</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -170,7 +175,10 @@
 </span><span class='line'>  <span class="k">public</span> <span class="k">readonly</span> <span class="n">Property</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">Name</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Property</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :<p />
+
+
+<p>The first advantage that we got was that Winforw gui bindings would now be a lot more type safe, and resharper safe :</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -195,7 +203,7 @@
 <span class='line-number'>22</span>
 </pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">MyForm</span> <span class="p">:</span> <span class="n">Form</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>  <span class="n">Presenter</span> <span class="n"><em>presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
+</span><span class='line'>  <span class="n">Presenter</span> <span class="n">_presenter</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Presenter</span><span class="p">();</span>
 </span><span class='line'>
 </span><span class='line'>  <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
 </span><span class='line'>  <span class="p">{</span>
@@ -206,7 +214,7 @@
 </span><span class='line'>   <span class="p">{</span>
 </span><span class='line'>    <span class="k">base</span><span class="p">.</span><span class="n">OnLoad</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n"></em>presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox1</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">AddBinding</span><span class="p">(</span><span class="n">textBox2</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="n">_presenter</span><span class="p">.</span><span class="n">Name</span><span class="p">,</span> <span class="k">false</span><span class="p">,</span> <span class="n">DataSourceUpdateMode</span><span class="p">.</span><span class="n">OnPropertyChanged</span><span class="p">);</span>
 </span><span class='line'>   <span class="p">}</span>
 </span><span class='line'>
@@ -216,10 +224,19 @@
 </span><span class='line'>   <span class="p">}</span>
 </span><span class='line'><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure>
-<p />Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :<br />
+
+
+<p>Creating a new AddBinding shareable function, the only presenter side property name hard coded in the gui could be &ldquo;Value&rdquo;, and the real property could explicitly be used to set up a binding.<p /> After using this kind of property in our work project, we discovered and expanded a lot more around it :</p>
+
 <ul>
-<li> No need to test property event notifications every time, just test it once on the Property&lt;T&gt; class</li><li>Ultra simple property delegation</li><li>Reusable read only properties</li><li>Computed properties with dependencies, able to notify changes automaticaly</li><li>Properties able to validate their value, and notify precise errors to the UI</li></ul>
-<p>I hope this will help someone</p></p>
+<li>No need to test property event notifications every time, just test it once on the Property&lt;> class</li>
+<li>Ultra simple property delegation</li><li>Reusable read only properties</li>
+<li>Computed properties with dependencies, able to notify changes automaticaly</li>
+<li>Properties able to validate their value, and notify precise errors to the UI</li>
+</ul>
+
+
+<p>I hope this will help someone</p>
 </div>
 
 

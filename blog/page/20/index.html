@@ -266,23 +266,17 @@
   </header>
 
 
-  <div class="entry-content"><p>I just spent a few hours debugging my rails app on heroku to understand why the hell I did not systematicaly receive the monitoring emails that my app was sending &#8230;</p>
-
+  <div class="entry-content"><p>I just spent a few hours debugging my rails app on Heroku to understand why the hell I did not systematically receive the monitoring emails that my app was sending &hellip;</p>
 
 <p>My app was actually rendering the email template.</p>
 
+<p>Wether the mail came through actually depended on the mail content !</p>
 
-<p>Wether the mail came through actually dependend on the mail content !</p>
+<p>It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from &lsquo;OVH&rsquo; and then forwarding emails to my gmail account, it was handy to apply automatic labels.</p>
 
-
-<p>It seems there was a spam filter somewhere between the sender and the receiver that was blocking some emails, without warning me in any way. I was sending the email to a custom domain email from &#8216;ovh&#8217; and then forwarding emails to my gmail account, it was handy to apply automatic labels.</p>
-
-
-<p>Here is the #1 rule : always send your monitoring emails directly to the final recepient ! There will be less risk that some messages get lost.&nbsp;</p>
-
+<p>Here is the #1 rule : always send your monitoring emails directly to the final recipient ! There will be less risk that some messages get lost.</p>
 
 <p>I changed the recipient to my gmail address, updated my label filter, and everything is back to normal (a lot of time lost for nothing).</p>
-
 </div>
   
   
@@ -321,9 +315,7 @@
 
   <div class="entry-content"><p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
 
-
 <p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
-
 
 <ul>
 <li>write a unit test for this</li>
@@ -334,8 +326,7 @@
 </ul>
 
 
-<p>Everything there is quite straightforward, appart from &#8220;note the peak memory usage&#8221;. Here is what I came up with</p>
-
+<p>Everything there is quite straightforward, appart from &ldquo;note the peak memory usage&rdquo;. Here is what I came up with</p>
 
 <ul>
 <li>note the initial memory usage</li>
@@ -348,14 +339,10 @@
 
 <p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
 
-
-<p>
 <script src="https://gist.github.com/4696311.js"></script>
-</p>
 
 
-<p>Unfortunately in ruby, memory usage is not directly available without <a href="/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it&#8217;s actually enough for our purpose.</p>
-
+<p>Unfortunately in ruby, memory usage is not directly available without <a href="/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it&rsquo;s actually enough for our purpose.</p>
 </div>
   
   
@@ -392,7 +379,11 @@
   </header>
 
 
-  <div class="entry-content"><p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !<p /><div>It turned out it was my browser (chromium) that had cached a previous redirection.</div><p /><div>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</div></p>
+  <div class="entry-content"><p>While I was trying to enforce no ssl on a page of <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> with Rack::SslEnforcer, I lost a few hours trying to fix a TOO_MANY_REDIRECTS error &hellip; The server was redirecting from http to https in loop !</p>
+
+<p>It turned out it was my browser (chromium) that had cached a previous redirection.</p>
+
+<p>I fixed it by right-clicking the faulty redirection in the chrome network debugger and asking a cache clear.</p>
 </div>
   
   
@@ -429,11 +420,9 @@
   </header>
 
 
-  <div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &#8220;integration&#8221; app, where I can do late verifications before deploying to my production app. If you don&#8217;t already do this, I recommend you to start now !</p>
-
+  <div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &ldquo;integration&rdquo; app, where I can do late verifications before deploying to my production app. If you don&rsquo;t already do this, I recommend you to start now !</p>
 
 <p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku pgbackups:restore DATABASE <span class="sb">`</span>heroku pgbackups:url --app my-app-prod<span class="sb">`</span> --app my-app-integ --confirm my-app-integ
@@ -475,11 +464,9 @@
   </header>
 
 
-  <div class="entry-content"><p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a>&nbsp;seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
-
+  <div class="entry-content"><p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a> seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
 
 <p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
-
 
 <ul>
 <li>download the ruby sources</li>
@@ -491,10 +478,7 @@
 
 <p>Here is a script that does this for ruby 1.9.2-p125 and gcdata patch.</p>
 
-
-<p>
 <script src="https://gist.github.com/4492543.js"></script>
-</p>
 
 </div>
   
@@ -534,40 +518,58 @@
 
   <div class="entry-content"><p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
 
+<ul>
+<li>Purchase a RapidSSL certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank"><a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#111;&#x3a;&#97;&#x64;&#109;&#105;&#x6e;&#64;&#x6d;&#x65;&#x73;&#x2d;&#99;&#111;&#x75;&#x72;&#x73;&#101;&#115;&#x2e;&#102;&#x72;">&#97;&#x64;&#x6d;&#105;&#110;&#x40;&#109;&#x65;&#115;&#45;&#99;&#111;&#x75;&#114;&#115;&#101;&#115;&#x2e;&#x66;&#114;</a></a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you Trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&rsquo;s call it server.crt).</li>
+<li>Add the ssl endpoint add on to your Heroku application</li>
+</ul>
 
-<ol><li>Purchase a rapidssl certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurrance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank">admin@mes-courses.fr</a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&#39;s call it server.crt).</li> <li>Add the ssl endpoint add on to your heroku application
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku addons:add ssl:endpoint
 </span></code></pre></td></tr></table></div></figure>
-</li><li>Upload your certificate
+
+
+<ul>
+<li>Upload your certificate</li>
+</ul>
+
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs:add server.crt private.key
 </span></code></pre></td></tr></table></div></figure>
-</li><li>Run the following and verify that you have an ssl endpoint with an explicit trusted &quot;True&quot; value
+
+
+<ul>
+<li>Run the following and verify that you have an ssl endpoint with an explicit trusted &lsquo;True&rsquo; value</li>
+</ul>
+
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs
 </span></code></pre></td></tr></table></div></figure>
-</li><li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li>
-<li>Check that there are no A DNS records pointing to heroku ips on your dns configuration (It used to be the case with older versions of heroku)</li>
-<li>Wait until dns are updated to check that it is working.</li>
-</ol>
 
 
-<p> You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">heroku ssl-endpoint help page</a> was a real brain saver<a href="https://devcenter.heroku.com/articles/ssl-endpoint">.</a></p>
+<ul>
+<li>Note the ssl-endpoint full domain from the previous command line, and add a DNS CNAME record from your domain to this endpoint</li>
+<li>Check that there are no A DNS records pointing to Heroku IPs on your dns configuration (It used to be the case with older versions of Heroku)</li>
+<li>Wait until dns servers are updated to check that it is working.</li>
+</ul>
 
 
-<p>EDIT 10/10/2013</p>
+<p>You can check how your dns settings are spreading with <a href="http://www.whatsmydns.net/" target="_blank">www.whatsmydns.net</a> and <a href="http://www.reverse-dns.fr/"><a href="http://www.reverse-dns.fr/">http://www.reverse-dns.fr/</a></a>. The <a href="https://devcenter.heroku.com/articles/ssl-endpoint">Heroku ssl-endpoint help page</a> was a real brain saver.</p>
 
-<p>Any certificate will eventually expire, and need to be renewed. The process for this (at Trustico at least) is to generate a completly new certificate. To install this new certificate on heroku, start by combining the new certificate files as you did the first time, and then use</p>
+<h3>EDIT 10/10/2013</h3>
+
+<p>Any certificate will eventually expire, and need to be renewed. The process for this (at Trustico at least) is to generate a completely new certificate. To install this new certificate on Heroku, start by combining the new certificate files as you did the first time, and then use</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku certs:update server.crt private.key
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>instead of heroku certs:add. This should be enough, there is no need to update any dns entry.</p>
+<p>instead of Heroku certs:add. This should be enough, there is no need to update any dns entry.</p>
 
-<p>To make sure the new certificate is used, visit the heroku ssl endpoint directly (get it by running heroku certs) and then visit your ssl site to check the certificate infos from your browser.</p>
+<p>To make sure the new certificate is used, visit the Heroku ssl endpoint directly (get it by running Heroku certs) and then visit your ssl site to check the certificate infos from your browser.</p>
 </div>
   
   
@@ -606,14 +608,12 @@
 
   <div class="entry-content"><p>There is no doc about this, but it turns out to be very simple, just copy the version directory :</p>
 
-
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">cd</span> ~/.rbenv/versionscp -R original-version new-version
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>That&#8217;s it !</p>
-
+<p>That&rsquo;s it !</p>
 </div>
   
   

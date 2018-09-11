@@ -123,11 +123,9 @@
   </header>
 
 
-<div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &#8220;integration&#8221; app, where I can do late verifications before deploying to my production app. If you don&#8217;t already do this, I recommend you to start now !</p>
-
+<div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &ldquo;integration&rdquo; app, where I can do late verifications before deploying to my production app. If you don&rsquo;t already do this, I recommend you to start now !</p>
 
 <p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
-
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku pgbackups:restore DATABASE <span class="sb">`</span>heroku pgbackups:url --app my-app-prod<span class="sb">`</span> --app my-app-integ --confirm my-app-integ

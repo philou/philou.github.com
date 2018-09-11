@@ -4,7 +4,7 @@
   <title><![CDATA[Category: memory | Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/blog/categories/memory/atom.xml" rel="self"/>
   <link href="http://philippe.bourgau.net/"/>
-  <updated>2018-09-06T06:18:43+02:00</updated>
+  <updated>2018-09-11T06:07:38+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -20,9 +20,7 @@
     <id>http://philippe.bourgau.net/the-poor-mans-memory-profiling</id>
     <content type="html"><![CDATA[<p>While working on <a href="http://www.mes-courses.fr">www.mes-courses.fr</a>, a background scheduled task that was running fine on heroku started to fail with out of memory errors. After searching a bit, I discovered that the inputs had changed, and that the memory consumption of my task was linearly correlated to the size of the inputs.</p>
 
-
 <p>So I tried to setup an automatic test to verify that the memory consumption of my task would remain small enough for it to run on <a href="http://www.heroku.com">heroku</a>. This is what I wanted to do :</p>
-
 
 <ul>
 <li>write a unit test for this</li>
@@ -33,8 +31,7 @@
 </ul>
 
 
-<p>Everything there is quite straightforward, appart from "note the peak memory usage". Here is what I came up with</p>
-
+<p>Everything there is quite straightforward, appart from &ldquo;note the peak memory usage&rdquo;. Here is what I came up with</p>
 
 <ul>
 <li>note the initial memory usage</li>
@@ -47,14 +44,10 @@
 
 <p>Here is the code in ruby, but it can be easily translated to any language (I did it for C# once)</p>
 
-
-<p>
 <script src="https://gist.github.com/4696311.js"></script>
-</p>
 
 
-<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it's actually enough for our purpose.</p>
-
+<p>Unfortunately in ruby, memory usage is not directly available without <a href="http://philippe.bourgau.net/how-to-install-a-patched-ruby-interpreter-wit">patching and rebuilding the interpreter</a>, but allocated objects count is available, and it&rsquo;s actually enough for our purpose.</p>
 ]]></content>
   </entry>
   
