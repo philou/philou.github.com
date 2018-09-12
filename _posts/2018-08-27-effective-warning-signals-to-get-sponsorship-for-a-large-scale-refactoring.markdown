@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "4 Effective warning signals that will get you sponsorship for a large scale refactoring"
+title: "5 Effective warning signals that will get you sponsorship for a large scale refactoring"
 date: 2018-09-13 13:01
 comments: true
 categories:
@@ -38,7 +38,19 @@ Promised, as soon as I manage to use such a prank without getting fired at work,
 
 While doing my researches for this article, I found the [Dice of Debt](https://www.agilealliance.org/dice-of-debt-game/) game. It's aimed at making business people experience the long term legacy code drag. It has good reviews, have a try at it with your business people and post back your feedback ! I'll do so as soon as I have a chance to test it myself.
 
-## Effective Warning Signal #3 Metaphor
+## Effective Warning Signal #3 Higher authority
+
+Appealing to a higher authority works as long as people recognize this authority as so. Knowing the people in front of us, it's our job to bring up the reference in an effective way. Here are 
+
+In [this talk](https://www.youtube.com/watch?v=xEqRtIeD51k), [Doc Norton](http://docondev.com/), a recognized technical debt expert, shows the link between technical debt and productivity.
+
+[![Slide from Doc Norton's Technical Debt Trap talk. It shows how technical debt impacts the cost of change and can be an effective warning signal for a large scale refactoring]({{site.url}}{{site.baseurl}}/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/technical-debt-trap.jpg)](https://www.youtube.com/watch?v=xEqRtIeD51k)
+
+Showing similarities between our own code metrics and this graph might ring the alarm bell in business people.
+
+Another interesting model out there is [A2DAM](https://www.agilealliance.org/the-agile-alliance-debt-analysis-model/). It was built through the [Agile Alliance](https://www.agilealliance.org/). It can be used to estimate the value of a codebase when buying a company. Maybe business people will listen if we tell them that their software would be worth 0 on the market ?
+
+## Effective Warning Signal #4 Metaphor
 
 I was recently working with a team that is preparing a pitch to get sponsorship for a refactoring. They want to rework multithreaded code that uses locks and other low level synchronization. The hand written synchronization is becoming difficult to maintain. They would like to refactor it with the [actor model](https://en.wikipedia.org/wiki/Actor_model). Business people will likely argue that this module is now stable enough and should stay as is. We all know that this is not the case with bogus multithreaded code : the more you use it, the more bugs you find ! They had the idea to use the email vs phone metaphor. No one in the room could have handled all his daily emails with a phone only ! Everyone understood why it was necessary to switch to actors.
 
@@ -48,7 +60,7 @@ In [A Taxonomy of Technical Debt](https://engineering.riotgames.com/news/taxonom
 
 > 💡 A disease might be a better metaphor than debt for code cruft.
 
-## Effective Warning Signal #4 A horror story
+## Effective Warning Signal #5 A horror story
 
 We said that a successful refactoring story will be useful to frame ours as an opportunity. We can have more impact with the opposite ! We should relate a large software failure, that had impact on the business to bad code. The bigger the impact on the business, the better it is. If you (unluckily) have something like that at your company, it should be a very powerful argument. If you don't, try to find a public story on the internet, or a public conference. For example here is one from [The 10 Worst Programming Mistakes in History.](https://www.makeuseof.com/tag/worst-programming-mistakes-in-history/) 
 
@@ -56,6 +68,7 @@ We said that a successful refactoring story will be useful to frame ours as an o
 
 We can draw parallels and forecasts, to highlight the high risk of failure.
 
+
 ## Almost there
 
-This was the 11th post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That's going to be the topic of my [next post](http://eepurl.com/dxKE95).
+This was the 11th post in a [series about how to get sponsorship for large scale refactoring](http://philippe.bourgau.net{{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That's going to be the topic of my [next post](http://eepurl.com/dxKE95).
