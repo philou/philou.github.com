@@ -68,4 +68,4 @@ Giving a great pitch is a great way to present large scale refactorings as busin
 
 ## More to come
 
-This was the 10th post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). In next week's post, I'll go over how to use a recent discovery about how our brain works to become even more convincing ! [Stay tuned](http://eepurl.com/dxKE95) !
+This was the 10th post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). In [next week's post](/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/), I'll go over how to use a recent discovery about how our brain works to become even more convincing !

@@ -11,6 +11,8 @@ categories:
 keywords: "Constant Merciless Refactoring, Merciless Refactoring, Constant Refactoring, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "The easiest refactorings to negotiate are the ones we don't have to talk about ! Learn how practices like 'Yesterday's weather', 'the Planning Game', 'the Boy Scout Rule' and other work splitting tricks can help to embed as much constant merciless refactoring as you can in your day to day work."
 ---
+*Here's everything you need to find the time for constant merciless refactoring ... without asking for the permission!*
+
 [My previous post](/incremental-software-development-techniques-for-large-scale-refactorings/) advocated incremental software development for large scale refactorings. It's less risky and it prevents tunnel effects. Most of all, it's a lot easier to convince business people of engaging in a refactoring this way.
 
 It's one thing to understand why it's the way to go, but it's another to be able to do it ! In this post, I'll start by explaining how to find the time to do constant [merciless refactoring](http://www.extremeprogramming.org/rules/refactor.html).
