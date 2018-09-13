@@ -11,13 +11,15 @@ categories:
 keywords: "Pattern Language, Design Pattern, Refactoring Pattern, Large Scale refactoring pattern, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "Here is a pattern language for incremental software development of large scale refactoring. Big bang refactorings are risky. Deploying a refactoring through a succession of baby steps is a lot safer. Learn ways to deliver a large refactoring incrementally with these refactoring patterns."
 ---
+*It can sometimes be a real challenge to integrate, let alone deploy, a refactoring step by step ! Here are some patterns that make this easier.*
+
 This is the ninth post in a [series about how to get sponsorship for large scale refactoring](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/). It's also the fourth about incremental software development strategies for large scale refactoring. My point is that it's not possible to sell a refactoring to business people until we master those :
 
 1.  How to find the time to refactor in our daily work
 2.  How to learn to work in baby steps
 3.  How to organize and manage this ongoing effort as a team
 
-What about when it is not easy to split the work into incremental steps ? It can sometimes be a real challenge to integrate, let alone deploy, a refactoring step by step !
+What about when it is not easy to split the work into incremental steps ?
 
 Do you remember the DSL parser refactoring story in mentioned in [another post](/incremental-software-development-techniques-for-large-scale-refactorings/) ? Switching to a different parser technology incrementally sounds like an impossible mission. Even so, that's what we did ! 
 
