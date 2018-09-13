@@ -29,7 +29,7 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 As I've [already been joking about](/the-size-of-code/), code is invisible. Mess in the code even more so, especially to people who don't code. The code could look like that and no one would notice.
 
 [![Inside of a kitchen from someone suffering from Diogenes syndrome]({{site.url}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg)](https://en.wikipedia.org/wiki/Diogenes_syndrome)
-<div class="image-credits">Par <a href="//commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1" class="new" title="User:Un Touriste (page does not exist)">Un Touriste</a> — <span class="int-own-work">Photographie personnelle</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=15988115">Lien</a></div><br>
+<div class="image-credits">By [A Tourist](http://commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1) - Private photography [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Link](https://commons.wikimedia.org/w/index.php?curid=15988115)</div><br>
 
 
 
@@ -75,5 +75,5 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   [Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/)
 *   [Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language](/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/)
 *   [Presenting a large scale refactoring as a business opportunity](/presenting-a-large-scale-refactoring-as-a-business-opportunity/)
-*   4 Effective warning signals that will get you sponsorship for a large scale refactoring
+*   [5 Effective warning signals that will get you sponsorship for a large scale refactoring](/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/)
 *   Nothing convinces business people like money
