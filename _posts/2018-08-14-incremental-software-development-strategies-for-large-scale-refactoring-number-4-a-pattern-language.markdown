@@ -10,6 +10,8 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Pattern Language, Design Pattern, Refactoring Pattern, Large Scale refactoring pattern, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "Here is a pattern language for incremental software development of large scale refactoring. Big bang refactorings are risky. Deploying a refactoring through a succession of baby steps is a lot safer. Learn ways to deliver a large refactoring incrementally with these refactoring patterns."
+header:
+  teaser: /imgs/2018-08-14-incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/pattern-teaser.jpeg
 ---
 *It can sometimes be a real challenge to integrate, let alone deploy, a refactoring step by step ! Here are some patterns that make this easier.*
 
