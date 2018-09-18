@@ -76,4 +76,6 @@ You might wonder what these other techniques are ! That's exactly what I'll go t
 *   [Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language](/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/)
 *   [Presenting a large scale refactoring as a business opportunity](/presenting-a-large-scale-refactoring-as-a-business-opportunity/)
 *   [5 Effective warning signals that will get you sponsorship for a large scale refactoring](/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/)
-*   Nothing convinces business people like money
+*   Making the business case for a large scale refactoring - Part 1
+*   Making the business case for a large scale refactoring - Part 2
+*   Building a business partnership

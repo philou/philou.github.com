@@ -12,8 +12,7 @@ categories:
 keywords: "Business Case, Making the Business Case, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects"
 description: "Believe it or not, making a business case for a large scale refactoring with real money figures is not rocket science. Here are starting techniques to do estimate refactoring and non-refactoring costs. With these and a bit of discipline, almost any software team can do it."
 header:
-  teaser: /imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/legacy-vs-refactoring-teaser.jpg
-  og_image: /imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/legacy-vs-refactoring-og.jpg
+  teaser: /imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/legacy-vs-refactoring-teaser.jpeg
 published: false
 ---
 _With a bit of discipline, we can make a factual business case for a large scale refactoring that business people won't resist._
@@ -22,7 +21,7 @@ The [previous 2 articles](/presenting-a-large-scale-refactoring-as-a-business-op
 
 Business people love numbers. Presented well, they make decisions a lot easier to take. Making a business case is about estimating the costs of doing versus not doing a refactoring.
 
-![Drawing of legacy and a refactoring plan in a balance. Making a business case for a large scale refactoring is all about estimating the costs of both options](../imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/legacy-vs-refactoring.jpg)
+![Drawing of legacy and a refactoring plan in a balance. Making a business case for a large scale refactoring is all about estimating the costs of both options]({{site.url}}/imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/legacy-vs-refactoring.jpg)
 
 This is the twelfth post in a [series about how to get sponsorship for large scale refactorings](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
 
@@ -41,7 +40,7 @@ From my experience large scale refactoring estimates are pretty inaccurate. If t
 *   Do a bit more design to better define the refactoring
 *   Take a safety margin for your estimation. Times 2 is not a bad ratio to start with (cf. the risk management section of [The Art of Agile](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1536837799&sr=8-1&keywords=the+art+of+agile))
 
-[![Cover of the book The Art of Agile Development. It contains a chapter about risk management which can be useful to make realistic long term estimates of a large scale refactoring](../imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1536837799&sr=8-1&keywords=the+art+of+agile)
+[![Cover of the book The Art of Agile Development. It contains a chapter about risk management which can be useful to make realistic long term estimates of a large scale refactoring]({{site.url}}/imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/art-of-agile.jpg)](https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?ie=UTF8&qid=1536837799&sr=8-1&keywords=the+art+of+agile)
 
 Eventually, be sure to convert your estimates in man.hours. If you don't, it will be difficult to compare this with the non-refactoring cost.
 
@@ -63,11 +62,11 @@ Bad code generates bugs and support time. By doing the refactoring well, we'll a
 
 We want to get the real amount of time the team is spending on bug fixes and support time related to our refactoring. Hopefully, our ticketing software might already contain enough time tracking data. That's what I used when we did [our improvement kata](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-3/).
 
-![Distribution of the different kind of tasks over sprints that we extracted from Jira when we did the improvement kata. Finding where the time went is useful when making a business case for a large scale refactoring](../imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/types-of-tasks-small.jpg)
+![Distribution of the different kind of tasks over sprints that we extracted from Jira when we did the improvement kata. Finding where the time went is useful when making a business case for a large scale refactoring]({{site.url}}/imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/types-of-tasks-small.jpg)
 
 If not, we'll unfortunately need to do a bit of manual time tracking for a while. It should be fine to cover a few days, and extrapolate for a longer period. Unbelievably, some people made time tracking fun by [using Lego Blocks](https://code.joejag.com/2018/lego-workstream-visualisation.html)!
 
-[![Joe Wright's team has had success logging time with lego blocks. Logging is time is crucial to estimate the non-refactoring cost when making a business plan](../imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/lego_1.jpg)](https://code.joejag.com/2018/lego-workstream-visualisation.html)<div class="image-credits">By <a href="https://twitter.com/vanschoo">Nancy Van Schooenderwoert</a></div><br>
+[![Joe Wright's team has had success logging time with lego blocks. Logging is time is crucial to estimate the non-refactoring cost when making a business plan]({{site.url}}/imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/lego_1.jpg)](https://code.joejag.com/2018/lego-workstream-visualisation.html)<div class="image-credits">By <a href="https://twitter.com/vanschoo">Nancy Van Schooenderwoert</a></div><br>
 
 ### Lower productivity
 
@@ -83,7 +82,7 @@ Next time you go through this meeting, we'll need to estimate these tasks twice.
 The difference between the estimates is the non-refactoring productivity loss.
 
 ```
-productivity loss = normal estimatation - estimatation after refactoring
+productivity loss = normal estimation - estimation after refactoring
 ```
 
 ## Payback Period
