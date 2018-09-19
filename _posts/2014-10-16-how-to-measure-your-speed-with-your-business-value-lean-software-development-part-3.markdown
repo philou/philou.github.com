@@ -6,7 +6,7 @@ comments: true
 categories:
  - agile
  - lean
- - business-value
+ - business value
 keywords: "Measuring Business Value, Business Value, Software Development Speed, Lean Software Development, Agile Software Development"
 description: "This article presents a way of measuring an agile team's speed against business value instead of story points"
 ---
