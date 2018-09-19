@@ -10,6 +10,8 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Constant Merciless Refactoring, Merciless Refactoring, Constant Refactoring, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"
 description: "The easiest refactorings to negotiate are the ones we don't have to talk about ! Learn how practices like 'Yesterday's weather', 'the Planning Game', 'the Boy Scout Rule' and other work splitting tricks can help to embed as much constant merciless refactoring as you can in your day to day work."
+header:
+   teaser: /imgs/2018-08-02-incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/recurring-cleanup-teaser.jpeg
 ---
 *Here's everything you need to find the time for constant merciless refactoring ... without asking for the permission!*
 
