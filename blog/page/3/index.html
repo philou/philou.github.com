@@ -102,6 +102,107 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-immutable-value-objects-fight-mocks/">How Immutable Value Objects Fight Mocks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-04-26T08:51:00+02:00" pubdate data-updated="true">Apr 26<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Excessive use of mocks makes tests very painful to maintain. If we stick painful mocks for too long, we&rsquo;ll end up abandoning unit testing. Eventually, the system will degrade into legacy. </p>
+
+<p>There are many techniques to avoid mocks. Some of the most effective involve architecture changes. Unfortunately, there are not the most straightforward to use. Re-architecting involves people and time that you may not dispose of right now. In the following posts, I&rsquo;ll go over techniques that any developer can use in his day to day code to avoid mocks. These battle tested techniques that I&rsquo;ve used on different projects in the past. Check <a href="/careless-mocking-considered-harmful/">the previous post</a> if you&rsquo;re interested to learn how I came to use them.</p>
+
+<p>This is the second post <a href="/blog/categories/how-to-avoid-mocks-series/">of a series about how to avoid mocks</a> in automated tests. If you haven&rsquo;t yet, I recommend you to read my <a href="/careless-mocking-considered-harmful/">first post</a> to understand the perils of mocks in more details.</p>
+
+<p>The first mock fighting small-scale technique I&rsquo;ll go over is <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a>.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-04-17-how-immutable-value-objects-fight-mocks/immutable-rock.jpg" alt="A drawing of a rock written &quot;Immutable Value Object&quot;" /></p>
+
+<h2>What are Immutable Value Objects ?</h2>
+
+<p>Behind this weird name is something very simple to understand. Immutable Value Objects :</p>
+
+<ul>
+<li>Cannot change their state after construction</li>
+<li>Only depend on other Immutable Value Objects</li>
+<li>Don&rsquo;t change the state of the whole system in any way</li>
+<li>Don&rsquo;t do side effects, like inputs and outputs for example</li>
+</ul>
+
+
+<p>Eric Evans popularized the name in the <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&amp;qid=1523985269&amp;sr=8-2&amp;keywords=domain+driven+design">Domain-Driven Design Blue Book</a>. Immutable Value Objects have existed for decades in functional languages though. We say these objects are immutable (they cannot change) and pure (they cannot do side effects). Here are 2 interesting properties of Value Objects :</p>
+
+<ul>
+<li>you can call a method any number of times with no risk of changing anything to the system</li>
+<li>you&rsquo;ll always get the same result every time you call the same method on the same object</li>
+</ul>
+
+
+<p>These by itself, can already be handy when testing.</p>
+
+<p><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_2?ie=UTF8&amp;qid=1523985269&amp;sr=8-2&amp;keywords=domain+driven+design"><img src="http://philippe.bourgau.net/imgs/2018-04-17-how-immutable-value-objects-fight-mocks/ddd.jpg" alt="Cover of Eric Evans's DDD book" /></a></p>
+
+<h2>How do they prevent mocks ?</h2>
+
+<p>That was a bit theoretical, so let&rsquo;s see how this helps to reduce mocking.</p>
+
+<h3>Simpler &ldquo;init path&rdquo;</h3>
+
+<p>Let&rsquo;s take it the other way round and see how side effects can lead to mocking. Every test starts with setting the state in which to run the test. Side effects make this complicated, as many objects need to collaborate to set this state up. When this becomes too painful, people start hacking around with mocks. This in turn makes the tests more fragile :</p>
+
+<ul>
+<li>We are not testing a &ldquo;real&rdquo; situation</li>
+<li>We need to keep this setup in line with the real code</li>
+</ul>
+
+
+<blockquote><p>💡 Intricate state initialization encourage people to use mocks.</p></blockquote>
+
+<h3>Isolates parts of the system</h3>
+
+<p>Unfortunately, that is not all the story ! Mutable state also, tricks us into using mocks. As soon as your test deals with mutable state, there is a chance that this state is changed in the &lsquo;real&rsquo; system. This means that some bugs might &lsquo;escape&rsquo; unit tests and appear in end to end tests or in production. That&rsquo;s where the mocks strike ! In order to detect this bug in a fast feedback loop, we&rsquo;re likely to add larger scope tests and use mocks to speed them up &hellip;</p>
+
+<blockquote><p>💡 Mutable state and side effects make unit tests less effective.</p></blockquote>
+
+<h3>Reduces code with side effects</h3>
+
+<p>But there&rsquo;s another reason why Immutable Value Objects help us to avoid mocks. As we&rsquo;ll try to use them more and more for the previous two reasons, we&rsquo;ll need to adapt our programming style. As we&rsquo;ll push more and more code in Immutable Value Objects, the &lsquo;imperative&rsquo; part will shrink. This &lsquo;imperative&rsquo; part is where side-effect happen. This is the part where mocking out IOs makes sense. To summarize, the more Immutable Value Objects we use, the more isolated the IOs are, and the less mocking we need.</p>
+
+<p>Javascript expert Eric Elliot also wrote about the immutability and mocks <a href="https://medium.com/javascript-scene/mocking-is-a-code-smell-944a70c90a6a">here</a>.</p>
+
+<h2>Next week</h2>
+
+<p>This was the second post in a <a href="/blog/categories/how-to-avoid-mocks-series/">series about how to prevent mocks</a> in your automated tests. <a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Next post</a> will be an example of using immutable value objects on the <a href="http://codingdojo.org/kata/FizzBuzz/">FizzBuzz kata</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/careless-mocking-considered-harmful/">Careless Mocking Considered Harmful</a></h1>
     
     
@@ -971,100 +1072,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/">Reducing the Risks of Large Organization Changes With the Mikado Method - Part 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-02-15T06:45:00+01:00" pubdate data-updated="true">Feb 15<span>th</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In the <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-1/">previous post</a>, I presented both large scale code and organization changes. I highlighted how they face similar difficulties of huge <a href="https://en.wikipedia.org/wiki/Work_in_process">Work In Progress</a>. Let&rsquo;s see how programmers deal with these problems.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/mind-your-wip.jpg" alt="A drawing of a wipe, with the text &quot;Mind your WIP&quot;" /></p>
-
-<h2>The mikado method algorithm</h2>
-
-<p>The <a href="https://mikadomethod.wordpress.com/">mikado method</a> is a programming technique to perform large <a href="https://en.wikipedia.org/wiki/Code_refactoring">code refactoring</a> one step at a time. It fixes the problematic situation we raised at the beginning of these posts. It enables developers to integrate their work with their teammates&#8217; continuously. It allows to build features and do the refactoring in parallel. Developers can also pause a mikado refactoring for a while if needed. On top of all this, it makes it easier for the full team to collaborate on the same refactoring.</p>
-
-<blockquote><p>💡 Developers can pause a Mikado Method refactoring for a while if needed.</p></blockquote>
-
-<p>Here is how it goes, but you can get a more detailed (and technical) description <a href="/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">here</a>.</p>
-
-<ol>
-<li>Try to do the change you want</li>
-<li>If it the tests pass, great, you&rsquo;re done</li>
-<li>Otherwise, add a node for the change you wanted to do in your mikado graph</li>
-<li>Write down the errors you faced</li>
-<li>Revert your change</li>
-<li>Recurse from 1 for every error</li>
-<li>Draw a dependency arrow from the nodes of errors to the node of your initial change</li>
-</ol>
-
-
-<p>The catch is that developers should revert the work they could not finish to move on !</p>
-
-<h2>How to apply it to an organization change</h2>
-
-<p>In some way, the Mikado Method is very similar to the <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">improvement kata</a>. The flow of the Improvement kata goes on like that :</p>
-
-<ol>
-<li>Determine a target condition</li>
-<li>Try to work with the target condition in place</li>
-<li>If it works, you&rsquo;re done</li>
-<li>Otherwise, understand the main impediment, and revert to the old way of doing things</li>
-<li>Work to remove the impediment</li>
-<li>Start again from step 2</li>
-</ol>
-
-
-<p>Have a look at <a href="/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/">these blog posts</a> for a more practical presentation of the improvement kata.</p>
-
-<blockquote><p>💡 The Mikado Method and the Improvement Kata are more than similar.</p></blockquote>
-
-<p>Granted, the Mikado method and the improvement kata look similar. They are in fact more than similar. The improvement kata does not prescribe how you should fix your impediments. What&rsquo;s not explicit is that we can use it recursively to fix impediments ! That makes it almost identical to the Mikado Method, but for organization instead of code. It won&rsquo;t be a surprise to know that some companies have used the improvement kata for that. For example, <a href="https://www.amazon.com/Practical-Approach-Large-Scale-Agile-Development/dp/0321821726?pd_rd_wg=UdZ7n&amp;pd_rd_r=ea4d5912-c825-432a-b633-ac6822a475f4&amp;pd_rd_w=rQ1LZ&amp;ref_=pd_gw_psimh&amp;pf_rd_r=0N5KT332R3TD0DWK8FM0&amp;pf_rd_p=a1e8e44e-a6a8-5785-afd0-7f174f0d74f9">HP used it to drive its Laser Jet team transformation</a>. Others have already used the <a href="http://nomad8.com/organisational-change-with-mikado/">Mikado Method for organization transformation</a>.</p>
-
-<p><a href="http://nomad8.com/organisational-change-with-mikado/"><img src="http://philippe.bourgau.net/imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/orga-mikado-post-its.jpg" alt="Extract of the orga mikado graph used by the Sandy Mamoli" /></a><div class="image-credits"><a href="http://nomad8.com/organisational-change-with-mikado/">Original Post</a> by Sandy Mamoli</div></p>
-
-<p>Suppose your organization wants to move to full <a href="https://en.wikipedia.org/wiki/Continuous_integration">Continuous Integration</a>. It could start by trying to integrate all their devs in 10 minutes on a small group of teams. If it works, fine, other large teams can try it as well. Let&rsquo;s see what to do if it fails though. Thanks to a <a href="/blog/categories/retrospectives/">retrospective</a> teams understand that they need to master CI themselves first. In this case, they could revert large scale CI, and have one of the teams try to do continuous integration. If it works, fine, another team can try it too. If it does not, they&rsquo;ll do a post-mortem of some sort to understand the root issue, and work on it. For example, here the main impediment could be a coupled architecture. The fun thing would be to apply the Mikado Method to do this refactoring 😉.</p>
-
-<p>As with the Mikado Method, it is possible to draw an organization change Mikado graph along the way :</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-01-22-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-2/sample-mikado.png" alt="The mikado graph for the story above" /></p>
-
-<p>The graph is a living artifact. As we try and revert new experiments, we should expand and collapse the graph. This creates a global and shared view of the state of the change. Needless to say that this is great for collaboration.</p>
-
-<h2>To be continued (again)</h2>
-
-<p>This was part 2 of a <a href="/blog/categories/mikado-method-organization-series/">series on applying the Mikado Method to organization changes</a>. I&rsquo;ll end this series up with <a href="/reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/">next post</a>, where I&rsquo;ll go through the pros and cons of the approach.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1147,6 +1154,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/">Making the business case for a large scale refactoring - Part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/">5 Effective warning signals that will get you sponsorship for a large scale refactoring</a>
       </li>
     
@@ -1160,10 +1171,6 @@
     
       <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps</a>
       </li>
     
   </ul>
