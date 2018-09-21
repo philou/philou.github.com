@@ -12,14 +12,15 @@ categories:
 keywords: "Business Case, Making the Business Case, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects"
 description: "Using real numbers to make a business plan for a large scale refactoring is only the first step. Here are techniques to make the business plan more compelling. Not only will they improve the numbers, but some also increase the value of the refactoring!"
 header:
-   teaser:
+   teaser: /imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-teaser.jpeg
+   og_image: /imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-og.jpeg
 published: false
 ---
 _How to improve a factual business case for a refactoring to make it even more compelling to business people._ 
 
 In last post, I explained how to make a business case for a large scale refactoring using real numbers. Numbers are great, but they won't get us sponsorship by themselves. We need to understand them. We need to make sure they make sense. We need to make sure they are backing our refactoring up. In the end, we might need to improve them.
 
-TODO Drawing of a split in the middle of the refactoring word
+![Drawing of a hammer removing the G from refactoring written with stones. Trimming a refactoring is an effective way to increase its value, and make the business case better.]({{site.url}}/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-teaser.jpeg)
 
 This is the thirteenth post in a [series about how to get sponsorship for large scale refactorings](/blog/categories/large-scale-refactoring-sponsorship-series/). If you haven't, I encourage you to start from [the beginning](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/).
 
@@ -59,7 +60,7 @@ If we have the figure, we can add the image cost of a bug to the non-refactoring
 
 Finally, if we have the revenue per feature, we can add the opportunity cost to the refactoring cost. Opportunity cost is the cost of not working on features !
 
-![Stacks of coins. If we have access to the good figures, it is possible to make the business case for large scale refactoring with real money instead of man.hours.](../imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/money.jpg)
+![Stacks of coins. If we have access to the good figures, it is possible to make the business case for large scale refactoring with real money instead of man.hours.]({{site.url}}/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/money.jpg)
 
 ### Use a similar refactoring
 
@@ -84,7 +85,7 @@ I'm fond of this way of prioritizing software. It's the way out of bickering abo
 *   A blog post [Making Technical Debt Visible](https://www.scrum.org/resources/blog/making-tech-debt-visible) . It explains how to use the scrum sprint backlog to display the cost of technical debt.
 *   A PluralSight course [Making the Business Case for Best Practices](https://www.pluralsight.com/courses/making-business-case-for-best-practices). It's just great. It contains a ton of practices to help us to get realistic numbers and estimates.
 
-[![Visual notes from the Plural Sight course "Making the Business Case for Best Practices". It contains many techniques that can be used for large scale refactoring](../imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case-small.jpg)](../imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case.jpg)<div class="image-credits">Visual notes from <a href="https://www.pluralsight.com/courses/making-business-case-for-best-practices">Making the Business Case for Best Practices</a></div><br>
+[![Visual notes from the Plural Sight course "Making the Business Case for Best Practices". It contains many techniques that can be used for large scale refactoring]({{site.url}}/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case-small.jpg)]({{site.url}}/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case.jpg)<div class="image-credits">Visual notes from <a href="https://www.pluralsight.com/courses/making-business-case-for-best-practices">Making the Business Case for Best Practices</a></div><br>
 
 ## Next post
 
