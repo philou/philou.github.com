@@ -13,7 +13,6 @@ keywords: "Business Case, Making the Business Case, Large Scale Refactoring, ref
 description: "Believe it or not, making a business case for a large scale refactoring with real money figures is not rocket science. Here are starting techniques to do estimate refactoring and non-refactoring costs. With these and a bit of discipline, almost any software team can do it."
 header:
   teaser: /imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/legacy-vs-refactoring-teaser.jpeg
-published: false
 ---
 _With a bit of discipline, we can make a factual business case for a large scale refactoring that business people won't resist._
 
