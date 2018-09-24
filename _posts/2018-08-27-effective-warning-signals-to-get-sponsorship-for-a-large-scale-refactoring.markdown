@@ -13,6 +13,7 @@ keywords: "Effective Warning Signals, Warning Signals, Effective Warning, Refact
 description: "Highlighting possible dangers is a very effective way to persuade people to act in a certain way. Learn how to use pranks, serious games, metaphors and horror stories to raise your business people's concerns about legacy code and get you sponsorship for your large scale refactoring."
 header:
   teaser: /imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/legacy-monster-teaser.jpeg
+  og_image: /imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/legacy-monster-og.jpeg
 ---
 In 2005, professors Bizer and Petty showed something interesting about human behavior. People make more efforts to avoid what they don't want, than to get what they would like. The study itself is interesting, you can have a look at it [here](https://www.jstor.org/stable/41057679?seq=1#page_scan_tab_contents). For example, it explains why political campaigns are getting more and more nasty. There's also a lesson for us, mere developers. We'll get more sponsorship for our refactorings if we highlight the dangers of not doing them !
 

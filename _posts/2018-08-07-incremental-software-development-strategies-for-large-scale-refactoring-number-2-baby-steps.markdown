@@ -13,6 +13,7 @@ keywords: "Baby steps, Baby steps software, Baby steps software development, Lar
 description: "Learn to split a large scale refactoring in tiny baby steps to be able to deliver it alongside features. Slack time, the Boy Scout Rule and embedding refactoring in features creates many small time slots. Cutting large scale refactorings in baby steps is mandatory to take advantage of these slots."
 header:
    teaser: /imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/baby-steps-teaser.jpeg
+   og_image: /imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/baby-steps-og.jpeg
 ---
 *How can we exploit short time slots here and there to perform large scale refactoring?*
 

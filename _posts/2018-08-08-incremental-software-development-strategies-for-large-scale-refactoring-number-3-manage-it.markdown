@@ -15,6 +15,7 @@ description: "Here are a few best practices to manage incremental software devel
 excerpt: "Refactoring step by step generate a ton of small tasks here and there. Here are some organization best practices to keep track of them."
 header:
   teaser: /imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/manage-it-teaser.jpeg
+  og_image: /imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/manage-it-og.jpeg
 ---
 [My previous posts](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/) where about how to find and use small time slots for large scale refactorings. [Refactoring step by step](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/) is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own. Here are some organization best practices for that.
 
