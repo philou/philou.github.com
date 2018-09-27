@@ -97,6 +97,6 @@ The payback period is the refactoring cost divided by the non-refactoring cost. 
 
 ## To be continued
 
-We're done with computations. [Next week](http://eepurl.com/dxKE95), I'll go over what to do with these numbers. We want to make business case for this large scale refactoring an unmissable offer!
+We're done with computations. [Next week](/making-the-business-case-for-a-large-scale-refactoring-part-2/), I'll go over what to do with these numbers. We want to make business case for this large scale refactoring an unmissable offer!
 
 This is the twelfth post in [a series about how to get sponsorship for large scale refactorings](/blog/categories/large-scale-refactoring-sponsorship-series/).

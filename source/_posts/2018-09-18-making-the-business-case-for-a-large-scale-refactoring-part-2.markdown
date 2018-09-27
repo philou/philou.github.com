@@ -14,7 +14,6 @@ description: "Using real numbers to make a business plan for a large scale refac
 header:
    teaser: /imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-teaser.jpeg
    og_image: /imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-og.jpeg
-published: false
 ---
 _How to improve a factual business case for a refactoring to make it even more compelling to business people._ 
 
