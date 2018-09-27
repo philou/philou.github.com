@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Making the business case for a large scale refactoring - Part 2 - Philippe Bourgau's blog</title>
+  <meta name="author" content="Philippe Bourgau">
+
+  
+  <meta name="description" content="Using real numbers to make a business plan for a large scale refactoring is only the first step. Here are techniques to make the business plan more &hellip;">
+
+  
+  <meta name="keywords" content="Business Case, Making the Business Case, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Philippe Bourgau's blog" type="application/atom+xml">
+  <link href="/stylesheets/asides.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/banner.css" rel="stylesheet" type="text/css">
+<link href="/stylesheets/tables.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/images.css" rel="stylesheet" type="text/css">
+
+<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic|Istok+Web:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+<meta name="google-translate-customization" content="799b363844424d98-0fe595ed0d0bb43c-g68c635d8080c4daa-14"></meta>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30589315-1', 'auto', {'allowLinker': true});
+  ga('send', 'pageview');
+  ga('require', 'linker');
+  ga('linker:autoLink', ['agileavatars.com']);
+</script>
+
+<!-- tables css -->
+
+  
+
+</head>
+
+<body>
+  <div id="header-container">
+    <div id="header">
+      <div class="wrapper">
+        <header role="banner"><hgroup>
+  <h1><a href="/">Philippe Bourgau's blog</a></h1>
+</hgroup>
+
+</header>
+        <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://eepurl.com/dxKE95" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:philippe.bourgau.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-me">About Me</a></li>
+</ul>
+
+</nav>
+      </div>
+    </div>
+  </div>
+  <div id="body"   >
+    <div id="main">
+      <div id="content">
+	<div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Making the Business Case for a Large Scale Refactoring - Part 2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-09-27T19:00:00+02:00" pubdate data-updated="true">Sep 27<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em>How to improve a factual business case for a refactoring to make it even more compelling to business people.</em> </p>
+
+<p>In last post, I explained how to make a business case for a large scale refactoring using real numbers. Numbers are great, but they won&rsquo;t get us sponsorship by themselves. We need to understand them. We need to make sure they make sense. We need to make sure they are backing our refactoring up. In the end, we might need to improve them.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-teaser.jpeg" alt="Drawing of a hammer removing the G from refactoring written with stones. Trimming a refactoring is an effective way to increase its value, and make the business case better." /></p>
+
+<p>This is the thirteenth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactorings</a>. If you haven&rsquo;t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2>What If Payback Period is too long?</h2>
+
+<p>If payback period is close enough, then great, we can go out and pitch the refactoring. Most of the time though, large scale refactorings take quite some time to payback.</p>
+
+<h3>Product Life Expectancy</h3>
+
+<p>The first thing to do is to put this in the perspective of the company&rsquo;s or product&rsquo;s life expectancy. Imagine a product which is 10 years old and expected to cash-in for another 10 years. In this context, a refactoring that pays for itself in 1 year <em>is</em> a great opportunity!</p>
+
+<blockquote><p>💡 The longer the life expectancy of your product, the more refactoring you should invest in!</p></blockquote>
+
+<p>Picking the age of the product as its life expectancy is realistic most of the time. New products have low life expectancy, but legacy systems seem to last forever!</p>
+
+<h3>Split the refactoring!</h3>
+
+<p>A strategy to reduce the payback period is to split this large scale refactoring. Can we make it smaller, more focused, or find sub steps that pay for themselves faster? Here again, <a href="/blog/categories/incremental-software-development/">incremental refactoring techniques</a> will be critical.</p>
+
+<h3>Did we do an error?</h3>
+
+<p>It&rsquo;s also possible that we did an error in the business case computation. Sampling and logging are error-prone techniques.</p>
+
+<p>Is the iteration we took for sample is representative enough of the future work ? In doubt, we can re-do the sampling or the computation. Using better data leads to a better conclusion.</p>
+
+<p>There are also other costs we did not take into account to be able to stick to man.hours. Let&rsquo;s have a look at these.</p>
+
+<h2>Ideas for Improvements</h2>
+
+<h3>Convert to Money</h3>
+
+<p>If we have access to money numbers, we should be able to improve the figures with new costs.</p>
+
+<p>First, we&rsquo;ll need the average wage of team members to convert our figures in real money.</p>
+
+<p>If we have the figure, we can add the image cost of a bug to the non-refactoring cost.</p>
+
+<p>Finally, if we have the revenue per feature, we can add the opportunity cost to the refactoring cost. Opportunity cost is the cost of not working on features !</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/money.jpg" alt="Stacks of coins. If we have access to the good figures, it is possible to make the business case for large scale refactoring with real money instead of man.hours." /></p>
+
+<h3>Use a similar refactoring</h3>
+
+<p>Did someone do a similar refactoring in the past? If so, we can use it to improve your estimates about:</p>
+
+<ul>
+<li>Refactoring time</li>
+<li>Productivity improvement</li>
+<li>Time saved on bugs and support.</li>
+</ul>
+
+
+<h3>Is it a good idea in the end?</h3>
+
+<p>Are the numbers still arguing against the refactoring? Maybe it&rsquo;s not such a great idea afterwards &hellip; We ought not to argue for something of dubious value, our credibility is at stake.</p>
+
+<p>At this point, it might be a good idea to look for another improvement to do. Maybe there is other code to refactor or a new productivity tool to build.</p>
+
+<blockquote><p>💡 Avoiding bad moves is a key benefit of making a business case for large scale refactoring!</p></blockquote>
+
+<h2>Other References</h2>
+
+<p>I&rsquo;m fond of this way of prioritizing software. It&rsquo;s the way out of bickering about best practices, and towards sustainable pace. If you want to learn more about this, here are 2 helpful references :</p>
+
+<ul>
+<li>A blog post <a href="https://www.scrum.org/resources/blog/making-tech-debt-visible">Making Technical Debt Visible</a> . It explains how to use the scrum sprint backlog to display the cost of technical debt.</li>
+<li>A PluralSight course <a href="https://www.pluralsight.com/courses/making-business-case-for-best-practices">Making the Business Case for Best Practices</a>. It&rsquo;s just great. It contains a ton of practices to help us to get realistic numbers and estimates.</li>
+</ul>
+
+
+<p><a href="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case.jpg"><img src="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case-small.jpg" alt="Visual notes from the Plural Sight course &quot;Making the Business Case for Best Practices&quot;. It contains many techniques that can be used for large scale refactoring" /></a><div class="image-credits">Visual notes from <a href="https://www.pluralsight.com/courses/making-business-case-for-best-practices">Making the Business Case for Best Practices</a></div><br></p>
+
+<h2>Next post</h2>
+
+<p>This is the thirteenth post in a <a href="/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactorings</a>. We&rsquo;re reaching the end ! In <a href="http://eepurl.com/dxKE95">next week&rsquo;s post</a>, I&rsquo;ll go over Business Partnership. Practices we can put in place once we have build a lot of trust with business people. Stay tuned !</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Philippe Bourgau</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-09-27T19:00:00+02:00" pubdate data-updated="true">Sep 27<span>th</span>, 2018</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/business-value/'>business value</a>, <a class='category' href='/blog/categories/large-scale-refactoring-sponsorship-series/'>large-scale-refactoring-sponsorship-series</a>, <a class='category' href='/blog/categories/planning/'>planning</a>, <a class='category' href='/blog/categories/refactoring/'>refactoring</a>, <a class='category' href='/blog/categories/technical-debt/'>technical debt</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/" data-via="pbourgau" data-counturl="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/making-the-business-case-for-a-large-scale-refactoring-part-1/" title="Previous Post: Making the business case for a large scale refactoring - Part 1">&laquo; Making the business case for a large scale refactoring - Part 1</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <div id="google_translate_element"></div>
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'fr', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-30589315-1'}, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</section>
+
+<section>
+	<span>
+		<img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Gravatar of Philippe Bourgau " title="Gravatar of Philippe Bourgau" />
+	</span>
+</section>
+
+<section>
+  <h1><a href="/about-me">About Me</a></h1>
+  <p>Philippe Bourgau, eXtreme Programmer and Coach, pushing the limits of XP</p>
+  <p>I build high performing and sustainable teams by adapting XP to their unique challenges and context.</p>
+  <ul>
+    <li><a href="/about-me">Read more ...</a></li>
+    <li><a href="http://twitter.com/pbourgau">Twitter</a></li>
+    <li><a href="http://www.linkedin.com/pub/philippe-bourgau/8/a92/607">Linkedin</a></li>
+    <li><a href="https://dl.dropbox.com/u/206938/cv%20philippe%20bourgau.pdf">Resume</a></li>
+  </ul>
+</section>
+<section>
+  <h1>Open Source Projects</h1>
+  <ul>
+    <li><a href="http://philous-planning-poker.herokuapp.com">Philou's Planning Poker</a> : Better poker estimates for remote teams !</li>
+    <li><a href="http://philou.github.io/storexplore">Storexplore</a> : Transform online stores into APIs !</li>
+    <li><a href="http://philou.github.io/rspecproxies">RSpecProxies</a> : Simplify RSpec mocking with test proxies !</li>
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/philou">@philou</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'philou',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring - Part 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/">Making the business case for a large scale refactoring - Part 1</a>
+      </li>
+    
+      <li class="post">
+        <a href="/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/">5 Effective warning signals that will get you sponsorship for a large scale refactoring</a>
+      </li>
+    
+      <li class="post">
+        <a href="/presenting-a-large-scale-refactoring-as-a-business-opportunity/">Presenting a large scale refactoring as a business opportunity</a>
+      </li>
+    
+      <li class="post">
+        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
+      </li>
+    
+  </ul>
+</section>
+<section>
+  <h1>Friend's blogs</h1>
+  <ul>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/40221?v=3&s=24" /><a href="https://abailly.github.io/">Arnaud Bailly's blog</a></li>
+    <li><img class="logo link" src="https://www.murex.com/sites/default/files/favicon.ico" /> <a href="http://www.murex.com/">Murex (my company)</a></li>
+    <li><img class="logo link" src="https://avatars0.githubusercontent.com/u/2824069?v=3&s=24" /><a href="http://tpierrain.blogspot.fr/">Thomas' blog</a></li>
+    <li><img class="logo link" src="https://avatars3.githubusercontent.com/u/11088496?v=3&s=24" /><a href="https://ahmadatwi.me/">Ahmad Atwi's blog</a></li>
+    <li><img class="logo link" src="http://bilal.eltayara.net/favicon.png" /><a href="http://bilal.eltayara.net/">Bilal El Tayara's blog</a></li>
+    <li><img class="logo link" src="http://sthiery.blogspot.fr/favicon.ico" /><a href="http://sthiery.blogspot.fr/">Sylvain's blog (french)</a></li>
+    <li><img class="logo link" src="https://avatars2.githubusercontent.com/u/732436?v=3&s=24" /><a href="http://www.pgourlain.fr/">Pierrick's website (french)</a></li>
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+      </div>
+    </div>
+    <footer role="contentinfo"><p>
+  Copyright &copy; 2018 - Philippe Bourgau -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a>. Design by <a href="http://octopressthemes.com">Octopress Themes</a>.</span>
+</p>
+
+</footer>
+    
+
+<script type="text/javascript">
+      var disqus_shortname = 'philippe-bourgau';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/';
+        var disqus_url = 'http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </div>
+</body>
+</html>

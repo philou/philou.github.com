@@ -102,6 +102,128 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/ruby-regex-captures-oneliner/">Ruby Regex Captures Oneliner</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-09-11T09:02:00+02:00" pubdate data-updated="true">Sep 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Surely this post is nothing new for experienced ruby developpers, but I found it so handy, that I thought it deserved a post of its own though. The problem is :</p>
+
+<blockquote><p>How do I match and assign captures from a regex in a single line of code ?</p></blockquote>
+
+<p>Here is the idea :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="n">item</span> <span class="o">=</span> <span class="sr">/([^,]*), (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">item</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;ipad&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There are a few variations around this, like grouping some catpures in an array :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="o">*</span><span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or to ignore some capture, we could shorten skip some captures :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">item</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">[</span><span class="mi">2</span><span class="o">.</span><span class="n">.</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">item</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;ipad&quot;</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But this only works for first or last captures, when this is not the case, one can also use the functional programming &lsquo;_&rsquo; sink convention :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">brand</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">brand</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;APPLE&quot;</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>One can even use &lsquo;_&rsquo; multiple times on the same match</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&gt;</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">details</span> <span class="o">=</span> <span class="sr">/([^,]*), ([^:]*): (.*)/</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&quot;APPLE, ipad: iOs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">captures</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="o">[</span><span class="s2">&quot;APPLE&quot;</span><span class="p">,</span> <span class="s2">&quot;ipad&quot;</span><span class="p">,</span> <span class="s2">&quot;iOs&quot;</span><span class="o">]</span>
+</span><span class='line'><span class="o">&gt;</span> <span class="n">details</span>
+</span><span class='line'><span class="o">=&gt;</span> <span class="s2">&quot;iOs&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>I hope this helps.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/spork-alternative-compatible-with-cucumber/">Spork Alternative Compatible With Cucumber</a></h1>
     
     
@@ -722,100 +844,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/display-full-backtraces-in-rspec/">Display Full Backtraces in Rspec</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2013-06-07T06:51:00+02:00" pubdate data-updated="true">Jun 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I use <a href="http://rspec.info/">rspec</a> a lot. I thinks it&rsquo;s a great testing framework.</p>
-
-<p>In order to get shorter error output, rspec cleans backtraces from outside code. Here are all the patterns that are removed from the full backtrace :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">DEFAULT_BACKTRACE_PATTERNS</span> <span class="o">=</span> <span class="o">[</span>
-</span><span class='line'>  <span class="sr">/\/lib\d*\/ruby\//</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/org\/jruby\//</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/bin\//</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">%r|/gems/|</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/spec\/spec_helper\.rb/</span><span class="p">,</span>
-</span><span class='line'>  <span class="sr">/lib\/rspec\/(core|expectations|matchers|mocks)/</span>
-</span><span class='line'><span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Most of the time, that&rsquo;s great. Sometimes though, we get messages that seem completly unrelated to the code. Even worse, we might get misleading messages, such as &ldquo;method called with unexpected number of arguments&rdquo; that does not refer to the code in the backtrace, but to some other library code &hellip;</p>
-
-<p>I thought it would be nice if we could switch this cleaning off sometimes. Here is how I did this :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">RSpec</span><span class="o">.</span><span class="n">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># RSpec automatically cleans stuff out of backtraces;</span>
-</span><span class='line'>  <span class="c1"># sometimes this is annoying when trying to debug something e.g. a gem</span>
-</span><span class='line'>  <span class="k">if</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FULLBACKTRACES&#39;</span><span class="o">]</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
-</span><span class='line'>    <span class="n">config</span><span class="o">.</span><span class="n">backtrace_clean_patterns</span> <span class="o">=</span> <span class="o">[]</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="c1"># some other configuration here</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>This way, it is still possible to call rspec as before to get the standard behaviour, but it is now possible to specify the FULLBACKTRACES variable to get full backtraces.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">FULLBACKTRACES</span><span class="o">=</span><span class="kp">true</span> <span class="n">bundle</span> <span class="nb">exec</span> <span class="n">rspec</span> <span class="n">spec</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/20/">&larr; Older</a>
@@ -898,6 +926,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring - Part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/">Making the business case for a large scale refactoring - Part 1</a>
       </li>
     
@@ -911,10 +943,6 @@
     
       <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
       </li>
     
   </ul>

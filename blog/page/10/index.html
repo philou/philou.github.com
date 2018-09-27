@@ -102,6 +102,103 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/top-5-talks-i-attented-at-java-one-2016-part-1/">Top 5 Talks I Attended at JavaOne 2016 (Part 1)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2016-09-28T19:20:00+02:00" pubdate data-updated="true">Sep 28<span>th</span>, 2016</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>With a few other colleagues, I had the chance to be sent to San Francisco last week to attend the <a href="https://www.oracle.com/javaone/index.html">JavaOne 2016</a> conferences by my <a href="http://www.murex.com">company</a>.</p>
+
+<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall.jpg"><img src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/exhibition-hall-small.jpg" alt="Photo of the JavaOne exhibition hall" /></a></p>
+
+<p>Here is super short list of the conferences I attended which I found really interesting</p>
+
+<h2>Preventing errors before they happen</h2>
+
+<p><a href="https://ece.uwaterloo.ca/~wdietl/">Werner Dietl</a> &amp; <a href="https://homes.cs.washington.edu/~mernst/">Michael Ernst</a></p>
+
+<p>Since Java 6, it is possible to pass custom annotation processors to javac. Since Java 8, it is possible to add annotations to types. The guys behind the <a href="http://checkerframework.org">Checker Framework</a> used this to create custom pluggable type systems for your Java programs. These type systems enforce properties on your program, and will emit warnings or errors at compile time otherwise.</p>
+
+<p>Here are a few example :</p>
+
+<ul>
+<li>declare <code>@Immutable MyObject myObject</code> to make sure that myObject won&rsquo;t be muted</li>
+<li>declare <code>@NonNull MyObject myObject</code> to make sure that myObject is never null</li>
+</ul>
+
+
+<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems.jpg"><img src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/type-systems-small.jpg" alt="Architecture of the type checker" /></a></p>
+
+<p>Under the hood, the compiler behaves as if <code>@Immutable MyObject</code> and <code>MyObject</code> where completely separate types, and it knows and tracks specific ways of converting between the two. The framework provides a simple API to define your own type systems. They did a live demo showing how to quickly define things like <code>@Regex String</code>, <code>@Encrypted String</code> or <code>@Untainted String</code> (which forbids user input strings to avoid SQL injections).</p>
+
+<p>The talk was really interesting, the framework seems lightweight and to integrate well with the typical tool stack. I definitely will give it a try the next time I have a bit of slack time.</p>
+
+<p>Here are <a href="http://types.cs.washington.edu/checker-framework/2016-javaone/2016-09-19%20CF%20@%20JavaOne.pdf">the slides</a> and a <a href="https://www.youtube.com/watch?v=kb6nz85jbuQ">previous session of the presentation</a></p>
+
+<h2>Keeping Your CI/CD Pipeline as Fast as It Needs to Be</h2>
+
+<p><a href="https://twitter.com/abrahammarin?lang=fr">Abraham Marin-Perez</a></p>
+
+<p>Continuous Delivery and Microservices are what you need to do, aren&rsquo;t they ? Well, when actually trying to setup a CI / CD pipeline for all your code, things quickly get complicated pretty fast ! The speaker presented how to deal with this complexity by using metrics from your VCS and build servers to draw an annotated graph of your build pipeline.</p>
+
+<p><a href="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline.jpg"><img src="http://philippe.bourgau.net/imgs/2016-09-28-top-5-talks-i-attented-at-javaone-2016-part-1/build-pipeline-small.jpg" alt="Graph of the build pipeline" /></a></p>
+
+<ul>
+<li>He used the build time to set the size of every node : the longer, the larger</li>
+<li>The color for the change rate : the more often it was built the warmer the color</li>
+</ul>
+
+
+<p>It was then possible to determine other metrics such as :</p>
+
+<ul>
+<li>the impact time of every node : build time + build time of all the dependencies</li>
+<li>the weighted impact time : impact time * change rate</li>
+<li>the overall average impact time : sum of all the weighted impact times</li>
+<li>the overall max impact time : max of all the impact times</li>
+</ul>
+
+
+<p>Using this and your SLAs it is possible to define policies for your build times such as &ldquo;the max build time should not be more than X&rdquo;. If you want to speed up your build, you can set a target build time and analyzing the graph should help you to understand what architecture changes you need to make to your system in order to meet this build time (this sounds a lot like <a href="http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html">Toyota&rsquo;s Improvement Kata</a> &hellip;)</p>
+
+<p>I loved this talk ! I found the speaker captivating, he presented novel ideas which is not always the case.</p>
+
+<p>Here are <a href="http://www.slideshare.net/AbrahamMarinPerez/keeping-your-cicd-pipeline-as-fast-as-it-needs-to-be">the slides</a>, and <a href="https://www.youtube.com/watch?v=8JxoKJng_eQ">the same presentation at Devoxx UK</a>.</p>
+
+<h2>To Be Continued</h2>
+
+<p>I promised 5, and that&rsquo;s only 2 talks ! Stay tuned, I&rsquo;ll write about the 3 others in the coming weeks. <a href="/top-5-talks-i-attended-at-javaone-2016-part-2/">Here they are</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/flavours-of-tdd/">Flavors of TDD</a></h1>
     
     
@@ -906,262 +1003,6 @@ wavelength as the people [at Microsoft].</p></blockquote>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/how-to-setup-rails-docker-postgresql-and-heroku-for-local-development/">How to Setup Rails, Docker, PostgreSQL (and Heroku) for Local Development ?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2016-07-20T06:12:00+02:00" pubdate data-updated="true">Jul 20<span>th</span>, 2016</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://github.com/philou/planning_poker">My current side project</a> is an online tool to do remote planning pokers. I followed my <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous tutorial</a> to setup Rails, Docker and Heroku.</p>
-
-<p>Naturally, as a BDD proponent, I tried to install <a href="https://cucumber.io">cucumber</a> to write my first scenario.</p>
-
-<p>Here is the result of my first cucumber run :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
-</span><span class='line'>rails aborted!
-</span><span class='line'>PG::ConnectionBad: could not translate host name <span class="s2">&quot;postgres://postgres:@herokuPostgresql:5432/postgres&quot;</span> to address: Name or service not known
-</span><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>It turned out that I had taken instructions from a <a href="https://blog.codeship.com/deploying-docker-rails-app/">blog article on codeship</a> that mistakenly used <code>host:</code> instead of <code>url:</code> in their <code>config/database.yml</code></p>
-
-<p>After fixing that in my database.yml file, things where only slightly working better :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
-</span><span class='line'>rails aborted!
-</span><span class='line'>ActiveRecord::StatementInvalid: PG::ObjectInUse: ERROR:  cannot drop the currently open database
-</span><span class='line'>: DROP DATABASE IF EXISTS <span class="s2">&quot;postgres&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>The thing is the config was still using the same database for all environments. That&rsquo;s not exactly what I wanted. I updated my <code>config/database.yml</code> :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="nl">&amp;default</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">adapter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgresql</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">encoding</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">unicode</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">pool</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">timeout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5000</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">postgres</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">port</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">5432</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">host</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">herokuPostgresql</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">development</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">planning_poker_development</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">test</span><span class="p-Indicator">:</span> <span class="nl">&amp;test</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">database</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">planning_poker_test</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">production</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;%= ENV[&#39;DATABASE_URL&#39;] %&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Victory ! Cucumber is running</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>cucumber
-</span><span class='line'>Using the default profile...
-</span><span class='line'>0 scenarios
-</span><span class='line'>0 steps
-</span><span class='line'>0m0.000s
-</span><span class='line'>Run options: --seed 45959
-</span><span class='line'>
-</span><span class='line'><span class="c"># Running:</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>Finished in 0.002395s, 0.0000 runs/s, 0.0000 assertions/s.
-</span><span class='line'>
-</span><span class='line'>0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Fixing rake db:create</h2>
-
-<p>By searching through the web, I found that people were having similar issues with rake db:create. I tried to run it and here is what I got :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>rake db:create
-</span><span class='line'>Database <span class="s1">&#39;postgres&#39;</span> already exists
-</span><span class='line'>Database <span class="s1">&#39;planning_poker_test&#39;</span> already exists
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Why is it trying to create the postgres database ? It turns out that the DATABASE_URL takes precedence over what is defined in my <code>config/database.yml</code>. I need to unset this variable locally. I already have the <code>docker-compose.override.yml</code> for that :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">web</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">DATABASE_URL</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">environment</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">DATABASE_URL</span><span class="p-Indicator">:</span>
-</span><span class='line'>  <span class="l-Scalar-Plain">...</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Rake db:create works just fine now :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker-compose run shell bundle <span class="nb">exec </span>rake db:create
-</span><span class='line'>Database <span class="s1">&#39;planning_poker_development&#39;</span> already exists
-</span><span class='line'>Database <span class="s1">&#39;planning_poker_test&#39;</span> already exists
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Starting a psql session</h2>
-
-<p>During all my trouble-shootings, I tried to connect to the Postgresql server to make sure that the databases where created and ready. Here is how I managed to do that :</p>
-
-<h3>1. Install psql client</h3>
-
-<p>On my Ubuntu machine, that was a simple <code>sudo apt-get install postgresql-client-9.4</code>.</p>
-
-<h3>2. Finding the server port</h3>
-
-<p>The port can be found through <code>config/database.yml</code> or through <code>docker ps</code>. Let&rsquo;s use the later, as we&rsquo;ll need it to find the server IP as well.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker ps
-</span><span class='line'>CONTAINER ID        IMAGE            COMMAND                  CREATED             STATUS              PORTS           NAMES
-</span><span class='line'>b58ce42d2b2b        postgres         <span class="s2">&quot;/docker-entrypoint.s&quot;</span>   46 hours ago        Up 46 hours         5432/tcp        planningpoker_herokuPostgresql_1
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Here the port is clearly 5432.</p>
-
-<h3>3. Finding the server IP</h3>
-
-<p>Using the container id we got on previous <code>docker ps</code> command, we can use <code>docker inspect</code> to get further details :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>docker inspect b58ce42d2b2b | grep IPAddress
-</span><span class='line'>            <span class="s2">&quot;SecondaryIPAddresses&quot;</span>: null,
-</span><span class='line'>            <span class="s2">&quot;IPAddress&quot;</span>: <span class="s2">&quot;172.17.0.2&quot;</span>,
-</span><span class='line'>                    <span class="s2">&quot;IPAddress&quot;</span>: <span class="s2">&quot;172.17.0.2&quot;</span>,
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>4. Connecting to the database</h3>
-
-<p>Connecting is now just a matter of filling the command line.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="err">$</span> <span class="n">psql</span> <span class="o">-</span><span class="n">U</span> <span class="n">postgres</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5432</span> <span class="o">-</span><span class="n">d</span> <span class="n">planning_poker_development</span> <span class="o">-</span><span class="n">h</span> <span class="mi">172</span><span class="p">.</span><span class="mi">17</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">2</span>
-</span><span class='line'><span class="n">planning_poker_development</span><span class="o">=#</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">schema_migrations</span><span class="p">;</span>
-</span><span class='line'> <span class="k">version</span>
-</span><span class='line'><span class="c1">---------</span>
-</span><span class='line'><span class="p">(</span><span class="mi">0</span> <span class="k">rows</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>5. Installing psql client directly in the shell</h3>
-
-<p>It should be possible to install the psql client in the shell container automatically, but I must admit I did not try this yet. It should just a matter of adding this to the <code>Dockerfile</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="k">get</span> <span class="n">install</span> <span class="n">postgresql</span><span class="o">-</span><span class="n">client</span><span class="o">-&lt;</span><span class="k">version</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/11/">&larr; Older</a>
@@ -1244,6 +1085,10 @@ wavelength as the people [at Microsoft].</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring - Part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/">Making the business case for a large scale refactoring - Part 1</a>
       </li>
     
@@ -1257,10 +1102,6 @@ wavelength as the people [at Microsoft].</p></blockquote>
     
       <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
       </li>
     
   </ul>

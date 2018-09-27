@@ -4,7 +4,7 @@
   <title><![CDATA[Philippe Bourgau's blog]]></title>
   <link href="http://philippe.bourgau.net/atom.xml?utm_source=blog&amp;utm_medium=rss" rel="self"/>
   <link href="http://philippe.bourgau.net/?utm_source=blog&amp;utm_medium=rss"/>
-  <updated>2018-09-21T12:46:37+02:00</updated>
+  <updated>2018-09-27T06:08:48+02:00</updated>
   <id>http://philippe.bourgau.net/</id>
   <author>
     <name><![CDATA[Philippe Bourgau]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Making the business case for a large scale refactoring - Part 2]]></title>
+    <link href="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/?utm_source=blog&amp;utm_medium=rss"/>
+    <updated>2018-09-27T19:00:00+02:00</updated>
+    <id>http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2</id>
+    <category term="business value" /><category term="large-scale-refactoring-sponsorship-series" /><category term="planning" /><category term="refactoring" /><category term="technical debt" />
+    <content type="html"><![CDATA[<p><em>How to improve a factual business case for a refactoring to make it even more compelling to business people.</em> </p>
+
+<p>In last post, I explained how to make a business case for a large scale refactoring using real numbers. Numbers are great, but they won&rsquo;t get us sponsorship by themselves. We need to understand them. We need to make sure they make sense. We need to make sure they are backing our refactoring up. In the end, we might need to improve them.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/refactoring-trim-teaser.jpeg" alt="Drawing of a hammer removing the G from refactoring written with stones. Trimming a refactoring is an effective way to increase its value, and make the business case better." /></p>
+
+<p>This is the thirteenth post in a <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactorings</a>. If you haven&rsquo;t, I encourage you to start from <a href="http://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2>What If Payback Period is too long?</h2>
+
+<p>If payback period is close enough, then great, we can go out and pitch the refactoring. Most of the time though, large scale refactorings take quite some time to payback.</p>
+
+<h3>Product Life Expectancy</h3>
+
+<p>The first thing to do is to put this in the perspective of the company&rsquo;s or product&rsquo;s life expectancy. Imagine a product which is 10 years old and expected to cash-in for another 10 years. In this context, a refactoring that pays for itself in 1 year <em>is</em> a great opportunity!</p>
+
+<blockquote><p>💡 The longer the life expectancy of your product, the more refactoring you should invest in!</p></blockquote>
+
+<p>Picking the age of the product as its life expectancy is realistic most of the time. New products have low life expectancy, but legacy systems seem to last forever!</p>
+
+<h3>Split the refactoring!</h3>
+
+<p>A strategy to reduce the payback period is to split this large scale refactoring. Can we make it smaller, more focused, or find sub steps that pay for themselves faster? Here again, <a href="http://philippe.bourgau.net/blog/categories/incremental-software-development/">incremental refactoring techniques</a> will be critical.</p>
+
+<h3>Did we do an error?</h3>
+
+<p>It&rsquo;s also possible that we did an error in the business case computation. Sampling and logging are error-prone techniques.</p>
+
+<p>Is the iteration we took for sample is representative enough of the future work ? In doubt, we can re-do the sampling or the computation. Using better data leads to a better conclusion.</p>
+
+<p>There are also other costs we did not take into account to be able to stick to man.hours. Let&rsquo;s have a look at these.</p>
+
+<h2>Ideas for Improvements</h2>
+
+<h3>Convert to Money</h3>
+
+<p>If we have access to money numbers, we should be able to improve the figures with new costs.</p>
+
+<p>First, we&rsquo;ll need the average wage of team members to convert our figures in real money.</p>
+
+<p>If we have the figure, we can add the image cost of a bug to the non-refactoring cost.</p>
+
+<p>Finally, if we have the revenue per feature, we can add the opportunity cost to the refactoring cost. Opportunity cost is the cost of not working on features !</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/money.jpg" alt="Stacks of coins. If we have access to the good figures, it is possible to make the business case for large scale refactoring with real money instead of man.hours." /></p>
+
+<h3>Use a similar refactoring</h3>
+
+<p>Did someone do a similar refactoring in the past? If so, we can use it to improve your estimates about:</p>
+
+<ul>
+<li>Refactoring time</li>
+<li>Productivity improvement</li>
+<li>Time saved on bugs and support.</li>
+</ul>
+
+
+<h3>Is it a good idea in the end?</h3>
+
+<p>Are the numbers still arguing against the refactoring? Maybe it&rsquo;s not such a great idea afterwards &hellip; We ought not to argue for something of dubious value, our credibility is at stake.</p>
+
+<p>At this point, it might be a good idea to look for another improvement to do. Maybe there is other code to refactor or a new productivity tool to build.</p>
+
+<blockquote><p>💡 Avoiding bad moves is a key benefit of making a business case for large scale refactoring!</p></blockquote>
+
+<h2>Other References</h2>
+
+<p>I&rsquo;m fond of this way of prioritizing software. It&rsquo;s the way out of bickering about best practices, and towards sustainable pace. If you want to learn more about this, here are 2 helpful references :</p>
+
+<ul>
+<li>A blog post <a href="https://www.scrum.org/resources/blog/making-tech-debt-visible">Making Technical Debt Visible</a> . It explains how to use the scrum sprint backlog to display the cost of technical debt.</li>
+<li>A PluralSight course <a href="https://www.pluralsight.com/courses/making-business-case-for-best-practices">Making the Business Case for Best Practices</a>. It&rsquo;s just great. It contains a ton of practices to help us to get realistic numbers and estimates.</li>
+</ul>
+
+
+<p><a href="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case.jpg"><img src="http://philippe.bourgau.net/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case-small.jpg" alt="Visual notes from the Plural Sight course &quot;Making the Business Case for Best Practices&quot;. It contains many techniques that can be used for large scale refactoring" /></a><div class="image-credits">Visual notes from <a href="https://www.pluralsight.com/courses/making-business-case-for-best-practices">Making the Business Case for Best Practices</a></div><br></p>
+
+<h2>Next post</h2>
+
+<p>This is the thirteenth post in a <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">series about how to get sponsorship for large scale refactorings</a>. We&rsquo;re reaching the end ! In <a href="http://eepurl.com/dxKE95">next week&rsquo;s post</a>, I&rsquo;ll go over Business Partnership. Practices we can put in place once we have build a lot of trust with business people. Stay tuned !</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Making the business case for a large scale refactoring - Part 1]]></title>
@@ -107,7 +196,7 @@
 
 <h2>To be continued</h2>
 
-<p>We&rsquo;re done with computations. <a href="http://eepurl.com/dxKE95">Next week</a>, I&rsquo;ll go over what to do with these numbers. We want to make business case for this large scale refactoring an unmissable offer!</p>
+<p>We&rsquo;re done with computations. <a href="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/">Next week</a>, I&rsquo;ll go over what to do with these numbers. We want to make business case for this large scale refactoring an unmissable offer!</p>
 
 <p>This is the twelfth post in <a href="http://philippe.bourgau.net/blog/categories/large-scale-refactoring-sponsorship-series/">a series about how to get sponsorship for large scale refactorings</a>.</p>
 ]]></content>
@@ -1081,7 +1170,7 @@
 <li><a href="http://philippe.bourgau.net/presenting-a-large-scale-refactoring-as-a-business-opportunity/">Presenting a large scale refactoring as a business opportunity</a></li>
 <li><a href="http://philippe.bourgau.net/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/">5 Effective warning signals that will get you sponsorship for a large scale refactoring</a></li>
 <li><a href="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-1/">Making the business case for a large scale refactoring &ndash; Part 1</a></li>
-<li>Making the business case for a large scale refactoring &ndash; Part 2</li>
+<li><a href="http://philippe.bourgau.net/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring &ndash; Part 2</a></li>
 <li>Building a business partnership</li>
 </ol>
 
@@ -3435,305 +3524,6 @@
 <h2>Next week</h2>
 
 <p>This is the fourth post of <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a> in automated tests. Next week I&rsquo;ll dig into Custom Assertion Matchers and how they avoid mock expectations.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Immutable Value Objects vs Mocks : Fizz Buzz]]></title>
-    <link href="http://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/?utm_source=blog&amp;utm_medium=rss"/>
-    <updated>2018-05-03T19:28:00+02:00</updated>
-    <id>http://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz</id>
-    <category term="how-to-avoid-mocks-series" /><category term="mocking" /><category term="programming" /><category term="ruby" /><category term="tdd" /><category term="testing" />
-    <content type="html"><![CDATA[<p>In my <a href="http://philippe.bourgau.net/how-immutable-value-objects-fight-mocks/">previous post</a> I explained how <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a> help us to avoid mocks. In this post, I&rsquo;ll illustrate this in practice with real code.</p>
-
-<p>This is the third post on a <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">series about how to avoid mocks</a>. If you haven&rsquo;t, you can start reading the full story <a href="http://philippe.bourgau.net/careless-mocking-considered-harmful/">here</a>.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg" alt="A drawing &quot;FIZZ BUZZ&quot; rock fallen and sealed in the ground" /></p>
-
-<h2>Fizz Buzz Example</h2>
-
-<p>As a simple example, I&rsquo;ll go through the classic <a href="http://codingdojo.org/kata/FizzBuzz/">Fizz Buzz</a>. I&rsquo;ve implemented and tested it with and without immutable value objects. Please keep in mind that this is a toy example, where problems are obvious and easily fixed. I try to highlight at small scale the same problems that get hidden by the complexity of a large scale program.</p>
-
-<p>Let&rsquo;s start with a typical FizzBuzz implementation.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;FizzBuzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;Fizz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;Buzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Suppose you need to add some tests around the code. The most straightforward way is to mock <code>STDOUT</code> :</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">fizzBuzz</span><span class="p">(</span><span class="n">max</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
-</span><span class='line'>  <span class="mi">1</span><span class="o">.</span><span class="n">upto</span><span class="p">(</span><span class="n">max</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;FizzBuzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;Fizz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;Buzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">else</span>
-</span><span class='line'>      <span class="n">out</span><span class="o">.</span><span class="n">puts</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># main</span>
-</span><span class='line'><span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="no">STDOUT</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">describe</span> <span class="s1">&#39;Mockist Fizz Buzz&#39;</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;should print numbers, fizz and buzz&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">out</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">&quot;out&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;2</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Fizz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;4</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Buzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Fizz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;7</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;8</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Fizz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Buzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;11</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;Fizz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;13</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;14</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">)</span><span class="o">.</span><span class="n">with</span><span class="p">(</span><span class="s2">&quot;FizzBuzz</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">ordered</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Unfortunately, there are a few problems with this code :</p>
-
-<ul>
-<li>With nested logic and complicated mock setup, both code and tests aren&rsquo;t very readable</li>
-<li>They both seem to violate the single responsibility principle as well</li>
-<li>It&rsquo;s depending on a mutable output. Within a larger program, something could be messing around with this output stream. That would break FizzBuzz.</li>
-</ul>
-
-
-<p>Let&rsquo;s now try to use as many immutable values objects as possible, and see what happens to the mocks.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec&#39;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># We extracted a function to do the fizz buzz on a single number</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">fizzBuzzN</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="s2">&quot;FizzBuzz&quot;</span>
-</span><span class='line'>  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="s2">&quot;Fizz&quot;</span>
-</span><span class='line'>  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="s2">&quot;Buzz&quot;</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="n">i</span><span class="o">.</span><span class="n">to_s</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># We replaced the many calls to STDOUT.puts by building a single </span>
-</span><span class='line'><span class="c1"># large (and immutable) string</span>
-</span><span class='line'><span class="k">def</span> <span class="nf">fizzBuzz</span><span class="p">(</span><span class="n">max</span><span class="p">)</span>
-</span><span class='line'>  <span class="p">((</span><span class="mi">1</span><span class="o">.</span><span class="n">.max</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">fizzBuzzN</span><span class="p">(</span><span class="n">i</span><span class="p">)})</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span class='line'><span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># main, with a single call to STDOUT.puts</span>
-</span><span class='line'><span class="no">STDOUT</span><span class="o">.</span><span class="n">puts</span> <span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">describe</span> <span class="s1">&#39;Statist Fizz Buzz&#39;</span> <span class="k">do</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;should print numbers not multiples of 3 or 5&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;4&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;should print Fizz for multiples of 3&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Fizz&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Fizz&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;should print Buzz for multiples of 5&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Buzz&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;Buzz&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;should print FizzBuzz for multiples of 3 and 5&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;FizzBuzz&quot;</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">&quot;FizzBuzz&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">it</span> <span class="s1">&#39;should print numbers, fizz and buzz&#39;</span> <span class="k">do</span>
-</span><span class='line'>    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">15</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">&quot;1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">Fizz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">and</span><span class="p">(</span><span class="n">end_with</span><span class="p">(</span><span class="s2">&quot;14</span><span class="se">\n</span><span class="s2">FizzBuzz&quot;</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>As we can see, using immutable value objects got us rid of the mocks. Obviously, this new code will not be as efficient as the original version, but most of the time, this does not matter. As a bonus though we get finer grain and more readable tests.</p>
-
-<h3>Other testing advantages</h3>
-
-<p>Appart from preventing mocks, Immutable Value Objects have other advantages related to testing.</p>
-
-<ul>
-<li>We can directly assert their equality, without having to dig into their guts</li>
-<li>We can call methods as many times as we want, without the risk of changing anything and breaking the tests</li>
-<li>Immutable Value Objects are a lot less likely to contain invalid state. This removes the need for a whole range of validity tests.</li>
-</ul>
-
-
-<blockquote><p>💡 Immutable Value Objects simplify testing in many ways.</p></blockquote>
-
-<h3>Convincing your teammates</h3>
-
-<p>We&rsquo;ve seen that Immutable Value Objects have a ton of advantages when testing. People have found that they also have many other benefits :</p>
-
-<ul>
-<li><a href="https://www.linkedin.com/pulse/20140528113353-16837833-6-benefits-of-programming-with-immutable-objects-in-java/">6 Benefits of Programming with Immutable Objects in Java</a></li>
-<li><a href="https://hackernoon.com/5-benefits-of-immutable-objects-worth-considering-for-your-next-project-f98e7e85b6ac">5 Benefits of Immutable Objects Worth Considering for Your Next Project</a></li>
-</ul>
-
-
-<p>Surprisingly though, it&rsquo;s difficult to persuade programmers to use more immutability. It&rsquo;s tricky to explain why returning a modified copy is simpler than just adding a setter.</p>
-
-<blockquote><p>💡 Why is it so hard to persuade other developers to use immutable data structures ?</p></blockquote>
-
-<p>I had the most success by far when encountering a bug resulting of share mutable state. When this happens, the long term benefits and safety of the immutable design wins people over. The good thing is that as you convince more people in the team, immutability will spread like a virus !</p>
-
-<p>Outside of this situation, you might try some of the following arguments to move people :</p>
-
-<ul>
-<li>Immutable values prevent bugs caused by different parts of the system changing the same mutable state</li>
-<li>They make it easier to deal with the program in smaller parts and to reason about the system in general</li>
-<li>Immutable values don&rsquo;t need any synchronization and make multithreaded programming easier</li>
-<li>When tempted to add a simple setter instead of keeping a class immutable, highlight the stressful debugging time to come</li>
-<li>If you&rsquo;re dealing with a Design By Contract adept, explain how <a href="http://philippe.bourgau.net/almost-15-years-of-using-design-by-contract/">immutability has it built-in</a></li>
-<li>Admit that mainstream languages have bad support for Immutable Value. Point to patterns like <a href="https://dzone.com/articles/immutability-with-builder-design-pattern">Data Builders</a> that work around these limitation</li>
-</ul>
-
-
-<h2>Next post</h2>
-
-<p>I&rsquo;m done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a <a href="http://philippe.bourgau.net/blog/categories/how-to-avoid-mocks-series/">series about avoiding mocks</a>. In <a href="http://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">next post</a>, I&rsquo;ll dig into another small scale mock fighting pattern : <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a>.</p>
 ]]></content>
   </entry>
   

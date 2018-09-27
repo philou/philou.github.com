@@ -102,6 +102,58 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-install-a-patched-ruby-interpreter-wit/">How to Install a Patched Ruby Interpreter With Rbenv and Ruby-build</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-01-09T00:00:00+01:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A background scheduled task I am trying to run on heroku is failing because it gets out of memory. I needed to use a ruby memory profiler to understand exactly what the issue was. <a href="https://github.com/rdp/ruby-prof">ruby-prof</a> seemed great, but it needs a patched ruby interpreter to collect memory information.</p>
+
+<p>After a bit of searching and trying, the simplest thing I managed to do was to</p>
+
+<ul>
+<li>download the ruby sources</li>
+<li>patch them</li>
+<li>create a ruby-build package definition with them</li>
+<li>install with rbenv</li>
+</ul>
+
+
+<p>Here is a script that does this for ruby 1.9.2-p125 and gcdata patch.</p>
+
+<script src="https://gist.github.com/4492543.js"></script>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-i-set-up-a-trustico-rapid-ssl-certificate/">How I Set Up a Trustico Rapid Ssl Certificate on Heroku Ssl Endpoint</a></h1>
     
     
@@ -129,7 +181,7 @@
   <div class="entry-content"><p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
 
 <ul>
-<li>Purchase a RapidSSL certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank"><a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x61;&#x64;&#x6d;&#x69;&#110;&#64;&#109;&#101;&#115;&#x2d;&#x63;&#x6f;&#x75;&#114;&#x73;&#101;&#115;&#46;&#102;&#114;">&#97;&#100;&#x6d;&#105;&#x6e;&#64;&#x6d;&#x65;&#115;&#45;&#99;&#x6f;&#x75;&#114;&#115;&#x65;&#115;&#46;&#102;&#x72;</a></a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you Trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&rsquo;s call it server.crt).</li>
+<li>Purchase a RapidSSL certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank"><a href="&#x6d;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#97;&#x64;&#109;&#x69;&#110;&#64;&#109;&#101;&#x73;&#x2d;&#99;&#111;&#x75;&#x72;&#x73;&#x65;&#115;&#x2e;&#x66;&#x72;">&#x61;&#100;&#x6d;&#105;&#x6e;&#64;&#x6d;&#101;&#115;&#x2d;&#x63;&#111;&#117;&#x72;&#x73;&#x65;&#115;&#46;&#x66;&#x72;</a></a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you Trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&rsquo;s call it server.crt).</li>
 <li>Add the ssl endpoint add on to your Heroku application</li>
 </ul>
 
@@ -992,45 +1044,6 @@ Regrouper ensemble toutes ces différentes sortes de travaux est peut être prat
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/stubmodel-and-mockmodel/">Stub_model and Mock_model</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-04-16T00:00:00+02:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I decided to stop using stub_model and mock_model. I do not use them enough to get fluent with them. Every time I have to deal with them, something breaks in an unexpected way. I just decided to stand with good old stubs.</p>
-
-<p>I am also thinking of switching to RR (double ruby) and to use proxy objects to get simplify mocking even further. Did you try it ?</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/22/">&larr; Older</a>
@@ -1113,6 +1126,10 @@ Regrouper ensemble toutes ces différentes sortes de travaux est peut être prat
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring - Part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/">Making the business case for a large scale refactoring - Part 1</a>
       </li>
     
@@ -1126,10 +1143,6 @@ Regrouper ensemble toutes ces différentes sortes de travaux est peut être prat
     
       <li class="post">
         <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !</a>
       </li>
     
   </ul>
