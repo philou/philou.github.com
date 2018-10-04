@@ -88,4 +88,4 @@ I'm fond of this way of prioritizing software. It's the way out of bickering abo
 
 ## Next post
 
-This is the thirteenth post in a [series about how to get sponsorship for large scale refactorings](/blog/categories/large-scale-refactoring-sponsorship-series/). We're reaching the end ! In [next week's post](http://eepurl.com/dxKE95), I'll go over Business Partnership. Practices we can put in place once we have build a lot of trust with business people. Stay tuned !
+This is the thirteenth post in a [series about how to get sponsorship for large scale refactorings](/blog/categories/large-scale-refactoring-sponsorship-series/). We're reaching the end ! In [next week's post](/become-a-business-partner-and-stop-begging-for-refactoring/), I'll go over Business Partnership. There are some practices we can put in place once we have earned the trust from business people. Stay tuned !

@@ -12,7 +12,6 @@ description: "When developers earn enough trust from business people, they becom
 header:
    teaser: /imgs/2018-10-03-become-a-business-partner-and-stop-begging-for-refactoring/business-hand-shake-teaser.jpeg
    og_image: /imgs/2018-10-03-become-a-business-partner-and-stop-begging-for-refactoring/business-hand-shake-og.jpeg
-published: false
 ---
 _When we, developers, earn enough trust from business people, we become their business partners. As such we enjoy a lot more freedom to refactor._
 
