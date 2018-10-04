@@ -102,6 +102,678 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">How to Use Test Data Builders to Avoid Mocks and Keep Your Tests Clear</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2018-05-10T09:56:00+02:00" pubdate data-updated="true">May 10<span>th</span>, 2018</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>We are sometimes tempted to use mocks to shortcut test data initialization. Unfortunately, excessive mocking makes tests difficult to maintain. As <a href="https://blog.cleancoder.com/uncle-bob/2017/05/05/TestDefinitions.html">Uncle Bob explained</a>, it&rsquo;s a road that leads to giving up on tests.</p>
+
+<p>Hopefully, <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a> both shortcut test data setup and avoid mocks.</p>
+
+<p><img src="http://philippe.bourgau.net/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg" alt="Drawing of a crate" /></p>
+
+<p>This is the fourth post <a href="/blog/categories/how-to-avoid-mocks-series/">of a series about how to avoid mocks</a> in automated tests. If you haven&rsquo;t yet, I recommend you to start from <a href="/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<h2>The problem with test data initialization</h2>
+
+<p>Setting up the correct state for automated tests can be pretty verbose. This is especially true for software in complex domains or code with a lot of side effects.</p>
+
+<p>The situation gets worse as tests need to setup similar but not exactly identical data. What I often see in code bases is a lot of test data setup duplication. For example, here are tests for a basic ticketing system.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;date&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s1">&#39;Ticket Tracking&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;with test setup duplication&quot;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the creation date when nothing changed&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">creation_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">26</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="no">Ticket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Widget broken&quot;</span><span class="p">,</span> <span class="s2">&quot;The widget is not loading when ...&quot;</span><span class="p">,</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the comment date when a comment is written&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="no">Ticket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Widget broken&quot;</span><span class="p">,</span> <span class="s2">&quot;The widget is not loading when ...&quot;</span><span class="p">,</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">comment_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="n">comment_time</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">comment_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the comment date of the latest comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="no">Ticket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Widget broken&quot;</span><span class="p">,</span> <span class="s2">&quot;The widget is not loading when ...&quot;</span><span class="p">,</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>      <span class="n">comment_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="n">comment_time</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">comment_time</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is time of latest change if after comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">creation_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="no">Ticket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Widget broken&quot;</span><span class="p">,</span> <span class="s2">&quot;The widget is not loading when ...&quot;</span><span class="p">,</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## The code under test</span>
+</span><span class='line'><span class="c1">##</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Ticket</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">reporter</span><span class="p">,</span> <span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@updated_at</span> <span class="o">=</span> <span class="n">creation_time</span>
+</span><span class='line'>    <span class="vi">@comments</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">latest_change</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">[</span><span class="vi">@updated_at</span><span class="o">]</span> <span class="o">+</span> <span class="vi">@comments</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:created_at</span><span class="p">))</span><span class="o">.</span><span class="n">max</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_comment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@comments</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Comment</span>
+</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:created_at</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@created_at</span> <span class="o">=</span> <span class="n">time</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It&rsquo;s clear that there&rsquo;s a huge amount of duplication in the tests data setups.</p>
+
+<p>The straightforward fix against that is method extraction. This is the <a href="https://martinfowler.com/bliki/ObjectMother.html">Object Mother pattern</a>. Unfortunately, Object Mother breaks down under the number of variations. Every time you need a new change, you&rsquo;ll add a parameter to the Object Mother method. Long story short, you&rsquo;ll end up with code like that :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;Ticket Tracking&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;with object mother&quot;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the creation date when nothing changed&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">creation_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">create_ticket</span><span class="p">(</span><span class="n">creation_time</span><span class="p">,</span> <span class="o">[]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the comment date when a comment is written&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">comment_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">create_ticket</span><span class="p">(</span><span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">[</span><span class="n">comment_time</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">comment_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the comment date of the latest comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">comment_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">create_ticket</span><span class="p">(</span><span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+</span><span class='line'>                             <span class="o">[</span><span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">comment_time</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">comment_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is time of latest change if after comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">creation_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">create_ticket</span><span class="p">(</span><span class="n">creation_time</span><span class="p">,</span><span class="o">[</span><span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">create_ticket</span><span class="p">(</span><span class="n">creation_time</span><span class="p">,</span> <span class="n">comment_times</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="no">Ticket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Widget broken&quot;</span><span class="p">,</span> <span class="s2">&quot;The widget is not loading when ...&quot;</span><span class="p">,</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">comment_times</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">comment_time</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="n">comment_time</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="k">return</span> <span class="n">ticket</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, we have less duplication, but the tests got both unreadable and intricate &hellip; Following <a href="/how-immutable-value-objects-fight-mocks/">my advices</a> and using more <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a> makes the situation worse ! When data is mutable, we can customize it after the call to the Object Mother method. If data is immutable, it all has to be setup at initialization &hellip;</p>
+
+<p>That&rsquo;s when the mock temptation strikes. Sometimes it&rsquo;s so much easier to mock a method rather than to initialize your data properly. It can be 1 line of mock instead of dealing with all this mess.</p>
+
+<blockquote><p>💡 If you are not careful, messy test initialization code will trick you into using mocks.</p></blockquote>
+
+<p>Suppose we now want to make sure we can&rsquo;t add comments that were written before the ticket was created. We&rsquo;ll add the following</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">describe</span> <span class="s1">&#39;Ticket Tracking&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'>  <span class="n">it</span> <span class="s2">&quot;is not possible to insert a comment before creation data&quot;</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">ticket</span> <span class="o">=</span> <span class="n">create_ticket</span><span class="p">(</span><span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="o">[]</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">expect</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>    <span class="k">end</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="c1"># ...</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Ticket</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_comment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="no">ArgumentError</span> <span class="k">unless</span> <span class="vi">@updated_at</span> <span class="o">&lt;</span> <span class="n">comment</span><span class="o">.</span><span class="n">created_at</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vi">@comments</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="c1"># ...</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Unfortunately, one test (<code>latest change date is time of latest change if after comment</code>) where we were doing just this, will now fail. The fix would be to find a real situation for this test. Here this could be that the ticket is modified after the latest comment. If the tests are too messy though, a mock can be a quick and dirty fix the setup and make the test pass :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">it</span> <span class="s1">&#39;latest change date is time of latest change if after comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">creation_time</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">ticket</span> <span class="o">=</span> <span class="n">create_ticket</span><span class="p">(</span><span class="n">creation_time</span><span class="p">,</span> <span class="o">[]</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">comment</span> <span class="o">=</span> <span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span><span class='line'>  <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">allow</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:created_at</span><span class="p">)</span><span class="o">.</span><span class="n">and_return</span><span class="p">(</span><span class="no">DateTime</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>There is a third way : Test Data Builders</p>
+
+<h2>What are test data builders</h2>
+
+<p>As often, when design is not satisfying, adding an indirection solves the issue. Here the indirection takes shape of the Builder pattern.</p>
+
+<blockquote><p><em>Builder Pattern [</em><a href="https://en.wikipedia.org/wiki/Builder_pattern"><em>Wikipedia</em></a><em>] :</em></p>
+
+<p>The intent of the Builder design pattern is to separate the construction of a complex object from its representation. By doing so the same construction process can create different representations.</p></blockquote>
+
+<p>The idea is to use the builder pattern to build the test data. <a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests">Growing Object Oriented Software Guided by Tests</a> covers this technique in great length.</p>
+
+<p><a href="https://www.amazon.com/Growing-Object-Oriented-Software-Guided-Tests/dp/0321503627/ref=sr_1_1?ie=UTF8&amp;qid=1525160355&amp;sr=8-1&amp;keywords=growing+object-oriented+software+guided+by+tests"><img src="http://philippe.bourgau.net/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/growing.jpg" alt="Cover of the book Growing Object Oriented Software Guided By Tests" /></a></p>
+
+<p>Here is the previous code re-written using the test data builder pattern.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;rspec&#39;</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;date&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">describe</span> <span class="s1">&#39;Ticket Tracking&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">context</span> <span class="s2">&quot;with test data builders&quot;</span> <span class="k">do</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">before</span> <span class="ss">:each</span> <span class="k">do</span>
+</span><span class='line'>      <span class="vi">@t</span> <span class="o">=</span> <span class="n">date_times</span><span class="o">.</span><span class="n">build</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the creation date when nothing changed&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">a_ticket</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the comment date when a comment is written&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">a_ticket</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">with_comment</span><span class="p">(</span><span class="n">a_comment</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">))</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">build</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is the comment date of the latest comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">a_ticket</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">with_comment</span><span class="p">(</span><span class="n">a_comment</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">))</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">with_comment</span><span class="p">(</span><span class="n">a_comment</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">))</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">build</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s1">&#39;latest change date is time of latest change if after comment&#39;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">a_ticket</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">with_comment</span><span class="p">(</span><span class="n">a_comment</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">))</span>
+</span><span class='line'>                   <span class="o">.</span><span class="n">build</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">update_description</span><span class="p">(</span><span class="s2">&quot;The widget is not loading when logged in as anonymous&quot;</span><span class="p">,</span> <span class="vi">@t</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span><span class="p">(</span><span class="n">ticket</span><span class="o">.</span><span class="n">latest_change</span><span class="p">)</span><span class="o">.</span><span class="n">to</span> <span class="n">be</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">it</span> <span class="s2">&quot;is not possible to insert a comment before creation data&quot;</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">ticket</span> <span class="o">=</span> <span class="n">a_ticket</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">build</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">expect</span> <span class="k">do</span>
+</span><span class='line'>        <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="n">a_comment</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="vi">@t</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">end</span><span class="o">.</span><span class="n">to</span> <span class="n">raise_error</span><span class="p">(</span><span class="no">ArgumentError</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## Test Data Builders</span>
+</span><span class='line'><span class="c1">##</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">DateTimeBuilder</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">build</span>
+</span><span class='line'>    <span class="n">seed</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span>
+</span><span class='line'>    <span class="p">(</span><span class="mi">0</span><span class="o">.</span><span class="n">.</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">seed</span> <span class="o">+</span> <span class="n">i</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">date_times</span><span class="p">()</span>
+</span><span class='line'>  <span class="no">DateTimeBuilder</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">CommentBuilder</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@at</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">at</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@at</span> <span class="o">=</span> <span class="n">time</span>
+</span><span class='line'>    <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">build</span>
+</span><span class='line'>    <span class="no">Comment</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Should work now&quot;</span><span class="p">,</span> <span class="s2">&quot;Dan&quot;</span><span class="p">,</span> <span class="vi">@at</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">a_comment</span><span class="p">()</span>
+</span><span class='line'>  <span class="no">CommentBuilder</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">TicketBuilder</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span>
+</span><span class='line'>    <span class="vi">@at</span> <span class="o">=</span> <span class="no">DateTime</span><span class="o">.</span><span class="n">now</span>
+</span><span class='line'>    <span class="vi">@comments</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">at</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@at</span> <span class="o">=</span> <span class="n">time</span>
+</span><span class='line'>    <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">with_comment</span><span class="p">(</span><span class="n">comment_builder</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@comments</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">comment_builder</span><span class="o">.</span><span class="n">build</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">self</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">build</span>
+</span><span class='line'>    <span class="n">ticket</span> <span class="o">=</span> <span class="no">Ticket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;Widget broken&quot;</span><span class="p">,</span> <span class="s2">&quot;The widget is not loading when ...&quot;</span><span class="p">,</span> <span class="s2">&quot;Philippe&quot;</span><span class="p">,</span> <span class="vi">@at</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@comments</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">comment</span><span class="o">|</span>
+</span><span class='line'>      <span class="n">ticket</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="n">ticket</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">a_ticket</span><span class="p">()</span>
+</span><span class='line'>  <span class="no">TicketBuilder</span><span class="o">.</span><span class="n">new</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">## The code under test</span>
+</span><span class='line'><span class="c1">##</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">Ticket</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">reporter</span><span class="p">,</span> <span class="n">creation_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@updated_at</span> <span class="o">=</span> <span class="n">creation_time</span>
+</span><span class='line'>    <span class="vi">@comments</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">latest_change</span>
+</span><span class='line'>    <span class="p">(</span><span class="o">[</span><span class="vi">@updated_at</span><span class="o">]</span> <span class="o">+</span> <span class="vi">@comments</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:created_at</span><span class="p">))</span><span class="o">.</span><span class="n">max</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">add_comment</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">raise</span> <span class="no">ArgumentError</span> <span class="k">unless</span> <span class="vi">@updated_at</span> <span class="o">&lt;</span> <span class="n">comment</span><span class="o">.</span><span class="n">created_at</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vi">@comments</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">comment</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">update_description</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">update_time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@updated_at</span> <span class="o">=</span> <span class="n">update_time</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Comment</span>
+</span><span class='line'>  <span class="kp">attr_reader</span> <span class="ss">:created_at</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+</span><span class='line'>    <span class="vi">@created_at</span> <span class="o">=</span> <span class="n">time</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>As you can see, it provides default test values, and we only need to provide the custom values we care about. This makes the test code both readable and intention revealing. Making the tests more understandable helps a lot to find ways to avoid mocks. Here, we replaced the mock on the comment time by an update to the ticket after the last comment.</p>
+
+<p>The pattern applies in many languages, even if implementations will be different. In Ruby, libraries like <a href="https://github.com/thoughtbot/factory_bot">factory_bot</a> avoid a lot of boilerplate code. Have a look at <a href="http://www.natpryce.com/articles/000769.html">this article</a> for examples in Java.</p>
+
+<h2>Other advantages</h2>
+
+<p>Test data builders have another second effect benefit. When setting up the data is complicated, we are likely to add more that one assertion in a test. Unit tests can end up looking like a mini scenario to avoid duplicating this test setup.</p>
+
+<p>It&rsquo;s easy to create a specific tests for every assertion with Test Data Builders. By doing so we get smaller and more focused tests, which bring :</p>
+
+<ul>
+<li>Better names for tests</li>
+<li>More readable tests</li>
+<li>Faster diagnostic of the problem when a particular test fails</li>
+<li>🎁 Better coverage ! In a large test, all assertions work on the same input values. When we have many small tests, we can use a different value in each.</li>
+</ul>
+
+
+<blockquote><p>💡 By simplifying the creation of new tests with different data, Test Data Builders increase code coverage in the long term!</p></blockquote>
+
+<h2>Next week</h2>
+
+<p>This is the fourth post of <a href="/blog/categories/how-to-avoid-mocks-series/">a series about how to avoid mocks</a> in automated tests. Next week I&rsquo;ll dig into Custom Assertion Matchers and how they avoid mock expectations.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/immutable-value-objects-vs-mocks-fizz-buzz/">Immutable Value Objects vs Mocks : Fizz Buzz</a></h1>
     
     
@@ -1213,101 +1885,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/why-you-should-start-a-team-coding-dojo-randori-right-now/">Why You Should Start a Team Coding Dojo Randori Right Now</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2018-03-01T07:05:00+01:00" pubdate data-updated="true">Mar 1<span>st</span>, 2018</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://codingdojo.org/">Coding Dojos</a> are easy to start and have a high return on investment. They will improve everyone&rsquo;s technical skills. That&rsquo;s only the start though. Practiced as a team Randori, they will also be a tremendous boost to team work.</p>
-
-<p><img src="http://philippe.bourgau.net/imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/aikidoka-keyboard.jpg" alt="An Aïkidoka holding a keyboard instead of a boken" /></p>
-
-<h2>My own story</h2>
-
-<p>Coming up with team coding conventions is always a challenge. A few years ago, I remember organizing a meeting to discuss this with my team mates. In about 1 hour, we managed to agree on the standard C# code style, but not much more. Important points like the usage of singletons were still far from any agreement. I was disappointed. At least I learned that this is not the good way to build coding conventions.</p>
-
-<p>A few years later, in another team, the coding conventions topic came up again. I did not want to repeat my previous failure. I created a wiki page where we could suggest, comment and vote for conventions. It was a lot better than my previous attempt, but it was slow. It turned out that we had also been doing team coding dojos for a while. A colleague suggested to try to fix a <a href="https://www.sonarqube.org/">Sonar</a> issue from our production code during a Randori session. It took us 2 hours to fix not one but a bunch of errors and to agree on 3 or 4 coding conventions. That was far more effective than my wiki page ! Looking back at the past few months, I realized what other topics the Randoris had helped the team with.</p>
-
-<blockquote><p>💡 Team Coding Dojo Randori are great at defining coding conventions.</p></blockquote>
-
-<h2>Classic Team Problems</h2>
-
-<p>Coding conventions is only one of the team work problems that Randoris help to solve. Here is a non-exhaustive list :</p>
-
-<ul>
-<li>People waste time by ignoring how to use their tools as best as they could.</li>
-<li>People lack skills that they could easily learn from one of their colleagues.</li>
-<li>Team mates don&rsquo;t agree on the same design principles. This harms collective code ownership as the design goes 1 step in a direction and then 2 in the opposite.</li>
-<li>People don&rsquo;t know how to work in baby steps and, as a result, perform large commits. This makes code reviews difficult and breaks the <a href="https://www.martinfowler.com/articles/continuousIntegration.html">Continuous Integration</a> more often.</li>
-<li>Because they are not at ease to give and receive feedback, people don&rsquo;t pair. Reviews suffer from this as well, either not going in the depth of things, or ending bad !</li>
-<li>Some team members might have difficulties explaining what they are doing to others.</li>
-</ul>
-
-
-<p>Believe it of not, Randoris can help you with all these issues.</p>
-
-<h2>What is a Randori ?</h2>
-
-<h3>A Coding dojo</h3>
-
-<p>A coding dojo is a meeting where programmers deliberately practice their skills. To be effective, the coding dojo should be regular, and safe. Created to spread TDD (<a href="https://en.wikipedia.org/wiki/Test-driven_development">Test Driven Development</a>), it&rsquo;s an effective way to teach other skills as well. Whatever the goal, it should use TDD. TDD sets up the fast feedback loop necessary to collaboration and effective learning. The dojo should end with a short retrospective : everyone stops what they are doing to discuss how it went.</p>
-
-<p>People have invented many formats to the coding dojo, but there were only 2 at the origin. The Kata, where someone live codes a prepared solution to a problem using TDD. The Randori which I&rsquo;ll detail right away.</p>
-
-<h3>A Randori</h3>
-
-<p>In a Randori, you&rsquo;ll be using a single machine, a wide screen and a timer. Pairs of programmers round-rob at the keyboard every 5 minutes or so. Particularly here, we should stick to TDD for collaboration and fast feedback loop. When the timer rings, the co-pilot gets the keyboard, and a new co-pilot comes in.</p>
-
-<p>5 minutes are very short, and force people to use real baby steps. If they try to do something too big, they will not reach a stable state before the end of their turn. If their change is too complex, others will get lost, and remove the code. The pair needs to collaborate a lot for others to understand and continue in the same direction. They have to explain what they are doing, and take feedback into account as much as they write code.</p>
-
-<p><a href="https://www.youtube.com/watch?v=vqnwQ3oVM1M"><img src="http://philippe.bourgau.net/imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/randori.jpg" alt="Programmers doing a randori" /></a><div class="image-credits">From a <a href="https://www.youtube.com/watch?v=vqnwQ3oVM1M">YouTube video</a> by <a href="http://globo.com">globo.com</a></div></p>
-
-<h3>Your team</h3>
-
-<p>A team Randori is a Randori with your team. It improves all the problems I listed above.</p>
-
-<ul>
-<li>People will share coding conventions and design best practices. They are likely to agree on something for the sake of progress in a 2 hours session. The opportunity to see how the convention works with dojo code often leads to a production code agreement.</li>
-<li>People will share IDE shortcuts and tricks.</li>
-<li>The constant feedback will make people accustomed to it.</li>
-<li>On top of that, people will refactor or have their code refactored from time to time. This is a great lesson in egoless programming.</li>
-</ul>
-
-
-<blockquote><p>💡 Coding Dojo Randoris are a great lesson in Egoless Programming</p></blockquote>
-
-<p>I hope I convinced you that you should start team coding dojo Randoris. In my <a href="/how-to-start-a-team-coding-dojo-randori-today/">next post</a>, I&rsquo;ll go into more details about how to setup and run your first Randori.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -1390,6 +1967,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/become-a-business-partner-and-stop-begging-for-refactoring/">Become a Business Partner and Stop Begging for Refactoring</a>
+      </li>
+    
+      <li class="post">
         <a href="/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring - Part 2</a>
       </li>
     
@@ -1403,10 +1984,6 @@
     
       <li class="post">
         <a href="/presenting-a-large-scale-refactoring-as-a-business-opportunity/">Presenting a large scale refactoring as a business opportunity</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
       </li>
     
   </ul>

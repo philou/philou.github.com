@@ -102,6 +102,50 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/how-to-copy-a-database-from-an-heroku-app-to/">How to Copy a Database From an Heroku App to Another</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+
+<time datetime="2013-01-11T00:00:00+01:00" pubdate data-updated="true">Jan 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>For <a href="http://www.mes-courses.fr">mes-courses.fr</a>, I am using another heroku app as &ldquo;integration&rdquo; app, where I can do late verifications before deploying to my production app. If you don&rsquo;t already do this, I recommend you to start now !</p>
+
+<p>One thing that I needed was to copy data from my production app to my integration app. It turns out that <a href="https://devcenter.heroku.com/articles/heroku-postgres-import-export">heroku</a> makes this very easy :</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>heroku pgbackups:restore DATABASE <span class="sb">`</span>heroku pgbackups:url --app my-app-prod<span class="sb">`</span> --app my-app-integ --confirm my-app-integ
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/how-to-install-a-patched-ruby-interpreter-wit/">How to Install a Patched Ruby Interpreter With Rbenv and Ruby-build</a></h1>
     
     
@@ -181,7 +225,7 @@
   <div class="entry-content"><p>This can be quite time consuming if it is the first time you set up an ssl endpoint. Here is how I did it :</p>
 
 <ul>
-<li>Purchase a RapidSSL certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank"><a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#97;&#x64;&#x6d;&#105;&#110;&#x40;&#x6d;&#101;&#x73;&#45;&#x63;&#111;&#117;&#114;&#x73;&#101;&#115;&#46;&#102;&#x72;">&#x61;&#x64;&#109;&#x69;&#110;&#64;&#x6d;&#101;&#115;&#x2d;&#x63;&#x6f;&#x75;&#114;&#x73;&#x65;&#x73;&#x2e;&#x66;&#114;</a></a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you Trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&rsquo;s call it server.crt).</li>
+<li>Purchase a RapidSSL certificate for my domain on <a href="http://www.trustico.com" target="_blank">www.trustico.com</a>. Make sure to use the insurance option so that you can download the private key later. I had to setup an email account at <a href="mailto:admin@mes-courses.fr" target="_blank"><a href="&#x6d;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#97;&#100;&#x6d;&#105;&#x6e;&#64;&#109;&#x65;&#x73;&#x2d;&#99;&#x6f;&#x75;&#x72;&#115;&#101;&#115;&#46;&#102;&#114;">&#97;&#100;&#x6d;&#x69;&#x6e;&#64;&#x6d;&#101;&#115;&#45;&#99;&#111;&#117;&#x72;&#115;&#101;&#x73;&#x2e;&#x66;&#114;</a></a> so that I could receive their confirmation link email.</li> <li>Once you have bought your certificate, login in to you Trustico account and download your certificate, the intermediate certificate, and the private key.</li><li>Concatenate the final and intermediate certificates to a single file (let&rsquo;s call it server.crt).</li>
 <li>Add the ssl endpoint add on to your Heroku application</li>
 </ul>
 
@@ -991,59 +1035,6 @@ Regrouper ensemble toutes ces différentes sortes de travaux est peut être prat
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/ruby-thirdparties-best-practices/">Ruby Thirdparties Best Practices</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-
-<time datetime="2012-04-26T00:00:00+02:00" pubdate data-updated="true">Apr 26<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I am just finishing migrating <a href="http://www.mes-courses.fr">www.mes-courses.fr</a> from rails 2 to rails 3, and I can assure that I learnt these lessons the hard way &hellip;</p>
-
-<ul>
-<li>use Bundler <a href="http://gembundler.com">http://gembundler.com</a></li>
-<li>keep your Gemfile simple : just the top level dependencies, and no version constraints</li>
-<li>try to stick to popular gems : you&rsquo;ll find a lot more answers to your questions from the web. It&rsquo;s often simpler to write and maintain a little extra code than to depend on a crappy thirdparty that is supposed to meet your need</li>
-<li>stick with the most recent versions of your dependencies. With a good test suite and with Bundler, it should be rather easy to upgrade, so do it often to avoid both the upgrade tunnel effect and struggling with bugs and incompatibility of unmaintained old versions of gems.</li>
-</ul>
-
-
-<h3>Edit</h3>
-
-<p>I discovered <a href="http://www.ruby-toolbox.com">the ruby toolbox</a> that categorizes and sorts gems based on their popularity !</p>
-
-<h3>Edit 2</h3>
-
-<p>I discovered it is sometimes necessary to add constraints to get the latest versions of gems that would otherwise conflict (directly or not) with others.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/22/">&larr; Older</a>
@@ -1126,6 +1117,10 @@ Regrouper ensemble toutes ces différentes sortes de travaux est peut être prat
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/become-a-business-partner-and-stop-begging-for-refactoring/">Become a Business Partner and Stop Begging for Refactoring</a>
+      </li>
+    
+      <li class="post">
         <a href="/making-the-business-case-for-a-large-scale-refactoring-part-2/">Making the business case for a large scale refactoring - Part 2</a>
       </li>
     
@@ -1139,10 +1134,6 @@ Regrouper ensemble toutes ces différentes sortes de travaux est peut être prat
     
       <li class="post">
         <a href="/presenting-a-large-scale-refactoring-as-a-business-opportunity/">Presenting a large scale refactoring as a business opportunity</a>
-      </li>
-    
-      <li class="post">
-        <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language</a>
       </li>
     
   </ul>
