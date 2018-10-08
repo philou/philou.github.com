@@ -11,6 +11,7 @@ As suggested, I ended up creating a github token and putting it in _preview.sh :
 #!/bin/sh
 
 export JEKYLL_GITHUB_TOKEN=XXX
+./_update_version.sh
 ./_serve.sh
 ```
 
