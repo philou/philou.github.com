@@ -86,7 +86,7 @@ I'm fond of this way of prioritizing software. It's the way out of bickering abo
 
 {% assign figure_path="/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case-small.jpg" | absolute_url %}
 
-{% assign figure_alt="Visual notes from the Plural Sight course "Making the Business Case for Best Practices". It contains many techniques that can be used for large scale refactoring" %}
+{% assign figure_alt="Visual notes from the Plural Sight course 'Making the Business Case for Best Practices'. It contains many techniques that can be used for large scale refactoring" %}
 
 {% capture figure_caption %}
 Visual notes from [Making the Business Case for Practices](https://www.pluralsight.com/courses/making-business-case-for-best-practices). [Large image]({{site.url}}/imgs/2018-09-18-making-the-business-case-for-a-large-scale-refactoring-part-2/making-the-business-case.jpg)
