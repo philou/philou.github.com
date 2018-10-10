@@ -35,8 +35,15 @@ Here is another advantage to prioritization. It decreases the time between start
 
 One last thing about prioritization ...
 
-![A graph of values of features in decreasing order]({{site.url}}{{site.baseurl}}/imgs/2017-10-20-are-software-developers-overworked-or-undecided/Cost-of-Delay-distribution.png)<div class="image-credits">["Black Swan Farming Using Cost of Delay"](http://blackswanfarming.com/experience-report-maersk-line/) Joshua J.Arnold and Özlem Yüce</div>
+{% assign figure_path="/imgs/2017-10-20-are-software-developers-overworked-or-undecided/Cost-of-Delay-distribution.png" | absolute_url %}
 
+{% assign figure_alt="A graph of values of features in decreasing order" %}
+
+{% capture figure_caption %}
+["Black Swan Farming Using Cost of Delay"](http://blackswanfarming.com/experience-report-maersk-line/) Joshua J.Arnold and Özlem Yüce
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 This graph tells us that a small fraction of the features bring most of the value, while a very large portion of the features bring almost no value ... As puzzling as this graph may be, it's also a wonderful opportunity. If we manage to focus one the most valuable features only, we can save a ton of work, while being more effective ! [Lean startup](http://theleanstartup.com/) and market research are techniques to identify these features up-front.
 

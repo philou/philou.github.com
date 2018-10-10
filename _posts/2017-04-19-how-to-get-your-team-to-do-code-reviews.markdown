@@ -52,7 +52,15 @@ You'll need to stick to doing code reviews long enough before people actually st
 
 Remember to always try to get some feedback : ask people what they think of the exercise, keep note of the good points, and adapt to smooth out the rest.
 
-![Illustration of a team working collectively]({{site.url}}{{site.baseurl}}/imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/collective.jpg)<div class="image-credits">Photo from [emotuit](https://www.emotuit.com/blog)</div>
+{% assign figure_path="/imgs/2017-04-19-how-to-get-your-team-to-do-code-reviews/collective.jpg" | absolute_url %}
+
+{% assign figure_alt="Illustration of a team working collectively" %}
+
+{% capture figure_caption %}
+Photo from [emotuit](https://www.emotuit.com/blog)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Once you won over your first team mate, involve him in your grand plan to spread the practice, explaining how much you think this could make a difference. As more and more people get convinced, the practice will eventually tacitly become part of your working conventions.
 
@@ -81,7 +89,7 @@ There could be many reason why the practice is not adopted. The key for you is t
 
 There are a ton of tools and best practices to run code reviews. It's important that you know them, so that you know where you are going.
 
-Don't expect to use the best tools from the start though. At the beginning, your goal is to win over your team mates. In this context, only 2 things matter : 
+Don't expect to use the best tools from the start though. At the beginning, your goal is to win over your team mates. In this context, only 2 things matter :
 
 * It should have almost no adoption curve, so that others start using it
 * It should have almost no maintenance cost, as you don't want to spend your time doing that
@@ -110,4 +118,3 @@ There is a ton of resources on the internet about how to perform good code revie
 Congratulations ! Your team will start to reap the benefits of code reviews. Keep on improving the practice !
 
 To end the story, after a few months of code reviews, during a retrospective, my team ([at work](http://www.murex.com/)) decided to take it one step further and started to do almost full time pair programming ;-)
-

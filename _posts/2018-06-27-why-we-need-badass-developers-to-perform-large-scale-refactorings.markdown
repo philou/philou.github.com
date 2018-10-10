@@ -3,7 +3,7 @@ layout: single
 title: "Why we need Badass developers to perform large scale refactorings"
 date: 2018-07-05 13:28
 comments: true
-categories: 
+categories:
  - refactoring
  - badass-developer
  - large-scale-refactoring-sponsorship-series
@@ -29,8 +29,15 @@ I had given a good live coding demo, but it was this respected developer's opini
 
 ## What is a badass developer
 
-[![Badass Developer's fist with a ring "I am badass"]({{site.url}}{{site.baseurl}}/imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/i-am-badass.jpg)](https://commons.wikimedia.org/wiki/File:I_am_Badass_%28Unsplash%29.jpg)
-<div class="image-credits">By Brooke Lark<a href="https://unsplash.com/photos/jtvGydbUn30">CC0</a>, via Wikimedia Commons</div><br>
+{% assign figure_path="/imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/i-am-badass.jpg" | absolute_url %}
+
+{% assign figure_alt="Badass Developer's fist with a ring "I am badass"" %}
+
+{% capture figure_caption %}
+By Brooke Lark [CC0](https://unsplash.com/photos/jtvGydbUn30), via Wikimedia Commons
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Badass developers are first of all people who are credible to the business. This usually implies a track record of [delivering features](/real-developers-ship/) and refactorings. Badass developers understand the business constraints. That's why they learned how to deliver [refactorings alongside features](/7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/). They also need to be responsible and bold enough to [stand ground in front of the business](/are-software-developers-overworked-or-undecided/). Finally, badass developers are able to train others.
 
@@ -53,4 +60,3 @@ These concepts, though, are very close to my definition of a badass developer. C
 ## To be continued
 
 This was why badass developers matter to the success of large scale refactorings. This was the second post in a [series about how to get sponsorship for a large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series).  In the [next post](/5-mistakes-badass-developers-never-do/), we'll look at what we can do to all become Badass developers.
-

@@ -37,13 +37,13 @@ The idea in incremental architecture is really simple : keep your code simple, c
 
 ### Pros and Cons of incremental architecture
 
-The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I'm not alone, [James Shore](http://www.jamesshore.com/Agile-Book/incremental_design.html) (who wrote the more on the subject) also shares my view: 
+The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I'm not alone, [James Shore](http://www.jamesshore.com/Agile-Book/incremental_design.html) (who wrote the more on the subject) also shares my view:
 
 > Common thought is that distributed processing, persistence, internationalization, security, and transaction structure are so complex that you must consider them from the start of your project. I disagree; I've dealt with all of them incrementally.
 
 > Two issues that remain difficult to change are choice of programming language and platform. I wouldn't want to make those decisions incrementally!
 
-I would add published APIs to this list. 
+I would add published APIs to this list.
 
 Granted, there are situations that incremental architecture alone cannot handle, what about its good points then ?
 
@@ -91,7 +91,15 @@ Obviously, you should think about these questions up-front. Hopefully, there are
 
 [Unix had the answer](https://en.wikipedia.org/wiki/Unix_philosophy) : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.
 
-[![Ken Thompson and Dennis Ritchie, the creators of Unix]({{site.url}}{{site.baseurl}}/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg)](https://en.wikipedia.org/wiki/Unix_philosophy)<div class="image-credits">Photo from [WikiMedia](https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg)</div>
+{% assign figure_path="/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg" | absolute_url %}
+
+{% assign figure_alt="Ken Thompson and Dennis Ritchie, the creators of Unix" %}
+
+{% capture figure_caption %}
+Ken Thompson and Dennis Ritchie, the creators of Unix. Photo from [WikiMedia](https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road ... without the safety !
 

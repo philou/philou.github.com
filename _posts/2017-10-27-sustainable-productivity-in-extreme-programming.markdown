@@ -16,7 +16,15 @@ My [last post](/are-software-developers-overworked-or-undecided/) detailed how p
 
 > XP is an experiment in answer to the question, "How would you program if you had enough time?” [Kent Beck](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1509114442&sr=8-1&keywords=xp+explained)
 
-![Cost of changes over time, for traditional and XP ways of building software]({{site.url}}{{site.baseurl}}/imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg)<div class="image-credits">From ["Extreme Programming Explained: Embrace Change"](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1510040835&sr=8-1&keywords=extreme+programming+explained) by Kent Beck</div>
+{% assign figure_path="/imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg" | absolute_url %}
+
+{% assign figure_alt="Cost of changes over time, for traditional and XP ways of building software" %}
+
+{% capture figure_caption %}
+From ["Extreme Programming Explained: Embrace Change"](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?ie=UTF8&qid=1510040835&sr=8-1&keywords=extreme+programming+explained) by Kent Beck
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ## The best jam is made in old jars
 

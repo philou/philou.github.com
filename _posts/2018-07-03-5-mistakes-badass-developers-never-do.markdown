@@ -3,7 +3,7 @@ layout: single
 title: "5 mistakes badass developers never do"
 date: 2018-07-12 12:51
 comments: true
-categories: 
+categories:
  - refactoring
  - badass-developer
  - large-scale-refactoring-sponsorship-series
@@ -49,7 +49,17 @@ As an interesting side note, I was at the [Paris DDD Meetup](https://www.meetup.
 
 > 💡 Some of my biggest mistakes were not backtracking soon enough a few times as I was drifting in quagmire. Eric Evans
 
-[![Eric Evans, the father of DDD, a true badass developer, answering questions at the Paris DDD meetup]({{site.url}}{{site.baseurl}}/imgs/2018-07-03-5-mistakes-badass-developers-never-do/eric-evans-ddd-paris.jpg)](https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/)<div class="image-credits">By <a href="https://www.grodziski.com/">Jérémie Grodziski</a>, on <a href="https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/">Paris DDD Meetup</a></div><br>
+{% assign figure_path="/imgs/2018-07-03-5-mistakes-badass-developers-never-do/eric-evans-ddd-paris.jpg" | absolute_url %}
+
+{% assign figure_alt="Eric Evans, the father of DDD, a true badass developer, answering questions at the Paris DDD meetup" %}
+
+{% capture figure_caption %}
+By [Jérémie Grodziski](https://www.grodziski.com/), at [Paris DDD Meetup](https://www.meetup.com/fr-FR/DDD-Paris/events/248022866/)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+
+
 
 ## Let the team down
 

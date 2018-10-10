@@ -25,10 +25,18 @@ From the inside, many systems are in such a messy state that seem like a catastr
 
 ## Effective Warning Signal #1 Pranks
 
-If you have the guts and your company is fun enough, you can try one of [these pranks](/the-size-of-code/) 😉.
+If you have the guts and your company is fun enough, you can try one of [these pranks](/the-size-of-code/).
 
-[![A photo of a desk littered under paper. As if we had printed the whole source code and dumped in on a non-developer desk. Pranks are a good way to get sponsorship for large scale refactorings]({{site.url}}{{site.baseurl}}/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/paper-on-desk.jpg)](https://www.flickr.com/photos/kk/18768224)
-<div class="image-credits">What if we printed the whole source code and dumped in on non-developers desks ? By <a href="https://www.flickr.com/photos/kk/">Kris Krüg</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/" title="Attribution-ShareAlike 2.0 Generic">CC BY-SA 2.0</a>, <a href="https://www.flickr.com/photos/kk/18768224">Link</a></div><br>
+{% assign figure_path="/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/paper-on-desk.jpg" | absolute_url %}
+
+{% assign figure_alt="A photo of a desk littered under paper. As if we had printed the whole source code and dumped in on a non-developer desk. Pranks are a good way to get sponsorship for large scale refactorings" %}
+
+{% capture figure_caption %}
+What if we printed the whole source code and dumped it on non-developers desks ? By [Kris Krüg](https://www.flickr.com/photos/kk/), [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/), [Link](https://www.flickr.com/photos/kk/18768224)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+
 
 They're bound to have a big impact ... but they might also get you fired ! We should be creative and find both effective and acceptable pranks. Pranks are a lot more effective than we first think. [Non-Violent Revolution](https://en.wikipedia.org/wiki/Nonviolent_revolution) activists have actually used [Laughitism](http://laughtivismgroup5.blogspot.com/2016/04/laughtivism.html) to take dictators down ! For a good (and unexpectedly fun) read on the topic, have a look a [Blueprint for a Revolution](https://www.amazon.com/Blueprint-Revolution-Nonviolent-Techniques-Communities/dp/0812995309). It was written by Serb non violent activist [Srdja Popovic](https://en.wikipedia.org/wiki/Sr%C4%91a_Popovi%C4%87_(activist)) member of [OTPOR!,](https://en.wikipedia.org/wiki/Otpor!) who brought [Millosevic](https://en.wikipedia.org/wiki/Slobodan_Milo%C5%A1evi%C4%87) down .
 
@@ -42,7 +50,7 @@ While doing my researches for this article, I found the [Dice of Debt](https://w
 
 ## Effective Warning Signal #3 Higher authority
 
-Appealing to a higher authority works as long as people recognize this authority as so. Knowing the people in front of us, it's our job to bring up the reference in an effective way. Here are 
+Appealing to a higher authority works as long as people recognize this authority as so. Knowing the people in front of us, it's our job to bring up the reference in an effective way. Here are
 
 In [this talk](https://www.youtube.com/watch?v=xEqRtIeD51k), [Doc Norton](http://docondev.com/), a recognized technical debt expert, shows the link between technical debt and productivity.
 

@@ -33,8 +33,12 @@ To succeed at anything, we need to know where we are going. It's the same for la
 
 It's very important to share the vision with all the team. We can stick high level UML sketches on the walls for example. As [Kent Beck](https://twitter.com/kentbeck) suggests, we can also use [metaphores](http://www.extremeprogramming.org/rules/metaphor.html) to communicate the design. In [this talk](https://vimeo.com/275530146), [Nat Pryce](http://www.natpryce.com/) explains that it's a great way start, but that we will have to drop the metaphore later.
 
-<iframe src="https://player.vimeo.com/video/275530146?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-<div class="image-credits">By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a></div><br>
+<figure>
+  <iframe src="https://player.vimeo.com/video/275530146?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  <figcaption>
+  By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a>
+  </figcaption>
+</figure>
 
 The idea is not to waste time in a [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front). We just want to draft a vision :
 
@@ -48,8 +52,15 @@ Whatever the technique we start with, we'll be able to refine and evolve the vis
 
 Remember the '[Mikado Method](http://mikadomethod.info/)' from [my previous post](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/) ? It's a technique to code and deploy large scale refactorings in baby steps. If you had a look at the reference links, you'll might seen mentions of a 'Mikado Graph'. Here is what it looks like :
 
-[![Sample Mikado Graph. The Mikado graph is a great tool to manage and collaborate on incremental software development of large scale refactoring.]({{site.url}}{{site.baseurl}}/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/mikado-graph.png)](http://mikadomethod.info/)
-<div class="image-credits">Sample mikado graph from <a href="http://mikadomethod.info/">http://mikadomethod.info/</a></div><br>
+{% assign figure_path="/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/mikado-graph.png" | absolute_url %}
+
+{% assign figure_alt="Sample Mikado Graph. The Mikado graph is a great tool to manage and collaborate on incremental software development of large scale refactoring." %}
+
+{% capture figure_caption %}
+Sample mikado graph from [http://mikadomethod.info/](http://mikadomethod.info/)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 As the number of refactoring steps grows, it becomes tricky to keep track of them all. A simple way is to draw them as nodes in a graph, and tackle the work from the leaves. If you are interested, check [these posts about the Mikado Method]({{site.baseurl}}/categories/#mikado-method). In my previous team, we became fans of the Mikado Method. We even built a tool to generate mikado graph from [JIRA](https://www.atlassian.com/software/jira) (our ticket management system) dependencies ! Using colors, we could track where we stood in the refactoring.
 

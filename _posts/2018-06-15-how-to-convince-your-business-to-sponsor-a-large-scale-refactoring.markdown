@@ -3,7 +3,7 @@ layout: single
 title: "How to convince your business of sponsoring a large scale refactoring"
 date: 2018-06-28 06:14
 comments: true
-categories: 
+categories:
  - refactoring
  - planning
  - large-scale-refactoring-sponsorship-series
@@ -13,9 +13,7 @@ description: "Learn how to convince your business of sponsoring a large scale re
 Whenever I present or suggest a good practice to dev teams, I often get the same remark. Here is how it goes :
 
 > - That's a great idea and we would love to do this, but our code is in such a mess that we cannot !
-
 > - Maybe you should start doing more refactoring then !
-
 > - We would like to, but we don't have the time. We are fire fighting all the time.
 
 It's a bit like the old adage of the lumberjack that is too busy to cut wood to sharpen his axe... The sad part here, is that most of the time, developers know they would be a lot faster if they could clean up their code. Unfortunately, they are usually not given the time.
@@ -28,10 +26,15 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 
 As I've [already been joking about](/the-size-of-code/), code is invisible. Mess in the code even more so, especially to people who don't code. The code could look like that and no one would notice.
 
-[![Inside of a kitchen from someone suffering from Diogenes syndrome]({{site.url}}{{site.baseurl}}/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg)](https://en.wikipedia.org/wiki/Diogenes_syndrome)
-<div class="image-credits">By [A Tourist](http://commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1) - Private photography [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Link](https://commons.wikimedia.org/w/index.php?curid=15988115)</div><br>
+{% assign figure_path="/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg" | absolute_url %}
 
+{% assign figure_alt="Inside of a kitchen from someone suffering from Diogenes syndrome" %}
 
+{% capture figure_caption %}
+By [A Tourist](http://commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1) - Private photography [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Link](https://commons.wikimedia.org/w/index.php?curid=15988115)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 If someone put his own office in that state, he would get fired, but not for the source code. The good side is that we, developers, are safe, we can continue to wreak chaos without fear ! That's pretty weird when we think that this is what we ship to customers ...
 

@@ -54,7 +54,15 @@ Here is how the improvement kata goes :
         *   Either drop the experiment and plan a new one (go back to 'Plan').
         *   Or spread the change at a larger scale.
 
-[![The Improvement Kata Pattern]({{site.url}}{{site.baseurl}}/imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/katapattern.jpg)](http://www-personal.umich.edu/~mrother/Homepage.html)<div class="image-credits">Image from Mike Rother on [Toyota Kata Website](http://www-personal.umich.edu/~mrother/Homepage.html)</div>
+{% assign figure_path="/imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/katapattern.jpg" | absolute_url %}
+
+{% assign figure_alt="The Improvement Kata Pattern" %}
+
+{% capture figure_caption %}
+Image from Mike Rother on [Toyota Kata Website](http://www-personal.umich.edu/~mrother/Homepage.html)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The coaching kata is a way to coach someone into applying the improvement kata. The fun thing is that you can coach yourself ! The idea is to ask questions to the coachee to remind him of where he stands in his improvement kata.
 
