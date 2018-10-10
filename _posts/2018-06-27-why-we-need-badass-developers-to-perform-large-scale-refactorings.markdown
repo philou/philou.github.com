@@ -31,7 +31,7 @@ I had given a good live coding demo, but it was this respected developer's opini
 
 {% assign figure_path="/imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/i-am-badass.jpg" | absolute_url %}
 
-{% assign figure_alt="Badass Developer's fist with a ring "I am badass"" %}
+{% assign figure_alt="Badass Developer's fist with a ring 'I am badass'" %}
 
 {% capture figure_caption %}
 By Brooke Lark [CC0](https://unsplash.com/photos/jtvGydbUn30), via Wikimedia Commons

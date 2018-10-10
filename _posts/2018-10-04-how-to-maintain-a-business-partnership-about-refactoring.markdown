@@ -12,7 +12,6 @@ description: "Becoming business partners grants us freedom to refactor. Careful 
 header:
    teaser: /imgs/2018-10-04-how-to-maintain-a-business-partnership-about-refactoring/spiderman-teaser.jpeg
    og_image: /imgs/2018-10-04-how-to-maintain-a-business-partnership-about-refactoring/spiderman-og.jpeg
-published: false
 ---
 _Becoming business partners grants us freedom to refactor. Careful though, we must not over-abuse this trust if we want to maintain this partnership._
 
