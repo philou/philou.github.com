@@ -3,7 +3,7 @@ layout: single
 title: "Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps"
 date: 2018-08-09 08:50
 comments: true
-categories: 
+categories:
  - refactoring
  - incremental-software-development
  - coding-dojo
@@ -50,12 +50,19 @@ We can push the learning further. For example, we can use the [baby steps constr
 
 One way to keep the tests green all the time is to use a slightly different TDD loop, as [Nat Pryce suggests](http://natpryce.com/articles/000780.html) :
 
-[![The red-green-refactor loop of TDD with an extra green arrow from failing test to refactor. This alternate TDD loop illustrates how to take baby steps with the Mikado Method]({{site.url}}{{site.baseurl}}/imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/listening-to-the-tests.png)](http://natpryce.com/articles/000780.html)
-<div class="image-credits">From <a href="http://natpryce.com">Nat Pryce's</a> <a href="http://natpryce.com/articles/000780.html">blog</a></div><br>
+{% assign figure_path="/imgs/2018-08-07-incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/listening-to-the-tests.png" | absolute_url %}
 
-Here is how it goes. 
+{% assign figure_alt="The red-green-refactor loop of TDD with an extra green arrow from failing test to refactor. This alternate TDD loop illustrates how to take baby steps with the Mikado Method" %}
 
-1.  Add a new failing test 
+{% capture figure_caption %}
+From [Nat Pryce's blog](http://natpryce.com). Read the full post [here](http://natpryce.com/articles/000780.html)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+
+Here is how it goes.
+
+1.  Add a new failing test
 2.  If it's trivial to fix, fix it. We are done
 3.  If not, see what's missing in the code
 4.  Comment the test to get back to a green state

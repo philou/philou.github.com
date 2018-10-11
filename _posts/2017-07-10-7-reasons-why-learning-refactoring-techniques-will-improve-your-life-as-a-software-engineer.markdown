@@ -60,7 +60,15 @@ Incremental refactoring techniques offer an alternative. It enables to change an
 
 eXtreme Programming contains a set of practices that reinforce each other. As I wrote at the beginning, refactoring goes hand in hand with TDD. [Pair programming]({{site.baseurl}}/categories/#pair-programming) is another practice of XP.
 
-[![Tangled wool]({{site.url}}{{site.baseurl}}/imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/xp-practices.GIF)](http://www.extremeprogramming.org/map/code.html)<div class="image-credits">From [www.extremeprogramming.org/](http://www.extremeprogramming.org/)</div>
+{% assign figure_path="/imgs/2017-07-10-7-reasons-why-learning-refactoring-techniques-will-improve-your-life-as-a-software-engineer/xp-practices.GIF" | absolute_url %}
+
+{% assign figure_alt="The map of practices of eXtreme Programming that are linked with collective code ownership" %}
+
+{% capture figure_caption %}
+From [www.extremeprogramming.org/](http://www.extremeprogramming.org/map/code.html)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 TDD and Refactoring simplify pair programming. When a pair is doing incremental refactoring, they only need to discuss and agree on the design at hand. They know that however the design needs to evolve in the long term, they'll be able to refactor it. It's a lot easier to pair program if you don't have to agree on all the details of the long term design ...
 

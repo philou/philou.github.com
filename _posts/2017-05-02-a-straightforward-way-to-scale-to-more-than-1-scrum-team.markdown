@@ -11,11 +11,19 @@ description: "A walkthrough how we managed to improve the organization of 4 scru
 ---
 How come the "agile scaling" landscape seems so daunting and bloated ?
 
-Being agile should be about taking baby steps, doing things incrementally, starting with the simplest thing that could possibly work, slowly but continuously improving and trying out experiments. 
+Being agile should be about taking baby steps, doing things incrementally, starting with the simplest thing that could possibly work, slowly but continuously improving and trying out experiments.
 
 Here's a real-life 2 hours change that kicks-off a very efficient organization for a few scrum teams.
 
-![A guy jumping from a cliff into the sea]({{site.url}}{{site.baseurl}}/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/dive-jump.jpg)<div class="image-credits">"SafeLess" : everything will go fine as long as you follow the principles</div>
+{% assign figure_path="/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/dive-jump.jpg" | absolute_url %}
+
+{% assign figure_alt="A guy jumping from a cliff into the sea" %}
+
+{% capture figure_caption %}
+Safeless: everything will go fine as long as you follow the principles
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ## A classic story
 
@@ -115,7 +123,15 @@ One full day of meetings is long. People get tired. In order to keep the energy 
 * Board games during breaks
 * End of day celebration outside the office. You could go out and have a drink all together for exemple.
 
-[![The Timeline board game box]({{site.url}}{{site.baseurl}}/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/timeline.jpg)](https://www.amazon.com/Asmodee-TIM01USASM-Timeline/dp/B005N57CNU/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493870547&sr=8-1&keywords=timeline)<div class="image-credits">We had fun playing this game between the meetings</div>
+{% assign figure_path="/imgs/2017-05-02-a-straightforward-way-to-scale-to-more-than-1-scrum-team/timeline.jpg" | absolute_url %}
+
+{% assign figure_alt="The Timeline board game box" %}
+
+{% capture figure_caption %}
+We had fun playing [this game](https://www.amazon.com/Asmodee-TIM01USASM-Timeline/dp/B005N57CNU/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&qid=1493870547&sr=8-1&keywords=timeline) between the meetings
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### Preparing the product Backlog
 

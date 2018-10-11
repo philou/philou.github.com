@@ -22,8 +22,15 @@ I finished my [latest side project](https://philous-planning-poker.herokuapp.com
 
 The more I do side projects, the more I am certain of their value to my employer.
 
-![Hand drawing with stating 'creative business idea']({{site.url}}{{site.baseurl}}/imgs/2017-06-13-side-projects-matter/side-project.jpg)<div class="image-credits"><a href='http://fr.freepik.com/vecteurs-libre/dessines-a-la-main-business-icons_769576.htm'>Designed by Freepik</a></div>
+{% assign figure_path="/imgs/2017-06-13-side-projects-matter/side-project.jpg" | absolute_url %}
 
+{% assign figure_alt="Hand drawing with stating 'creative business idea'" %}
+
+{% capture figure_caption %}
+Designed by [Freepik](http://fr.freepik.com/vecteurs-libre/dessines-a-la-main-business-icons_769576.htm)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ## Reasons companies discourage side projects
 
@@ -84,7 +91,15 @@ The conclusion is that side projects make people more productive and adaptive. W
 
 ### Understand what technical debt is
 
-![A technical debt iceberg]({{site.url}}{{site.baseurl}}/imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg)<div class="image-credits"><a href='https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code'>Image from Vector Software</a></div>
+{% assign figure_path="/imgs/2017-06-13-side-projects-matter/iceberg-technical-debt.jpg" | absolute_url %}
+
+{% assign figure_alt="A technical debt iceberg" %}
+
+{% capture figure_caption %}
+Image from [Vector Software](https://www.vectorcast.com/testing-solutions/technical-debt-legacy-code)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The bottleneck in a side project is always time. In this context, to deliver fast enough to keep my motivation high, I tend to take technical debt. Particularly because I ignore how long I'll be maintaining this code.
 

@@ -35,7 +35,7 @@ In "[When Understanding means Rewriting"](https://blog.codinghorror.com/when-und
 
 The more unit test you have, the later you reach that point. The more technical debt you take, and the sooner. The bigger the part to rewrite, the more risky it becomes.
 
-Let's imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as  
+Let's imagine you knew a safe way to rewrite the module you are working on. You could be faster by taking more technical debt and writing less unit tests ! Mike Cavaliere framed it as
 [F**k Going Green: Throw Away Your Code](http://mikecavaliere.com/throw-away-your-code/).
 
 This would be great for new features, that might be removed if they don't bring any value. It would also be a good way to get rid of technical debt. Naresh Jain also makes the point that without tests, you'll have to keep things simple ([here](https://blogs.agilefaqs.com/2008/10/07/throwing-away-code/) and [here](https://fr.slideshare.net/nashjain/the-decline-and-fall-of-agile-antifragile-mindset-to-rescue)) !
@@ -54,7 +54,12 @@ TDD and unit testing is a cornerstone of XP. If we remove it, we need something 
 
 What about Remote ? Martin Fowler [explains](https://martinfowler.com/articles/remote-or-co-located.html) that remote teams perform better by hiring the best. Skills of programmers have been known for a long time as a main driver of software quality.
 
-[![People vs methodology impact on productivity]({{site.url}}{{site.baseurl}}/imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg)](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)<div class="image-credits">Photo from Steve McConnell on [Construx](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)</div>
+{% assign figure_path="/imgs/2017-09-01-throwing-code-away-frequently/ProductivityVariation.jpg" | absolute_url %}
+{% assign figure_alt="People vs methodology impact on productivity" %}
+{% capture figure_caption %}
+Photo from Steve McConnell on [Construx](http://www.construx.com/10x_Software_Development/Origins_of_10X_%E2%80%93_How_Valid_is_the_Underlying_Research_/)
+{% endcapture %}
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Finally, the Cucumber team [reported](https://cucumber.io/blog/2015/12/21/the-mob-rules-ok) that Mob Programming works well for remote teams.
 

@@ -3,7 +3,7 @@ layout: single
 title: "Making the business case for a large scale refactoring - Part 1"
 date: 2018-09-20 08:58
 comments: true
-categories: 
+categories:
  - refactoring
  - technical debt
  - business value
@@ -66,7 +66,15 @@ We want to get the real amount of time the team is spending on bug fixes and sup
 
 If not, we'll unfortunately need to do a bit of manual time tracking for a while. It should be fine to cover a few days, and extrapolate for a longer period. Unbelievably, some people made time tracking fun by [using Lego Blocks](https://code.joejag.com/2018/lego-workstream-visualisation.html)!
 
-[![Joe Wright's team has had success logging time with lego blocks. Logging is time is crucial to estimate the non-refactoring cost when making a business plan]({{site.url}}{{site.baseurl}}/imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/lego_1.jpg)](https://code.joejag.com/2018/lego-workstream-visualisation.html)<div class="image-credits">By <a href="https://twitter.com/vanschoo">Nancy Van Schooenderwoert</a></div><br>
+{% assign figure_path="/imgs/2018-09-17-making-the-business-case-for-a-large-scale-refactoring-part-1/lego_1.jpg" | absolute_url %}
+
+{% assign figure_alt="Joe Wright's team has had success logging time with lego blocks. Logging is time is crucial to estimate the non-refactoring cost when making a business plan" %}
+
+{% capture figure_caption %}
+Photo by [Nancy Van Schooenderwoert](https://twitter.com/vanschoo). Read the full story [here](https://code.joejag.com/2018/lego-workstream-visualisation.html)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### Lower productivity
 

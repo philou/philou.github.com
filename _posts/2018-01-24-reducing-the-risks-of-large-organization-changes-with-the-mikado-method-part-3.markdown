@@ -3,7 +3,7 @@ layout: single
 title: "Reducing the risks of large organization changes with the Mikado Method - part 3"
 date: 2018-02-22 08:53
 comments: true
-categories: 
+categories:
  - agile
  - lean
  - coaching
@@ -29,7 +29,15 @@ As I read in [Freedom, Inc.](https://www.amazon.com/Freedom-Inc-Employees-Busine
 
 We should also pay special attention to how we name mikado (sub) goals. If the general goal is to adopt [LeSS](https://less.works/), jumping in and out of LeSS will be very painful ! Instead of "How" goals, we should use specific "What" goals. For example, we could replace "Adopting LeSS" with "All teams integrate in less than 10 minutes". It is a lot easier (and faster) to try to integrate in 10 minutes for a day. In one day, we should know if it works, and if not, what's blocking. In this case, experiments will be standard improvement items in the backlogs of teams. Teams could try to integrate every 10 minutes by hand for example !
 
-[![The Management 3.0 celebration grid poster]({{site.url}}{{site.baseurl}}/imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/celebration-grid.jpg)](http://noop.nl/2015/06/success-and-failure.html)<div class="image-credits">[Original Poster](http://noop.nl/2015/06/success-and-failure.html) By Jurgen Appelo</div>
+{% assign figure_path="/imgs/2018-01-24-reducing-the-risks-of-large-organization-changes-with-the-mikado-method-part-3/celebration-grid.jpg" | absolute_url %}
+
+{% assign figure_alt="The Management 3.0 celebration grid poster" %}
+
+{% capture figure_caption %}
+[Original Poster](http://noop.nl/2015/06/success-and-failure.html) By Jurgen Appelo
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ## Reduced WIP
 

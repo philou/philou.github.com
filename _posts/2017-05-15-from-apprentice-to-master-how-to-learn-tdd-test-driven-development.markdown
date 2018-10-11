@@ -19,7 +19,12 @@ TDD also enables safe refactoring. Refactoring enables [incremental design](/inc
 
 Finally, writing tests before the code is both easier and more fun. Among compilation errors and never ending customer demands, the recurring green barre tastes like pure candy to the poor programmer !
 
-![A long winding road]({{site.url}}{{site.baseurl}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/road.jpg)<div class="image-credits">From [Pinterest winding road catalog](https://fr.pinterest.com/explore/winding-road/)</div>
+{% assign figure_path="/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/road.jpg" | absolute_url %}
+{% assign figure_alt="A long winding road" %}
+{% capture figure_caption %}
+From [Pinterest winding road catalog](https://fr.pinterest.com/explore/winding-road/)
+{% endcapture %}
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ## The TDD Road
 
@@ -39,7 +44,15 @@ TDD newbies might ask a few questions like :
 * Is making the code compile in step 1 or 2 ? Honestly, that does not matter. Write the test as if you had the code, then make it compile, make sure it fails, and continue.
 * How much should I refactor ? It often takes a good amount of experimentation to find your good balance. If you don't refactor enough, you going to drown in dirty code. If you refactor too much, you're going to waste your time ([YAGNI](https://martinfowler.com/bliki/Yagni.html)). As a rule of thumb, [Kent Beck's](https://martinfowler.com/bliki/BeckDesignRules.html) rules on simple design are a very good starting point :
 
-[![A visual graph of Kent Beck's rules of simple design]({{site.url}}{{site.baseurl}}/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/beck-rules.jpg)](https://martinfowler.com/bliki/BeckDesignRules.html)<div class="image-credits">[From Martin Fowler : Beck Design Rules](https://martinfowler.com/bliki/BeckDesignRules.html)</div>
+{% assign figure_path="/imgs/2017-05-15-from-apprentice-to-master-how-to-learn-tdd-test-driven-development/beck-rules.jpg" | absolute_url %}
+
+{% assign figure_alt="A visual graph of Kent Beck's rules of simple design" %}
+
+{% capture figure_caption %}
+[From Martin Fowler : Beck Design Rules](https://martinfowler.com/bliki/BeckDesignRules.html)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### Find your tools
 

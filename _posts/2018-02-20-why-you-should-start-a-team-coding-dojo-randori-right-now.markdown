@@ -3,7 +3,7 @@ layout: single
 title: "Why you should start a team coding dojo Randori right now"
 date: 2018-03-01 07:05
 comments: true
-categories: 
+categories:
  - tdd
  - team building
  - coding dojo
@@ -50,7 +50,15 @@ In a Randori, you'll be using a single machine, a wide screen and a timer. Pairs
 
 5 minutes are very short, and force people to use real baby steps. If they try to do something too big, they will not reach a stable state before the end of their turn. If their change is too complex, others will get lost, and remove the code. The pair needs to collaborate a lot for others to understand and continue in the same direction. They have to explain what they are doing, and take feedback into account as much as they write code.
 
-[![Programmers doing a randori]({{site.url}}{{site.baseurl}}/imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/randori.jpg)](https://www.youtube.com/watch?v=vqnwQ3oVM1M)<div class="image-credits">From a [YouTube video](https://www.youtube.com/watch?v=vqnwQ3oVM1M) by [globo.com](http://globo.com)</div>
+{% assign figure_path="/imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/randori.jpg" | absolute_url %}
+
+{% assign figure_alt="Programmers doing a randori" %}
+
+{% capture figure_caption %}
+From a [YouTube video](https://www.youtube.com/watch?v=vqnwQ3oVM1M) by [globo.com](http://globo.com)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### Your team
 

@@ -52,7 +52,15 @@ It is worth first validating the practice with your colleagues though. There are
 * Or if you think you need it, create some wiki page explaining the practice and detailing its rationals in your context, add a yes/no poll, and finally share this page with your team
 * Eventually, if you think that this topic deserves it, setup a meeting with everyone and discuss the point. It might be worth sharing information about the practice beforehand to make the meeting more efficient. You can end the vote with a [thumb vote](http://www.plays-in-business.com/thumb-voting/) (up : yes, down : no, side : whatever)
 
-![Thumbs voting positions]({{site.url}}{{site.baseurl}}/imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg)<div class="image-credits">Photo from [Plays in Business](http://www.plays-in-business.com/thumb-voting/)</div>
+{% assign figure_path="/imgs/2017-04-12-a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/thumb-vote.jpg" | absolute_url %}
+
+{% assign figure_alt="Thumbs voting positions" %}
+
+{% capture figure_caption %}
+Photo from [Plays in Business](http://www.plays-in-business.com/thumb-voting/)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Don't wait for unanimity to start the practice, majority is enough ! Make sure that people who voted the other way will follow the team practice in the end though. Remember that whatever the answer, discussing team practices is good.
 
