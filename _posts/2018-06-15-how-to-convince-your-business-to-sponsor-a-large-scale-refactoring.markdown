@@ -27,13 +27,10 @@ It's a bit like the old adage of the lumberjack that is too busy to cut wood to 
 As I've [already been joking about](/the-size-of-code/), code is invisible. Mess in the code even more so, especially to people who don't code. The code could look like that and no one would notice.
 
 {% assign figure_path="/imgs/2018-06-15-how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/Syllogomanie-Puteaux.jpg" | absolute_url %}
-
 {% assign figure_alt="Inside of a kitchen from someone suffering from Diogenes syndrome" %}
-
 {% capture figure_caption %}
 By [A Tourist](http://commons.wikimedia.org/w/index.php?title=User:Un_Touriste&amp;action=edit&amp;redlink=1) - Private photography [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), [Link](https://commons.wikimedia.org/w/index.php?curid=15988115)
 {% endcapture %}
-
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 If someone put his own office in that state, he would get fired, but not for the source code. The good side is that we, developers, are safe, we can continue to wreak chaos without fear ! That's pretty weird when we think that this is what we ship to customers ...
@@ -69,17 +66,17 @@ That said, 'overestimating' so that you can write clean code is ok. It's not ove
 You might wonder what these other techniques are ! That's exactly what I'll go through with the next posts. This was the first one in a [series about how to get sponsorship for a large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). The series will cover topics like :
 
 1.   [How to convince your business of sponsoring a large scale refactoring](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/)
-*   [Why we need Badass developers to perform large scale refactorings](/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
-*   [5 mistakes badass developers never do](/5-mistakes-badass-developers-never-do/)
-*   [Principles That Will Make You Become a Badass Developer](/principles-that-will-make-you-become-a-badass-developer/)
-*   [Incremental Software Development for Large Scale Refactoring](/incremental-software-development-techniques-for-large-scale-refactorings/)
-*   [Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/)
-*   [Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/)
-*   [Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/)
-*   [Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language](/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/)
-*   [Presenting a large scale refactoring as a business opportunity](/presenting-a-large-scale-refactoring-as-a-business-opportunity/)
-*   [5 Effective warning signals that will get you sponsorship for a large scale refactoring](/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/)
-*   [Making the business case for a large scale refactoring - Part 1](/making-the-business-case-for-a-large-scale-refactoring-part-1/)
-*   [Making the business case for a large scale refactoring - Part 2](/making-the-business-case-for-a-large-scale-refactoring-part-2/)
-*   [Become a Business Partner and Stop Begging for Refactoring](/become-a-business-partner-and-stop-begging-for-refactoring/)
-*   Remain a Business Partner
+1.   [Why we need Badass developers to perform large scale refactorings](/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
+1.   [5 mistakes badass developers never do](/5-mistakes-badass-developers-never-do/)
+1.   [Principles That Will Make You Become a Badass Developer](/principles-that-will-make-you-become-a-badass-developer/)
+1.   [Incremental Software Development for Large Scale Refactoring](/incremental-software-development-techniques-for-large-scale-refactorings/)
+1.   [Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring](/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/)
+1.   [Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps](/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/)
+1.   [Incremental Software Development Strategies for Large Scale Refactoring #3 : Manage it !](/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/)
+1.   [Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language](/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/)
+1.   [Presenting a large scale refactoring as a business opportunity](/presenting-a-large-scale-refactoring-as-a-business-opportunity/)
+1.   [5 Effective warning signals that will get you sponsorship for a large scale refactoring](/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/)
+1.   [Making the business case for a large scale refactoring - Part 1](/making-the-business-case-for-a-large-scale-refactoring-part-1/)
+1.   [Making the business case for a large scale refactoring - Part 2](/making-the-business-case-for-a-large-scale-refactoring-part-2/)
+1.   [Become a Business Partner and Stop Begging for Refactoring](/become-a-business-partner-and-stop-begging-for-refactoring/)
+1.   [How to maintain a business partnership about refactoring?](/how-to-maintain-a-business-partnership-about-refactoring/)

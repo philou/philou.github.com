@@ -75,4 +75,4 @@ As with decentralized rules of thumb, the main advantage is that negotiation is 
 
 ## Almost there !
 
-This was the 14th post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). In the [next post](http://eepurl.com/dxKE95), I'll dig into what we must be careful about to remain business partners.
+This was the 14th post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). In the [next post](/how-to-maintain-a-business-partnership-about-refactoring/), I'll dig into what we must be careful about to remain business partners.
