@@ -13,7 +13,13 @@ categories:
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Test Data Builders, Custom Matchers, Assertion Matchers, Custom Assertion Matchers, Ruby"
 description: "An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point."
 ---
-I cannot write a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) without mentioning Custom Assertion Matchers. If you don't know what custom assertions are, here is pseudo code that uses a custom assertion :
+*Custom assertions are a handy compromise alternative to mocks when we don't have the time to refactor to a functional style.*
+
+With the [3X model](https://www.youtube.com/watch?v=YGhS8VQpS6s), [Kent Beck](https://www.kentbeck.com/) almost explicity tells us that we should take technical debt at the beginning of a feature or project. Using no-brainer [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) frameworks, like [Rails](https://rubyonrails.org/), is very effective to get the first version of a new product out. When the project hopefully becomes a success, many things happen. Tests become important, but also messy and slow. Unfortunately, in this fast expansion phase, we're lacking time for refactoring. Even if moving to a more functional style would be the test thing to clean up our tests, we often end up adding mocks.
+
+> 💡 When we are in a hurry, we get lured into mocking to workaround complicated tests
+
+Custom assertions are a handy compromise. They avoid most of the downsides of mocks, while preparing for a potential refactoring. If you don't know what custom assertions are, here is pseudo code that uses a custom assertion :
 
 ```
 assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
@@ -22,10 +28,6 @@ assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
 For more details, have a look at these examples for your preferred language : [Java](http://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html), [Ruby](https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers) or [Javascript](http://tonylukasavage.com/blog/2014/05/29/custom-assertions-in-should-dot-js/).
 
 ![A drawing of a box of matches, branded 'Matchers' on top]({{site.url}}{{site.baseurl}}/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg)
-
-That custom assertion matchers have an effect on mock usage might seem puzzling at first. Let me explain. Us, mere human developers, get lured into mocking when tests become too complicated. By keeping the tests simpler, Custom Assertion Matchers help use to avoid mocks. It's a bit like why test data builders keep mocks at bay.
-
-> 💡 We get lured into mocking when tests become too complicated
 
 I already blogged about [the benefits of Custom Assertion Matchers](/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/). Here I'm going to dive in their advantages against mocking.
 
@@ -139,7 +141,9 @@ Here is how we could summarize the pros and cons of each approach :
 
 ## Design improvements
 
-Depending on your situation, you might find further design improvements. In our example, a publish-subscribe pattern might do. A better design is likely to fix the encapsulation problem of the matcher. Here again, the custom assertion matchers will help. In most cases, it will be enough to change the implementation of the matchers only.
+As I said in the introduction, customer matchers are often an alternative to mocks when we don't have the time for a better refactoring. Later down the road, you might find the time for this refactoring. Functional style and the "Tell, don't ask!" principles are often the solution here.
+
+In our example, a publish-subscribe pattern might do. A better design should fix the encapsulation problem of the matcher. Here again, the custom assertion matchers will help. In most cases, it will be enough to change the implementation of the matchers only.
 
 > 💡 Custom assertion matchers make refactoring easier by factorizing test assertions.
 
@@ -150,3 +154,5 @@ I'm done with small scale mock avoiding techniques. To summarize, the first thin
 ## Next post
 
 In the following posts, I'll look into architecture scale techniques to avoid mocks. I'll start with [Hexagonal architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/).
+
+*Thanks to [Dragan Stepanovic](http://www.draganstepanovic.com/) who's comments brought me to update this post.*
