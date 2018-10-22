@@ -17,7 +17,7 @@ _As software people, we live in a complex world. To leverage on its non-linear e
 
 You might remember [how I hacked up a weekly fruit basket](/how-to-setup-a-weekly-fruit-basket-in-no-time/) in a previous team. The company would not provided us fruit baskets at work, so we decided to build our own. Every week, I would buy some fruits, and sell them to my teammates for 50c each. The sustainability of the process surprised me. After a few weeks, I got my money back and my teammates were eating fruits!
 
-![Drawing of a guy on a catapult, waiting for a giant fruit to fall from a fruit basket to propel him in the air. A fruit basket at work resulted in an unexpected productivity increase.]({{site.url}}/imgs/2018-10-17-how-we-increased-productivity-by-25-with-a-fruit-basket-at-work/fruit-catapult-teaser.jpeg)
+![Drawing of a guy on a catapult, waiting for a giant fruit to fall from a fruit basket to propel him in the air. A fruit basket at work resulted in an unexpected productivity increase.]({{site.url}}/imgs/2018-10-17-how-we-increased-productivity-by-25-with-a-fruit-basket-at-work/fruit-catapult.jpeg)
 
 ## Exploratory testing
 
