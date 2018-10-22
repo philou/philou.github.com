@@ -46,7 +46,8 @@ Multi user lists          | 20*          | 8             | 2
 Labels                    | 20           | 13            | 2
 Custom report tool        | 13           | 0             | 3
 TOTAL Cost Of Delay of v1 | 80	         | 100           |
-<small>Stared (*) features are required for the first version of the product. Features with a value of 0 are not required for the product. Eventually, unstared features with a non null business value would be great for a second release.</small><br>
+
+<sup>Stared (*) features are required for the first version of the product. Features with a value of 0 are not required for the product. Eventually, unstared features with a non null business value would be great for a second release.</sup>
 
 It seems that the individuals market is a greater opportunity, so it's worth thinking about it. Unfortunately for the moment, we really don't know if we'll manage to get the high availability that is required for such a product.
 
@@ -74,7 +75,6 @@ Availability	          | 0	         | 40*           | 20           | 2          
 Labels                    | 20           | 13            | 17           | 2              | 9
 Multi user lists          | 20*          | 8             | 14           | 2              | 7
 Custom report tool        | 13           | 0             | 8            | 3              | 3
-<br>
 
 We'll resort to WSJF to prioritize our work. Here is what we'll be able to ship :
 
@@ -88,7 +88,6 @@ Enterprise labels               | 11   | 20    |  220
 Individuals Multi user lists    | 13   | 8     |  104
 Enterprise Custom reports       | 16   | 13    |  208
                                 |      |       | 2320
-<br>
 
 ##### 2.a.ii. The cost if we do the spike
 
@@ -104,7 +103,6 @@ Durability	          | 40*	         | 13            | 2              | 20       
 Multi user lists          | 20*          | 8             | 2              | 10              | 4
 Labels                    | 20           | 13            | 2              | 10              | 7
 Custom report tool        | 13           | 0             | 3              | 4               |
-<br>
 
 Here is how we will be able to ship :
 
@@ -118,7 +116,6 @@ Individuals Labels              | 12   | 13    |  156
 Enterprise Labels               | 12   | 20    |  240
 Enterprise Custom reports       | 15   | 13    |  195
                                 |      |       | 2175
-<br>
 
 ##### 2.a.iii. Cost of delay of the spike if we reach the availability
 
@@ -147,7 +144,6 @@ Availability	          | 0	         | 40*           | 20           | 2          
 Multi user lists          | 20*          | 8             | 14           | 2              | 7
 Labels                    | 20           | 13            | 17           | 2              | 9
 Custom report tool        | 13           | 0             | 8            | 3              | 3
-<br>
 
 When we'll fail at the availability, we'll switch multi user lists and labels to be able to ship to enterprises as quickly as possible.
 Here is what we'll ship.
@@ -158,7 +154,6 @@ Enterprise                      |  9   | 80    |  720
 Enterprise Labels               | 11   | 20    |  220
 Enterprise Custom reports       | 14   | 13    |  182
                                 |      |       | 1122
-<br>
 
 ##### 2.b.ii. The cost if we do the spike
 
@@ -172,7 +167,6 @@ Robustness	   | 20*	  | 2              | 10
 Multi user lists   | 20*          | 2              | 7
 Labels             | 20           | 2              | 9
 Custom report tool | 13           | 3              | 3
-<br>
 
 Here is how we will be able to ship :
 
@@ -182,7 +176,6 @@ Enterprise                      |  7   | 80    |  560
 Enterprise Labels               |  9   | 20    |  180
 Enterprise Custom reports       | 12   | 13    |  156
                                 |      |       |  896
-<br>
 
 ##### 2.b.iii. Cost of delay of the spike if we reach the availability
 
@@ -214,7 +207,6 @@ Availability	          | 0	         | 40*           | 20           | 2          
 Multi user lists          | 20*          | 8             | 14           | 2              | 7
 Labels                    | 20           | 13            | 17           | 2              | 9
 Custom report tool        | 13           | 0             | 8            | 3              | 3
-<br>
 
 The spike comes at the top of our backlog. Which confirms our gut feeling.
 

@@ -21,8 +21,6 @@ Pain Zone         | Skill Zone
 Wandering buddies | Mates
 Expert / Novice   | Mentor & Apprentice
 
-<br>
-
 ## The Pain Zone
 
 Pair programming can be painful. It can feel like a waste of time or extremely frustrating. Here are the typical situations and how to fix them.

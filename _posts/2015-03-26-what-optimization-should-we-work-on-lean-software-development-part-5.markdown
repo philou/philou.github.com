@@ -68,8 +68,6 @@ Title | Story points | Expected Speedup rate
 ------|--------------|----------------------
 Algorithm spike : measure out of context CPU cache optimization speedup	| 2 |	?
 
-<br>
-
 In order to compute the expected speedup rate, let's suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.
 
 They are computed by splitting the votes in 2 :
@@ -107,8 +105,6 @@ Data Structure	| x 1.033
 Algorithm	        | x 1.046
 Boxing	                | x 1.012
 Algorithm spike	        | x 1.056
-
-<br>
 
 Finally, here is the optimal order through which we should perform the stories :
 

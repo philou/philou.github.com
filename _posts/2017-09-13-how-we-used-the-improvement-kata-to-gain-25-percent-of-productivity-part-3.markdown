@@ -40,7 +40,6 @@ Periods | Sprints | Bugs | Average bugs fixed per sprint
 --------|---------|------|------------------------------
 2015, Before sprint 56	| 15 |	21 |	1.4
 After sprint 56	| 34 |	210 |	6.1
-<br>
 
 Starting sprint 56, we were fixing 4 times as many bugs as we used to do before !
 
@@ -74,7 +73,6 @@ We first started to do exploratory testing at sprint 56. To do this, we would ru
 Explo Test Sesssion | 61 | 62 | 63 | 64 | 66 | 16.01
 --------------------|----|----|----|----|----|------
 Bugs found	| 16 |	6 |	16 |	10 | 	11 | 11
-<br>
 
 We would do another such a session. If we found significantly less than 10 bugs, let's say less than 6, it would mean that :
 
