@@ -59,16 +59,14 @@ Once you've decided that you want to blog, starting should not be an issue.
 
 ## Pick a platform
 
-There are a lot of blogging platforms out there. For programmers, I would recommend a few though :
+There are a lot of blogging platforms out there. For programmers, I would recommend a few though.
 
-![Logos of my recommended blogging platforms]({{site.url}}{{site.baseurl}}/imgs/2016-06-27-5-years-of-blogging-about-software/platforms.jpg)
-
-Platform | Pros | Cons
-----------|------|-----
-[Octopress](http://octopress.org/) | Free, Open Source, Github hosting, static HTML generation, markdown & Git based, made for programmers | Theming can be rocky
-[Medium](https://medium.com/)    | Free, no setup, good looking, simple to use | It's a private company, so it could close some day ! It happened to [postero.us](http://www.posterous.com) (I remember, I was there …)
-[Posthaven](https://posthaven.com/) | Created by the founders of postero.us, sustainable, guarantees to keep it live for ever, can post by email ! | Nothing special for programmers, 5$ / month
-[Logdown](https://logdown.com/)   | Looks like a hosted version of Octopress, without the hassle ! | 50$/year
+Logo | Platform  | Pros | Cons
+-----|-----------|------|-----
+[![Jekyll's logo]({{site.url}}/imgs/2016-06-27-5-years-of-blogging-about-software/jekyll.png)](https://jekyllrb.com/) | [Jekyll](https://jekyllrb.com/) | Free, Open Source, Github hosting, static HTML generation, markdown & Git based, made for programmers | There is no server, which means no automatic things like auto-publishing on a specified day
+[![Medium's logo]({{site.url}}/imgs/2016-06-27-5-years-of-blogging-about-software/medium.png)](https://medium.com/) | [Medium](https://medium.com/) | Free, no setup, good looking, simple to use | It's a private company, and it could close some day ! It happened to [postero.us](http://www.posterous.com) (I remember, I was there…)
+[![Wordpress's logo]({{site.url}}/imgs/2016-06-27-5-years-of-blogging-about-software/wordpress.png)](https://wordpress.org/) | [Wordpress](https://wordpress.org/) | Cheap (hosting from [$3 / month](https://www.whoishostingthis.com/compare/wordpress/)), Open Source, many hosting providers, huge community and plugin ecosystem, SEO plugin | Migrations can be rocky, too many plugins can create security and performance issues
+[![Ghost's logo]({{site.url}}/imgs/2016-06-27-5-years-of-blogging-about-software/ghost.svg)](https://ghost.org/) | [Ghost](https://ghost.org/) | Open Source, supports a [great business model](https://www.quora.com/What-is-ghost-org-What-is-their-business-model), you keep your data, good looking, simple to use, no plugin required, built-in SEO | Limited to pure blogging, hosting from [$5 / month](https://www.whoishostingthis.com/compare/ghost/) but [ghost.org](http://ghost.org) hosting starts at [$30 / month](https://ghost.org/pricing/)
 
 Then, it's up to you !
 
