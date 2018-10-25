@@ -11,7 +11,6 @@ description: "As software people, we live in a complex world. To leverage on its
 header:
    teaser: /imgs/2018-10-17-how-we-increased-productivity-by-25-with-a-fruit-basket-at-work/fruit-catapult-teaser.jpeg
    og_image: /imgs/2018-10-17-how-we-increased-productivity-by-25-with-a-fruit-basket-at-work/fruit-catapult-og.jpeg
-published: false
 ---
 _As software people, we live in a complex world. To leverage on its non-linear effects, we need to multiply weird experiments._
 
