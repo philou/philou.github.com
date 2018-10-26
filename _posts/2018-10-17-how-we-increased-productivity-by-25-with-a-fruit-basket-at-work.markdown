@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "How we increased productivity by 25% with a fruit basket at work... inside a complex system"
+title: "The unexpected contributions on a productivity increase by 25% of a fruit basket at work"
 date: 2018-10-25 13:03
 comments: true
 categories:
