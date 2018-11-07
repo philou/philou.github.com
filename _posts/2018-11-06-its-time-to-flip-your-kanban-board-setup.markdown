@@ -1,19 +1,19 @@
 ---
 layout: single
-title: "It's time to flip your kanban board setup"
+title: "The best 10 seconds I spent configuring my Kanban board setup"
 date: 2018-11-08 13:03
 comments: true
 categories:
  - personal-productivity
  - Kanban
  - scrum
-description: "Inverting your Kanban board columns can be a cheap way to reduce multitasking and stress. Eventually, it contributes to a more sustainable pace. By adapting Kanban boards setup to our culture, we can make them highlight what can be finished instead of what can be started!"
+description: "Inverting your Kanban board columns is a cheap way to reduce multitasking and stress. Eventually, it contributes to a more sustainable pace. By adapting Kanban boards setup to our culture, we can make them highlight what can be finished instead of what can be started!"
 header:
    teaser: /imgs/2018-11-06-its-time-to-flip-your-kanban-board-setup/kanban-mirror-teaser.jpeg
    og_image: /imgs/2018-11-06-its-time-to-flip-your-kanban-board-setup/kanban-mirror-og.jpeg
 published: false   
 ---
-_Inverting your [Kanban](https://en.wikipedia.org/wiki/Kanban) board columns can be a cheap way to reduce multitasking and stress. Eventually, it contributes to a more sustainable pace._
+_Flipping your [Kanban](https://en.wikipedia.org/wiki/Kanban) board columns is a cheap way to reduce multitasking and stress. Eventually, it contributes to a more sustainable pace._
 
 2 weeks ago, I blogged about how seemingly small changes can have big consequences. Here is another experiment that could have great consequences.
 
@@ -31,7 +31,7 @@ Even though I have been using this board for years, I always tend to start too m
 
 ## It's Obvious, Stupid!
 
-I grew up in France. Like most occidental languages, French reads from left to right. Actually, we organize most documents along this left-to-right, line-by-line flow. What's the first thing I see when I open my [Kanban board](https://en.wikipedia.org/wiki/Kanban_board)? You guess it: TODO items!
+I grew up in France. Like most Western languages, French reads from left to right. Actually, we organize most documents along this left-to-right, line-by-line flow. What's the first thing I see when I open my [Kanban board](https://en.wikipedia.org/wiki/Kanban_board)? You guess it: TODO items!
 
 > 💡 What's the first thing I see when I open my Kanban board: TODO items! 😰
 
@@ -59,6 +59,6 @@ Not bad for a 10 seconds configuration change! If you are using a Kanban board, 
 
 ## Culturally oriented
 
-Kanban and Kanban boards came from Japan. Most of the time, [Japanese](https://en.wikipedia.org/wiki/Japanese_writing_system) reads in columns, from right to left. Exactly like Kanban boards! In next week's post, I'll try to imagine what culturally oriented Kanban board setup would be.
+Kanban and Kanban boards came from Japan. Traditionnaly, [Japanese](https://en.wikipedia.org/wiki/Japanese_writing_system) reads in columns, from right to left. Exactly like Kanban boards! In next week's post, I'll try to imagine what culturally oriented Kanban board setup would be.
 
 [Stay tuned!](http://eepurl.com/dxKE95)
