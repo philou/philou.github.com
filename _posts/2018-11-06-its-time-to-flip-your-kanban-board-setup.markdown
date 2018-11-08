@@ -11,7 +11,6 @@ description: "Inverting your Kanban board columns is a cheap way to reduce multi
 header:
    teaser: /imgs/2018-11-06-its-time-to-flip-your-kanban-board-setup/kanban-mirror-teaser.jpeg
    og_image: /imgs/2018-11-06-its-time-to-flip-your-kanban-board-setup/kanban-mirror-og.jpeg
-published: false   
 ---
 _Flipping your [Kanban](https://en.wikipedia.org/wiki/Kanban) board columns is a cheap way to reduce multitasking and stress. Eventually, it contributes to a more sustainable pace._
 
