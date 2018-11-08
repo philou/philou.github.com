@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "The best 10 seconds I spent configuring my Kanban board setup"
-date: 2018-11-08 13:03
+date: 2018-11-08
 comments: true
 categories:
  - personal-productivity
