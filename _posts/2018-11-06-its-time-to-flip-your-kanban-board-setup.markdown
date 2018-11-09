@@ -50,7 +50,11 @@ First thing I now see when I open my board are my accomplishments. But the best 
 
 ## Takeaways
 
-Here are the results after almost 2 months of this Kanban board setup. I reduced my work in progress, multitasking and my stress level. In short, it helped me to stick to a more [sustainable pace](http://www.extremeprogramming.org/rules/overtime.html).
+Here are the effects on [cycle time](https://en.wiktionary.org/wiki/cycle_time) after 2 months of this new Kanban board setup.
+
+[![Graph of cycle time for my inverted personal Kanban Board Setup]({{site.url}}/imgs/2018-11-06-its-time-to-flip-your-kanban-board-setup/cycle-time.jpg)](/imgs/2018-11-06-its-time-to-flip-your-kanban-board-setup/cycle-time.png)
+
+Column reordering is not responsible for all improvements because I also did some task cleanup at the same time. Nevertheless, it did reduce work in progress, multitasking and stress level. In short, it helped me to stick to a more [sustainable pace](http://www.extremeprogramming.org/rules/overtime.html).
 
 > 💡 Inverting Kanban board columns contributes to a more sustainable pace.
 
