@@ -5,7 +5,7 @@ date: 2018-11-08
 comments: true
 categories:
  - personal-productivity
- - Kanban
+ - kanban
  - scrum
 description: "Inverting your Kanban board columns is a cheap way to reduce multitasking and stress. Eventually, it contributes to a more sustainable pace. By adapting Kanban boards setup to our culture, we can make them highlight what can be finished instead of what can be started!"
 header:

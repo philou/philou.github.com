@@ -6,6 +6,8 @@ published: true
 date: 2012-09-28
 categories:
 - Lean
+- gamification
+- continuous improvement
 posterous_url: http://philippe.bourgau.net/motivation-game-53790
 posterous_slug: motivation-game-53790
 comments: true
