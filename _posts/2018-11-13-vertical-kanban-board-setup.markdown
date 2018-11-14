@@ -23,11 +23,11 @@ Kanban and Kanban boards came from Japan. Traditionally, [Japanese](https://en.w
 
 When I was at [NewCraft](https://ncrafts.io/) this year, [Nat Pryce](http://www.natpryce.com/) gave [a presentation about the metaphors we use in software](http://videos.ncrafts.io/video/275530146). He mentioned widespread metaphors we rely on, that we are not even aware of.
 
-[![Screenshot of Nat Pryce's talk at NewCraft 2018 showing a famous metaphor](../imgs/2018-11-13-vertical-kanban-board-setup/nat-pryce-metaphore.jpg)](http://videos.ncrafts.io/video/275530146)
+[![Screenshot of Nat Pryce's talk at NewCraft 2018 showing a famous metaphor]({{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/nat-pryce-metaphore.jpg)](http://videos.ncrafts.io/video/275530146)
 
 Many metaphors are culture dependent. Let's see what the Kanban board setup would look like if we adapted it to the Western text orientation.
 
-![Drawing of a Kanban Board Setup rotated according to Western writing flow](../imgs/2018-11-13-vertical-kanban-board-setup/vertical-kanban.jpeg)
+![Drawing of a Kanban Board Setup rotated according to Western writing flow]({{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/vertical-kanban.jpeg)
 
 ### Benefits
 
@@ -43,7 +43,7 @@ Finally, it makes more sense vocabulary-wise. [Kanban is a pull system](https://
 
 All this is culture dependent. As I said, I'm French, and this Kanban board setup works well for Western cultures. We need to adapt Kanban boards according to people's cultures. People who read lines from right to left, might prefer this orientation:
 
-![Drawing of a Kanban Board Setup oriented for right to left readers](../imgs/2018-11-13-vertical-kanban-board-setup/vertical-right2left-kanban.jpeg)
+![Drawing of a Kanban Board Setup oriented for right to left readers]({{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/vertical-right2left-kanban.jpeg)
 
 Fortunately for digital boards, our computers have regional settings. The software could adapt Kanban boards orientations to the client's regional settings!
 
@@ -55,7 +55,7 @@ For obvious reasons, it should be OK to orient physical board according to local
 
 Let's dream for a while and push things even further. What we are talking about is actually UX for Kanban boards. Could we make these sad, sterile and mechanic tools more humane? Up to now, all we did has been to copy-paste physical boards on a screen. Could we use technology to build something better? Here is what such a Kanban could look like:
 
-[![Drawing of a humane friendly Kanban Board Setup](../imgs/2018-11-13-vertical-kanban-board-setup/humane-kanban-small.jpeg)](../imgs/2018-11-13-vertical-kanban-board-setup/humane-kanban.jpeg)
+[![Drawing of a humane friendly Kanban Board Setup]({{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/humane-kanban-small.jpeg)]({{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/humane-kanban.jpeg)
 
 We could add animations, visual hints, interaction, gamification... All this to help us perform our work at a sustainable pace.
 
@@ -78,7 +78,7 @@ The DOING section is often overloaded with too much work.
 
 ### DONE Sisyphus tasks
 
-{% include figure image_path="../imgs/2018-11-13-vertical-kanban-board-setup/Sisyphus_by_von_Stuck.jpg" alt="Painting of Sisyphus by Franz von Stuck, 1920. Pushing tasks through a Kanban board can sometimes feel like Sisyphus task" caption="Sisyphus by Franz von Stuck, 1920" %}
+{% include figure image_path="{{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/Sisyphus_by_von_Stuck.jpg" alt="Painting of Sisyphus by Franz von Stuck, 1920. Pushing tasks through a Kanban board can sometimes feel like Sisyphus task" caption="Sisyphus by Franz von Stuck, 1920" %}
 
 Software too often feels like [Sisyphus](https://en.wikipedia.org/wiki/Sisyphus) task. As soon as something is finished, a new task takes its place to keep us busy... until we retire.
 
