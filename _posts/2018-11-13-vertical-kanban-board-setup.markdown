@@ -32,7 +32,7 @@ Many metaphors are culture dependent. Let's see what the Kanban board setup woul
 
 The first benefit is when we display this board on the wall. DONE and DOING areas would be at eyes height. We would need an extra effort to look at items that are still TODO. This would reduce Work In Progress, multitasking and stress. In the end, it would contribute to a more sustainable pace.
 
-Another benefit is when we display such a board on a computer screen. TODO items would be at the bottom of the board. There are likely not to appear on the screen when we open the board. Again, we would need the extra scrolling to see what's TODO. And again, this would result in a more sustainable pace.
+Another benefit is when we display such a board on a computer screen. TODO items would be at the bottom of the board. They are likely not to appear on the screen when we open the board. Again, we would need the extra scrolling to see what's TODO. And again, this would result in a more sustainable pace.
 
 Finally, it makes more sense vocabulary-wise. [Kanban is a pull system](https://kanbanize.com/lean-management/pull/what-is-pull-system/). Did you ever try to pull something from the left with one arm? Pulling from a side does not work well. As my Aikido master would say, it's a great way to hurt yourself. When we want to pull something heavy, we usually start by facing it. Most of the time, we'll pull from in ahead, or from below.
 
