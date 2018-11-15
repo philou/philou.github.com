@@ -11,7 +11,6 @@ description: "Turning Kanban boards vertically fits western cultures better. The
 header:
    teaser: /imgs/2018-11-13-vertical-kanban-board-setup/humane-kanban-teaser.jpeg
    og_image: /imgs/2018-11-13-vertical-kanban-board-setup/humane-kanban-og.jpeg
-published: false
 ---
 _Turning Kanban boards vertically fits western cultures better. Improving UX of our process tools would eventually lead to a more effective and sustainable pace._
 
@@ -33,9 +32,9 @@ Many metaphors are culture dependent. Let's see what the Kanban board setup woul
 
 The first benefit is when we display this board on the wall. DONE and DOING areas would be at eyes height. We would need an extra effort to look at items that are still TODO. This would reduce Work In Progress, multitasking and stress. In the end, it would contribute to a more sustainable pace.
 
-Another benefit is when we display such a board on a computer screen. TODO items would be at the bottom of the board. There are likely not appear on the screen when we open the board. Again, we would need the extra scrolling to see what's TODO. And again, this would result in a more sustainable pace.
+Another benefit is when we display such a board on a computer screen. TODO items would be at the bottom of the board. There are likely not to appear on the screen when we open the board. Again, we would need the extra scrolling to see what's TODO. And again, this would result in a more sustainable pace.
 
-Finally, it makes more sense vocabulary-wise. [Kanban is a pull system](https://kanbanize.com/lean-management/pull/what-is-pull-system/). Did you ever tried to pull something from the left with one arm? Pulling from a side does not work well. As my Aikido master would say, it's a great way to hurt yourself. When we want to pull something heavy, we usually start by facing it. Most of the time, we'll pull from in ahead, or from below.
+Finally, it makes more sense vocabulary-wise. [Kanban is a pull system](https://kanbanize.com/lean-management/pull/what-is-pull-system/). Did you ever try to pull something from the left with one arm? Pulling from a side does not work well. As my Aikido master would say, it's a great way to hurt yourself. When we want to pull something heavy, we usually start by facing it. Most of the time, we'll pull from in ahead, or from below.
 
 ### Regional settings
 
@@ -47,7 +46,7 @@ All this is culture dependent. As I said, I'm French, and this Kanban board setu
 
 Fortunately for digital boards, our computers have regional settings. The software could adapt Kanban boards orientations to the client's regional settings!
 
-For obvious reasons, it should be OK to orient physical board according to local culture.
+For obvious reasons, orienting the physical board according to local culture should suit most people using it.
 
 ## Humane tools
 
@@ -61,7 +60,7 @@ We could add animations, visual hints, interaction, gamification... All this to 
 
 ### TODO cesspool
 
-The TODO area is usually a mess of in-the-shower ideas, half specified stories, fully detailed tasks, large or small epics, valuable or not stories... We could use visual clues to make all this jump to our faces:
+The TODO area is usually a mess made of in-the-shower ideas, half specified stories, fully detailed tasks, large or small epics, valuable or not stories... We could use visual clues to make all this jump to our faces:
 
 *   bigger cards for larger items
 *   shiny cards for high value items
@@ -78,7 +77,15 @@ The DOING section is often overloaded with too much work.
 
 ### DONE Sisyphus tasks
 
-{% include figure image_path="{{site.url}}/imgs/2018-11-13-vertical-kanban-board-setup/Sisyphus_by_von_Stuck.jpg" alt="Painting of Sisyphus by Franz von Stuck, 1920. Pushing tasks through a Kanban board can sometimes feel like Sisyphus task" caption="Sisyphus by Franz von Stuck, 1920" %}
+{% assign figure_path="/imgs/2018-11-13-vertical-kanban-board-setup/Sisyphus_by_von_Stuck.jpg" | absolute_url %}
+
+{% assign figure_alt="Painting of Sisyphus by Franz von Stuck, 1920. Pushing tasks through a Kanban board can sometimes feel like Sisyphus task" %}
+
+{% capture figure_caption %}
+Sisyphus by [Franz von Stuck](https://en.wikipedia.org/wiki/Franz_Stuck), 1920
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Software too often feels like [Sisyphus](https://en.wikipedia.org/wiki/Sisyphus) task. As soon as something is finished, a new task takes its place to keep us busy... until we retire.
 
