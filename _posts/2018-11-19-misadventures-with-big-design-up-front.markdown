@@ -70,3 +70,5 @@ This was the first post of a series about how to use [Event Storming](https://ww
 *   What teams should we build to support this?
 *   What's the plan to get there?
 *   What else can we do with Event Storming?
+
+_Thanks to [Thomas](https://twitter.com/tpierrain?lang=en) and [Xavier](https://twitter.com/xcorail?lang=en) for reviewing this post_

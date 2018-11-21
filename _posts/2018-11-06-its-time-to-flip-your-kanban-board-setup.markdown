@@ -65,3 +65,5 @@ Not bad for a 10 seconds configuration change! If you are using a Kanban board, 
 Kanban and Kanban boards came from Japan. Traditionnaly, [Japanese](https://en.wikipedia.org/wiki/Japanese_writing_system) reads in columns, from right to left. Kanban boards use columns too, but flow from left to right! In next week's post, I'll try to imagine what culturally oriented Kanban board setup would be.
 
 [Stay tuned!](http://eepurl.com/dxKE95)
+
+_Thanks to [Damien](https://www.linkedin.com/in/damienmenanteau/?originalSubdomain=fr), [Matthieu](https://twitter.com/mattrussa) and [Xavier](https://twitter.com/xcorail?lang=en) for reviewing this post_

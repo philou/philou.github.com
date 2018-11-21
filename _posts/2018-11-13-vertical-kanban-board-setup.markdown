@@ -96,3 +96,5 @@ Software too often feels like [Sisyphus](https://en.wikipedia.org/wiki/Sisyphus)
 ## Back to reality
 
 Enough dreaming... I don't know of such tool yet. If you know something like this, I'd be happy to learn about it. Otherwise, this would make a great open-source side-project. What do you think? Would you use it? Would you contribute?
+
+_Thanks to [Damien](https://www.linkedin.com/in/damienmenanteau/?originalSubdomain=fr), [Matthieu](https://twitter.com/mattrussa) and [Xavier](https://twitter.com/xcorail?lang=en) for reviewing this post_
