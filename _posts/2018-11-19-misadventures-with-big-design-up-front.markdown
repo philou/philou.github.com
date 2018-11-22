@@ -56,11 +56,11 @@ You've guessed I'm not a big fan of Big Design Up Front...
 
 In [next post](http://eepurl.com/dxKE95), I'll continue my story and explain how I switched to [incremental design](https://www.jamesshore.com/Agile-Book/incremental_design.html). I'll detail how it fixes almost all of the issues of Big Design Up Front.
 
-Unfortunately, there is [no silver bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet), and incremental design has its own weak points. The lack of a shared vision is the main one. Finally I'll retrace how I discovered Event Storming, and how it can be used to draft a shared design vision in just a few days.
+Unfortunately, there is [no silver bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet), and incremental design has its own weak points. The lack of a shared vision is the main one. Finally I'll retrace how I discovered [Event Storming](https://www.eventstorming.com/), and how it can be used to draft a shared design vision in just a few days.
 
 ## To be continued
 
-This was the first post of a series about how to use [Event Storming](https://www.eventstorming.com/) to kick start architecture on good tracks. Here are the topics I intend to go through in this series:
+This was the first post of a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). Here are the topics I intend to go through in this series:
 
 *   [Misadventures with Big Design Up Front](/misadventures-with-big-design-up-front/)
 *   How to squash Big Design Up Front in a few days with Event Storming
