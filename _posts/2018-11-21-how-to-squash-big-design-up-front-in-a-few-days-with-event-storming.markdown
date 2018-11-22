@@ -17,7 +17,7 @@ _The combination of_ [_Incremental Design_](https://www.jamesshore.com/Agile-Boo
 
 In my [previous post](/misadventures-with-big-design-up-front/), I explained how I tried to apply Big Design Up Front at my first job. Long story short, I did not manage very well...
 
-![Drawing of an Event Storming workshop. Event Storming is great at drafting a rough design up front](../imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming.jpeg)
+![Drawing of an Event Storming workshop. Event Storming is great at drafting a rough design up front]({{site.url}}/imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming.jpeg)
 
 This is the second post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). If you haven't yet, I recommend you to start reading from the beginning.
 
@@ -25,11 +25,11 @@ This is the second post in a [series about how to use Event Storming to kick sta
 
 Here I was: I had tried to apply Big Design Up Front to keep the software tidy. Unfortunately, I was still facing regression at every new features. I started to look for ways to better design software. That's how I discovered the [refactoring book](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_2?ie=UTF8&qid=1542803555&sr=8-2&keywords=refactoring+martin+fowler):
 
-[![Cover of Martin Fowler's Refactoring book. This book is really the bible of incremental design](../imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_2?ie=UTF8&qid=1542803555&sr=8-2&keywords=refactoring+martin+fowler)
+[![Cover of Martin Fowler's Refactoring book. This book is really the bible of incremental design]({{site.url}}/imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/refactoring.jpg)](https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_2?ie=UTF8&qid=1542803555&sr=8-2&keywords=refactoring+martin+fowler)
 
 In it, I read about [eXtreme Programming](https://en.wikipedia.org/wiki/Extreme_programming), which got me to read the [XP book](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?ie=UTF8&qid=1542803629&sr=8-2&keywords=extreme+programming+explained):
 
-[![Cover of the first edition of Kent Beck's eXtreme Programming explained book. This is the book that got me to abandon Big Design Up Front](../imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/xp_book_cover.jpg)](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?ie=UTF8&qid=1542803629&sr=8-2&keywords=extreme+programming+explained)
+[![Cover of the first edition of Kent Beck's eXtreme Programming explained book. This is the book that got me to abandon Big Design Up Front]({{site.url}}/imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/xp_book_cover.jpg)](https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_2?ie=UTF8&qid=1542803629&sr=8-2&keywords=extreme+programming+explained)
 
 I got sold on XP. I jumped in. Within a few month I was unit testing a lot. I had swapped Big Design Up Front for incremental design. The idea is to start and keep the simple code. (Remember: [Simple is not Easy](https://www.entropywins.wtf/blog/2017/01/02/simple-is-not-easy/)).
 
@@ -68,7 +68,7 @@ I first heard about it through the internet. The first time I had the chance to 
 
 During his workshop, Alberto also said we could use it to identify the functional areas of the domain. This statement sparkled my interest. Could this provide the collaborative architecture vision that incremental design lacks?
 
-[![Cover of Alberto Brandolini's Introduction Event Storming book preview.](../imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming-cover.jpeg)](https://leanpub.com/introducing_eventstorming)
+[![Cover of Alberto Brandolini's Introduction Event Storming book preview.]({{site.url}}/imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming-cover.jpeg)](https://leanpub.com/introducing_eventstorming)
 
 After reading through the beta release of [Alberto's book](https://leanpub.com/introducing_eventstorming) and more experimenting, I can say it is. Whenever we start something new involving architecture:
 
