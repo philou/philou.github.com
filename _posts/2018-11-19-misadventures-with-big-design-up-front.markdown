@@ -10,7 +10,6 @@ description: "Here is the story of my own love and disillusionment for Big Desig
 header:
    teaser: /imgs/2018-11-19-misadventures-with-big-design-up-front/jenga-tower-teaser.jpeg
    og_image: /imgs/2018-11-19-misadventures-with-big-design-up-front/jenga-tower-og.jpeg
-published: false
 ---
 _Although a nice idea in theory, [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front) has many problems that I learned the hard way. We should avoid BDUF most of the time._
 
