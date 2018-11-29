@@ -25,6 +25,7 @@ I'm currently technical coach at [Murex](http://www.murex.com).
 
 Here are the main side projects I've been working on throughout the years
 
-* [Philou's Planning Poker](http://philous-planning-poker.herokuapp.com) : Better poker estimates for remote teams !
-* [Storexplore](http://philou.github.io/storexplore) : Transform online stores into APIs !
-* [RSpecProxies](http://philou.github.io/rspecproxies) : Simplify RSpec mocking with test proxies !
+* [Philou's Planning Poker](http://philous-planning-poker.herokuapp.com) : Better poker estimates for remote teams!
+* [Storexplore](http://philou.github.io/storexplore) : Transform online stores into APIs!
+* [RSpecProxies](http://philou.github.io/rspecproxies) : Simplify RSpec mocking with test proxies!
+* [ComplexityAssert](https://philippe.bourgau.net/complexity-assert/) : Assert your algorithm time complexity in RSpec (experimental)!
