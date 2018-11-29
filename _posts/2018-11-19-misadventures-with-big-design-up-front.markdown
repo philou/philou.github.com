@@ -62,7 +62,7 @@ Unfortunately, there is [no silver bullet](https://en.wikipedia.org/wiki/No_Silv
 This was the first post of a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). Here are the topics I intend to go through in this series:
 
 *   [Misadventures with Big Design Up Front](/misadventures-with-big-design-up-front/)
-*   How to squash Big Design Up Front in a few days with Event Storming
+*   [How to squash Big Design Up Front in a few days with Event Storming](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
 *   How do we get everyone to understand what this project is about?
 *   What's the archi vision?
 *   What services should we envision?
