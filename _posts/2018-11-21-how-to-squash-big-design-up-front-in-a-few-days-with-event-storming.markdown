@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "How to squash Big Design Up Front in a few days with Event Storming"
+title: "How I learned to do Big Design Up Front in 2 days of Event Storming"
 date: 2018-11-29
 comments: true
 categories:
