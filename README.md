@@ -17,6 +17,10 @@ export JEKYLL_GITHUB_TOKEN=XXX
 
 A token with only repo-read and notifications accesses seem to fix the issue.
 
+### If I get gem missing with _local_preview.sh
+
+Local preview uses a different `Gemfile`. Whenever we update the main bundle, we should also update this alternate bundle with `BUNDLE_GEMFILE=Gemfile.local bundle update`
+
 ### How to include figures with links and credits
 
 Here is the template I am using :
