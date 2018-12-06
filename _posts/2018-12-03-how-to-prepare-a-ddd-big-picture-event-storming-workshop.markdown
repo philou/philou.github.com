@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "How to prepare a DDD Big Picture Event Storming workshop?"
+title: "How to prepare a DDD Big Picture Event Storming workshop"
 date: 2018-12-06
 comments: true
 categories:
