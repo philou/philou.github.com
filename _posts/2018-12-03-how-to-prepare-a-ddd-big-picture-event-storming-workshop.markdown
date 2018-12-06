@@ -11,7 +11,6 @@ description: "Big Picture Event Storming unlocks DDD through massive domain know
 header:
    teaser: /imgs/2018-12-03-how-to-prepare-a-ddd-big-picture-event-storming-workshop/ddd-on-event-storming-teaser.jpeg
    og_image: /imgs/2018-12-03-how-to-prepare-a-ddd-big-picture-event-storming-workshop/ddd-on-event-storming-og.jpeg
-published: false
 ---
 _The massive domain knowledge sharing of a Big Picture_ [_Event Storming_](https://www.eventstorming.com/) _unlocks_ [_DDD_](https://en.wikipedia.org/wiki/Domain-driven_design)_. Good preparation makes running one easy. Here's the 1st of a 4 posts step by step guide._
 
@@ -96,4 +95,4 @@ I found that a quick 15 to 30 minutes gathering works well, but again, you might
 
 This was the 3rd post in a [series about how to use Event Storming to kick start architecture on good tracks](https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series). In next post, we'll see how to prepare the room for a successful session.
 
-[Subscribe to notified when it's ready](http://eepurl.com/dxKE95).
+[Subscribe to be notified when it's ready](http://eepurl.com/dxKE95).
