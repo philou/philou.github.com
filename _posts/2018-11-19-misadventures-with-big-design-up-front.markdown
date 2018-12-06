@@ -61,13 +61,18 @@ Unfortunately, there is [no silver bullet](https://en.wikipedia.org/wiki/No_Silv
 
 This was the first post of a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). Here are the topics I intend to go through in this series:
 
-*   [Misadventures with Big Design Up Front](/misadventures-with-big-design-up-front/)
-*   [How I learned to do Big Design Up Front in 2 days of Event Storming](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
-*   How do we get everyone to understand what this project is about?
-*   What's the archi vision?
-*   What services should we envision?
-*   What teams should we build to support this?
-*   What's the plan to get there?
-*   What else can we do with Event Storming?
+1.   [Misadventures with Big Design Up Front](/misadventures-with-big-design-up-front/)
+1.   [How I learned to do Big Design Up Front in 2 days of Event Storming](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
+1.   [How to prepare a DDD Big Picture Event Storming workshop](/how-to-prepare-a-ddd-big-picture-event-storming-workshop/)
+1.   How to prepare the room for a DDD Big Picture Event Storming
+1.   Walkthrough of a DDD Big Picture Event Storming.
+1.   DDD Big Picture Event Storming Tips
+1.   How to draft an architecture vision?
+1.   What services should we envision?
+1.   What teams should we build to support this?
+1.   What's the plan to get there?
+1.   What else can we do with Event Storming?
+
+[Continue Reading...](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
 
 _Thanks to [Thomas](https://twitter.com/tpierrain?lang=en) and [Xavier](https://twitter.com/xcorail?lang=en) for reviewing this post_

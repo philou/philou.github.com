@@ -81,6 +81,6 @@ Event storming let us draft a good enough functional architecture vision. ([Cont
 
 ## Next posts
 
-This was the second post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). In next post, I'll explain how to run a Big Picture Event Storming. Later, I'll go over how to draft a functional architecture from there.
+This was the second post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). In [next post](/how-to-prepare-a-ddd-big-picture-event-storming-workshop/), I'll explain how to run a Big Picture Event Storming. Later, I'll go over how to draft a functional architecture from there.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue Reading...](/how-to-prepare-a-ddd-big-picture-event-storming-workshop/)
