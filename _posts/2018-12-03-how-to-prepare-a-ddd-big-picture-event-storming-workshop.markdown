@@ -93,6 +93,6 @@ I found that a quick 15 to 30 minutes gathering works well, but again, you might
 
 ## To be continued
 
-This was the 3rd post in a [series about how to use Event Storming to kick start architecture on good tracks](https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series). In next post, we'll see how to prepare the room for a successful session.
+This was the 3rd post in a [series about how to use Event Storming to kick start architecture on good tracks](https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series). In [next post](/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/), we'll see how to prepare the room for a successful session.
 
-[Subscribe to be notified when it's ready](http://eepurl.com/dxKE95).
+[Continue Reading](/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/).

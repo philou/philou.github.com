@@ -64,7 +64,7 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   [Misadventures with Big Design Up Front](/misadventures-with-big-design-up-front/)
 1.   [How I learned to do Big Design Up Front in 2 days of Event Storming](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
 1.   [How to prepare a DDD Big Picture Event Storming workshop](/how-to-prepare-a-ddd-big-picture-event-storming-workshop/)
-1.   How to prepare the room for a DDD Big Picture Event Storming
+1.   [How to prepare the room for a DDD Big Picture Event Storming](/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/)
 1.   Walkthrough of a DDD Big Picture Event Storming.
 1.   DDD Big Picture Event Storming Tips
 1.   How to draft an architecture vision?
