@@ -7,10 +7,10 @@ categories:
  - architecture
  - squash-BDUF-with-event-storming-series
  - event storming
-description: "TODO"
+description: "Kick starting a project with a DDD Big Picture Event Storming can be chaotic. Here is a detailed agenda to set it on the right track. This first part details room preparation, group energizer, and a sample briefing of instructions to give to attendees."
 header:
-   teaser: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/TODO-teaser.jpeg
-   og_image: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/TODO-og.jpeg
+   teaser: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning-teaser.jpeg
+   og_image: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning-og.jpeg
 published: false
 ---
 _Kick starting a project with a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) can be chaotic. Here is a detailed agenda and a sample briefing to set it on the right track._
@@ -19,16 +19,16 @@ This is the 5th post in a [series about how to use Event Storming to kick start 
 
 In the 2 previous posts ([3rd](/how-to-prepare-a-ddd-big-picture-event-storming-workshop/) and [4th](/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/)), I went over all the preparation to do before the workshop. Let's move into the real thing. Now that we have everything ready, how do we actually run this workshop?
 
-TODO drawing people listening in front of the empty board
+![Drawing of people discussing in front of an empty design Space. This is what looks like a DDD Event Storming session before it starts.]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning.jpeg)
 
 ## 1. Prepare the room
 
-[![Photo of the room setup before the DDD Event Storming session starts.](../imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/room-small.jpg)](../imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/room.jpg)
+[![Photo of the room setup before the DDD Event Storming session starts.]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/room-small.jpg)]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/room.jpg)
 
 I learned from experience that I to come in the room around 30 minutes in advance to prepare it for the workshop. [Previous post](/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/) has all the room preparation details. Roughly, this includes:
 
 *   Removing tables and chairs
-*   Sticking the design space to the wall
+*   Sticking the design-space to the wall
 *   Sticking the Visual Agenda to the wall
 *   Laying down the rest of the material somewhere
 
@@ -70,7 +70,7 @@ Now is the time to present the workshop. Start with the goal, scope and use case
 
 ### Domain Events
 
-![Drawing of a Domain Event orange Post-It written "A trade was booked". Domain Events are the main building blocks of DDD Event Storming](../imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/domain-event.png)
+![Drawing of a Domain Event orange Post-It written "A trade was booked". Domain Events are the main building blocks of DDD Event Storming]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/domain-event.png)
 
 > A quick brief about post-it colors.
 >
@@ -86,13 +86,13 @@ Now is the time to present the workshop. Start with the goal, scope and use case
 
 ### Domain Definitions (aka [Ubiquitous Language](https://martinfowler.com/bliki/UbiquitousLanguage.html))
 
-![Drawing of a Domain Definition Yellow Post-It written "Counterparty...". DDD Event Storming is great at building up the domain vocabulary](../imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/domain-definition.png)
+![Drawing of a Domain Definition Yellow Post-It written "Counterparty...". DDD Event Storming is great at building up the domain vocabulary]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/domain-definition.png)
 
 > Whenever we come across or agree on a domain word, feel free to write a definition for it on a large yellow post-it. This is a way to build up a shared domain vocabulary. This is very helpful to improve the communication between all of us. This in turn improves how we work in many different aspects (ex: when choosing what to refactor).
 
 ### Problems
 
-![Drawing of a Problem purple Post-It written "A trade was booked". Many problems and questions usually come up during a DDD Event Storming workshop](../imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/problem.png)
+![Drawing of a Problem purple Post-It written "A trade was booked". Many problems and questions usually come up during a DDD Event Storming workshop]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/problem.png)
 
 > Likewise, we use purple post-its to park "problems". Whenever we encounter:
 >
