@@ -11,7 +11,6 @@ description: "Kick starting a project with a DDD Big Picture Event Storming can 
 header:
    teaser: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning-teaser.jpeg
    og_image: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning-og.jpeg
-published: false
 ---
 _Kick starting a project with a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) can be chaotic. Here is a detailed agenda and a sample briefing to set it on the right track._
 
