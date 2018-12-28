@@ -72,4 +72,4 @@ Don't forget to ask for feedback on the session itself before people leave. A RO
 
 That's it, after a few hours, you've reached the end of DDD Big Picture Event Storming. This is the massive knowledge-sharing foundation step. It will help us to draft an architecture, draw teams, find a sustainable refactoring path and more. In the next post I will give a few personal tips about running a DDD Event Storming. [Subscribe to be notified when it's ready](http://eepurl.com/dxKE95).
 
-This was the 7th post in a [series about how to use Event Storming to kick start architecture on good tracks](https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series).
+This was the 7th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
