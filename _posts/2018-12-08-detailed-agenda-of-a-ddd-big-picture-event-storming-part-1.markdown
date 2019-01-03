@@ -109,6 +109,6 @@ Once this general speech is over, I usually quickly present every steps of the a
 
 ## To be continued
 
-This only covers the first half of the workshop. In next post, we'll go over the second half. [Subscribe to notified when it's ready](http://eepurl.com/dxKE95).
+This only covers the first half of the workshop. In [next post](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-2/), we'll go over the following steps.
 
-This was the 5th post in a [series about how to use Event Storming to kick start architecture on good tracks](https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series).
+This was the 5th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).

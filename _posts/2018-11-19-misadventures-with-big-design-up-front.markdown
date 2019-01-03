@@ -66,7 +66,7 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   [How to prepare a DDD Big Picture Event Storming workshop](/how-to-prepare-a-ddd-big-picture-event-storming-workshop/)
 1.   [How to prepare the room for a DDD Big Picture Event Storming](/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/)
 1.   [Detailed Agenda of a DDD Big Picture Event Storming - Part 1](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/)
-1.   Detailed Agenda of a DDD Big Picture Event Storming - Part 2
+1.   [Detailed Agenda of a DDD Big Picture Event Storming - Part 2](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-2/)
 1.   Detailed Agenda of a DDD Big Picture Event Storming - Part 3
 1.   DDD Big Picture Event Storming Tips
 1.   How to draft an architecture vision?
