@@ -11,7 +11,6 @@ description: "The DDD Big Picture Event Storming is a creative game. It sticks t
 header:
    teaser: /imgs/2018-12-16-detailed-agenda-of-a-ddd-big-picture-event-storming-part-2/event-storming-3-phases-game-teaser.jpeg
    og_image: /imgs/2018-12-16-detailed-agenda-of-a-ddd-big-picture-event-storming-part-2/event-storming-3-phases-game-og.jpeg
-published: false
 ---
 _The_ [_DDD_](https://en.wikipedia.org/wiki/Domain-driven_design) _Big Picture_ [_Event Storming_](https://www.eventstorming.com/) is a _creative game. It sticks to [the classic open-explore-close flow](https://gamestorming.com/). Here is the second part of its detailed agenda._
 
