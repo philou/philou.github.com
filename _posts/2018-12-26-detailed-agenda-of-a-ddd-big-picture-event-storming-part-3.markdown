@@ -17,21 +17,21 @@ _Thanks to massive knowledge sharing, a [DDD](https://en.wikipedia.org/wiki/Doma
 
 This is the 7th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). If you want to learn how I got into Event Storming, I recommend you to start reading from [the beginning](/misadventures-with-big-design-up-front/).
 
-This is also the 3rd part of a post detailing the agenda for a Domain Driven Design Big Picture Event Storming. Please make sure to read the previous articles first.
+This is also the 3rd part of a post detailing the agenda for a Domain Driven Design Big Picture Event Storming. Please make sure to read the [previous articles](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/) first.
 
-![Drawing of a Domain Driven Design (DDD) Big Picture Event Storming board with a running race finish line.](../imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/event-storming-finish-line.jpeg)
+![Drawing of a Domain Driven Design (DDD) Big Picture Event Storming board with a running race finish line.]({{site.url}}/imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/event-storming-finish-line.jpeg)
 
 If you went through the previous steps, all the attendees should have a good grasp of the domain. Let's test this understanding a bit.
 
 ## 7. Storytelling
 
-TODO photo homere and odyssee
+Now is the time to check that the whole picture makes sense. Since the beginning of humanity, stories have been the vehicle of knowledge. Knowledge used to go from generation to generation through campfire stories. [Our brains are hard-wired to listen, remember and make sense of stories](https://blogs.scientificamerican.com/guest-blog/it-is-in-our-nature-to-need-stories/).
 
-Now is the time to check that the whole picture makes sense. Since the beginning of humanity, stories have been the vehicle of knowledge. Knowledge used to go from generation to generation through campfire stories. Our brains are hard-wired to listen, remember and make sense of stories.
+![Made up image of a giant open book in the middle of the countryside. Storytelling is key to successful DDD Event Storming]({{site.url}}/imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/book.jpg)
 
 Ask for a volunteer from the audience, or for a few if people are afraid to do it alone. Then ask the first volunteer to narrate the story of the system. He just needs to go through the events chronologically and explain what happens.
 
-As the narrator speaks, the audience will raise questions and notice incoherences. This is again a time to add, remove or replace events to fix the story. A few extra definitions might emerge. If a problem seems to big to fix during the session, park it with a pink problem post-it.
+As the narrator speaks, the audience will raise questions and notice incoherences. This is again a time to add, remove or replace events to fix the story. A few extra definitions might emerge. If a problem seems too big to fix during the session, park it with a pink problem post-it.
 
 Narrating the story can be pretty tiring, so ask a new narrator to take over at some point.
 
@@ -43,7 +43,7 @@ The reason this works so well is that questions trigger the creative parts of ou
 
 ## 9. Closing
 
-TODO search for a photo of next opportunities
+![Photo of a man walking on a path in the mountain, taken from behind. The DDD Event Storming opens up a lot of opportunities and is just the beginning of the path.]({{site.url}}/imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/wanderer.jpg)
 
 This is it, you've reach the end of the DDD Big Picture Event Storming. At this point, it's a good idea to settle down and assess the outcomes.
 
@@ -53,18 +53,18 @@ You might actually be wondering what the deliverables are. At this point, most d
 
 *   By far the biggest is a better shared understanding of the domain. This will save tremendous time by improving collaboration. It will avoid specification bugs, and enable a better design.
 *   All together, you have identified problems. Fixing these problems might be quick wins with high payoff.
-*   The definitions are the first bricks of an Ubiquitous Language. Leveraging on it saves onboarding time and maintains the system's conceptual integrity.
+*   The definitions are the first bricks of an [Ubiquitous Language](https://martinfowler.com/bliki/UbiquitousLanguage.html). Leveraging on it saves on-boarding time and maintains the system's [conceptual integrity](https://www.quora.com/What-is-conceptual-integrity-in-software-architecture).
 *   Finally, this was also a mandatory step for collaborative architecture. A good shared understanding of the domain makes discussions about functional architecture possible.
 
 Thus, the next steps can be:
 
-*   To fix a major problem. In his book, Alberto Brandolini recalls such a situation. The Big Boss actually had every other work stopped until they fixed a 'new' problem.
+*   To fix a major problem. In [his book](https://leanpub.com/introducing_eventstorming), [Alberto Brandolini](https://twitter.com/ziobrando) recalls such a situation. The Big Boss actually had every other work stopped until they fixed a 'new' problem.
 *   To continue to grow the ubiquitous language, by adding and refining definitions
 *   To do more workshop in order to draft a target architecture. I'll explain how to do this in the next posts.
 
 Depending on your session, the next steps might be more or less obvious. If they are not, it's a good time to have an open discussion to get everyone's opinion. Once the next steps are clear and taken care of by someone, call it a day and end the workshop.
 
-Don't forget to ask for feedback on the session itself before people leave. A ROTI is a quick way to do this.
+Don't forget to ask for feedback on the session itself before people leave. A [ROTI](https://www.stickyminds.com/article/roti-method-gauging-meeting-effectiveness) is a quick way to do this.
 
 ## The series continues
 
