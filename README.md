@@ -26,15 +26,15 @@ Local preview uses a different `Gemfile`. Whenever we update the main bundle, we
 Here is the template I am using :
 
 ```liquid
-    {% assign figure_path="/imgs/...todo.jpg" | absolute_url %}
+{% assign figure_path="/imgs/...todo.jpg" | absolute_url %}
     
-    {% assign figure_alt="TODO" %}
+{% assign figure_alt="TODO" %}
     
-    {% capture figure_caption %}
-    TODO markdown
-    {% endcapture %}
+{% capture figure_caption %}
+TODO markdown
+{% endcapture %}
     
-    {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 ```
 
 ### Images best sizes
