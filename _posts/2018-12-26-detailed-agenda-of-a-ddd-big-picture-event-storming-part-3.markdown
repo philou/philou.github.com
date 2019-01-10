@@ -11,7 +11,6 @@ description: "Thanks to massive knowledge sharing, a Domain Driven Design (DDD) 
 header:
    teaser: /imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/event-storming-finish-line-teaser.jpeg
    og_image: /imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/event-storming-finish-line-og.jpeg
-published: false
 ---
 _Thanks to massive knowledge sharing, a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) is the 1st step to collaboratively draft a Rough Design Up Front. Here are its last steps._
 

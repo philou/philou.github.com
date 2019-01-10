@@ -59,6 +59,8 @@ Similarly, complex systems also interact with external systems. External systems
 
 ## We are almost there
 
-At this point, attendees should have a better overall grasp of the domain. In the next post, I'll go over the last steps of the DDD Big Picture Event Storming. [Subscribe to be notified when it's ready](http://eepurl.com/dxKE95).
+At this point, attendees should have a better overall grasp of the domain. In the [next post](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/), I'll go over the last steps of the DDD Big Picture Event Storming.
 
 This was the 6th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
+
+[Continue Reading...](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/)
