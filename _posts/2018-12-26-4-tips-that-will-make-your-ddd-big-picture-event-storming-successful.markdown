@@ -11,7 +11,6 @@ description: "Although not rocket science, running a DDD Big Picture Event Storm
 header:
    teaser: /imgs/2018-12-26-4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/4tips-event-storming-teaser.jpeg
    og_image: /imgs/2018-12-26-4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/4tips-event-storming-og.jpeg
-published: false
 ---
 _Although not rocket science, running a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) can be tricky. Here are 4 hard won tips that will make your first workshop successful._
 
