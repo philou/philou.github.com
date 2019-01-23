@@ -15,7 +15,7 @@ published: false
 ---
 _We did the 1st phase of [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming). It’s time to build on the shared knowledge to draft a functional architecture vision. All in just a few days._
 
-Drafting an architecture vision is one of the most valuable outcomes of a DDD (Domain Driven Design) Big Picture Event Storming. Having an architecture vision is key to sustainable, successful and evolutionary design. Have a look at the [first posts](/misadventures-with-big-design-up-front/) for the full explanation.
+Drafting an architecture vision is one of the most valuable outcomes of a DDD (Domain Driven Design) Big Picture Event Storming. Having an architecture vision is key to sustainable, successful and evolutionary design. Have a look at the [first posts](/misadventures-with-big-design-up-front/) for full explanations.
 
 This is the 9th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). It might be a good idea to start reading from [the beginning](/misadventures-with-big-design-up-front/).
 
@@ -70,7 +70,7 @@ To materialize these further, try the following:
 *   Grab:
     *   some colored, thick, wool string
     *   scissors
-    *   ashesive tape
+    *   adhesive tape
 *   With your volunteer, walk the board from left to right, identifying functional areas.
 *   Discuss a bit. You will usually agree about functional area boundaries
 *   Ask the audience for a functional area name. Tip: Look into names in "ing" for good ones (ex: accounting, ordering)
