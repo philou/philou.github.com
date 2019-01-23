@@ -27,7 +27,7 @@ Here are the most important tips I discovered by running my own workshops.
 
 ## Tip#1 Manage time with Pomodoro
 
-A double Pomodoro is the most productive and sustainable time schedule. If you are not familiar with the [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique), check this super short crash course(TODO).
+A double Pomodoro is the most productive and sustainable time schedule. If you are not familiar with the Pomodoro technique, the Wikipedia page is a [super short crash course](https://en.wikipedia.org/wiki/Pomodoro_Technique).
 
 > 💡 A double Pomodoro is the most productive and sustainable time schedule for a DDD Event Storming.
 
