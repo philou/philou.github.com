@@ -11,7 +11,6 @@ description: "We did the 1st phase of DDD Big Picture Event Storming. Let's buil
 header:
    teaser: /imgs/2019-01-22-drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/functional-areas-teaser.jpeg
    og_image: /imgs/2019-01-22-drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/functional-areas-og.jpeg
-published: false
 ---
 _We did the 1st phase of [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming). It’s time to build on the shared knowledge to draft a functional architecture vision. All in just a few days._
 
