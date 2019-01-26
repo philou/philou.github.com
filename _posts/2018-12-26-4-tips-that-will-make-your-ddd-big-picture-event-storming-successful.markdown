@@ -88,4 +88,6 @@ My last advice is to buy [Alberto Brandolini](https://twitter.com/ziobrando)'s [
 
 This was the 8th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
-In the next post I will explain how to use DDD Big Picture Event Storming to draft a target architecture. [Subscribe to be notified when it's ready](http://eepurl.com/dxKE95).
+In the [next post](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/) I will explain how to use DDD Big Picture Event Storming to draft a target architecture.
+
+[Continue Reading...](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/).
