@@ -11,7 +11,6 @@ description: "Event Storming and DDD are great at identifying functional areas. 
 header:
    teaser: /imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain-teaser.jpeg
    og_image: /imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain-og.jpeg
-published: false
 ---
 _[Event Storming](https://en.wikipedia.org/wiki/Event_storming) and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) are great at identifying [functional areas](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/). It's even more valuable to identify the core areas to focus on, and the generic areas to buy._
 

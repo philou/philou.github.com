@@ -85,9 +85,9 @@ Here is one key aspect of functional areas. The same concept might represent dif
 
 ## To be continued
 
-This was only the first step in drafting a functional architecture vision. In the next post, I'll go over how to identify core areas. The 20% of your codebase that should get 80% of your efforts!
+This was only the first step in drafting a functional architecture vision. In [the next post](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/), I'll go over how to identify core areas. The 20% of your codebase that should get 80% of your efforts!
 
 This was the 9th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
-[Continue Reading when it's ready](http://eepurl.com/dxKE95).
+[Continue Reading](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/).
 

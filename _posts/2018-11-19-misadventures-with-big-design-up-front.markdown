@@ -70,7 +70,7 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   [Detailed Agenda of a DDD Big Picture Event Storming - Part 3](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/)
 1.   [4 tips that will make your DDD Big Picture Event Storming successful](/4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/)
 1.   [Drafting a Functional Architecture Vision with Event Storming and DDD](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/)
-1.   Build or Buy Software? Identify your core functional areas with Event Storming and DDD
+1.   [Build or Buy Software? Identify your core functional areas with Event Storming and DDD](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/)
 1.   What services should we envision?
 1.   What teams should we build to support this?
 1.   What's the plan to get there?
