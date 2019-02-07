@@ -88,8 +88,8 @@ The more we dive in Event Storming, and the more actionable the outcomes get!
 
 ## To be continued
 
-In the next post, I'll go over decision power between functional areas. Now that we know our core areas, we want to make sure they have this power!
+In [the next post](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/), I'll go over decision power between functional areas. Now that we know our core areas, we want to make sure they have this power!
 
 This was the 10th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
-[Continue Reading when it's ready](http://eepurl.com/dxKE95).
+[Continue Reading...](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/).

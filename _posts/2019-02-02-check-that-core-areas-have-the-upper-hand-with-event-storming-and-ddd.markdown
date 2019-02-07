@@ -11,7 +11,6 @@ description: "Event Storming and DDD can identify core functional areas. In any 
 header:
    teaser: /imgs/2019-02-02-check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/power-to-the-core-teaser.jpeg
    og_image: /imgs/2019-02-02-check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/power-to-the-core-og.jpeg
-published: false
 ---
 # Check that core areas have the upper hand with Event Storming and DDD
 
