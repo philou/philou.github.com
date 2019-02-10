@@ -12,8 +12,6 @@ header:
    teaser: /imgs/2019-02-02-check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/power-to-the-core-teaser.jpeg
    og_image: /imgs/2019-02-02-check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/power-to-the-core-og.jpeg
 ---
-# Check that core areas have the upper hand with Event Storming and DDD
-
 _[Event Storming](https://www.eventstorming.com/) and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) can identify core [functional areas](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/#). In any functional areas relationship, one side will have the upper hand. Core areas should have it!_
 
 [The previous post](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/) was about how to classify functional areas as core, generic or supportive.
