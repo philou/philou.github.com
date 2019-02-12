@@ -61,7 +61,7 @@ The main outcome is the formal agreement of how the teams and part of the system
 
 ![Photo of a compass. DDD and Event Storming can serve as a compass for everyone to go in the same direction]({{site.url}}/imgs/2019-02-12-focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/compass.jpg)
 
-It will also provide a kind of compass for day to day collaborative refactoring. Whenever people need to [mock](https://philippe.bourgau.net/categories/#mocking) some code for testing, they’ll know what’s the best place to do so. Whenever they’ll need to take a design decision, they can check the architecture draft for a big picture.
+It will also provide a kind of compass for day to day collaborative refactoring. Whenever people need to [mock](/categories/#mocking) some code for testing, they’ll know what’s the best place to do so. Whenever they’ll need to take a design decision, they can check the architecture draft for a big picture.
 
 > 💡 Context Mapping with DDD and Event Storming helps to avoid a [tangle of mocks](/careless-mocking-considered-harmful/).
 

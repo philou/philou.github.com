@@ -10,7 +10,7 @@ categories:
 - cucumber
 - BDD
 ---
-**Update 06/12/2014: I created a [gem](https://github.com/philou/cucumber_tricks) for this and other things, read an introduction [here](http://philippe.bourgau.net//)**
+**Update 06/12/2014: I created a [gem](https://github.com/philou/cucumber_tricks) for this and other things**
 
 When the same name is repeated all over the place in a cucumber scenario, it can be difficult to read.
 ```gherkin
@@ -65,5 +65,3 @@ It would be really nice to be able to write things like
   Then there should be 900€ on it
 ```
 but because of the [way cucumber handles transforms](/if-new-cucumber-transform-breaks-everyhing-dot-dot-dot/), the only way I know to do that is to write a new step definition.
-
-

@@ -39,7 +39,7 @@ We need to get features out fast. The trick is to make things as simple as possi
 
 > 💡 The trick is to make things as simple as possible at the beginning while keeping the ability to refactor.
 
-Another obvious step we cannot skip is automated testing. Even better, I'd say ['fast' tests](https://philippe.bourgau.net/forget-unit-tests/). It does not matter if they are unit, integration or end to end. What matters is that they are fast enough to enable a fast refactoring feedback loop.
+Another obvious step we cannot skip is automated testing. Even better, I'd say ['fast' tests](/forget-unit-tests/). It does not matter if they are unit, integration or end to end. What matters is that they are fast enough to enable a fast refactoring feedback loop.
 
 Other famous authors also wrote about this principle:
 
