@@ -84,6 +84,6 @@ If you can, bring some [food and drinks](/how-we-increased-productivity-by-25-wi
 
 ## To be continued
 
-This was the 4th post in a [series about how to use Event Storming to kick start architecture on good tracks](https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series). In next post, we'll see how what's a typical agenda for the workshop.
+This was the 4th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). In next post, we'll see how what's a typical agenda for the workshop.
 
 [Continue Reading...](/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/)

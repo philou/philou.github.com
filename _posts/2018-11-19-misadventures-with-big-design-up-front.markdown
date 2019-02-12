@@ -53,7 +53,7 @@ You've guessed I'm not a big fan of Big Design Up Front...
 
 ## Alternatives to Big Design Up Front
 
-In [next post](http://eepurl.com/dxKE95), I'll continue my story and explain how I switched to [incremental design](https://www.jamesshore.com/Agile-Book/incremental_design.html). I'll detail how it fixes almost all of the issues of Big Design Up Front.
+In [next post](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/), I'll continue my story and explain how I switched to [incremental design](https://www.jamesshore.com/Agile-Book/incremental_design.html). I'll detail how it fixes almost all of the issues of Big Design Up Front.
 
 Unfortunately, there is [no silver bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet), and incremental design has its own weak points. The lack of a shared vision is the main one. Finally I'll retrace how I discovered [Event Storming](https://www.eventstorming.com/), and how it can be used to draft a shared design vision in just a few days.
 
@@ -73,7 +73,8 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   [Build or Buy Software? Identify your core functional areas with Event Storming and DDD](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/)
 1.   [Check that core areas have the upper hand with Event Storming and DDD](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/)
 1.   Focus on Core Domain with Relationships from DDD and Event Storming - Part 1
-1.   Focus on Core Domain with Relationships from DDD and Event Storming - Part 1
+1.   Focus on Core Domain with Relationships from DDD and Event Storming - Part 2
+1.   How to use Event Storming and DDD for Evolutionary Architecture
 1.   What services should we envision?
 1.   What teams should we build to support this?
 1.   What's the plan to get there?

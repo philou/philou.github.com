@@ -55,4 +55,4 @@ Obvious, but it's very easy to waste time on the wrong refactoring. There are a 
 
 I hope these practices will help you to maintain your business partnership. Business partners have great freedom about how to tackle refactoring. If you've been in this situation before, you might have come up with innovative practices. Please share them below, I'm sure it will interest a lot of people.
 
-This was the last post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). I've been writing about refactoring for almost 4 months. I'll be glad to write about something different next week! Don't worry though, I'm sure I'll come back to this topic again. [Stay Tuned](http://eepurl.com/dxKE95) !
+This was the last post in a [series about how to get sponsorship for large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series). I've been writing about refactoring for almost 4 months. I'll be glad to write about something different next week! Don't worry though, I'm sure I'll come back to this topic again.

@@ -56,6 +56,6 @@ In the end, badass developers are ready to leave a [FUBARed](https://www.urbandi
 
 As we become badass developers, our reputation will grow. We'll be in a better position to negotiate a large scale refactoring with the business. There's a catch though : we'll need to live up to our reputation ! Admitting that we are wrong 100% with candor will not make it ! 
 
-When we manage to negotiate a large scale refactoring, the team will need to do a good job of it. This boils down to delivering it piece by piece, alongside features. This is exactly what my [next post](http://eepurl.com/dxKE95) will be about.
+When we manage to negotiate a large scale refactoring, the team will need to do a good job of it. This boils down to delivering it piece by piece, alongside features. This is exactly what my [next post](/incremental-software-development-techniques-for-large-scale-refactorings/) will be about.
 
 This post was the forth post in a [series about how to get sponsorship for a large scale refactoring]({{site.baseurl}}/categories/#large-scale-refactoring-sponsorship-series).

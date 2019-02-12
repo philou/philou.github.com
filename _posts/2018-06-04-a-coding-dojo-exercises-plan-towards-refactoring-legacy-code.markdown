@@ -19,7 +19,7 @@ A few months ago, a team which was struggling with a lot of legacy code asked fo
 *   To stick to baby steps which are a lot less likely to fail than larges changes.
 *   Write testable code. I know what testable code looks like, and when refactoring, I'll try to change it towards that.
 
-That's why we started to run regular, all team, [coding dojo randoris](http://philippe.bourgau.net{{site.baseurl}}/categories/#team-randori-series). It was nice for the [team dynamics](/why-you-should-start-a-team-coding-dojo-randori-right-now/), and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !
+That's why we started to run regular, all team, [coding dojo randoris](/categories/#team-randori-series). It was nice for the [team dynamics](/why-you-should-start-a-team-coding-dojo-randori-right-now/), and the people where learning a lot of technical skills. I also got the feedback that they where not able to apply this directly on their day to day job though. After a bit more discussion, I understood that they did not know where this was going, what to expect, and when !
 
 > 💡 Test Driven Development also teaches you what testable code looks like.
 
