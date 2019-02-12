@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Focus on Core Domain with Relationships from DDD and Event Storming"
+title: "Focus on the Core with Event Storming and DDD Domain Relationships - 1"
 date: 2019-02-14
 comments: true
 categories:
@@ -52,7 +52,7 @@ This step is going to be critical but also difficult because you don't want to l
 
 Here is a trick to keep things digestible.
 
-## Radars
+### Radars
 
 In his [presentation "Context Mapping in Action"](https://fr.slideshare.net/ziobrando/context-mapping-in-action), [Alberto Brandolini](https://twitter.com/ziobrando) characterized the relationships. Here is a slide from his presentation:
 
@@ -85,7 +85,7 @@ Here again, we'll use stories.
 
 > 💡 DDD can seem too abstract, use Event Storming to present it with storytelling.
 
-## Once upon a time, there was a college dropout startup…
+### Once upon a time, there was a college dropout startup…
 
 We’ll use this made up story to present only the most simple relationships. By simple, I mean (arbitrarily) ease of organization ≥ 2 and ease of coding ≥ 3.
 
@@ -106,31 +106,9 @@ The last thing to do is to ask their feedback about the design they came up with
 
 [![Photo of the Event Storming design board after attendees have chosen the DDD Domain relationships in the College Dropout Startup scenario]({{site.url}}/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/junior-startup-board-small.jpg)]({{site.url}}/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/junior-startup-board.jpg)
 
-## Once upon a time, there was a veteran startup...
-
-After a break, it’s time for another tale. This time, a team of veteran developers just quit their jobs to fund a startup. As experienced engineers, they have access to all the other kinds of relationships:
-
-*   Partnership
-*   Shared Kernel
-*   Anti Corruption Layer
-*   Open Host Service
-*   Published Language
-
-<figure><iframe src="//www.slideshare.net/slideshow/embed_code/key/FPYPMhhW96dwnW?startSlide=7" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <figcaption><a href="//www.slideshare.net/PhilippeBourgau/ddd-domain-relationships-radars" title="DDD Domain Relationships Radars" target="_blank">DDD Domain Relationships Radars</a> by <a href="//www.slideshare.net/PhilippeBourgau" target="_blank">Philippe Bourgau</a> </figcaption></figure>
-
-
-Same as before, explain the relationship and stick the radars on the wall. Then ask attendees to update their relationships with their new preferred pattern. Relationships can also stack-up, for example, you might have:
-
-*   Open Host Service + Anti Corruption Layer
-*   Customer Supplier + Inner Source
-
-Most of the time, people are a lot happier with the new design this time.
-
-![Close photo of DDD domain relationships signaled on the Event Storming design board with green post-its]({{site.url}}/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/DDD-domain-relationship-green-post-it.jpg)
-
 ## To be continued
 
-I'm not done with DDD domain relationships yet, but it's already too much for a single post. In [the next post](http://eepurl.com/dxKE95), I'll go over how the outcomes of this activity, as well as a few animation tricks.
+In [the next post](http://eepurl.com/dxKE95), I'll go the veteran startup scenario. I'll also close this activity with the outcomes, as well as a few animation tricks.
 
 Event Storming is a DDD accelerator. In less than a week, you can get your product started as if it had been going for months. This will save tremendous rework later on. Coupled with refactoring skills, it is key to a profitable and sustainable pace. This was the 12th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
