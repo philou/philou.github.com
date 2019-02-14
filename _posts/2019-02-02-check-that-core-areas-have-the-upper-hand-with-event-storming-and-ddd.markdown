@@ -72,10 +72,10 @@ It can also be a good time to introduce [Hexagonal Architecture](https://softwar
 
 ## To be continued
 
-This is only a fraction of what DDD offers about smart dependency management. In [the next post](http://eepurl.com/dxKE95), we'll see the patterns of relationships from the [DDD blue book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design). I'll also walk through an Event Storming follow-up activity to pick the best pattern.
+This is only a fraction of what DDD offers about smart dependency management. In [the next post](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/), we'll see the patterns of relationships from the [DDD blue book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design). I'll also walk through an Event Storming follow-up activity to pick the best pattern.
 
 [![Cover of the DDD book by Eric Evans. It contains a lot of relationship patterns to make sure the core functional areas keep the upper hand]({{site.url}}/imgs/2019-02-02-check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/ddd.jpg)](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design)
 
 This was the 11th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
-[Continue Reading when it's ready](http://eepurl.com/dxKE95).
+[Continue Reading](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/).

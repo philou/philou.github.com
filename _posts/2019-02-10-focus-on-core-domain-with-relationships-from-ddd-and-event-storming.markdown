@@ -11,7 +11,6 @@ description: "Functional Areas are a key aspect of Domain Driven Design. Here is
 header:
    teaser: /imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/core-stronghold-teaser.jpeg
    og_image: /imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/core-stronghold-og.jpeg
-published: false
 ---
 _Functional Areas are a key aspect of [DDD](https://en.wikipedia.org/wiki/Domain-driven_design). Here is a DDD and [Event Storming](https://www.eventstorming.com/) activity to find what kind of domain relationships will ensure focus on core areas._
 
