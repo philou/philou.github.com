@@ -13,7 +13,7 @@ header:
    og_image: /imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/event-storming-microservices-og.jpeg
 published: false
 ---
-_[DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming) is a great support to draft (micro)services boundaries and [NFR](https://en.wikipedia.org/wiki/Non-functional_requirement) prototypes. Let's see how to with this workshop activity._
+_[DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming) is a great support to draft [(micro)services](https://en.wikipedia.org/wiki/Microservices) boundaries and [NFR](https://en.wikipedia.org/wiki/Non-functional_requirement) prototypes. Let's see how to with this workshop activity._
 
 [Previous posts](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/) presented how to use Event Storming to draft a functional architecture. In [the previous post](/how-to-use-event-storming-and-ddd-for-evolutionary-architecture/), I suggested to realize this target vision incrementally. This means starting with something simpler.
 
