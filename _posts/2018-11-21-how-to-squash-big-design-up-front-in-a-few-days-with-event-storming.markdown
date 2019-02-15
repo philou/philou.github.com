@@ -43,7 +43,7 @@ I have practiced incremental design since then. It's better than Big Design Up F
 *   It remains open to change, because the code remains simple
 *   It avoids over-engineering, because we only code what's needed
 
-Here is the main lesson I get by looking back all these years. [We cannot achieve a sustainable pace without incremental design](http://127.0.0.1:5000/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/).
+Here is the main lesson I get by looking back all these years. [We cannot achieve a sustainable pace without incremental design](/how-to-start-learning-the-tao-of-incremental-code-refactoring-today/).
 
 > 💡 We cannot achieve a sustainable pace without incremental design!
 
