@@ -75,9 +75,10 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   [Focus on the Core with Event Storming and DDD Domain Relationships - 1](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/)
 1.   Focus on the Core with Event Storming and DDD Domain Relationships - 2
 1.   How to use Event Storming and DDD for Evolutionary Architecture
-1.   What services should we envision?
+1.   Using Event Storming and DDD to prototype (micro)services and NFRs - 1
+1.   Using Event Storming and DDD to prototype (micro)services and NFRs - 2
+1.   Rewrite vs Refactor? Get Insights from Event Storming and DDD
 1.   What teams should we build to support this?
-1.   What's the plan to get there?
 1.   What else can we do with Event Storming?
 
 [Continue Reading...](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
