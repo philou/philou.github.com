@@ -78,7 +78,7 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   Using Event Storming and DDD to prototype (micro)services and NFRs - 1
 1.   Using Event Storming and DDD to prototype (micro)services and NFRs - 2
 1.   Rewrite vs Refactor? Get Insights from Event Storming and DDD
-1.   What teams should we build to support this?
+1.   Feature Teams vs Component Teams? Decide with Event Storming and DDD
 1.   What else can we do with Event Storming?
 
 [Continue Reading...](/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/)
