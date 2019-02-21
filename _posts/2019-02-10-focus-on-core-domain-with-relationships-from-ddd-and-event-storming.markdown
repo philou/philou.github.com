@@ -107,8 +107,8 @@ The last thing to do is to ask their feedback about the design they came up with
 
 ## To be continued
 
-In [the next post](http://eepurl.com/dxKE95), I'll go the veteran startup scenario. I'll also close this activity with the outcomes, as well as a few animation tricks.
+In [the next post](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/), I'll go the veteran startup scenario. I'll also close this activity with the outcomes, as well as a few animation tricks.
 
 Event Storming is a DDD accelerator. In less than a week, you can get your product started as if it had been going for months. This will save tremendous rework later on. Coupled with refactoring skills, it is key to a profitable and sustainable pace. This was the 12th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
-[Continue Reading when it's ready](http://eepurl.com/dxKE95).
+[Continue Reading...](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/).

@@ -73,7 +73,7 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   [Build or Buy Software? Identify your core functional areas with Event Storming and DDD](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/)
 1.   [Check that core areas have the upper hand with Event Storming and DDD](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/)
 1.   [Focus on the Core with Event Storming and DDD Domain Relationships - 1](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/)
-1.   Focus on the Core with Event Storming and DDD Domain Relationships - 2
+1.   [Focus on the Core with Event Storming and DDD Domain Relationships - 2](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/)
 1.   How to use Event Storming and DDD for Evolutionary Architecture
 1.   Using Event Storming and DDD to prototype (micro)services and NFRs - 1
 1.   Using Event Storming and DDD to prototype (micro)services and NFRs - 2

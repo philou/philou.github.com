@@ -11,7 +11,6 @@ description: "The advanced DDD Domain Relationships shine as they protect the co
 header:
    teaser: /imgs/2019-02-12-focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/ddd-startup-veteran-cap-teaser.jpeg
    og_image: /imgs/2019-02-12-focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/ddd-startup-veteran-cap-og.jpeg
-published: false
 ---
 _The advanced [DDD Domain Relationships](https://www.slideshare.net/PhilippeBourgau/ddd-domain-relationships-radars) shine as they protect the core's upper hand. Here is the end of an [Event Storming](https://www.eventstorming.com/) activity to pick the best relationships._
 
