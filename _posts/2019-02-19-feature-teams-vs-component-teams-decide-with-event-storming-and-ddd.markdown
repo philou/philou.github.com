@@ -9,8 +9,8 @@ categories:
  - event storming
 description: "The feature team vs component team question is tough and can often slip into dogma. Unfortunately, there is no one-size fits all. Event Storming and DDD build enough shared knowledge and architecture vision for all-in team re-organization workshops to succeed"
 header:
-   teaser: /imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/TODO-teaser.jpeg
-   og_image: /imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/TODO-og.jpeg
+   teaser: /imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/cut-teams-with-event-storming-teaser.jpeg
+   og_image: /imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/cut-teams-with-event-storming-og.jpeg
 published: false
 ---
 _Team organization is tough. [Event Storming](https://www.eventstorming.com/) builds enough shared knowledge and architecture for successful team re-organization workshops._
@@ -35,9 +35,9 @@ Credits to [Manu Cornet](http://ma.nu/) from [http://bonkersworld.net/organizati
 
 > 💡 Together, Event Storming and Conway's Law help long term refactoring.
 
-⚠️ Disclaimer. You might be few enough to organize well as a single team. In this case, you don't need all this… until you grow, hopefully 😉
+⚠️ Disclaimer: You might be few enough to organize well as a single team. In this case, you don't need all this… until you grow, hopefully 😉
 
-[![Poster introducing an Event Storming and DDD workshop intended to re-organize teams.](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/TODO-small.jpg)](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/TODO.jpg)
+[![Poster introducing an Event Storming and DDD workshop intended to re-organize teams.]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/cut-teams-with-event-storming-small.jpeg)]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/cut-teams-with-event-storming.jpg)
 
 This is also the 18th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). It all started with misadventures with [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front).
 
@@ -52,14 +52,14 @@ The idea is to conduct a team re-organization workshop as a follow-up to Event S
 {% assign figure_alt="Thumbnail from a video of a team self-selection workshop involving 200 people at KPN iTV" %}
     
 {% capture figure_caption %}
-[Video](https://www.youtube.com/watch?v=mqgpWFI3UOI&feature=youtu.be) of a team team self-selection workshop at KPN iTV
+[Video](https://www.youtube.com/watch?v=mqgpWFI3UOI&feature=youtu.be) of a team self-selection workshop at KPN iTV
 {% endcapture %}
     
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The principles are pretty simple:
 
-[![Poster with 9 team structure principles. Presenting the some general teams principles helps attendees of a DDD Event Storming to go past the "feature teams vs component teams" debate.](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/team-principles-small.jpg)](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/team-principles.jpg)
+[![Poster with 9 team structure principles. Presenting the some general teams principles helps attendees of a DDD Event Storming to go past the "feature teams vs component teams" debate.]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/team-principles-small.jpg)]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/team-principles.jpg)
 
 1.  Display the architecture vision and team principles 
 2.  Let people self organize into new teams!
@@ -76,19 +76,19 @@ Here are the detailed steps for this activity:
 * Ask attendees to identify the skills needed for each team. They can mark this on the board with post-its
 * If it was not the case already, bring everyone in!
 
-[![Poster presenting an example of 'legacy' team structure. Event Storming and DDD create the necessary shared knowledge for a successful re-teaming workshop, and letting people decide what's best between feature teams vs component teams](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/legacy-teams-small.jpg)](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/legacy-teams.jpg)
+[![Poster presenting an example of 'legacy' team structure. Event Storming and DDD create the necessary shared knowledge for a successful re-teaming workshop, and letting people decide what's best between feature teams vs component teams]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/legacy-teams-small.jpg)]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/legacy-teams.jpg)
 
 * Present the current team boundaries.
 
-[![Cover of the Dynamic Reteaming book by Heidi Shetzer Helfand. Use Event Storming, DDD and Dynamic Re-teaming workshops to let people chose between feature teams vs component teams](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/dynamic-reteaming.jpeg)](https://leanpub.com/dynamicreteaming)
+[![Cover of the Dynamic Reteaming book by Heidi Shetzer Helfand. Use Event Storming, DDD and Dynamic Re-teaming workshops to let people chose between feature teams vs component teams]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/dynamic-reteaming.jpeg)](https://leanpub.com/dynamicreteaming)
 
 * Let people self-organize into new teams according to all the constraints. Depending on your situation, this step might take more or less time. If you envision a rough time, it’s a good idea to have a look at [this book](https://leanpub.com/dynamicreteaming) for how to run this activity.
 
-[![Photo of the board at the end of this team re-organization Event Storming. After discussing trade-offs for a while, people usually come up with a compromise on team structures. Rarely do we end up with all features teams or all component teams](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/final-board-small.jpg)](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/final-board.jpg)
+[![Photo of the board at the end of this team re-organization Event Storming. After discussing trade-offs for a while, people usually come up with a compromise on team structures. Rarely do we end up with all features teams or all component teams]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/final-board-small.jpg)]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/final-board.jpg)
 
 * Draw a quick diagram of the agreed on team structure.
 
-[![Diagram of the target team structure. A typical example of how to record outcomes of a DDD Event Storming. We see that the target organization contains both feature teams and component teams](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/napkin-ddd-context-map-small.jpg)](../imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/napkin-ddd-context-map.jpg)
+[![Diagram of the target team structure. A typical example of how to record outcomes of a DDD Event Storming. We see that the target organization contains both feature teams and component teams]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/napkin-ddd-context-map-small.jpg)]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/napkin-ddd-context-map.jpg)
 
 
 ## Tips
