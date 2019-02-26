@@ -25,7 +25,8 @@ I’m currently coaching at [Murex](http://www.murex.com).
 
 Here are the main side projects I've been working on throughout the years
 
-* [Philou's Planning Poker](http://philous-planning-poker.herokuapp.com) : Better poker estimates for remote teams!
-* [Storexplore](http://philou.github.io/storexplore) : Transform online stores into APIs!
-* [RSpecProxies](http://philou.github.io/rspecproxies) : Simplify RSpec mocking with test proxies!
-* [ComplexityAssert](https://philippe.bourgau.net/complexity-assert/) : Assert your algorithm time complexity in RSpec (experimental)!
+* [Philou's Planning Poker](http://philous-planning-poker.herokuapp.com): Better poker estimates for remote teams!
+* [Storexplore](http://philou.github.io/storexplore): Transform online stores into APIs!
+* [RSpecProxies](http://philou.github.io/rspecproxies): Simplify RSpec mocking with test proxies!
+* [ComplexityAssert](https://philou.github.io/complexity-assert/): Assert your algorithm time complexity in RSpec (experimental)!
+* [Built In Quality Game](https://philou.github.io/built-in-quality-game/): A table-top game that teaches teams why built-in quality will make them more productive
