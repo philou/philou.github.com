@@ -11,7 +11,6 @@ description: "Big Picture Event Storming and DDD let us build a shared architect
 header:
    teaser: /imgs/2019-02-12-how-to-use-event-storming-and-ddd-for-evolutionary-architecture/event-storming-emergent-design-teaser.jpeg
    og_image: /imgs/2019-02-12-how-to-use-event-storming-and-ddd-for-evolutionary-architecture/event-storming-emergent-design-og.jpeg
-published: false
 ---
 _Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming) and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) let us share an architecture vision. Here is a way to realize it through evolutionary architecture and emergent design._
 

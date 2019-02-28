@@ -109,6 +109,6 @@ On top of that, we can use this architecture draft to define actionable next ste
 
 Event Storming is an effective way to shrink architecture from months to days. Done at the start of a project, it saves a lot of rework and keeps the pace sustainable. It's also very flexible and can will serve many kinds of decisions. Run your own now!
 
-This was the 13th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). In the next posts, I’ll be presenting workshop and activities to these next steps.
+This was the 13th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). In the [next posts](/how-to-use-event-storming-and-ddd-for-evolutionary-architecture/), I’ll be presenting workshop and activities to these next steps.
 
-[Continue reading when it's ready](http://eepurl.com/dxKE95)
+[Continue reading](/how-to-use-event-storming-and-ddd-for-evolutionary-architecture/)
