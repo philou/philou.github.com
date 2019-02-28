@@ -125,4 +125,4 @@ After a while, you might get so good at them that you’ll define your own works
 
 [Try it yourself](/misadventures-with-big-design-up-front/)
 
-This was the 19th and last post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). It all started [here](https://philippe.bourgau.net/misadventures-with-big-design-up-front/).
+This was the 19th and last post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). It all started [here](/misadventures-with-big-design-up-front/).
