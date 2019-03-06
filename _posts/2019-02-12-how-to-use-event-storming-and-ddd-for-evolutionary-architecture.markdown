@@ -93,8 +93,8 @@ If you went through the Big Picture Event Storming, you have everything you need
 
 Are you lacking evolutionary architecture or emergent design skills? [Start your coding dojo today](/how-to-start-a-team-coding-dojo-randori-today/) to improve your refactoring skills.
 
-Are you afraid that this strategy will lead to unsolvable NFR problems at the end? For example, who said that this target architecture is going to handle the load we’ll need? You are right, and that is what I am going to talk about in the next post
+Are you afraid that this strategy will lead to unsolvable NFR problems at the end? For example, who said that this target architecture is going to handle the load we’ll need? You are right, and that is what I am going to talk about in [the next post](/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/).
 
 This was the 14th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).
 
-[Continue reading when it’s ready.](http://eepurl.com/dxKE95)
+[Continue reading...](/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/)

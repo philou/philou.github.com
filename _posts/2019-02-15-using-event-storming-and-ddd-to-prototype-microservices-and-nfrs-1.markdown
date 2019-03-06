@@ -11,7 +11,6 @@ description: "DDD Big Picture Event Storming is a great support to think about (
 header:
    teaser: /imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/event-storming-microservices-teaser.jpeg
    og_image: /imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/event-storming-microservices-og.jpeg
-published: false
 ---
 _[DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming) is a great support to draft [(micro)services](https://en.wikipedia.org/wiki/Microservices) boundaries and [NFR](https://en.wikipedia.org/wiki/Non-functional_requirement) prototypes. Let's see how to with this workshop activity._
 
