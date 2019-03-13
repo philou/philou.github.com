@@ -17,6 +17,8 @@ published: false
 ---
 _Skip studying [queuing theory](https://en.wikipedia.org/wiki/Queueing_theory)! Play this 1h15 serious game for learning why building-in [quality at the source](http://www.informit.com/articles/article.aspx?p=1336791&seqNum=6) leads to a productive and [sustainable pace](https://www.agilealliance.org/glossary/sustainable/)._
 
+![Drawing of the box of the built-in quality game, a serious game for learning built-in quality at the source. The self-reinforcing positive loop of built-in quality is drawn on the box: ... -> built-in quality -> few late discoveries -> sustainable pace -> time for best practices -> built-in quality -> ...]({{site.url}}/imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/built-in-quality-game-box.jpeg)
+
 The company I work for, [Murex](https://murex.com/), is currently going through a large transformation. This transformation involves training teams to new skills and practices. One such training is the lean concept of "Built-in quality at the source".
 
 Built-in quality at the source is first of all a set of practices ([Software Crafting](http://manifesto.softwarecraftsmanship.org/), [Test Driven Development](/categories/#tdd), [Behavior Driven Development](https://en.wikipedia.org/wiki/Behavior-driven_development), [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration)...). Unfortunately, the training was too theoretical. Attendees reported that it was painful and, in the end, useless.
@@ -24,8 +26,6 @@ Built-in quality at the source is first of all a set of practices ([Software Cra
 > 💡 Stop of boring people out with theory of queues. Play the built-in quality serious game for learning why software best practices matter!
 
 I had played the [Dice of Debt game](https://www.agilealliance.org/dice-of-debt-game/) with some other Murex agile coaches. They asked me if I knew of a serious game for learning Built-in quality at the source. I did not, and that's why we decided we could build our own!
-
-![Drawing of the box of the built-in quality game, a serious game for learning built-in quality at the source. The self-reinforcing positive loop of built-in quality is drawn on the box: ... -> built-in quality -> few late discoveries -> sustainable pace -> time for best practices -> built-in quality -> ...]({{site.url}}/imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/built-in-quality-game-box.jpeg)
 
 Before finishing this story, let's first see why this subject is so important.
 
