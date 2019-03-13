@@ -19,7 +19,7 @@ I have successfully used merciless refactoring, continuous improvement and other
 
 Finally, I love doing side projects, from wannabe businesses to open source.
 
-I’m currently coaching at [Murex](http://www.murex.com).
+I’m currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0).
 
 ## Side projects
 
