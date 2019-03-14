@@ -85,8 +85,8 @@ When done, you can draw your service architecture on a sheet of paper. It’s be
 
 ## To Be Continued
 
-I'm not done yet with this activity. This post was a walkthrough of this Event Storming follow-up activity. [The next post](http://eepurl.com/dxKE95) will detail outcomes and tips about how to make this activity successful.
+I'm not done yet with this activity. This post was a walkthrough of this Event Storming follow-up activity. [The next post](/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-2/) will detail outcomes and tips about how to make this activity successful.
 
-[Continue Reading when it's ready!](http://eepurl.com/dxKE95)
+[Continue Reading...](/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-2/)
 
 This was the 15th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). The next post will be about a follow-up workshop to get insights whether to rewrite or refactor.

@@ -11,7 +11,6 @@ description: "Previous post was about a workshop activity to use Event Storming 
 header:
    teaser: /imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-2/no-silver-bullet-teaser.jpeg
    og_image: /imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-2/no-silver-bullet-og.jpeg
-published: false
 ---
 _With [Event Storming](https://en.wikipedia.org/wiki/Event_storming) and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design), we can draft services boundaries and [NFR](https://en.wikipedia.org/wiki/Non-functional_requirement) prototypes. In this post sequel, we'll see that [microservices](https://en.wikipedia.org/wiki/Microservices) are [no silver bullet](https://en.wikipedia.org/wiki/No_Silver_Bullet)._
 
