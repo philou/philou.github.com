@@ -11,7 +11,6 @@ description: "With legacy code, rewrite vs refactor is a valuable but tricky que
 header:
    teaser: /imgs/2019-02-15-rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/event-storming-rewrite-vs-refactor-teaser.jpeg
    og_image: /imgs/2019-02-15-rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/event-storming-rewrite-vs-refactor-og.jpeg
-published: false
 ---
 _With legacy code, rewrite vs refactor is a valuable but tricky question. Here is an [Event Storming](https://www.eventstorming.com/) activity that shows how far we are from the target._
 

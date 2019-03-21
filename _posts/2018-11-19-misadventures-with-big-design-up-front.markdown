@@ -77,7 +77,7 @@ This was the first post of a [series about how to use Event Storming to kick sta
 1.   H[ow to use Event Storming and DDD for Evolutionary Architecture](/how-to-use-event-storming-and-ddd-for-evolutionary-architecture/)
 1.   [Using Event Storming and DDD to prototype (micro)services and NFRs - 1](/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/)
 1.   [Using Event Storming and DDD to prototype (micro)services and NFRs - 2](/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-2/)
-1.   Rewrite vs Refactor? Get Insights from Event Storming and DDD
+1.   [Rewrite vs Refactor? Get Insights from Event Storming and DDD](/rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/)
 1.   Feature Teams vs Component Teams? Decide with Event Storming and DDD
 1.   What else can we do with Event Storming?
 

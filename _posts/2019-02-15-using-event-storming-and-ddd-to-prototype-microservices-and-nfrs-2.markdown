@@ -89,6 +89,6 @@ Use evolutionary design and architecture techniques to transform these designs i
 
 Event Storming is a bit like [paper prototyping](https://en.wikipedia.org/wiki/Paper_prototyping) for software design and architecture. It makes it possible to do, in a few days of workshops, what is usually done in months of architecture and planning. Learn more about how to get started here. It's a lot easier to try than you might think.
 
-This was the 16th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). The [next post](http://eepurl.com/dxKE95) will be about a follow-up workshop to get insights whether to rewrite or refactor.
+This was the 16th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). The [next post](/rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/) will be about a follow-up workshop to get insights whether to rewrite or refactor.
 
-[Continue Reading when it's ready!](http://eepurl.com/dxKE95)
+[Continue Reading...](/rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/)
