@@ -108,8 +108,8 @@ As usual, the usual Event Storming tips apply here:
 
 It's incredible how much answers we can get out of a few days of Event Storming. [Running your own](/categories/#squash-bduf-with-event-storming-series) is not as difficult as it sounds. Go ahead, and start your own!
 
-Through this series of posts, I went through a lot of activities that we can run around Event Storming. But guess what, I’m not finished yet. In [the next post](http://eepurl.com/dxKE95), I’ll explain how we can create teams that support our target architecture.
+Through this series of posts, I went through a lot of activities that we can run around Event Storming. But guess what, I’m not finished yet. In [the next post](/feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/), I’ll explain how we can create teams that support our target architecture.
 
-[Continue Reading when it's ready!](http://eepurl.com/dxKE95)
+[Continue Reading...](/feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/)
 
 This was the 17th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). 

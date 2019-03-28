@@ -11,7 +11,6 @@ description: "The feature team vs component team question is tough and can often
 header:
    teaser: /imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/cut-teams-with-event-storming-teaser.jpeg
    og_image: /imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/cut-teams-with-event-storming-og.jpeg
-published: false
 ---
 _Team organization is tough. [Event Storming](https://www.eventstorming.com/) builds enough shared knowledge and architecture for successful team re-organization workshops._
 
