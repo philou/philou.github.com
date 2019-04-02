@@ -3,7 +3,7 @@ layout: single
 title: "Avoid mocks and test your core domain faster with Hexagonal Architecture"
 date: 2018-05-24 06:43
 comments: true
-categories: 
+categories:
  - tdd
  - mocking
  - testing
@@ -35,7 +35,7 @@ Here comes the nasty part. These large systems are so complex that we, developer
 
 ## Hexagonal architecture to the rescue
 
-[Alistair Cockburn](http://alistair.cockburn.us/Hexagonal+architecture) coined the term. The idea is pretty simple :  isolate a piece of code from all dependencies. This is particularly useful for the core functional areas. With this in place, it becomes straightforward (and fast) to test the core domain logic.
+[Alistair Cockburn](http://alistair.cockburn.us/Hexagonal+architecture) coined the term. The idea is pretty simple :  isolate a piece of code from all dependencies. This is particularly useful for the core bounded contexts. With this in place, it becomes straightforward (and fast) to test the core domain logic.
 
 To main techniques to isolate a piece of code from any dependency are :
 

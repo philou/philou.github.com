@@ -85,9 +85,9 @@ Now is the time to present the workshop. Start with the goal, scope and use case
 
 ### Domain Definitions (aka [Ubiquitous Language](https://martinfowler.com/bliki/UbiquitousLanguage.html))
 
-![Drawing of a Domain Definition Yellow Post-It written "Counterparty...". DDD Event Storming is great at building up the domain vocabulary]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/domain-definition.png)
+![Drawing of a Domain Definition Yellow Post-It written "Counterparty...". DDD Event Storming is great at building up the Ubiquitous Language]({{site.url}}/imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/domain-definition.png)
 
-> Whenever we come across or agree on a domain word, feel free to write a definition for it on a large yellow post-it. This is a way to build up a shared domain vocabulary. This is very helpful to improve the communication between all of us. This in turn improves how we work in many different aspects (ex: when choosing what to refactor).
+> Whenever we come across or agree on a domain word, feel free to write a definition for it on a large yellow post-it. This is a way to build up a domain ubiquitous language. This is very helpful to improve the communication between all of us. This in turn improves how we work in many different aspects (ex: when choosing what to refactor).
 
 ### Problems
 
@@ -98,7 +98,7 @@ Now is the time to present the workshop. Start with the goal, scope and use case
 > * a question we cannot answer
 > * something that does not seem right
 > * or any problem we should look into
-> 
+>
 > Record it on a purple post-it.
 
 ### [Sustainable pace](http://www.sustainablepace.net/what-is-sustainable-pace)

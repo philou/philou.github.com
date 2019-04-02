@@ -65,7 +65,7 @@ Here is a short list that you might want to adapt according to your context
 
 [![Sketchnote of services principles drawn on a nut. There are inside principles (High cohesion, Loose coupling & Encapsulation), as well as outside principles (Limit dependencies, Limit frequency and size of messages, Strive for coarse grain interfaces & Think of the protocols / synchronicity of your messages). Displaying this poster during the Event Storming workshop helps participants to draft service boundaries]({{site.url}}/imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/service-nut-principles-small.jpeg)]({{site.url}}/imgs/2019-02-15-using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/service-nut-principles.jpeg)
 
-We can notice that functional areas typically fulfill the inside principles by design. That’s why they make pretty good service candidates.
+We can notice that bounded contexts typically fulfill the inside principles by design. That’s why they make pretty good service candidates.
 
 To learn more about services principles, check this [talk about evolutionary architecture.](https://www.youtube.com/watch?v=xLHeEw0ycQg) (By [Ionut Balosin](https://twitter.com/ionutbalosin) and my friend [Xavier René-Corail](https://twitter.com/xcorail?lang=en)[)](https://twitter.com/ionutbalosin)
 
@@ -73,7 +73,7 @@ To learn more about services principles, check this [talk about evolutionary arc
 
 #### 2. Materialize your processes
 
-To materialize your services or processes on the board, use wool, as you did for functional areas. (cf post [Identify Functional Areas](https://docs.google.com/document/d/1gaxZ0a3Cd1mEpZJueJvUhHCHl2mUvMTtvlGIc39SXNk/edit#heading=h.j69e4b2pek7v) ) It's better to use wool of a different color.
+To materialize your services or processes on the board, use wool, as you did for bounded contexts. (cf post [Identify Bounded Contexts](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/) ) It's better to use wool of a different color.
 
 > 💡 Use wool, scissors and scotch tape to materialize services on your Event Storming board.
 

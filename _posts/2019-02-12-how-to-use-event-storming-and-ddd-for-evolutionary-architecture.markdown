@@ -80,7 +80,7 @@ Don’t forget, the main point is to be able to deliver features early.
 Here are some tips to get the most out of this practice
 
 *   Repeat. Nothing prevents us from running a new Event Storming from time to time. Every time we do it, it will be faster, as more and more knowledge is shared in the team. By repeating it, the target architecture will evolve with the domain knowledge.
-*   As you focus on a functional area, you can also run finer grain, [design level event storming](https://buildplease.com/pages/fpc-6/) sessions. This shorter workshop yields a more detailed target design for one functional area.
+*   As you focus on a bounded context, you can also run finer grain, [design level event storming](https://buildplease.com/pages/fpc-6/) sessions. This shorter workshop yields a more detailed target design for one bounded context.
 *   I found the `// TODO XXX comment ...` technique great at taking technical debt leverage. You can read more about it [here](/a-seamless-way-to-keep-track-of-technical-debt-in-your-source-code/). Other interesting techniques are [Architecture Decision Records](https://adr.github.io/) and [Living Documentation](https://leanpub.com/livingdocumentation). By documenting past decisions, they help us to change the system later down the road.
 
 [![Cover of Cyrille Martraire's Living Documentation book. By documenting past decisions, Living Documentation let us change the system later down the road. A key to evolutionary architecture and emergent design]({{site.url}}/imgs/2019-02-12-how-to-use-event-storming-and-ddd-for-evolutionary-architecture/living-documentation.jpg)](https://leanpub.com/livingdocumentation)

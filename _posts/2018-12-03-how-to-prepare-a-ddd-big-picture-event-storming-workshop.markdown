@@ -61,7 +61,7 @@ If you are wondering what a domain event is, don't worry, I'll go over this late
 
 It's time to list the ideal audience. I found that sessions work better with a mix of 50% of domain experts and 50% of technical people.
 
-With too few domain experts in the room, the workshop becomes a one-way teaching lesson. Ideally, we'd to have experts for all the functional areas you foresee in the scope of the workshop.
+With too few domain experts in the room, the workshop becomes a one-way teaching lesson. Ideally, we'd to have experts for all the bounded contexts you foresee in the scope of the workshop.
 
 We also need to have a fair share of technical people in the workshop. In the end, it's their domain knowledge we want to grow. Don't forget that, as `https://twitter.com/ziobrando` says:
 

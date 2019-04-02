@@ -30,25 +30,25 @@ This is also the 19th, and last, post in [a series about how to use Event Stormi
 ## Design at a finer grain with [Design Level Event Storming](https://buildplease.com/pages/fpc-6/)
 
 {% assign figure_path="/imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/ddd-design-level-event-storming-picture-that-explains-everything.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A legend for the post-it colors in DDD Design Level Event Storming drawn by Alberto Brandolini" %}
-    
+
 {% capture figure_caption %}
 From [Alberto Brandolini](https://twitter.com/ziobrando)’s [“Introducing Event Storming” book on LeanPub](https://leanpub.com/introducing_eventstorming)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
-You’ll reach a point where the Big Picture Event Storming is not detailed enough for design. That’s when Design Level Event Storming kicks in. This finer grain design activity is more focused and technical. It helps development teams to collaboratively design the inside of a functional area.
+You’ll reach a point where the Big Picture Event Storming is not detailed enough for design. That’s when Design Level Event Storming kicks in. This finer grain design activity is more focused and technical. It helps development teams to collaboratively design the inside of a [bounded context](https://martinfowler.com/bliki/BoundedContext.html).
 
 {% assign figure_path="/imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/sample-design-level-event-storming-board.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A Sample DDD Design Level Event Storming Board" %}
-    
+
 {% capture figure_caption %}
 A sample Design Level Event Storming board from [boldare.com’s event storming guide](https://www.boldare.com/blog/event-storming-guide)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Be warned though that this kind of design leans heavily towards [CQRS](https://martinfowler.com/bliki/CQRS.html), [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) and DDD (Domain Driven Design). I'll definitely write a follow-up series on Design Level Event Storming, [stay tuned](http://eepurl.com/dxKE95)!
@@ -60,13 +60,13 @@ Be warned though that this kind of design leans heavily towards [CQRS](https://m
 It helps developers, testers and domain experts to agree on a story's details. It's a very quick (30 minutes) workshop. It actually looks more like a codified conversation than a workshop. Done well, it removes almost all specification bugs!
 
 {% assign figure_path="/imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/example-mapping-cards.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="Illustrative example mapping cards in their typical layout" %}
-    
+
 {% capture figure_caption %}
 Sample Example Mapping cards on the introductory [post about Example Mapping](https://cucumber.io/blog/2015/12/08/example-mapping-introduction), by [Matt Wynne](https://twitter.com/mattwynne?lang=fr)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 It yields even more insights when paired with Event Storming. [Kenny Baas](https://baasie.com/) gave [a talk precisely about how to combine Design Level Event Storming and Example Mapping](https://www.youtube.com/watch?time_continue=3&v=xSZnKnZ8EAo).
@@ -82,13 +82,13 @@ User Story mapping is a workshop to build 2D representation of the upcoming work
 User Story Mapping shares many similarities with Event Storming. It is an exploratory workshop as well. It also starts with the analysis of the users workflow. My experience is that User Story Mapping is a lot faster to run when done after an Event Storming.
 
 {% assign figure_path="/imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/example-user-story-map.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A sample user story map. User Story Maps and DDD Event Storming design boards share a 2D representation of user chronology" %}
-    
+
 {% capture figure_caption %}
 A sample user story map from [Barry Overeem](https://www.barryovereem.com/)’s [walkthrough blog post](https://www.barryovereem.com/the-user-story-mapping-game/)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The [User Story Mapping](https://www.amazon.com/User-Story-Mapping-Discover-Product/dp/1491904909/ref=sr_1_2?keywords=user+story+mapping&qid=1547797880&sr=8-2) book contains many details about how to run this workshop. It event contains a section about how SAP created a variant for really large teams.
@@ -102,13 +102,13 @@ By getting back to our goal, the actors and their potential impacts, impact mapp
 It’s also a great tool to explicit our current hypothesis and what experiments we should run. Again, thanks to the shared knowledge, Big Picture Event Storming makes this workshop both faster and more effective.
 
 {% assign figure_path="/imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/sample-impact-map.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A sample impact map. While DDD Big Picture Event Storming is more exploratory, Impact Mapping is more about focusing on what needs to be done first" %}
-    
+
 {% capture figure_caption %}
 An example Impact Map from [impactmapping.org](https://www.impactmapping.org/example.html), licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 I cannot understate the importance of this workshop. Prioritization is the only key to sustainable pace. Maximizing the work not done is the only way to have more impact with less efforts.

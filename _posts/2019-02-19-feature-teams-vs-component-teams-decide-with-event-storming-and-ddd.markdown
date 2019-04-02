@@ -23,13 +23,13 @@ Here is [Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law):
 If you have an existing team and a product you are trying to transform, this law is of paramount importance to you. If you did the Event Storming workshop, you should have a shared architecture vision. Let’s see how you can make Conway’s law help you to refactor!
 
 {% assign figure_path="/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/organizational_charts.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="Humoristic drawing of the organization big software companies" %}
-    
+
 {% capture figure_caption %}
 Credits to [Manu Cornet](http://ma.nu/) from [http://bonkersworld.net/organizational-charts](http://bonkersworld.net/organizational-charts)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 > 💡 Together, Event Storming and Conway's Law help long term refactoring.
@@ -47,20 +47,20 @@ Teams that follow the [boundaries of the architecture vision](/drafting-a-functi
 The idea is to conduct a team re-organization workshop as a follow-up to Event Storming. It’s best to run this activity just after we draft the target architecture, when it is still fresh in everyone’s mind.
 
 {% assign figure_path="/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/self-org-workshop.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="Thumbnail from a video of a team self-selection workshop involving 200 people at KPN iTV" %}
-    
+
 {% capture figure_caption %}
 [Video](https://www.youtube.com/watch?v=mqgpWFI3UOI&feature=youtu.be) of a team self-selection workshop at KPN iTV
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The principles are pretty simple:
 
 [![Poster with 9 team structure principles. Presenting the some general teams principles helps attendees of a DDD Event Storming to go past the "feature teams vs component teams" debate.]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/team-principles-small.jpg)]({{site.url}}/imgs/2019-02-19-feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/team-principles.jpg)
 
-1.  Display the architecture vision and team principles 
+1.  Display the architecture vision and team principles
 2.  Let people self organize into new teams!
 
 > 💡 Event Storming helps people to dynamically self-organize into teams.
@@ -69,7 +69,7 @@ The principles are pretty simple:
 
 Here are the detailed steps for this activity:
 
-* Do this in front of the Event Storming board. It's better to have the [functional areas](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/) and [relationship patterns](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/). They make good starting points for team boundaries
+* Do this in front of the Event Storming board. It's better to have the [bounded contexts](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/) and [relationship patterns](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/). They make good starting points for team boundaries
 * Present the team principles
 * Let people brainstorm ideal team boundaries. Again, use wool, tape to mark this on the board
 * Ask attendees to identify the skills needed for each team. They can mark this on the board with post-its

@@ -7,18 +7,18 @@ categories:
  - architecture
  - squash-BDUF-with-event-storming-series
  - event storming
-description: "Functional Areas are a key aspect of Domain Driven Design. Here is a DDD and Event Storming follow-up activity to collaboratively agree on target domain relationships. This way, we can ensure that core areas keep the most of the focus and priority throughout the life of the system."
+description: "Bounded Contexts are a key aspect of Domain Driven Design. Here is a DDD and Event Storming follow-up activity to collaboratively agree on target domain relationships. This way, we can ensure that core contexts keep the most of the focus and priority throughout the life of the system."
 header:
    teaser: /imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/core-stronghold-teaser.jpeg
    og_image: /imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/core-stronghold-og.jpeg
 ---
-_Functional Areas are a key aspect of [DDD](https://en.wikipedia.org/wiki/Domain-driven_design). Here is a DDD and [Event Storming](https://www.eventstorming.com/) activity to find what kind of domain relationships will ensure focus on core areas._
+_Bounded Contexts are a key aspect of [DDD](https://en.wikipedia.org/wiki/Domain-driven_design). Here is a DDD and [Event Storming](https://www.eventstorming.com/) activity to find what kind of domain relationships will ensure focus on core contexts._
 
 This is the 12th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). It might be a good idea to start reading from [the beginning](/misadventures-with-big-design-up-front/).
 
 Following [the previous posts](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/), here is where we stand
 
-*   We have identified functional areas
+*   We have identified bounded contexts
 *   their relationships
 *   and where should the decision power be
 
@@ -26,17 +26,17 @@ Following [the previous posts](/check-that-core-areas-have-the-upper-hand-with-e
 
 ![Drawing of a stronghold with a 'CORE' flag in an event storming design board. DDD and Event Storming can be used to draft architecture that will safeguard your core bounded contexts.]({{site.url}}/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/core-stronghold.jpeg)
 
-[Core areas](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/) contain our competitive advantage. Focusing on them is the key to long term profitable and sustainable pace. In practice, we want core areas to always keep the priority, the budget, the time... Let's see how we can use Event Storming and DDD (Domain Driven Design) to make sure that core areas always keep the upper-hand.
+[Core contexts](/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/) contain our competitive advantage. Focusing on them is the key to long term profitable and sustainable pace. In practice, we want core bounded contexts to always keep the priority, the budget, the time... Let's see how we can use Event Storming and DDD (Domain Driven Design) to make sure that core contexts always keep the upper-hand.
 
 ## DDD Domain Relationship Patterns
 
-[![Cover of the DDD book by Eric Evans. It contains a lot of relationship patterns to make sure the core functional areas keep the upper hand]({{site.url}}/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/ddd.jpg)](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design)
+[![Cover of the DDD book by Eric Evans. It contains a lot of relationship patterns to make sure the core bounded contexts remain upstream]({{site.url}}/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/ddd.jpg)](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design)
 
-DDD can do one more thing for us. In [the blue book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design), [Eric Evans](https://twitter.com/ericevans0?lang=fr) lists some [domain relationship patterns](https://markhneedham.com/blog/2009/03/30/ddd-recognising-relationships-between-bounded-contexts/). These patterns are a bit like a relationship contract between 2 functional areas. They cover technical, human and team organization aspects.
+DDD can do one more thing for us. In [the blue book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?ie=UTF8&qid=1549123215&sr=8-1&keywords=domain+driven+design), [Eric Evans](https://twitter.com/ericevans0?lang=fr) lists some [domain relationship patterns](https://markhneedham.com/blog/2009/03/30/ddd-recognising-relationships-between-bounded-contexts/). These patterns are a bit like a relationship contract between 2 bounded contexts. They cover technical, human and team organization aspects.
 
 The use of relationship patterns serves 2 purposes:
 
-1.  It will help us to pick the good relationship pattern as we design the system. This in turn makes sure core areas keep the upper-hand and won't get blocked.
+1.  It will help us to pick the good relationship pattern as we design the system. This in turn makes sure core contexts keep the upper-hand and won't get blocked.
 2.  With explicit relationships, everyone will understand better what is expected from them.
 
 Unfortunately, this remains very abstract, and could grant us the [astronaut architect badge](https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/). Nonetheless, using relationship patterns correctly is a great boost to architecture.
@@ -56,13 +56,13 @@ Here is a trick to keep things digestible.
 In his [presentation "Context Mapping in Action"](https://fr.slideshare.net/ziobrando/context-mapping-in-action), [Alberto Brandolini](https://twitter.com/ziobrando) characterized the relationships. Here is a slide from his presentation:
 
 {% assign figure_path="/imgs/2019-02-10-focus-on-core-domain-with-relationships-from-ddd-and-event-storming/big-ball-of-mud.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A Slide from presentation 'Context Mapping in Action' by Alberto Brandolini, the inventor of Event Storming, where he defines the 'Big Ball of Mud' DDD domain relationship pattern as Flexibility 1/5, Maintenance 5/5, Skills 1/5 and Organization 1/5." %}
-    
+
 {% capture figure_caption %}
 From [Alberto Brandolini](https://twitter.com/ziobrando)’s ["Context Mapping in Action" presentation](https://fr.slideshare.net/ziobrando/context-mapping-in-action)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 I built on top of his work and mapped the others as well. (I did my best, feedback is welcome.) Here are the different dimensions and what they mean:
@@ -99,7 +99,7 @@ We’ll use this made up story to present only the most simple relationships. By
 
 The trick is to present the story as a tale. Next step is to present the relationship and stick the radars on the wall at the same time. Leave a few minutes for everyone to understand what this means.
 
-Make sure everyone understood the kinds of relationships before moving on. It's then time to ask attendees to pick one for every area relationships. Just stick a post-it with the initials of the pattern on top of the relationship post-it.
+Make sure everyone understood the kinds of relationships before moving on. It's then time to ask attendees to pick one for every bounded context relationships. Just stick a post-it with the initials of the pattern on top of the relationship post-it.
 
 The last thing to do is to ask their feedback about the design they came up with. Most likely, they won’t be very happy with it.
 

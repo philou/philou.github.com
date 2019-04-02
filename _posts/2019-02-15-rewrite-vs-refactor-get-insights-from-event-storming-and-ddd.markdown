@@ -63,7 +63,7 @@ This is where the workshop starts. Book a room and stick this map on the wall.
 
 ### Mapping files to the vision
 
-During the Event Storming workshop, you should have identified your target functional areas.
+During the Event Storming workshop, you should have identified your target bounded contexts.
 
 Create another large, but empty map for your target architecture. Stick it on the wall, next to the map of your existing system:
 
@@ -77,7 +77,7 @@ If we are lucky, the map might look something like that :
 
 ![Drawing of the target context map filled with post-its from the existing modules map. We see colored groups of post-it matching target bounded contexts, which seem to indicate that Refactoring is the best choice in the Rewrite vs Refactor question]({{site.url}}/imgs/2019-02-15-rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/simpler-migration.jpg)
 
-Target functional areas and current modules seem a good overlap. Files that are currently close to each other will mostly remain close in the vision. That's good news, and the migration should not be too complicated. Incremental refactoring is probably the best strategy in this situation.
+Target bounded contexts and current modules seem a good overlap. Files that are currently close to each other will mostly remain close in the vision. That's good news, and the migration should not be too complicated. Incremental refactoring is probably the best strategy in this situation.
 
 ### Bad news
 
@@ -112,4 +112,4 @@ Through this series of posts, I went through a lot of activities that we can run
 
 [Continue Reading...](/feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/)
 
-This was the 17th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). 
+This was the 17th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series).

@@ -6,7 +6,7 @@ comments: true
 categories:
  - architecture
  - squash-BDUF-with-event-storming-series
-description: "Here is the continued story of how I dropped Big Design Up Front for Incremental Design, and how I eventually used Event Storming to supply a Rough Design Up Front. Compared to BDUF, the combination of Incremental Design and Event Storming is faster, safer and creates natural buy-in. 
+description: "Here is the continued story of how I dropped Big Design Up Front for Incremental Design, and how I eventually used Event Storming to supply a Rough Design Up Front. Compared to BDUF, the combination of Incremental Design and Event Storming is faster, safer and creates natural buy-in.
 "
 header:
    teaser: /imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming-teaser.jpeg
@@ -65,7 +65,7 @@ I did not know how to solve this problem until I discovered Event Storming.
 
 I first heard about it through the internet. The first time I had the chance to practice it was when a team at work asked for help to organize one. They wanted to on-board newcomers. I then went through a few practice sessions. Finally, I had the chance to attend a workshop with [Alberto Brandolini](https://twitter.com/ziobrando?lang=en) at a conference. That's when I'd finish my rookie training at Event Storming. The main feedback I got through all these sessions was "Massive knowledge sharing".
 
-During his workshop, Alberto also said we could use it to identify the functional areas of the domain. This statement sparkled my interest. Could this provide the collaborative architecture vision that incremental design lacks?
+During his workshop, Alberto also said we could use it to identify the bounded contexts of the domain. This statement sparkled my interest. Could this provide the collaborative architecture vision that incremental design lacks?
 
 [![Cover of Alberto Brandolini's Introduction Event Storming book preview.]({{site.url}}/imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming-cover.jpeg)](https://leanpub.com/introducing_eventstorming)
 

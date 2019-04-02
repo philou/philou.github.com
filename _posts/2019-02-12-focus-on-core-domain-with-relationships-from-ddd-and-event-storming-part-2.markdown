@@ -12,7 +12,7 @@ header:
    teaser: /imgs/2019-02-12-focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/ddd-startup-veteran-cap-teaser.jpeg
    og_image: /imgs/2019-02-12-focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/ddd-startup-veteran-cap-og.jpeg
 ---
-_The advanced [DDD Domain Relationships](https://www.slideshare.net/PhilippeBourgau/ddd-domain-relationships-radars) shine as they protect the core's upper hand. Here is the end of an [Event Storming](https://www.eventstorming.com/) activity to pick the best relationships._
+_The advanced [DDD Domain Relationships](https://www.slideshare.net/PhilippeBourgau/ddd-domain-relationships-radars) shine as they keep the core upstream. Here is the end of an [Event Storming](https://www.eventstorming.com/) activity to pick the best relationships._
 
 In the previous post, I started to present an Event Storming activity to select DDD ([Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design) Domain Relationships. If you haven't start reading from the first part.
 
@@ -84,11 +84,11 @@ Relationship patterns phase is the most technical part of the workshop. You won'
 
 DDD has a bad reputation because it uses convoluted names. Try not to mention DDD and use less scary words. For example
 
-*   Use functional area instead of bounded contexts
+*   Use functional area instead of [bounded contexts](https://martinfowler.com/bliki/BoundedContext.html)
 *   Use kind of relationship instead of relationship patterns
 *   etc... 
 
-The goal is to demystify DDD it as much as possible. Maybe I should write a specific post about this someday.
+The goal is to demystify DDD it as much as possible. Maybe I should write a specific post about this someday. [Stay tuned](http://eepurl.com/dxKE95)
 
 ## Next Steps
 
