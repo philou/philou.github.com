@@ -11,13 +11,13 @@ categories:
  - ddd
 description: "Although incredibly effective, DDD is overlooked by developers because of its abstractness. Here is a set of hacks to introduce DDD during an Event Storming workshop. Ex: Alternatives to convoluted DDD names. Group activities to pass a concept through. Presentation material for tricky notions."
 header:
-   teaser: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/TODO-teaser.jpeg
-   og_image: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/TODO-og.jpeg
+   teaser: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-teaser.jpeg
+   og_image: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-og.jpeg
 published: false
 ---
 _Although incredibly effective, [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) is overlooked by developers because of its abstractness. [Event Storming](https://en.wikipedia.org/wiki/Event_storming) is a great way to introduce DDD without naming it!_
 
-![TODO Drawing of an event storming board with post-its forming DDD. Event Storming is a great way to introduce Domain Driven Design without naming it.](../imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/ddd-in-event-storming.jpeg)
+![Drawing of an event storming board with post-its forming DDD. Event Storming is a great way to introduce Domain Driven Design without naming it.]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd.jpeg)
 
 ## State of DDD
 
@@ -32,6 +32,8 @@ Granted, this success might also have resulted from all our other [eXtreme Progr
 Why isn't an effective concept like DDD more widely adopted?
 
 ## The barriers to DDD
+
+![A picture of a locked door. Domain Driven Design can remain shut to people because of its awkward vocabulary. Many people will judge it too abstract and only work astronaut architecture.]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/locked-fence.jpg)
 
 There are many reasons why DDD is not ubiquitous 😉. First of all, the complexity it brings is not justified for every project. Second, it explicitly builds on top of XP. It almost states [merciless refactoring](/categories/#refactoring), unit testing and 'whole team' as pre-requisites. XP's adoption is already small, which does not help DDD's adoption either!
 
@@ -56,8 +58,6 @@ Event Storming is a collaborative design workshop. Using a big wall and post-its
 [Alberto Brandolini](https://twitter.com/ziobrando) invented it as a way to design [Event Sourced](https://martinfowler.com/eaaDev/EventSourcing.html) systems. The workshop itself is pretty intuitive. The rules are straightforward and rely on [natural human metaphors](https://vimeo.com/275530146). After 1 hour in, people feel at home with Event Storming.
 
 If you want to learn more about Event Storming, check my [series of post on the topic](https://philippe.bourgau.net/misadventures-with-big-design-up-front/#).
-
-![A picture of a locked door. Domain Driven Design can remain shut to people because of its awkward vocabulary. Many people will judge it too abstract and only work astronaut architecture.](../imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/locked-fence.jpg)
 
 
 ## How to use Event Storming to get people to do DDD without knowing?
@@ -86,7 +86,7 @@ The blue book introduces the notion of upstream/downstream relationship between 
 
 I also use a special activity to explain it further. I ask people to place a few typical situations upstream or downstream. If you want more details, I wrote [a whole post](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/) about this activity.
 
-![A poster of an activity to teach what is downstream / upstream. It's the drawing of a river, with upstream pollution. People have to place things like 'domain code' and 'legacy code' where it should be, and think of where it usually is](../imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/upstream-downstream-activity.jpg)
+![A poster of an activity to teach what is downstream / upstream. It's the drawing of a river, with upstream pollution. People have to place things like 'domain code' and 'legacy code' where it should be, and think of where it usually is]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/upstream-downstream-activity.jpg)
 
 ### Relationship patterns
 
@@ -96,17 +96,17 @@ Hopefully for us, Event Storming can help here too. After a while in the worksho
 
 > 💡 Use radars and storytelling to introduce Bounded Context relationship patterns.
 
-![A poster of an activity to present relationship patterns. By illustrating the bounded context relationships in stories, it's a lot easier for attendees to understand what they are about.](../imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/tale-of-2-startups.jpg)
+![A poster of an activity to present relationship patterns. By illustrating the bounded context relationships in stories, it's a lot easier for attendees to understand what they are about.]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/tale-of-2-startups.jpg)
 
 I use [a special activity for that](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/). It relies on storytelling and visual radars to compare the patterns. With this, I have had success to introduce the patterns smoothly to attendees.
 
-![A sample radar detailing the characteristic of a bounded context relationship pattern (the Big Ball of Mud). This visual comparison makes it a lot easier for attendees to compare relationships](../imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/radar.png)
+![A sample radar detailing the characteristic of a bounded context relationship pattern (the Big Ball of Mud). This visual comparison makes it a lot easier for attendees to compare relationships]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/radar.png)
 
 ### Blank Aggregates
 
 Aggregate is another concept introduced in the blue book that is not easy to grasp. Explanations involving invariant and consistency don't make it easier to understand.
 
-![TODO Drawing of an empty yellow post-it between a command and a business event. Asking people to write down business rules instead of naming Aggregates is a lot easier. Grouping business rules into Aggregates later on makes a lot more sense](../imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/blank-aggregate.jpg)
+![Drawing of an empty yellow post-it between a command and a business event. Asking people to write down business rules instead of naming Aggregates is a lot easier. Grouping business rules into Aggregates later on makes a lot more sense]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/blank-aggregates.jpeg)
 
 Alberto Brandolini himself suggests using [a technique he calls 'Blank aggregates'](https://leanpub.com/introducing_eventstorming). At the design level phase, don't ask people to come up with Aggregates. Instead, put empty post-its and ask people to write business rules. Don't mention aggregates yet.
 
