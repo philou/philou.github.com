@@ -9,7 +9,7 @@ categories:
  - change management
  - collaborative work
  - ddd
-description: "Although incredibly effective, DDD is overlooked by developers because of its abstractness. Here is a set of hacks to introduce DDD during an Event Storming workshop. Ex: Alternatives to convoluted DDD names. Group activities to pass a concept through. Presentation material for tricky notions."
+description: "Although incredibly effective, DDD is overlooked by developers because of its abstractness. Here is a set of hacks to introduce DDD during an Event Storming workshop. Ex: Alternatives to convoluted DDD names, Group activities to pass a concept through, Presentation material for tricky notions"
 header:
    teaser: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-teaser.jpeg
    og_image: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-og.jpeg
@@ -46,7 +46,7 @@ There's a third reason why DDD still does not have the place it deserves: its aw
 *   [Upstream / Downstream](/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/)
 *   [Aggregates](https://martinfowler.com/bliki/DDD_Aggregate.html)
 *   [Relationships patterns](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/) (Shared Kernel, Conformist, Open Host API, Published Language ...)
-*   [Hexagonal architecture](http://wiki.c2.com/?PortsAndAdaptersArchitecture) (even if not directly DDD)
+*   [Hexagonal architecture](http://wiki.c2.com/?PortsAndAdaptersArchitecture) (Even if not directly DDD)
 *   ...
 
 All these contribute to make DDD look very abstract, and not practical. This is where Event Storming can help. Let's see how.
@@ -72,13 +72,13 @@ This natural emergence of concepts is a great opportunity to explain to people w
 
 Although nobody understands Bounded Context from the start, everyone gets 'Functional Area'. Granted, Bounded Context is a more precise name. It's also a lot easier to forget it and only mention 'Functional Areas' during the Event Storming. People will understand it straightaway.
 
-> 💡 Use Functional Area instead of Bounded Context.
+> 💡 Talk about Functional Area instead of Bounded Context.
 
 ### Vocabulary
 
 Ubiquitous Language is a great name... once you get it! It's easier not to scare everyone out by using 'shared vocabulary' instead.
 
-> 💡 Use Shared Vocabulary instead of Ubiquitous Language.
+> 💡 Talk about Shared Vocabulary instead of Ubiquitous Language.
 
 ### Having the upper hand
 
@@ -100,7 +100,7 @@ Hopefully for us, Event Storming can help here too. After a while in the worksho
 
 I use [a special activity for that](/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/). It relies on storytelling and visual radars to compare the patterns. With this, I have had success to introduce the patterns smoothly to attendees.
 
-![A sample radar detailing the characteristic of a bounded context relationship pattern (the Big Ball of Mud). This visual comparison makes it a lot easier for attendees to compare relationships]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/radar.png)
+![A sample radar detailing the characteristic of the 'Big Ball of Mud' bounded context relationship pattern. This visual comparison makes it a lot easier for attendees to compare relationships]({{site.url}}/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/radar.png)
 
 ### Blank Aggregates
 
