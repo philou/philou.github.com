@@ -57,7 +57,7 @@ Event Storming is a collaborative design workshop. Using a big wall and post-its
 
 [Alberto Brandolini](https://twitter.com/ziobrando) invented it as a way to design [Event Sourced](https://martinfowler.com/eaaDev/EventSourcing.html) systems. The workshop itself is pretty intuitive. The rules are straightforward and rely on [natural human metaphors](https://vimeo.com/275530146). After 1 hour in, people feel at home with Event Storming.
 
-If you want to learn more about Event Storming, check my [series of post on the topic](https://philippe.bourgau.net/misadventures-with-big-design-up-front/#).
+If you want to learn more about Event Storming, check my [series of post on the topic](/misadventures-with-big-design-up-front/#).
 
 
 ## How to use Event Storming to get people to do DDD without knowing?
