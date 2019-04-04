@@ -11,7 +11,6 @@ description: "DDD Big Picture Event Storming is a prelude and catalyst to other 
 header:
    teaser: /imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/event-storming-follow-ups-teaser.jpeg
    og_image: /imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/event-storming-follow-ups-og.jpeg
-published: false
 ---
 _[DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) is a prelude and catalyst to other workshops. Ex: Design Level Event Storming, Example Mapping, Story Mapping & Impact Mapping_
 

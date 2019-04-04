@@ -110,6 +110,6 @@ Repeating this team re-organization workshop should also improve people's motiva
 
 Combined with this workshop, the Event Storming high participation and natural buy-in shines. Event Storming is an easy way to speed up [DDD (Domain Driven Design)](https://en.wikipedia.org/wiki/Domain-driven_design) adoption. It's an easy and flexible workshop. This was the 18th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). Get started [here](/misadventures-with-big-design-up-front/).
 
-In [the next post](http://eepurl.com/dxKE95), I’ll list other workshops that we can run in conjunction to Event Storming.
+In [the next post](/how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/), I’ll list other workshops that we can run in conjunction to Event Storming.
 
-[Continue Reading when it's ready!](http://eepurl.com/dxKE95)
+[Continue Reading...](/how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/)
