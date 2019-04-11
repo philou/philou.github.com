@@ -13,7 +13,6 @@ description: "Skip studying queuing theory! Play this 1h15 serious game for lear
 header:
    teaser: /imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/built-in-quality-game-box-teaser.jpeg
    og_image: /imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/built-in-quality-game-box-og.jpeg
-published: false
 ---
 _Skip studying [queuing theory](https://en.wikipedia.org/wiki/Queueing_theory)! Play this 1h15 serious game for learning why building-in [quality at the source](http://www.informit.com/articles/article.aspx?p=1336791&seqNum=6) leads to a productive and [sustainable pace](https://www.agilealliance.org/glossary/sustainable/)._
 
