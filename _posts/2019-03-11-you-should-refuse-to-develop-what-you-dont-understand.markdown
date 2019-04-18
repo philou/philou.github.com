@@ -12,7 +12,6 @@ description: "Understanding is key to building quality software. In this guest p
 header:
    teaser: /imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/why-why-why-teaser.jpeg
    og_image: /imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/why-why-why-og.jpeg
-published: false
 ---
 _Understanding is key to building quality software. Here are 3 levels of understanding we should go through before we start coding._
 
