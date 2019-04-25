@@ -13,7 +13,6 @@ description: "Pair programming is not just sitting together in front of an IDE. 
 header:
    teaser: /imgs/2019-03-18-10-pair-programming-questions-answers/how-do-we-pair-teaser.jpeg
    og_image: /imgs/2019-03-18-10-pair-programming-questions-answers/how-do-we-pair-og.jpeg
-published: false
 ---
 _Pair programming is not just sitting together in front of an IDE. Here are battle tested answers to common questions that will make pairing work for you._
 
