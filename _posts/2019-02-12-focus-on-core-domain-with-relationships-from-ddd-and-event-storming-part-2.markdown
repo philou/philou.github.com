@@ -88,7 +88,7 @@ DDD has a bad reputation because it uses convoluted names. Try not to mention DD
 *   Use kind of relationship instead of relationship patterns
 *   etc... 
 
-The goal is to demystify DDD it as much as possible. Maybe I should write a specific post about this someday. [Stay tuned](http://eepurl.com/dxKE95)
+The goal is to [demystify DDD it as much as possible](/how-to-use-event-storming-to-introduce-domain-driven-design/).
 
 ## Next Steps
 

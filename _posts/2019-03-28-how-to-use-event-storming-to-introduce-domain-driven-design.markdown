@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "How to use Event Storming to introduce Domain Driven Design"
-date: 2019-05-02
+date: 2019-05-09
 comments: true
 categories:
  - event storming
@@ -13,7 +13,6 @@ description: "Although incredibly effective, DDD is overlooked by developers bec
 header:
    teaser: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-teaser.jpeg
    og_image: /imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-og.jpeg
-published: false
 ---
 _Although incredibly effective, [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) is overlooked by developers because of its abstractness. [Event Storming](https://en.wikipedia.org/wiki/Event_storming) is a great way to introduce DDD without naming it!_
 

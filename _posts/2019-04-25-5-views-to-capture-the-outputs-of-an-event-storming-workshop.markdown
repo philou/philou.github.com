@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "5 Views to Capture the Outputs of an Event Storming workshop"
-date: 2019-05-23
+date: 2019-06-06
 comments: true
 categories:
  - event storming

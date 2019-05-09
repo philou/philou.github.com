@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Event Storming lessons from Post-It haters"
-date: 2019-05-09
+date: 2019-05-16
 comments: true
 categories:
  - event storming
