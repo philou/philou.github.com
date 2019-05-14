@@ -8,6 +8,7 @@ categories:
  - ruby
  - performance
  - rspec
+ - machine learning
 keywords: "Ruby, Software, Performance, RSpec, Machine Learning, Linear Regression, Ruby Gem, Programming, Open Source"
 description: "An introduction to 'complexity_assert', an experimental ruby open source unit testing gem that I wrote, which uses linear regression asserts the complexity of an algorithm"
 ---

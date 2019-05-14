@@ -6,6 +6,7 @@ comments: true
 categories:
  - learning
  - software
+ - machine learning
 keywords: "Learn, Learn Anything, Machine Learning, Learn Anything Fast, Performance"
 description: "The story of how I learned basic machine learning skills in 20 hours after reading 'The First 20 Hours'"
 ---
