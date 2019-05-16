@@ -13,7 +13,6 @@ description: "Event Storming is a group design activity that uses *a lot* of pos
 header:
    teaser: /imgs/2019-04-07-event-storming-lessons-from-post-it-haters/event-storming-no-more-post-its-teaser.jpeg
    og_image: /imgs/2019-04-07-event-storming-lessons-from-post-it-haters/event-storming-no-more-post-its-og.jpeg
-published: false
 ---
 _After going through why [Event Storming](https://www.eventstorming.com/) uses post-its, we'll go over alternatives. We'll then see how to use these techniques to improve Event Storming!_
 
