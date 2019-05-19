@@ -7,6 +7,7 @@ categories:
  - agile
  - remote
  - pair programming
+ - code reviews
 keywords: "Agile, Scrum, XP, Agile Software Development, Pair Programming, Remote Pair Programming, Distributed Work, Distributed Workplace, Distributed Team"
 description: "The story about how our software development team went from not reviewing code to local and remote pair-programming 75% of our time"
 ---
