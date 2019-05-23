@@ -12,7 +12,6 @@ description: "Event Storming builds 'shared understanding'. This is often not en
 header:
    teaser: /imgs/2019-04-18-how-to-capture-the-outputs-of-an-event-storming-workshop/share-understanding-so-what-teaser.jpeg
    og_image: /imgs/2019-04-18-how-to-capture-the-outputs-of-an-event-storming-workshop/share-understanding-so-what-og.jpeg
-published: false
 ---
 _[Event Storming](https://www.eventstorming.com/) builds 'shared understanding'. This is often not enough to bring key action-oriented people in! Here are concrete techniques to convince them._
 
