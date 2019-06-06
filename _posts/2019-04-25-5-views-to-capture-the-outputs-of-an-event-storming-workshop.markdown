@@ -13,7 +13,6 @@ description: "Recording the full Event Storming board is a waste of time. Here a
 header:
    teaser: /imgs/2019-04-25-5-views-to-capture-the-outputs-of-an-event-storming-workshop/recording-event-storming-teaser.jpeg
    og_image: /imgs/2019-04-25-5-views-to-capture-the-outputs-of-an-event-storming-workshop/recording-event-storming-og.jpeg
-published: false
 ---
 _Recording the full [Event Storming](https://www.eventstorming.com/) board is a waste of time. Here are examples of quick, focused, and digestible views that capture the board's knowledge._
 

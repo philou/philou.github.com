@@ -69,7 +69,7 @@ A photo of this decision board can serve as a minimal log of what happened durin
 
 While you are in an Event Storming session, the design board remains crystal clear. Unfortunately, if you get back to it after a few weeks, you'll have a hard time making any sense out of it. That's why keeping the full board, detailed photos of it, or a digital re-transcription of does not work very well.
 
-There is something we can do though. We can capture filtered and single focus views, making the information digestible. A [context map](https://www.infoq.com/articles/ddd-contextmapping) for example, is easy to draw after an Event Storming session. Next week's post will go into more details about different views. [Stay tuned!](http://eepurl.com/dxKE95)
+There is something we can do though. We can capture filtered and single focus views, making the information digestible. A [context map](https://www.infoq.com/articles/ddd-contextmapping) for example, is easy to draw after an Event Storming session. [Next week's post](/5-views-to-capture-the-outputs-of-an-event-storming-workshop/) will go into more details about different views.
 
 > 💡 Capturing filtered and single focus views of the Event Storming board, makes the information more digestible and persistent.
 
@@ -86,6 +86,6 @@ This is good way to share as much information as possible in the shortest time p
 
 ## To be continued
 
-This was the first half in a [mini-series about capturing the outputs of an Event Storming workshop](/categories/#event-storming-outputs-series). Next week's post will dive in more details in the different kind of 'views' we can capture out of Event Storming.
+This was the first half in a [mini-series about capturing the outputs of an Event Storming workshop](/categories/#event-storming-outputs-series). [Next week's post](/5-views-to-capture-the-outputs-of-an-event-storming-workshop/) will dive in more details in the different kind of 'views' we can capture out of Event Storming.
 
-[Continue reading when it's ready...](http://eepurl.com/dxKE95)
+[Continue reading...](/5-views-to-capture-the-outputs-of-an-event-storming-workshop/)
