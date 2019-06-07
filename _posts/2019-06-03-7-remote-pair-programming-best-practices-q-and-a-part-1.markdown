@@ -61,13 +61,14 @@ Some screen shares, like [Slack](https://slack.com) and [Microsoft Teams](https:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vq5FzSPmu-I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Some tools promise an improved pair programming experience: [Floobits](https://floobits.com/), [Saros](https://www.saros-project.org/) for [Eclipse](https://www.eclipse.org/ide/) or [Live Share for Visual Studio](https://visualstudio.microsoft.com/services/live-share/). They let you concurrently edit code, which fixes the lag problem.
+Some tools promise an improved pair programming experience: [Floobits](https://floobits.com/), [Saros](https://www.saros-project.org/) for [Eclipse](https://www.eclipse.org/ide/), [Live Share for Visual Studio](https://visualstudio.microsoft.com/services/live-share/) or the new [Use Together](https://www.use-together.com/). They let you concurrently edit code, which fixes the lag problem.
 
 Unfortunately for us, we did not manage to get any of those to work:
 
 *   Saros was not a big enough reason for us to leave [Intellij](https://www.jetbrains.com/idea/) for Eclipse
 *   We could not use Floobits for company policy reasons
 *   As Java programmers, Visual Studio was not an option
+*   Use Together did not exist at the time
 
 That said, these tools only synchronize editor windows of the IDEs. They don't save you from sharing your screen, to see the test execution for example.
 
