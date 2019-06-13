@@ -11,7 +11,6 @@ description: "During a data science project, we discovered that DDD (Domain Driv
 header:
    teaser: /imgs/2019-05-10-the-similarities-between-machine-learning-and-ddd/machine-learning-ddd-teaser.jpeg
    og_image: /imgs/2019-05-10-the-similarities-between-machine-learning-and-ddd/machine-learning-ddd-og.jpeg
-published: false
 ---
 _We discovered that [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) concepts like Event Storming, Bounded Contexts, Ubiquitous Language, Entities and Values are useful in machine learning projects._
 
