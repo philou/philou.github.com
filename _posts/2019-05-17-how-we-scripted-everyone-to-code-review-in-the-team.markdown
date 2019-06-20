@@ -16,6 +16,7 @@ header:
    og_image: /imgs/2019-05-17-how-we-scripted-everyone-to-code-review-in-the-team/code-reviews-for-all-og.jpeg
 redirect_from:
  - /reviews-for-everyone
+ - /reviews-for-everyone/
 ---
 _Getting all the team to code review can be a real challenge. Here is the story of how a simple random review assigning tool nudged everyone to code review._
 
