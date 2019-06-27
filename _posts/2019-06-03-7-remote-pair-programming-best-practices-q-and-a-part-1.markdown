@@ -11,7 +11,6 @@ description: "Remote pair programming brings surprising benefits to a team! Daun
 header:
    teaser: /imgs/2019-06-03-7-remote-pair-programming-best-practices-q-and-a-part-1/remote-pairing-teaser.jpeg
    og_image: /imgs/2019-06-03-7-remote-pair-programming-best-practices-q-and-a-part-1/remote-pairing-og.jpeg
-published: false
 ---
 _Remote pair programming brings surprising benefits to a team! Daunting at first, it is quite manageable with the good practices. Here are the first 2 of 7!_
 
