@@ -10,7 +10,7 @@ categories:
 description: "Tired of coding in your cubicle? Code in your garden with remote pair programming! Here are 5 more remote pairing best practices. Learn how to deal with a painful headphone or a time difference. Discover other tricks like an online todo list, the importance of eye contact and continuous improvement"
 header:
    teaser: /imgs/2019-06-06-7-remote-pair-programming-best-practices-q-and-a-part-2/remote-pair-programming-yagourt-phones-teaser.jpeg
-   og_image: /imgs/2019-06-06 -7-remote-pair-programming-best-practices-q-and-a-part-2/remote-pair-programming-yagourt-phones-og.jpeg
+   og_image: /imgs/2019-06-06-7-remote-pair-programming-best-practices-q-and-a-part-2/remote-pair-programming-yagourt-phones-og.jpeg
 ---
 _5 more best practices about remote pair programming. Let's deal with a painful headphone, a todo list, time difference, eye contact and continuous improvement_
 
