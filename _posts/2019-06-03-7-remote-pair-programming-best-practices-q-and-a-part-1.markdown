@@ -94,6 +94,6 @@ Here are my advices:
 
 ## To be continued
 
-This was the first part of [a mini series about Remote pair programming best practices](/categories/#remote-pair-programming-best-practices-series). In [the next post](http://eepurl.com/dxKE95), we'll go over 5 more tips.
+This was the first part of [a mini series about Remote pair programming best practices](/categories/#remote-pair-programming-best-practices-series). In [the next post](/7-remote-pair-programming-best-practices-q-and-a-part-2/), we'll go over 5 more tips.
 
-[Continue Reading when it's ready...](http://eepurl.com/dxKE95)
+[Continue Reading...](/7-remote-pair-programming-best-practices-q-and-a-part-2/)
