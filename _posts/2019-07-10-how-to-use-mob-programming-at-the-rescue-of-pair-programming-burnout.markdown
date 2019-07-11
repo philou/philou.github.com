@@ -12,7 +12,6 @@ description: "Full-time pair programming is awesome, except that it burns introv
 header:
    teaser: /imgs/2019-07-10-how-to-use-mob-programming-at-the-rescue-of-pair-programming-burnout/pairing-extrovert-introvert-teaser.jpeg
    og_image: /imgs/2019-07-10-how-to-use-mob-programming-at-the-rescue-of-pair-programming-burnout/pairing-extrovert-introvert-og.jpeg
-published: false
 ---
 _Full-time [pair programming](https://en.wikipedia.org/wiki/Pair_programming) burns introverts out. Regular [mob programming](https://en.wikipedia.org/wiki/Mob_programming) sessions yield the same benefits but are more sustainable._
 
