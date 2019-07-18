@@ -13,7 +13,6 @@ header:
    teaser: /imgs/2019-07-10-is-xp-the-middle-child-of-agile/xp-middle-child-mug-teaser.jpeg
    og_image: /imgs/2019-07-10-is-xp-the-middle-child-of-agile/xp-middle-child-mug-og.jpeg
 read_time: false
-published: false
 ---
 _In [this podcast](https://rahul-bhattacharya.com/2019/05/17/episode-8-is-xp-the-middle-child-of-agile-with-philippe-bourgau/), you'll learn about [eXtreme Programming](https://en.wikipedia.org/wiki/Extreme_programming). Where did it come from? What are its differences between XP and [Scrum](https://en.wikipedia.org/wiki/Scrum_(software_development)) or [Kanban](https://en.wikipedia.org/wiki/Kanban)? How things like [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) build on it?_
 
