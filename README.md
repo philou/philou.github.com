@@ -42,6 +42,32 @@ TODO markdown
 * Teaser images : 600x315, 72dpi, compressed for minimal size (appears on the front page!)
 * Open Graph images : 1800x945, 250dpi, not compressed to appear well on high precision devices
 
+### How to license an image
+
+#### Visual stamp
+
+1. Might be easier to resize the image to 1800x945 ratio (same as teaser images)
+2. Stamp the image, use gimp and add the layer from insert-cc.xmp
+3. Resize image as needed
+4. Add credits to the image in the page
+
+```liquid
+{% assign figure_path="/imgs/...todo.jpg" | absolute_url %}
+    
+{% assign figure_alt="TODO" %}
+    
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/...todo.jpg)
+{% endcapture %}
+    
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+```
+
+#### Add metadata
+
+5. Generate .xmp metadata from [Creative Commons website](https://creativecommons.org/choose/#metadata)
+6. Add the metadata to images with `exiftool -tagsFromFile CC_Attribution-ShareAlike_4.0_International.xmp xxx1.jpg xxx2.jpg...`
+
 ## Hacks made to Minimal Mistakes
 
 These are hacks I've made to the Minimal Mistakes, that I'll try to push to the main repo.
