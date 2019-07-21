@@ -26,4 +26,8 @@ By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons
 
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
+## Takeaway
+
+> Don't save on prioritization.
+
 During this summer, I'll post a few similar infographics. [Stay tuned!](http://eepurl.com/dxKE95)
