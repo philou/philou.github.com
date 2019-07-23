@@ -8,7 +8,7 @@ categories:
  - lean
  - workplace
  - selforganizing
- - team-building
+ - team building
 keywords: "Workplace, Workplace design, Software Workplace, Software Workplace design, Agile Workplace, Self Organized Workplace"
 description: "A walk through of different practices for agile workplace design, and a proposal for Lego style workplace building"
 ---

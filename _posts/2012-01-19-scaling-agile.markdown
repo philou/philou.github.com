@@ -5,10 +5,10 @@ title: Scaling Agile
 published: true
 date: 2012-01-19
 categories:
-- Agile
-- Enterprise
-- Lean
-- Scrum
+- agile
+- enterprise
+- lean
+- scrum
 - extreme programming
 posterous_url: http://philippe.bourgau.net/scaling-agile
 posterous_slug: scaling-agile

@@ -6,7 +6,7 @@ comments: true
 categories:
  - software
  - selforganizing
- - team-building
+ - team building
  - workplace
  - hiring
  - enterprise

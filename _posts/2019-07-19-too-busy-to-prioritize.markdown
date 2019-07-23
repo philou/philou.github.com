@@ -11,7 +11,6 @@ description: "An infographic of a vicious circle triggered by the lack of priori
 header:
    teaser: /imgs/2019-07-19-too-busy-to-prioritize/lack-of-prioritization-teaser.jpeg
    og_image: /imgs/2019-07-19-too-busy-to-prioritize/lack-of-prioritization-og.jpeg
-read_time: false
 published: false
 ---
 _This infographic presents how the lack of prioritization triggers a vicious circle of bloated organizations, late deliveries, and a non-sustainable pace_

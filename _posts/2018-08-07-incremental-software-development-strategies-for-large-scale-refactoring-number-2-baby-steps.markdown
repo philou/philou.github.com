@@ -6,7 +6,7 @@ comments: true
 categories:
  - refactoring
  - incremental-software-development
- - coding-dojo
+ - coding dojo
  - mikado-method
  - large-scale-refactoring-sponsorship-series
 keywords: "Baby steps, Baby steps software, Baby steps software development, Large Scale Refactoring, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies, incremental software development strategies"

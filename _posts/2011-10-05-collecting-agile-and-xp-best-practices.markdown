@@ -5,7 +5,7 @@ title: Collecting agile and XP best practices
 published: true
 date: 2011-10-05
 categories:
-- Agile
+- agile
 - Best Practices
 - extreme programming
 posterous_url: http://philippe.bourgau.net/collecting-agile-and-xp-best-practices
