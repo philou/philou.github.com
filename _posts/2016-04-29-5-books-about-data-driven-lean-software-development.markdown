@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "7 Books About Data Driven Software Engineering"
-date: 2019-08-25
+date: 2019-07-25
 comments: true
 categories:
  - lean
