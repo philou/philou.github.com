@@ -7,6 +7,7 @@ categories:
  - ddd
  - machine learning
  - event storming
+ - data driven
 description: "During a data science project, we discovered that DDD (Domain Driven Design) concepts are useful for machine learning. The Ubiquitous Language makes communication easier. Identifying Bounded Contexts, Entities and Values help with code evolvability. Event Storming gets things started quickly."
 header:
    teaser: /imgs/2019-05-10-the-similarities-between-machine-learning-and-ddd/machine-learning-ddd-teaser.jpeg
