@@ -9,6 +9,7 @@ categories:
  - agile
  - team building
  - open source
+ - infographic
 description: "Skip studying queuing theory! Play this 1h15 serious game for learning why building-in quality at the source leads to a productive and sustainable pace. Here is the full story of this game. You'll learn how we created it, how to get started as well as why built-in quality at the source matters."
 header:
    teaser: /imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/built-in-quality-game-box-teaser.jpeg

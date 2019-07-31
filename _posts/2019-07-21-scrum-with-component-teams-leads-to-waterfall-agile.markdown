@@ -32,4 +32,4 @@ A small ratio of component teams is not necessary bad. When features involve man
 * [Big Picture Event Storming can help you to pick the right team organization](/feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/)
 * [Continuous improvement](/categories/#continuous-improvement) and [coaching](/categories/#coaching) can get your teams to reorganize step by step
 
-During this summer, I'll post a few similar infographics. [Stay tuned!](http://eepurl.com/dxKE95)
+During this summer, I'll post a few similar [infographics](/categories/#infographic). [Stay tuned!](http://eepurl.com/dxKE95)

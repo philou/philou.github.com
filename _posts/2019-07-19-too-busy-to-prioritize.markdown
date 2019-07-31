@@ -29,4 +29,4 @@ By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons
 
 > Don't save on prioritization.
 
-During this summer, I'll post a few similar infographics. [Stay tuned!](http://eepurl.com/dxKE95)
+During this summer, I'll post a few similar [infographics](/categories/#infographic). [Stay tuned!](http://eepurl.com/dxKE95)
