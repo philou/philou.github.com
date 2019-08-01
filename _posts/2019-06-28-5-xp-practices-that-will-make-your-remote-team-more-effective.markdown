@@ -13,7 +13,6 @@ description: "By focusing on small increments and collaboration, XP practices li
 header:
    teaser: /imgs/2019-06-28-5-xp-practices-that-will-make-your-remote-team-more-effective/5xp-practices-4-remote-coding-teaser.jpeg
    og_image: /imgs/2019-06-28-5-xp-practices-that-will-make-your-remote-team-more-effective/5xp-practices-4-remote-coding-og.jpeg
-published: false
 ---
 _By focusing on small increments and collaboration, [XP](https://en.wikipedia.org/wiki/Extreme_programming) practices like [CI](https://martinfowler.com/articles/continuousIntegration.html), [Pair](https://en.wikipedia.org/wiki/Pair_programming) or [Mob programming](https://en.wikipedia.org/wiki/Mob_programming), [TDD](https://en.wikipedia.org/wiki/Test-driven_development), [continuous refactoring](https://www.jamesshore.com/Blog/Merciless-Refactoring.html) and [TCR](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864) make remote work easier._
 
