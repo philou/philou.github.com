@@ -9,6 +9,7 @@ categories:
  - extreme programming
  - mob programming
  - tdd
+ - tcr
 description: "By focusing on small increments and collaboration, XP practices like Continuous Integration, Pair programming, Mob programming, TDD and continuous refactoring make remote work easier. “Test && Commit || Revert” might even be the future of remote work, by enabling collaborative real-time programming!"
 header:
    teaser: /imgs/2019-06-28-5-xp-practices-that-will-make-your-remote-team-more-effective/5xp-practices-4-remote-coding-teaser.jpeg
