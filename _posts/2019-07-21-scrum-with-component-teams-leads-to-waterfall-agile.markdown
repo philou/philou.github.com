@@ -11,7 +11,6 @@ description: "Infographic showing how Scrum with component teams is not sustaina
 header:
    teaser: /imgs/2019-07-21-scrum-with-component-teams-leads-to-waterfall-agile/scrum-with-component-teams-teaser.jpeg
    og_image: /imgs/2019-07-21-scrum-with-component-teams-leads-to-waterfall-agile/scrum-with-component-teams-og.jpeg
-published: false
 ---
 _This infographic presents the perils of [Scrum](/categories/#scrum) with [component teams](https://innolution.com/resources/glossary/component-team). It pushes organizations back in [Waterfall Agile](https://en.wikipedia.org/wiki/Phase-gate_process), late deliveries and non-sustainable work._
 
