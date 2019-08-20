@@ -15,17 +15,17 @@ header:
    og_image: /imgs/2019-08-16-to-do-list-or-mind-map-for-programming/todo-map-for-programming-og.jpeg
 published: false
 ---
-_Maintaining a TO DO list or a Mind Map for programming a task has many benefits. It improves collaboration, our decisions and our vision of what's left to do._
+_Maintaining a TO DO list or a Mind Map for programming task has many benefits. It improves collaboration, our decisions and our vision of what's left to do._
 
 ![Drawing of a laptop for programming, surrounded with a TO DO list and a Mind Map for programming sub tasks]({{site.url}}/imgs/2019-08-16-to-do-list-or-mind-map-for-programming/todo-map-for-programming.jpeg)
 
-Through my years of programming, I've been refining the notes I keep next to my keyboard. It went from nothing, to an online mind map! Here are the steps I went through.
+Through my years of programming, I've been refining the notes I keep next to my keyboard. It went from nothing to an online mind map! Here are the steps I went through.
 
 ## Nothing... and buggy code!
 
 I always had my head in the clouds. At school, I did a lot of silly mistakes, but it ended up ok most of the time. When I started programming, I thought I could approach the job the same way.
 
-> 💡 ~~Dont' worry too much, it will work fine in the end...~~
+> 💡 ~~Don't worry too much, it will work fine in the end...~~
 
 That did not work! I soon got the feedback that my code contained a lot of bugs.
 
@@ -33,20 +33,20 @@ That did not work! I soon got the feedback that my code contained a lot of bugs.
 
 Knowing that I could not trust myself to be-more-careful, I looked for something else. That's how I discovered [Test Driven Development](/categories/#testing) and [eXtreme Programming](/categories/#extreme-programming).
 
-TDD contains 3 steps Fail the test, Pass the test and Refactor, aka Red, Green, Refactor. The catch is that we can always come up with more things to refactor than we have time. So, we often postpone refactoring, for good reasons:
+TDD consists of 3 steps Fail the test, Pass the test and Refactor (aka Red, Green, Refactor). The catch is that we can always come up with more things to refactor than we have time. So, we often postpone refactoring, for good reasons:
 
 *   "These 2 pieces of code look similar, but I am not sure they relate to the same business concept. Let's wait until I catch Joe and ask him"
 *   I could refactor this now, but it might be faster to wait until I have done X.
 *   This is duplicated, but it's a lot of work to factorize. More than I can afford given the customer constraints. We'd rather start a long term refactoring with the team
 *   etc
 
-That's why I started to keep hand written notes next to my keyboard. To be sure not to forget things before I closed my task. With time, I would add more reminders to these notes, like special test cases for example.
+That's why I started to keep hand-written notes next to my keyboard. To be sure not to forget things before I closed my task. With time, I would add more reminders to these notes, like special test cases for example.
 
 ![Sample hand notes like I used to write]({{site.url}}/imgs/2019-08-16-to-do-list-or-mind-map-for-programming/hand-written-notes-for-programming.jpeg)
 
 These little notes already brought quite some benefits:
 
-*   A higher level view of the full task.
+*   A higher-level view of the full task.
 *   They help to take a step back and make better decisions.
 *   They help to skip parts of the work that are not necessary right now, which is key to a sustainable pace.
 
@@ -54,11 +54,11 @@ These little notes already brought quite some benefits:
 
 ## A TODO-list for pair programming
 
-A few years down the road, I had the chance to join an XP team. I discovered pair programming, and the role of navigator. The hand written notes proved even more useful there.
+A few years down the road, I had the chance to join an XP team. I discovered pair programming and the role of navigator. The hand-written notes proved even more useful there.
 
-When navigating, we are at a unique place to think of the design, notice things to improve, tests cases to add... [The navigator](https://gist.github.com/jordanpoulton/607a8854673d9f22c696) can spend his time updating the notes, without interrupting the driver! That's one of the main benefits of pairing.
+When navigating, we are at a unique place to think of the design, notice things to improve, test cases to add, etc. [The navigator](https://gist.github.com/jordanpoulton/607a8854673d9f22c696) can spend his time updating the notes without interrupting the driver! That's one of the main benefits of pairing.
 
-The difficulty though, is that when we switch roles, the new navigator takes over the notes. This forced us to use a more structured format. [That's how we ended up with real TO DO list](/real-programmers-have-todo-lists/).
+The difficulty though, is that both buddies need to understand the notes. When we switch roles, the new navigator takes over the notes. This forced us to use a more structured format. [That's how we ended up with real TO DO list](/real-programmers-have-todo-lists/).
 
 ![Sample hand written TO DOs list. A TO DO list for programming is a boost to pair programming collaboration.]({{site.url}}/imgs/2019-08-16-to-do-list-or-mind-map-for-programming/hand-written-to-do-list-for-programming.jpeg)
 
@@ -80,13 +80,13 @@ As we improved the way we worked, we improved our TO DO list for programming as 
 
 ## A Mind Map for refactoring
 
-As explained in [5 XP practices that will make your remote team more effective](https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-effective/) remote pairing is easier with small commits. We were trying to keep the tests passing all the time, and were doing more and more baby-steps refactoring.
+As explained in [5 XP practices that will make your remote team more effective](https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-effective/) remote pairing is easier with small commits. We were trying to keep the tests passing all the time and were doing more and more baby-steps refactoring.
 
-> Make the change easy, them do the change. [Kent Beck](https://www.kentbeck.com/)
+> Make the change easy, then do the change. [Kent Beck](https://www.kentbeck.com/)
 
 To make this manageable, we started to split the TO DO list items in sub steps. Our TO DO list was looking more and more like a graph of baby steps changes. (Side Note: Graph of baby refactoring steps are also called [Mikado Graphs](/categories/#mikado-method))
 
-At this stage, the TO DO list had become a full plan of the work to do. The root node represented the story or task itself. It's children were the main sub-tasks. Each sub-task could have sub-parts, etc... We did not plan everything in details from the start, but we updated it as we went.
+At this stage, the TO DO list had become a full plan of the work to do. The root node represented the story or task itself. Its children were the main sub-tasks. Each sub-task could have sub-parts, etc. We did not plan everything in details from the start, but we updated it as we went.
 
 The text todo list was showing its limits, that's when we switched to a mind map for programming.
 
@@ -110,10 +110,10 @@ Check their post [The Surprisingly Inclusive Benefits of Mob Programming](https:
 
 Whether you are solo, pair or mob programming, I encourage you to start your TO DO map now. It's very easy to get started. Draw a mind map of your plan, and update it as you go. It's a low effort, high return move.
 
-You'll be able to keep a high level vision of the task at hand:
+You'll be able to keep a high-level vision of the task at hand:
 
-1.  You will take better decisions
+1.  You will make better decisions
 2.  You will know what's done and what's left to do
 3.  You will be able to efficiently pair or mob program
 
-If you are solo or colocated, a sheet of paper or a whiteboard will be enough. If you are remote, you'd better head to Google Docs, [Coggle](https://coggle.it/) or any online mind mapping tool.
+If you are solo or colocated, a sheet of paper or a whiteboard will be enough. If you are remote, you'd better head to Google Docs, [Coggle](https://coggle.it/), or any online mind mapping tool.
