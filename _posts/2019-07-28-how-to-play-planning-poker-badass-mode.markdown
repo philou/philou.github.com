@@ -11,7 +11,6 @@ description: "Planning poker often turns into a power struggle where everyone lo
 header:
    teaser: /imgs/2019-07-28-how-to-play-planning-poker-badass-mode/how-to-play-planning-poker-teaser.jpeg
    og_image: /imgs/2019-07-28-how-to-play-planning-poker-badass-mode/how-to-play-planning-poker-og.jpeg
-published: false
 ---
 _[Planning poker](https://en.wikipedia.org/wiki/Planning_poker) and [story points](https://www.mountaingoatsoftware.com/blog/what-are-story-points) often turn into a power struggle where everyone loses. Here are 2 winning strategies for how to play planning poker as dev teams_
 
