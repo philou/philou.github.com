@@ -1,5 +1,6 @@
 #!/bin/sh
 
+./_check_fixmes.sh
 ./_check_links.sh
 
 bundle exec jekyll clean

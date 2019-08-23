@@ -17,6 +17,30 @@ export JEKYLL_GITHUB_TOKEN=XXX
 
 A token with only repo-read and notifications accesses seem to fix the issue.
 
+### How to update gem dependencies
+
+Remote Github pages version in `_config.yml` is automatically updated (see below). It's not the case for gems. Here is how to do it
+
+`brew upgrade rbenv ruby-build`
+
+`rbenv install --list`
+
+`rbenv install xxx`
+
+Update `.ruby-version`
+
+`bundle update`
+
+Test with `./_preview.sh` and `./_local_preview.sh`
+
+And maybe some more...
+
+`BUNDLE_GEMFILE=Gemfile.local bundle update`
+
+and
+
+`./_local_preview.sh`
+
 ### If I get gem missing with _local_preview.sh
 
 Local preview uses a different `Gemfile`. Whenever we update the main bundle, we should also update this alternate bundle with `BUNDLE_GEMFILE=Gemfile.local bundle update`

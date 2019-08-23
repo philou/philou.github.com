@@ -1,11 +1,15 @@
 source "https://rubygems.org"
 
+# FIXME: Upgrade to Jekyll 4 when both previews work well
+gem "jekyll", "< 4.0.0"
+
 gem "minimal-mistakes-jekyll"
 gem "jekyll-redirect-from"
 
 group :jekyll_plugins do
   gem "jekyll-feed"
   gem "github-pages"
+  gem "jemoji"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
