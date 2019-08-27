@@ -4,7 +4,9 @@ title: "Why Machine Learning in Software Engineering #3: The Future"
 date: 2019-09-26
 comments: true
 categories:
- - TODO
+ - machine learning
+ - testing
+ - continuous improvement
  - why-machine-learning-in-software-engineering-series
 description: "TODO"
 header:

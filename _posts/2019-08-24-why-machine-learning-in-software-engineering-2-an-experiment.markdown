@@ -4,7 +4,9 @@ title: "Why Machine Learning in Software Engineering #2: An Experiment"
 date: 2019-09-19
 comments: true
 categories:
- - TODO
+ - testing
+ - continuous improvement
+ - machine learning
  - why-machine-learning-in-software-engineering-series
 description: "TODO"
 header:
@@ -48,7 +50,7 @@ That was not all though. Ismail used Gradient Boosting (TODO) algorithm to train
 
 That's how we confirmed that software engineering best practices apply to our codebase!
 
-### Small changelists
+### Small commits
 
 Ismail discovered that the number of files in a commit correlates with more test failures. In short, the smaller the commit, the safer.
 

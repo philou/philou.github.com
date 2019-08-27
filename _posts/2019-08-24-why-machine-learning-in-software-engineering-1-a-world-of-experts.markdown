@@ -1,20 +1,23 @@
 ---
 layout: single
-title: "Why Machine Learning in Software Engineering #1: A world of experts"
+title: "Why Machine Learning in Software Engineering #1: A World of Experts"
 date: 2019-09-12
 comments: true
 categories:
- - TODO
+ - continuous improvement
+ - machine learning
  - why-machine-learning-in-software-engineering-series
-description: "TODO"
+description: "It's the opinions of experts that drive Software Engineering! Models, like Big O, would lead to more fact-based discussions and better decisions. This is the first part of a 3 posts story about how we tried to apply machine learning to software engineering."
 header:
    teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/TODO-teaser.jpeg
    og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/TODO-og.jpeg
 published: false
 ---
-_It's the opinions of experts that drives Software Engineering! Models, like Big O, would lead to more fact-based discussions and better decisions._
+_It's the opinions of experts that drive Software Engineering! Models, like [Big O](https://www.geeksforgeeks.org/analysis-algorithms-big-o-analysis/), would lead to more fact-based discussions and better decisions._
 
-Fashion, fame and strong personalities drive the software engineering world! Think of .js frameworks, or of Uncle Bob's Clean Code and Software Craftsmanship movements.
+This is the first part of [a 3 posts story about how we tried to apply machine learning to software engineering](/categories/#why-machine-learning-in-software-engineering-series). During a 6 months internship, we found a way to identify the most critical tests to run. We also confirmed that practices like small commits, modular code and the open/closed principle apply to our codebase.
+
+Fashion, fame and strong personalities drive the software engineering world! Think of .js frameworks, or of [Uncle Bob](https://blog.cleancoder.com/)'s [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code) and [Software Craftsmanship](http://manifesto.softwarecraftsmanship.org/) movements.
 
 All these define the current best practices. Even though they are only the result of the experience of some people.
 
@@ -38,9 +41,11 @@ The experts answers are of little help here 😞. Still, answering these questio
 
 These challenges are contextual. There is not a single answer that is valid across all projects and teams.
 
-In Thinking Fast and Slow, Cal Newport (TODO check and link) explains that we, humans, are full of biases. He concludes that we should prefer algorithms for fact-based decision making! (TODO check)
+![Cover of the book Thinking Fast and Slow. Daniel Kahneman said that on decision involving a lot of uncertainty, algorithms are better than humans](../imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/thinking-fast-and-slow.jpg)
 
-I had the demonstration about that a few weeks ago while I was coaching a team. We were doing the 'Median of a list of list' Randori (TODO) kata to practice TDD with algorithms. The trick is that TDD won't drive you towards a non-trivial algorithm (cf Ron Jefferies Sudoku). We can still leverage TDD with the following strategy:
+In [Thinking Fast and Slow](https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow), [Daniel Kahneman](https://www.goodreads.com/author/show/72401.Daniel_Kahneman) explains that we, humans, are full of biases. He concludes that, in the face of high uncertainty, [we should prefer algorithms for better decision making](https://fs.blog/2017/03/algorithms-complex-decision-making/)!
+
+I had the demonstration about that a few weeks ago while I was coaching a team. We were doing the 'Median of a list of list' [Randori kata](/why-you-should-start-a-team-coding-dojo-randori-right-now/) to practice [Test Driven Development](/categories/#tdd) with algorithms. The trick is that TDD won't drive you towards a non-trivial algorithm (cf [Ron Jefferies Sudoku](https://ronjeffries.com/xprog/articles/roroncemore/)). We can still leverage TDD with the following strategy:
 
 1.  Think an algorithm
 2.  Write tests to incrementally write to a slow version of this algorithm
@@ -52,10 +57,19 @@ We had reached step 3 and the team was discussing which part to optimize. People
 
 Data Science is all about building models.
 
+![Black and White wireframe illustration of a human head with a brain made of silicon circuits. Machine Learning in Software Engineering could help us to make better decisions.](../imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/machine-learning.jpg)
+
 As software engineers, we have a lot of data and we build data-science systems for others. It's a pity we don't use Data Science for ourselves!
 
 ## To be continued
 
-This was part 1 of a 3 posts story about how we tried to apply machine learning to software engineering. In the next post, I'll go over how we applied machine learning to identify the tests that are most likely to fail.
+This was part 1 of [a 3 posts story about how we tried to apply machine learning to software engineering](/categories/#why-machine-learning-in-software-engineering-series).
 
-Stay tuned!
+1. [A World of Experts](/why-machine-learning-in-software-engineering-1-a-world-of-experts/)
+2. An Experiment
+3. The Future
+
+
+In the next post, I'll go over how we applied machine learning to identify the tests that are most likely to fail.
+
+[Stay tuned!](http://eepurl.com/dxKE95)
