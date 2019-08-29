@@ -12,7 +12,6 @@ description: "TDD is 1/3 failing the test, 1/3 passing the test and 1/3 refactor
 header:
    teaser: /imgs/2019-08-02-does-programming-equal-refactoring/tdd-tcr-programming-equals-refactoring-teaser.jpeg
    og_image: /imgs/2019-08-02-does-programming-equal-refactoring/tdd-tcr-programming-equals-refactoring-og.jpeg
-published: false
 ---
 _This infographics presents how [TCR](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864) increases the share of refactoring in [TDD](/categories/#tdd). But Refactoring is already most of our daily work! We'd better learn it seriously._
 
@@ -46,4 +45,4 @@ Done well, I actually find Refactoring pretty rewarding. I know I'm making the l
 
 We can [learn TDD refactoring techniques](/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/), like any skill. Reading a few [books](https://www.amazon.com/s?k=refactoring&i=stripbooks-intl-ship) and [starting a coding dojo](/how-to-start-a-team-coding-dojo-randori-today/) will get you on good tracks.
 
-During this summer, I've posted a few similar [infographics](/categories/#infographic). This was the last one, [stay tuned!](http://eepurl.com/dxKE95) for longer posts.
+During this summer, I've posted a few similar [infographics](/categories/#infographic). This was the last one, [stay tuned!](http://eepurl.com/dxKE95) for a longer post next week.

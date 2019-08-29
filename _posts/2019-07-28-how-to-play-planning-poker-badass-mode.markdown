@@ -52,4 +52,4 @@ The idea here is to reduce the estimates, but fail until business people listen.
 3.  Third, explain again to business people why estimates where not realistic. [Compromising on clean code should not be an option](https://www.youtube.com/watch?v=SfWCRl75Kas).
 4.  Repeat...
 
-During this summer, I'll post a few similar [infographics](/categories/#infographic). [Stay tuned!](http://eepurl.com/dxKE95)
+During this summer, I'll post a few similar [infographics](/categories/#infographic). Next one is [Does Programming equal Refactoring?](/does-programming-equal-refactoring/)
