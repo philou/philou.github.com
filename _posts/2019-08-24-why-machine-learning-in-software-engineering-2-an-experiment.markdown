@@ -10,11 +10,13 @@ categories:
  - why-machine-learning-in-software-engineering-series
 description: "TODO"
 header:
-   teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/TODO-teaser.jpeg
-   og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/TODO-og.jpeg
+   teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/machine-learning-teaser.jpg
+   og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/machine-learning-og.jpg
 published: false
 ---
 _A Machine Learning in Software Engineering intern identified critical tests to run. He also confirmed the open-close principle, modular code and small-commits!_
+
+![A drawing of a robot reading a book. Can we use machine learning on software engineering challenges?](../imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/machine-learning.jpg)
 
 This is part 2 of a 3 posts story about how we tried to apply machine learning to software engineering. In the previous post, I explained how data science could help us to make better decisions. If you haven't, start reading from the beginning.
 

@@ -10,11 +10,13 @@ categories:
  - why-machine-learning-in-software-engineering-series
 description: "TODO"
 header:
-   teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/TODO-teaser.jpeg
-   og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/TODO-og.jpeg
+   teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future-teaser.jpg
+   og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future-og.jpg
 published: false
 ---
 _There are many opportunities for Machine Learning in Software Engineering: testing, product management, processes... It might even set a sustainable pace!_
+
+![Drawing of someone diving in a swimming-pool of 0s and 1s. There will be machine learning in software engineering.](../imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future.jpg)
 
 This is the last of a 3 posts story about how we tried to apply machine learning to software engineering. Previous post was about how a 6 month internship in Machine-Learning confirmed software-engineering best-practices. If you haven't, start reading from the beginning.
 
