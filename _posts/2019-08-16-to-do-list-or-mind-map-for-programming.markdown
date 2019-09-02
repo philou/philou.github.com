@@ -31,7 +31,7 @@ That did not work! I soon got the feedback that my code contained a lot of bugs.
 
 ## Hand notes for TDD
 
-Knowing that I could not trust myself to be-more-careful, I looked for something else. That's how I discovered [Test Driven Development](/categories/#testing) and [eXtreme Programming](/categories/#extreme-programming).
+Knowing that I could not trust myself to be-more-careful, I looked for something else. That's how I discovered [Test Driven Development]({{site.url}}/categories/#testing) and [eXtreme Programming]({{site.url}}/categories/#extreme-programming).
 
 TDD consists of 3 steps Fail the test, Pass the test and Refactor (aka Red, Green, Refactor). The catch is that we can always come up with more things to refactor than we have time. So, we often postpone refactoring, for good reasons:
 
@@ -58,7 +58,7 @@ A few years down the road, I had the chance to join an XP team. I discovered pai
 
 When navigating, we are at a unique place to think of the design, notice things to improve, test cases to add, etc. [The navigator](https://gist.github.com/jordanpoulton/607a8854673d9f22c696) can spend his time updating the notes without interrupting the driver! That's one of the main benefits of pairing.
 
-The difficulty though, is that both buddies need to understand the notes. When we switch roles, the new navigator takes over the notes. This forced us to use a more structured format. [That's how we ended up with real TO DO list](/real-programmers-have-todo-lists/).
+The difficulty though, is that both buddies need to understand the notes. When we switch roles, the new navigator takes over the notes. This forced us to use a more structured format. [That's how we ended up with real TO DO list]({{site.url}}/real-programmers-have-todo-lists/).
 
 ![Sample hand written TO DOs list. A TO DO list for programming is a boost to pair programming collaboration.]({{site.url}}/imgs/2019-08-16-to-do-list-or-mind-map-for-programming/hand-written-to-do-list-for-programming.jpeg)
 
@@ -70,7 +70,7 @@ The story of my hand notes does not end there though...
 
 ## An online doc for remote pairing
 
-A while ago, [I started to remote pair program](/from-zero-to-pair-programming-hero/) with my friend [Ahmad Atwi](https://ahmadatwi.me/). Maintaining a TO DO list on paper did not work anymore. 😰
+A while ago, [I started to remote pair program]({{site.url}}/from-zero-to-pair-programming-hero/) with my friend [Ahmad Atwi](https://ahmadatwi.me/). Maintaining a TO DO list on paper did not work anymore. 😰
 
 We switched to online collaborative editors like Google docs to keep this TO DO list up to date. This was an easy improvement that made remote pairing simpler for everyone!
 
@@ -84,7 +84,7 @@ As explained in [5 XP practices that will make your remote team more effective]
 
 > Make the change easy, then do the change. [Kent Beck](https://www.kentbeck.com/)
 
-To make this manageable, we started to split the TO DO list items in sub steps. Our TO DO list was looking more and more like a graph of baby steps changes. (Side Note: Graph of baby refactoring steps are also called [Mikado Graphs](/categories/#mikado-method))
+To make this manageable, we started to split the TO DO list items in sub steps. Our TO DO list was looking more and more like a graph of baby steps changes. (Side Note: Graph of baby refactoring steps are also called [Mikado Graphs]({{site.url}}/categories/#mikado-method))
 
 At this stage, the TO DO list had become a full plan of the work to do. The root node represented the story or task itself. Its children were the main sub-tasks. Each sub-task could have sub-parts, etc. We did not plan everything in details from the start, but we updated it as we went.
 

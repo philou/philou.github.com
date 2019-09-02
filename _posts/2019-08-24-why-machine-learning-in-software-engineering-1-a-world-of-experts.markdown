@@ -17,7 +17,7 @@ _It's the opinions of experts that drive Software Engineering! Models, like [Big
 
 ![Drawing of 'an expert' looking upwards with a finger raised. The best practices of software engineering are mostly the opinions of experts.]({{site.url}}/imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/a-world-of-experts.jpg)
 
-This is the first part of [a 3 posts story about how we tried to apply machine learning to software engineering](/categories/#why-machine-learning-in-software-engineering-series). During a 6 months internship, we found a way to identify the most critical tests to run. We also confirmed that practices like small commits, modular code, and the open/closed principle apply to our codebase.
+This is the first part of [a 3 posts story about how we tried to apply machine learning to software engineering]({{site.url}}/categories/#why-machine-learning-in-software-engineering-series). During a 6 months internship, we found a way to identify the most critical tests to run. We also confirmed that practices like small commits, modular code, and the open/closed principle apply to our codebase.
 
 Fashion, fame and strong personalities drive the software engineering world! Think of .js frameworks, or of [Uncle Bob](https://blog.cleancoder.com/)'s [Clean Code](https://www.goodreads.com/book/show/3735293-clean-code) and [Software Craftsmanship](http://manifesto.softwarecraftsmanship.org/) movements.
 
@@ -47,7 +47,7 @@ These challenges are contextual. There is not a single answer that is valid acro
 
 In [Thinking Fast and Slow](https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow), [Daniel Kahneman](https://www.goodreads.com/author/show/72401.Daniel_Kahneman) explains that we, humans, are full of biases. He concludes that, in the face of high uncertainty, [we should prefer algorithms for better decision making](https://fs.blog/2017/03/algorithms-complex-decision-making/)!
 
-I had a demonstration about that a few weeks ago while I was coaching a team. We were doing the 'Median of a list of list' [Randori kata](/why-you-should-start-a-team-coding-dojo-randori-right-now/) to practice [Test Driven Development](/categories/#tdd) with algorithms. The trick is that TDD won't drive you towards a non-trivial algorithm (cf [Ron Jefferies Sudoku](https://ronjeffries.com/xprog/articles/roroncemore/)). We can still leverage TDD with the following strategy:
+I had a demonstration about that a few weeks ago while I was coaching a team. We were doing the 'Median of a list of list' [Randori kata]({{site.url}}/why-you-should-start-a-team-coding-dojo-randori-right-now/) to practice [Test Driven Development]({{site.url}}/categories/#tdd) with algorithms. The trick is that TDD won't drive you towards a non-trivial algorithm (cf [Ron Jefferies Sudoku](https://ronjeffries.com/xprog/articles/roroncemore/)). We can still leverage TDD with the following strategy:
 
 1.  Think an algorithm
 2.  Write tests to incrementally write to a slow version of this algorithm
@@ -65,9 +65,9 @@ As software engineers, we have a lot of data and we build data-science systems f
 
 ## To be continued
 
-This was part 1 of [a 3 posts story about how we tried to apply machine learning to software engineering](/categories/#why-machine-learning-in-software-engineering-series).
+This was part 1 of [a 3 posts story about how we tried to apply machine learning to software engineering]({{site.url}}/categories/#why-machine-learning-in-software-engineering-series).
 
-1. [A World of Experts](/why-machine-learning-in-software-engineering-1-a-world-of-experts/)
+1. [A World of Experts]({{site.url}}/why-machine-learning-in-software-engineering-1-a-world-of-experts/)
 2. An Experiment
 3. The Future
 
