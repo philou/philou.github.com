@@ -16,7 +16,7 @@ published: false
 ---
 _There are many opportunities for Machine Learning in Software Engineering: testing, product management, processes... It might even set a sustainable pace!_
 
-![Drawing of someone diving in a swimming-pool of 0s and 1s. There will be machine learning in software engineering.]({{site.url}}/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future.jpg)
+![Drawing of someone diving in a swimming-pool of 0s and 1s. There will be machine learning in software engineering.]({{site.url}}/imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future.jpg)
 
 This is the last of [a 3 posts story about how we tried to apply machine learning to software engineering]({{site.url}}/categories/#why-machine-learning-in-software-engineering-series). [The previous post]({{site.url}}/why-machine-learning-in-software-engineering-2-an-experiment/) was about how a 6-month internship in Machine-Learning confirmed software-engineering best-practices. If you haven't, start reading from [the beginning]({{site.url}}/why-machine-learning-in-software-engineering-1-a-world-of-experts/).
 
@@ -26,7 +26,7 @@ This was only a 6 months internship. We only had a glimpse at machine learning a
 
 Data science for software testing is becoming a hot topic. I've noticed an increasing number of talks about data science at testing conferences.
 
-[![Invite to the Paris Ministry of Testing Meetup "How Machine Learning Is Used In the New Age of QA Automation Tools"]({{site.url}}/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/meetup-ministry-of-testing-paris-AI.jpg)](https://www.meetup.com/fr-FR/Ministry-Of-Testing-Paris/events/260728954/)
+[![Invite to the Paris Ministry of Testing Meetup "How Machine Learning Is Used In the New Age of QA Automation Tools"]({{site.url}}/imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/meetup-ministry-of-testing-paris-AI.jpg)](https://www.meetup.com/fr-FR/Ministry-Of-Testing-Paris/events/260728954/)
 
 I've heard the most about [fuzzing smart inputs](https://www.researchgate.net/publication/326874506_An_Automatic_Test_Data_Generation_Tool_using_Machine_Learning) and creating an AI for large test failure analysis.
 
@@ -60,7 +60,7 @@ Data Science will improve software engineering in ways we cannot even think of t
 
 Finally, a lot of the industry's 'best practices' are about taking the time to do good work... to go faster in the end. Unfortunately, this is a hard message to sell when we are under the stress of fire-fighting bugs.
 
-[![Cover of the book 21 Lessons for the 21st Century. The book argues that we will resort to AIs to take uncertain decisions better than we can.]({{site.url}}/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/21-lessons-for-the-21st-century.jpg)](https://www.goodreads.com/book/show/38820046-21-lessons-for-the-21st-century)
+[![Cover of the book 21 Lessons for the 21st Century. The book argues that we will resort to AIs to take uncertain decisions better than we can.]({{site.url}}/imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/21-lessons-for-the-21st-century.jpg)](https://www.goodreads.com/book/show/38820046-21-lessons-for-the-21st-century)
 
 In [21 Lessons for the 21st Century](https://www.goodreads.com/book/show/38820046-21-lessons-for-the-21st-century) [Yuval Noah Hariri](https://www.ynharari.com/fr/) says that we will resort to AIs to make better decisions for us. With more knowledge and fewer biases, these decisions should be smarter. [Daniel Kahneman](https://en.wikipedia.org/wiki/Daniel_Kahneman) supports a similar idea in [Thinking Fast and Slow](https://www.goodreads.com/book/show/11468377-thinking-fast-and-slow?from_search=true).
 
