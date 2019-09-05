@@ -13,7 +13,6 @@ description: "Maintaining a TO DO list for programming creates a higher-level vi
 header:
    teaser: /imgs/2019-08-16-to-do-list-or-mind-map-for-programming/todo-map-for-programming-teaser.jpeg
    og_image: /imgs/2019-08-16-to-do-list-or-mind-map-for-programming/todo-map-for-programming-og.jpeg
-published: false
 ---
 _Maintaining a TO DO list or a Mind Map for programming task has many benefits. It improves collaboration, our decisions and our vision of what's left to do._
 

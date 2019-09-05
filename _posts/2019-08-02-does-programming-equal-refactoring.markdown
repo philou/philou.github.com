@@ -45,4 +45,4 @@ Done well, I actually find Refactoring pretty rewarding. I know I'm making the l
 
 We can [learn TDD refactoring techniques](/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/), like any skill. Reading a few [books](https://www.amazon.com/s?k=refactoring&i=stripbooks-intl-ship) and [starting a coding dojo](/how-to-start-a-team-coding-dojo-randori-today/) will get you on good tracks.
 
-During this summer, I've posted a few similar [infographics](/categories/#infographic). This was the last one, [stay tuned!](http://eepurl.com/dxKE95) for a longer post next week.
+During this summer, I've posted a few similar [infographics](/categories/#infographic). This was the last one, [the next post is a longer read about maintaining a TO DO list or a Mind Map for programming](/to-do-list-or-mind-map-for-programming/).
