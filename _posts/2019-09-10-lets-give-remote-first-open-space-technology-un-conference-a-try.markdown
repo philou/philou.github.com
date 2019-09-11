@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Let's give remote-first open-space technology un-conference a try!"
+title: "Let's give Remote-First Open-Space Technology Un-Conferences a try!"
 date: 2019-10-03
 comments: true
 categories:
@@ -12,19 +12,31 @@ categories:
  - remote-open-space-series
 description: "Open-space technology un-conference is a powerful self-organized workshop. Here is the story of how we made it remote-first to grow our refactoring community of practice. Modern video chat software make this work surprisingly well. The remote-first format even demonstrated special advantages!"
 header:
-   teaser: /imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/TODO-teaser.jpg
-   og_image: /imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/TODO-og.jpg
+   teaser: /imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/remote-first-open-space-technology-un-conference-teaser.jpeg
+   og_image: /imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/remote-first-open-space-technology-un-conference-og.jpeg
 published: false
 ---
 _[Open-space technology un-conference](http://ktchange.com/openspace.html) is a powerful self-organized workshop. Here is the story of how we made it remote-first to grow a [community of practice](https://en.wikipedia.org/wiki/Community_of_practice)._
 
-_This is the first half of [a mini-series about remote-first open-space technology un-conferences]({{site.url}}/categories/#remote-open-space-series)._
+![Drawing of groups of people discussing on different clouds]({{site.url}}/imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/remote-first-open-space-technology-un-conference.jpeg)
+
+_This post is the first half of [a mini-series about remote-first open-space technology un-conferences]({{site.url}}/categories/#remote-open-space-series)._
 
 Like most successful companies, [Murex](https://www.murex.com/), the company I work at, has its share of legacy code. Legacy code is great because it's bringing money in; it's more problematic when we need to change it.
 
 To help developers to do so, I spawned a [Refactoring]({{site.url}}/categories/#refactoring) Community of Practice. As a coach, my goal is for this COP to survive me when I move to other activities. I want the COP to become [self-organized]({{sitel.url}}/categories/#selforganizing) and part of the culture.
 
 Open Space Technology is an excellent un-conference format that fosters self-organization. People have organized un-conferences of hundreds of people with it. It's even powerful enough to [transform organizations](https://openspaceagility.com/)!
+
+{% assign figure_path="/imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/NASA-open-space.jpg" | absolute_url %}
+    
+{% assign figure_alt="Open Space meeting at NASA Goddard Space Flight Center" %}
+    
+{% capture figure_caption %}
+Credit: NASA/GSFC/Debbie McCallum - [https://www.flickr.com/photos/nasa_goddard/4465372408](https://www.flickr.com/photos/nasa_goddard/4465372408) - Under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0) - Visible on [Open Space Technology Wikipedia page](https://en.wikipedia.org/wiki/Open_Space_Technology)
+{% endcapture %}
+    
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 The catch is that we have offices in Beirut, Dublin, and Paris. We tried satellite Open-Space Technology un-conferences in the Refactoring COP. Unfortunately, with mitigated results. Most developers are in Paris. It makes the workshop less interesting in Dublin and Beirut.
 
@@ -56,11 +68,13 @@ Remote-first brought its specific improvements:
 
 *   People could share their screen, for example, to demo some code. Doing this is not always easy in a physical un-conference session.
 *   It's more inclusive of people working from Beirut and Dublin. They could enjoy all the discussions happening in Paris as if they were there.
-*   It contributes to a sustainable pace as it simplifies working from home.
+*   By simplifying working from home, it contributes to a sustainable-pace and a sustainable living
+
+![Photo of an isolated house in the countryside]({{site.url}}/imgs/2019-09-10-lets-give-remote-first-open-space-technology-un-conference-a-try/remote-house.jpg)
 
 ## To be continued
 
-This was the first half of [a mini-series about remote-first open-space technology un-conferences]({{site.url}}/categories/#remote-open-space-series).
+This post was the first half of [a mini-series about remote-first open-space technology un-conferences]({{site.url}}/categories/#remote-open-space-series).
 
 1. [Let's give remote-first open-space technology un-conference a try!]({{sitel.url}}/lets-give-remote-first-open-space-technology-un-conference-a-try/)
 2. How to run a Remote-First Open-Space Technology Un-Conference

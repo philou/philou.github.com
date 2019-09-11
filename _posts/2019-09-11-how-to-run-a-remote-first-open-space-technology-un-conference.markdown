@@ -18,7 +18,7 @@ published: false
 ---
 _Open-space technology un-conference is a powerful self-organized workshop. Here is a guide to making it remote-first, and even more inclusive!_
 
-This is the second half of a mini-series about remote-first open-space technology un-conferences. The previous post was our success story with it. If you haven't, read it first!
+This post is the second half of a mini-series about remote-first open-space technology un-conferences. The previous post was our success story with it. If you haven't, read it first!
 
 ## What it looked like
 
@@ -31,6 +31,8 @@ Once we had enough topics, people moved from 'General' to the topic channel of t
 After a while, I asked everyone to come back to the General channel. We ended sharing a few takeaways from each discussion.
 
 ## Principles
+
+TODO my drawing of the principles
 
 First, even though it is remote-first, it is an open-space technology un-conference! It follows the same principles as the co-located variant.
 
