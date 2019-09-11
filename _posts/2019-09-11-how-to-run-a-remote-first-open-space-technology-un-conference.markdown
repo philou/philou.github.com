@@ -9,6 +9,7 @@ categories:
  - continuous improvement
  - collaborative work
  - coaching
+ - remote-open-space-series
 description: "TODO"
 header:
    teaser: /imgs/2019-09-11-how-to-run-a-remote-first-open-space-technology-un-conference/TODO-teaser.jpg
