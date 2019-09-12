@@ -11,7 +11,6 @@ description: "It's the opinions of experts that drive Software Engineering! Mode
 header:
    teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/a-world-of-experts-teaser.jpg
    og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-1-a-world-of-experts/a-world-of-experts-og.jpg
-published: false
 ---
 _It's the opinions of experts that drive Software Engineering! Models, like [Big O](https://www.geeksforgeeks.org/analysis-algorithms-big-o-analysis/), would lead to more fact-based discussions and better decisions._
 
