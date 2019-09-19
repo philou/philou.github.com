@@ -12,7 +12,6 @@ description: "Slow tests are painful. This is the story of how a Machine Learnin
 header:
    teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/machine-learning-teaser.jpg
    og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-2-an-experiment/machine-learning-og.jpg
-published: false
 ---
 _A Machine Learning in Software Engineering intern identified critical tests to run. He also confirmed the [open-closed principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle), [modular code](https://en.wikipedia.org/wiki/Modular_programming), and [small-commits](https://crealytics.com/blog/5-reasons-keeping-git-commits-small/)!_
 

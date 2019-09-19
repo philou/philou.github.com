@@ -67,10 +67,10 @@ As software engineers, we have a lot of data and we build data-science systems f
 This was part 1 of [a 3 posts story about how we tried to apply machine learning to software engineering]({{site.url}}/categories/#why-machine-learning-in-software-engineering-series).
 
 1. [A World of Experts]({{site.url}}/why-machine-learning-in-software-engineering-1-a-world-of-experts/)
-2. An Experiment
+2. [An Experiment]({{site.url}}/why-machine-learning-in-software-engineering-2-an-experiment/)
 3. The Future
 
 
-In the next post, I'll go over how we applied machine learning to identify the tests that are most likely to fail.
+In [the next post]({{site.url}}/why-machine-learning-in-software-engineering-2-an-experiment/), I'll go over how we applied machine learning to identify the tests that are most likely to fail.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue Reading...]({{site.url}}/why-machine-learning-in-software-engineering-2-an-experiment/)
