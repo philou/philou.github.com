@@ -68,7 +68,7 @@ This was part 1 of [a 3 posts story about how we tried to apply machine learning
 
 1. [A World of Experts]({{site.url}}/why-machine-learning-in-software-engineering-1-a-world-of-experts/)
 2. [An Experiment]({{site.url}}/why-machine-learning-in-software-engineering-2-an-experiment/)
-3. The Future
+3. [The Future]({{site.url}}/why-machine-learning-in-software-engineering-3-the-future/)
 
 
 In [the next post]({{site.url}}/why-machine-learning-in-software-engineering-2-an-experiment/), I'll go over how we applied machine learning to identify the tests that are most likely to fail.

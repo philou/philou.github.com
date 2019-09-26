@@ -121,9 +121,9 @@ Again this confirms [a known best practice](https://www.conventionalcommits.org)
 
 ## To be continued
 
-This was part 2 of [a 3 posts story about how we tried to apply machine learning to software engineering]({{site.url}}/categories/#why-machine-learning-in-software-engineering-series). In the next post, I'll go over different opportunities for Machine Learning in Software Engineering.
+This was part 2 of [a 3 posts story about how we tried to apply machine learning to software engineering]({{site.url}}/categories/#why-machine-learning-in-software-engineering-series). In [the next post]({{site.url}}/why-machine-learning-in-software-engineering-3-the-future/), I'll go over different opportunities for Machine Learning in Software Engineering.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue Reading...]({{site.url}}/why-machine-learning-in-software-engineering-3-the-future/)
 
 ## PS
 

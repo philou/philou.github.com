@@ -115,4 +115,4 @@ Read these books and give it a try!
 
 ### PS July 2019
 
-A few months ago, I had the chance to welcome [Ismail](https://twitter.com/ismailham91) as a [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) intern. He worked on finding end-to-end tests that are most likely to fail given a commit. The results were encouraging. (Full story coming soon, so [stay tuned](http://eepurl.com/dxKE95) 😀)
+A few months ago, I had the chance to welcome [Ismail](https://twitter.com/ismailham91) as a [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) intern. He worked on finding end-to-end tests that are most likely to fail given a commit. The results were encouraging, you can read the full story in [Why Machine Learning in Software Engineering]({{site.url}}/why-machine-learning-in-software-engineering-1-a-world-of-experts/)

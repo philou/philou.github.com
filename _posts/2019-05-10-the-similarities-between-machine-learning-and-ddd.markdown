@@ -19,7 +19,7 @@ _We discovered that [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) co
 
 ## Story of Ismail's internship
 
-A few months ago, had the chance to welcome [Ismail](https://twitter.com/ismailham91)  as a [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) intern. He worked on finding end-to-end tests that are most likely to fail given a commit. (Full story coming soon, so [stay tuned](http://eepurl.com/dxKE95) 😀)
+A few months ago, had the chance to welcome [Ismail](https://twitter.com/ismailham91)  as a [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) intern. He worked on finding end-to-end tests that are most likely to fail given a commit. (The results were encouraging, you can read the full story in [Why Machine Learning in Software Engineering]({{site.url}}/why-machine-learning-in-software-engineering-1-a-world-of-experts/))
 
 Even if [I had already played a bit with machine learning](/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/), I'm still a newbie on the matter. As I watched Ismail work, connections between DDD ([Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design)) and machine learning became obvious.
 

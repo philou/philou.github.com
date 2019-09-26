@@ -12,7 +12,6 @@ description: "There are many opportunities for Machine Learning in Software Engi
 header:
    teaser: /imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future-teaser.jpg
    og_image: /imgs/2019-08-24-why-machine-learning-in-software-engineering-3-the-future/dive-in-the-future-og.jpg
-published: false
 ---
 _There are many opportunities for Machine Learning in Software Engineering: testing, product management, processes... It might even set a sustainable pace!_
 
