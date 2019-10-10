@@ -14,7 +14,6 @@ description: "Open-space technology un-conference is a powerful self-organized w
 header:
    teaser: /imgs/2019-09-11-how-to-run-a-remote-first-open-space-technology-un-conference/remote-first-open-space-technology-un-conference-teaser.jpeg
    og_image: /imgs/2019-09-11-how-to-run-a-remote-first-open-space-technology-un-conference/remote-first-open-space-technology-un-conference-og.jpeg
-published: false
 ---
 _[Open-space technology](http://ktchange.com/openspace.html) un-conference is a powerful self-organized workshop. Here is a guide to making it [remote-first](https://stackoverflow.blog/2017/02/08/means-remote-first-company/), and even more inclusive!_
 

@@ -76,8 +76,8 @@ Remote-first brought its specific improvements:
 This post was the first half of [a mini-series about remote-first open-space technology un-conferences]({{site.url}}/categories/#remote-open-space-series).
 
 1. [Let's give remote-first open-space technology un-conference a try!]({{sitel.url}}/lets-give-remote-first-open-space-technology-un-conference-a-try/)
-2. How to run a Remote-First Open-Space Technology Un-Conference
+2. [How to run a Remote-First Open-Space Technology Un-Conference]({{sitel.url}}/how-to-run-a-remote-first-open-space-technology-un-conference/)
 
 The next post will be a detailed step by step guide about how to run your own.
 
-[Stay tuned...](http://eepurl.com/dxKE95)
+[Continue Reading...]({{sitel.url}}/how-to-run-a-remote-first-open-space-technology-un-conference/)
