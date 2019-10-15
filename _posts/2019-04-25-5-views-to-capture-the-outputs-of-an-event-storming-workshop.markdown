@@ -88,7 +88,7 @@ Again the [Picture that Explains Everything](https://leanpub.com/introducing_eve
 
 ![Drawing of the pattern of post-its for outbound messages triggered by an event and a policy. (The policy only appears at the design-level event Storming, so you might not have it in a Big Picture Event Storming).]({{site.url}}/imgs/2019-04-25-5-views-to-capture-the-outputs-of-an-event-storming-workshop/event-output-message.png)
 
-We can take some time to go through the board and spot these patterns. Every match is an input or output message for the system. We get even more benefits if we are zooming on a single bounded context in a Design Level Event Storming. In this case, we should have modeled other contexts as external systems. We can also use any Read Model information to detail the content of messages.
+We can take some time to go through the board and spot these patterns. Every match is an input or output message for the system. We get even more benefits if we are zooming on a single bounded context in a Design-Level Event Storming. In this case, we should have modeled other contexts as external systems. We can also use any Read Model information to detail the content of messages.
 
 We can then record this 'API' view of the board on a flip-chart. This can be very useful, especially if we are building a service oriented system.
 
