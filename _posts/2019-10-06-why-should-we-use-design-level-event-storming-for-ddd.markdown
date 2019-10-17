@@ -12,7 +12,6 @@ description: "Design-Level Event Storming is a collaborative design workshop. We
 header:
    teaser: /imgs/2019-10-06-why-should-we-use-design-level-event-storming-for-ddd/design-level-event-storming-zoom-teaser.jpeg
    og_image: /imgs/2019-10-06-why-should-we-use-design-level-event-storming-for-ddd/design-level-event-storming-zoom-og.jpeg
-published: false
 ---
 _Design Level Event Storming is a collaborative design workshop. Use it to build and share the design of critical parts of systems using Event Sourcing and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design)._
 
@@ -65,9 +64,9 @@ Like Big Picture Event Storming, again, it helps us [to spot critical topics]({{
 This post was the first in [a series about how to build event-based systems with Design Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series):
 
 1.  [Why you should use Design Level Event Storming for DDD]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/)
-2.  Detailed agenda for a DDD Design Level Event Storming #1
-3.  Detailed agenda for a DDD Design Level Event Storming #2
-4.  7 tactics that will make your DDD Design Level Event Storming payoff
+2.  Detailed agenda for a DDD Design Level Event Storming #1 (October 24th)
+3.  Detailed agenda for a DDD Design Level Event Storming #2 (October 31st)
+4.  7 tactics that will make your DDD Design Level Event Storming payoff (November 7th)
 
 The next posts will be a step by step guide to run a Design Level Event Storming.
 

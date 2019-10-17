@@ -50,7 +50,7 @@ A sample Design Level Event Storming board from [boldare.com’s event storming 
 
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
-Be warned though that this kind of design leans heavily towards [CQRS](https://martinfowler.com/bliki/CQRS.html), [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) and DDD (Domain Driven Design). I'll definitely write a follow-up series on Design Level Event Storming, [stay tuned](http://eepurl.com/dxKE95)!
+Be warned though that this kind of design leans heavily towards [CQRS](https://martinfowler.com/bliki/CQRS.html), [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html) and DDD (Domain Driven Design). For more details, here is a a follow-up [series on Design-Level Event Storming]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/).
 
 ## Eradicate specification bugs with [Example Mapping](https://cucumber.io/blog/2015/12/08/example-mapping-introduction)
 

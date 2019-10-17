@@ -8,7 +8,7 @@ categories:
  - architecture
  - ddd
  - how-to-run-a-design-level-event-storming-series
-description: "The most valuable activities in a DDD Design-Level Event Storming are UX and Aggregates explorations. Here is a step by step agenda that will lead us there. The chain of events helps us to define good UXes. Discussing business rules, then grouping them leads us to good Aggregate Names."
+description: "The most valuable activities in a DDD Design-Level Event Storming are UX and Aggregates explorations. Here is a step by step agenda that will lead us there. The chain of events helps us to define good UX. Discussing business rules, then grouping them leads us to good Aggregate Names."
 header:
    teaser: /imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/design-level-event-storming-last-piece-teaser.jpeg
    og_image: /imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/design-level-event-storming-last-piece-og.jpeg
@@ -22,7 +22,7 @@ This post is the third in [a series about how to build event-based systems with 
 
 ### 3. Commands
 
-The first step to making the pattern emerge is to prefix every [domain event](https://martinfowler.com/eaaDev/DomainEvent.html) with a [command](https://en.wikipedia.org/wiki/Command_pattern). This step is pretty mechanic and straightforward. If you have an event called "Trade booked", then prefix it with a command "Book Trade". Sometimes, the command names are a bit different, but you should manage to figure this out.
+The first step to making the pattern emerge is to prefix every [domain event](https://martinfowler.com/eaaDev/DomainEvent.html) with a [command](https://en.wikipedia.org/wiki/Command_pattern). This step is pretty mechanic and straightforward. If you have an event called "Trade booked", prefix it with a command "Book Trade". Sometimes, the command names are a bit different, but you should manage to figure this out.
 
 TODO example command Start Game- Game started
 
@@ -100,7 +100,7 @@ Ask participants to fill in these business rules with:
 *   Postconditions: what is valid after
 *   Invariants: important things that remain true all along
 
-If you want to learn more about these concepts, check out [this stackoverflow quesetion](https://stackoverflow.com/questions/11331964/what-are-the-differences-pre-condition-post-condition-and-invariant-in-computer). Some business rules are dead-simple, but others generate much discussion. This knowledge sharing between domain experts and developers is invaluable.
+If you want to learn more about these concepts, check out [this stackoverflow question](https://stackoverflow.com/questions/11331964/what-are-the-differences-pre-condition-post-condition-and-invariant-in-computer). Some business rules are dead-simple, but others generate much discussion. This knowledge sharing between domain experts and developers is invaluable.
 
 TODO sample: Start Game - Yellow(pre: pieces frozen, players > 1; post: pieces unfrozen, current player 1st alphabetical order; invariant: ...) - Game started
 

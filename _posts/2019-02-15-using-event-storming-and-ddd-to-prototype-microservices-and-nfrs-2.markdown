@@ -77,7 +77,7 @@ This is a general Event Storming tip. It’s good to regularly re-do the exercis
 
 ### Design Level Event Storming
 
-We could also try to do [Design-Level Event Storming](https://buildplease.com/pages/fpc-6/). Going into finer-grained design will clarify the messages exchanged between services. I'll definitely write a follow-up post on the topic someday. [So stay tuned](http://eepurl.com/dxKE95)!
+We could also try to do [Design-Level Event Storming](https://buildplease.com/pages/fpc-6/). Going into finer-grained design will clarify the messages exchanged between services. Here is a follow-up [series about Design-Level Event Storming]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/).
 
 ### Evolutionary design
 
