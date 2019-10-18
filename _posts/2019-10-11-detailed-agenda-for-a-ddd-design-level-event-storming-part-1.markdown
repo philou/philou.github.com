@@ -34,7 +34,7 @@ That's why **it's very natural to do a Design-Level Event Storming after a [Big 
 
 ## A guided agenda
 
-TODO: Update agenda poster and add a picture here
+[![Poster presenting the agenda of a Design-Level Event Storming. The phases are: 1 Bring in Domain Events, 2 Present the picture that explains everything, 3 Add commands, 4 Actors and policies, 5 blank Read Models and Mock Ups, 6 Fill these, 7 Add External Systems, 8 Add blank business rules, 9 fill these, 10 Merge and name Aggregates]({{site.url}}/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-agenda-small.jpg)]({{site.url}}/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-agenda.jpg)
 
 By its nature, Design-Level Event Storming is a lot less chaotic than its Big Picture cousin. Big Picture Event Storming is about exploring. Design-Level Event Storming is about designing and building.
 
@@ -56,7 +56,7 @@ Before you run the Design-Level Event Storming, you'll need [domain events](http
 
 You might be focusing on a core bounded context after a Big Picture Event Storming. In this case, copy these events to another blank design board.
 
-TODO example events Game started, ambiguous rule encountered, feedback on rule sent. Game ended
+[![Photo of "live game" sub domain events. We can see events 'Game started', 'Piece moved', 'Invalid move detected', 'Ambiguous rule detected', 'Feedback on rule sent', 'Game ended']({{site.url}}/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/live-game-domain-events-small.jpg)]({{site.url}}/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/live-game-domain-events.jpg)
 
 You'll have to find another way if you are starting from scratch. You can run the first steps of the Big Picture Event Storming on this bounded context alone. I would do at least:
 
