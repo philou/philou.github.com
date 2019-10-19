@@ -30,7 +30,7 @@ A first thing you might do, even before you leave the workshop, is to shrink the
 
 [Aggregates](https://martinfowler.com/bliki/DDD_Aggregate.html) already group events together. **Aggregates make it easy to draw subdomains.**
 
-TODO drawing of sample board where you draw 2 subdomains
+![Drawing of 2 subdomains drawn around aggregates on a Design-Level Event Storming board]({{site.url}}/imgs/2019-10-15-7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/subdomains-design-level-event-storming.jpeg)
 
 ### Tactic 2: Curate views
 
