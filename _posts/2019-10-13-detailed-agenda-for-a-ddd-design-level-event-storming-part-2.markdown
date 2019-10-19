@@ -24,7 +24,7 @@ This post is the third in [a series about how to build event-based systems with 
 
 The first step to making the pattern emerge is to prefix every [domain event](https://martinfowler.com/eaaDev/DomainEvent.html) with a [command](https://en.wikipedia.org/wiki/Command_pattern). This step is pretty mechanic and straightforward. If you have an event called "Trade booked", prefix it with a command "Book Trade". Sometimes, the command names are a bit different, but you should manage to figure this out.
 
-TODO example command Start Game- Game started
+[![Photo of the 'Start Game' command blue post-it, stuck just to the left of the 'Game Started' domain event]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/command-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/command.jpg)
 
 ### 4. Actors or policies
 
@@ -32,13 +32,13 @@ Commands can either be sent by a human (an [actor]({{site.url}}/detailed-agenda-
 
 Go through all the commands and prefix them with an actor or a policy. Having done a [Big Picture Event Storming]({{site.url}}/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/) before might help. Look for actors you might already have identified.
 
-TODO sample actors: moderator - Start Game - Game Started
+[![Photo of the 'Moderator' actor small and pale post-it, stuck just to the left of the 'Start Game' command]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/actor-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/actor.jpg)
 
 Actors should have a title, and policies should follow the form "Whenever Event X, then Command Y".
 
 We sometimes automate policies with a Mechanical Turk. In this case, it's simpler to keep modeling this as a policy rather than introducing a 'dumb' actor.
 
-TODO sample policy: Player - move piece - piece moved - whenever a piece is moved - backup game state - game state backed up
+[![Photo of a policy 'Whenever a piece is moved, backup game' on a lilac post-it between the 'Piece moved' domain event and the 'Backup Game' command]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/policy-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/policy.jpg)
 
 ### 5. Empty read-models and UX mock-ups
 
@@ -50,7 +50,7 @@ This step is, again, a straightforward step:
 *   The green post-its are for read-models. 
 *   The white post-its are for the UX mock-ups.
 
-TODO example read models: ambiguous rule encountered - green - white - player - send feedback on rule - feedback on rule sent
+[![Photo of blank Read-Model green post it and blank UI Mock-up white post-it at the right of the 'Ambiguous Rule Detected' domain event]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/blank-read-model-and-mock-up-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/blank-read-model-and-mock-up.jpg)
 
 We just set up the stage for the next step.
 
@@ -64,7 +64,7 @@ It's time to discuss what the actor needs to know to decide what to do next.
 
 Write down the data you want to display on the green, read-model post-it. Draw a UX mock-up of the screen that should display this data.
 
-TODO example read models: ambiguous rule encountered - read-model(rule book) - white( document, anchors for rules, inline comment tool, send button) - player - send feedback on rule
+[![Photo of a Read-Model containing {Rule text, Highlighted section and Comments} and a UI Mock-up sketch at the right of the 'Ambiguous Rule Detected' domain event, between the 'Ambiguous Rule Detected' domain event to the left and the 'Send feedback on rule' command to the right]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/read-model-and-mock-up-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/read-model-and-mock-up.jpg)
 
 ### 7. External systems
 
@@ -76,7 +76,7 @@ If you did a Big Picture Event Storming before, you'd already have spotted a few
 
 In the scope of a bounded context, other contexts become external systems too! Go through all your commands. Add a pink post-it between the command and the event when they involve another context. Write the name of the other context on the pink post-it.
 
-TODO sample policy: piece moved - whenever a piece is moved - backup game state - Backup Context - game state backed up
+[![Photo of the 'Game Backup Subdomain' external system pink post-it between the 'Backup game' command to the left and the 'Game backed up' domain event to the right]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/external-system-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/external-system.jpg)
 
 ### 8. Empty aggregates
 
@@ -84,7 +84,7 @@ Here's another mechanic step. If an external system did not raise an event, then
 
 Go through all commands and events that are not linked by an external system. Add an empty yellow post-it there.
 
-TODO sample: moderator - Start Game - Yellow - Game started
+[![Photo of a blank Business-Rule yellow post-it between the 'Start game' command to the left and the 'Game Started' domain event to the right]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/blank-business-rule-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/blank-business-rule.jpg)
 
 ### 9. Content of aggregates
 
@@ -102,7 +102,7 @@ Ask participants to fill in these business rules with:
 
 If you want to learn more about these concepts, check out [this stackoverflow question](https://stackoverflow.com/questions/11331964/what-are-the-differences-pre-condition-post-condition-and-invariant-in-computer). Some business rules are dead-simple, but others generate much discussion. This knowledge sharing between domain experts and developers is invaluable.
 
-TODO sample: Start Game - Yellow(pre: pieces frozen, players > 1; post: pieces unfrozen, current player 1st alphabetical order; invariant: ...) - Game started
+[![Photo of a Business-Rule containing {precondition: game is frozen, postcondition: 1 active player, postcondition: pieces are movable, invariant: number of players} between the 'Start game' command to the left and the 'Game Started' domain event to the right]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/business-rule-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/business-rule.jpg)
 
 ### 10. Name aggregates
 
@@ -114,11 +114,11 @@ This last step helps us to identify aggregates around which we'll code the syste
 
 Your board should start to look like that:
 
-TODO sample board
+![High level drawing of what a Design-Level Event Storming will look like once we group related business rules together]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/merged-business-rules.jpeg)
 
 At this point, it should be easy to name your aggregates! Add an extra yellow post-it on top of aggregates to give the group a name.
 
-TODO sample: Game Aggregate (Start Game - Aggregate - Game started + Stop Game - Aggregate - Game stoped)
+[![Photo of the 'Game' Aggregate materialized by a yellow post-it on top of the business rules post-its for 'Start Game' and 'End Game' commands]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/aggregate-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/aggregate.jpg)
 
 ## To be continued
 
