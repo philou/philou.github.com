@@ -59,13 +59,13 @@ The picture that explains everything by [Alberto Brandolini](https://twitter.com
 
 Like Big Picture Event Storming, again, it helps us [to spot critical topics]({{site.url}}/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/). For example, [the most pressing problems and the primary domain concept definitions]({{site.url}}/5-views-to-capture-the-outputs-of-an-event-storming-workshop/).
 
-## To be continued
+## Continues
 
 This post was the first in [a series about how to build event-based systems with Design Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series):
 
 1.  [Why you should use Design Level Event Storming for DDD]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/)
 2.  [Detailed agenda for a DDD Design Level Event Storming #1]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/)
-3.  Detailed agenda for a DDD Design Level Event Storming #2 (October 31st)
+3.  [Detailed agenda for a DDD Design Level Event Storming #2]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/)
 4.  7 tactics that will make your DDD Design Level Event Storming payoff (November 7th)
 
 The [next post]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/) will be a step by step guide to run a Design Level Event Storming.

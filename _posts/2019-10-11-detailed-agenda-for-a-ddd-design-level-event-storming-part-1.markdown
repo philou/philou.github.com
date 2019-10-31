@@ -98,8 +98,8 @@ Here is what I would say about it:
 >
 > From now on, we should make everything explicit. Everything we say should appear on the board.
 
-## To be continued
+## Continues
 
-This post was the second in [a series about how to build event-based systems with Design-Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series). The next post will detail the remaining steps of the Design-Level Event Storming.
+This post was the second in [a series about how to build event-based systems with Design-Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series). The [next post]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/) will detail the remaining steps of the Design-Level Event Storming.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue Reading...]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/)
