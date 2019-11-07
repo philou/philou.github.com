@@ -12,7 +12,6 @@ description: "Running a DDD Design-Level Event Storming is easy. Running a great
 header:
    teaser: /imgs/2019-10-15-7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/7-design-level-event-storming-tactics-teaser.jpeg
    og_image: /imgs/2019-10-15-7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/7-design-level-event-storming-tactics-og.jpeg
-published: false
 ---
 _What should we do after a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Design-Level Event Storming? How do we capture shared knowledge? How do we make the workshop more effective? Find answers here!_
 

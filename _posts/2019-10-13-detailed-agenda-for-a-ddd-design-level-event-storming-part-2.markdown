@@ -119,12 +119,12 @@ At this point, it should be easy to name your aggregates! Add an extra yellow po
 
 [![Photo of the 'Game' Aggregate materialized by a yellow post-it on top of the business rules post-its for 'Start Game' and 'End Game' commands]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/aggregate-small.jpg)]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/aggregate.jpg)
 
-## To be continued
+## Continues
 
 Congratulation, you've reached the end of the workshop!
 
 ![Photo of a mountain path where we can guess the sun will appear at the next turn. Design-Level Event Storming is a step by step workshop that leads to great outcome.]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/end-of-the-path.jpg)
 
-This post was the third in [a series about how to build event-based systems with Design-Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series). The next, and last, post will provide tactics to reap the most value out of a Design-Level Event Storming.
+This post was the third in [a series about how to build event-based systems with Design-Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series). [The next, and last, post]({{site.url}}/7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/) will provide tactics to reap the most value out of a Design-Level Event Storming.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue Reading...]({{site.url}}/7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/)

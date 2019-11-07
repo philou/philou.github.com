@@ -66,7 +66,7 @@ This post was the first in [a series about how to build event-based systems with
 1.  [Why you should use Design Level Event Storming for DDD]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/)
 2.  [Detailed agenda for a DDD Design Level Event Storming #1]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/)
 3.  [Detailed agenda for a DDD Design Level Event Storming #2]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/)
-4.  7 tactics that will make your DDD Design Level Event Storming payoff (November 7th)
+4.  [7 tactics that will make your DDD Design Level Event Storming payoff]({{site.url}}/7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/)
 
 The [next post]({{site.url}}/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/) will be a step by step guide to run a Design Level Event Storming.
 
