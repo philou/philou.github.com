@@ -12,7 +12,6 @@ description: "Event Storming is an iterative process. It alternates phases of co
 header:
    teaser: /imgs/2019-10-20-sustain-collective-intelligence-with-event-storming/event-storming-iterative-process-teaser.jpeg
    og_image: /imgs/2019-10-20-sustain-collective-intelligence-with-event-storming/event-storming-iterative-process-og.jpeg
-published: false
 ---
 _[Event Storming](https://www.eventstorming.com/) builds [collective intelligence](https://en.wikipedia.org/wiki/Collective_intelligence). We can keep it alive if we continue to work closely together and regularly repeat Event Storming._
 
