@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "How to fight priority paralysis... with Event Storming and DDD"
+title: "How to fight priority paralysis with Event Storming and DDD"
 date: 2019-11-21
 comments: true
 categories:
