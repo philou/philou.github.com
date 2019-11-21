@@ -12,7 +12,6 @@ description: "How to eat the elephant? It's easy to fall into priority paralysis
 header:
    teaser: /imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/event-storming-walking-skeleton-teaser.jpeg
    og_image: /imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/event-storming-walking-skeleton-og.jpeg
-published: false
 ---
 _Where should we start? It's easy to fall into priority paralysis as you envision an ambitious product. Let's use DDD [Event Storming](https://www.eventstorming.com/) to scope your next step!_
 
