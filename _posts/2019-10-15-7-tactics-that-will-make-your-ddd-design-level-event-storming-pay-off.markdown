@@ -47,7 +47,7 @@ All the business rules are a significant first step to defining precise user-sto
 
 > 💡 The best way to get more feedback after a Design-Level Event Storming is to give try to build the design!
 
-Finally, the best way to get more feedback is to give all this a try! If you are starting, building a [walking skeleton](https://codeclimate.com/blog/kickstart-your-next-project-with-a-walking-skeleton/) creates the most learning. Event Storming is pretty useful at scope-selection. (I'll write a post about that someday, so [stay tuned!](http://eepurl.com/dxKE95))
+Finally, the best way to get more feedback is to give all this a try! If you are starting, building a [walking skeleton](https://codeclimate.com/blog/kickstart-your-next-project-with-a-walking-skeleton/) creates the most learning. [Event Storming is pretty useful at scope-selection]({{site.url}}/how-to-fight-priority-paralysis-with-event-storming-and-ddd/).
 
 ![Black and white illustration of a walking skeleton (or zombie to be more precise). Design-Level Event Storming is the perfect workshop to agree on the scope of a walking skeleton]({{site.url}}/imgs/2019-10-15-7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/walking-skeleton.jpg)
 
