@@ -42,4 +42,4 @@ And then **return to the Event Storming design board with more knowledge**. Focu
 
 > 💡 Event Storming builds collective intelligence, work as a [mob](https://en.wikipedia.org/wiki/Mob_programming#targetText=Mob%20programming%20is%20a%20software,code%20at%20the%20same%20time.) to keep it alive!
 
-I'll soon write about introducing Event Storming and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) in your organization. [Stay tuned!](http://eepurl.com/dxKE95)
+I've since written about introducing Event Storming and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) in your organization: [Organization refactoring: Event Storming and DDD injection]({{site.url}}/organization-refactoring-event-storming-and-ddd-injection-part-1/).
