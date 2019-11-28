@@ -14,7 +14,6 @@ description: "Injecting DDD or Event Storming in your organization can be tricky
 header:
    teaser: /imgs/2019-11-22-organization-refactoring-event-storming-and-ddd-injection-part-1/ddd-injection-teaser.jpeg
    og_image: /imgs/2019-11-22-organization-refactoring-event-storming-and-ddd-injection-part-1/ddd-injection-og.jpeg
-published: false
 ---
 _Injecting [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) or [Event Storming](https://www.eventstorming.com/) in your organization can be tricky. Here are techniques to onboard your domain experts, one step at a time!_
 
