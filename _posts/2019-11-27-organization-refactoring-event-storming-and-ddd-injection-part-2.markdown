@@ -13,11 +13,10 @@ description: "The key to successfully inject DDD (Domain Driven Design) and Even
 header:
    teaser: /imgs/2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/event-storming-detour-teaser.jpeg
    og_image: /imgs/2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/event-storming-detour-og.jpeg
-published: false
 ---
 _The key to successful [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) and [Event Storming](https://en.wikipedia.org/wiki/Event_storming) injection is to wait for the perfect challenge. Otherwise, we'll have no choice but to hack the organization!_
 
-![Drawing of roadsigns written 'Detour, Business Challenge and Event Storming'. Waiting for the best business challenge to inject DDD and Event Storming is a winning strategy]({{site.url}}//2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/event-storming-detour.jpeg)
+![Drawing of roadsigns written 'Detour, Business Challenge and Event Storming'. Waiting for the best business challenge to inject DDD and Event Storming is a winning strategy]({{site.url}}/imgs/2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/event-storming-detour.jpeg)
 
 This post is the second half of [the story]({{site.url}}/categories/#event-storming-and-ddd-injection-series). If you haven't already, start by [the beginning]({{site.url}}/organization-refactoring-event-storming-and-ddd-injection-part-1/)!
 
@@ -37,7 +36,7 @@ Don't try to sell the technical benefits of DDD. Instead, wait until you spot so
 *   [Should we build or buy this component?]({{site.url}}/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/)
 *   [Should we rewrite or refactor this component?]({{site.url}}/rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/)
 
-[![Drawing of an infographics of the Event Storming loop: Devs meet domain experts -> Grow collective intelligence superpowers -> Make complex decisions in a short time -> Try for real -> Learn -> Devs meet domain experts -> .... Event Storming is a wonderful tool to make complex decisions. We can use this capability to inject DDD and Event Storming.]({{site.url}}//2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/event-storming-iterative-process-small.jpeg)]({{site.url}}/sustain-collective-intelligence-with-event-storming/)
+[![Drawing of an infographics of the Event Storming loop: Devs meet domain experts -> Grow collective intelligence superpowers -> Make complex decisions in a short time -> Try for real -> Learn -> Devs meet domain experts -> .... Event Storming is a wonderful tool to make complex decisions. We can use this capability to inject DDD and Event Storming.]({{site.url}}/imgs/2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/event-storming-iterative-process-small.jpeg)]({{site.url}}/sustain-collective-intelligence-with-event-storming/)
 
 The trick is to highlight that [it is only 1 or 2 intense days]({{site.url}}/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/) to get the great answer they need. The alternative is to go through many email exchanges and one to one meetings. It usually takes weeks, if not months, to make a very average decision. Compare the 2 alternatives to make the value of Event Storming obvious. Don't let availability be an issue; be open to accommodate people's schedules. For example, you can split the workshop into 2 hours slots over a few days.
 
@@ -67,11 +66,11 @@ Unfortunately, sometimes, domain experts remain out of reach. The Paris DDD Meet
 *   Bring in another expert somewhere
 *   Buy a book and play the expert yourself
 
-![Mind map notes I drew during the Paris DDD Meetup 'DDD from the trenches' back in 2018. Corporate hacking is another effective way to inject DDD (and Event Storming) in your organization]({{site.url}}//2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/ddd-from-the-trenches.jpeg)
+![Mind map notes I drew during the Paris DDD Meetup 'DDD from the trenches' back in 2018. Corporate hacking is another effective way to inject DDD (and Event Storming) in your organization]({{site.url}}/imgs/2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/ddd-from-the-trenches.jpeg)
 
 ### The Trojan horse
 
-![Photo of a wood statue of the Trojan Horse. Having an ex-developer among the domain experts is a great hack to inject DDD and Event Storming in your organization]({{site.url}}//2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/trojan-horse.jpg)
+![Photo of a wood statue of the Trojan Horse. Having an ex-developer among the domain experts is a great hack to inject DDD and Event Storming in your organization]({{site.url}}/imgs/2019-11-27-organization-refactoring-event-storming-and-ddd-injection-part-2/trojan-horse.jpg)
 
 Do you remember Bastien, who asked the question in [the first place]({{site.url}}/organization-refactoring-event-storming-and-ddd-injection-part-1/)? You might be wondering how he managed in the end?
 

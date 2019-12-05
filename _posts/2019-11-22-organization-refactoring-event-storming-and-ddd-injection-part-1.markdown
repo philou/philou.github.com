@@ -76,6 +76,6 @@ The key is to have these conversations as often as possible. With time, a trustf
 
 ## Continue Reading
 
-This post was only the first half of [the story]({{site.url}}/categories/#event-storming-and-ddd-injection-series). The next post contains the third and last step to inject Event Storming. As a bonus, it also provides a few organization hacks to get experts on board.
+This post was only the first half of [the story]({{site.url}}/categories/#event-storming-and-ddd-injection-series). [The next post]({{site.url}}/organization-refactoring-event-storming-and-ddd-injection-part-2/) contains the third and last step to inject Event Storming. As a bonus, it also provides a few organization hacks to get experts on board.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue reading...]({{site.url}}/organization-refactoring-event-storming-and-ddd-injection-part-2/)
