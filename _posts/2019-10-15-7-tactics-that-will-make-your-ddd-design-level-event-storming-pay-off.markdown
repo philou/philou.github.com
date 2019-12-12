@@ -57,11 +57,11 @@ If you already have a running system, the question might be a bit more complicat
 
 I've now run the Design-Level Event Storming quite a few times, and I've collected some best practices.
 
-Many general Event Storming best practices also work here. Read [4 tips that will make your DDD Big Picture Event Storming successful]({{site.url}}/4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/) for a few.
+Many general Event Storming best practices also work here. Read [4 tips that will make your DDD Big Picture Event Storming successful]({{site.url}}/4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/) for a few. (NOTE: I'm preparing some more, so [stay tuned!](http://eepurl.com/dxKE95))
 
 In any case, Design-Level Event Storming also has its specificities.
 
-### Tactic 5: Don't talk about DDD
+### Tactic 5: [Don't talk about DDD]({{site.url}}/first-rule-of-ddd-is-lets-not-talk-about-ddd/)
 
 First, it goes deeper into the DDD folklore. That might be too big a step for people who don't know DDD. I'd first go through the Big Picture Event Storming. It lets people discover DDD and appreciate all the benefits it has to offer. To say it another way
 
@@ -80,12 +80,12 @@ Second, post-its are great because we can move them around many times. As you mi
 [Shared understanding relies on common metaphors](https://www.goodreads.com/book/show/34459.Metaphors_We_Live_By). If post-its get aligned vertically instead of horizontally, add space NOW!
 
 {% assign figure_path="/imgs/2019-10-15-7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/to-infinity-and-beyond.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A photo of Toy Story's Buzz Lightyear" %}
-    
+
 {% capture figure_caption %}
 To Infinity and Beyond! By [Michele M. F.](https://www.flickr.com/photos/e-coli/), under [Attribution-ShareAlike 2.0 Generic (CC BY-SA 2.0)](https://creativecommons.org/licenses/by-sa/2.0/), original on [Flickr](https://www.flickr.com/photos/e-coli/10923806663){% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### Tactic 7: Optimize the time of Domain and UX experts

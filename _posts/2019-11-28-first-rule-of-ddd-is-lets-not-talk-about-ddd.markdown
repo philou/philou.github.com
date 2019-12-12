@@ -12,7 +12,6 @@ description: "DDD jargon is a domain expert repellent! Let's not talk about DDD,
 header:
    teaser: /imgs/2019-11-28-first-rule-of-ddd-is-lets-not-talk-about-ddd/1st-rule-of-DDD-teaser.jpeg
    og_image: /imgs/2019-11-28-first-rule-of-ddd-is-lets-not-talk-about-ddd/1st-rule-of-DDD-og.jpeg
-published: false
 ---
 _[DDD](https://en.wikipedia.org/wiki/Domain-driven_design) jargon is a domain expert repellent! Let's not talk about DDD, but instead, start engaging domain experts in doing DDD workshops!_
 

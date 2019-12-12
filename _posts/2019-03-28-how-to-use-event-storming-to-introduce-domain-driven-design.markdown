@@ -61,7 +61,7 @@ If you want to learn more about Event Storming, check my [series of post on the 
 
 ## How to use Event Storming to get people to do DDD without knowing?
 
-> 💡 1st rule of DDD, don't talk about DDD
+> 💡 [1st rule of DDD, don't talk about DDD]({{site.url}}/first-rule-of-ddd-is-lets-not-talk-about-ddd/)
 
 Alberto was an early member of the DDD community. Event Storming has huge bias towards analyzing the system from the point of view of the domain. During the Event Storming workshop, many DDD concepts will emerge. For example: Business Events, Bounded Contexts, Actors, Aggregates...
 

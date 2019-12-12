@@ -80,7 +80,7 @@ Relationship patterns phase is the most technical part of the workshop. You won'
 
 ![Photo of pink soap written 'Fight Club', as in the movie. Like the Fight Club, it's better to avoid naming DDD because of its convoluted names.]({{site.url}}/imgs/2019-02-12-focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/fight-club-soap.jpg)
 
-> 💡 DDD is like the Fight Club. Do not talk about DDD.
+> 💡 [DDD is like the Fight Club. Do not talk about DDD.]({{site.url}}/first-rule-of-ddd-is-lets-not-talk-about-ddd/)
 
 DDD has a bad reputation because it uses convoluted names. Try not to mention DDD and use less scary words. For example
 
