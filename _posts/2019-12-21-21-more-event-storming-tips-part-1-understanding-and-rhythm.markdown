@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "21 More Event Storming Tips - Part 1 - Understanding and Rhythm"
-date: 2020-01-02
+date: 2020-01-09
 comments: true
 categories:
  - event storming
@@ -11,7 +11,6 @@ description: "You've just invited 10 people to join your 8h Event Storming. Here
 header:
    teaser: /imgs/2019-12-21-21-more-event-storming-tips-part-1-understanding-and-rhythm/more-event-storming-tips-understanding-rhythm-teaser.jpeg
    og_image: /imgs/2019-12-21-21-more-event-storming-tips-part-1-understanding-and-rhythm/more-event-storming-tips-understanding-rhythm-og.jpeg
-published: false
 ---
 _You've just invited 10 people to join your 8h [Event Storming](https://en.wikipedia.org/wiki/Event_storming). Here are 9 Event Storming tips to maximize knowledge sharing and the use of everyone's time._
 

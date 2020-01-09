@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "21 More Event Storming Tips - Part 2 - Facilitation and Existing Code"
-date: 2020-01-09
+date: 2020-01-16
 comments: true
 categories:
  - event storming

@@ -57,7 +57,7 @@ If you already have a running system, the question might be a bit more complicat
 
 I've now run the Design-Level Event Storming quite a few times, and I've collected some best practices.
 
-Many general Event Storming best practices also work here. Read [4 tips that will make your DDD Big Picture Event Storming successful]({{site.url}}/4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/) for a few. (NOTE: I'm preparing some more, so [stay tuned!](http://eepurl.com/dxKE95))
+Many general Event Storming best practices also work here. Read [4 tips that will make your DDD Big Picture Event Storming successful]({{site.url}}/4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/) for a few. (NOTE: Since then, I've written [21 More Event Storming Tips]({{site.url}}/21-more-event-storming-tips-part-1-understanding-and-rhythm/))
 
 In any case, Design-Level Event Storming also has its specificities.
 

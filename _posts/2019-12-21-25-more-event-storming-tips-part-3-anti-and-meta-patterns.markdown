@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "21 More Event Storming Tips - part 3 - Anti and Meta Patterns"
-date: 2020-01-16
+date: 2020-01-23
 comments: true
 categories:
  - event storming
