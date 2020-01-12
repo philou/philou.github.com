@@ -10,13 +10,13 @@ categories:
  - more-event-storming-tips-series
 description: "Here are 7 more Event Storming tips! 4 facilitation tips to make sure attendees want more Event Storming. 3 tips about how to adapt Event Storming to existing code: how to twist the agenda, but also how to deal with developers’ stress!"
 header:
-   teaser: /imgs/2019-12-21-24-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code-teaser.jpg
-   og_image: /imgs/2019-12-21-24-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code-og.jpg
+   teaser: /imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code-teaser.jpg
+   og_image: /imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code-og.jpg
 published: false
 ---
 _More [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 4 tips to delight attendees with fantastic facilitation. 3 tips about animating an Event Storming when there is existing code._
 
-![Drawing of Event Storming Facilitation and Mr Legacy (Code) with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-21-24-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code.jpg)
+![Drawing of Event Storming Facilitation and Mr Legacy (Code) with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code.jpg)
 
 This was the second of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). The previous post contained tips about understanding and rhythm. If you haven't you might start by [the beginning]({{site.url}}/21-more-event-storming-tips-part-1-understanding-and-rhythm/)!
 
@@ -37,7 +37,7 @@ Go and discuss it with people or groups. Make sure they understood the instructi
 Sometimes things are slow because all people are spectators of a single discussion.
 
 
-![Schema of a bottleneck road-sign. Having a discussion bottleneck can really slow down the workshop. Here is an Event Storming tip to speed this up.]({{site.url}}/imgs/2019-12-21-24-more-event-storming-tips-part-2-facilitation-and-existing-code/bottleneck.jpg)
+![Schema of a bottleneck road-sign. Having a discussion bottleneck can really slow down the workshop. Here is an Event Storming tip to speed this up.]({{site.url}}/imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/bottleneck.jpg)
 
 It can be because only one person knows some crucial information. If this is the case, then we have no choice but to wait.
 
@@ -67,7 +67,7 @@ Indeed, [making these decisions explicit on a dedicated side-board works best]({
 *   save it somewhere
 *   or share it with a broader audience
 
-![Drawing of a flip-chart titled 'Decisions' where we stick post-its for decisions made during the Event Storming.]({{site.url}}/imgs/2019-12-21-24-more-event-storming-tips-part-2-facilitation-and-existing-code/decision-flipchart.jpeg)
+![Drawing of a flip-chart titled 'Decisions' where we stick post-its for decisions made during the Event Storming.]({{site.url}}/imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/decision-flipchart.jpeg)
 
 ## Dealing with existing code
 
@@ -96,7 +96,7 @@ One of the first Big-Picture Event-Storming I did was with a team working on a l
 
 As we went through the workshop, I noticed something: stress from the developers. I had not expected this, but Alberto had predicted it. He mentions this in the [Legacy Code Rocks podcast](https://www.legacycode.rocks/podcast-1/episode/27397029/event-storming-with-alberto-brandolini) and even calls it fear.
 
-![Picture of a factory running by night. Discussing big changes to the existing, and running, system can be stressful for developers. A good Event Storming tip is to make all the stress points explicit.]({{site.url}}/imgs/2019-12-21-24-more-event-storming-tips-part-2-facilitation-and-existing-code/existing-factory.jpg)
+![Picture of a factory running by night. Discussing big changes to the existing, and running, system can be stressful for developers. A good Event Storming tip is to make all the stress points explicit.]({{site.url}}/imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/existing-factory.jpg)
 
 The legacy system had not been built with [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) in mind. It looked very different from the system we were designing with Event Storming. The more concrete our design became, the more the developers anguished. I could almost hear them thinking:
 

@@ -11,15 +11,15 @@ categories:
  - more-event-storming-tips-series
 description: "Even more Event Storming tips! The first 3: “no special post-its”, “no-remote”, and “no big-design-up-front” will save you from the mistakes we did. The last 2: “community of practice” and “ask Alberto” are the recipe to learn more tips by yourself!"
 header:
-   teaser: /imgs/2019-12-21-25-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns-teaser.jpg
-   og_image: /imgs/2019-12-21-25-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns-og.jpg
+   teaser: /imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns-teaser.jpg
+   og_image: /imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns-og.jpg
 published: false
 ---
 _Even more [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 3 will help you to avoid the mistakes we did. The last 2 are the recipe to learn more tips by yourself!_
 
-![Drawing of a mistake and a T-shirt pattern with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-21-25-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns.jpg)
+![Drawing of a mistake and a T-shirt pattern with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns.jpg)
 
-This was the last of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [The previous post]({{site.url}}/24-more-event-storming-tips-part-2-facilitation-and-existing-code/) contained tips about facilitation and dealing with existing code. If you haven't you might also start by [the beginning]({{site.url}}/21-more-event-storming-tips-part-1-understanding-and-rhythm/)!
+This was the last of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [The previous post]({{site.url}}/21-more-event-storming-tips-part-2-facilitation-and-existing-code/) contained tips about facilitation and dealing with existing code. If you haven't you might also start by [the beginning]({{site.url}}/21-more-event-storming-tips-part-1-understanding-and-rhythm/)!
 
 ## Anti-patterns
 
@@ -29,7 +29,7 @@ As we tried variations around Event Storming, we also learned from our mistakes.
 
 Before getting Alberto's advice about logging decisions, we tried to use custom post-its. That did not work well. Event Storming already has a pretty large post-it bestiary, adding more is too much. Plus, it's almost impossible to find a post-it color that is not already used!
 
-![Picture of a guy in front of a wall full of sticky-notes and with a large sticky on his head too! Event Storming already has a complex post-it bestiary, adding a new one is not a good idea.]({{site.url}}/imgs/2019-12-21-25-more-event-storming-tips-part-3-anti-and-meta-patterns/too-many-post-its.jpg)
+![Picture of a guy in front of a wall full of sticky-notes and with a large sticky on his head too! Event Storming already has a complex post-it bestiary, adding a new one is not a good idea.]({{site.url}}/imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/too-many-post-its.jpg)
 
 When we tried this, people ignored these post-its. They made decisions but did not record them.
 
@@ -44,7 +44,7 @@ I heard good feedback from remote-robots at a conference. We thought we could gi
 
 We could not pay for a robot without being sure it would work. We tried to hack one with a moving speaker desk and a laptop... This was a disaster! The only outcome was that the poor remote-guy ended-up with a headache...
 
-![Drawing of a dismounted robot. Our tentative to hack-up a robot avatar for a remote participant failed misearbly... We don't have a good recipe for remote participation to Event Storming workshops yet]({{site.url}}/imgs/2019-12-21-25-more-event-storming-tips-part-3-anti-and-meta-patterns/robot.jpg)
+![Drawing of a dismounted robot. Our tentative to hack-up a robot avatar for a remote participant failed misearbly... We don't have a good recipe for remote participation to Event Storming workshops yet]({{site.url}}/imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/robot.jpg)
 
 Up to now, we did not find a satisfying way to run an Event Storming with remote participants.
 
