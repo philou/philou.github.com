@@ -107,6 +107,6 @@ You can read more about the next actions in ["5 Views to Capture the Outputs of 
 
 ## More tips in next posts
 
-This was the first of [a 3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [Next post](http://eepurl.com/dxKE95) will contain tips about facilitation and dealing with existing code.
+This was the first of [a 3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [Next post]({{site.url}}/21-more-event-storming-tips-part-2-facilitation-and-existing-code/) will contain tips about facilitation and dealing with existing code.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue Reading...]({{site.url}}/21-more-event-storming-tips-part-2-facilitation-and-existing-code/)

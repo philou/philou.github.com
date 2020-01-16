@@ -12,7 +12,6 @@ description: "Here are 7 more Event Storming tips! 4 facilitation tips to make s
 header:
    teaser: /imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code-teaser.jpg
    og_image: /imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code-og.jpg
-published: false
 ---
 _More [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 4 tips to delight attendees with fantastic facilitation. 3 tips about animating an Event Storming when there is existing code._
 
