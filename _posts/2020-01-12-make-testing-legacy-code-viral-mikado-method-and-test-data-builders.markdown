@@ -10,13 +10,13 @@ categories:
  - mocking
 description: "When testing legacy code, combine the test data builder pattern with the mikado method. Next time you have to fix a bug, instead of trying to test it directly, start a mikado graph of test data builders to add this test. This will snowball into more and more objects that are easy to set up in tests"
 header:
-   teaser: /imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/TODO-teaser.jpg
-   og_image: /imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/TODO-og.jpg
+   teaser: /imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid-teaser.jpeg
+   og_image: /imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid-og.jpeg
 published: false
 ---
 _When testing legacy code, combine the [test data builder pattern](https://thefriendlytester.co.uk/2015/06/an-introduction-to-data-builder-pattern.html) with [the mikado method](http://mikadomethod.info/). This snowballs into more and more objects that are easy to set up in tests._
 
-TODO drawing
+![Drawing of a squid holding papers written "Test data builders". Combining the Mikado Method with the Test Data Builder Pattern makes large cross-concern testing improvement possible.]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid.jpeg)
 
 ## Your Mission... Impossible!
 
@@ -26,7 +26,7 @@ I'm sure you've heard of this recommendation:
 
 Unfortunately, when working in legacy code, this is more depressing than empowering. I've seen codebases in which adding a unit test can take weeks! **Spending 3 weeks to add a test when fixing the bug will take 1 hour is often unjustifiable.** It's not easy to swallow for product managers or customers.
 
-![A lego character at his desk looking stressed out by too much work. Spending many weeks to test a legacy code bug is not justifiable.](../imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/too-much-work.jpg)
+![A lego character at his desk looking stressed out by too much work. Spending many weeks to test a legacy code bug is not justifiable.]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/too-much-work.jpg)
 
 This situation can get pretty stressful. Worst of all, it can only get worse!
 
@@ -50,7 +50,7 @@ Mocks have serious downsides. As I wrote before, **[using mocks to speed up test
 
 ## Mikado to the rescue
 
-[![The cover of the book The Mikado Meethod by Ola Ellenstam and Daniel Brolund](../imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-cover.jpg)](https://www.goodreads.com/book/show/17974534-the-mikado-method)
+[![The cover of the book The Mikado Method by Ola Ellenstam and Daniel Brolund]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-cover.jpg)](https://www.goodreads.com/book/show/17974534-the-mikado-method)
 
 The mikado method is the perfect workaround against long technical endeavors. It lets you split them down in small steps that we can deliver along with other business-as-usual tasks.
 
@@ -64,10 +64,10 @@ You can now write your test at your own sustainable pace. It might take 1 month,
 
 {% assign figure_path="/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-graph.jpg" | absolute_url %}
     
-{% assign figure_alt="Sample mikado graph showing the steps for an encapsulation goal. The mikado meethod graph is a powerful communication tool to get everyone to contribute to a refactoring" %}
+{% assign figure_alt="Sample mikado graph showing the steps for an encapsulation goal. The mikado method graph is a powerful communication tool to get everyone to contribute to a refactoring" %}
     
 {% capture figure_caption %}
-Sample mikado method graph as we can find on [mikadomethod.info/](http://mikadomethod.info/) by [Daniel Brolund](https://twitter.com/danielbrolund) and Ola Ellnestam
+Sample mikado method graph as we can find on [mikadomethod.info/](http://mikadomethod.info) by [Daniel Brolund](https://twitter.com/danielbrolund) and Ola Ellnestam
 {% endcapture %}
     
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
@@ -88,7 +88,7 @@ Let's update the initial recommendation again:
 
 Most nodes of the mikado graph will be about writing a test data builder for some data of the system. Every time you finish a step, you'll have a new reusable test data builder.
 
-[![Sample mikado method graph containing a lot of nodes about using the test data builder pattern](../imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/test-data-builder-pattern-mikado-method-graph-small.jpg)]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/test-data-builder-pattern-mikado-method-graph.jpg)
+[![Sample mikado method graph containing a lot of nodes about using the test data builder pattern]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/test-data-builder-pattern-mikado-method-graph-small.jpg)]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/test-data-builder-pattern-mikado-method-graph.jpg)
 
 At every step, you increase the testability of the system. As other developers try to test their own code, they are likely to:
 
@@ -96,7 +96,16 @@ At every step, you increase the testability of the system. As other developers t
 2.  Improve the builders along the way.
 3.  Make others even more likely to re-use these builders!
 
-TODO infographics: bug -> mikado graph of TDB -> new builders -> classes are easier to setup in test -> more tests -> builders are improved -> classes are easier to setup in test
+
+{% assign figure_path="/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builders-pattern-viral-small.jpeg" | absolute_url %}
+    
+{% assign figure_alt="Drawing of an infographics of the viral effect of combining the Mikado Method with the Test Data Builder Pattern: Bug -> Mikado of test data builders -> new builders -> new composite builders -> new builders -> easier test data setup -> more tests -> builders are improved -> easier test setup -> ..." %}
+    
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builders-pattern-viral.jpeg)
+{% endcapture %}
+    
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 It's viral!
 
