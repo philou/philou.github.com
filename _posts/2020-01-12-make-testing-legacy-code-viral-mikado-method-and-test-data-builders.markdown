@@ -46,7 +46,7 @@ The default solution to this problem is to use [mocks](https://stackoverflow.com
 *   The flip side is that these tests won't be very robust. When we have to refactor the code, we'll have to refactor the tests. Worse, if the real code behavior changes, tests will silently continue to pass!
 *   Finally, we often need to refactor the code before we add a mock.
 
-Mocks have serious downsides. As I wrote before, **[using mocks to speed up test data setup is an anti-pattern.](https://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)**
+Mocks have serious downsides. As I wrote before, **[using mocks to speed up test data setup is an anti-pattern.]({{site.url}}/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)**
 
 ## Mikado to the rescue
 
