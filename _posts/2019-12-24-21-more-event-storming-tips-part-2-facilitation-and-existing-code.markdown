@@ -109,6 +109,6 @@ Another option is to have a refactoring-challenges side-board. Developers can st
 
 ## More tips in next post
 
-This was the second of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [Next post](http://eepurl.com/dxKE95) will contain anti and meta patterns.
+This was the second of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [Next post]({{site.url}}/21-more-event-storming-tips-part-3-anti-and-meta-patterns/) will contain anti and meta patterns.
 
-[Stay tuned!](http://eepurl.com/dxKE95)
+[Continue reading...]({{site.url}}/21-more-event-storming-tips-part-3-anti-and-meta-patterns/)

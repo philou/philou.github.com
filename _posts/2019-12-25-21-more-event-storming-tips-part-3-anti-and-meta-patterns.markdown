@@ -13,7 +13,6 @@ description: "Even more Event Storming tips! The first 3: “no special post-its
 header:
    teaser: /imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns-teaser.jpg
    og_image: /imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns-og.jpg
-published: false
 ---
 _Even more [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 3 will help you to avoid the mistakes we did. The last 2 are the recipe to learn more tips by yourself!_
 
