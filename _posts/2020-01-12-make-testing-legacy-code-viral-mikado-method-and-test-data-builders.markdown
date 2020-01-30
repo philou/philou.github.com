@@ -12,7 +12,6 @@ description: "When testing legacy code, combine the test data builder pattern wi
 header:
    teaser: /imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid-teaser.jpeg
    og_image: /imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid-og.jpeg
-published: false
 ---
 _When testing legacy code, combine the [test data builder pattern](https://thefriendlytester.co.uk/2015/06/an-introduction-to-data-builder-pattern.html) with [the mikado method](http://mikadomethod.info/). This snowballs into more and more objects that are easy to set up in tests._
 
@@ -111,7 +110,7 @@ It's viral!
 
 ## Try it yourself
 
-[Ahmad](https://ahmadatwi.me/) and I published a [kata](http://codekata.com/) to spread the idea. It's under MIT license on [Github](https://github.com/murex/testbuilders-workshop). We made it as self-service as we could. Give it a try! We'd love to get your feedback!
+[Ahmad](https://ahmadatwi.me/) and I published a [kata](http://codekata.com/) to spread the idea. It's under MIT license on [Github](https://github.com/murex/mikado-testbuilders-kata). We made it as self-service as we could. Give it a try! We'd love to get your feedback!
 
 It's between 2 and 4 hours long. For the moment, code is available in Java and C++.
 
