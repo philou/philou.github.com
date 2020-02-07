@@ -7,6 +7,7 @@ categories:
  - coaching
  - coding dojo
  - mob programming
+ - badass-developer
 description: "You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it with mob programming and coding dojos at Murex. You'll preview our project of growing technical leaders with team agile technical coaching."
 header:
    teaser: /imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching-recipe-teaser.jpeg
