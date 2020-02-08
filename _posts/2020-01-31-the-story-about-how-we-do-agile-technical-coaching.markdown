@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "The story about how we do Agile Technical Coaching"
-date: 2020-02-13
+date: 2020-02-06
 comments: true
 categories:
  - coaching
@@ -12,7 +12,6 @@ description: "You will not find an Agile Technical Coach Job Description. This j
 header:
    teaser: /imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching-recipe-teaser.jpeg
    og_image: /imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching-recipe-og.jpeg
-publish: false
 ---
 _You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it at [Murex](https://www.murex.com/)._
 
