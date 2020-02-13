@@ -44,14 +44,14 @@ Unsurprisingly, this mix was resulting in growing tensions among the team member
 All coaching I had done before consisted of embedding full time within a team. I would:
 
 *   spend a lot of time pairing, with everyone
-*   animate weekly [coding dojos]({{site.url}}/why-you-should-start-a-team-coding-dojo-randori-right-now/) to share development practices and learnings
-*   [animate retrospectives]({{site.url}}/how-we-introduced-efficient-agile-retrospectives/) and put real continuous improvement in place
+*   facilitate weekly [coding dojos]({{site.url}}/why-you-should-start-a-team-coding-dojo-randori-right-now/) to share development practices and learnings
+*   [facilitate retrospectives]({{site.url}}/how-we-introduced-efficient-agile-retrospectives/) and put real continuous improvement in place
 
 I knew this worked great.
 
 > 💡 Full time pairing within a team is slow but effective agile technical coaching
 
-Unfortunately, it also takes a lot of time. It needs a few months to get real momentum, and a few more to see concrete outcomes. It also compounds, and once the wheel starts spinning, results pile up.
+Unfortunately, it also takes a lot of time. It requires a few months to get real momentum, and a few more to see concrete outcomes. It also compounds, and once the wheel starts spinning, results pile up.
 
 [![Cover of the book "The compound effect"]({{site.url}}/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/the-compound-effect.jpg)](https://www.goodreads.com/book/show/9420697-the-compound-effect)
 
@@ -62,20 +62,20 @@ I was the only technical coach in the place. There are more than 60 development 
 My first try was a light version of the full-time embedding. I would
 
 *   pair for 2 days per week
-*   animate coding dojo per sprint
-*   help the scrum master with the ceremonies
+*   facilitate coding dojo per sprint
+*   help the Scrum master with the Scrum events
 
-Ceremonies got better, and I could sometimes spot useful things during pairing sessions. Unfortunately, people did not yet see the benefits of katas, and I could only pair with 1 person at a time. As a result, the progress remained very slow, and the team's feedback was average.
+Scrum events got better, and I could sometimes spot useful things during pairing sessions. Unfortunately, people did not yet see the benefits of katas, and I could only pair with 1 person at a time. As a result, the progress remained very slow, and the team's feedback was average.
 
 I had to find another way.
 
 ### v0.2, katas and mobs
 
-I decided to spend less time on ceremonies and to trade pairing for mobbing. We were doing 2 sessions of 2 hours of mob per week.
+I decided to spend less time on Scrum events and to trade pairing for mobbing. We were doing 2 sessions of 2 hours of mob per week.
 
 > 💡 Katas + Mobs is a time efficient agile technical coaching scheme
 
-I continued to do one 2-hours kata per sprint. As the team was struggling with legacy code, we focused on [refactoring katas]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/).
+I continued to do one 2-hour kata per sprint. As the team was struggling with legacy code, we focused on [refactoring katas]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/).
 
 ![A drawing of Deadpool performing an extract-member refactoring on a legacy code character. We used Agile Technical Coaching as a way to practice refactoring techniques.]({{site.url}}/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/deadpool-extract-member.jpg)
 
@@ -100,7 +100,7 @@ Managers had no choice but to accept. That's how Deadpool resurrected.
 
 The situation, especially turnover, pushed the team into trying something new. The final jelling unlocked all the rest.
 
-How much is my coaching responsible for these changes? Most of these results come from the team's work. To know better, I had a chat with the team members. Here is what they say:
+To which extend did my coaching contribute to these changes? Most of these results come from the team's work. To know better, I had a chat with the team members. Here is what they say:
 
 *   Seemingly simplistic katas made them understand [the value of baby steps]({{site.url}}/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/). They discovered that it unlocks better design and smoother deliveries
 *   Mentioning WIP reduction made them envision 'another way' when the experts left
@@ -123,7 +123,7 @@ We extracted the strong points into a recipe we could re-use. Here are the key e
 
 *   Focus on technical agile coaching only. There were enough process/people coaches in the company. We decided to let them do this part of the work! **Anyway, once developers get TDD and pairing, they get the agile mindset.** (Note: This might make a good post, so [stay tuned!](http://eepurl.com/dxKE95))
 *   We would use a [kata plan]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
-*   We would [start with TDD kata]({{site.url}}/how-to-start-a-team-coding-dojo-randori-today/)
+*   We would [start with TDD katas]({{site.url}}/how-to-start-a-team-coding-dojo-randori-today/)
 *   And continue with refactoring katas. (I'll write a more detailed post about the katas we are using, stay tuned!)
 *   We would mob with the teams on selected stories
 *   We would stick with the teams for a few months
@@ -154,7 +154,7 @@ I have a friend who says that:
 
 > 💡 Push-coaching is like inflicting help.
 
-The problem was that we now had to persuade teams to work with us! We were now equipped with excellent feedback from Deadpool and a recipe. We started to meet teams and test our proposal. Every time we discussed it with a new team, the pitch got better. Here are the final selling points of our coaching:
+The problem was that we now had to attract teams to work with us! We were now equipped with excellent feedback from Deadpool and a recipe. We started to meet teams and test our proposal. Every time we discussed it with a new team, the pitch got better. Here are the final selling points of our coaching:
 
 *   Use refactoring and legacy as the base motivation. We highlight that they will learn [useful refactoring techniques]({{site.url}}/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/).
 *   **We don't try to sell TDD.** We tell them it remains their choice to use it or not in their daily work.
@@ -177,7 +177,7 @@ Actually, it's like a startup!
 
 ### Successes
 
-We have now coached 6 teams. Their feedback has been great. Depending on their situations, they highlight different aspects of coaching:
+We have now coached 6 teams. Their feedback has been great. Depending on their situation, they highlight different aspects of coaching:
 
 *   Collaboration
 *   Testing
@@ -192,13 +192,13 @@ We also compiled our katas into a kata repository, with coaching instructions. S
 
 There are still a lot of things in our way, though.
 
-#### Coaching is shameful
+#### Asking for coaching is shameful
 
 Many teams still see coaching as 'shameful'. **Asking for help is often seen as a weakness in our ego-driven industry...** We'll have to work on our marketing to overcome this.
 
 #### Sustainable communities
 
-We are struggling to build communities of practice around refactoring and Continuous Integration. Unfortunately, these communities are far from autonomous at the moment. They still require a lot of effort from our side... 
+We are struggling to build communities of practice around refactoring and Continuous Integration. Unfortunately, these communities are far from being autonomous at the moment. They still require a lot of effort from our side... 
 
 Again, we'll have to find the recipe to install communities in the company culture.
 
@@ -208,14 +208,14 @@ We're having a hard time to continue to learn, explore, and experiment with new 
 
 #### Startup metrics
 
-I said we're thinking of us as an internal startup. Startups use metrics to know they are on the right track. This looked especially important to us. As we started the activity by ourselves, we thought we had to 'prove' that we were productive.
+I said we're thinking of us as an internal startup. Startups use metrics to know they are on the right track. This looked especially important to us. As we started the activity by ourselves, we feared we had to 'prove' that we were productive.
 
 We tried standard startup metrics, like metrics of the pirate, and others for a while. Unfortunately, it did not work great for us because:
 
 *   Without any tooling or available figures, it generated some manual work overhead
 *   With 500 developers in the organization, our sample size is small
 
-We also realized that fear is not a reason to do something. We decided to stop tracking these metrics systematically. We are now experimenting 'just-in-time metrics'. Whenever we do something, we put metrics in place to make sure it's doing what we expected... If not, we review and adapt.
+We also realized that fear is not a good motivation. We decided to stop tracking these metrics systematically. We are now experimenting 'just-in-time metrics'. Whenever we do something, we put metrics in place to make sure it's doing what we expected... If not, we review and adapt.
 
 It's now close to a lean way of working. We are currently using the [lean story template](https://medium.com/product-punk/lean-user-story-template-d3fdafe094df).
 
@@ -258,7 +258,7 @@ We are not going to run test-related katas directly with the team! Instead, we'l
 The idea is to
 
 *   build something even more practical and tuned to the team
-*   but also grow subject matters experts
+*   but also grow subject-matter experts
 *   increase buy-in from the rest of the team
 
 We also have other long term hopes about this approach:
@@ -276,7 +276,7 @@ We also have other long term hopes about this approach:
 
 ![Drawing of a martial arts dojo built around a giant laptop! Starting a coding dojo is the first step in Agile Technical Coaching]({{site.url}}/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/coding-dojo.jpg)
 
-If you are an agile technical coach, I recommend giving this kata and mob format a try. It's the best recipe I know.
+If you are an agile technical coach, I recommend giving this kata and mob format a try. So far, it's the most effective recipe I've tried or heard about!
 
 Not only does it train teams to software craftsmanship techniques. It also makes them more agile. TDD, pairing and mobbing are agile "in practice". In the end, this can have profound consequences on all their work.
 
