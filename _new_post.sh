@@ -3,9 +3,13 @@
 export POST_NAME=$1
 export PUBLISH_DATE=$2
 
+if [[ $# -ne 2 ]] ; then
+    echo "Usage ./_new_post.sh POST_NAME PUBLISH_DATE_YYYY-MM-DD"
+    exit 1
+fi
+
 # TODO
 # print a kind of log
-# warn if missing argument
 
 
 export POST_FILE_PATH=`bundle exec jekyll post $POST_NAME --extension "markdown" | grep "New post created" | grep --only-matching -e "_posts/.*\.markdown"`
