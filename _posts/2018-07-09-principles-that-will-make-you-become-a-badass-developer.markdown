@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Principles that will make you become a badass developer"
 date: 2018-07-19 12:57
 comments: true

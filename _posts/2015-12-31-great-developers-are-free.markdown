@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Great Developers Are Free"
 date: 2015-12-31 12:24
 comments: true

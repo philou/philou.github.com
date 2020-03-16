@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "You should refuse to develop what you don't understand"
 author: Jonathan Boccara
 date: 2019-04-18

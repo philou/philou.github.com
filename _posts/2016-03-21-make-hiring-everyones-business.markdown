@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Make hiring everyone's business"
 date: 2016-03-21 21:05
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "C#, testing, Windows, licker"
-layout: single
+layout: single-mailing-list
 title: Windows licker like with C#
 published: true
 date: 2012-11-07

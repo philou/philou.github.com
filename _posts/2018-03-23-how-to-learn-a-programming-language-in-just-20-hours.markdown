@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to learn a programming language in just 20 hours"
 date: 2018-03-29 06:35
 comments: true

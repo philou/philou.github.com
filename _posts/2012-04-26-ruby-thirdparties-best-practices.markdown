@@ -1,6 +1,6 @@
 ---
 keywords: "gem, Ruby, Best Practices, thirdparties, practices"
-layout: single
+layout: single-mailing-list
 title: Ruby thirdparties best practices
 published: true
 date: 2012-04-26

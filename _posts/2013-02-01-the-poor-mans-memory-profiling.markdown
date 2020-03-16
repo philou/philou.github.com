@@ -1,6 +1,6 @@
 ---
 keywords: "memory, ruby, testing, poor, mans, profiling"
-layout: single
+layout: single-mailing-list
 title: The poor man's memory profiling
 published: true
 date: 2013-02-01

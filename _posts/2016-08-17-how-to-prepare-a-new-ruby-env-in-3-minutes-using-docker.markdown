@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to prepare a new Ruby env in 3 minutes using Docker"
 date: 2016-08-17 05:21
 comments: true

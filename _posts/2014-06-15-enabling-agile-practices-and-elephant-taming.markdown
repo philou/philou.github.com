@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Enabling agile practices and elephant taming"
 date: 2014-06-15 21:37
 comments: true

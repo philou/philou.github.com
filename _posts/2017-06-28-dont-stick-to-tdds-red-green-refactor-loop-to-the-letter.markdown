@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Don't stick to TDD's Red-Green-Refactor loop to the letter"
 date: 2017-06-28 15:52
 comments: true

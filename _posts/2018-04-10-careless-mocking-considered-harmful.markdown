@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Careless Mocking Considered Harmful"
 date: 2018-04-19 13:13
 comments: true

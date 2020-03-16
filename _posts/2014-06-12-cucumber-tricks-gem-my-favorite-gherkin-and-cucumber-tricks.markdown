@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Cucumber_tricks gem : my favorite Gherkin and Cucumber tricks"
 date: 2014-06-12 06:28
 comments: true

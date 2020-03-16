@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why we need Badass developers to perform large scale refactorings"
 date: 2018-07-05 13:28
 comments: true

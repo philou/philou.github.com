@@ -1,6 +1,6 @@
 ---
 keywords: "Rspec, ruby, messes, stubs, expectations"
-layout: single
+layout: single-mailing-list
 title: Rspec messes up stubs and expectations
 published: true
 date: 2011-10-20

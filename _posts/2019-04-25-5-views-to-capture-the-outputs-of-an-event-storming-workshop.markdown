@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 Views to Capture the Outputs of an Event Storming workshop"
 date: 2019-06-06
 comments: true

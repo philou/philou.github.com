@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why Machine Learning in Software Engineering #3: The Future"
 date: 2019-09-26
 comments: true

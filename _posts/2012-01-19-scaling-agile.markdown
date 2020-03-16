@@ -1,6 +1,6 @@
 ---
 keywords: "Agile, Enterprise, Lean, Scrum, XP, Scaling"
-layout: single
+layout: single-mailing-list
 title: Scaling Agile
 published: true
 date: 2012-01-19

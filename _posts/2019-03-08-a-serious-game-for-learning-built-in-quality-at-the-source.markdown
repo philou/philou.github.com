@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A serious game for learning 'built-in quality at the source'"
 date: 2019-04-11
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "rss, web, replaced, Feedburner, MailChimp"
-layout: single
+layout: single-mailing-list
 title: "I just replaced Feedburner with MailChimp"
 date: 2013-10-08 06:36
 comments: true

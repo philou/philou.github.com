@@ -1,6 +1,6 @@
 ---
 keywords: "functional programming, monads, kata, Trying, explain, java"
-layout: single
+layout: single-mailing-list
 title: "Trying to explain monads in java"
 date: 2013-12-07 07:37
 comments: true

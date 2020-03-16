@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "7 Books About Data Driven Software Engineering"
 date: 2019-07-25
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "mocking, rspec, ruby, testing, stub_model, mock_model"
-layout: single
+layout: single-mailing-list
 title: stub_model and mock_model
 published: true
 date: 2012-04-16

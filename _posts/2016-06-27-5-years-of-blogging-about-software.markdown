@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 Years of Blogging About Software"
 date: 2016-06-27 04:04
 comments: true

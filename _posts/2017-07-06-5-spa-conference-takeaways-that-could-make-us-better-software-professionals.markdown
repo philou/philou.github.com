@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 SPA Conference takeaways that could make us better software professionals"
 date: 2017-07-06 22:17
 comments: true

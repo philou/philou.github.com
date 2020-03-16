@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "From Zero to Pair Programming Hero"
 date: 2015-01-27 06:31
 comments: true

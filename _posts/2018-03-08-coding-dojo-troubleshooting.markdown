@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Coding Dojo Troubleshooting"
 date: 2018-03-15 06:41
 comments: true

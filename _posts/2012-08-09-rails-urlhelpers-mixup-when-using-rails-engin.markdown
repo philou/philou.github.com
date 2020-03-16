@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, rails, gem, url_helpers, mixup, using, engines"
-layout: single
+layout: single-mailing-list
 title: Rails url_helpers mixup when using rails engines
 published: true
 date: 2012-08-09

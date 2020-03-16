@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to get the max out of your Team Coding Dojo ?"
 date: 2018-03-22 06:42
 comments: true

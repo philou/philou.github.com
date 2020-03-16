@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Are Software Developers Overworked or Undecided ?"
 date: 2017-10-20 06:51
 comments: true

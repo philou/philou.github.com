@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "From apprentice to master, how to learn TDD (Test Driven Development)"
 date: 2017-05-15 06:53
 comments: true

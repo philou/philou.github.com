@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The Holy Code Antipattern"
 date: 2014-08-10 08:42
 comments: true

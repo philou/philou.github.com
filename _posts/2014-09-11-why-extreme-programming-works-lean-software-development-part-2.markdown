@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why eXtreme Programming works ? (Lean Software Development part 2)"
 date: 2014-08-29 07:03
 comments: true

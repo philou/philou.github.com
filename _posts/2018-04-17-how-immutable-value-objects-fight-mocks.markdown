@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How Immutable Value Objects fight Mocks"
 date: 2018-04-26 08:51
 comments: true

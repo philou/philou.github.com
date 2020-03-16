@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Are Most Agile Teams Doing Continuous Improvement The Silly Way ?"
 date: 2016-03-06 07:33
 comments: true

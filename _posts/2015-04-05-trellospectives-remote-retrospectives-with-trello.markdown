@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Trellospectives : Remote Retrospectives with Trello"
 date: 2015-04-05 06:18
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Drafting a Functional Architecture Vision with Event Storming and DDD"
 date: 2019-01-24
 comments: true

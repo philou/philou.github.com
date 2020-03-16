@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to do screencasts on Ubuntu"
 date: 2015-12-23 06:01
 comments: true

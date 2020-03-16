@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Focus on the Core with Event Storming and DDD Domain Relationships - 1"
 date: 2019-02-14
 comments: true

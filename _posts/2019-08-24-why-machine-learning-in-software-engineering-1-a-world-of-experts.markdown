@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why Machine Learning in Software Engineering #1: A World of Experts"
 date: 2019-09-12
 comments: true

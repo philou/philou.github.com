@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "21 More Event Storming Tips - Part 1 - Understanding and Rhythm"
 date: 2020-01-09
 comments: true

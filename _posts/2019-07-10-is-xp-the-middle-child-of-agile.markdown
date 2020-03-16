@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Is XP the middle child of Agile?"
 date: 2019-07-18
 comments: true

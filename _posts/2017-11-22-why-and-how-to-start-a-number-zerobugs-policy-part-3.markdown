@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why and how to start a #ZeroBugs policy - part 3"
 date: 2017-12-21 10:40
 comments: true

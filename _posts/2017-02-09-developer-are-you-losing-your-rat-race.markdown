@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Developer ! Are you losing your rat race ?"
 date: 2017-02-09 05:37
 comments: true

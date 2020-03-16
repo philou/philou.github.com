@@ -1,6 +1,6 @@
 ---
 keywords: "binding, C#, UI, Making, properties, class, objects"
-layout: single
+layout: single-mailing-list
 title: Making C# properties first class objects
 published: true
 date: 2011-09-29

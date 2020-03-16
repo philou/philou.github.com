@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The story about how we do Agile Technical Coaching"
 date: 2020-02-06
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Automatic Travis daily build with Heroku scheduler"
 date: 2014-03-24 06:31
 comments: true

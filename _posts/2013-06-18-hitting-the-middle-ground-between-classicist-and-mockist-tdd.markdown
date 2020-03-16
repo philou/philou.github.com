@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, rspec, testing, Hitting, middle, ground, between, classicist, mockist, TDD"
-layout: single
+layout: single-mailing-list
 title: "Hitting the middle ground between classicist and mockist TDD"
 published: true
 date: 2013-06-18 08:55

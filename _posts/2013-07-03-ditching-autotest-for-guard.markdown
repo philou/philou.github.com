@@ -1,6 +1,6 @@
 ---
 keywords: "testing, ruby, Ditching, autotest, guard"
-layout: single
+layout: single-mailing-list
 title: "Ditching autotest for guard"
 date: 2013-07-03 06:35
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Pair Programming, From Pain Zone To Skill Zone"
 date: 2016-05-06 04:04
 comments: true

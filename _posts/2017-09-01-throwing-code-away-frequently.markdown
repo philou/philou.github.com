@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Throwing code away frequently"
 date: 2017-09-01 06:56
 comments: true

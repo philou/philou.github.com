@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A Plain English Introduction To Paxos Protocol"
 date: 2017-01-16 08:20
 comments: true

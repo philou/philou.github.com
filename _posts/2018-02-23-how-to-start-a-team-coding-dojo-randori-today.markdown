@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to start a team coding dojo Randori today"
 date: 2018-03-08 08:57
 comments: true

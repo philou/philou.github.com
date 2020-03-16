@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "My Ultimate Jira Personal Kanban"
 date: 2017-03-03 06:46
 comments: true

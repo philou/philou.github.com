@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A seamless way to keep track of technical debt in your source code"
 date: 2017-04-12 08:48
 comments: true

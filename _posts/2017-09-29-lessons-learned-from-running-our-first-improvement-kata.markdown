@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Lessons learned from running our first improvement kata"
 date: 2017-09-29 06:15
 comments: true

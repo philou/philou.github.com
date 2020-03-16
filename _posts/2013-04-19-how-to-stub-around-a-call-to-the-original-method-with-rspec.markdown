@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, rspec, testing, stub, around, call, original, method"
-layout: single
+layout: single-mailing-list
 title: "How to stub around a call to the original method with rspec ?"
 date: 2013-04-19 07:05
 comments: true

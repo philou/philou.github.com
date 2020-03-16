@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD"
 date: 2019-01-31
 comments: true

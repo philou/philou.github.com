@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Kudo Boxes for Kids"
 date: 2016-08-30 04:48
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "Hacking, Hackers, peintres"
-layout: single
+layout: single-mailing-list
 title: Hackers et peintres
 published: true
 date: 2012-07-03

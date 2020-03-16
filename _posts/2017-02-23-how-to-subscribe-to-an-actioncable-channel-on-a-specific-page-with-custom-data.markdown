@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to subscribe to an ActionCable channel on a specific page with custom data ?"
 date: 2017-02-23 05:25
 comments: true

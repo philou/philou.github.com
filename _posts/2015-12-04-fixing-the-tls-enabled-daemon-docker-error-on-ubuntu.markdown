@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Fixing the 'TLS-enabled daemon' docker error on Ubuntu"
 date: 2015-12-04 04:29
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to prepare the room for a DDD Big Picture Event Storming"
 date: 2018-12-13
 comments: true

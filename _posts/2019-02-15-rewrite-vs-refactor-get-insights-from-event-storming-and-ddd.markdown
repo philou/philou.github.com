@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Rewrite vs Refactor? Get Insights from Event Storming and DDD"
 date: 2019-03-21
 comments: true

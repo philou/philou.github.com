@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How We Started Exploratory Testing"
 date: 2016-01-08 18:18
 comments: true

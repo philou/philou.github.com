@@ -1,6 +1,6 @@
 ---
 keywords: "blogging, pictures, useful, link, find, free"
-layout: single
+layout: single-mailing-list
 title: A useful link to find free pictures
 published: true
 date: 2012-01-11

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How Custom Assertion Matchers will keep mocks away"
 date: 2018-05-17 06:47
 comments: true

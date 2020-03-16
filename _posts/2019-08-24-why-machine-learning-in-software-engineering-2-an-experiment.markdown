@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why Machine Learning in Software Engineering #2: An Experiment"
 date: 2019-09-19
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why 20 hours of code kata are so effective for learning new languages"
 date: 2018-04-05 08:53
 comments: true

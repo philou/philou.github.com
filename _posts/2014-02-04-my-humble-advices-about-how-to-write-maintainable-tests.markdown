@@ -1,6 +1,6 @@
 ---
 keywords: "testing, agile, tdd, humble, advices, about, write, maintainable, tests"
-layout: single
+layout: single-mailing-list
 title: "My humble advices about how to write maintainable tests"
 date: 2014-02-04 06:10
 comments: true

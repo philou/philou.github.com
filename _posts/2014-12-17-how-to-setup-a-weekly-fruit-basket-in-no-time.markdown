@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to setup a weekly fruit basket in no time"
 date: 2014-12-17 07:11
 comments: true

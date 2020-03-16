@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to boot a new Rails project with Docker and Heroku"
 date: 2016-07-13 04:55
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to get your team to do code reviews"
 date: 2017-04-19 09:18
 comments: true

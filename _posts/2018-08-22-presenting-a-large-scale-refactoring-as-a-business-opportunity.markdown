@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Presenting a large scale refactoring as a business opportunity"
 date: 2018-09-06 06:27
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Recipes For An Agile Workspace"
 date: 2016-02-17 06:40
 comments: true

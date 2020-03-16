@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Become a Business Partner and Stop Begging for Refactoring"
 date: 2018-10-04 09:17
 comments: true

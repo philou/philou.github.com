@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Legacy Code Coverall Day"
 date: 2016-06-06 04:16
 comments: true

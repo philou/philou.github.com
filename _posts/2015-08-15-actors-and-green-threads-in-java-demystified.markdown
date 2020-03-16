@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Actors and Green Threads in Java Demystified"
 date: 2015-08-15 13:17
 comments: true

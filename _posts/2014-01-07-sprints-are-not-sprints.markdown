@@ -1,6 +1,6 @@
 ---
 keywords: "agile, scrum, sprints"
-layout: single
+layout: single-mailing-list
 title: "Sprints are not sprints"
 date: 2014-01-07 06:22
 comments: true

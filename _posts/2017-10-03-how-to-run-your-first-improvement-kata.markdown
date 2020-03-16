@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to run your first improvement kata"
 date: 2017-10-03 06:37
 comments: true

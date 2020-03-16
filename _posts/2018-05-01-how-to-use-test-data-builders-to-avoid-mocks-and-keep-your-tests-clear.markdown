@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to use Test Data Builders to avoid mocks and keep your tests clear"
 date: 2018-05-10 09:56
 comments: true

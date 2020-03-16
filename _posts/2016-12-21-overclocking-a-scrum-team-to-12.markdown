@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Overclocking a Scrum Team to 12"
 date: 2016-12-21 04:57
 comments: true

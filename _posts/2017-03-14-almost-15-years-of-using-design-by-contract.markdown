@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Almost 15 years of using Design By Contract"
 date: 2017-03-14 18:57
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A Lego Office Experiment"
 date: 2016-04-20 05:07
 comments: true

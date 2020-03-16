@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Incremental architecture, a cure against architecture astronauts"
 date: 2017-04-24 06:52
 comments: true

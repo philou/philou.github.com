@@ -1,6 +1,6 @@
 ---
 keywords: "boostrapping, side project, startup, Side Project Book, Side, Project, practices, reading, Book"
-layout: single
+layout: single-mailing-list
 title: "My own side project best practices after reading the 'Side Project Book'"
 date: 2013-07-25 07:26
 comments: true

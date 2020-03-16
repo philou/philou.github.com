@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Avoid mocks and test your core domain faster with Hexagonal Architecture"
 date: 2018-05-24 06:43
 comments: true

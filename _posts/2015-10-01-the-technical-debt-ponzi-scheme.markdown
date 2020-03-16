@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The technical debt ponzi scheme"
 date: 2015-10-01 19:34
 comments: true

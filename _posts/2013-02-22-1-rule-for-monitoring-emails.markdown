@@ -1,6 +1,6 @@
 ---
 keywords: "web, exploitation, rule, monitoring, emails"
-layout: single
+layout: single-mailing-list
 title: '#1 rule for monitoring emails'
 published: true
 date: 2013-02-22

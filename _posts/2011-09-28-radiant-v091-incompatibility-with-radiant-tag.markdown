@@ -1,6 +1,6 @@
 ---
 keywords: "Radiant, radiant-tags-extension, Radiant v0.9.1, radiant-tags-extension ~> 1.6.2, incompatibility"
-layout: single
+layout: single-mailing-list
 title: Radiant v0.9.1 incompatibility with radiant-tags-extension ~> 1.6.2
 published: true
 date: 2011-09-28

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Mining GitHub For New Hires"
 date: 2015-08-19 05:30
 comments: true

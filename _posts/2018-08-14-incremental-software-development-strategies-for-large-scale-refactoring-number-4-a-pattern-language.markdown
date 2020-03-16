@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language"
 date: 2018-08-30 08:15
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, ssl, web, TOO_MANY_REDIRECTS, changing, requirements"
-layout: single
+layout: single-mailing-list
 title: TOO_MANY_REDIRECTS when changing ssl requirements
 published: true
 date: 2013-01-28

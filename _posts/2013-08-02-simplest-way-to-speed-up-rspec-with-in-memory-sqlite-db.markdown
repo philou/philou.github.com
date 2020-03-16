@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, rails, rspec, testing, cucumber, Simplest, speed, memory, sqlite, db"
-layout: single
+layout: single-mailing-list
 title: "Simplest way to speed up rspec with in memory sqlite db"
 date: 2013-08-02 09:16
 comments: true

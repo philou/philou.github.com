@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A Plan For Technical Debt (Lean Software Development Part 7)"
 date: 2015-08-20 17:11
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Mobbing around the world for 48h ... who's in ?"
 date: 2017-10-12 19:00
 comments: true

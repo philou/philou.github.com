@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The Size Of Code"
 date: 2016-06-08 04:45
 comments: true

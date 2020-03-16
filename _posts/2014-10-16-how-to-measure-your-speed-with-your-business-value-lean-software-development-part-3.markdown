@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to measure your speed with your business value ? (Lean Software Development Part 3)"
 date: 2014-10-16 07:07
 comments: true

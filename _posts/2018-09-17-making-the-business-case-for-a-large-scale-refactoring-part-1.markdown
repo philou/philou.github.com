@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Making the business case for a large-scale refactoring - Part 1"
 date: 2018-09-20 08:58
 comments: true

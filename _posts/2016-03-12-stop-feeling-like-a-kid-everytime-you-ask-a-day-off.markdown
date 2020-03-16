@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Stop feeling like a kid every time you ask a day off"
 date: 2016-03-12 06:35
 comments: true

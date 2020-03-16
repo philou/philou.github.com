@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Top 5 talks I attended at JavaOne 2016 (Part 2)"
 date: 2016-09-28 20:02
 comments: true

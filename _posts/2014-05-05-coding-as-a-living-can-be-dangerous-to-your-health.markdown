@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Coding as a living can be dangerous to your health"
 date: 2014-05-05 06:49
 comments: true

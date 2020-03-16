@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I fixed 'devicemapper' error when deploying my Docker app"
 date: 2017-02-01 17:41
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to run a Remote-First Open-Space Technology Un-Conference"
 date: 2019-10-10
 comments: true

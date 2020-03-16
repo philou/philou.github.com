@@ -1,6 +1,6 @@
 ---
 keywords: "C#, mocking, mock, out, process, COM, server"
-layout: single
+layout: single-mailing-list
 title: How to mock an out of process COM server with C#
 published: true
 date: 2012-02-14

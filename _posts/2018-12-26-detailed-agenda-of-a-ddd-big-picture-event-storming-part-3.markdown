@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Detailed Agenda of a DDD Big Picture Event Storming - Part 3"
 date: 2019-01-10
 comments: true

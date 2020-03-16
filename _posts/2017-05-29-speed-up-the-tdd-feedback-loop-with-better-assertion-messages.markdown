@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Speed up the TDD feedback loop with better assertion messages"
 date: 2017-05-29 06:37
 comments: true

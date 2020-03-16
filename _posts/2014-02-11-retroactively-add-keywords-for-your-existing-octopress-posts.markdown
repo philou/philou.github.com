@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Retroactively add keywords for your existing Octopress posts"
 date: 2014-02-11 06:54
 comments: true

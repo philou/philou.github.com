@@ -1,6 +1,6 @@
 ---
 keywords: "Lean, Motivation, game"
-layout: single
+layout: single-mailing-list
 title: Motivation game
 published: true
 date: 2012-09-28

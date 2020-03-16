@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I fixed the unknown language Pygments error in Octopress"
 date: 2016-05-13 03:54
 comments: true

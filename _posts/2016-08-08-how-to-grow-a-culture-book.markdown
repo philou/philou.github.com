@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to Grow a Culture Book"
 date: 2016-08-08 05:58
 comments: true

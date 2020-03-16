@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 mistakes badass developers never do"
 date: 2018-07-12 12:51
 comments: true

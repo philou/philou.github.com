@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How To Keep Programming When Assigned A Management Job"
 date: 2016-02-03 08:45
 comments: true

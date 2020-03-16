@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Most Common Ways To Speed up an algorithm"
 date: 2016-01-20 05:14
 comments: true

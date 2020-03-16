@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A Straightforward Way to Scale to More Than 1 Scrum Team"
 date: 2017-05-02 06:11
 comments: true

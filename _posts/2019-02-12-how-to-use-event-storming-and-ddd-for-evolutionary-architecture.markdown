@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to use Event Storming and DDD for Evolutionary Architecture"
 date: 2019-02-28
 comments: true

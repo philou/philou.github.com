@@ -1,6 +1,6 @@
 ---
 keywords: "AgileAvatarscom, magnets, real"
-layout: single
+layout: single-mailing-list
 title: "AgileAvatars.com magnets for real"
 date: 2013-11-25 06:40
 comments: true

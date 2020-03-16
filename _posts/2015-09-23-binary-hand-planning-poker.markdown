@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Binary Hand Planning Poker"
 date: 2015-09-23 19:44
 comments: true

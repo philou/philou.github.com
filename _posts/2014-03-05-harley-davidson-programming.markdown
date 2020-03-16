@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Harley Davidson programming"
 date: 2014-03-05 06:41
 comments: true

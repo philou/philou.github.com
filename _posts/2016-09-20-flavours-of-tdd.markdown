@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Flavors of TDD"
 date: 2016-09-20 20:54
 comments: true

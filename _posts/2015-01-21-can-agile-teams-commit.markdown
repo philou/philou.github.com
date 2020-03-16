@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Can agile teams commit?"
 date: 2015-01-21 06:57
 comments: true

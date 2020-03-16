@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "You don't have to ask your boss for a fast build (Lean Software Development part 6)"
 date: 2015-06-03 04:43
 comments: true

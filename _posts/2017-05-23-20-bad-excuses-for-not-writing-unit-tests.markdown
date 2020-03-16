@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "20 Bad Excuses For Not Writing Unit Tests"
 date: 2017-05-23 06:08
 comments: true

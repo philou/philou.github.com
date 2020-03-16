@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to use Hackernews and Reddit for blogging"
 date: 2016-09-05 04:52
 comments: true

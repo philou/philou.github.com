@@ -1,6 +1,6 @@
 ---
 keywords: "css, stylesheet, media"
-layout: single
+layout: single-mailing-list
 title: There can be only one css stylesheet per media
 published: true
 date: 2011-09-21

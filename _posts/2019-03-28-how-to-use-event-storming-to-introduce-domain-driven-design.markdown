@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to use Event Storming to introduce Domain Driven Design"
 date: 2019-05-09
 comments: true

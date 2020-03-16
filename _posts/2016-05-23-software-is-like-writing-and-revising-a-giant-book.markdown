@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Software is like writing and revising a giant book"
 date: 2016-05-23 03:52
 comments: true

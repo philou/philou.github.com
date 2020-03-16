@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How we scripted everyone to code review in the team"
 date: 2019-06-20
 comments: true

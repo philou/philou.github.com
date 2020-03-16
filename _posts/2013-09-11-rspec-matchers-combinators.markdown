@@ -1,6 +1,6 @@
 ---
 keywords: "RSpec, ruby, testing, matchers, combinators"
-layout: single
+layout: single-mailing-list
 title: "RSpec matchers combinators"
 date: 2013-09-11 12:23
 comments: true

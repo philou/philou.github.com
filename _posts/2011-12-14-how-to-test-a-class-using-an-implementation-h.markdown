@@ -1,6 +1,6 @@
 ---
 keywords: "c#, testing, test, class, using, implementation, helper"
-layout: single
+layout: single-mailing-list
 title: How to test a class using an implementation helper ?
 published: true
 date: 2011-12-14

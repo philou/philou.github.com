@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "First rule of DDD is: let's not talk about DDD"
 date: 2019-12-12
 comments: true

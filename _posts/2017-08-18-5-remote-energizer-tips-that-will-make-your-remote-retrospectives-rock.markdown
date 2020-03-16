@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 Remote energizer tips that will make your remote retrospectives rock"
 date: 2017-08-18 09:11
 comments: true

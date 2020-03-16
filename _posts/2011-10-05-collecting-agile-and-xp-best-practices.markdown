@@ -1,6 +1,6 @@
 ---
 keywords: "agile, Best Practices, XP, Collecting, practices"
-layout: single
+layout: single-mailing-list
 title: Collecting agile and XP best practices
 published: true
 date: 2011-10-05

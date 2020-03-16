@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "10 Pair Programming Best Practices Questions & Answers"
 author: Ahmad Atwi
 date: 2019-04-25

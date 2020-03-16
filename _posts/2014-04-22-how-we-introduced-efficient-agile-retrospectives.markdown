@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How we introduced efficient agile retrospectives"
 date: 2014-04-22 06:13
 comments: true

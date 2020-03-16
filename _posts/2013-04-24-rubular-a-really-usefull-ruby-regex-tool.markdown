@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, regex, Rubular, really, usefull, tool"
-layout: single
+layout: single-mailing-list
 title: "Rubular: a really usefull ruby regex tool"
 date: 2013-04-24 06:42
 comments: true

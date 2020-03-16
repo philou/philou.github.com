@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Vertical Kanban Board Setups"
 date: 2018-11-15
 comments: true

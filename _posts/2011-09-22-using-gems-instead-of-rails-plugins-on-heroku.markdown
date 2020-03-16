@@ -1,6 +1,6 @@
 ---
 keywords: "gem, heroku, rake, ruby, Using, gems, instead, rails, plugins"
-layout: single
+layout: single-mailing-list
 title: Using gems instead of rails plugins on heroku
 published: true
 date: 2011-09-22

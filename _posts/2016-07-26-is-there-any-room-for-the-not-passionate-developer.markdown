@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Is There Any Room For The Not-Passionate Developer ?"
 date: 2016-07-26 06:53
 comments: true

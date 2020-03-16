@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Too busy to prioritize?"
 date: 2019-08-08
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps"
 date: 2018-08-09 08:50
 comments: true

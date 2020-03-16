@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Real Developers Ship"
 date: 2016-05-11 04:33
 comments: true

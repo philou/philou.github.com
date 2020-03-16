@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Frequently asked questions about the 20 hours of Code Katas"
 date: 2018-04-12 19:20
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "DNS, heroku, ssl, trustico, rapid, certificate, endpoint"
-layout: single
+layout: single-mailing-list
 title: How I set up a trustico rapid ssl certificate on heroku ssl endpoint
 published: true
 date: 2012-12-13

@@ -1,6 +1,6 @@
 ---
 keywords: "rails, ruby, Including, Railsapplicationroutesurl_helpers, module"
-layout: single
+layout: single-mailing-list
 title: 'Including Rails.application.routes.url_helpers from a module'
 published: true
 date: 2012-04-16

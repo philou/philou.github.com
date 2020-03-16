@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to use Mob Programming at the rescue of Pair Programming burnout"
 date: 2019-07-11
 comments: true

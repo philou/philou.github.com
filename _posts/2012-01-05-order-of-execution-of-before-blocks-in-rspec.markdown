@@ -1,6 +1,6 @@
 ---
 keywords: "RSpec, ruby, Order, execution, before, blocks"
-layout: single
+layout: single-mailing-list
 title: Order of execution of before blocks in RSpec
 published: true
 date: 2012-01-05

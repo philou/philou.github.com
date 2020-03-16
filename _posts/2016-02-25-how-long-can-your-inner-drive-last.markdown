@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How Long Can Your Inner Drive Last ?"
 date: 2016-02-25 06:41
 comments: true

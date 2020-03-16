@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Organization refactoring: Event Storming and DDD injection - part 1"
 date: 2019-11-28
 comments: true

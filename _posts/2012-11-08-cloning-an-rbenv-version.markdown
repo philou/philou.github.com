@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, Cloning, rbenv, version"
-layout: single
+layout: single-mailing-list
 title: Cloning an rbenv version
 published: true
 date: 2012-11-08

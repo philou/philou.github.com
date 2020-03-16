@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The Agile Change Management Viral Hack"
 date: 2015-05-23 05:51
 comments: true

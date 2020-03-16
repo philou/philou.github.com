@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "A coding dojo exercises plan towards refactoring legacy code"
 date: 2018-06-14 06:29
 comments: true

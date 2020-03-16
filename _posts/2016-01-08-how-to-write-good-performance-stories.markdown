@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How To Write Good Performance Stories"
 date: 2016-01-08 07:58
 comments: true

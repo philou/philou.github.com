@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The Flow book summary (lean software development part 1)"
 date: 2014-08-29 06:25
 comments: true

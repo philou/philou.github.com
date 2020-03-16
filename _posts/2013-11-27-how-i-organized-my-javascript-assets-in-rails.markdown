@@ -1,6 +1,6 @@
 ---
 keywords: "Rails, assets, testing, javascript, organized"
-layout: single
+layout: single-mailing-list
 title: "How I organized my javascript assets in Rails"
 date: 2013-11-27 05:56
 comments: true

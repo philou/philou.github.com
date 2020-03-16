@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Sustainable productivity in eXtreme Programming"
 date: 2017-10-27 18:21
 comments: true

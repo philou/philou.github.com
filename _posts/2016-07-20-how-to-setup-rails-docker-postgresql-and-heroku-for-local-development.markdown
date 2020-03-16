@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to setup Rails, Docker, PostgreSQL (and Heroku) for local development ?"
 date: 2016-07-20 06:12
 comments: true

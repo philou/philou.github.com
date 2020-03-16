@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "10 things to know that will make you great at refactoring legacy code"
 date: 2017-07-28 06:35
 comments: true

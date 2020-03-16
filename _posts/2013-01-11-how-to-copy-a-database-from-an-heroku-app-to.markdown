@@ -1,6 +1,6 @@
 ---
 keywords: "heroku, postgre, copy, database, app, another"
-layout: single
+layout: single-mailing-list
 title: How to copy a database from an heroku app to another
 published: true
 date: 2013-01-11

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "What Happens to Non-Enthusiast Programmers in the Long Run ?"
 date: 2017-01-10 05:57
 comments: true

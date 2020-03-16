@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Immutable Value Objects vs Mocks : Fizz Buzz"
 date: 2018-05-03 19:28
 comments: true

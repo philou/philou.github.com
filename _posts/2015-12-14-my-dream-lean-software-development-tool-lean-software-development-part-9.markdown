@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "My Dream Lean Software Development Tool (Lean Software Development part 9)"
 date: 2015-12-14 20:49
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "My new gem for creating rspec proxies"
 date: 2014-05-23 06:20
 comments: true

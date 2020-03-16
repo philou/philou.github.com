@@ -1,6 +1,6 @@
 ---
 keywords: "Devise, rails, ruby, workaround, external, gem, generator, found"
-layout: single
+layout: single-mailing-list
 title: external gem rails generator not found
 published: true
 date: 2011-11-24

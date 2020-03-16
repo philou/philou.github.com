@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Get rid of mock maintenance with full fledged in-memory fakes"
 date: 2018-05-31 19:15
 comments: true

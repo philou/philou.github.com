@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to play planning poker... Badass Mode!"
 date: 2019-08-22
 comments: true

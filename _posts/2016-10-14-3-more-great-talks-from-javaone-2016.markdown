@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "3 More Great Talks From JavaOne 2016"
 date: 2016-10-14 04:05
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Video for our talk 'Extreme Practices' is on YouTube"
 date: 2016-11-23 05:19
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "Postgre, rails, ruby, Postgre 9.1, Setting, development"
-layout: single
+layout: single-mailing-list
 title: Setting up Postgre 9.1 for rails development
 published: true
 date: 2012-05-28

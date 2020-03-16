@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I fixed 'invalid byte sequence in US-ASCII' exception with octopress (and vagrant)"
 date: 2016-02-10 05:59
 comments: true

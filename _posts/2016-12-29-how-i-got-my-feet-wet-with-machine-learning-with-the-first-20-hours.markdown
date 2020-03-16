@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I got my feet wet with machine learning with 'The First 20 Hours'"
 date: 2016-12-29 21:09
 comments: true

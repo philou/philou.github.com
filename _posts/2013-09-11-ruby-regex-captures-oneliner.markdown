@@ -1,6 +1,6 @@
 ---
 keywords: "Ruby, regex, captures, oneliner"
-layout: single
+layout: single-mailing-list
 title: "Ruby regex captures oneliner"
 date: 2013-09-11 09:02
 comments: true

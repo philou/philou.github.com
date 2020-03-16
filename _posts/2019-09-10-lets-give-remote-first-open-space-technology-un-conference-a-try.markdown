@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Let's give Remote-First Open-Space Technology Un-Conferences a try!"
 date: 2019-10-03
 comments: true

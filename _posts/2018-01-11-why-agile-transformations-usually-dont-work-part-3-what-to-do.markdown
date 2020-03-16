@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why Agile transformations usually don't work - part 3 - What to do"
 date: 2018-01-25 09:43
 comments: true

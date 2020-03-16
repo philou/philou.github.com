@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 minutes hack to speed up RSpec in Rails 5 using in-memory SQLite"
 date: 2017-01-25 07:53
 comments: true

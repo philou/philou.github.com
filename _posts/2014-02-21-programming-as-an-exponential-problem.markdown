@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Programming as an exponential problem"
 date: 2014-02-21 06:30
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "Devise, rails, SSL, Devise,, requirements, post, data"
-layout: single
+layout: single-mailing-list
 title: Devise, SSL requirements and post data
 published: true
 date: 2012-01-25

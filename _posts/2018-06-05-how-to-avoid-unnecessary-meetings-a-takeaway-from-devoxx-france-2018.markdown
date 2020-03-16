@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to avoid unnecessary meetings (a takeaway from Devoxx France 2018)"
 date: 2018-06-21 12:48
 comments: true

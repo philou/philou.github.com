@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Side Projects Matter"
 date: 2017-06-13 09:13
 comments: true

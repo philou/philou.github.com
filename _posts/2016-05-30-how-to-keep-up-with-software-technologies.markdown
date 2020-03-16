@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How To Keep Up With Software Technologies"
 date: 2016-05-30 04:31
 comments: true

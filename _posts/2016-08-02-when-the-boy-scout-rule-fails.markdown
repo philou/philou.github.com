@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "When the Boy Scout Rule Fails"
 date: 2016-08-02 05:38
 comments: true

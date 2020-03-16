@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Detailed agenda for a DDD Design-Level Event Storming - part 1"
 date: 2019-10-24
 comments: true

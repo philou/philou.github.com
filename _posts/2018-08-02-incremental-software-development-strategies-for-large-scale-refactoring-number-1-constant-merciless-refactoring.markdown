@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Incremental Software Development Strategies for Large Scale Refactoring #1 : Constant Merciless Refactoring"
 date: 2018-08-02 08:31
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "radiant-tags-extension, radiant, rfind, find, hidden, pages"
-layout: single
+layout: single-mailing-list
 title: radiant r:find does not find hidden pages
 published: true
 date: 2011-10-23

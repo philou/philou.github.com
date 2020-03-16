@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "When is testing using mocks still a good idea ?"
 date: 2018-06-07 06:29
 comments: true

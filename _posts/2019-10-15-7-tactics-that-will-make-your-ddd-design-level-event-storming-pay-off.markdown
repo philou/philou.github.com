@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "7 tactics that will make your DDD Design-Level Event Storming pay-off"
 date: 2019-11-7
 comments: true

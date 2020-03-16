@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Trello Templates to Boost Your Remote Retrospectives"
 date: 2016-04-11 20:31
 comments: true

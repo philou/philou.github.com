@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Event Storming lessons from Post-It haters"
 date: 2019-05-16
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why Agile transformations usually don't work - part 4 - Transparency"
 date: 2018-02-01 09:45
 comments: true

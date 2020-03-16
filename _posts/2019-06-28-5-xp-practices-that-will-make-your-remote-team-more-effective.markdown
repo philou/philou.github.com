@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 XP practices that will make your remote team more effective"
 date: 2019-08-01
 comments: true

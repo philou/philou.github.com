@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Incremental Software Development for Large Scale Refactorings"
 date: 2018-07-26 09:32
 comments: true

@@ -1,6 +1,6 @@
 ---
 keywords: "testing, ruby, web, Matching, meta, tags, Capybara"
-layout: single
+layout: single-mailing-list
 title: "Matching meta tags with Capybara 2"
 date: 2013-07-01 20:20
 comments: true

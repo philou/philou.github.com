@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to convince your business of sponsoring a large scale refactoring"
 date: 2018-06-28 06:14
 comments: true

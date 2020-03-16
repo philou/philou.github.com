@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "What Rails teaches us about building platforms and frameworks"
 date: 2017-10-09 09:20
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Most Scrum teams are not agile"
 date: 2017-05-09 06:36
 comments: true

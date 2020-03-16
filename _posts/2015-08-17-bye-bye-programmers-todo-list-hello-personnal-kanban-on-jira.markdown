@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Bye Bye Programmer's TODO List, Hello Personnal Kanban on Jira"
 date: 2015-08-17 05:46
 comments: true

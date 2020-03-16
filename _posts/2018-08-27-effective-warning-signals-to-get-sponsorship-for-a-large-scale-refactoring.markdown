@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "5 Effective warning signals that will get you sponsorship for a large scale refactoring"
 date: 2018-09-13 13:01
 comments: true

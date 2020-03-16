@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The best 10 seconds I spent on my Kanban board setup"
 date: 2018-11-08
 comments: true

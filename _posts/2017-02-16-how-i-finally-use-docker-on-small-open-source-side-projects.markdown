@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I finally use Docker on small open source side projects"
 date: 2017-02-16 19:37
 comments: true

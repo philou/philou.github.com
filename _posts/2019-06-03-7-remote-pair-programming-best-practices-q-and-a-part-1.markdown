@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "7 Remote pair programming best practices Q&A - Part 1"
 date: 2019-06-27
 comments: true

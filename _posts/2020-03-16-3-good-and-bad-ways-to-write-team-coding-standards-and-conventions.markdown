@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: 3 Good and Bad Ways to Write Team Coding Standards and Conventions
 date: 2020-03-19
 comments: true

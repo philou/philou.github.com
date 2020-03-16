@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Anti Ugly-Code Glasses"
 date: 2016-06-02 04:33
 comments: true

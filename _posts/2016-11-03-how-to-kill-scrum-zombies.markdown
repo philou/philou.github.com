@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to kill Scrum Zombies ?"
 date: 2016-11-03 05:41
 comments: true

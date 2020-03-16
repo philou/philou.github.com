@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Performance is a feature"
 date: 2015-01-19 06:46
 comments: true

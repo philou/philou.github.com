@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to start learning the tao of incremental code refactoring today"
 date: 2017-07-21 08:05
 comments: true

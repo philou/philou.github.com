@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Forget unit tests, only fast tests matter"
 date: 2017-08-08 06:24
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "TO DO list or Mind Map for programming"
 date: 2019-09-05
 comments: true

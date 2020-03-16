@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Docker Compose trick : How to have an overridable environment variable in development mode ?"
 date: 2016-07-04 03:55
 comments: true

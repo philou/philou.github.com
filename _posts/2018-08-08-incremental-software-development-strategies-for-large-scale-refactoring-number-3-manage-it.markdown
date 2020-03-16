@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize !"
 date: 2018-08-23 06:53
 comments: true

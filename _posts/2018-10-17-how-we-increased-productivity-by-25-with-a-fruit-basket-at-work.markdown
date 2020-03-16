@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The unexpected contributions to a productivity increase by 25% of a fruit basket at work"
 date: 2018-10-25 13:03
 comments: true

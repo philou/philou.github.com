@@ -1,6 +1,6 @@
 ---
 keywords: "heroku, ruby, Dont, forget, stack"
-layout: single
+layout: single-mailing-list
 title: Don't forget the heroku stack
 published: true
 date: 2011-11-10

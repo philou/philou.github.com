@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Does Programming equal Refactoring?"
 date: 2019-08-29
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to Capture the Outputs of an Event Storming Workshop?"
 date: 2019-05-23
 comments: true

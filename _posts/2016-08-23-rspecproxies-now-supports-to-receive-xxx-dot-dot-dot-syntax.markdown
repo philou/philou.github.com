@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "RSpecProxies now supports .to receive(xxx)... syntax"
 date: 2016-08-23 04:47
 comments: true

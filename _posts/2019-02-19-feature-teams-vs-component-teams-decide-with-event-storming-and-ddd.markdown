@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Feature Teams vs Component Teams? Decide with Event Storming and DDD"
 date: 2019-03-28
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "21 More Event Storming Tips - part 3 - Anti and Meta Patterns"
 date: 2020-01-23
 comments: true

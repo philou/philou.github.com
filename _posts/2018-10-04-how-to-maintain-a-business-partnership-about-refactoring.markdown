@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to maintain a business partnership about refactoring?"
 date: 2018-10-11 13:03
 comments: true

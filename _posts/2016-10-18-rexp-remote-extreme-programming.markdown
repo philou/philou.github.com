@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "ReXP : Remote eXtreme Programming"
 date: 2016-10-18 04:27
 comments: true

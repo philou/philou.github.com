@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I'll measure the lean startup value of information in my next side project (Lean Software Development Part 8)"
 date: 2015-12-07 21:19
 comments: true

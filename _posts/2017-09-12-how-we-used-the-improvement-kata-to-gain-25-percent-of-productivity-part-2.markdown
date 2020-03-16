@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How we used the improvement kata to gain 25% of productivity - Part 2"
 date: 2017-09-12 09:00
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to mock your browser's timezone with Jasmine and MomentJS"
 date: 2017-03-30 06:29
 comments: true

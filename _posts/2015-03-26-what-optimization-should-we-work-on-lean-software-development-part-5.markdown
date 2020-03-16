@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "What Optimization Should We Work On (Lean Software Development Part 5)"
 date: 2015-03-26 20:30
 comments: true

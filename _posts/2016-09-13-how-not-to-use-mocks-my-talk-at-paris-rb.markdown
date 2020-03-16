@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How NOT to use mocks, my talk at Paris.rb"
 date: 2016-09-13 04:03
 comments: true

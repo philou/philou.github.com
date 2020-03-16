@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why should we use Design Level Event Storming for DDD?"
 date: 2019-10-17
 comments: true

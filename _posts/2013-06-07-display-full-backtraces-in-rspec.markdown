@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, rspec, testing, Display, backtraces"
-layout: single
+layout: single-mailing-list
 title: "Display full backtraces in rspec"
 published: true
 date: 2013-06-07 06:51

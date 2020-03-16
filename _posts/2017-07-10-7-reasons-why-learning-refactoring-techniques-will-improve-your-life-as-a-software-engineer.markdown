@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "7 reasons why learning refactoring techniques will improve your life as a software engineer"
 date: 2017-07-10 09:10
 comments: true

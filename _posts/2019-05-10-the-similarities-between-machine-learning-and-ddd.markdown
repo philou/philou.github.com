@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "The Similarities between Machine Learning and DDD"
 date: 2019-06-13
 comments: true

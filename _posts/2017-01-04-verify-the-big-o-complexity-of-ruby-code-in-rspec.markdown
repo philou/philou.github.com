@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Verify the Big O Complexity of Ruby Code in RSpec"
 date: 2017-01-04 17:48
 comments: true

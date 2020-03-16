@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How We Decentralized Our Company's Training Program"
 date: 2016-04-18 05:31
 comments: true

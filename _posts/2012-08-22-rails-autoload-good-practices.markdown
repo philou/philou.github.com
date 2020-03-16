@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, Rails, autoload, good, practices"
-layout: single
+layout: single-mailing-list
 title: Rails autoload good practices
 published: true
 date: 2012-08-22

@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, scrapping, DSL, gem, open source, Online, store"
-layout: single
+layout: single-mailing-list
 title: "Online store scrapping DSL gem"
 date: 2014-01-21 06:50
 comments: true

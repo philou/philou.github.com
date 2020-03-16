@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Setting up Octopress with Vagrant and rbenv"
 date: 2015-03-20 05:33
 comments: true

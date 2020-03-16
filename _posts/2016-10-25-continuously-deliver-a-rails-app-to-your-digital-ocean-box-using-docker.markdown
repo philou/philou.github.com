@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Continuously Deliver a Rails App to your DigitalOcean Box using Docker"
 date: 2016-10-25 20:39
 comments: true

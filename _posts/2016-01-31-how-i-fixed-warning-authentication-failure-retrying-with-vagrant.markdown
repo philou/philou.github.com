@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How I fixed 'Warning: Authentication failure. Retrying' with Vagrant"
 date: 2016-01-31 06:39
 comments: true

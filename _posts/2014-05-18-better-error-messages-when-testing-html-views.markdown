@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Better error messages when testing html views"
 date: 2014-05-18 21:14
 comments: true

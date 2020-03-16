@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Feedback On 360° Feedback Session"
 date: 2015-08-27 19:40
 comments: true

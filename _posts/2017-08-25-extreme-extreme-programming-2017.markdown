@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "eXtreme eXtreme Programming (2017)"
 date: 2017-08-25 07:01
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Why you should start a team coding dojo Randori right now"
 date: 2018-03-01 07:05
 comments: true

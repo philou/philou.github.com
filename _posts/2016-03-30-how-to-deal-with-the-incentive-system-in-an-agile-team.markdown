@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to deal with the incentive system in an agile team ?"
 date: 2016-03-30 05:10
 comments: true

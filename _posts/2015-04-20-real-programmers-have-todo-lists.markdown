@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Real Programmers Have Todo Lists"
 date: 2015-04-20 05:42
 comments: true

@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "13 Tricks for Successful Side Projects"
 date: 2017-06-19 18:48
 comments: true

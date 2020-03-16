@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Scrum with component teams leads to Waterfall Agile!"
 date: 2019-08-15
 comments: true

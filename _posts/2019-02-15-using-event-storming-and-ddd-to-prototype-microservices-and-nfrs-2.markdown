@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Using Event Storming and DDD to prototype (micro)services and NFRs - 2"
 date: 2019-03-14
 comments: true

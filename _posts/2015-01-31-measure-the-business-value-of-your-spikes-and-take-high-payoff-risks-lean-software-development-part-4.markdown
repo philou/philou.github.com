@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Measure The Business Value of Your Spikes and Take High Payoff Risks (Lean Software Development Part 4)"
 date: 2015-01-31 15:13
 comments: true

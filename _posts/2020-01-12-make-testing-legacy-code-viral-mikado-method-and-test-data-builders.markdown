@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Make Testing Legacy Code Viral: Mikado Method and Test Data Builders"
 date: 2020-01-30
 comments: true

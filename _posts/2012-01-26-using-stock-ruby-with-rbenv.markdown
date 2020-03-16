@@ -1,6 +1,6 @@
 ---
 keywords: "ruby, unix, Using, stock, rbenv"
-layout: single
+layout: single-mailing-list
 title: Using stock ruby with rbenv
 published: true
 date: 2012-01-26

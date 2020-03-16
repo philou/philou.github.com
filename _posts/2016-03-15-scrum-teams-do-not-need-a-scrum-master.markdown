@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Scrum teams do not need A Scrum Master"
 date: 2016-03-15 05:41
 comments: true

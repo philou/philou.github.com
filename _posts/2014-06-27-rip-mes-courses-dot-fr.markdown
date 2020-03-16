@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "RIP mes-courses.fr"
 date: 2014-06-27 06:33
 comments: true

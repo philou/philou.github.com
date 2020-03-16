@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Auchandirect-ScrAPI : an unofficial API Ruby Gem"
 date: 2014-03-21 06:31
 comments: true

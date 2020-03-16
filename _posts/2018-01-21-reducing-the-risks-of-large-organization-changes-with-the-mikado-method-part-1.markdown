@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Reducing the risks of large organization changes with the Mikado Method - part 1"
 date: 2018-02-08 11:53
 comments: true

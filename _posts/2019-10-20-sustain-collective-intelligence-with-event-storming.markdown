@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Sustain Collective Intelligence with Event Storming"
 date: 2019-11-14
 comments: true

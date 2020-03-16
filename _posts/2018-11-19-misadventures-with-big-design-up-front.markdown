@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Misadventures with Big Design Up Front"
 date: 2018-11-22
 comments: true

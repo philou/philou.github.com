@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "How to max out DDD Big Picture Event Storming with other Workshops"
 date: 2019-04-04
 comments: true

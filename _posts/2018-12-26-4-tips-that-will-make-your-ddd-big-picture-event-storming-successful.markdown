@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "4 tips that will make your DDD Big Picture Event Storming successful"
 date: 2019-01-17
 comments: true

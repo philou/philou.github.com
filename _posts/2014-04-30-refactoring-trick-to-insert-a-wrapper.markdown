@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: "Refactoring trick to insert a wrapper"
 date: 2014-04-30 08:01
 comments: true
