@@ -11,18 +11,20 @@ categories:
 - team building
 description: "Writing team coding standards and conventions is hard but critical. Throughout the years, I've tried different techniques. Let's see: why brainstorming doesn't work; how to use asynchronous decision making for remote teams; and how injecting mob programming in a team cuts through the problem!"
 header:
-  teaser: "/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/TODO-teaser.jpeg"
-  og_image: "/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/TODO-og.jpeg"
+  teaser: "/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions-teaser.jpg"
+  og_image: "/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions-og.jpg"
 published: false
 ---
 _Writing [team coding standards and conventions](https://en.wikipedia.org/wiki/Coding_conventions) is hard but critical. Brainstorming doesn't work, so let's use asynchronous decision making or mob programming!_
 
-Here's my story with coding standards and conventions. About 10 years ago, I was working in an XP team at a bank. The team was working quite well: 
+![Drawing of 3 different strategies to build coding conventions. Brainstorming does not work very well, collaborating over the wiki works, and coding dojos and mob programming rocks!]({{site.url}}/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions.jpg)
+
+Let's start with a story about coding standards and conventions. About 10 years ago, I was working in an XP team at a bank. The team was working quite well: 
 
 *   We were pushing a new version every week
 *   We were sitting 10 meters away from our users
 *   They were happy 😀
-*   We were doing [TDD](/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/) and [pair programming](/from-zero-to-pair-programming-hero/) almost 100% of the time
+*   We were doing [TDD]({{site.url}}/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/) and [pair programming]({{site.url}}/from-zero-to-pair-programming-hero/) almost 100% of the time
 
 We were also trying to do [collective code ownership](https://martinfowler.com/bliki/CodeOwnership.html). Unfortunately, the programmers were using different coding styles, and it caused friction.
 
@@ -40,13 +42,23 @@ A few years later, after I came back to work at [Murex](https://www.murex.com), 
 
 The flip side is that it was slow. We would only agree on 1 or 2 conventions per month.
 
-Fortunately, the team was also doing coding dojos. At some point, [Thomas](https://www.linkedin.com/in/tpeyrard/) suggested doing a [randori](/why-you-should-start-a-team-coding-dojo-randori-right-now/) on a piece of code he wanted to refactor. In 2 hours, the whole team had discussed and agreed on 3 rules! That's how we discovered the use of [mobbing](https://en.wikipedia.org/wiki/Mob_programming) to write coding standards and conventions!
+Fortunately, the team was also doing coding dojos. At some point, [Thomas](https://www.linkedin.com/in/tpeyrard/) suggested doing a [randori]({{site.url}}/why-you-should-start-a-team-coding-dojo-randori-right-now/) on a piece of code he wanted to refactor. In 2 hours, the whole team had discussed and agreed on 3 rules! That's how we discovered the use of [mobbing](https://en.wikipedia.org/wiki/Mob_programming) to write coding standards and conventions!
 
 > \#3. Team Coding Standards Best Practice: Mob sessions
 
 Before I dive into these techniques, let's see what's at stake.
 
 ## The challenges of team coding conventions
+
+{% assign figure_path="/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/bad-communication-small.jpg" | absolute_url %}
+    
+{% assign figure_alt="Drawing of the double vicious circle of bad communication and no coding standards or conventions. No Coding conventions -> Conflicts -> No speak -> No Coding Conventions... Conflicts -> No Speak -> Bad Reviews -> Duplicated Code -> More Bugs -> Less Features -> More Stress -> Conflicts ..." %}
+    
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/bad-communication.jpg)
+{% endcapture %}
+    
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 They have many names: working agreements, coding standards, or coding conventions. Whatever we call them, they have a massive impact on a team's work. Here's a non-exhaustive list of the problems that occur when they are lacking:
 
@@ -72,6 +84,8 @@ If team coding standards and conventions are so critical, why do we so often lac
 Let's see go over different strategies to write team coding standards and conventions.
 
 ## Why brainstorming team coding standards does not work?
+
+![Photo of a team engaged in a brainstorming discussion. Brainstorming is not a very effective way to write team coding conventions]({{site.url}}/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/brainstorming.jpg)
 
 The first time I tried to write team coding standards, I tried the classic brainstorming. It did not work. I now understand why:
 
@@ -107,7 +121,7 @@ As Bertrand explains in his talk, this is not a linear process, you might get ba
 
 > 💡 Asynchronous Decision Making has Living Documentation built-in!
 
-[![Cover of the Living Documentation book. Using Asynchronous Decision Making to write coding standards and conventions makes them documented by design.](../imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/living-documentation.jpg)](https://www.amazon.com/Living-Documentation-Continuous-Knowledge-Sharing-ebook/dp/B07S7671FW)
+[![Cover of the Living Documentation book. Using Asynchronous Decision Making to write coding standards and conventions makes them documented by design.]({{site.url}}/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/living-documentation.jpg)](https://www.amazon.com/Living-Documentation-Continuous-Knowledge-Sharing-ebook/dp/B07S7671FW)
 
 There are many advantages to this technique:
 
@@ -130,7 +144,7 @@ I currently do a lot of mob sessions with the teams I coach. I knew that team co
 
 Here is how:
 
-1.  **Real situation.** What happens in a mob session is like [what happens in a coding dojo randori](/why-you-should-start-a-team-coding-dojo-randori-right-now/). As everyone sees the code, people will ask why it is being written this way. The advantage is that the team can discuss real production code, not only [kata](http://codingdojo.org/kata/) examples. This ensures that the coding standards remain grounded in the actual team context.
+1.  **Real situation.** What happens in a mob session is like [what happens in a coding dojo randori]({{site.url}}/why-you-should-start-a-team-coding-dojo-randori-right-now/). As everyone sees the code, people will ask why it is being written this way. The advantage is that the team can discuss real production code, not only [kata](http://codingdojo.org/kata/) examples. This ensures that the coding standards remain grounded in the actual team context.
 2.  **Start small and improve.** Discussions happen when the problem is fresh in everyone's mind. The standard does not have to deal with every possible case. It's more effective to stick to the current problem's specificities. It will grow and generalize the next time the mob faces a related design question.
 3.  **Fast.** A side effect of not trying to deal with every case is that it can be quick. The team can agree in a few minutes, not weeks!
 4.  **Understood by design.** As everybody is there to discuss the standard, everybody has a chance to question it. This ensures that all the team will understand the rationale, the pros, and the cons.
@@ -180,7 +194,7 @@ If your first try looked like that, you might have been afraid to continue. Don'
 
 Starting mob programming is not as difficult as it seems. People need a bit of support, though. It's like [boiling frogs](https://en.wikipedia.org/wiki/Boiling_frog):
 
-1.  [Start a regular team coding dojo](/how-to-start-a-team-coding-dojo-randori-today/) (weekly or every sprint). Sell dojos as a way to learn together.
+1.  [Start a regular team coding dojo]({{site.url}}/how-to-start-a-team-coding-dojo-randori-today/) (weekly or every sprint). Sell dojos as a way to learn together.
 2.  Once you are used to randoris, try a few with [strong-style pairing](http://llewellynfalco.blogspot.com/2014/06/llewellyns-strong-style-pairing.html) mode. This is already mob programming, albeit on a kata. This is how you'll learn the discipline to make mobs work.
 3.  Then wait for the next time you face a challenging task. For example: a design decision, some tricky legacy refactoring, or a nasty bug. Then ask the team to help you in a randori-like session.
 4.  Repeat this a few times. End every session with a quick-retrospective. Chances are mobs will become part of your regular practices.
@@ -203,6 +217,8 @@ I mob with teams as a way to apply what we practice in katas. A coach will help 
 And guess what? Someone from the team can play this role too!
 
 # Start to write team coding standards and conventions today!
+
+![World War II poster of a women factory worker, titled "We can do it!". Whenever we stand in the organization, we can have an impact and change it for the better! We can start to write team coding standards and conventions for example.]({{site.url}}/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/we-can-do-it.jpg)
 
 If you don't have coding standards or conventions, you can start to write one today!
 
