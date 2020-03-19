@@ -13,7 +13,6 @@ description: "Writing team coding standards and conventions is hard but critical
 header:
   teaser: "/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions-teaser.jpg"
   og_image: "/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions-og.jpg"
-published: false
 ---
 _Writing [team coding standards and conventions](https://en.wikipedia.org/wiki/Coding_conventions) is hard but critical. Brainstorming doesn't work, so let's use asynchronous decision making or mob programming!_
 
