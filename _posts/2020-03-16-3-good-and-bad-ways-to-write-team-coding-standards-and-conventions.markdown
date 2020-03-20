@@ -77,7 +77,7 @@ If team coding standards and conventions are so critical, why do we so often lac
 
 1.  Opening the topic of coding standards can start an endless ping-pong discussion. Coding standards remain a never-ending work in progress until everyone gives up.
 2.  Even getting a coding-standard initiative to its conclusion is not enough! It often turns into documents that everyone forgets when facing day to day urgencies.
-3.  Some opinionated people won't change their habits for the sack of the team.
+3.  Some opinionated people won't change their habits for the sake of the team.
 4.  I've seen team members agree on the conventions in public, but continue to use their own style. This generates passive-aggressive fights, where the most stubborn wins, but the team loses.
 
 Let's see go over different strategies to write team coding standards and conventions.
@@ -106,7 +106,7 @@ It turns out we had been re-discovering a well-known collaboration technique. He
 
 *   **0. Emergence:** During a code review, for example, you notice a pattern that could be worth a coding standard.
 *   **1. Brainstorm:** Through the team's chat (or wiki), start a discussion on a specific rule. The goal at this point is to get as many points of view as possible and trigger conversations.
-*   **2. Options:** Continue the discussions until a consensus starts to emerge. Has Bertrand explains, a consensus is not unanimity.
+*   **2. Options:** Continue the discussions until a consensus starts to emerge. As Bertrand explains, a consensus is not unanimity.
 *   **3. Consensus:** Once a large enough consensus is reached, propose a coding-standard rule. Bertrand explains that we need a tool with reliable traceability here. For coding standards, our VCS seems to be the obvious choice.
     *   Create a markdown file inside your codebase with all the details of the coding-standard rule.
     *   Explain the coding-standard meaning, pros, and cons.
