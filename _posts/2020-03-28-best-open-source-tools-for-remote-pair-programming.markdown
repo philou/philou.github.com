@@ -10,19 +10,20 @@ categories:
 - extreme programming
 description: "COVID-19 has thrown us into remote work. Here are 3 world-class open-source tools for remote pair programming. If you can spare an IDE: use TMux. If you don't want to change your habits: setup a git pull-push loop in 5 minutes. Don't forget to try Saros: a collaborative real-time editor IDE plugin."
 header:
-  teaser: "/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/TODO-teaser.jpeg"
-  og_image: "/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/TODO-og.jpeg"
+  teaser: "/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work-teaser.jpeg"
+  og_image: "/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work-og.jpeg"
 published: false
 ---
 _COVID-19 has thrown us into remote work. Here are 3 world-class open-source tools for remote pair programming that you can set up today._
 
-TODO Drawing
+![Drawing of a swimming pool with a buoy paneled "Remote Work" Some people are trying to swim, while a virus is pushing more people in the pool. COVID-19 has thrown us into remote work. Here are 3 world-class open-source tools for remote pair programming that you can set up today.](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work.jpeg)
+
 
 As I write this today, the COVID-19 pandemic is violently attacking us. More than 2 billions people are confined at home! It's the first time in mankind history that so many people are working from home.
 
 In the last decades, more and more people have started to remote-work. I've been doing more and more [remote work](/categories/#remote). In the past few months, I've enjoyed 60% of my time working from home. Unfortunately, choosing remote work and being suddenly forced into it is entirely different.
 
-Did you know that remote [pair](https://en.wikipedia.org/wiki/Pair_programming) or [mob programming](https://en.wikipedia.org/wiki/Mob_programming) can make your [remote team more effective](https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-effective/)? Even if you have been doing local pairing or mobbing, adjusting to remote work might be a challenge, though. Tools exist, but most of them are proprietary. In today's situation, going through a company's full purchase process is too long. Your company's IP policy might also forbid you from using these tools!
+Did you know that remote [pair](https://en.wikipedia.org/wiki/Pair_programming) or [mob programming](https://en.wikipedia.org/wiki/Mob_programming) can make your [remote team more effective](https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-effective/)? Even if you have been doing local pairing or mobbing, adjusting to remote work might be a challenge, though. Tools exist, but most of them are proprietary. In today's situation, going through a company's full purchase process is too long. Your company's IP policy might also prohibit you from using these tools!
 
 Fortunately, they are some open source alternatives! They are different, yet as effective, if not more, as proprietary solutions! You keep the data, you don't need to ask permission, and you can set them up right now. With them, you will be able to get a world-class remote pairing experience before the end of the day!
 
@@ -136,7 +137,7 @@ When all mobsters run this script on the same branch, all their local repos are 
 
 #### The flow
 
-TODO drawing of the flow
+![Schema of the flow of work between driver and navigators when doing remote pair programming or mob programming with the git-pull-push-loop setup.](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/git-pull-push-loop.jpeg)
 
 Here is how to use this setup when remote pair or mob programming:
 
