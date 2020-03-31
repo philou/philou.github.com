@@ -75,6 +75,8 @@ That said, these tools only synchronize editor windows of the IDEs. They don't s
 
 Other, like [Ham Vocke](https://www.hamvocke.com/), [have reported success with TMux](https://www.hamvocke.com/blog/remote-pair-programming-with-tmux/). If your team is not using an IDE, it's a great way to work collaboratively on the same terminal.
 
+> NB: I've since then written a more detailed post going over the tools for remote pair programming. If you want more, it's here: [Best open source tools for remote pair programming]({{site.url}}/best-open-source-tools-for-remote-pair-programming/)
+
 ## Pairing is tiring, what about remote pairing?
 
 ![Photo of a tired cat. Remote pair programming can be exhausting, you'll have to put special practices in place to accommodate with this and stick to a sustainable pace]({{site.url}}/imgs/2019-06-03-7-remote-pair-programming-best-practices-q-and-a-part-1/tired-cat.jpg)

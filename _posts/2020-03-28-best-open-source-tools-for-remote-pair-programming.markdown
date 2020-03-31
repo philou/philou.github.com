@@ -1,7 +1,7 @@
 ---
 layout: single
 title: Best open source tools for remote pair programming
-date: 2020-04-02
+date: 2020-03-31
 comments: true
 categories:
 - remote
@@ -12,16 +12,15 @@ description: "COVID-19 has thrown us into remote work. Here are 3 world-class op
 header:
   teaser: "/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work-teaser.jpeg"
   og_image: "/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work-og.jpeg"
-published: false
 ---
 _COVID-19 has thrown us into remote work. Here are 3 world-class open-source tools for remote pair programming that you can set up today._
 
-![Drawing of a swimming pool with a buoy paneled "Remote Work" Some people are trying to swim, while a virus is pushing more people in the pool. COVID-19 has thrown us into remote work. Here are 3 world-class open-source tools for remote pair programming that you can set up today.](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work.jpeg)
+![Drawing of a swimming pool with a buoy paneled "Remote Work" Some people are trying to swim, while a virus is pushing more people in the pool. COVID-19 has thrown us into remote work. Here are 3 world-class open-source tools for remote pair programming that you can set up today.]({{site.url}}/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/covid19-thrown-in-pool-of-remote-work.jpeg)
 
 
 As I write this today, the COVID-19 pandemic is violently attacking us. More than 2 billions people are confined at home! It's the first time in mankind history that so many people are working from home.
 
-In the last decades, more and more people have started to remote-work. I've been doing more and more [remote work](/categories/#remote). In the past few months, I've enjoyed 60% of my time working from home. Unfortunately, choosing remote work and being suddenly forced into it is entirely different.
+In the last decades, more and more people have started to remote-work. I've been doing more and more [remote work]({{site.url}}/categories/#remote). In the past few months, I've enjoyed 60% of my time working from home. Unfortunately, choosing remote work and being suddenly forced into it is entirely different.
 
 Did you know that remote [pair](https://en.wikipedia.org/wiki/Pair_programming) or [mob programming](https://en.wikipedia.org/wiki/Mob_programming) can make your [remote team more effective](https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-effective/)? Even if you have been doing local pairing or mobbing, adjusting to remote work might be a challenge, though. Tools exist, but most of them are proprietary. In today's situation, going through a company's full purchase process is too long. Your company's IP policy might also prohibit you from using these tools!
 
@@ -31,9 +30,9 @@ Before I go over the solutions, let's first talk about screen-sharing...
 
 ## Why giving control over screen sharing sucks
 
-![Screenshot of my first remote pair programming setup. I have been doing remote pair programming for more than 6 years now, and the tools were very basic at the time.](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/remote-pairing-screenshot.resized.jpg)
+![Screenshot of my first remote pair programming setup. I have been doing remote pair programming for more than 6 years now, and the tools were very basic at the time.]({{site.url}}/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/remote-pairing-screenshot.resized.jpg)
 
-I first [started to remote pair program at Murex in 2014](/from-zero-to-pair-programming-hero/). The team had been doing local pair programming for a few months when [Ahmad](https://ahmadatwi.me/) joined us from Beirut. We did not want to abandon pair programming. We resorted to screen sharing with Skype for Business ([Lync](https://fr.wikipedia.org/wiki/Microsoft_Teams#Histoire) at the time). Even after we tweaked it as much as we could, it remained a painful experience. To make the case clear, here are the pros and cons of screen-sharing and remote-control:
+I first [started to remote pair program at Murex in 2014]({{site.url}}/from-zero-to-pair-programming-hero/). The team had been doing local pair programming for a few months when [Ahmad](https://ahmadatwi.me/) joined us from Beirut. We did not want to abandon pair programming. We resorted to screen sharing with Skype for Business ([Lync](https://fr.wikipedia.org/wiki/Microsoft_Teams#Histoire) at the time). Even after we tweaked it as much as we could, it remained a painful experience. To make the case clear, here are the pros and cons of screen-sharing and remote-control:
 
 | The pros | The Cons |
 |----------|----------|
@@ -96,7 +95,7 @@ Most of the time, you'll be able to work around the cons with [TDD and automated
 
 Here is what my friend [Arnaud Bailly](https://twitter.com/dr_c0d3), who's been remote pairing for 10 years says:
 
-> It's for me the best solution. It's the fastest interaction, both with the machine and with the people. It's easy to switch between [driver and navigator roles](https://gist.github.com/jordanpoulton/607a8854673d9f22c696). The keystroke quality is optimal (there is no lag or visual artifacts). The whole team shares a single environment (enforces [XP coding standards](/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/) by design). It's also easy to automate the VM setup, which makes it very smooth to create new 'Rooms' when needed and ensures that the dev environment is always up to date with the code...
+> It's for me the best solution. It's the fastest interaction, both with the machine and with the people. It's easy to switch between [driver and navigator roles](https://gist.github.com/jordanpoulton/607a8854673d9f22c696). The keystroke quality is optimal (there is no lag or visual artifacts). The whole team shares a single environment (enforces [XP coding standards]({{site.url}}/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/) by design). It's also easy to automate the VM setup, which makes it very smooth to create new 'Rooms' when needed and ensures that the dev environment is always up to date with the code...
 
 > The only glitch is that you need to get used to working with one editor in text mode. At Symbiont, we were using Spacemacs (emacs + vim), and everyone was ok with it. I'm more of an Emacs person, but it was still working ok.
 
@@ -114,14 +113,14 @@ Here's an extra tip we owe to [Emmanuel Gaillot](https://ut7.fr/):
 {% assign figure_alt="Superposition of a TMux client terminal over a video conference gallery view. This TMux setup allows us to see the code and people at the same time." %}
     
 {% capture figure_caption %}
-I built this illustration by superposing a screenshot from [Swapnil Singh's dotfiles repo](https://github.com/swapkats/dotfiles/blob/master/README.md) on top of a zoom gallery view from the official [Zoom documentation](https://support.zoom.us/hc/en-us/articles/360000005883-Displaying-participants-in-gallery-view). Here is a [higher res picture](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/tmux-transparent.jpg).
+I built this illustration by superposing a screenshot from [Swapnil Singh's dotfiles repo](https://github.com/swapkats/dotfiles/blob/master/README.md) on top of a zoom gallery view from the official [Zoom documentation](https://support.zoom.us/hc/en-us/articles/360000005883-Displaying-participants-in-gallery-view). Here is a [higher res picture]({{site.url}}/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/tmux-transparent.jpg).
 {% endcapture %}
     
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### Open-source alternative 2: git pull-push loop
 
-As you might know, if you are a regular reader, I am currently an [Agile Technical Coach at Murex](/the-story-about-how-we-do-agile-technical-coaching/). I spend a lot of my time mob programming with teams on katas or their daily tasks. Most teams at [Murex](https://www.murex.com) are somewhat distributed. As a result, we've been experimenting with remote mobbing a lot.
+As you might know, if you are a regular reader, I am currently an [Agile Technical Coach at Murex]({{site.url}}/the-story-about-how-we-do-agile-technical-coaching/). I spend a lot of my time mob programming with teams on katas or their daily tasks. Most teams at [Murex](https://www.murex.com) are somewhat distributed. As a result, we've been experimenting with remote mobbing a lot.
 
 A few months ago, Ahmad and I decided to give [TCR](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864) (Test && Commit \|\| Revert) a try. As Ahmad lives in Beirut, we needed a remote setup from the beginning. I found Thomas Deniffel's posts, and we started from his [TCR Variants](https://medium.com/@tdeniffel/tcr-variants-test-commit-revert-bf6bd84b17d3) scripts.
 
@@ -137,7 +136,7 @@ When all mobsters run this script on the same branch, all their local repos are 
 
 #### The flow
 
-![Schema of the flow of work between driver and navigators when doing remote pair programming or mob programming with the git-pull-push-loop setup.](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/git-pull-push-loop.jpeg)
+![Schema of the flow of work between driver and navigators when doing remote pair programming or mob programming with the git-pull-push-loop setup.]({{site.url}}/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/git-pull-push-loop.jpeg)
 
 Here is how to use this setup when remote pair or mob programming:
 
@@ -145,23 +144,23 @@ Here is how to use this setup when remote pair or mob programming:
 
 1.  The first driver shares his screen
 2.  He pulls a new (short-lived) work branch from 'master' if you are doing [trunk-based development](https://trunkbaseddevelopment.com/)
-3.  He starts the [watch.sh](/best-open-source-tools-for-remote-pair-programming/#watchsh) script
+3.  He starts the [watch.sh]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#watchsh) script
 4.  Other mobsters pull the new branch and check it out
-5.  They start the [watch.sh](/best-open-source-tools-for-remote-pair-programming/#watchsh) script themselves
+5.  They start the [watch.sh]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#watchsh) script themselves
 6.  As in a local mob, they don't touch the code when they are not driving
 
 #### When you switch driver
 
 1.  The previous driver stops typing and sharing his screen
-2.  In the background, the [watch.sh](/best-open-source-tools-for-remote-pair-programming/#watchsh) scripts sync the latest code changes to the new driver's repo
+2.  In the background, the [watch.sh]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#watchsh) scripts sync the latest code changes to the new driver's repo
 3.  The new driver starts sharing his screen
 4.  He compiles and runs the tests to make sure everything works as it used to work on the previous driver's env
 
 #### When you want to commit
 
-1.  The driver stops the [watch.sh](/best-open-source-tools-for-remote-pair-programming/#watchsh) script
+1.  The driver stops the [watch.sh]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#watchsh) script
 2.  He rebases and squashes all the changes on master with a clear commit message
-3.  Once he's pushed on the master branch, he goes back to his work branch and starts the [watch.sh](/best-open-source-tools-for-remote-pair-programming/#watchsh) script again
+3.  Once he's pushed on the master branch, he goes back to his work branch and starts the [watch.sh]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#watchsh) script again
 
 #### The pros and cons
 
@@ -279,20 +278,20 @@ Or from a former colleague:
 
 COVID-19 suddenly threw you in remote work?
 
-![Photo of a laptop and a TV remote control on a sofa. In the current situation, we all have work from home. Pair programming or mob programming makes remote teams more effective](../imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/home-office.jpg)
+![Photo of a laptop and a TV remote control on a sofa. In the current situation, we all have work from home. Pair programming or mob programming makes remote teams more effective]({{site.url}}/imgs/2020-03-28-best-open-source-tools-for-remote-pair-programming/home-office.jpg)
 
 Don't wait for a corporate decision about the best remote pair programming tool to use. The situation we are in is [chaotic](https://en.wikipedia.org/wiki/Cynefin_framework#Chaotic), and we must act now! It's the perfect occasion to refactor your organization and inject new practices. 
 
 Keep in mind that there is no one-size-fits-all tool for remote pair or mob programming. That said, here are my own recommendations. You should be able to set up a best-of-breed remote pairing and mobbing solution before the end of the day:
 
-1.  Use [TMux](/best-open-source-tools-for-remote-pair-programming/#tmux--terminal--editor) if you can. If your team is not using an IDE, or if you can be as effective without one, then TMux is a no-brainer.
-2.  If you need an IDE, set up a [git pull-push loop](/best-open-source-tools-for-remote-pair-programming/#open-source-alternative-2-git-pull-push-loop) in 5 minutes. You'll get something that works well, that will not change your habits, and with no extra tooling. This the solution we are currently using at work.
-3.  You might also try [Saros](/best-open-source-tools-for-remote-pair-programming/#open-source-alternative3-saros) if it supports your IDE. Test it and see if it works for you.
-4.  Finally, there might also be a [proprietary solution](/best-open-source-tools-for-remote-pair-programming/#proprietary-tools) that will work for you! If you have the bandwidth, the money, a quick process to buy a tool, and need an IDE, here is the way to go:
+1.  Use [TMux]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#tmux--terminal--editor) if you can. If your team is not using an IDE, or if you can be as effective without one, then TMux is a no-brainer.
+2.  If you need an IDE, set up a [git pull-push loop]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#open-source-alternative-2-git-pull-push-loop) in 5 minutes. You'll get something that works well, that will not change your habits, and with no extra tooling. This the solution we are currently using at work.
+3.  You might also try [Saros]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#open-source-alternative3-saros) if it supports your IDE. Test it and see if it works for you.
+4.  Finally, there might also be a [proprietary solution]({{site.url}}/best-open-source-tools-for-remote-pair-programming/#proprietary-tools) that will work for you! If you have the bandwidth, the money, a quick process to buy a tool, and need an IDE, here is the way to go:
     1.  Short-list them based on your platform and preferred features,
     2.  Try them
     3.  Buy what works best for you!
 
-I hope this little guide can help those of you who suddenly have to pair or mob program remotely. Remote pairing or mobbing can be a pretty enjoyable and sustainable experience. If you want you can learn more, here are [7 Remote pair programming best practices Q&A](https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-1/).
+I hope this little guide can help those of you who suddenly have to pair or mob program remotely. Remote pairing or mobbing can be a pretty enjoyable and sustainable experience. If you want you can learn more, here are [7 Remote pair programming best practices Q&A]({{site.url}}/7-remote-pair-programming-best-practices-q-and-a-part-1/).
 
 Keep hope, persevere, and you'll soon be as effective as you used to be!
