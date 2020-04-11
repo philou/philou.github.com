@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: single-mailing-list
 title: Best open source tools for remote pair programming
 date: 2020-03-31
 comments: true
