@@ -3,14 +3,16 @@ layout: single-mailing-list
 title: "Why 20 hours of code kata are so effective for learning new languages"
 date: 2018-04-05 08:53
 comments: true
-categories: 
+categories:
  - tdd
  - coding dojo
  - learning
  - personal-productivity
  - 20-hours-code-kata-series
 keywords: "Learning, The first 20 hours, 20 hours of code katas, Personal Productivity, Coding Dojo, Code Kata, TDD, Test Driven Development"
-description: "A detailed review of the 20 hours of Code Kata technique, explaining why it works so well to learn new programming languages" 
+description: "A detailed review of the 20 hours of Code Kata technique, explaining why it works so well to learn new programming languages"
+header:
+  og_image: /imgs/2018-03-26-why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/why.jpg
 ---
 In my [previous post](/how-to-learn-a-programming-language-in-just-20-hours/), I described how I've been using 20 hours of Code Katas to learn new languages. If you did not read it yet, have a look at it first. Let's now look at why it works so well.
 
@@ -59,4 +61,3 @@ You might have a look at [this post](/how-to-keep-up-with-software-technologies/
 ## Next part
 
 This was the second post on this [series about the 20 hours of Code Katas technique]({{site.baseurl}}/categories/#20-hours-code-kata-series). The [next, and last, post](/frequently-asked-questions-about-the-20-hours-of-code-katas/) will be compilation of answers to frequently asked questions.
-

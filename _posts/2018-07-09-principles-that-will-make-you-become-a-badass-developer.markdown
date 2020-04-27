@@ -3,12 +3,14 @@ layout: single-mailing-list
 title: "Principles that will make you become a badass developer"
 date: 2018-07-19 12:57
 comments: true
-categories: 
+categories:
  - refactoring
  - badass-developer
  - large-scale-refactoring-sponsorship-series
 keywords: "Large Scale Refactoring, Badass Developper, become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects"
 description: "Having a badass developer onboard will help to get sponsorship for a large scale refactoring. They help with their experience, but also by the way they communicate and negotiate with the business people. If you want to become a badass developer yourself, here are a five principles to live by."
+header:
+  og_image: /imgs/2018-07-09-principles-that-will-make-you-become-a-badass-developer/badass-principles-tatoo.jpg
 ---
 *There are some simple attitude principles that badass developers follow to gain the business people trust.*
 

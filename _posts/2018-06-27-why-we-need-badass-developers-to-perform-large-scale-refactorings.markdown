@@ -9,6 +9,8 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Large Scale Refactoring, Badass Developper, Become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, how to convince a business of sponsoring you, Planning refactoring"
 description: "Having a badass developer onboard will help to get sponsorship for a large scale refactoring. By knowing what they talk about and understanding   interests, they are able to get business people's trust. This trust can be used to get a large scale refactoring prioritized and performed well."
+header:
+  og_image: /imgs/2018-06-27-why-we-need-badass-developers-to-perform-large-scale-refactorings/badass-dev.jpg
 ---
 [My last post](/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/) was about the challenge for dev teams to get sponsorship for large scale refactorings. I listed two main reasons :
 

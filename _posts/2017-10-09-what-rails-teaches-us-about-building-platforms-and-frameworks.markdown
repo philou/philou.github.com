@@ -3,13 +3,15 @@ layout: single-mailing-list
 title: "What Rails teaches us about building platforms and frameworks"
 date: 2017-10-09 09:20
 comments: true
-categories: 
+categories:
  - agile
  - rails
  - architecture
  - testing
 keywords: "Rails, Ruby on Rails, Framework, Architecture, Software, Software architecture, Testing, Automated Testing, Agile, Agile Software Development"
 description: "Reflection about how the Rails framework was built, and how agile development practices enable to build specific before generic."
+header:
+  og_image: /imgs/2017-10-09-what-rails-teaches-us-about-building-platforms-and-frameworks/train-and-rails.jpg
 ---
 More than ever, the cheapest way to build a framework is to refactor it out of a specific app.
 

@@ -3,12 +3,14 @@ layout: single-mailing-list
 title: "Why and how to start a #ZeroBugs policy - part 1"
 date: 2017-12-07 10:22
 comments: true
-categories: 
+categories:
  - continuous improvement
  - quality
  - zero-bugs-series
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Beginning of our story towards #ZeroBugs"
+header:
+  og_image: /imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-1/aim-bug.jpg
 ---
 Some teams spend 95% of their development time fixing bugs ... An entrepreneur I worked with reported an even scarier story. He went bankrupt because bugs were taking _all_ the development time. He had no time left for new features !
 
@@ -64,7 +66,7 @@ Whenever we found an issue meeting any of these points, we would start working o
 
 > 💡 Exploratory testing goes hand in hand with #ZeroBugs policy
 
-To speed up downstream integration of our product by other teams, we also [started Exploratory Testing](/how-we-started-exploratory-testing/). [Exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) is a practice that goes hand in hand with a #ZeroBugs policy. 
+To speed up downstream integration of our product by other teams, we also [started Exploratory Testing](/how-we-started-exploratory-testing/). [Exploratory testing](https://en.wikipedia.org/wiki/Exploratory_testing) is a practice that goes hand in hand with a #ZeroBugs policy.
 
 ### Unearthing a bug debt
 

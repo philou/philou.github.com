@@ -10,6 +10,8 @@ categories:
  - refactoring
 keywords: "Throwing away code, Refactoring, TDD, Test Driven Development, DDD, Remote Work, Mob Programming, Rewrite, Testing, Automated testing, Microservices"
 description: "A study on the practice of throwing code away, and of how and when it could be made to work"
+header:
+  og_image: "/imgs/2017-09-01-throwing-code-away-frequently/shredder.jpeg"
 ---
 Here is the main feedback I got about my previous post [eXtreme eXtreme Programming](/extreme-extreme-programming-2017/).
 

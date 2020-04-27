@@ -12,6 +12,8 @@ categories:
  - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Retrospectives, Lean, Lean Software, Agile, Scrum"
 description: "The first part of a 4 post series about how we applied the improvement kata to increase the productivity of our software team"
+header:
+  og_image: /imgs/2017-09-07-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/low-hanging-fruits.jpeg
 ---
 If you are serious about continuous improvement, you should learn the [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html).
 

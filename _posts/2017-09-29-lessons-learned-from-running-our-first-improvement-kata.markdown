@@ -12,6 +12,8 @@ categories:
  - retrospectives
 keywords: "Improvement kata, Lean, Agile, Continuous Improvement, Exploratory Testing, Retrospective"
 description: "Takeaways from applying the improvement kata : development best practices as well as lessons as how to apply the kata"
+header:
+  og_image: /imgs/2017-09-29-lessons-learned-from-running-our-first-improvement-kata/lessons.jpg
 ---
 During the past few weeks, I blogged the [story of our first improvement kata](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 

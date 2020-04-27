@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "How Immutable Value Objects fight Mocks"
 date: 2018-04-26 08:51
 comments: true
-categories: 
+categories:
  - tdd
  - ddd
  - mocking
@@ -12,6 +12,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Immutable Value Object, Value Objects, Immutable Data, Immutable Data Structures, DDD, Domain Driven Design"
 description: "An explanation of how immutable value objects helps developers to remote mocks from their tests"
+header:
+  og_image: /imgs/2018-04-17-how-immutable-value-objects-fight-mocks/immutable-rock.jpg
 ---
 Excessive use of mocks makes tests very painful to maintain. If we stick painful mocks for too long, we'll end up abandoning unit testing. Eventually, the system will degrade into legacy. 
 

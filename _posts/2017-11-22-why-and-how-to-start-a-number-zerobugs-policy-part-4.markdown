@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "Why and how to start a #ZeroBugs policy - part 4"
 date: 2018-01-04 10:40
 comments: true
-categories: 
+categories:
  - continuous improvement
  - quality
  - zero-bugs-series
@@ -11,6 +11,8 @@ categories:
  - psychology
 keywords: "ZeroBugs, NoBugs, Software, Change Management"
 description: "Arguments to win people over to try #ZeroBugs in your team"
+header:
+  og_image: /imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-4/bug-dilemna.jpg
 ---
 This is the forth and last post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series). In the [previous posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, what were the consequences and how you could do the same.
 

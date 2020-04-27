@@ -3,13 +3,15 @@ layout: single-mailing-list
 title: "How to get the max out of your Team Coding Dojo ?"
 date: 2018-03-22 06:42
 comments: true
-categories: 
+categories:
  - tdd
  - team building
  - coding dojo
  - team-randori-series
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori, Teamwork, Programming"
 description: "Ideas about how to push your team coding dojo further in order to improve teamwork and production code."
+header:
+  og_image: /imgs/2018-03-08-how-to-get-the-max-out-of-your-team-coding-dojo/yoda.jpg
 ---
 If you've read my [previous posts about Team Randori Coding Dojos]({{site.baseurl}}/categories/#team-randori-series), you should know why and how to run a successful one.
 

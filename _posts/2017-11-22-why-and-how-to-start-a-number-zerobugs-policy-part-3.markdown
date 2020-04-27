@@ -3,13 +3,15 @@ layout: single-mailing-list
 title: "Why and how to start a #ZeroBugs policy - part 3"
 date: 2017-12-21 10:40
 comments: true
-categories: 
+categories:
  - continuous improvement
  - quality
  - zero-bugs-series
  - how to guide
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software, Change Management, How to"
 description: "An how-to guide to inject #ZeroBugs in your team"
+header:
+  og_image: /imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-3/zero-bug-formula.jpg
 ---
 This is the third post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series). In the [first 2 posts](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed how we applied it in our team, and what were the consequences.
 
@@ -72,4 +74,3 @@ It's great to fix the bugs very fast. It's even better if to fix them before the
 ## Next week
 
 This was part 3 of a [series of posts about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series). In [next week's post](/why-and-how-to-start-a-number-zerobugs-policy-part-4/), I'll provide arguments and advices to convince the people around you to give it a try.
-

@@ -9,6 +9,8 @@ categories:
  - continuous improvement
 keywords: "Avoid unnecessary meetings, Avoid useless meetings, Devoxx France 2018, How to avoid unproductive meetings, Remote Decision making"
 description: "Take decisions asynchronously and avoid unnecessary meetings. This is the summary of a great talk from Bertrand Delacretaz which I attended at Devoxx France 2018. It details the techniques and tools used by the open source community manages to take good decisions while being all remote."
+header:
+  og_image: /imgs/2018-06-05-how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/decision.jpg
 ---
 I had the chance to attend [Devoxx France](https://www.devoxx.fr/) this year in Paris. Here is the most important lesson I learned :
 

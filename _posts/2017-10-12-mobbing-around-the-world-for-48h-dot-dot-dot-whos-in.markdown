@@ -10,6 +10,8 @@ categories:
  - remote
 keywords: "Mob Programming, Remote, Remote work, Remote Programming, Remote Mob, eXtreme Programming, Experiment"
 description: "A call for volunteer to try a programming experiment : to run a remote mob round robin around the globe for 48h"
+header:
+  og_image: /imgs/2017-10-12-mobbing-around-the-world-for-48h-dot-dot-dot-whos-in/mob-drawing.jpg
 ---
 In [Far From the mobbing crowd](https://www.infoq.com/presentations/distributed-teams-remote-collaboration) the [Cucumber](https://cucumber.io/) guys explain how they combined [mob programming](https://en.wikipedia.org/wiki/Mob_programming) and remote work. [Matt](https://twitter.com/mattwynne?lang=fr) and [Steve](https://twitter.com/tooky?lang=fr) also explain that a mob is both resilient and fast. They explain that they sometimes have to leave the mob for 15 minutes or so. When they come back the code has changed a lot ! It's as if the mob continues no matter who's in.
 

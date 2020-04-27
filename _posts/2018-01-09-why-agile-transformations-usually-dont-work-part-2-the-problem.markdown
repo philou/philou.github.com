@@ -3,13 +3,15 @@ layout: single-mailing-list
 title: "Why Agile transformations usually don't work - part 2 - The problem"
 date: 2018-01-18 09:24
 comments: true
-categories: 
+categories:
  - agile
  - coaching
  - large scale
  - agile-transformations-fail-series
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning"
 description: "After going over the typical problems in large scale Agile transformations, I dig into the reasons underlying the failures."
+header:
+  og_image: /imgs/2018-01-09-why-agile-transformations-usually-dont-work-part-2-the-problem/decision-making.jpg
 ---
 This is the second post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 

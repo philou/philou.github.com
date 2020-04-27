@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "How to learn a programming language in just 20 hours"
 date: 2018-03-29 06:35
 comments: true
-categories: 
+categories:
  - tdd
  - coding dojo
  - learning
@@ -12,6 +12,8 @@ categories:
  - 20-hours-code-kata-series
 keywords: "Learning, The first 20 hours, 20 hours of code katas, Personal Productivity, Coding Dojo, Code Kata, TDD, Test Driven Development"
 description: "Stories and a guide about the 20 hours of Code Kata, a technique that allowed me to learn new programming languages very fast"
+header:
+  og_image: /imgs/2018-03-23-how-to-learn-a-programming-language-in-just-20-hours/timed-book.jpg
 ---
 We should not panic when asked to work with a new language. We should be bold enough to answer to job openings requiring technologies we are not used to. In one word, we should not be afraid of new techs. Here is why : by scheduling 20 hours of Code Kata routine sessions, we can get a decent level of mastery on most topics.
 

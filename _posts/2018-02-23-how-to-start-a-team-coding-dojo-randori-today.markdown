@@ -10,6 +10,8 @@ categories:
  - team-randori-series
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori, How to, Guide"
 description: "A very practical guide as to how to start a Randori Coding Dojo to boost your team's teamwork"
+header:
+  og_image: /imgs/2018-02-23-how-to-start-a-team-coding-dojo-randori-today/white-belt.jpg
 ---
 In my [previous post](/why-you-should-start-a-team-coding-dojo-randori-right-now/), I explained why you should start a team [coding dojo](http://codingdojo.org/) [Randori](http://codingdojo.org/RandoriKata/) as soon as you can. Here is a step by step guide to set one up today.
 

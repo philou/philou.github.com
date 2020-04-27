@@ -13,6 +13,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Ruby, Testing using mocks, Testing without mocks"
 description: "Learn when testing using mocks still makes sense. Doing too much testing using mocks can become a maintenance nightmare, but there are situations when it remains the best thing to do. For example : legacy code, fake injection, caching, generic wrapping and spy or proxy mocks. Ruby code samples."
+header:
+  og_image: /imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg
 ---
 In the previous 7 articles of [this series]({{site.baseurl}}/categories/#how-to-avoid-mocks-series), I've tried my best get rid of mocks. I'm pretty sure that using these techniques will get you a long way out of [mock hell](/careless-mocking-considered-harmful/). Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven't already, I encourage you to start reading from [the beginning](/careless-mocking-considered-harmful/).
 

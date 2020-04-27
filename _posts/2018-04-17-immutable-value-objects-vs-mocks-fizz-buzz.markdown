@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "Immutable Value Objects vs Mocks : Fizz Buzz"
 date: 2018-05-03 19:28
 comments: true
-categories: 
+categories:
  - tdd
  - mocking
  - testing
@@ -12,6 +12,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Immutable Value Object, Value Objects, Immutable Data, Immutable Data Structures, Ruby"
 description: "A walk through of the Fizz Buzz kata using immutable value objects to remove mocks."
+header:
+  og_image: /imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg
 ---
 In my [previous post](/how-immutable-value-objects-fight-mocks/) I explained how [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) help us to avoid mocks. In this post, I'll illustrate this in practice with real code.
 
@@ -112,7 +114,7 @@ def fizzBuzzN(i)
   end
 end
 
-# We replaced the many calls to STDOUT.puts by building a single 
+# We replaced the many calls to STDOUT.puts by building a single
 # large (and immutable) string
 def fizzBuzz(max)
   ((1..max).map {|i| fizzBuzzN(i)}).join("\n")
@@ -188,4 +190,3 @@ Outside of this situation, you might try some of the following arguments to move
 ## Next post
 
 I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). In [next post](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/), I'll dig into another small scale mock fighting pattern : [Test Data Builders](http://www.natpryce.com/articles/000714.html).
-    

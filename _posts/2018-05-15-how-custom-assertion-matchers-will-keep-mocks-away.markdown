@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "How Custom Assertion Matchers will keep mocks away"
 date: 2018-05-17 06:47
 comments: true
-categories: 
+categories:
  - tdd
  - mocking
  - testing
@@ -12,6 +12,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Test Data Builders, Custom Matchers, Assertion Matchers, Custom Assertion Matchers, Ruby"
 description: "An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point."
+header:
+  og_image: /imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg
 ---
 *Custom assertions are a handy compromise alternative to mocks when we don't have the time to refactor to a functional style.*
 
@@ -38,48 +40,48 @@ This is the fifth post in a [series about how to avoid mocks]({{site.baseurl}}/c
 Let's walkthrough a small story. Suppose we are building an e-commerce website. When someone passes an order, we want to notify the analytics service. Here is some very simple code for that.
 
 ```ruby
-class AnalyticsService  
+class AnalyticsService
 
- def initialize  
-   @items = []  
- end  
+ def initialize
+   @items = []
+ end
 
- attr_reader :items  
+ attr_reader :items
 
- def order_passed(customer, cart)  
-   cart.each do |item|  
-     @items.push(customer: customer, item: item)  
-   end  
- end  
-end  
+ def order_passed(customer, cart)
+   cart.each do |item|
+     @items.push(customer: customer, item: item)
+   end
+ end
+end
 
-class Order  
- def initialize(customer, cart, analytics)  
-   @customer = customer  
-   @cart = cart  
-   @analytics = analytics  
- end  
+class Order
+ def initialize(customer, cart, analytics)
+   @customer = customer
+   @cart = cart
+   @analytics = analytics
+ end
 
- def pass  
-   # launch order processing and expedition  
+ def pass
+   # launch order processing and expedition
 
-   @analytics.order_passed(@customer, @cart)  
- end  
+   @analytics.order_passed(@customer, @cart)
+ end
 
-end  
+end
 
-describe 'Order' do  
+describe 'Order' do
 
- it "notifies analytics service about passed orders" do  
-   cart = ["Pasta","Tomatoes"]  
-   analytics = AnalyticsService.new  
-   order = Order.new("Philippe", cart, analytics)  
+ it "notifies analytics service about passed orders" do
+   cart = ["Pasta","Tomatoes"]
+   analytics = AnalyticsService.new
+   order = Order.new("Philippe", cart, analytics)
 
-   order.pass  
+   order.pass
 
-   expect(analytics.items).to include(customer: "Philippe", item: "Pasta")  
-   expect(analytics.items).to include(customer: "Philippe", item: "Tomatoes")  
- end  
+   expect(analytics.items).to include(customer: "Philippe", item: "Pasta")
+   expect(analytics.items).to include(customer: "Philippe", item: "Tomatoes")
+ end
 end
 ```
 
@@ -88,14 +90,14 @@ Let's focus on the tests a bit. We first notice that the verification section is
 We could argue that responsibility-wise, our test should only focus on Order. It makes sense for the test to use a mock to verify that the Order calls AnalyticsService as expected. Let's see what this would look like.
 
 ```ruby
-it "notifies analytics service about passed orders" do  
- cart = ["Pasta","Tomatoes"]  
- analytics = AnalyticsService.new  
- order = Order.new("Philippe", cart, analytics)  
+it "notifies analytics service about passed orders" do
+ cart = ["Pasta","Tomatoes"]
+ analytics = AnalyticsService.new
+ order = Order.new("Philippe", cart, analytics)
 
- expect(analytics).to receive(:order_passed).with("Philippe", cart)  
+ expect(analytics).to receive(:order_passed).with("Philippe", cart)
 
- order.pass  
+ order.pass
 end
 ```
 
@@ -108,25 +110,25 @@ This might not (yet) be a problem in our example but, for example, the mock 'cut
 Let's see how a matcher could help us here. The idea is to improve on the first 'state checking' solution to make it better than the mock one. We'll extract and isolate all the state checking code in a custom matcher. By factorizing the code in a single matcher, we'll reduce duplication. The matcher remains too intimate with the object, but as it is now unique and well named, it's less of a problem. Plus, as always with matchers, we improved readability.
 
 ```ruby
-RSpec::Matchers.define :have_been_notified_of_order do |customer, cart|  
- match do |analytics|  
-   cart.each do |item|  
-     return false unless analytics.items.include?(customer: customer, item: item)  
-   end  
-   true  
- end  
-end  
+RSpec::Matchers.define :have_been_notified_of_order do |customer, cart|
+ match do |analytics|
+   cart.each do |item|
+     return false unless analytics.items.include?(customer: customer, item: item)
+   end
+   true
+ end
+end
 
-describe 'Order' do  
- it "notifies analytics service about passed orders" do  
-   cart = ["Pasta","Tomatoes"]  
-   analytics = AnalyticsService.new  
-   order = Order.new("Philippe", cart, analytics)  
+describe 'Order' do
+ it "notifies analytics service about passed orders" do
+   cart = ["Pasta","Tomatoes"]
+   analytics = AnalyticsService.new
+   order = Order.new("Philippe", cart, analytics)
 
-   order.pass  
+   order.pass
 
-   expect(analytics).to have_been_notified_of_order("Philippe", cart)  
- end  
+   expect(analytics).to have_been_notified_of_order("Philippe", cart)
+ end
 end
 ```
 

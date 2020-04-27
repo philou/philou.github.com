@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "Why Agile transformations usually don't work - part 4 - Transparency"
 date: 2018-02-01 09:45
 comments: true
-categories: 
+categories:
  - agile
  - coaching
  - large scale
@@ -11,6 +11,8 @@ categories:
  - agile-transformations-fail-series
 keywords: "Agile, Agile transformation, Large scale agile, Large scale agile transformation, Learning, Management 3.0, Transparent compensation"
 description: "After going over the typical problems in large scale Agile transformations, I add transparency of vision and information to the pre-requisite"
+header:
+  og_image: /imgs/2018-01-11-why-agile-transformations-usually-dont-work-part-4-transparency/squirrel-with-helmet.jpg
 ---
 This is the fourth and last post in a [series about making large organizations more agile]({{site.baseurl}}/categories/#agile-transformations-fail-series). I encourage you to [start with the beginning](/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 

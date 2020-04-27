@@ -9,6 +9,8 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Large Scale Refactoring, Badass Developper, become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects"
 description: "Having a badass developer onboard will help to get sponsorship for a large scale refactoring. If you don't have a badass developer nearby, or / and if you want to become one yourself, read on. Here are a five mistakes to avoid in order to become a badass developer."
+header:
+  og_image: /imgs/2018-07-03-5-mistakes-badass-developers-never-do/mistake.jpg
 ---
 Here is a one sentence summary of my [previous post](/why-we-need-badass-developers-to-perform-large-scale-refactorings/).
 

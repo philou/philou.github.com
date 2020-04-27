@@ -9,6 +9,8 @@ categories:
  - extreme programming
 keywords: "Agile, Lean, eXtreme Programming, Sustainable Pace, Work In Progress, WIP, WIP Limitations, Prioritization, Modern XP"
 description: "An explanation of how the original and modern eXtreme Programming do WIP limits and prioritization to achieve long term productivity and a sustainable pace"
+header:
+  og_image: /imgs/2017-10-27-sustainable-productivity-in-extreme-programming/cost-of-change-over-time.jpg
 ---
 [eXtreme programming](http://extremeprogramming.org/) will not improve your short term productivity. But it will drastically improve your long term productivity.
 

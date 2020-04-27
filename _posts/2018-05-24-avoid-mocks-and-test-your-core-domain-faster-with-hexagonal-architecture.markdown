@@ -14,6 +14,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Ruby, Architecture, Hexagonal Architecture"
 description: "An explanation of why large systems tend to favor the emergence of mocks and what Hexagonal Architecture can do against that. Illustrated with Ruby on Rails code examples."
+header:
+  og_image: /imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg
 ---
 As I've written in my last few posts, we can get a long way to avoid mocks with small scale coding best practices. Unfortunately, when systems reach a certain size, we need something at architecture scale.
 

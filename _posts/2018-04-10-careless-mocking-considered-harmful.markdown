@@ -3,7 +3,7 @@ layout: single-mailing-list
 title: "Careless Mocking Considered Harmful"
 date: 2018-04-19 13:13
 comments: true
-categories: 
+categories:
  - tdd
  - mocking
  - testing
@@ -11,6 +11,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking"
 description: "The problems I got into on a side project after using too much mocking. This is the first post of a series about how to avoid mocks."
+header:
+  og_image: /imgs/2018-04-10-careless-mocking-considered-harmful/mocks-dont-rock.jpg
 ---
 > 💡 Mock hell : when excessive use of test mocks makes [refactoring](https://en.wikipedia.org/wiki/Code_refactoring) extremely slow or difficult.
 

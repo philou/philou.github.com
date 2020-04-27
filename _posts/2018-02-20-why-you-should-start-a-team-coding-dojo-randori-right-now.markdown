@@ -10,6 +10,8 @@ categories:
  - team-randori-series
 keywords: "Coding Dojo, TDD, Test Driven Development, Randori"
 description: "A story of how a team coding dojo Randori can improve team work, and why you should start one"
+header:
+  og_image: /imgs/2018-02-20-why-you-should-start-a-team-coding-dojo-randori-right-now/aikidoka-keyboard.jpg
 ---
 [Coding Dojos](http://codingdojo.org/) are easy to start and have a high return on investment. They will improve everyone's technical skills. That's only the start though. Practiced as a team Randori, they will also be a tremendous boost to team work.
 

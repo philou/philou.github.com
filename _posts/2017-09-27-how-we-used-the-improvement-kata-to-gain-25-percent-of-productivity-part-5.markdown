@@ -12,10 +12,12 @@ categories:
  - first-improvement-kata-series
 keywords: "Toyota Kata, Continuous Improvement, Software teams, Lean, Lean Software, Agile, Scrum, Measure, Data, Bug Policy, Exploratory Testing"
 description: "Fifth post in a series relating our first improvement kata. Covers the end of the Plan-Do-Check-Act phase, when we decide to do more exploratory testing, and the end consequence on the team"
+header:
+  og_image: /imgs/2017-09-27-how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-5/success-banner.jpg
 ---
 This is the fifth (and last) post of a [series of 5]({{site.baseurl}}/categories/#first-improvement-kata-series) about the improvement kata. If you haven't read the beginning of the story, I recommend you start from [part 1](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/).
 
-In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/), we decided to adjust our definition of a bug to limit the time lost on nice-to-have bug fixes.  
+In the [previous post](/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-4/), we decided to adjust our definition of a bug to limit the time lost on nice-to-have bug fixes.
 
 It would take a while to know if adjusting the definition of a bug would help us or not. At the same time, we knew it would not help us to reduce the number of bugs we escaped to other teams.
 

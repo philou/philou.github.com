@@ -9,6 +9,8 @@ categories:
  - coding dojo
 keywords: "Legacy Code Refactoring, Coding Dojo Exercises, Coding Dojo, Legacy Code, Refactoring, Code Kata, TDD, Test Driven Development"
 description: "Learn how to do Legacy Code Refactoring through Coding Dojo Exercises. Refactoring Legacy Code is hard. Although very effective on new code, Test Driven Development can seem impossible to apply on Legacy Code. Going through this Coding Dojo Exercises plan should bring your skills up to the task."
+header:
+  og_image: /imgs/2018-06-04-a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/Coding-Dojo-Hulk.jpg
 ---
 My current job [at work](http://www.murex.com) is technical coach. I'm available for teams that need help to adopt incremental coding practices.
 

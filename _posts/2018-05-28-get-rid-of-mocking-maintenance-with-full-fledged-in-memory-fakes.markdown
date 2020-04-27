@@ -13,6 +13,8 @@ categories:
  - how-to-avoid-mocks-series
 keywords: "Mocks, Unit Testing, Automated Testing, TDD, Test Driven Development, London School of Testing, Mocking, Ruby, Architecture"
 description: "Example showing how it is simpler to use a full fledged in-memory mock than using a custom mock for every test. Illustrated with Ruby on Rails code examples."
+header:
+  og_image: /imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg
 ---
 [Last week's post](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/) was about how [hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture) results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week's code sample, this was the controller. I concluded that at least, this was easier to manage. Let's see how.
 

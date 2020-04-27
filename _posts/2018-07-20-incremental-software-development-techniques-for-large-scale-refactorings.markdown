@@ -9,6 +9,8 @@ categories:
  - large-scale-refactoring-sponsorship-series
 keywords: "Large Scale Refactoring, become a badass developer, refactoring large software projects, refactoring large software systems, refactoring large code base, refactoring in large software projects, incremental software development, incremental software development approach, iterative incremental software development, incremental development of software, incremental and iterative development strategies"
 description: "When negotiating a large scale refactoring with business people, it's very important to know how to deliver. Incremental Software Development is the best way to mitigate risks and keep business people happy while performing a large scale refactoring. Here is why !"
+header:
+  og_image: /imgs/2018-07-20-incremental-software-development-techniques-for-large-scale-refactorings/incremental-plant.jpg
 ---
 *In the end, incremental software development techniques are almost always the safest way to refactor. Here is why.*
 

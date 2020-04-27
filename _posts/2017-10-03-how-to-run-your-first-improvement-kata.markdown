@@ -3,13 +3,15 @@ layout: single-mailing-list
 title: "How to run your first improvement kata"
 date: 2017-10-03 06:37
 comments: true
-categories: 
+categories:
  - agile
  - lean
  - continuous improvement
  - improvement kata
 keywords: "Improvement kata, Lean, Agile, Continuous Improvement, Guide, getting started"
 description: "A guide of how to help you start your first improvement kata in your team to fix important and tricky problems"
+header:
+  og_image: /imgs/2017-10-03-how-to-run-your-first-improvement-kata/cookbook.jpg
 ---
 The [improvement kata](http://www-personal.umich.edu/~mrother/The_Improvement_Kata.html) can solve problems that typical retrospectives fail to address. Although there is a halo of mystery around it, it's actually not that difficult to get started ! Here is a guide.
 

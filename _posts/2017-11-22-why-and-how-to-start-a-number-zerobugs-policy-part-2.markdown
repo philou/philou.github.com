@@ -3,12 +3,14 @@ layout: single-mailing-list
 title: "Why and how to start a #ZeroBugs policy - part 2"
 date: 2017-12-14 10:40
 comments: true
-categories: 
+categories:
  - continuous improvement
  - quality
  - zero-bugs-series
 keywords: "ZeroBugs, NoBugs, Exploratory Testing, Software"
 description: "Conclusion of our story towards #ZeroBugs"
+header:
+  og_image: /imgs/2017-11-22-why-and-how-to-start-a-number-zerobugs-policy-part-2/bug-panic.jpg
 ---
 This is the second post of a [series about the #ZeroBugs policy]({{site.baseurl}}/categories/#zero-bugs-series). In the [previous post](/why-and-how-to-start-a-number-zerobugs-policy-part-1/), I detailed what a [#ZeroBugs](http://www.jamesshore.com/Agile-Book/no_bugs.html) policy is and how we tried to apply it. I encourage you start [there](/why-and-how-to-start-a-number-zerobugs-policy-part-1/).
 
@@ -53,7 +55,7 @@ A #ZeroBugs policy and exploratory testing also have a side effect on technical 
 
 Finally, having a definition for bugs was very helpful. It allowed decentralized prioritization of bugs. The alternative to that is to have a domain expert available to sort bugs from stories. A decentralized rule prevents all sort of coordination and people issues. Our system was rather technical, which made it easy to define what a bug is. In other cases, it might be worth spending some time with the domain expert to define similar rules.
 
-> "Use decision rules to decentralize economic control." From [Principles of Product Development Flow](https://www.amazon.com/Principles-Product-Development-Flow-Generation-ebook/dp/B007TKU0O0/ref=sr_1_1?s=books&ie=UTF8&qid=1511344068&sr=1-1&keywords=reinertsen+flow) by [Donald G. Reinertsen](http://reinertsenassociates.com/) 
+> "Use decision rules to decentralize economic control." From [Principles of Product Development Flow](https://www.amazon.com/Principles-Product-Development-Flow-Generation-ebook/dp/B007TKU0O0/ref=sr_1_1?s=books&ie=UTF8&qid=1511344068&sr=1-1&keywords=reinertsen+flow) by [Donald G. Reinertsen](http://reinertsenassociates.com/)
 
 To summarize, sticking to #ZeroBugs is a win-win and sustainable situation for all.
 
