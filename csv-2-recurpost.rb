@@ -9,40 +9,43 @@ require 'bitly'
 require 'yaml'
 require 'uri'
 
-BITLY_DB_FILE_PATH = './urls_to_bitly.yaml'
-wait_between_bitly_calls = 5
+SMALL_TEST_SAMPLE = false
 
-# load all csv
+BITLY_DB_FILE_PATH = './urls_to_bitly.yaml'
+wait_between_bitly_calls = 2
+
+puts "Loading all csv"
 posts = CSV.parse(File.read("./posts-to-tweets.csv"), headers: true, col_sep: ';')
 
-# filter out posts with no tweet dates (I did not plan to publish them)
+puts "Filtering out posts with no tweet dates (I did not plan to publish them)"
 posts = posts.filter { |post| not post["Last tweet date"].nil?}
 
-# keep only a few posts to test
-wait_between_bitly_calls = 0.1
-posts = posts[-5...]
+puts "KEEPING ONLY A FEW POSTS TO TEST"
+if (SMALL_TEST_SAMPLE)
+  wait_between_bitly_calls = 0.1
+  posts = posts[-5...]
+end
 
-# Shorten urls and save them in a yaml file for caching
-puts "Shortening urls..."
-bitly = Bitly::API::Client.new(token: File.read("./bitly.token")
+print "Shortening urls and saving them in a yaml file for caching..."
+bitly = Bitly::API::Client.new(token: File.read("./bitly.token"))
 
-urls_to_bitly = YAML.load_file(BITLY_DB_FILE_PATH)
+URLS_TO_BITLY = YAML.load_file(BITLY_DB_FILE_PATH)
 
 posts.each do |post|
   post_url = post["Url"]
-  next unless urls_to_bitly[post_url].nil?
+  next unless URLS_TO_BITLY[post_url].nil?
 
   bitly_url = bitly.shorten(long_url: post_url).link
-  urls_to_bitly[post_url] = bitly_url
-  File.write(BITLY_DB_FILE_PATH, urls_to_bitly.to_yaml)
+  URLS_TO_BITLY[post_url] = bitly_url
+  File.write(BITLY_DB_FILE_PATH, URLS_TO_BITLY.to_yaml)
 
   print '.'
   sleep wait_between_bitly_calls # because of bit.ly's rate limitation https://dev.bitly.com/v4_documentation.html
 end
-puts
+puts "Done"
 puts
 
-def expand(host, path)
+def expand_shortened_url(host, path)
   response = Net::HTTP.get_response(host, path)
   location = response['location']
 
@@ -53,31 +56,47 @@ def expand(host, path)
   location
 end
 
-# Replacing buff.ly urls with bit.ly
-posts = posts.map do |post|
-  post_url = post["Url"]
-  short_post_url = urls_to_bitly[post_url]
+def each_tweet(posts)
+  posts.map do |post|
+    post_url = post["Url"]
 
-  post.each do |column, text|
-    next unless column =~ /^Nugget [0-9]+$/ and not text.nil?
+    post.each do |column, text|
+      next unless column =~ /^Nugget [0-9]+$/ and not text.nil?
 
-    shortened_links = text.scan(/https?:\/\/buff\.ly\/[0-9A-z]+/)
-    shortened_links.each do |shortened_link|
-      uri = URI(shortened_link)
-      link = expand(uri.host, uri.path)
-
-      if link == post_url
-        text = text.gsub(shortened_link, short_post_url)
-      end
+      post[column] = yield text, post_url
     end
 
-    post[column] = text
+    print '.'
+    post
   end
-
-  print '.'
-  post
 end
-puts
+
+print "Replacing buff.ly urls with full urls..."
+posts = each_tweet(posts) do |text, post_url|
+  shortened_links = text.scan(/https?:\/\/buff\.ly\/[0-9A-z]+/)
+  shortened_links.each do |shortened_link|
+    uri = URI(shortened_link)
+    link = expand_shortened_url(uri.host, uri.path)
+
+    text = text.gsub(shortened_link, post_url)
+  end
+  text
+end
+puts "Done"
 puts
 
-pp posts
+print "Shortening post urls with bit.ly..."
+posts = each_tweet(posts) do |text, post_url|
+  short_url = URLS_TO_BITLY[post_url]
+  text.gsub(post_url, short_url)
+end
+puts "Done"
+puts
+
+output = CSV.open("tweets2.csv", "w")
+
+posts.each do |row|
+  output << row
+end
+
+output.close
