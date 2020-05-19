@@ -1,4 +1,5 @@
 #!/bin/ruby
+# coding: utf-8
 
 # Run with
 # bundle exec --gemfile=Gemfile-bitly ruby ./csv-2-recurpost.rb
@@ -17,11 +18,19 @@ wait_between_bitly_calls = 2
 puts "Loading all csv"
 posts = CSV.parse(File.read("./posts-to-tweets.csv"), headers: true, col_sep: ';')
 
-puts "Filtering out posts with no tweet dates (I did not plan to publish them)"
-posts = posts.filter { |post| not post["Last tweet date"].nil?}
+puts "Filtering out some posts" # with no tweet dates (I did not plan to publish them) or without explicit
+posts = posts.filter do |post|
+  if post["Last tweet date"].nil?
+    false
+  elsif post["Nugget 1"] ==  "<TODO any of the tips>"
+    false
+  else
+    true
+  end
+end
 
-puts "KEEPING ONLY A FEW POSTS TO TEST"
 if (SMALL_TEST_SAMPLE)
+  puts "KEEPING ONLY A FEW POSTS TO TEST"
   wait_between_bitly_calls = 0.1
   posts = posts[-5...]
 end
@@ -93,10 +102,59 @@ end
 puts "Done"
 puts
 
-output = CSV.open("tweets2.csv", "w")
+print "Formatting to recurpost data"
+$recurpost_messages = []
+each_tweet(posts) do |text, post_url|
+  $recurpost_messages << [text, post_url]
+end
+puts "Done"
+puts
 
-posts.each do |row|
-  output << row
+puts "Adding specific message for 21 Event Storming tips"
+$i_tip = 1
+
+def add_ES_tip(post_url, tips)
+  short_url = URLS_TO_BITLY[post_url]
+
+  tips.each do |tip|
+    $recurpost_messages << ["Tip##{$i_tip} from 21 More #EventStorming Tips: #{tip} #DDD #{short_url}", post_url]
+    $i_tip += 1
+
+  end
 end
 
-output.close
+add_ES_tip("https://philippe.bourgau.net/21-more-event-storming-tips-part-1-understanding-and-rhythm/",
+           ["Distribute domain-specific learning material",
+            "State the goal 'sharing over learning'",
+            "Playing the silliest person in the room",
+            "Ask a new-joiner to collect definitions",
+            "Twice 2 hours per day",
+            "Use breaks",
+            "Adapt with ROTIs",
+            "Re-narrate for new-joiners",
+            "Leave with actions"])
+add_ES_tip("https://philippe.bourgau.net/21-more-event-storming-tips-part-2-facilitation-and-existing-code/",
+           ["If things are slow to start",
+            "If there is a single discussion bottleneck",
+            "Post-it twist",
+            "Explicit decisions",
+            "Start with 30 minutes brief",
+            "Adapt the schedule even more!",
+            "Make stress explicit"])
+add_ES_tip("https://philippe.bourgau.net/21-more-event-storming-tips-part-3-anti-and-meta-patterns/",
+           ["Avoid adding special post-its",
+            "Avoid #remote participant",
+            "Avoid Big Design Up Front",
+            "Create an Event Storming community of practice",
+            "Ask Alberto! @ziobrando"])
+
+puts "outputing csv files"
+$recurpost_messages.each_slice(250).with_index do |slice_messages, slice_index|
+  CSV.open("recurpost-messages-#{slice_index}.csv", "w") do |output|
+
+    output << ["Message", "Post URL"]
+    slice_messages.each do |text, post_url|
+      output << [text, post_url]
+    end
+  end
+end
