@@ -53,15 +53,14 @@ Any developer who has worked on legacy code knows that even simple features can 
 As a result, tiny changes can have significant undesired consequences. In fact, these 2 dimensions are what drives the long-term productivity of a team.
 
 {% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/decrocher-la-lune.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="Photo from a game of 'Decrocher la lune' which means 'Reaching the moon'. The game consists of stacking small wooden ladders without making them fall." %}
-    
+
 {% capture figure_caption %}
 I found this [game 'Decrocher la lune'](https://www.amazon.fr/Asmodee-soci%C3%A9t%C3%A9-BODEC01FRN-Jeu-dambiance/dp/B07HMGM183/) (which translates to 'Reaching the moon' in English) to be a great metaphor for working with legacy code. The goal of the game is to stack small wooden ladders as high as possible, but without making them fall. I once setup the game in the office cafeteria, with a poster explaining the legacy code metaphor.
 {% endcapture %}
-    
-{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Here's the thing: **Mob Programming both builds knowledge and simplifies the current system**. Let's see how...
 
@@ -93,9 +92,15 @@ When a new feature request comes in, the mob will have as much knowledge as poss
 
 Here's the most exciting thing: these benefits compound over time! In fact, they even support each other.
 
-TODO infographic effects:
+{% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-makes-code-smaller-small.jpg" | absolute_url %}
 
-smaller and better-designed system -> more knowledge fit in the mob brains -> spot more opportunities for refactoring -> smaller and better-designed system ->...
+{% assign figure_alt="Infographics showing the positive self-reinforcing impact of mob programming on the saize of code. Smaller and better-designed system -> More knowledge fit in the mob brains -> Spot more opportunities for refactoring -> Smaller and better-designed system ->..." %}
+
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-makes-code-smaller.png)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Over time, this makes a massive difference in both 
 
@@ -127,7 +132,7 @@ One solution is gamification. For example, [Joe Wright used stacks of lego brick
 *   Lego bricks won't help you if your team is remote.
 *   If you need small-grain tracking, you might never have enough bricks.
 
-TODO drawing brick in phone
+![Drawing of someone trying to stick a lego brick through a phone](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/lego-phone.jpeg)
 
 ### It's a lot easier in a mob.
 
@@ -143,7 +148,15 @@ Mob-style continuous improvement has nothing to do with this. A mob is empowered
 
 **Even a modest 1% improvement per month will become massive in the long term.** The Coronavirus epidemic should have taught us the power of exponential growth!
 
-TODO Graph compounding improvement
+{% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/exponential-growth.jpg" | absolute_url %}
+
+{% assign figure_alt="Graph showing the shape of an exponential growth compared to linear growth." %}
+
+{% capture figure_caption %}
+Exponential Growth curve, from [Wikipedia](https://en.wikipedia.org/wiki/Exponential_growth). The continuous continuous-improvement benefit that comes with mob programming yields to the productivity increase of the green curve.
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ## 3. Higher quality design discussions
 
@@ -155,7 +168,7 @@ Here is the central revelation I got from [Woody Zuill](https://woodyzuill.com/)
 
 Like a genius keyboard! He takes care of compilation issues, semicolons, formatting, and a lot of other stuff.
 
-TODO photo keyboard
+![Photo of a backlit mechanical keyboard. Mob programming turns the driver into a smart keyboard able to read our minds](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/keyboard.jpg)
 
 Let's go through an example. A few weeks ago, we were practicing the roman addition kata. I was driving when the mob asked me to rename the tests using some uppercase letters for roman numbers. We had names all our tests xxx_plus_yyy_is_zzz. As a smart keyboard, this renaming fell in my area of responsibility. I checked the internet to know if [Intellij could do some uppercase regexp / replace](https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html#upper_lower_case_switch). It turned out it could! I worked in parallel with the rest of the mob. My colleagues were following some higher-level discussions. I worked out my regexp and did a global file replace.
 
@@ -171,7 +184,15 @@ Text replacement is a straightforward example. [The same phenomenon happens arou
 *   **The more the rest of the mob can have high-level discussions**
 *   **Eventually, the more productive the mob is.**
 
-TODO schema        
+{% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-raises-communication-level-small.jpg" | absolute_url %}
+
+{% assign figure_alt="Infographics showing the positive self-reinforcing impact of mob programming on the level of abstraction of discussions. The more the mob works together -> The more it grows its own folklore -> The more the driver understands high-level queries -> The more the rest of the mob can have high-level discussions -> Eventually, the more productive the mob is -> THe more the mob works together -> ... %}
+
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-raises-communication-level.png)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 **It's a bit like if the driver was raising the level of abstraction of the programming language**. Similarly to a higher-level language.
 
@@ -179,7 +200,7 @@ Here is something Fred Brooks states in [The Mythical Man-Month](https://www.goo
 
 > Developer productivity, in lines of code, is independent of the programming language.
 
-TODO photo mythical man month
+[![Cover of the Mythical Man Month by Frederic P. Brooks Jr. He explains that developer productivity (in lines of code) is independent from the language, which is a clear advantage to higher level languages.](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mythical-man-month.jpg)](https://www.goodreads.com/book/show/13629.The_Mythical_Man_Month?from_search=true&from_srp=true&qid=ssZyZTOZ85&rank=1)
 
 This means that if you can write 4 lines of assembly in 1 line of C, switching to C will make you 4 times more productive. Similarly, **if the mob driver lets you write 4 lines of code in 1 instruction, then the mob is 4 times more productive.**
 
@@ -202,9 +223,9 @@ There are so many variables in software that measuring productivity is almost im
 
 The first thing we notice with these unexpected benefits is that they compound!
 
-TODO cover compounding effect or a personal finance book
+![Photo of a pile of coins with a clock in the background. Like compounding in finance, the small but repeated benefits of mob programming create a huge payback in the long term](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/compound-effect.jpg)
 
-If you ever read a personal finance book, you'll know the importance of compounding. The same goes for mob programming.
+If you ever read a personal finance book, you'll know the importance of [compound interest](https://en.wikipedia.org/wiki/Compound_interest). The same goes for mob programming.
 
 The glitch is that there is an initial cost to mob programming. A good strategy is to **start with only a few hours of mobbing every week until the team gets good at it. You can then slowly raise the ratio.** You could even [start with a coding dojo](https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/) before production work mobs.
 
@@ -220,7 +241,7 @@ At Murex, we tried a business case for pair programming with a team. We went thr
 
 We found out that the optimal ratio of pair programming was around 20%.
 
-TODO screenshot
+![A screenshot of the graph summarizing the results of a business case about pair programming that we did with a team at Murex. It's easier to discuss the amount of pair programming you want this way than to get your voice heard during a retrospective full of pair programming enthusiasts.](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/pair-programming-business-case.jpg)
 
 Between 0% and 20%, the benefits of pairing grew. Past 20%, the moral tax would be too heavy on the team!
 
@@ -228,16 +249,27 @@ Between 0% and 20%, the benefits of pairing grew. Past 20%, the moral tax would 
 
 We can do something similar with mob programming. The Pluralsight course does not include a section on Mob Programming. With fellow technical coaches, we brainstormed the costs and benefits of mob programming. Here is what we found at the time:
 
-TODO
+#### Benefits
 
-We could also mention the long term compounding speed up. Unfortunately, I don't know how to measure them. My best shot would be to brainstorm a speedup of X% per month when working as a mob. A human-friendly way to think of exponential growth is 'How many months for it to double?'.
+* Pair programming Benefits +
+* Reduced time spent in daily meetings
+* Reduced time spent in sprint planning/backlog grooming meetings
+
+#### Costs
+
+* Adapting management practices
+* Whole team doing the same task
+* Mobbing setup
+* Morale dip
+
+We could now also add the long term compounding speed up. Unfortunately, I don't know how to measure it. My best shot would be to brainstorm a speedup of X% per month when working as a mob. A human-friendly way to think of exponential growth is 'How many months for it to double?'.
 
 For example:
 
 > If a team did work 4 hours per day as a mob, I could expect its productivity to double every year. You can then use the [Rule of 70](https://en.wikipedia.org/wiki/Rule_of_72) to deduce your monthly speed up. In our example:
-> 
+>
 > 70/12 = 5.83%
-> 
+>
 > This means 5.83% more features every month.
 
 We could then complement the business case with this figure. As [Erik Dietrich](https://daedtech.com/) explains in his course, be ready to play with this number until everyone is ok with it.
@@ -287,13 +319,22 @@ That's already an impressive reduction in Work-In-Progress! But wait, there's mo
 
 > In the mob, you can stay in the zone!
 
-----
+{% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/solo-vs-mob-task-switching-small.jpg" | absolute_url %}
 
-TODO add a schema with a timeline and colored activity
+{% assign figure_alt="Colored boxes showing the task swiching occuring in a team working as solo developers compared to the same team working as a mob. We can see that a lot less context swiches occur during the mob" %}
 
-TODO could even do a little math, highlighting the context-switch savings of mobbing (ex micro task switch, 1s cost every time)
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/solo-vs-mob-task-switching.png)
+{% endcapture %}
 
-----
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+
+The first thing we can see is that the same work is happening in the mob than when the team is working solo. Let's now count how many context swiches the team goes through during this 20 minutes work session:
+
+* working solo: 28
+* as a mob: 10
+
+This is 3 times less. Even if these micro context-switches only cost few seconds each, this is enough to explain how a mob can be more productive than solo developers!
 
 ### I've already seen this pattern!
 
