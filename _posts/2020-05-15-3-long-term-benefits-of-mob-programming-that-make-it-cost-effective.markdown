@@ -11,11 +11,13 @@ categories:
 - team building
 description: "Mob programming requires time to get used to it. With practice, though, you'll leverage on unexpected benefits like less work, better continuous improvement, and higher-level discussions. These benefits even compound, which makes mob programming very cost-effective in the long run."
 header:
-  teaser: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/TODO-teaser.jpeg"
-  og_image: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/TODO-og.jpeg"
+  teaser: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-teaser.jpg"
+  og_image: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-og.jpeg"
 published: false
 ---
 _[Mob programming](https://en.wikipedia.org/wiki/Mob_programming) requires time to get used to it. With practice, though, you'll discover unexpected and compounding long-term benefits of mob programming._
+
+![Drawing of a time capsule titled 'Mob Programming', when it opens, it's all fairies and unicorns coming out of it. Mob Programming has some unexpected long term benefits that you will only discover if you use it long enough](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule.jpg)
 
 As a technical agile coach, I practice mob programming in 2 contexts.
 
@@ -186,7 +188,7 @@ Text replacement is a straightforward example. [The same phenomenon happens arou
 
 {% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-raises-communication-level-small.jpg" | absolute_url %}
 
-{% assign figure_alt="Infographics showing the positive self-reinforcing impact of mob programming on the level of abstraction of discussions. The more the mob works together -> The more it grows its own folklore -> The more the driver understands high-level queries -> The more the rest of the mob can have high-level discussions -> Eventually, the more productive the mob is -> THe more the mob works together -> ... %}
+{% assign figure_alt="Infographics showing the positive self-reinforcing impact of mob programming on the level of abstraction of discussions. The more the mob works together -> The more it grows its own folklore -> The more the driver understands high-level queries -> The more the rest of the mob can have high-level discussions -> Eventually, the more productive the mob is -> THe more the mob works together -> ..." %}
 
 {% capture figure_caption %}
 By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-raises-communication-level.png)
