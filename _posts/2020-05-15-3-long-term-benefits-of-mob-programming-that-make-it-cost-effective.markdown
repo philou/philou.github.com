@@ -13,15 +13,14 @@ description: "Mob programming requires time to get used to it. With practice, th
 header:
   teaser: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-teaser.jpg"
   og_image: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-og.jpeg"
-published: false
 ---
 _[Mob programming](https://en.wikipedia.org/wiki/Mob_programming) requires time to get used to it. With practice, though, you'll discover unexpected and compounding long-term benefits of mob programming._
 
-![Drawing of a time capsule titled 'Mob Programming', when it opens, it's all fairies and unicorns coming out of it. Mob Programming has some unexpected long term benefits that you will only discover if you use it long enough](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule.jpg)
+![Drawing of a time capsule titled 'Mob Programming', when it opens, it's all fairies and unicorns coming out of it. Mob Programming has some unexpected long term benefits that you will only discover if you use it long enough]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule.jpg)
 
 As a technical agile coach, I practice mob programming in 2 contexts.
 
-First, [I coach teams through mobbing](https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/).
+First, [I coach teams through mobbing]({{site.url}}/the-story-about-how-we-do-agile-technical-coaching/).
 
 Second, I mob with the other coaches to practice and prepare katas. We are also mobbing on different topics:
 
@@ -68,7 +67,7 @@ Here's the thing: **Mob Programming both builds knowledge and simplifies the cur
 
 ### Mob programming makes the code base smaller.
 
-20 years ago, Alistair Cockburn did a [study on pair programming.](https://www.researchgate.net/publication/2333697_The_Costs_and_Benefits_of_Pair_Programming) It concludes that pair programming makes the codebase at least 10% smaller. [My personal experience](https://philippe.bourgau.net/categories/#pair-programming) backs up this study. I would even have estimated the gain to be more than 10%.
+20 years ago, Alistair Cockburn did a [study on pair programming.](https://www.researchgate.net/publication/2333697_The_Costs_and_Benefits_of_Pair_Programming) It concludes that pair programming makes the codebase at least 10% smaller. [My personal experience]({{site.url}}/categories/#pair-programming) backs up this study. I would even have estimated the gain to be more than 10%.
 
 This results from more knowledge about existing code in a pair of brains than in a single one. **Two developers working together spot more opportunities for reuse**. In the end, these small reuses compound and make a significant impact on the codebase size.
 
@@ -80,7 +79,7 @@ In the end, a smaller code base is easier to work with and makes adding new feat
 
 Another benefit of mob programming is that it makes debt evident and unbearable. Debt slows you down for stupid things. **Debt is always painful, but it becomes intolerable when the full team works together.**
 
-[Suppose your build is slow](https://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/). Every time you build, all the mob is going to wait, doing almost nothing. It won't take a lot of these group 'breaks' before the team decides to tackle this slow build.
+[Suppose your build is slow]({{site.url}}/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/). Every time you build, all the mob is going to wait, doing almost nothing. It won't take a lot of these group 'breaks' before the team decides to tackle this slow build.
 
 As a result, the system remains simple and easy to extend.
 
@@ -113,7 +112,7 @@ As a result, features that would take days to build in a traditional team only t
 
 ## 2. Continuous Continuous-Improvement
 
-I wrote before about [how retrospectives only take us as far as known best practices](https://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/). As an alternative, [I've had great success using the improvement kata](https://philippe.bourgau.net/lessons-learned-from-running-our-first-improvement-kata/).
+I wrote before about [how retrospectives only take us as far as known best practices]({{site.url}}/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/). As an alternative, [I've had great success using the improvement kata]({{site.url}}/lessons-learned-from-running-our-first-improvement-kata/).
 
 Since then, I've also used the improvement kata on my personal tasks. It has proven even more useful. It has helped me to design a productive and sustainable pace. Currently, in these times of lock-down, it's also helping me to get a grip on the new situation.
 
@@ -121,7 +120,7 @@ Since then, I've also used the improvement kata on my personal tasks. It has pro
 
 **Unfortunately, gathering data can be a real challenge.** The improvement kata is a data-driven technique: no data means no improvement!
 
-Sometimes, you will manage to extract the data out of your existing tools. In the past, we managed by [digging data out of JIRA](https://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/). That's also what many data-driven tools are doing ([Code Velocity](https://codeclimate.com/velocity/understand-diagnose/), [IdeaFlow](https://www.ideaflow.io/)...). (BTW, these tools are, in fact, packaging the improvement kata around a particular problem. This might be an interesting post!)
+Sometimes, you will manage to extract the data out of your existing tools. In the past, we managed by [digging data out of JIRA]({{site.url}}/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/). That's also what many data-driven tools are doing ([Code Velocity](https://codeclimate.com/velocity/understand-diagnose/), [IdeaFlow](https://www.ideaflow.io/)...). (BTW, these tools are, in fact, packaging the improvement kata around a particular problem. This might be an interesting post!)
 
 When you have a specific problem and no data, you're kind of stuck. Collecting data should not be that difficult! Gathering data on my personal tasks is very easy. I just make sure to log what I need every day for a while. A simple spreadsheet is enough. After a few weeks, I'm able to accurately understand what is going on. I can then try and measure the impacts of experiments.
 
@@ -134,7 +133,7 @@ One solution is gamification. For example, [Joe Wright used stacks of lego brick
 *   Lego bricks won't help you if your team is remote.
 *   If you need small-grain tracking, you might never have enough bricks.
 
-![Drawing of someone trying to stick a lego brick through a phone](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/lego-phone.jpeg)
+![Drawing of someone trying to stick a lego brick through a phone]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/lego-phone.jpeg)
 
 ### It's a lot easier in a mob.
 
@@ -170,7 +169,7 @@ Here is the central revelation I got from [Woody Zuill](https://woodyzuill.com/)
 
 Like a genius keyboard! He takes care of compilation issues, semicolons, formatting, and a lot of other stuff.
 
-![Photo of a backlit mechanical keyboard. Mob programming turns the driver into a smart keyboard able to read our minds](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/keyboard.jpg)
+![Photo of a backlit mechanical keyboard. Mob programming turns the driver into a smart keyboard able to read our minds]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/keyboard.jpg)
 
 Let's go through an example. A few weeks ago, we were practicing the roman addition kata. I was driving when the mob asked me to rename the tests using some uppercase letters for roman numbers. We had names all our tests xxx_plus_yyy_is_zzz. As a smart keyboard, this renaming fell in my area of responsibility. I checked the internet to know if [Intellij could do some uppercase regexp / replace](https://www.jetbrains.com/help/idea/tutorial-finding-and-replacing-text-using-regular-expressions.html#upper_lower_case_switch). It turned out it could! I worked in parallel with the rest of the mob. My colleagues were following some higher-level discussions. I worked out my regexp and did a global file replace.
 
@@ -178,7 +177,7 @@ Now that I master uppercase regexp replacements in IntelliJ, I can say that I'm 
 
 ### Higher-level programming
 
-Text replacement is a straightforward example. [The same phenomenon happens around coding standards, conventions, work habits, and even language](https://philippe.bourgau.net/how-to-get-the-max-out-of-your-team-coding-dojo/).
+Text replacement is a straightforward example. [The same phenomenon happens around coding standards, conventions, work habits, and even language]({{site.url}}/how-to-get-the-max-out-of-your-team-coding-dojo/).
 
 *   **The more the mob works together**
 *   **The more it grows its own folklore**
@@ -202,7 +201,7 @@ Here is something Fred Brooks states in [The Mythical Man-Month](https://www.goo
 
 > Developer productivity, in lines of code, is independent of the programming language.
 
-[![Cover of the Mythical Man Month by Frederic P. Brooks Jr. He explains that developer productivity (in lines of code) is independent from the language, which is a clear advantage to higher level languages.](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mythical-man-month.jpg)](https://www.goodreads.com/book/show/13629.The_Mythical_Man_Month?from_search=true&from_srp=true&qid=ssZyZTOZ85&rank=1)
+[![Cover of the Mythical Man Month by Frederic P. Brooks Jr. He explains that developer productivity (in lines of code) is independent from the language, which is a clear advantage to higher level languages.]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mythical-man-month.jpg)](https://www.goodreads.com/book/show/13629.The_Mythical_Man_Month?from_search=true&from_srp=true&qid=ssZyZTOZ85&rank=1)
 
 This means that if you can write 4 lines of assembly in 1 line of C, switching to C will make you 4 times more productive. Similarly, **if the mob driver lets you write 4 lines of code in 1 instruction, then the mob is 4 times more productive.**
 
@@ -225,15 +224,15 @@ There are so many variables in software that measuring productivity is almost im
 
 The first thing we notice with these unexpected benefits is that they compound!
 
-![Photo of a pile of coins with a clock in the background. Like compounding in finance, the small but repeated benefits of mob programming create a huge payback in the long term](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/compound-effect.jpg)
+![Photo of a pile of coins with a clock in the background. Like compounding in finance, the small but repeated benefits of mob programming create a huge payback in the long term]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/compound-effect.jpg)
 
 If you ever read a personal finance book, you'll know the importance of [compound interest](https://en.wikipedia.org/wiki/Compound_interest). The same goes for mob programming.
 
-The glitch is that there is an initial cost to mob programming. A good strategy is to **start with only a few hours of mobbing every week until the team gets good at it. You can then slowly raise the ratio.** You could even [start with a coding dojo](https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/) before production work mobs.
+The glitch is that there is an initial cost to mob programming. A good strategy is to **start with only a few hours of mobbing every week until the team gets good at it. You can then slowly raise the ratio.** You could even [start with a coding dojo]({{site.url}}/how-to-start-a-team-coding-dojo-randori-today/) before production work mobs.
 
 As the long-term benefits compound, the mob will become more and more productive. **More productivity means more features for the users and a sustainable pace for the team.**
 
-Be careful, though. [Full-time mobbing might not be suitable for everyone in the team](https://philippe.bourgau.net/how-to-use-mob-programming-at-the-rescue-of-pair-programming-burnout/). Some people, especially introverts, will need some solo time to recharge batteries. You can get the perfect ratio for your time trough trial and error...
+Be careful, though. [Full-time mobbing might not be suitable for everyone in the team]({{site.url}}/how-to-use-mob-programming-at-the-rescue-of-pair-programming-burnout/). Some people, especially introverts, will need some solo time to recharge batteries. You can get the perfect ratio for your time trough trial and error...
 
 But you can also have a structured conversation!
 
@@ -243,7 +242,7 @@ At Murex, we tried a business case for pair programming with a team. We went thr
 
 We found out that the optimal ratio of pair programming was around 20%.
 
-![A screenshot of the graph summarizing the results of a business case about pair programming that we did with a team at Murex. It's easier to discuss the amount of pair programming you want this way than to get your voice heard during a retrospective full of pair programming enthusiasts.](../imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/pair-programming-business-case.jpg)
+![A screenshot of the graph summarizing the results of a business case about pair programming that we did with a team at Murex. It's easier to discuss the amount of pair programming you want this way than to get your voice heard during a retrospective full of pair programming enthusiasts.]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/pair-programming-business-case.jpg)
 
 Between 0% and 20%, the benefits of pairing grew. Past 20%, the moral tax would be too heavy on the team!
 

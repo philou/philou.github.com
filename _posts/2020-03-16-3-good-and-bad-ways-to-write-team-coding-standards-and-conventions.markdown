@@ -50,13 +50,13 @@ Before I dive into these techniques, let's see what's at stake.
 ## The challenges of team coding conventions
 
 {% assign figure_path="/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/bad-communication-small.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="Drawing of the double vicious circle of bad communication and no coding standards or conventions. No Coding conventions -> Conflicts -> No speak -> No Coding Conventions... Conflicts -> No Speak -> Bad Reviews -> Duplicated Code -> More Bugs -> Less Features -> More Stress -> Conflicts ..." %}
-    
+
 {% capture figure_caption %}
 By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/bad-communication.jpg)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 They have many names: working agreements, coding standards, or coding conventions. Whatever we call them, they have a massive impact on a team's work. Here's a non-exhaustive list of the problems that occur when they are lacking:
@@ -153,13 +153,13 @@ Here is an example. A few weeks ago, we started to coach a team that wanted to i
 That's the typical 'lightweight' coding-standard a mob will add to the team's [oral tradition](https://en.wikipedia.org/wiki/Oral_tradition).
 
 {% assign figure_path="/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/Mobbing_Campfire_Building.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="Picture of a camper tending the campfire. Doing regular mob session keeps coding standards and conventions in everyone's mind, a bit like stories around the campfire has been used to keep oral tradition alive for thousands of years" %}
-    
+
 {% capture figure_caption %}
 From New Relic's blog post [Taming the Mob, Part 2: Mob Programming Is Like Tending a Campfire](https://blog.newrelic.com/engineering/mob-programming-campfire/)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 ### What makes it work so well?
@@ -223,7 +223,7 @@ If you don't have coding standards or conventions, you can start to write one to
 
 If you do more asynchronous work, start a chat discussion about a particular point.
 
-Otherwise, start a coding dojo randori. You might wonder about the cost of mob programming, though. In [my next post](http://eepurl.com/dxKE95), I'll have my take at why mobbing is cost-effective in the long run!
+Otherwise, start a coding dojo randori. You might wonder about the cost of mob programming, though. In [3 long-term benefits of mob programming that make it cost-effective]({{site.url}}/3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/), I have my take at why mobbing is cost-effective in the long run!
 
 Here are my last bits of advice, for you, self-declared change-agent.
 
