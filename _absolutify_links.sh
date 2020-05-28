@@ -16,6 +16,7 @@ sed -i '' 's:(\.\./imgs:({{site.url}}/imgs:g' $POST_FILE_PATH
 
 echo "Prefixing site links with {{site.url}}"
 sed -i '' 's:(/:({{site.url}}/:g' $POST_FILE_PATH
+sed -i '' 's:(https\://philippe.bourgau.net/:({{site.url}}/:g' $POST_FILE_PATH
 
 echo ''
 git diff $POST_FILE_PATH
