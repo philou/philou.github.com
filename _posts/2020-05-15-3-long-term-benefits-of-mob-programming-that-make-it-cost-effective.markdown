@@ -1,7 +1,7 @@
 ---
 layout: single-mailing-list
 title: 3 long-term benefits of mob programming that make it cost-effective
-date: 2020-05-21
+date: 2020-05-28
 comments: true
 categories:
 - mob programming
