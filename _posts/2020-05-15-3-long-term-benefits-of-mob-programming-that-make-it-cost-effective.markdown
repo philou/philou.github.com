@@ -121,7 +121,7 @@ Since then, I've also used the improvement kata on my personal tasks. It has pro
 
 **Unfortunately, gathering data can be a real challenge.** The improvement kata is a data-driven technique: no data means no improvement!
 
-Sometimes, you will manage to extract the data out of your existing tools. In the past, we managed by [digging data out of JIRA](https://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/). That's also what many data-driven tools are doing ([Code Velocity](https://codeclimate.com/velocity/understand-diagnose/), [IdeaFlow](https://www.ideaflow.io/)...). (BTW. These tools are, in fact, packaging the improvement kata around a particular problem. This might be an interesting post!)
+Sometimes, you will manage to extract the data out of your existing tools. In the past, we managed by [digging data out of JIRA](https://philippe.bourgau.net/how-we-used-the-improvement-kata-to-gain-25-percent-of-productivity-part-1/). That's also what many data-driven tools are doing ([Code Velocity](https://codeclimate.com/velocity/understand-diagnose/), [IdeaFlow](https://www.ideaflow.io/)...). (BTW, these tools are, in fact, packaging the improvement kata around a particular problem. This might be an interesting post!)
 
 When you have a specific problem and no data, you're kind of stuck. Collecting data should not be that difficult! Gathering data on my personal tasks is very easy. I just make sure to log what I need every day for a while. A simple spreadsheet is enough. After a few weeks, I'm able to accurately understand what is going on. I can then try and measure the impacts of experiments.
 
@@ -188,7 +188,7 @@ Text replacement is a straightforward example. [The same phenomenon happens arou
 
 {% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-raises-communication-level-small.jpg" | absolute_url %}
 
-{% assign figure_alt="Infographics showing the positive self-reinforcing impact of mob programming on the level of abstraction of discussions. The more the mob works together -> The more it grows its own folklore -> The more the driver understands high-level queries -> The more the rest of the mob can have high-level discussions -> Eventually, the more productive the mob is -> THe more the mob works together -> ..." %}
+{% assign figure_alt="Infographics showing the positive self-reinforcing impact of mob programming on the level of abstraction of discussions. The more the mob works together -> The more it grows its own folklore -> The more the driver understands high-level queries -> The more the rest of the mob can have high-level discussions -> Eventually, the more productive the mob is -> The more the mob works together -> ..." %}
 
 {% capture figure_caption %}
 By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-raises-communication-level.png)
@@ -323,7 +323,7 @@ That's already an impressive reduction in Work-In-Progress! But wait, there's mo
 
 {% assign figure_path="/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/solo-vs-mob-task-switching-small.jpg" | absolute_url %}
 
-{% assign figure_alt="Colored boxes showing the task swiching occuring in a team working as solo developers compared to the same team working as a mob. We can see that a lot less context swiches occur during the mob" %}
+{% assign figure_alt="Colored boxes showing the task-switching occurring in a team working as solo developers compared to the same team working as a mob. We can see that a lot less context-switches occur during the mob" %}
 
 {% capture figure_caption %}
 By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/solo-vs-mob-task-switching.png)
@@ -331,7 +331,7 @@ By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons
 
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
-The first thing we can see is that the same work is happening in the mob than when the team is working solo. Let's now count how many context swiches the team goes through during this 20 minutes work session:
+The first thing we can see is that the same work is happening in both work configuration. Let's now count how many context switches the team goes through during this 20 minutes work session:
 
 * working solo: 28
 * as a mob: 10
@@ -349,7 +349,7 @@ To run fruitful meetings, [Sociocracy](https://www.seattleurbancohousing.com/blo
 *   **The tracker**
 *   **...**
 
-Nick Tune's suggests a similar scheme for [Remote Team Flow EventStorming for Retrospectives](https://medium.com/nick-tune-tech-strategy-blog/remote-team-flow-eventstorming-for-retrospectives-a8ea33cdb277). They managed to run a remote Flow Event Storming by using a few of these roles. **To avoid overspecialization-blindness, they round-rob these roles every 10 minutes.**
+Nick Tune suggests a similar scheme for [Remote Team Flow EventStorming for Retrospectives](https://medium.com/nick-tune-tech-strategy-blog/remote-team-flow-eventstorming-for-retrospectives-a8ea33cdb277). They managed to run a remote Flow Event Storming by using a few of these roles. **To avoid overspecialization-blindness, they round-rob these roles every 10 minutes.**
 
 I'll write about this as soon as we get the chance to try this, so stay tuned!
 
