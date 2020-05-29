@@ -12,7 +12,7 @@ categories:
 description: "Mob programming requires time to get used to it. With practice, though, you'll leverage on unexpected benefits like less work, better continuous improvement, and higher-level discussions. These benefits even compound, which makes mob programming very cost-effective in the long run."
 header:
   teaser: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-teaser.jpg"
-  og_image: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-og.jpeg"
+  og_image: "/imgs/2020-05-15-3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/mob-programming-time-capsule-og.jpg"
 ---
 _[Mob programming](https://en.wikipedia.org/wiki/Mob_programming) requires time to get used to it. With practice, though, you'll discover unexpected and compounding long-term benefits of mob programming._
 
