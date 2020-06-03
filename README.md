@@ -92,6 +92,20 @@ By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons
 5. Generate .xmp metadata from [Creative Commons website](https://creativecommons.org/choose/#metadata)
 6. Add the metadata to images with `exiftool -tagsFromFile CC_Attribution-ShareAlike_4.0_International.xmp xxx1.jpg xxx2.jpg...`
 
+### Extracting bold sections from a post
+
+This can be useful to generate tweets or variations for [Recurpost](https://recurpost.com).
+
+```shell
+egrep -o "\*\*[^\*]*\*\*" <post> | sed 's/\*\*//g'
+```
+
+This dump usually needs further editing.
+
+TODO:
+* This does not take the quotes into account
+* It would be nice to uppercase the first letter
+
 ## Hacks made to Minimal Mistakes
 
 These are hacks I've made to the Minimal Mistakes, that I'll try to push to the main repo.
