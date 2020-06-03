@@ -41,10 +41,10 @@ I attended [his talk about #NoEstimates](https://www.youtube.com/watch?v=83Ax7SN
 
 {% include video id="83Ax7SNh2kg" provider="youtube" %}
 
-The conclusion was that the amount of work does not depend on how complex the task looks, but more on:
+The conclusion was that **the amount of work does not depend on how complex the task looks**, but more on:
 
-*   our **knowledge about the domain**
-*   our **understanding of previous solutions**
+*   our knowledge about the domain
+*   our understanding of previous solutions
 
 Any developer who has worked on legacy code knows that even simple features can take months to build. This is for two reasons:
 
@@ -341,12 +341,12 @@ This is 3 times less. Even if these micro context-switches only cost few seconds
 
 To run fruitful meetings, [Sociocracy](https://www.seattleurbancohousing.com/blog/sociocratic-meeting) suggests setting up different roles for attendees (Secretary, Leader, Facilitator, Delegate...). **Maybe we should try to explicit 'roles' in the mob and see how this works?** I could think of:
 
-*   **The tester**
-*   **The continuous improver**
-*   **The 'performancer'**
-*   **The maintainer**
-*   **The tracker**
-*   **...**
+*   The tester
+*   The continuous improver
+*   The 'performancer'
+*   The maintainer
+*   The tracker
+*   ...
 
 Nick Tune suggests a similar scheme for [Remote Team Flow EventStorming for Retrospectives](https://medium.com/nick-tune-tech-strategy-blog/remote-team-flow-eventstorming-for-retrospectives-a8ea33cdb277). They managed to run a remote Flow Event Storming by using a few of these roles. **To avoid overspecialization-blindness, they round-rob these roles every 10 minutes.**
 
