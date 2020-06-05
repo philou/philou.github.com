@@ -51,13 +51,13 @@ Here is the template I am using :
 
 ```liquid
 {% assign figure_path="/imgs/...todo.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="TODO" %}
-    
+
 {% capture figure_caption %}
 TODO markdown
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 ```
 
@@ -77,13 +77,13 @@ TODO markdown
 
 ```liquid
 {% assign figure_path="/imgs/...todo.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="TODO" %}
-    
+
 {% capture figure_caption %}
 By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/...todo.jpg)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 ```
 
@@ -105,6 +105,20 @@ This dump usually needs further editing.
 TODO:
 * This does not take the quotes into account
 * It would be nice to uppercase the first letter
+
+### Dumping the word count per post
+
+Just run the following command:
+
+```shell
+find _posts -type f -and -name "*.markdown" -exec bundle exec ruby _word_count.rb {} \; > tmp/word_counts.csv
+```
+
+You'll need the following pre-requisites:
+
+* Ruby
+* Python3
+* Init submodule markdown-word-count
 
 ## Hacks made to Minimal Mistakes
 
