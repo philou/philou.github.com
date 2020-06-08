@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: 3 long-term benefits of mob programming that make it cost-effective
+title: 3 compounding benefits of mob programming that make it cost-effective
 date: 2020-05-28
 comments: true
 categories:
@@ -87,7 +87,7 @@ As a result, the system remains simple and easy to extend.
 
 There's not much to explain here. Working together on the same task will share knowledge about the current system.
 
-When a new feature request comes in, the mob will have as much knowledge as possible to build it. As a result, it will ready sooner.
+When a new feature request comes in, the mob will have as much knowledge as possible to build it. As a result, it will be ready sooner.
 
 ### It compounds!
 
