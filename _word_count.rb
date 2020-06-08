@@ -14,9 +14,12 @@ begin
 
   full_text = File.read(post_path)
 
-  sections = full_text.split("---")
-  front_matter = sections[1]
-  markdown = sections[2]
+  sections = full_text.split(/^---\s*$/)
+  sections.delete("")
+  raise StandardError.new "Failed to correctly extract YAML and Markdown" unless sections.size == 2
+
+  front_matter = sections[0]
+  markdown = sections[1]
 
   title = YAML.load(front_matter)["title"]
 
@@ -27,7 +30,7 @@ begin
   puts "#{title};#{count}"
 
 rescue StandardError => e
-  STDERR.puts "Could not process #{post_path}"
+  STDERR.puts "-- ERROR: Could not process #{post_path}"
   STDERR.puts e.message
   STDERR.puts e.backtrace.inspect
 end
