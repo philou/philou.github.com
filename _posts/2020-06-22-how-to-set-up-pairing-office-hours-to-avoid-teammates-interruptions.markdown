@@ -13,7 +13,6 @@ description: "Part of the tech lead role is to be available for help. It is vita
 header:
   teaser: "/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/pairing-office-hours-open-teaser.jpg"
   og_image: "/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/pairing-office-hours-open-og.jpg"
-published: false
 ---
 _Part of the tech lead role is to be available for help. Setting up office hours and pair programming is vital to avoid the mental load of task switching._
 
