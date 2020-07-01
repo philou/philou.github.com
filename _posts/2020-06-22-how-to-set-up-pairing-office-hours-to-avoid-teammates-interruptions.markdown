@@ -32,7 +32,7 @@ If this resonates with you, here are a few tips that will help you!
 
 ![Drawing of a man with 6 harms dealing with many tasks at the same time. As a tech lead, it's easy to suffer from stressful task switching.]({{site.url}}/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/multitasking.jpg)
 
-I remember my first time as a tech lead. Out of habit, I continued to work on the challenging features I used to. The glitch was that now everyone in my team was coming at me with their problems! It quickly resulted in:
+**I remember my first time as a tech lead.** Out of habit, I continued to work on the challenging features I used to. The glitch was that now everyone in my team was coming at me with their problems! It quickly resulted in:
 
 *   **Useless task switching**
 *   **Stressful mental load**
@@ -53,7 +53,7 @@ It took me a while to find a way around this challenge. As we'll see later, [eXt
 
 [Paul Graham](http://www.paulgraham.com/) wrote a now-classic essay [Maker's Schedule, Manager's Schedule](http://www.paulgraham.com/makersschedule.html). It explains that programmers and managers organize their time in very different ways.
 
-**Programmers** need long slots of uninterrupted time to focus on deep work. **Managers** need to jump from one meeting to another. The later cope with this task-switching because they don't need to go deep on any topic.
+**Programmers need long slots of uninterrupted time to focus on deep work. Managers need to jump from one meeting to another.** The later cope with this task-switching because they don't need to go deep on any topic.
 
 These different schedules are a particular challenge for Tech Leads, who need to do both! As Jayesh Lalwani wrote on [Quora](https://www.quora.com/How-do-I-become-a-great-tech-lead):
 
@@ -71,11 +71,11 @@ Office Hours definition, according to [Wiktionary](https://en.wiktionary.org/wik
 
 A drawing is worth a thousand words. **Here is why office hours are important.** Without office hours, your day will likely look like that:
 
-![Schema of a typical day's agenda without office hours. The day involves a lot of task switching between meetings, code reviews, and help to teammates.]({{site.url}}/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/no-office-hours-agenda.jpg)
+![**Schema of a typical day's agenda without office hours. The day involves a lot of task switching between meetings, code reviews, and help to teammates.**]({{site.url}}/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/no-office-hours-agenda.jpg)
 
 After you have set up office hours, it should look something like this:
 
-![Schema of a typical day's agenda with office hours. The day is basically divided into 2 parts, 1 for meetings, and another for helping the team.]({{site.url}}/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/with-office-hours-agenda.jpg)
+![**Schema of a typical day's agenda with office hours. The day is basically divided into 2 parts, 1 for meetings, and another for helping the team.**]({{site.url}}/imgs/2020-06-22-how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/with-office-hours-agenda.jpg)
 
 Booking office hours in your calendar will have 2 effects:
 
@@ -98,10 +98,10 @@ Why should you favor pair programming over other kinds of help?
 
 Pairing is a long term investment. In the long run, it will make you dispensable and create more time for your deep work!
 
-In practice, it's straightforward:
+**In practice, it's straightforward:**
 
-*   **Stop** answering questions or doing asynchronous code reviews
-*   **Start** moving to their desks, or asking them to share their screens
+* **Stop answering questions or doing asynchronous code reviews**
+* **Start moving to their desks, or asking them to share their screens**
 
 As developers, we refactor code to make it easier to work with. Introducing some pair programming is a first step to refactor how your team works. **With time, both kinds of refactoring compound and create an environment for calm work.**
 
@@ -111,12 +111,12 @@ As developers, we refactor code to make it easier to work with. Introducing some
 
 **How to setup office hours:**
 
-1.  Book a slot in your calendar: 1 or 2 hours, every day, at the same time.
-2.  Invite your team as optional participants.
-3.  Present your initiative to your teammates. Share your pains and ask for feedback. Use the medium that makes the most sense to you and your team: email, chat, meeting, or anything else.
-4.  Have some work ready in case no one needs you. Reviewing code is fine, but you can also use this time to work on tasks that have low priority and don't need a deep focus.
-5.  Regularly ask for feedback from your team to know how it is working for them. If you [have retrospectives in place]({{site.url}}/how-we-introduced-efficient-agile-retrospectives/), this can be the perfect time for this. Otherwise, just make sure to get regular feedback!
-6.  Use your team's feedback to iterate and fine-tune the best formula for you and your team.
+1.  **Book a slot in your calendar**: 1 or 2 hours, every day, at the same time.
+2.  **Invite your team** as optional participants.
+3.  **Present your initiative to your teammates.** Share your pains and ask for feedback. Use the medium that makes the most sense to you and your team: email, chat, meeting, or anything else.
+4.  **Have some work ready in case no one needs you.** Reviewing code is fine, but you can also use this time to work on tasks that have low priority and don't need a deep focus.
+5.  **Regularly ask for feedback** from your team to know how it is working for them. If you [have retrospectives in place]({{site.url}}/how-we-introduced-efficient-agile-retrospectives/), this can be the perfect time for this. Otherwise, just make sure to get regular feedback!
+6.  Use your team's feedback to **iterate and fine-tune** the best formula for you and your team.
 
 You could go even further by blocking maker hours, as out of office, in your calendar! That's a bolder move, though, and a good topic for a follow-up post. [Stay tuned](http://eepurl.com/dxKE95)!
 
