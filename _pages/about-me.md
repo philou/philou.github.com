@@ -5,9 +5,15 @@ permalink: /about-me/
 comments: false
 author_profile: true
 ---
-Philippe Bourgau, Continuous Refactoring Coach
+Philippe Bourgau, eXtreme Programming Coach and Sustainable Pace Hacktivist
 
-*Life is too short for boring stuff! I help software engineers to reach an effective and calm pace through continuous refactoring of their code and team.*
+*Let's not waste our lives on loosy work! I help software engineers to reach an effective and sustainable pace through continuous refactoring of their code and organizations.*
+
+In this blog, I write about:
+
+* eXtreme Programming practices, principles, and coaching
+* Legacy code refactoring techniques
+* How to change organizations, even when we are at the bottom of the hierarchy
 
 An early adopter of eXtreme Programming, I have been practicing since 2003 and mentoring teams since 2006. Thanks to XP and refactoring, I have delivered high quality, fit to purpose and future proof software with less stress and overtime.
 
@@ -15,7 +21,7 @@ I have worked on all aspects of software : technical, product, people, process, 
 
 Mainstream agile methods like Scrum or Kanban might get teams to collaborate better. It’s only through XP’s high technical standards and focus on merciless refactoring that a team can reap the business benefits of Continuous Delivery.
 
-I have successfully used merciless refactoring, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and calm pace by adopting these practices, in their special context.
+I have successfully used merciless refactoring, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and sustainable pace by adopting these practices, in their special context.
 
 Finally, I love doing side projects, from wannabe businesses to open source.
 
