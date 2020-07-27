@@ -5,13 +5,13 @@ permalink: /about-me/
 comments: false
 author_profile: true
 ---
-Philippe Bourgau, eXtreme Programming Coach and Sustainable Pace Hacktivist
+Philippe Bourgau, XP Coach and Sustainable Pace Hacktivist
 
 *Let's not waste our lives on loosy work! I help software engineers to reach an effective and sustainable pace through continuous refactoring of their code and organizations.*
 
 I blog about:
 
-* How to work, think, and coach the eXtreme Programming way
+* How to work, think, and coach the XP way
 * How to deal with Legacy Code
 * How to change organizations for a more sustainable pace, even when we are at the bottom of the hierarchy
 
