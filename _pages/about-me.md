@@ -9,11 +9,11 @@ Philippe Bourgau, eXtreme Programming Coach and Sustainable Pace Hacktivist
 
 *Let's not waste our lives on loosy work! I help software engineers to reach an effective and sustainable pace through continuous refactoring of their code and organizations.*
 
-In this blog, I write about:
+I blog about:
 
-* eXtreme Programming practices, principles, and coaching
-* Legacy code refactoring techniques
-* How to change organizations, even when we are at the bottom of the hierarchy
+* How to work, think, and coach the eXtreme Programming way
+* How to deal with Legacy Code
+* How to change organizations for a more sustainable pace, even when we are at the bottom of the hierarchy
 
 An early adopter of eXtreme Programming, I have been practicing since 2003 and mentoring teams since 2006. Thanks to XP and refactoring, I have delivered high quality, fit to purpose and future proof software with less stress and overtime.
 
@@ -21,11 +21,11 @@ I have worked on all aspects of software : technical, product, people, process, 
 
 Mainstream agile methods like Scrum or Kanban might get teams to collaborate better. It’s only through XP’s high technical standards and focus on merciless refactoring that a team can reap the business benefits of Continuous Delivery.
 
-I have successfully used merciless refactoring, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and sustainable pace by adopting these practices, in their special context.
+I have successfully used merciless refactoring, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and sustainable pace by adapting these practices to their special context.
+
+I’m currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0). My style of coaching is about empowering anyone inject some change to the organization around them.
 
 Finally, I love doing side projects, from wannabe businesses to open source.
-
-I’m currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0).
 
 ## Side projects
 
