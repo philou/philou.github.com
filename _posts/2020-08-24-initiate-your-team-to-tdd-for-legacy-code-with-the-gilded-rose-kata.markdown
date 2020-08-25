@@ -1,33 +1,38 @@
 ---
 layout: single-mailing-list
 title: Initiate your team to TDD for Legacy Code with the Gilded Rose kata
-date: 2020-08-27
+date: 2020-09-04
 comments: true
 categories:
-- TODO
-description: TODO
+- testing
+- refactoring
+- coaching
+- tdd
+description: "Legacy code is where TDD is the trickiest. A great technique is to add an extension point in the legacy code to inject new (and tested) features. Start practicing this with the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code."
 header:
   teaser: "/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/TODO-teaser.jpeg"
   og_image: "/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/TODO-og.jpeg"
 ---
-_Legacy code is where TDD is the trickiest. Start practicing the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code._
+_**Legacy code is where [TDD](https://en.wikipedia.org/wiki/Test-driven_development) is the trickiest.** Start practicing the [gilded rose kata](https://github.com/emilybache/GildedRose-Refactoring-Kata/) with your team today! Your teammates will soon feel safe to apply TDD for legacy code._
 
 A few days ago, a former colleague told me his current team was reluctant to give TDD a chance. Here are the typical comments he heard:
 
 > "Adding a test in this old code is a three weeks task!"
-
+>
 > "All the tests we wrote in this code are mock-ridden, unmaintainable, and useless!"
-
+>
 > "How can we go tests first, when the code is already written?"
 
 If you have worked with teams dealing with legacy code, you must have heard similar complaints.
 
 ## The barriers to TDD for Legacy Code
 
+![Close up photograph of a chainlink. There are barriers to overcome when starting TDD for Legacy Code](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/chainlink.jpg)
+
 All these difficulties boil down to two root causes:
 
-1.  It's impossible to write tests before code that was already written.
-2.  Legacy code makes everything more complicated. In our case, it increases the learning curve of TDD for the team.
+1.  **It's impossible to write tests before code that was already written.**
+2.  **Legacy code makes everything more complicated. In our case, it increases the learning curve of TDD for the team.**
 
 ## The plan
 
@@ -40,7 +45,9 @@ One option could be to put more pressure on the team: "From now on, TDD is manda
 
 ## A straightforward technique
 
-Here is, in my opinion, the most useful and straightforward TDD for legacy code technique. Let's say you need to add a new feature:
+![Photo of a straight railway. It's best to start TDD for Legacy Code with one straightforward but effective technique.](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/railway.jpg)
+
+Here is, in my opinion, **the most useful and straightforward TDD for legacy code technique**. Let's say you need to add a new feature:
 
 1.  Refactor the existing code to introduce an extension-point to host your new feature
 2.  Implement your new feature using TDD. Make it compatible to your extension-point
@@ -54,11 +61,14 @@ All this might sound very easy in theory. Unfortunately, it can get pretty compl
 
 The gilded rose is a famous kata to practice refactoring techniques. I am going to use it to illustrate the above plan.
 
-The gilded rose is an inventory management function. The goal of the kata is to manage a new kind of item: conjured items. Conjured items behave like standard items, except that they age twice as fast. You can check the full instructions on Github.
+The gilded rose is an inventory management function. The goal of the kata is to manage a new kind of item: conjured items. Conjured items behave like standard items, except that they age twice as fast. You can check [the full instructions on Github](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/GildedRoseRequirements.txt).
 
 Let's jump into the code!
 
 ### Refactoring to an extension-point
+
+![Photo of a plug on a blueprint. An effective first step to start TDD for Legacy Code is to refactor legacy code to make it easy to inject new features](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/plug.jpg)
+
 
 The first step in our plan is to change the existing code before injecting our new feature. This step can be tricky as it touches the legacy code, and we don't want to break anything. Here are a few principles to cut risks:
 
@@ -67,14 +77,14 @@ The first step in our plan is to change the existing code before injecting our n
     *   End to end tests
     *   Manual tests
     *   Integration tests
-    *   Setting up a Golden Master test for the occasion is also a smart move.
-*   Use many pairs of eyes. Refactoring in pair or mob will drastically reduce the risk for regression.
+    *   Setting up a [Golden Master test](https://en.wikipedia.org/wiki/Characterization_test) for the occasion is also a smart move.
+*   Use many pairs of eyes. **Refactoring in pair or mob will drastically reduce the risk for regression.**
 
 Fortunately, the gilded rose kata comes with a golden master test. It's a test that 'snapshots' the behavior of your code to let you refactor it. It's temporary because a precise snapshot is unmaintainable. You can learn more about the golden master technique through this live refactoring.
 
-TODO live refactoring at Socrates
+{% include video id="9HmVrfkzm9I" provider="youtube" %}
 
-The gilded rose kata uses the Approvals.cpp library to help us with Golden Master testing. All we need to do is to add a set of test combination to the existing test:
+The gilded rose kata uses the [ApprovalTests.cpp](https://github.com/approvals/ApprovalTests.cpp) library to help us with Golden Master testing. All we need to do is to add a set of test combination to the existing test:
 
 #### [cpp/test/cpp_googletest_approvaltest/GildedRoseGoogletestApprovalTests.cc](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/cpp/test/cpp_googletest_approvaltest/GildedRoseGoogletestApprovalTests.cc)
 
@@ -181,7 +191,7 @@ void GildedRose::updateQuality(Item &item) const {
 
 It is now possible to inject an implementation for conjured items.
 
-### Code Conjured item with TDD
+### Code conjured items with TDD
 
 The implementation of our extension point needs to deal with two aspects:
 
@@ -355,30 +365,30 @@ TEST(GildedRoseApprovalTests, VerifyCombinations) {
 
 ### Close with a 10 minutes retrospective
 
-Don't forget why you did this code kata! Participants in a coding dojo often get so caught up in the exercise that they forget it's only practice. When coaching, it's your job to get them back to reality! The quick retrospective is there to make sure they can apply what they learned in their day to day job.
+Don't forget why you did this code kata! **Participants in a coding dojo often get so caught up in the exercise that they forget it's only practice**. When coaching, it's your job to get them back to reality! **The quick retrospective is there to make sure they can apply what they learned in their day to day job.**
 
-I got my recipe for the mini-retrospective from the Cucumber team. It's only four questions:
+I got my recipe for the mini-retrospective from the [Cucumber team](https://www.infoq.com/presentations/distributed-teams-remote-collaboration/). It's only four questions:
 
 1.  What did you do?
 2.  What did you learn?
 3.  What still puzzles you?
 4.  What do you decide?
 
-I won't go into the full details of how to animate a quick retrospective. (Note: I might write a post about this one day, so stay tuned). The main point is to make sure to be listening, and not speaking, 95% of the time. Here are some meaningful discussions to have about this kata:
+I won't go into the full details of how to animate a quick retrospective. (Note: I might write a post about this one day, so stay tuned). **The main point is to make sure to be listening, and not speaking, 95% of the time.** Here are some meaningful discussions to have about this kata:
 
 *   How can you apply these techniques (bottom-up and Golden Master) in real life
-*   How can you deal with the lack of end to end tests? It's an excellent time to suggest trying another kata around BDD Scaffolding. (This too could be the subject of a future post)
+*   **How can you deal with the lack of end to end tests?** It's an excellent time to suggest trying another kata around [BDD Scaffolding](https://agile2017.sched.com/event/ATWd/scaffolding-a-legacy-app-with-bdd-scenarios-using-specflowcucumber-gaspar-nagy). (This too could be the subject of a future post)
 
-Use your 5% speaking time to hint participants to these discussions if they did rise by themselves. Suggest running follow-up katas or mob sessions to keep the momentum going. Don't forget, coaching a team is a long term task.
+Use your 5% speaking time to hint participants to these discussions if they did rise by themselves. Suggest running follow-up katas or [mob sessions](/categories/#mob-programming) to keep the momentum going. Don't forget, coaching a team is a long term task.
 
 > ### _Side note: Many variants of Gilded Rose_
 > 
-> _The Gilded Rose kata is particularly interesting to practice different refactoring techniques:_
+> _**The Gilded Rose kata is particularly interesting to practice different refactoring techniques**:_
 > 
-> *   _The Bubble Context, as we did_
+> *   _The [Bubble Context](https://domainlanguage.com/wp-content/uploads/2016/04/GettingStartedWithDDDWhenSurroundedByLegacySystemsV1.pdf), as we did_
 > *   _Setting up a Golden Master Test_
 > *   _Refactor using safe baby steps_
-> *   _The Strangler Application_
+> *   _The [Strangler Application](https://martinfowler.com/bliki/StranglerFigApplication.html)_
 > *   _Testing with BDD scaffolding_
 
 ## To summarize, what should you do NOW?
@@ -386,22 +396,24 @@ Use your 5% speaking time to hint participants to these discussions if they did 
 First of all, keep problems in mind:
 
 *   How to write tests before code that already exists?
-*   Coach enough TDD for legacy code skills to the team.
+*   **Coach enough TDD for legacy code skills to the team.**
 
-As often, the solution is in the problem. Next time you hear these problems, suggest trying a refactoring kata. You might have to repeat the suggestion a few time before people accept. As soon as you have an opportunity, run the gilded rose, and coach one TDD for legacy code technique. Make sure to prepare the kata before, though.
+![RoadSign written 'New Skills Training'. The main idea behind agile technical coaching is to grow developer leadership by training them to new skills.](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/new-skills.jpg)
+
+**As often, the solution is in the problem**. Next time you hear these problems, suggest trying a refactoring kata. You might have to repeat the suggestion a few time before people accept. As soon as you have an opportunity, run the gilded rose, and coach one TDD for legacy code technique. Make sure to prepare the kata before, though.
 
 Don't forget the long term plan either:
 
-1.  Continue to practice TDD Katas regularly
+1.  **Continue to practice TDD Katas** regularly
 2.  Help the team to bridge the gap with their real code, through mob sessions for example
 
 Use the quick retrospective to get the team to try a second kata or a mob session as soon as possible.
 
 ## You can do it!
 
-You don't have to be an official XP Coach to do all this:
+**You don't have to be an official XP Coach to do all this**:
 
 *   It's a great way for tech leads to up-skill their team.
-*   Nothing prevents developers from doing 'guerilla XP coaching.' 
+*   Nothing prevents developers from doing 'guerilla XP coaching.'
 
 Let's hack organizations for the better!
