@@ -115,7 +115,7 @@ TEST(GildedRoseApprovalTests, VerifyCombinations) {
 }
 ```
 
-Now that we have a non-regression test, we are ready to change the existing code, so let's try to add an extension point. One way to do this is to add an array of 'item updaters' that can take care of specific types of items.
+Now that we have a regression test, we are ready to change the existing code, so let's try to add an extension point. One way to do this is to add an array of 'item updaters' that can take care of specific types of items.
 
 #### [cpp/src/GildedRose.h](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/cpp/src/GildedRose.h)
 
@@ -378,10 +378,10 @@ I got my recipe for the mini-retrospective from the [Cucumber team](https://www.
 
 I won't go into the full details of how to animate a quick retrospective. (Note: I might write a post about this one day, so stay tuned). **The main point is to make sure to be listening, and not speaking, 95% of the time.** Here are some meaningful discussions to have about this kata:
 
-*   How can you apply these techniques (bottom-up and Golden Master) in real life
+*   How can you apply these techniques (bottom-up TDD and Golden Master) in real life
 *   **How can you deal with the lack of end to end tests?** It's an excellent time to suggest trying another kata around [BDD Scaffolding](https://agile2017.sched.com/event/ATWd/scaffolding-a-legacy-app-with-bdd-scenarios-using-specflowcucumber-gaspar-nagy). (This too could be the subject of a future post)
 
-Use your 5% speaking time to hint participants to these discussions if they did rise by themselves. Suggest running follow-up katas or [mob sessions]({{site.url}}/categories/#mob-programming) to keep the momentum going. Don't forget, coaching a team is a long term task.
+Use your 5% speaking time to hint participants to these discussions if they did not rise by themselves. Suggest running follow-up katas or [mob sessions]({{site.url}}/categories/#mob-programming) to keep the momentum going. Don't forget, coaching a team is a long term task.
 
 > ### _Side note: Many variants of Gilded Rose_
 > 
@@ -402,7 +402,7 @@ First of all, keep problems in mind:
 
 ![RoadSign written "New Skills Training". The main idea behind agile technical coaching is to grow developer leadership by training them to new skills.]({{site.url}}/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/new-skills.jpg)
 
-**As often, the solution is in the problem**. Next time you hear these problems, suggest trying a refactoring kata. You might have to repeat the suggestion a few time before people accept. As soon as you have an opportunity, run the gilded rose, and coach one TDD for legacy code technique. Make sure to prepare the kata before, though.
+**As often, the solution is in the problem**. Next time you hear these problems, suggest trying a refactoring kata. You might have to repeat the suggestion a few times before people accept. As soon as you have an opportunity, run the gilded rose, and coach one TDD for legacy code technique. Make sure to prepare the kata before, though.
 
 Don't forget the long term plan either:
 
