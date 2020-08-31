@@ -128,10 +128,6 @@ These are hacks I've made to the Minimal Mistakes, that I'll try to push to the 
 
 Minimal mistakes does not provide 'stable' or 'latest' branches. By default, github pages remote theme uses the latest commit. This can be broken ! In order to avoid this, I created a the `_update_version.sh` script that curls github to find the latest release, and updates `_config.yml` to point to this version. Everytime `_preview.sh` is ran, the version is updated.
 
-### Email feed
-
-I copied `_includes/footer.html` from minimal-mistakes-jekyll-4.12.2/_includes/footer.html to add my mail feed subscription button
-
 ### Reddit and HN buttons
 
 I replaced the Facebook by HN and Reddit share buttons. I more or less followed the guide from [Minimal Mistake Layout doc](https://mmistakes.github.io/minimal-mistakes/docs/layouts/). I could not find the $social list to update, so I used inline styles on the buttons to get the correct colors.
