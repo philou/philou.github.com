@@ -128,12 +128,6 @@ These are hacks I've made to the Minimal Mistakes, that I'll try to push to the 
 
 Minimal mistakes does not provide 'stable' or 'latest' branches. By default, github pages remote theme uses the latest commit. This can be broken ! In order to avoid this, I created a the `_update_version.sh` script that curls github to find the latest release, and updates `_config.yml` to point to this version. Everytime `_preview.sh` is ran, the version is updated.
 
-### Grid homepage
-
-In order to display teaser images and posts as a grid on the homepage, I inlined and merged layout code from `_layouts/home.html` and `_layouts/posts.html` directly into `index.html`.
-
-It might be better to add this to home directly
-
 ### Email feed
 
 I copied `_includes/footer.html` from minimal-mistakes-jekyll-4.12.2/_includes/footer.html to add my mail feed subscription button
