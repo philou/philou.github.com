@@ -10,10 +10,12 @@ categories:
 - tdd
 description: "Legacy code is where TDD is the trickiest. A great technique is to add an extension point in the legacy code to inject new (and tested) features. Start practicing this with the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code."
 header:
-  teaser: "/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/TODO-teaser.jpeg"
-  og_image: "/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/TODO-og.jpeg"
+  teaser: "/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/tdd-for-legacy-code-mountain-teaser.jpg"
+  og_image: "/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/tdd-for-legacy-code-mountain-og.jpg"
 ---
 _**Legacy code is where [TDD](https://en.wikipedia.org/wiki/Test-driven_development) is the trickiest.** Start practicing the [gilded rose kata](https://github.com/emilybache/GildedRose-Refactoring-Kata/) with your team today! Your teammates will soon feel safe to apply TDD for legacy code._
+
+![Drawing of an alpinist in front of an insurmountable mountain 'Mt Legacy Code' with a flag 'TDD' at the top]({{site.url}}/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/tdd-for-legacy-code-mountain.jpg)
 
 A few days ago, a former colleague told me his current team was reluctant to give TDD a chance. Here are the typical comments he heard:
 
@@ -27,7 +29,7 @@ If you have worked with teams dealing with legacy code, you must have heard simi
 
 ## The barriers to TDD for Legacy Code
 
-![Close up photograph of a chainlink. There are barriers to overcome when starting TDD for Legacy Code](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/chainlink.jpg)
+![Close up photograph of a chainlink. There are barriers to overcome when starting TDD for Legacy Code]({{site.url}}/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/chainlink.jpg)
 
 All these difficulties boil down to two root causes:
 
@@ -45,7 +47,7 @@ One option could be to put more pressure on the team: "From now on, TDD is manda
 
 ## A straightforward technique
 
-![Photo of a straight railway. It's best to start TDD for Legacy Code with one straightforward but effective technique.](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/railway.jpg)
+![Photo of a straight railway. It's best to start TDD for Legacy Code with one straightforward but effective technique.]({{site.url}}/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/railway.jpg)
 
 Here is, in my opinion, **the most useful and straightforward TDD for legacy code technique**. Let's say you need to add a new feature:
 
@@ -67,7 +69,7 @@ Let's jump into the code!
 
 ### Refactoring to an extension-point
 
-![Photo of a plug on a blueprint. An effective first step to start TDD for Legacy Code is to refactor legacy code to make it easy to inject new features](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/plug.jpg)
+![Photo of a plug on a blueprint. An effective first step to start TDD for Legacy Code is to refactor legacy code to make it easy to inject new features]({{site.url}}/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/plug.jpg)
 
 
 The first step in our plan is to change the existing code before injecting our new feature. This step can be tricky as it touches the legacy code, and we don't want to break anything. Here are a few principles to cut risks:
@@ -80,7 +82,7 @@ The first step in our plan is to change the existing code before injecting our n
     *   Setting up a [Golden Master test](https://en.wikipedia.org/wiki/Characterization_test) for the occasion is also a smart move.
 *   Use many pairs of eyes. **Refactoring in pair or mob will drastically reduce the risk for regression.**
 
-Fortunately, the gilded rose kata comes with a golden master test. It's a test that 'snapshots' the behavior of your code to let you refactor it. It's temporary because a precise snapshot is unmaintainable. You can learn more about the golden master technique through this live refactoring.
+Fortunately, the gilded rose kata comes with a golden master test. It's a test that "snapshots" the behavior of your code to let you refactor it. It's temporary because a precise snapshot is unmaintainable. You can learn more about the golden master technique through this live refactoring.
 
 {% include video id="9HmVrfkzm9I" provider="youtube" %}
 
@@ -379,7 +381,7 @@ I won't go into the full details of how to animate a quick retrospective. (Note:
 *   How can you apply these techniques (bottom-up and Golden Master) in real life
 *   **How can you deal with the lack of end to end tests?** It's an excellent time to suggest trying another kata around [BDD Scaffolding](https://agile2017.sched.com/event/ATWd/scaffolding-a-legacy-app-with-bdd-scenarios-using-specflowcucumber-gaspar-nagy). (This too could be the subject of a future post)
 
-Use your 5% speaking time to hint participants to these discussions if they did rise by themselves. Suggest running follow-up katas or [mob sessions](/categories/#mob-programming) to keep the momentum going. Don't forget, coaching a team is a long term task.
+Use your 5% speaking time to hint participants to these discussions if they did rise by themselves. Suggest running follow-up katas or [mob sessions]({{site.url}}/categories/#mob-programming) to keep the momentum going. Don't forget, coaching a team is a long term task.
 
 > ### _Side note: Many variants of Gilded Rose_
 > 
@@ -398,7 +400,7 @@ First of all, keep problems in mind:
 *   How to write tests before code that already exists?
 *   **Coach enough TDD for legacy code skills to the team.**
 
-![RoadSign written 'New Skills Training'. The main idea behind agile technical coaching is to grow developer leadership by training them to new skills.](../imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/new-skills.jpg)
+![RoadSign written "New Skills Training". The main idea behind agile technical coaching is to grow developer leadership by training them to new skills.]({{site.url}}/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/new-skills.jpg)
 
 **As often, the solution is in the problem**. Next time you hear these problems, suggest trying a refactoring kata. You might have to repeat the suggestion a few time before people accept. As soon as you have an opportunity, run the gilded rose, and coach one TDD for legacy code technique. Make sure to prepare the kata before, though.
 
