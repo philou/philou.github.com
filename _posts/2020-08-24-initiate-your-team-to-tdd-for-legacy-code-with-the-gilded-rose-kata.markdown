@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: Initiate your team to TDD for Legacy Code with the Gilded Rose kata
+title: How to make your learn TDD for Legacy Code, and love it!
 date: 2020-09-04
 comments: true
 categories:
@@ -54,7 +54,7 @@ Here is, in my opinion, **the most useful and straightforward TDD for legacy cod
 1.  Refactor the existing code to introduce an extension-point to host your new feature
 2.  Implement your new feature using TDD. Make it compatible to your extension-point
 3.  Once your new feature is ready, plug it in the legacy code through the extension-point
-4.  Check that the whole thing is working. Use whatever test you have, either manual or automated.
+4.  Check that the whole thing is working. Use whatever test you have, either manual or automated
 5.  If it's not working as you expect, repeat the whole cycle (adapt extension point, TDD your new feature...)
 
 All this might sound very easy in theory. Unfortunately, it can get pretty complicated in practice! Before trying this in production code, it's a good idea to practice and learn. Let's see how to do that!
@@ -380,6 +380,10 @@ I won't go into the full details of how to animate a quick retrospective. (Note:
 
 *   How can you apply these techniques (bottom-up TDD and Golden Master) in real life
 *   **How can you deal with the lack of end to end tests?** It's an excellent time to suggest trying another kata around [BDD Scaffolding](https://agile2017.sched.com/event/ATWd/scaffolding-a-legacy-app-with-bdd-scenarios-using-specflowcucumber-gaspar-nagy). (This too could be the subject of a future post)
+*   **What should you do when you need to change the legacy code at many different places to inject your new feature?** To summarize, this situation demonstrates that the existing code could do with better modularization. This is a good opportunity to mention [the Bubble Context](https://www.infoq.com/presentations/Strategy-Messy-Legacy-Systems/) technique:
+   *  Create a well-design, domain-driven module for your feature
+   *  Inject it in the legacy at different points with the above technique
+   *  Very likely using extra adapters
 
 Use your 5% speaking time to hint participants to these discussions if they did not rise by themselves. Suggest running follow-up katas or [mob sessions]({{site.url}}/categories/#mob-programming) to keep the momentum going. Don't forget, coaching a team is a long term task.
 
