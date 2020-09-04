@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: How to make your learn TDD for Legacy Code, and love it!
+title: How to make your team learn TDD for Legacy Code, and love it!
 date: 2020-09-04
 comments: true
 categories:
