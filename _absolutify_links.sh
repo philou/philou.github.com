@@ -1,12 +1,15 @@
 #!/bin/sh
 
+export ME=`basename "$0"`
 export POST_FILE_PATH=$1
 
 # Display usage if not called correctly
 if [[ $# -ne 1 ]] ; then
-    echo "Usage ./_absolutify_links.sh POST_FILE_PATH"
+    echo "Usage ./$ME POST_FILE_PATH"
     exit 1
 fi
+
+
 
 echo "Adding current version to git"
 git add $POST_FILE_PATH
