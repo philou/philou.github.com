@@ -19,21 +19,21 @@ _There are many ways to manage team resistance. Here are some of the technical a
 
 > They liked developing big chunks of code on their own private branches, and there was no talking them out of it because they weren't feeling any pain. [Phil Goodwin on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/71355339)]
 
-> Honestly, this is stupid! [A coachee when I presented the very first [TDD kata](https://philippe.bourgau.net/categories/#coding-dojo)]
+> Honestly, this is stupid! [A coachee when I presented the very first [TDD kata]({{site.url}}/categories/#coding-dojo)]
 
-![Drawing of a resistance on top of the word ChangE with an inverted 'E'.](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change.jpg)
+![Drawing of a resistance on top of the word ChangE with an inverted 'E'. Resistance is very common from teams that we have to work with as agile technical coaches.]({{site.url}}/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change.jpg)
 
 ## I don't want this change!
 
 As technical agile coaches, it's our daily job to bring change. Whenever we want to introduce a team to a new practice or habit, we are bringing change. **Unfortunately for us, people have many good reasons for resisting a change!** They might:
 
-*   Be tired of [repeated change programs that did not live up to their promises](https://philippe.bourgau.net/why-agile-transformations-usually-dont-work-part-1-the-situation/).
+*   Be tired of [repeated change programs that did not live up to their promises]({{site.url}}/why-agile-transformations-usually-dont-work-part-1-the-situation/).
 *   Be very happy with the current situation, and fear getting a bad deal if anything changes.
 *   Have too much work and don't want the extra workload of learning new habits and practices.
 
 Some people will offer mild resistance. Others, though, will make the confrontation pretty tough. Trying to push harder when a team is already resisting will only make work painful for everyone.
 
-![Photograph of scrabble letters forming the word 'Time for a change'. As technical agile coach, we bring change. Change is not easy most of the time.](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/time-for-a-change.jpg)
+![Photograph of scrabble letters forming the word 'Time for a change'. As technical agile coach, we bring change. Change is not easy most of the time.]({{site.url}}/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/time-for-a-change.jpg)
 
 Here are different strategies to deal with resistance more sustainably.
 
@@ -41,7 +41,7 @@ Here are different strategies to deal with resistance more sustainably.
 
 ### Walk in their shoes!
 
-![Photograph of someone walking. Gemba, or walking in the team's shoes, is a powerful change management recipe that can help you to understand the special challenges that the team is facing. This will help down the road to manage the team's resistance to change.](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/walking.jpg)
+![Photograph of someone walking. Gemba, or walking in the team's shoes, is a powerful change management recipe that can help you to understand the special challenges that the team is facing. This will help down the road to manage the team's resistance to change.]({{site.url}}/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/walking.jpg)
 
 > This will not work here!
 
@@ -51,9 +51,9 @@ It means you need to understand their context better. You will usually learn a l
 
 > Avoid BUZZWORDS. What if we try this? Sitting and work with team. TALKING ISN'T EFFECTIVE. If they see and don't want it, OK. Learn from them. [[Dave Nicolette](https://neopragma.com/) on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_does_evolutionary/75090300)]
 
-Lean practitioners will call this Gemba. By [pairing](https://philippe.bourgau.net/categories/#pair-programming) and [mobbing](https://philippe.bourgau.net/categories/#mob-programming), you'll understand the team members' situation and constraints. You'll see and even feel their problems first hand. This will help you to find the angle to use to introduce new practices.
+Lean practitioners will call this Gemba. By [pairing]({{site.url}}/categories/#pair-programming) and [mobbing]({{site.url}}/categories/#mob-programming), you'll understand the team members' situation and constraints. You'll see and even feel their problems first hand. This will help you to find the angle to use to introduce new practices.
 
-Explain to the team that you will mostly observe and that you will not slow them down. Be attentive to what is going on, and remember to be constructive. A bonus is that you might also be helpful! If ever you recognize a situation where you can help, by all means, do it! This is where your [legacy-code testing skills](https://philippe.bourgau.net/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/) will pay off! This will earn you extra credits that will make change easier down the road.
+Explain to the team that you will mostly observe and that you will not slow them down. Be attentive to what is going on, and remember to be constructive. A bonus is that you might also be helpful! If ever you recognize a situation where you can help, by all means, do it! This is where your [legacy-code testing skills]({{site.url}}/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/) will pay off! This will earn you extra credits that will make change easier down the road.
 
 I used this technique with the first team I coached after I became an official technical agile coach. I spent 2 days per week pairing with the developers. I also attended their daily meetings and other sprint ceremonies. After a few weeks, I had understood and experienced their problems. I then suggested much more time-efficient coaching sessions using mobs and katas.
 
@@ -71,13 +71,13 @@ If you still think it's important, keep your eyes open. **The key is to be patie
 
 For greater effectiveness, make every success as visible as you can. It's even better to get the people you were working with share it with the team.
 
-For a long time, this is the only type of [coaching I actually did](https://philippe.bourgau.net/from-zero-to-pair-programming-hero/). I was not an official technical agile coach, but more of a developer who was coaching his team.
+For a long time, this is the only type of [coaching I actually did]({{site.url}}/from-zero-to-pair-programming-hero/). I was not an official technical agile coach, but more of a developer who was coaching his team.
 
 I remember a time when unit testing was still a controversial practice! **We would publicize any regression caught by a unit test as an argument to convince the skeptics.**
 
 ### Run an experiment
 
-![Photograph of a microscope. Running and experiment to measure the result of a change is a great trick to influence a team that is resisting change](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/experiment.jpg)
+![Photograph of a microscope. Running and experiment to measure the result of a change is a great trick to influence a team that is resisting change]({{site.url}}/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/experiment.jpg)
 
 We are humans... as a result, we don't always agree! Introducing new practices can lead to many kinds of disagreements:
 
@@ -88,7 +88,7 @@ This can be the perfect moment to suggest an experiment. **It's often a lot easi
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I would ask them to try to submit a pull request about one half the size that they do now, then measure how long those remain open. I would measure quietly to avoid influencing their actions. Maybe this would help.</p>&mdash; ☕ J. B. Rainsberger (@jbrains) <a href="https://twitter.com/jbrains/status/1191449745941815298?ref_src=twsrc%5Etfw">November 4, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Short, 1, or 2 weeks, experiments are usually enough. Involve the team in the design of your experiment so that the results are better accepted. Also, try to make it [as measurable as possible](https://philippe.bourgau.net/categories/#improvement-kata). Fuzzy results might lead to even more debate.
+Short, 1, or 2 weeks, experiments are usually enough. Involve the team in the design of your experiment so that the results are better accepted. Also, try to make it [as measurable as possible]({{site.url}}/categories/#improvement-kata). Fuzzy results might lead to even more debate.
 
 A few months ago, a colleague introduced a team to [approvals tests](https://approvaltests.com/) during a kata. The team needed a bit more confidence to add the practice to their official toolbox. A team member ran an experiment on a particular piece of their production code. It went on pretty well, and approvals.cpp has now been promoted to an official company third-party.
 
@@ -110,7 +110,7 @@ When people are in a training mindset, they are more open to
 
 Has the company got some form of slack time, learning, or innovation day? (Even [SAFe can be hacked in this way](https://www.scaledagileframework.com/innovation-and-planning-iteration/)!) This is the perfect occasion to set up a friendly low-ceremony training kata. **Look for company processes you can piggyback on.** For example, you might prepare a more official training and have all the team attend for a few days.
 
-The [refactoring coaching plan](https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/) I built when working at Murex turns around this idea. The team was struggling with legacy code and refactoring. I prepared a kata plan that consisted of 2 parts:
+The [refactoring coaching plan]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/) I built when working at Murex turns around this idea. The team was struggling with legacy code and refactoring. I prepared a kata plan that consisted of 2 parts:
 
 *   the first half was a set of katas around TDD
 *   the second half contained only katas around refactoring techniques ([Golden Master](http://127.0.0.1:5000/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/), [Strangler](https://martinfowler.com/bliki/StranglerFigApplication.html)...)
@@ -139,7 +139,7 @@ All people are different, and we don't all connect as easily. Sometimes, contact
 
 **A collaborative workshop is a perfect tool to kick-off an effective partnership.**
 
-[![The Game Storming book is full of activities to build creative and collaborative workshops to kick-off a great relationship with your coached team](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/game-storming.jpg)](https://gamestorming.com/)
+[![The Game Storming book is full of activities to build creative and collaborative workshops to kick-off a great relationship with your coached team]({{site.url}}/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/game-storming.jpg)](https://gamestorming.com/)
 
 The typical plan would be:
 
@@ -166,7 +166,7 @@ If you still cannot build a relationship with the team after such a workshop, as
 
 **We all have different coaching styles, and some fit some teams better than others.**
 
-![Photograph of athletics relay sprinters handing over the stick to each other. Technical coaching too can be a team sports. Sometimes, what one will have troubles with, the other will do easily!](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/athletics-relay.jpg)
+![Photograph of athletics relay sprinters handing over the stick to each other. Technical coaching too can be a team sports. Sometimes, what one will have troubles with, the other will do easily!]({{site.url}}/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/athletics-relay.jpg)
 
 That's one of a tech-coach team's forces: you are more likely to find the right coach for each situation. At work, I know that some teams work better with some of us than with others. That's fine, and it's also a great way to share the workload!
 
