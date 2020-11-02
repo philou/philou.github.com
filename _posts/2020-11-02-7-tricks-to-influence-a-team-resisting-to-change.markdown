@@ -10,8 +10,8 @@ categories:
 - change management
 description: "There are many ways to manage team resistance to change habits and practices. Here are 7 of the technical agile coach's tricks that influence: Gemba, Patience, Experiments, Training mindset, testimonies, creative brainstorming, finding another coach. Try them before quitting!"
 header:
-  teaser: "/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/TODO-teaser.jpg"
-  og_image: "/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/TODO-og.jpg"
+  teaser: "/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change-teaser.jpg"
+  og_image: "/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change-og.jpg"
 ---
 _There are many ways to manage team resistance. Here are some of the technical agile coach's tricks that influence: testimonies, experiments, and more!_
 
@@ -20,6 +20,8 @@ _There are many ways to manage team resistance. Here are some of the technical a
 > They liked developing big chunks of code on their own private branches, and there was no talking them out of it because they weren't feeling any pain. [Phil Goodwin on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/71355339)]
 
 > Honestly, this is stupid! [A coachee when I presented the very first [TDD kata](https://philippe.bourgau.net/categories/#coding-dojo)]
+
+![Drawing of a resistance on top of the word ChangE with an inverted 'E'.](../imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change.jpg)
 
 ## I don't want this change!
 
