@@ -110,7 +110,7 @@ When people are in a training mindset, they are more open to
 
 Has the company got some form of slack time, learning, or innovation day? (Even [SAFe can be hacked in this way](https://www.scaledagileframework.com/innovation-and-planning-iteration/)!) This is the perfect occasion to set up a friendly low-ceremony training kata. **Look for company processes you can piggyback on.** For example, you might prepare a more official training and have all the team attend for a few days.
 
-The [refactoring coaching plan]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/) I built when working at Murex turns around this idea. The team was struggling with legacy code and refactoring. I prepared a kata plan that consisted of 2 parts:
+The [refactoring coaching plan]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/) I built when working at [Murex](https://www.murex.com) turns around this idea. The team was struggling with legacy code and refactoring. I prepared a kata plan that consisted of 2 parts:
 
 *   the first half was a set of katas around TDD
 *   the second half contained only katas around refactoring techniques ([Golden Master](http://127.0.0.1:5000/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/), [Strangler](https://martinfowler.com/bliki/StranglerFigApplication.html)...)
@@ -180,7 +180,7 @@ You might have noticed that this is the 8th trick! It's not a way to influence, 
 *   Are some key team members having personal issues?
 *   It might just not be the right time, and it would work better in 1 year!
 
-Whatever the reason, You will create more value by helping a volunteer team.
+Whatever the reason, you will create more value by helping a volunteer team. It's actually the first principle of our coaching team at Murex: we only work with teams that volunteer.
 
 {% assign figure_path="/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/crossing-the-chasm.jpg" | absolute_url %}
 
