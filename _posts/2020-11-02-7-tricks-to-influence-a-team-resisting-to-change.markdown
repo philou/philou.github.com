@@ -12,6 +12,21 @@ description: "There are many ways to manage team resistance to change habits and
 header:
   teaser: "/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change-teaser.jpg"
   og_image: "/imgs/2020-11-02-7-tricks-to-influence-a-team-resisting-to-change/resistance-change-og.jpg"
+variations:
+ - Unfortunately for us, people have many good reasons for resisting a change!
+ - Is the technical environment too far from what you have presented? Are they crawling under legacy code? Do the company processes prevent them from changing how they work?
+ - It's useless to try to change something that people believe is working.
+ - The key is to be patient: work with them and leverage on any opportunity you encounter.
+ - "We would publicize any regression caught by a unit test as an argument to convince the skeptics."
+ - It's often a lot easier to get people to try something than to commit to it.
+ - Many things seem useless until you understand them
+ - Look for company processes you can piggyback on.
+ - The story of a peer overcoming similar problems is worth a thousand words from the coach.
+ - A collaborative workshop is a perfect tool to kick-off an effective partnership.
+ - We all have different coaching styles, and some fit some teams better than others.
+ - If nothing seems to work, it's better to stop now and move on to another team.
+ - Setbacks are inevitable, the best thing to do is to accept and move on.
+ - Part of the joy of coaching is discovering a way to bring some improvement in unknown situations!
 ---
 _There are many ways to manage team resistance. Here are some of the technical agile coach's tricks that influence: testimonies, experiments, and more!_
 
