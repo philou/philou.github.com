@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: 7 tricks to influence a team resisting to change
+title: 7 tricks to influence a team resisting to change its technical habits
 date: 2020-11-05
 comments: true
 categories:
