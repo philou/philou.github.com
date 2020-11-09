@@ -22,7 +22,7 @@ The badass developers gain the business's trust by sneaking in as business partn
 
 ## Keeping the business best interests in mind
 
-This is all about decision making. We should try to steer decisions according to the business. Whenever we talk with business people, we should stay aways from technical topics. I still remember my younger self explaining threading details to a trader ... Most of all I remember the look on his face ! We should avoid technical bla bla, but we should be clear about the business consequences.
+This is all about decision making. We should try to steer decisions according to the business. Whenever we talk with business people, we should stay away from technical topics. I still remember my younger self explaining threading details to a trader... Most of all, I remember the look on his face! We should avoid technical bla bla, but we should be clear about the business consequences.
 
 ## Honesty and Candor
 

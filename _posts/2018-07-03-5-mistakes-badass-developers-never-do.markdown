@@ -28,13 +28,13 @@ The first thing to become trustworthy is to avoid things that kill trust. Sounds
 
 We should pick the best tools for the job. The best tools are often a bit old, precisely because they've been battle tested in production for a while ! That's exactly the kind of technologies you want your business to rely on.
 
-To keep his skills up to date, a badass developer will not add a funky new tech in the production code. He would rather negotiate [slack time](http://www.jamesshore.com/Agile-Book/slack.html) with the business. He might also openly _take_ his Friday afternoons to experiment the latest techs ! He would simply explain that it's to avoid polluting the production system.
+To keep their skills up to date, badass developers will not add a funky new tech in the production code. They would rather negotiate [slack time](http://www.jamesshore.com/Agile-Book/slack.html) with the business. They might also openly _take_ their Friday afternoons to experiment the latest techs! They would simply explain that it's to avoid polluting the production system.
 
-> 💡 A badass developer will not add a funky new tech in the production code.
+> 💡 Badass developers will not add a funky new tech in the production code.
 
 ## Over-engineering
 
-Gold plating or over-engineering are similar anti-patterns. A badass developer always keeps the business's interest in mind. This means he knows how to balance long term design and short term features. A good rule of thumb is to keep a vision in sight, but to get there in baby steps.
+Gold plating or over-engineering are similar anti-patterns. Badass developers always keep the business's interest in mind. This means they know how to balance long term design and short term features. A good rule of thumb is to keep a vision in sight, but to get there in baby steps.
 
 ## Build features with no agreed upon value
 
@@ -43,9 +43,11 @@ Product managers are here to select what should and what should not be in the pr
 *   First, it takes some time to build, time that we could use to build valuable features instead. Remember : [Real developers ship](/real-developers-ship/) !
 *   Second, it creates unnecessary code to maintain. In the worst case, it can [constraint the architecture](/incremental-architecture-a-cure-against-architecture-astronauts/). Which might eventually prevent us from adding other more valuable features afterwards.
 
+Badass Developers [only build features with clear value]({{site.url}}/you-should-refuse-to-develop-what-you-dont-understand/).
+
 ## Hide in a tunnel
 
-We should always be careful of the tunnel effect. Seeing their money vanishing with no visible output makes business people, understandably, creepy. As soon as things become too complicated, a badass developer will raise the alarm. The fact is that he has been in this kind of situation before, and knows how to recognize it. At that point, it's still possible to discuss the problem with everyone, and adjust the plan.
+We should always be careful of the tunnel effect. Seeing their money vanishing with no visible output makes business people, understandably, creepy. As soon as things become too complicated, badass developera will raise the alarm. The fact is that they have been in this kind of situation before, and know how to recognize it. At that point, it's still possible to discuss the problem with everyone, and adjust the plan.
 
 As an interesting side note, I was at the [Paris DDD Meetup](https://www.meetup.com/fr-FR/DDD-Paris/) last Thursday. We had the chance to welcome [Eric Evans](https://twitter.com/ericevans0) as a surprise guest ! When asked what were his worst mistakes, he said something along this line :
 
