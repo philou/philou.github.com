@@ -128,7 +128,7 @@ Has the company got some form of slack time, learning, or innovation day? (Even 
 The [refactoring coaching plan]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/) I built when working at [Murex](https://www.murex.com) turns around this idea. The team was struggling with legacy code and refactoring. I prepared a kata plan that consisted of 2 parts:
 
 *   the first half was a set of katas around TDD
-*   the second half contained only katas around refactoring techniques ([Golden Master](http://127.0.0.1:5000/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/), [Strangler](https://martinfowler.com/bliki/StranglerFigApplication.html)...)
+*   the second half contained only katas around refactoring techniques ([Golden Master]({{site.url}}/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/), [Strangler](https://martinfowler.com/bliki/StranglerFigApplication.html)...)
 
 I pitched the full plan as a single unit. I mandate TDD to create the short feedback loop required for efficient learning. This allowed me to shortcut many arguments about TDD: it was only a training tool. By the time the team had reached the end of the kata plan, they knew enough TDD skills to apply it in the BAU work.
 
