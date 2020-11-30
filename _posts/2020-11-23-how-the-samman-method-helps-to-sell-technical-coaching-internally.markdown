@@ -10,10 +10,12 @@ categories:
 - change management
 description: "Emily Bache wrote an accessible book for technical agile coaches. Part 1 of this post is a review of her book. She advises freelance coaches about how to sell their coaching services. Part 2 of this post is an addendum to her book: How to start technical coaching with my current organization teams?"
 header:
-  teaser: "/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/TODO-teaser.jpg"
-  og_image: "/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/TODO-og.jpg"
+  teaser: "/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales-teaser.jpg"
+  og_image: "/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales-og.jpg"
 ---
-_Emily Bache wrote an accessible guide for technical agile coaches. Here is my review, plus my bonus section: How to sell your technical coaching services internally._
+_[Emily Bache](http://coding-is-like-cooking.info/) wrote an [accessible guide for technical agile coaches](https://leanpub.com/techagilecoach). Here is my review, plus my bonus section: How to sell your technical coaching services internally._
+
+![Drawing of a circle with inbound arrows around a hand shake in the middle. Selling your technical coaching services internally is a very special challenge](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales.jpg)
 
 > [...] Often they have a lot of internal knowledge and are more valuable to the organization in their current role than they would be as a more general technical coach. \[Emily Bache\]
 
@@ -21,7 +23,7 @@ _Emily Bache wrote an accessible guide for technical agile coaches. Here is my r
 
 > I no longer focus on the practices when I spread them; I just start using them when I pair with someone, and they catch on (or don't). Maybe I should have specific sessions where I focus on, say, refactoring, or TDD. \[George Paci [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)\]
 
-A while ago, [Christophe Cadilhac](https://twitter.com/cadichris_) created a channel for technical coaches on the french [Okiwi](https://okiwi.org/) Slack. Our kick-off action was to start a book club. As a first book, we picked [Emily Bache](http://coding-is-like-cooking.info/)'s [Technical Agile Coaching with the Samman Method](https://leanpub.com/techagilecoach). We met every Monday, Wednesday, and Friday. It took us around 3 weeks to finish the book.
+A while ago, [Christophe Cadilhac](https://twitter.com/cadichris_) created a channel for technical coaches on the french [Okiwi](https://okiwi.org/) Slack. Our kick-off action was to [start a book club](https://www.epl.ca/blogs/post/how-to-start-a-book-club/). As a first book, we picked [Emily Bache](http://coding-is-like-cooking.info/)'s [Technical Agile Coaching with the Samman Method](https://leanpub.com/techagilecoach). We met every Monday, Wednesday, and Friday. It took us around 3 weeks to finish the book.
 
 [![Cover of Emily Bache's book "Technical Agile Coaching with the Samman Method"](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/technical-agile-coaching.jpg)](https://leanpub.com/techagilecoach)
 
@@ -34,11 +36,13 @@ You don't need to read the first part to understand the second. You can jump dir
 
 ## What is the book about?
 
+*NOTE: Emily's book was only 90% finalized at the time of this review. Content may have changed a little when you read this.*
+
 The book presents how Emily Bache now does technical agile coaching. She calls this way of coaching the 'Samman method.' It relies on mob programming and regular mini-trainings, which she calls learning hours.
 
 ### Why Samman?
 
-Google told me that Samman means 'Together' in Swedish. Although British born, Emily Bache lives and works in Sweden. Her coaching style relies a lot on mob programming, which I guess is why she picked the 'Samman' word.
+Google told me that Samman means 'Together' in Swedish. Although British born, Emily Bache lives and works in Sweden. Her coaching style relies a lot on [mob programming](https://philippe.bourgau.net/categories/#mob-programming), which I guess is why she picked the 'Samman' word.
 
 ### Book structure
 
@@ -72,7 +76,7 @@ In her book, Emily presents her full-spectrum and coherent recipe to technical c
 
 ### It's a crash-course on mob programming.
 
-There are entire books about mob programming. Maybe you don't have the time to read 200+ pages about mob programming. Emily's book contains a 10 pages crash-course to get you started with mob programming. It even includes a short section about remote mobbing.
+There are [entire books about mob programming](https://www.goodreads.com/search?utf8=%E2%9C%93&query=mob+programming). Maybe you don't have the time to read 200+ pages about mob programming. Emily's book contains a 10 pages crash-course to get you started with mob programming. It even includes a short section about remote mobbing.
 
 ### It fills a gap
 
@@ -115,8 +119,8 @@ Presenting her coaching recipe connects with the reader at a more personal level
 If you are an experienced technical coach, you might think this book is not for you. You would be wrong! The previous points might look 'junior coach' oriented. Here is why the book remains worth your time:
 
 *   It will make you think about the way you are currently coaching. You might not jump in Emily's style right away, but it will shed new light on your current practices. Most likely, you'll tune or change your coaching for the better.
-*   She also offers advice about dealing with recalcitrant teams, a difficulty we all face at some point. (TODO link)
-*   Throughout the book, Emily addresses the personal organization topic in depth. Many of us (me included) still struggle with this, and any help is welcome. For example, she provides advice about when to take breaks and when to have non-coaching days.
+*   She also offers [advice about dealing with recalcitrant teams](https://philippe.bourgau.net/7-tricks-to-influence-a-team-resisting-to-change/), a difficulty we all face at some point.
+*   Throughout the book, Emily addresses the [personal organization](https://philippe.bourgau.net/categories/#personal-productivity) topic in depth. Many of us (me included) still struggle with this, and any help is welcome. For example, she provides advice about when to take breaks and when to have non-coaching days.
 
 ### My conclusion
 
@@ -168,7 +172,7 @@ Sales for freelance coaches is very close to any consultant's sales. In her book
 *   The twenty-year-old codebase
 *   Too stressed out and busy
 
-She also details typical coaching proposals. You might also have a look at the ton of literature to help consultants find clients.
+She also details typical coaching proposals. You might also have a look at [the ton of literature to help consultants find clients](https://www.google.com/search?q=how+to+find+clients+as+a+feelancer).
 
 **If you are an internal coach, your situation is different. Your sales challenge becomes:**
 
@@ -224,7 +228,7 @@ At that point, repeat the whole thing! Every iteration should get you closer to 
 
 ### My story
 
-A few months ago, I wrote a summary of my own story from senior developer to technical coach at Murex. To illustrate what these steps might look like, let's put them in parallel with my account.
+A few months ago, I wrote [a summary of my own journey from senior developer to technical coach at Murex](https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/). To illustrate what these steps might look like, let's put them in parallel with my story.
 
 #### Iteration 1
 
@@ -232,7 +236,7 @@ I had joined a relatively junior RTDB team as a senior developer.
 
 1.  **Pain:** The team struggles with a lot of code, slow tests and is at risk of delivering an ambitious product.
 2.  **Hack:** My senior developer role has a mentoring aspect. Let's use it to coach other developers during code reviews and pair sessions. I could also try to introduce effective retrospectives.
-3.  **Coach:** I start to coach my teammates to TDD, refactoring, and evolutionary design. A few months of this is enough to ignite a continuous improvement mindset in the team.
+3.  **Coach:** I start to coach my teammates to TDD, refactoring, and evolutionary design. A few months of this is enough to ignite a continuous improvement mindset in the team. (You can have more details about this in [From Zero to Pair Programming Hero](https://philippe.bourgau.net/from-zero-to-pair-programming-hero/)
 4.  **Momentum:** the team is on track to deliver a breakthrough product! Some managers buy-in the agile way of working and are pushing for more.
 
 #### Iteration 2
@@ -244,7 +248,7 @@ An Agile transformation is on its way, for the worse or better... I now had a su
 3.  **Coach:** I try different approaches before we get some results. Pair sessions don't work as expected, but mobbing with the team on their refactoring does. The team develops a continuous improvement mindset, delivers, and works on T-shaping.
 4.  **Momentum:** This is a significant milestone for me. I come out of this with
 
-  *   A coaching plan to tackle legacy code and refactoring
+  *   [A coaching plan to tackle legacy code and refactoring](https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
   *   Credits among other agile coaches
   *   Credibility from other teams
 
