@@ -15,7 +15,7 @@ header:
 ---
 _[Emily Bache](http://coding-is-like-cooking.info/) wrote an [accessible guide for technical agile coaches](https://leanpub.com/techagilecoach). Here is my review, plus my bonus section: How to sell your technical coaching services internally._
 
-![Drawing of a circle with inbound arrows around a hand shake in the middle. Selling your technical coaching services internally is a very special challenge](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales.jpg)
+![Drawing of a circle with inbound arrows around a hand shake in the middle. Selling your technical coaching services internally is a very special challenge]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales.jpg)
 
 > [...] Often they have a lot of internal knowledge and are more valuable to the organization in their current role than they would be as a more general technical coach. \[Emily Bache\]
 
@@ -25,14 +25,14 @@ _[Emily Bache](http://coding-is-like-cooking.info/) wrote an [accessible guide f
 
 A while ago, [Christophe Cadilhac](https://twitter.com/cadichris_) created a channel for technical coaches on the french [Okiwi](https://okiwi.org/) Slack. Our kick-off action was to [start a book club](https://www.epl.ca/blogs/post/how-to-start-a-book-club/). As a first book, we picked [Emily Bache](http://coding-is-like-cooking.info/)'s [Technical Agile Coaching with the Samman Method](https://leanpub.com/techagilecoach). We met every Monday, Wednesday, and Friday. It took us around 3 weeks to finish the book.
 
-[![Cover of Emily Bache's book "Technical Agile Coaching with the Samman Method"](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/technical-agile-coaching.jpg)](https://leanpub.com/techagilecoach)
+[![Cover of Emily Bache's book "Technical Agile Coaching with the Samman Method"]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/technical-agile-coaching.jpg)](https://leanpub.com/techagilecoach)
 
 Emily Bache had the freelance coaches in mind when she wrote it. I found most of the text useful for both external and internal coaches... except the Sales aspect. Yet another reason for me to write about the book. This blog post consists of 2 parts:
 
-1.  [A review of Emily Bache's book](/how-the-samman-method-helps-to-sell-technical-coaching-internally/#what-is-the-book-about)
-2.  [Advice about how to sell your technical coaching services when you are an internal coach](/how-the-samman-method-helps-to-sell-technical-coaching-internally/#the-unique-sales-challenge-of-internal-coaches)
+1.  [A review of Emily Bache's book]({{site.url}}/how-the-samman-method-helps-to-sell-technical-coaching-internally/#what-is-the-book-about)
+2.  [Advice about how to sell your technical coaching services when you are an internal coach]({{site.url}}/how-the-samman-method-helps-to-sell-technical-coaching-internally/#the-unique-sales-challenge-of-internal-coaches)
 
-You don't need to read the first part to understand the second. You can jump directly to how to [The Unique Sales Challenge of Internal Coaches](/how-the-samman-method-helps-to-sell-technical-coaching-internally/#the-unique-sales-challenge-of-internal-coaches) if you prefer.
+You don't need to read the first part to understand the second. You can jump directly to how to [The Unique Sales Challenge of Internal Coaches]({{site.url}}/how-the-samman-method-helps-to-sell-technical-coaching-internally/#the-unique-sales-challenge-of-internal-coaches) if you prefer.
 
 ## What is the book about?
 
@@ -42,7 +42,7 @@ The book presents how Emily Bache now does technical agile coaching. She calls t
 
 ### Why Samman?
 
-Google told me that Samman means 'Together' in Swedish. Although British born, Emily Bache lives and works in Sweden. Her coaching style relies a lot on [mob programming](https://philippe.bourgau.net/categories/#mob-programming), which I guess is why she picked the 'Samman' word.
+Google told me that Samman means 'Together' in Swedish. Although British born, Emily Bache lives and works in Sweden. Her coaching style relies a lot on [mob programming]({{site.url}}/categories/#mob-programming), which I guess is why she picked the 'Samman' word.
 
 ### Book structure
 
@@ -67,7 +67,7 @@ It's currently only 122 pages, which makes it a short and easy read. We all suff
 
 ### It's a full-spectrum recipe for technical coaching.
 
-![A photo of a softball coach giving advice to a player. Technical Agile Coach is a lot like sports coaching.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/coach.jpg)
+![A photo of a softball coach giving advice to a player. Technical Agile Coach is a lot like sports coaching.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/coach.jpg)
 
 In her book, Emily presents her full-spectrum and coherent recipe to technical coaching. It's not a disparate set of practices that we could copy from an experienced coach. It's a system of techniques that support and build on each other. For example:
 
@@ -80,7 +80,7 @@ There are [entire books about mob programming](https://www.goodreads.com/search?
 
 ### It fills a gap
 
-![Photo of a snail going over a gap in the rock. Like the snail, Emily Bache's "Technical Agile Coaching with the Samman Method" book fills the technical gap in the agile coaching litterature.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/snail-gap.jpg)
+![Photo of a snail going over a gap in the rock. Like the snail, Emily Bache's "Technical Agile Coaching with the Samman Method" book fills the technical gap in the agile coaching litterature.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/snail-gap.jpg)
 
 There are plenty of books about Agile coaching. There are very few books that deal with the technical aspects of coaching. By relying on practices like mobbing, Emily presents a modern way to do technical coaching.
 
@@ -114,13 +114,13 @@ Presenting her coaching recipe connects with the reader at a more personal level
 
 ### It's also useful for experienced coaches.
 
-![Photo of a smiling old man that could be an experienced coach. Emily Bache's "Technical Agile Coaching with the Samman Method" book contains tons of advice that could be useful to even the most experienced technical coach.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/experienced.jpg)
+![Photo of a smiling old man that could be an experienced coach. Emily Bache's "Technical Agile Coaching with the Samman Method" book contains tons of advice that could be useful to even the most experienced technical coach.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/experienced.jpg)
 
 If you are an experienced technical coach, you might think this book is not for you. You would be wrong! The previous points might look 'junior coach' oriented. Here is why the book remains worth your time:
 
 *   It will make you think about the way you are currently coaching. You might not jump in Emily's style right away, but it will shed new light on your current practices. Most likely, you'll tune or change your coaching for the better.
-*   She also offers [advice about dealing with recalcitrant teams](https://philippe.bourgau.net/7-tricks-to-influence-a-team-resisting-to-change/), a difficulty we all face at some point.
-*   Throughout the book, Emily addresses the [personal organization](https://philippe.bourgau.net/categories/#personal-productivity) topic in depth. Many of us (me included) still struggle with this, and any help is welcome. For example, she provides advice about when to take breaks and when to have non-coaching days.
+*   She also offers [advice about dealing with recalcitrant teams]({{site.url}}/7-tricks-to-influence-a-team-resisting-to-change/), a difficulty we all face at some point.
+*   Throughout the book, Emily addresses the [personal organization]({{site.url}}/categories/#personal-productivity) topic in depth. Many of us (me included) still struggle with this, and any help is welcome. For example, she provides advice about when to take breaks and when to have non-coaching days.
 
 ### My conclusion
 
@@ -128,7 +128,7 @@ My conclusion is straightforward. If you envision becoming or already are a tech
 
 ## What you won't find in this book
 
-![Photo of the number 404 built out of Lego Bricks. There are things that you won't find in Emily Bache's "Technical Agile Coaching with the Samman Method" book.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/lego-404.jpg)
+![Photo of the number 404 built out of Lego Bricks. There are things that you won't find in Emily Bache's "Technical Agile Coaching with the Samman Method" book.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/lego-404.jpg)
 
 Like with any book, Emily had to select what she put in it. Here are two things that are not in the book that are worth mentioning:
 
@@ -180,7 +180,7 @@ She also details typical coaching proposals. You might also have a look at [the 
 
 ### Why bother?
 
-![Photo of a tree in form of a question mark on a desert island in the middle of the ocean. Starting with Why is usually the smartest thing to do. Emily Bache's reasons to become a technical coach are still valid when trying to introduce technical coaching in your current organization.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/question-mark.jpg)
+![Photo of a tree in form of a question mark on a desert island in the middle of the ocean. Starting with Why is usually the smartest thing to do. Emily Bache's reasons to become a technical coach are still valid when trying to introduce technical coaching in your current organization.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/question-mark.jpg)
 
 This looks like a difficult thing to do! Why should someone even bother? Again, Emily has the answer in her book! For the same reasons that someone would want to become a technical coach:
 
@@ -207,7 +207,7 @@ On the positive side, you also have advantages in your pocket!
 *   You also know the culture better. You'll have a gut feeling about what people will like and what they will not.
 *   Finally, you should know the processes better. This should help you to work around the bureaucracy and get things done.
 
-![Photo of the inner gears of a clock. As a member of your current organization, you already know many of its inner working. You can use this at your advantage to get technical coaching started.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/clockwork.jpg)
+![Photo of the inner gears of a clock. As a member of your current organization, you already know many of its inner working. You can use this at your advantage to get technical coaching started.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/clockwork.jpg)
 
 ## 4 steps to sell your technical agile coaching services internally
 
@@ -222,13 +222,13 @@ My success formula has been to act like an intrapreneur and to accumulate moment
 3.  **Coach**: at this point, you should have some buy-in for some form of coaching. Now is the time to be helpful. Do your best, be humble, be collaborative, and collect feedback. Don't forget the coaching mindset! You should not do it yourself, but help others to do it by themselves.
 4.  **Accumulate momentum:** if you managed to provide some help, then communicate about it! It's going to help you in the future. If it did not work as expected, then at least you learned something, so try something else!
 
-![Photo of a growing piles of coins. Like compound interests, everytime you go through the technical coaching loop, you are building momentum and are able to reach wider scale and have more impact.](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/compound-interest.jpg)
+![Photo of a growing piles of coins. Like compound interests, every time you go through the technical coaching loop, you are building momentum and are able to reach wider scale and have more impact.]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/compound-interest.jpg)
 
 At that point, repeat the whole thing! Every iteration should get you closer to doing technical coaching on a broader scale.
 
 ### My story
 
-A few months ago, I wrote [a summary of my own journey from senior developer to technical coach at Murex](https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/). To illustrate what these steps might look like, let's put them in parallel with my story.
+A few months ago, I wrote [a summary of my own journey from senior developer to technical coach at Murex]({{site.url}}/the-story-about-how-we-do-agile-technical-coaching/). To illustrate what these steps might look like, let's put them in parallel with my story.
 
 #### Iteration 1
 
@@ -236,23 +236,23 @@ I had joined a relatively junior RTDB team as a senior developer.
 
 1.  **Pain:** The team struggles with a lot of code, slow tests and is at risk of delivering an ambitious product.
 2.  **Hack:** My senior developer role has a mentoring aspect. Let's use it to coach other developers during code reviews and pair sessions. I could also try to introduce effective retrospectives.
-3.  **Coach:** I start to coach my teammates to TDD, refactoring, and evolutionary design. A few months of this is enough to ignite a continuous improvement mindset in the team. (You can have more details about this in [From Zero to Pair Programming Hero](https://philippe.bourgau.net/from-zero-to-pair-programming-hero/)
+3.  **Coach:** I start to coach my teammates to TDD, refactoring, and evolutionary design. A few months of this is enough to ignite a continuous improvement mindset in the team. (You can have more details about this in [From Zero to Pair Programming Hero]({{site.url}}/from-zero-to-pair-programming-hero/)
 4.  **Momentum:** the team is on track to deliver a breakthrough product! Some managers buy-in the agile way of working and are pushing for more.
 
 #### Iteration 2
 
 An Agile transformation is on its way, for the worse or better... I now had a success story as an embedded coach under my belt! I only had to express my desire to do more coaching to get an official agile (not technical yet) coach role. I am asked for help in the Deadpool team, which is struggling with legacy code.
 
-1.  **Pain:** I spend a few days within the team to understand that legacy code is not the only pain. It's is a group of experts more than a team. Expertise silos and legacy-code production-issues make the pace unsustainable. Morale was low.
+1.  **Pain:** I spend a few days within the team to understand that legacy code is not the only pain. It's a group of experts more than a team. Expertise silos and legacy-code production-issues make the pace unsustainable. Morale was low.
 2.  **Hack:** Let's use my now official 'agile' coach role to embed in the team. I could help them to add tests with katas and pair sessions.
 3.  **Coach:** I try different approaches before we get some results. Pair sessions don't work as expected, but mobbing with the team on their refactoring does. The team develops a continuous improvement mindset, delivers, and works on T-shaping.
 4.  **Momentum:** This is a significant milestone for me. I come out of this with
 
-  *   [A coaching plan to tackle legacy code and refactoring](https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
+  *   [A coaching plan to tackle legacy code and refactoring]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
   *   Credits among other agile coaches
   *   Credibility from other teams
 
-![Drawing of Deadpool sitting on the words 'COACHING' with arms opened. Providing real help to the Deadpool teammembers whe were struggling with Legacy Code and low morale was a significant milestone in my technical coaching journey](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/deadpool-coaching.jpg)
+![Drawing of Deadpool sitting on the words 'COACHING' with arms opened. Providing real help to the Deadpool team members who were struggling with Legacy Code and low morale was a significant milestone in my technical coaching journey]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/deadpool-coaching.jpg)
 
 #### Iteration 3
 
@@ -271,7 +271,7 @@ The story goes on... We are now scaling the offer, with more technical coaches, 
 
 If you envision becoming or already are a tech agile coach, go and buy Emily's book! It's a short and pleasant read. You will most likely discover new practices, or at least see her perspective on them.
 
-![A photo of someone standing in front of a black board with "Keep Going" written on it. Succeeding to sell your technical coaching services internally is mostly of matter the finding the way to do so, keep going until you find how!](../imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/keep-going.jpg)
+![A photo of someone standing in front of a black board with "Keep Going" written on it. Succeeding to sell your technical coaching services internally is mostly of matter the finding the way to do so, keep going until you find how!]({{site.url}}/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/keep-going.jpg)
 
 She mainly addresses independent coaches in the book. Most of the content is still relevant to internal coaches, though. **Whatever your current role as an employee, you can sell technical coaching internally. You have the unfair advantage of already being in the organization!** Start iterating through these 4 steps:
 
