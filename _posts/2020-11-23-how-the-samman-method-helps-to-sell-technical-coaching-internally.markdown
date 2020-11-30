@@ -12,6 +12,14 @@ description: "Emily Bache wrote an accessible book for technical agile coaches. 
 header:
   teaser: "/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales-teaser.jpg"
   og_image: "/imgs/2020-11-23-how-the-samman-method-helps-to-sell-technical-coaching-internally/internal-sales-og.jpg"
+variations:
+- For internal technical coaches, the sales challenge is: How do I start technical coaching with teams in my organization?
+- Difficulty#1 for the aspiring internal technical agile coaches: You don't yet have an official technical coach role!
+- Wannabe internal technical agile coaches usually start from a team member job. This very often makes top managers unreachable!
+- Difficulty#2 for the aspiring internal technical agile coaches: You will not be able to 'chose' your customer!
+- Because of the value they provide to the organization, wannabe technical agile coaches are often stuck in their roles!
+- My 5 steps to sell technical agile coaching internally: 1-Find a pain, 2-Hack the organization, 3-Coach, 4-Accumulate momentum, 5-Repeat
+- Whatever your current role as an employee, you can sell technical coaching internally. You have the unfair advantage of already being in the organization!
 ---
 _[Emily Bache](http://coding-is-like-cooking.info/) wrote an [accessible guide for technical agile coaches](https://leanpub.com/techagilecoach). Here is my review, plus my bonus section: How to sell your technical coaching services internally._
 
@@ -21,7 +29,7 @@ _[Emily Bache](http://coding-is-like-cooking.info/) wrote an [accessible guide f
 
 > Emily Bache has a great reputation that helps her a lot to find organizations and teams to work with. It is different for us: anonymous and without reputation. \[A reviewer on Okiwi\]
 
-> I no longer focus on the practices when I spread them; I just start using them when I pair with someone, and they catch on (or don't). Maybe I should have specific sessions where I focus on, say, refactoring, or TDD. \[George Paci [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)\]
+> I no longer focus on the practices when I spread them; I just start using them when I pair with someone, and they catch on (or don't). Maybe I should have specific sessions where I focus on, say, refactoring, or TDD. \[[George Paci](https://www.linkedin.com/in/george-paci-8422a55/) [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)\]
 
 A while ago, [Christophe Cadilhac](https://twitter.com/cadichris_) created a channel for technical coaches on the french [Okiwi](https://okiwi.org/) Slack. Our kick-off action was to [start a book club](https://www.epl.ca/blogs/post/how-to-start-a-book-club/). As a first book, we picked [Emily Bache](http://coding-is-like-cooking.info/)'s [Technical Agile Coaching with the Samman Method](https://leanpub.com/techagilecoach). We met every Monday, Wednesday, and Friday. It took us around 3 weeks to finish the book.
 
@@ -140,11 +148,11 @@ It does not contain learning material to teach you all the skills you'll need to
 
 Emily explains that she wrote the book with freelance coaches in mind.
 
-> Most of the coaches I know are consultants who engage with a number of different organizations [...]. I believe it should also be possible to be an internal coach in a large organization. I don’t have experience of that but I hope you will still find useful material in this section. [Emily Bach, tech... part 3]
+> Most of the coaches I know are consultants who engage with a number of different organizations [...]. I believe it should also be possible to be an internal coach in a large organization. I don’t have experience of that but I hope you will still find useful material in this section. [Emily Bache, Technical Agile Coaching with the Samman method, Part 3]
 
 Indeed there are a lot of internal technical coaches out there. I am one of them, for example. I know even more developers who do unofficial, 'guerilla-style' technical coaching.
 
->I find myself continuously reinstalling [XP and Agile] best practices at the jobs I'm taking on. Continuous Integration, unit testing, refactoring, iterative development... [Slava Imeshev [extremprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)]
+>I find myself continuously reinstalling [XP and Agile] best practices at the jobs I'm taking on. Continuous Integration, unit testing, refactoring, iterative development... [[Slava Imeshev](https://twitter.com/slava_imeshev) [extremprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)]
 
 This is where I can be helpful!
 
