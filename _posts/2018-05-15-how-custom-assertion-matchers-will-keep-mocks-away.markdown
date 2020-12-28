@@ -31,9 +31,9 @@ For more details, have a look at these examples for your preferred language : [J
 
 ![A drawing of a box of matches, branded 'Matchers' on top]({{site.url}}{{site.baseurl}}/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg)
 
-I already blogged about [the benefits of Custom Assertion Matchers](/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/). Here I'm going to dive in their advantages against mocking.
+I already blogged about [the benefits of Custom Assertion Matchers]({{site.url}}/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/). Here I'm going to dive in their advantages against mocking.
 
-This is the fifth post in a [series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
+This is the fifth post in a [series about how to avoid mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't yet, I recommend you to start from [the beginning]({{site.url}}/careless-mocking-considered-harmful/).
 
 ## Why would we end up with mocks when we don't have matchers ?
 
@@ -101,7 +101,7 @@ it "notifies analytics service about passed orders" do
 end
 ```
 
-Sure, the test code is simpler. It's also better according to good design principles. The only glitch is that we now have a mock in place with all the problems I described [before](/careless-mocking-considered-harmful/).
+Sure, the test code is simpler. It's also better according to good design principles. The only glitch is that we now have a mock in place with all the problems I described [before]({{site.url}}/careless-mocking-considered-harmful/).
 
 This might not (yet) be a problem in our example but, for example, the mock 'cuts' the execution of the program. Suppose that someday, the Order starts expecting something from the AnalyticsService. We'd then need to 'simulate' the real behavior in our mock. This would make the test very hard to maintain.
 
@@ -151,10 +151,10 @@ In our example, a publish-subscribe pattern might do. A better design should fix
 
 ## Summary of small-scale techniques
 
-I'm done with small scale mock avoiding techniques. To summarize, the first thing to do is to push for more and more [immutable value objects](/how-immutable-value-objects-fight-mocks/). Not only does it help us to avoid mocks, but it will also provides many benefits for production code. Practices like [Test Data Builders](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/) and Custom Assertion Matchers simplify dealing with Immutable Value Objects in tests. They also help to keep tests small and clean, which is also a great thing against mocks.
+I'm done with small scale mock avoiding techniques. To summarize, the first thing to do is to push for more and more [immutable value objects]({{site.url}}/how-immutable-value-objects-fight-mocks/). Not only does it help us to avoid mocks, but it will also provides many benefits for production code. Practices like [Test Data Builders]({{site.url}}/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/) and Custom Assertion Matchers simplify dealing with Immutable Value Objects in tests. They also help to keep tests small and clean, which is also a great thing against mocks.
 
 ## Next post
 
-In the following posts, I'll look into architecture scale techniques to avoid mocks. I'll start with [Hexagonal architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/).
+In the following posts, I'll look into architecture scale techniques to avoid mocks. I'll start with [Hexagonal architecture]({{site.url}}/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/).
 
 *Thanks to [Dragan Stepanovic](http://www.draganstepanovic.com/) who's comments brought me to update this post.*

@@ -16,7 +16,7 @@ description: "Learn when testing using mocks still makes sense. Doing too much t
 header:
   og_image: /imgs/2018-06-01-when-is-testing-using-mocks-still-a-good-idea/proxy-plug.jpg
 ---
-In the previous 7 articles of [this series]({{site.baseurl}}/categories/#how-to-avoid-mocks-series), I've tried my best get rid of mocks. I'm pretty sure that using these techniques will get you a long way out of [mock hell](/careless-mocking-considered-harmful/). Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven't already, I encourage you to start reading from [the beginning](/careless-mocking-considered-harmful/).
+In the previous 7 articles of [this series]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series), I've tried my best get rid of mocks. I'm pretty sure that using these techniques will get you a long way out of [mock hell]({{site.url}}/careless-mocking-considered-harmful/). Excessive mocking leads to unmaintainable tests. Unmaintainable tests lead to low coverage. Low coverage ultimately leads to legacy code. If you haven't already, I encourage you to start reading from [the beginning]({{site.url}}/careless-mocking-considered-harmful/).
 
 One question remains though : Is it realistic to get rid of _all_ mocks ? An even better question would be : Are mocks always bad ? Are there situations when mocking is the best choice ?
 
@@ -48,7 +48,7 @@ Not only did we reuse the wrapper many times in my service. We also ended up usi
 
 ### Injecting a hand written in-memory fake
 
-As you might have noticed, in [the previous article](/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/), I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)
+As you might have noticed, in [the previous article]({{site.url}}/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/), I recommended to use an in-memory fake instead of mocks. By nature, an in-memory fake is a kind of mock. Even if it is not defined by a mocking framework. (I actually think that by making mocking so easy, mocking frameworks often do more harm than good.)
 
 > 💡 By making mocking so easy, mocking frameworks often do more harm than good.
 

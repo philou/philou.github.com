@@ -21,7 +21,7 @@ Hopefully, [Test Data Builders](http://www.natpryce.com/articles/000714.html) bo
 
 ![Drawing of a crate]({{site.url}}{{site.baseurl}}/imgs/2018-05-01-how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/crate.jpg)
 
-This is the fourth post [of a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. If you haven't yet, I recommend you to start from [the beginning](/careless-mocking-considered-harmful/).
+This is the fourth post [of a series about how to avoid mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. If you haven't yet, I recommend you to start from [the beginning]({{site.url}}/careless-mocking-considered-harmful/).
 
 ## The problem with test data initialization
 
@@ -150,7 +150,7 @@ describe 'Ticket Tracking' do
 end
 ```
 
-As you can see, we have less duplication, but the tests got both unreadable and intricate ... Following [my advices](/how-immutable-value-objects-fight-mocks/) and using more [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) makes the situation worse ! When data is mutable, we can customize it after the call to the Object Mother method. If data is immutable, it all has to be setup at initialization ...
+As you can see, we have less duplication, but the tests got both unreadable and intricate ... Following [my advices]({{site.url}}/how-immutable-value-objects-fight-mocks/) and using more [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) makes the situation worse ! When data is mutable, we can customize it after the call to the Object Mother method. If data is immutable, it all has to be setup at initialization ...
 
 That's when the mock temptation strikes. Sometimes it's so much easier to mock a method rather than to initialize your data properly. It can be 1 line of mock instead of dealing with all this mess.
 
@@ -372,4 +372,4 @@ It's easy to create a specific tests for every assertion with Test Data Builders
 
 ## Next week
 
-This is the fourth post of [a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. Next week I'll dig into Custom Assertion Matchers and how they avoid mock expectations.
+This is the fourth post of [a series about how to avoid mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. Next week I'll dig into Custom Assertion Matchers and how they avoid mock expectations.

@@ -15,9 +15,9 @@ description: "A walk through of the Fizz Buzz kata using immutable value objects
 header:
   og_image: /imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg
 ---
-In my [previous post](/how-immutable-value-objects-fight-mocks/) I explained how [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) help us to avoid mocks. In this post, I'll illustrate this in practice with real code.
+In my [previous post]({{site.url}}/how-immutable-value-objects-fight-mocks/) I explained how [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html) help us to avoid mocks. In this post, I'll illustrate this in practice with real code.
 
-This is the third post on a [series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you can start reading the full story [here](/careless-mocking-considered-harmful/).
+This is the third post on a [series about how to avoid mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you can start reading the full story [here]({{site.url}}/careless-mocking-considered-harmful/).
 
 ![A drawing "FIZZ BUZZ" rock fallen and sealed in the ground]({{site.url}}{{site.baseurl}}/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg)
 
@@ -184,9 +184,9 @@ Outside of this situation, you might try some of the following arguments to move
 *   They make it easier to deal with the program in smaller parts and to reason about the system in general
 *   Immutable values don't need any synchronization and make multithreaded programming easier
 *   When tempted to add a simple setter instead of keeping a class immutable, highlight the stressful debugging time to come
-*   If you're dealing with a Design By Contract adept, explain how [immutability has it built-in](/almost-15-years-of-using-design-by-contract/)
+*   If you're dealing with a Design By Contract adept, explain how [immutability has it built-in]({{site.url}}/almost-15-years-of-using-design-by-contract/)
 *   Admit that mainstream languages have bad support for Immutable Value. Point to patterns like [Data Builders](https://dzone.com/articles/immutability-with-builder-design-pattern) that work around these limitation
 
 ## Next post
 
-I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). In [next post](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/), I'll dig into another small scale mock fighting pattern : [Test Data Builders](http://www.natpryce.com/articles/000714.html).
+I'm done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a [series about avoiding mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series). In [next post]({{site.url}}/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/), I'll dig into another small scale mock fighting pattern : [Test Data Builders](http://www.natpryce.com/articles/000714.html).

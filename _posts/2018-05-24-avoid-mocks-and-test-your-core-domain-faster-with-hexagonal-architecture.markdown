@@ -19,7 +19,7 @@ header:
 ---
 As I've written in my last few posts, we can get a long way to avoid mocks with small scale coding best practices. Unfortunately, when systems reach a certain size, we need something at architecture scale.
 
-This is the 6th post of a [series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you can start by [the beginning](/careless-mocking-considered-harmful/).
+This is the 6th post of a [series about avoiding mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you can start by [the beginning]({{site.url}}/careless-mocking-considered-harmful/).
 
 ![A drawing of a hexagon-shaped building]({{site.url}}{{site.baseurl}}/imgs/2018-05-24-avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/hexagonal-building.jpg)
 
@@ -362,4 +362,4 @@ As you can see, we are now wiring everything together at the controller level. W
 
 ## Next post
 
-As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it's easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we'll see in the [next post about in-memory fakes](/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/).
+As we can deduce from the controller code above, we still have to use fakes or mocks when testing the controller. The good thing though is that this is now more local which already makes mocking less of an issue. If a mock is used in less tests, it's easier to use the same mock everywhere ! This is a great opportunity for simplifying test setup, as we'll see in the [next post about in-memory fakes]({{site.url}}/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/).

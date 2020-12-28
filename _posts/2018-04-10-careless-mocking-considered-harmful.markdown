@@ -56,13 +56,13 @@ Others already spoke about the dangers of mocks :
 * Uncle Bob through [his blog](http://blog.cleancoder.com/uncle-bob/2014/05/10/WhenToMock.html)
 * DHH in the ["Is TDD Dead" series](https://www.google.fr/search?q=is+TDD+dead&safe=active&tbm=vid)
 
-In [this series of posts]({{site.baseurl}}/categories/#how-to-avoid-mocks-series), I'll go through the details of the different techniques I used to remove mocks. Here is my plan :
+In [this series of posts]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series), I'll go through the details of the different techniques I used to remove mocks. Here is my plan :
 
-1.  [Careless Mocking considered Harmful](/careless-mocking-considered-harmful/)
-2.  [How Immutable Value Objects fight mocks](/how-immutable-value-objects-fight-mocks/)
-3.  [Immutable Value Objects vs Mocks : Fizz Buzz](/immutable-value-objects-vs-mocks-fizz-buzz/)
-4.  [How to use Test Data Builders to avoid mocks and keep your tests clear](/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)
-5.  [How Custom Assertion Matchers will keep mocks away](/how-custom-assertion-matchers-will-keep-mocks-away/)
-6.  [Avoid mocks and test your core domain faster with Hexagonal Architecture](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)
-7.  [Get rid of mock maintenance with full fledged in-memory fakes](/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/)
-8.  [When is testing using mocks still a good idea ?](/when-is-testing-using-mocks-still-a-good-idea/)
+1.  [Careless Mocking considered Harmful]({{site.url}}/careless-mocking-considered-harmful/)
+2.  [How Immutable Value Objects fight mocks]({{site.url}}/how-immutable-value-objects-fight-mocks/)
+3.  [Immutable Value Objects vs Mocks : Fizz Buzz]({{site.url}}/immutable-value-objects-vs-mocks-fizz-buzz/)
+4.  [How to use Test Data Builders to avoid mocks and keep your tests clear]({{site.url}}/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/)
+5.  [How Custom Assertion Matchers will keep mocks away]({{site.url}}/how-custom-assertion-matchers-will-keep-mocks-away/)
+6.  [Avoid mocks and test your core domain faster with Hexagonal Architecture]({{site.url}}/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)
+7.  [Get rid of mock maintenance with full fledged in-memory fakes]({{site.url}}/get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/)
+8.  [When is testing using mocks still a good idea ?]({{site.url}}/when-is-testing-using-mocks-still-a-good-idea/)

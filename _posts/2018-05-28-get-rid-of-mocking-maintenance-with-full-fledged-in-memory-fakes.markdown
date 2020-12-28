@@ -16,15 +16,15 @@ description: "Example showing how it is simpler to use a full fledged in-memory 
 header:
   og_image: /imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg
 ---
-[Last week's post](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/) was about how [hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture) results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week's code sample, this was the controller. I concluded that at least, this was easier to manage. Let's see how.
+[Last week's post]({{site.url}}/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/) was about how [hexagonal architecture](http://alistair.cockburn.us/Hexagonal+architecture) results in fast, mock-free tests around your core domain. Unfortunately, that does not remove all mocks, yet it groups them in the same, less critical, zone. In last week's code sample, this was the controller. I concluded that at least, this was easier to manage. Let's see how.
 
 ![Hand written 'In-memory fake' with memory replaced by a RAM board]({{site.url}}{{site.baseurl}}/imgs/2018-05-28-get-rid-of-mocking-maintenance-with-full-fledged-in-memory-fakes/in-memory-fake.jpg)
 
-This is the 7th post in [a series about avoiding mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you might start from [the beginning](/careless-mocking-considered-harmful/).
+This is the 7th post in [a series about avoiding mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series). If you haven't, you might start from [the beginning]({{site.url}}/careless-mocking-considered-harmful/).
 
 ## Mock concentration
 
-Let's get back to the [last post](/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)'s code sample. As a reminder, it's a very basic TODO app built on [Rails](https://rubyonrails.org/). I extracted the domain part, the tasks, in a core domain area. This allowed to push all mocks out of this section. A consequence though, is that all mocks gathered in the controller test. Here is the controller code :
+Let's get back to the [last post]({{site.url}}/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/)'s code sample. As a reminder, it's a very basic TODO app built on [Rails](https://rubyonrails.org/). I extracted the domain part, the tasks, in a core domain area. This allowed to push all mocks out of this section. A consequence though, is that all mocks gathered in the controller test. Here is the controller code :
 
 ```ruby
 
@@ -299,7 +299,7 @@ Let's look at where we stand now. We're injecting each mock only once. Tests are
 
 ## Last word about implementation
 
-Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping), like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We're far better [plugin it on top of SQLite](/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/) instead !
+Sometimes, this 3rd party wrapper can become pretty complicated. Try to reuse as much of it as possible between the real and the fake. For example, an [ORM](https://en.wikipedia.org/wiki/Object-relational_mapping), like ActiveRecord for example, is a wrapper around the database. Reimplementing a fake ORM would be real challenge. We're far better [plugin it on top of SQLite]({{site.url}}/5-minutes-hack-to-speed-up-rspec-in-rails-5-using-in-memory-sqlite/) instead !
 
 ## References
 
@@ -307,4 +307,4 @@ Smart people have already spoken and written about this subject. If you want to 
 
 ## Next week
 
-This was the 7th blog post in [a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series). Hopefully, I'm reaching the end ! [Next week's post](/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?
+This was the 7th blog post in [a series about how to avoid mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series). Hopefully, I'm reaching the end ! [Next week's post]({{site.url}}/when-is-testing-using-mocks-still-a-good-idea/) should be the last in series, and deal with a few remaining points. What to do when you really need a mock ? What about mocking and legacy code ?

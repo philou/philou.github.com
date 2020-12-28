@@ -17,9 +17,9 @@ header:
 ---
 Excessive use of mocks makes tests very painful to maintain. If we stick painful mocks for too long, we'll end up abandoning unit testing. Eventually, the system will degrade into legacy. 
 
-There are many techniques to avoid mocks. Some of the most effective involve architecture changes. Unfortunately, there are not the most straightforward to use. Re-architecting involves people and time that you may not dispose of right now. In the following posts, I'll go over techniques that any developer can use in his day to day code to avoid mocks. These battle tested techniques that I've used on different projects in the past. Check [the previous post](/careless-mocking-considered-harmful/) if you're interested to learn how I came to use them.
+There are many techniques to avoid mocks. Some of the most effective involve architecture changes. Unfortunately, there are not the most straightforward to use. Re-architecting involves people and time that you may not dispose of right now. In the following posts, I'll go over techniques that any developer can use in his day to day code to avoid mocks. These battle tested techniques that I've used on different projects in the past. Check [the previous post]({{site.url}}/careless-mocking-considered-harmful/) if you're interested to learn how I came to use them.
 
-This is the second post [of a series about how to avoid mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. If you haven't yet, I recommend you to read my [first post](/careless-mocking-considered-harmful/) to understand the perils of mocks in more details.
+This is the second post [of a series about how to avoid mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series) in automated tests. If you haven't yet, I recommend you to read my [first post]({{site.url}}/careless-mocking-considered-harmful/) to understand the perils of mocks in more details.
 
 The first mock fighting small-scale technique I'll go over is [Immutable Value Objects](https://martinfowler.com/bliki/ValueObject.html).
 
@@ -70,4 +70,4 @@ Javascript expert Eric Elliot also wrote about the immutability and mocks [here]
 
 ## Next week
 
-This was the second post in a [series about how to prevent mocks]({{site.baseurl}}/categories/#how-to-avoid-mocks-series) in your automated tests. [Next post](/immutable-value-objects-vs-mocks-fizz-buzz/) will be an example of using immutable value objects on the [FizzBuzz kata](http://codingdojo.org/kata/FizzBuzz/).
+This was the second post in a [series about how to prevent mocks]({{site.url}}{{site.baseurl}}/categories/#how-to-avoid-mocks-series) in your automated tests. [Next post]({{site.url}}/immutable-value-objects-vs-mocks-fizz-buzz/) will be an example of using immutable value objects on the [FizzBuzz kata](http://codingdojo.org/kata/FizzBuzz/).
