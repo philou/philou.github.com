@@ -68,7 +68,7 @@ Asking coachees to start their cameras highlights the value of face-to-face comm
 ## #2 Don't Get Disturbed
 
 
-![Photo of noise canceling earmuffs. Having a quiet place to work is super important. If your office is too noisy, investing in a noise canceling headset is the cheapest solution. This will show to your remote pair coachee that you take your work environment seriously.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/earmuffs.jpg)
+![Photo of noise-canceling earmuffs. Having a quiet place to work is super important. If your office is too noisy, investing in a noise canceling headset is the cheapest solution. This will show to your remote pair coachee that you take your work environment seriously.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/earmuffs.jpg)
 
 Would you ever start browsing your phone while pair programming with a coachee? I'm sure you would not! It remains valid when coaching a remote team. **The lack of social pressure makes the browser a real trap when coaching remotely.**
 
@@ -166,17 +166,17 @@ Fortunately, these pair programming tips and tricks are easy to copy. Just spend
 
 As a coach, your goal is to show a better, more effective, and more sustainable way of working to developers. **You can show this better way of working when remote pair coaching by doing the following:**
 
-TODO create a printable version of this
+{% assign figure_path="/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/checklist-small.jpg" | absolute_url %}
 
-1.  Make sure cameras are on
-2.  Disable notifications, put your phone away, close other apps
-3.  Setup a Pomodoro timer for breaks and pair switching
-4.  Share a todo list
-5.  Take advantage of your machine when navigating
+{% assign figure_alt="A drawing with the 5 steps to show a better way when remote pair coaching: 1. Cameras on; 2. Disable all notifications; 3. Pomodoro for breaks and switch; 4. Share a TODO list; 5. Navigate with your machine; Remember: explain the Why & How for good practices to spread" %}
 
-Bonus: Explain the 'Why' and 'How' so coachees copy these practices
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/checklist.jpg)
+{% endcapture %}
 
-Print this card and stick it on your screen. Give it a try for a while and share your feedback. If you know other remote pair programming tips and tricks, I'd love to read about them too!
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+
+Feel free to print this card and stick it on your screen. Give it a try for a while and share your feedback. If you know other remote pair programming tips and tricks, I'd love to read about them too!
 
 ----
 
