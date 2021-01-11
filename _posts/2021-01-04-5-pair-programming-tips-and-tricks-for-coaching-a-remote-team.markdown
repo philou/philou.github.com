@@ -10,12 +10,14 @@ categories:
 - change management
 description: "Coaching a remote team is an extra challenge for technical agile coaches. Here are 5 remote pair-programming tips and tricks to show a better way of working. Learn how to use webcams, focus, Pomodoro, TODO lists, and the navigator's machine to nudge your pair buddy to better practices."
 header:
-  teaser: "/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/TODO-teaser.jpg"
-  og_image: "/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/TODO-og.jpg"
+  teaser: "/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones-teaser.jpg"
+  og_image: "/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones-og.jpg"
 variations:
 - TODO
 ---
 _Remote work is an extra challenge for technical agile coaching. Here are 5 opportunistic remote [pair-programming](https://philippe.bourgau.net/categories/#pair-programming) tips and tricks to show a better way of working._
+
+![Drawing of 2 yaourt pots hanging from the clouds, with a sign board directing to 'A Better Way'. As technical agile coaches, we can leverage on the opportunities of remote pair coaching to show a better way to our coachees.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones.jpg)
 
 > [...] nothing works better than sitting with them and test-driving some feature or reshaping their existing code--helping them get their work done. [[Jeff Langr](https://langrsoft.com/) on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/75090300?p=,,,20,0,0,0::relevance,,What+does+evolutionary+design+mean+to+you,20,2,0,75090300,d=5,ct=1&d=5&ct=1)]
 
@@ -104,7 +106,7 @@ Taking breaks with your coachee is a way to prove that we stick to a sustainable
 
 Here is the [Ninety-ninety rule](https://en.wikipedia.org/wiki/Ninety-ninety_rule#:~:text=In%20computer%20programming%20and%20software,percent%20of%20the%20development%20time.&text=In%20short%2C%20it%20often%20takes,expected%20to%20complete%20a%20project.):
 
-> The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time. [[Tom Cargill](https://en.wikipedia.org/w/index.php?title=Tom_Cargill&action=edit&redlink=1), [Bell Labs]](https://en.wikipedia.org/wiki/Bell_Labs)
+> The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time. [[Tom Cargill](https://en.wikipedia.org/w/index.php?title=Tom_Cargill&action=edit&redlink=1), [Bell Labs](https://en.wikipedia.org/wiki/Bell_Labs)]
 
 My "Aha! Moment" with XP was when I understood how it fixes the Ninety-ninety rule. With the right practices in place, when we reach the end of our TODO list, we are done!
 
@@ -131,7 +133,7 @@ As coaches, keeping a TODO list is an opportunity to show how:
 
 There are many ways to become a better navigator when remote pairing:
 
-*   Run mini spikes, using an online interpreter, like [https://www.onlinegdb.com](https://www.onlinegdb.com)
+*   Run mini spikes, using an online interpreter, like [OnlineGDB](https://www.onlinegdb.com)
 *   Research APIs on the internet
 *   Investigate what people think about a design question
 
