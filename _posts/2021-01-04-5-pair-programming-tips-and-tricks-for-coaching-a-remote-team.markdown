@@ -15,9 +15,9 @@ header:
 variations:
 - TODO
 ---
-_Remote work is an extra challenge for technical agile coaching. Here are 5 opportunistic remote [pair-programming](https://philippe.bourgau.net/categories/#pair-programming) tips and tricks to show a better way of working._
+_Remote work is an extra challenge for technical agile coaching. Here are 5 opportunistic remote [pair-programming]({{site.url}}/categories/#pair-programming) tips and tricks to show a better way of working._
 
-![Drawing of 2 yaourt pots hanging from the clouds, with a sign board directing to 'A Better Way'. As technical agile coaches, we can leverage on the opportunities of remote pair coaching to show a better way to our coachees.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones.jpg)
+![Drawing of 2 yaourt pots hanging from the clouds, with a sign board directing to 'A Better Way'. As technical agile coaches, we can leverage on the opportunities of remote pair coaching to show a better way to our coachees.]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones.jpg)
 
 > [...] nothing works better than sitting with them and test-driving some feature or reshaping their existing code--helping them get their work done. [[Jeff Langr](https://langrsoft.com/) on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/75090300?p=,,,20,0,0,0::relevance,,What+does+evolutionary+design+mean+to+you,20,2,0,75090300,d=5,ct=1&d=5&ct=1)]
 
@@ -30,7 +30,7 @@ _Remote work is an extra challenge for technical agile coaching. Here are 5 oppo
 
 > [...] when remote I have a tendency to forget or hesitate to switch driver [[Tim Ottinger](http://agileotter.blogspot.com/) in [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/remote_pair_programming/74329645?p=Created,,,20,1,0,0::recentpostdate%2Fsticky,,,20,2,0,74329645)]
 
-Whether we wanted it or not, 2020 has thrown us into [remote work](https://philippe.bourgau.net/categories/#remote). This turned out to be a great challenge for many technical agile coaches:
+Whether we wanted it or not, 2020 has thrown us into [remote work]({{site.url}}/categories/#remote). This turned out to be a great challenge for many technical agile coaches:
 
 *   As firm believers in collaboration, we prefer face to face interaction
 *   How can we do our job and influence a team if we are not sitting with people?
@@ -47,7 +47,7 @@ Even though I had regularly been working remotely for a few years, 2020 gave me 
 
 ## #1 Turn Cameras On
 
-![Photo of a retro camera. Turning your camera on when remote pair coaching is a good way to show that you face-to-face communication is still of great importance, even in remote work](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/camera.jpg)
+![Photo of a retro camera. Turning your camera on when remote pair coaching is a good way to show that you face-to-face communication is still of great importance, even in remote work]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/camera.jpg)
 
 I remember my first remote talk very well. I had absolutely no clue about how the audience was reacting. Midway through the presentation, I had to pause and ask, "Is anyone here?" to make sure that at least 1 person was listening.
 
@@ -68,7 +68,7 @@ Asking coachees to start their cameras highlights the value of face-to-face comm
 ## #2 Don't Get Disturbed
 
 
-![Photo of noise-canceling earmuffs. Having a quiet place to work is super important. If your office is too noisy, investing in a noise canceling headset is the cheapest solution. This will show to your remote pair coachee that you take your work environment seriously.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/earmuffs.jpg)
+![Photo of noise-canceling earmuffs. Having a quiet place to work is super important. If your office is too noisy, investing in a noise canceling headset is the cheapest solution. This will show to your remote pair coachee that you take your work environment seriously.]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/earmuffs.jpg)
 
 Would you ever start browsing your phone while pair programming with a coachee? I'm sure you would not! It remains valid when coaching a remote team. **The lack of social pressure makes the browser a real trap when coaching remotely.**
 
@@ -88,7 +88,7 @@ Intense pair coaching sessions are a demonstration of the power of energized wor
 
 ## #3 Stay Focused
 
-![Photo of a lens in front of a landscape. Being able to focus, even in remote work, is key to energized and sustainable work. When coaching a remote team with pair programming, we must show the example and make sure to stay super-focused.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/focus.jpg)
+![Photo of a lens in front of a landscape. Being able to focus, even in remote work, is key to energized and sustainable work. When coaching a remote team with pair programming, we must show the example and make sure to stay super-focused.]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/focus.jpg)
 
 The next step after avoiding distraction is remaining focused!
 
@@ -96,7 +96,7 @@ The next step after avoiding distraction is remaining focused!
 
 As a coach, even if you are paid by the hour, it's OK to ask for a break. If you don't, you will not deliver your best.
 
-A good trick is to use a [Pomodoro timer](https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-1/#pomodoro-technique) to take a break every 25 minutes. As a bonus, you can take this break to switch drivers. There are many online Pomodoro timers available. I remember using [marinaratimer.com](https://www.marinaratimer.com/) with a previous team. If you are using [Trello](https://trello.com/), you can also give [Pomello](https://pomelloapp.com/) a try. You'll get a log of the time you spend on each task for free.
+A good trick is to use a [Pomodoro timer]({{site.url}}/7-remote-pair-programming-best-practices-q-and-a-part-1/#pomodoro-technique) to take a break every 25 minutes. As a bonus, you can take this break to switch drivers. There are many online Pomodoro timers available. I remember using [marinaratimer.com](https://www.marinaratimer.com/) with a previous team. If you are using [Trello](https://trello.com/), you can also give [Pomello](https://pomelloapp.com/) a try. You'll get a log of the time you spend on each task for free.
 
 Taking breaks with your coachee is a way to prove that we stick to a sustainable pace. A pause is also the occasion to discuss non-work-related topics and build relationships.
 
@@ -110,9 +110,9 @@ Here is the [Ninety-ninety rule](https://en.wikipedia.org/wiki/Ninety-ninety_rul
 
 My "Aha! Moment" with XP was when I understood how it fixes the Ninety-ninety rule. With the right practices in place, when we reach the end of our TODO list, we are done!
 
-**Sharing a [TODO list](https://philippe.bourgau.net/to-do-list-or-mind-map-for-programming/) is a powerful way to show the power of XP when pair coaching.**
+**Sharing a [TODO list]({{site.url}}/to-do-list-or-mind-map-for-programming/) is a powerful way to show the power of XP when pair coaching.**
 
-![Photo of a man taking notes on a paper notebook next to his computer. Taking digital notes when remote pair coaching is even better than traditional paper notes in co-localized pairing. We can use this to walk coachees through a more organized, predictable, productive, and sustainable way of programming.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/plan.jpg)
+![Photo of a man taking notes on a paper notebook next to his computer. Taking digital notes when remote pair coaching is even better than traditional paper notes in co-localized pairing. We can use this to walk coachees through a more organized, predictable, productive, and sustainable way of programming.]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/plan.jpg)
 
 Online shared tools give us persisted and historized TODOs for free! I bought a [Coggle](https://coggle.it/) license to draw a mind map, but free tools like Google docs or [MindMup](https://www.mindmup.com/) would do the trick.
 
@@ -143,7 +143,7 @@ There is a risk of getting out of touch with the driver, though! So:
 2.  Have a dual-screen to keep the driver in sight
 3.  Don't drift to the internet (cf #2)
 
-![Cover of Kent Beck's book 'eXtreme Programming eXplained: Embrace Change. When coaching a remote team, using the goods of remote work is a great way to show XP's philosophy of embracing change](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/xp-embrace-change.jpg)
+![Cover of Kent Beck's book 'eXtreme Programming eXplained: Embrace Change. When coaching a remote team, using the goods of remote work is a great way to show XP's philosophy of embracing change]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/xp-embrace-change.jpg)
 
 As an XP coach, this is a perfect opportunity to show what embracing change means in practice.
 
@@ -151,7 +151,7 @@ As an XP coach, this is a perfect opportunity to show what embracing change mean
 
 ## Bonus: explain 'Why' and 'How' so it snowballs
 
-![Photo of ripples on a still lake. Without some form of snowball effect, coaching is useless. We want changes to last after we have left the place. This still holds true, if not more, when coaching a remote team. Whenever we are pair remote coaching, we should explain the 'Why' and 'How' behind any of the previous practices to maximize their chances of being copied by other pairs.](../imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/ripple.jpg)
+![Photo of ripples on a still lake. Without some form of snowball effect, coaching is useless. We want changes to last after we have left the place. This still holds true, if not more, when coaching a remote team. Whenever we are pair remote coaching, we should explain the 'Why' and 'How' behind any of the previous practices to maximize their chances of being copied by other pairs.]({{site.url}}/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/ripple.jpg)
 
 As change agents, we want best practices to spread and stick. Except if we sold mob-programming to the team, we cannot be pairing with everyone all the time! **When pair-coaching a remote team, we want team members to stick to best practices without us.**
 
@@ -182,8 +182,8 @@ Feel free to print this card and stick it on your screen. Give it a try for a wh
 
 If you want to learn more about remote pairing, these posts might interest you:
 
-*   [How to deliver remote training with code-katas and randori in pairs](https://philippe.bourgau.net/how-to-deliver-a-remote-training-with-code-katas-and-randori-in-pairs/)
-*   [5 XP practices that will make your remote team more effective](https://philippe.bourgau.net/5-xp-practices-that-will-make-your-remote-team-more-effective/)
-*   [Best open source tools for remote pair programming](https://philippe.bourgau.net/best-open-source-tools-for-remote-pair-programming/)
-*   [7 Remote pair programming best practices Q&A - Part 1](https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-1/)
-*   [7 Remote pair programming best practices Q&A - Part 2](https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-2/)
+*   [How to deliver remote training with code-katas and randori in pairs]({{site.url}}/how-to-deliver-a-remote-training-with-code-katas-and-randori-in-pairs/)
+*   [5 XP practices that will make your remote team more effective]({{site.url}}/5-xp-practices-that-will-make-your-remote-team-more-effective/)
+*   [Best open source tools for remote pair programming]({{site.url}}/best-open-source-tools-for-remote-pair-programming/)
+*   [7 Remote pair programming best practices Q&A - Part 1]({{site.url}}/7-remote-pair-programming-best-practices-q-and-a-part-1/)
+*   [7 Remote pair programming best practices Q&A - Part 2]({{site.url}}/7-remote-pair-programming-best-practices-q-and-a-part-2/)
