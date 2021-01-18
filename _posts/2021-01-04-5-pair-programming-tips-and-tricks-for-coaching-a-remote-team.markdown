@@ -13,7 +13,19 @@ header:
   teaser: "/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones-teaser.jpg"
   og_image: "/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones-og.jpg"
 variations:
-- TODO
+- Here are 5 pair-programming tips and tricks that will increase your influence when coaching a remote team.
+- When remote pair coaching, without the cameras on, we wreck what's left of non-verbal communication.
+- Remote pair coaching influence trick#1: Teamwork and collaboration remain crucial for remote work
+- The lack of social pressure makes the browser a real trap when coaching remotely.
+- Remote pair coaching influence trick#2: Energized teamwork is the most effective way to create value. We must protect this time at all costs.
+- Staying focused for hours of remote pair programming is not a willpower achievement. It's impossible!
+- Remote pair coaching influence trick#3: A sustainable pace is what makes us effective
+- Sharing a TODO list is a powerful way to show the power of XP when pair coaching.
+- Remote pair coaching influence trick#4: Good practices make programming more organized, predictable, productive, and sustainable.
+- Here is another opportunity from remote pair coaching: the navigator has a computer!
+- Remote pair coaching influence trick#5: One way to embrace change is to use your context to run experiments and discover better ways to work.
+- When pair-coaching a remote team, we want team members to stick to best practices without us.
+- Remote pair coaching influence trick#6: Anyone can nudge others to try better ways of working.
 ---
 _Remote work is an extra challenge for technical agile coaching. Here are 5 opportunistic remote [pair-programming]({{site.url}}/categories/#pair-programming) tips and tricks to show a better way of working._
 
@@ -82,7 +94,7 @@ Here are a few tricks in case mere willpower is not enough to keep you away from
 
 Being at home also comes with its set of distractions. If you don't have a calm desk, a good pair of headsets is a must-have. I use a [Jabra Evolve 75](https://www.jabra.com/business/office-headsets/jabra-evolve/jabra-evolve-75). It does not feature the best noise cancelation out there. Yet my pair buddies thank me for its microphone that filters out surrounding sounds!
 
-Intense pair coaching sessions are a demonstration of the power of energized work.
+Intense pair coaching sessions are a demonstration of the power of [energized work](https://www.jamesshore.com/v2/books/aoad1/energized_work).
 
 > **Lesson#2: Energized teamwork is the most effective way to create value. We must protect this time at all costs.**
 
