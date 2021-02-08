@@ -13,17 +13,17 @@ header:
   teaser: "/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/Good-Morning-Learning-teaser.jpg"
   og_image: "/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/Good-Morning-Learning-og.jpg"
 variations:
-- Remote work commutes is a perfect excuse to run group learning sessions and to demo growth mindset to our coachees.
+- Remote work commutes are a perfect excuse to run group learning sessions and to demo growth mindset to our coachees.
 - As we were all saving time on commutes, it was the perfect occasion to give daily learning a try!
 - My tech agile coach colleagues and I started to meet every morning for 30 minutes. We would spend 20 minutes studying and 10 minutes sharing what we had learned.
-- Good Morning Learning sessions are a way to coach the growth mindset in 2 ways: Continuous Learning, and leveraging on Covid Remote Work Commutes
+- Good Morning Learning sessions are a way to coach the growth mindset in 2 ways: Continuous Learning, and leveraging on forced Remote Work Commutes
 - After a few weeks of daily learning, coachees will see that they can now do things they used not to.
 - Hacking the remote work commutes into learning is a way to show how to embrace change.
 - Compound learning is extra-ordinary! Over the long term, it makes us more productive and keeps our bosses happy. Higher productivity also means a more sustainable pace. A more sustainable pace is an opportunity for us, geeks, to have more time to enjoy life!
 - No one will be able to justify that you should be cranking out features at the time you used to commute!
-- Many simple reasons make the Good Morning Learning habit work: it's motivating, there's a dash or social pressure, it uses active recall, it snowballs.
-- Daily learning sessions are motivating because they let you grow your mastery on your preferred topic.
-- Having a daily learning session before anything else in your day, will make every day feel more valuable!
+- Many simple reasons make the Good Morning Learning habit work: it's motivating, there's a dash of social pressure, it uses active recall, it snowballs.
+- Daily learning sessions are motivating because they let you grow the mastery of your preferred topic.
+- Having a daily learning session before anything else in your day will make every day feel more valuable!
 - Reformulating for your colleagues forces you to organize your new knowledge. Give team daily learning sessions a try!
 - Fork Good Morning Learning sessions to other teams when your group becomes too large!
 ---
