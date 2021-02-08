@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: 'Growth Mindset Coaching: Turn Remote Work Commutes into Team Learning'
+title: 'Introduce Team G'Morning Learning Sessions to Coach the Growth Mindset'
 date: 2021-02-04
 comments: true
 categories:
