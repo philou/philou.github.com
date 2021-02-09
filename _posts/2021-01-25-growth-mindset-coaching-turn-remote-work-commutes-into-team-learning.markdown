@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: 'Introduce Team G'Morning Learning Sessions to Coach the Growth Mindset'
+title: "Introduce Team G'Morning Learning Sessions to Coach the Growth Mindset"
 date: 2021-02-04
 comments: true
 categories:
@@ -29,12 +29,12 @@ variations:
 ---
 _Keeping our skills up to date is challenging. **Remote work is a perfect excuse to run group learning sessions and to demo growth mindset to our coachees.**_ 
 
-{% assign figure_path="https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/Good-Morning-Learning-small.jpg" %}
+{% assign figure_path="/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/Good-Morning-Learning-small.jpg" | absolute_url%}
 
 {% assign figure_alt="Drawing of a piece of soap, written Good Morning Learning. Below the soap are the 5 rules of Good Morning Learning: Every Day, Study during 20 minutes, Share during 10 minutes, Invite a Guest, Split the group when too large." %}
 
 {% capture figure_caption %}
-By [Philippe Bourgau](https://philippe.bourgau.net), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image](https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/Good-Morning-Learning.jpg)
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/Good-Morning-Learning.jpg)
 {% endcapture %}
 
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
@@ -48,7 +48,7 @@ By [Philippe Bourgau](https://philippe.bourgau.net), under [CC BY-SA 4.0](http:/
 
 ## The Story of Good Morning Learning
 
-I'm a [learning addict](https://philippe.bourgau.net/categories/#learning). If I'm not careful, I can get demoralized by the infinite amount of exciting things to learn!
+I'm a [learning addict]({{site.url}}/categories/#learning). If I'm not careful, I can get demoralized by the infinite amount of exciting things to learn!
 
 Keeping our skills up to date is crucial for anyone in the software industry. This holds true for us, technical agile coaches, but also for the developers we work with.
 
@@ -75,7 +75,7 @@ When I coach a team, installing a growth mindset is one of my main goals. **Good
 1.  Continuous learning. **After a few weeks, coachees will see that they can now do things they used not to.** With time, this will increase their confidence in their abilities to overcome challenges.
 2.  **Hacking the remote work commutes into learning is a way to show how to embrace change.** Not only is it a way to adapt to new disrupting constraints, but it's also a way to get even better.
 
-[![Cover of Nassim Nicholas Taleb's book "AntiFragile, Things That Gain From Disorder". Using remote work commute to setup a compound learning habit is an antifragile move!](https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/antifragile.jpg)](https://www.goodreads.com/book/show/13530973-antifragile)
+[![Cover of Nassim Nicholas Taleb's book "AntiFragile, Things That Gain From Disorder". Using remote work commute to setup a compound learning habit is an antifragile move!]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/antifragile.jpg)](https://www.goodreads.com/book/show/13530973-antifragile)
 
 Good Morning Learning is not only about coaching! It's also great at increasing everyone's knowledge and skills!
 
@@ -83,7 +83,7 @@ Good Morning Learning is not only about coaching! It's also great at increasing 
 
 **Compound learning is extra-ordinary! ([Andrew Barry says magical](https://curiouslionlearning.com/newsletters/learning-is-magical-it-multiplies/)) Over the long term, it makes us more productive and keeps our bosses happy. Higher productivity also means a more sustainable pace. A more sustainable pace is an opportunity for us, geeks, to have more time to enjoy life!**
 
-![Photo of a growing piles of coins. Like compound interests, every day when you spend 30 minutes learning, you are training to learn faster, and internalizing knowledge that enables you to grasp more advanced topics.](https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/compound-interest.jpg)
+![Photo of a growing piles of coins. Like compound interests, every day when you spend 30 minutes learning, you are training to learn faster, and internalizing knowledge that enables you to grasp more advanced topics.]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/compound-interest.jpg)
 
 ...One last thing: you, as a coach, will learn too!
 
@@ -102,7 +102,7 @@ During the session:
 
 If you have too much to share in 10 minutes, split the session into 2\. Every group will now have to invite a guest ;-)
 
-💡 Good Morning Learning is also a nice corporate hack! Are you a 'guerilla' coach with no formal authority to set up such sessions? **No one will be able to justify that you should be cranking out features at the time you used to commute!** (NOTE: check "[How the Samman Method helps to sell technical coaching internally?](https://philippe.bourgau.net/how-the-samman-method-helps-to-sell-technical-coaching-internally/)" to spread coaching wider in your organization)
+💡 Good Morning Learning is also a nice corporate hack! Are you a 'guerilla' coach with no formal authority to set up such sessions? **No one will be able to justify that you should be cranking out features at the time you used to commute!** (NOTE: check "[How the Samman Method helps to sell technical coaching internally?]({{site.url}}/how-the-samman-method-helps-to-sell-technical-coaching-internally/)" to spread coaching wider in your organization)
 
 ## Why does it work?
 
@@ -110,7 +110,7 @@ If you have too much to share in 10 minutes, split the session into 2\. Every gr
 
 *   **It's motivating!** Daniel Pink told us in Drive that Mastery is a crucial element to intrinsic motivation. **Growing your mastery on** _**your**_ **topic, before anything else, will make every day feel more valuable!**
 
-[![Cover of Daniel H. Pink's book "Drive, the surprising truth about what motivates us". Starting every work day by studying and growing your master on a topic you care about is building up intrinsic motivation.](https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/drive.jpg)](https://www.goodreads.com/book/show/6452796-drive)
+[![Cover of Daniel H. Pink's book "Drive, the surprising truth about what motivates us". Starting every work day by studying and growing your master on a topic you care about is building up intrinsic motivation.]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/drive.jpg)](https://www.goodreads.com/book/show/6452796-drive)
 
 *   Having to share what you learn with your teammates adds a dash of **social pressure**. This nudges us into using these 20 minutes of learning efficiently.
 *   **[Active recall](https://en.wikipedia.org/wiki/Active_recall)** is an essential principle for efficient learning. (If you want to learn more about active-recall, go through the great MOOC [Learning how to learn](https://www.coursera.org/learn/learning-how-to-learn)). **Reformulating for your colleagues forces you to organize your new knowledge.** In the end, you will remember better!
@@ -118,7 +118,7 @@ If you have too much to share in 10 minutes, split the session into 2\. Every gr
 
 ## Follow the steps!
 
-![Photo of footsteps in the sand. Starting Good Morning Learning like sessions with the teams you coach is pretty easy, you just have follow a few simple steps.](https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/steps.jpg)
+![Photo of footsteps in the sand. Starting Good Morning Learning like sessions with the teams you coach is pretty easy, you just have follow a few simple steps.]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/steps.jpg)
 
 To conclude, my advice is:
 
@@ -143,13 +143,13 @@ During the session:
 
 I wish you all a happy learning time! I'd love to read how it went for you. The comment section is yours, for both problems or successes!
 
-![Photo of stickies written 'Do It Now' stuck on the screen of a laptop. There is no reason not to start Good Morning Learning like sessions at your job now. It's a great way to coach the growth mindset, and remote work commutes give you the 'budget'.](https://philippe.bourgau.net/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/do-it-now.jpg)
+![Photo of stickies written 'Do It Now' stuck on the screen of a laptop. There is no reason not to start Good Morning Learning like sessions at your job now. It's a great way to coach the growth mindset, and remote work commutes give you the 'budget'.]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/do-it-now.jpg)
 
 ----
 
 Here are other similar articles that you might find useful
 
-*   [How to start a team coding dojo Randori today](https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/) is about starting a similar learning session for coding
-*   [How to keep up with software technologies](https://philippe.bourgau.net/how-to-keep-up-with-software-technologies/) presents how ever-green theory helps us to learn new technologies faster
-*   [How I got my feet wet with machine learning with ‘The First 20 Hours’](https://philippe.bourgau.net/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/) is the story of my first try at Josh Kaufman's 20 hours technique of learning.
-*   [How to learn a programming language in just 20 hours](https://philippe.bourgau.net/how-to-learn-a-programming-language-in-just-20-hours/) presents how to use code katas to master a new programming language swiftly.
+*   [How to start a team coding dojo Randori today]({{site.url}}/how-to-start-a-team-coding-dojo-randori-today/) is about starting a similar learning session for coding
+*   [How to keep up with software technologies]({{site.url}}/how-to-keep-up-with-software-technologies/) presents how ever-green theory helps us to learn new technologies faster
+*   [How I got my feet wet with machine learning with ‘The First 20 Hours’]({{site.url}}/how-i-got-my-feet-wet-with-machine-learning-with-the-first-20-hours/) is the story of my first try at Josh Kaufman's 20 hours technique of learning.
+*   [How to learn a programming language in just 20 hours]({{site.url}}/how-to-learn-a-programming-language-in-just-20-hours/) presents how to use code katas to master a new programming language swiftly.
