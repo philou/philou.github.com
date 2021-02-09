@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: "Introduce Team G'Morning Learning Sessions to Coach the Growth Mindset"
+title: "Introduce Team G Morning Learning Sessions to Coach the Growth Mindset"
 date: 2021-02-04
 comments: true
 categories:
