@@ -1,7 +1,7 @@
 ---
 layout: single-mailing-list
 title: 7 collaboration ideas to make remote pair programming more fun
-date: 2021-02-25
+date: 2021-03-04
 comments: true
 categories:
 - coaching
@@ -10,12 +10,14 @@ categories:
 - team building
 description: "Prolonged remote-only work can be depressing. Here are 7 remote-pairing collaboration ideas to inject fun into the teams we are coaching! Chat break; have a snack; Home tour; Unboxing ceremony; Window views; Videoconference backgrounds; and online Kudos."
 header:
-  teaser: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/TODO-teaser.jpg"
-  og_image: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/TODO-og.jpg"
+  teaser: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-teaser.jpg"
+  og_image: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-og.jpg"
 variations:
 - TODO
 ---
 _Prolonged remote-only work can be depressing. **Here are 7 remote-pairing collaboration ideas to inject fun into the teams we are coaching!**_
+
+![Drawing of 2 remote pair programming buddies throwing a ball through at each other through the screens and a cloud. There are some fun collaboration activities that we can use to make our coaches enjoy remote pair programming!](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming.jpg)
 
 > I can't wait to meet my colleagues in person again! [[Someone interviewed](https://www.lefigaro.fr/decideurs/vie-bureau/j-ai-hate-de-retrouver-mes-collegues-ces-salaries-en-teletravail-qui-veulent-revenir-au-bureau-20210106) during the COVID lock-down]
 
@@ -82,6 +84,8 @@ We've all heard this sentence a few times during the previous year! First, we ca
 ## 5. Window Views
 
 I'm lucky enough to have a garden and to a nice home-office window-view. **Sharing what we see helps us to connect to the other's point of view.**
+
+![Photo of an outside view from a window. Sharing what you see from your window is a great way to kick start positive collaboration with your pair programming buddy.](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/window-view.jpg)
 
 This can also serve as a great morning energizer!
 
