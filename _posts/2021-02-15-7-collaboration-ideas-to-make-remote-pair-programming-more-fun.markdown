@@ -1,7 +1,7 @@
 ---
 layout: single-mailing-list
 title: 7 collaboration ideas to make remote pair programming more fun
-date: 2021-03-04
+date: 2021-02-25
 comments: true
 categories:
 - coaching
@@ -13,11 +13,11 @@ header:
   teaser: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-teaser.jpg"
   og_image: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-og.jpg"
 variations:
-- TODO
+- Here is a summary infographic that you can print and stick on your wall to keep these remote pair programming fun ideas in mind!
 ---
 _Prolonged remote-only work can be depressing. **Here are 7 remote-pairing collaboration ideas to inject fun into the teams we are coaching!**_
 
-![Drawing of 2 remote pair programming buddies throwing a ball through at each other through the screens and a cloud. There are some fun collaboration activities that we can use to make our coaches enjoy remote pair programming!](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming.jpg)
+![Drawing of 2 remote pair programming buddies throwing a ball through at each other through the screens and a cloud. There are some fun collaboration activities that we can use to make our coaches enjoy remote pair programming!]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming.jpg)
 
 > I can't wait to meet my colleagues in person again! [[Someone interviewed](https://www.lefigaro.fr/decideurs/vie-bureau/j-ai-hate-de-retrouver-mes-collegues-ces-salaries-en-teletravail-qui-veulent-revenir-au-bureau-20210106) during the COVID lock-down]
 
@@ -33,12 +33,12 @@ Solid humane collaboration is the foundation of any teamwork. **It is our job to
 
 ## The obvious
 
-I've already blogged about remote [pair programming](https://philippe.bourgau.net/categories/#pair-programming) in the past. Here are two pre-requisite to any form of more humane remote collaboration:
+I've already blogged about remote [pair programming]({{site.url}}/categories/#pair-programming) in the past. Here are two pre-requisite to any form of more humane remote collaboration:
 
-1.  [Put your cameras on](https://philippe.bourgau.net/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/): "Without the cameras on, we wreck what’s left of non-verbal communication."
+1.  [Put your cameras on]({{site.url}}/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/): "Without the cameras on, we wreck what’s left of non-verbal communication."
 2.  Take regular breaks. It's impossible to have pleasant or fun interaction when we are tired. On top of that, many of the following fun collaboration ideas happen during breaks!
 
-[![A slide from Holly Cummins' talk 'The importance of fun in the workplace'. The slide reads: "Failing at Fun, Forgetting to fix the other stuff". Likewise, trying to add fun and humane collaboration activities of top of exhausting remote pair programming will not work. Regular breaks are mandatory!](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/failing-at-fun.jpg)](https://vimeo.com/386927686)
+[![A slide from Holly Cummins' talk 'The importance of fun in the workplace'. The slide reads: "Failing at Fun, Forgetting to fix the other stuff". Likewise, trying to add fun and humane collaboration activities of top of exhausting remote pair programming will not work. Regular breaks are mandatory!]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/failing-at-fun.jpg)](https://vimeo.com/386927686)
 
 Now that you have set up face-to-face interaction and a sustainable pace: let the fun begin! Here are remote work collaboration tips to make pair programming more fun.
 
@@ -61,7 +61,7 @@ Are you wondering how to get this started? **Here are a few example questions yo
 
 Sharing food [builds deeper connections between humans](https://www.quora.com/Why-is-sharing-food-important). **Take a moment to share your afternoon snack together.** If you have more time, you could even have a remote lunch!
 
-[![A slide from a Thoughtworks team presenting how they are doing remote lunches in their distributed team.](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/share-food.jpg)](https://www.infoq.com/presentations/distributed-team-agile/)
+[![A slide from a Thoughtworks team presenting how they are doing remote lunches in their distributed team.]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/share-food.jpg)](https://www.infoq.com/presentations/distributed-team-agile/)
 
 We had our first remote lunch at the office with Ahmad many years ago. It looked like a wacky idea at the time, but it was actually a lot of fun! We even learned why Lebanese people don't cover their roofs with solar panels!
 
@@ -69,7 +69,7 @@ We had our first remote lunch at the office with Ahmad many years ago. It looked
 
 Here is an idea I got from [Rachel Davies](http://rachelcdavies.github.io/) in her talk "[Sustaining Remote-First Teams](https://www.youtube.com/watch?v=ZtsroDkCcRs)."
 
-![Photo of a sign written 'Welcome to our home'. Running a 'home tour' with your pair programming buddy is a fun remote collaboration tip that will kick off constructive work.](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/welcome-to-our-home.jpg)
+![Photo of a sign written 'Welcome to our home'. Running a 'home tour' with your pair programming buddy is a fun remote collaboration tip that will kick off constructive work.]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/welcome-to-our-home.jpg)
 
 The practice is straightforward. **Take a break and carry your laptops to walk your buddy around your home.** It's just as you would do with a first-time visitor. It's a great way to welcome the collaboration and kick off constructive work!
 
@@ -77,15 +77,15 @@ The practice is straightforward. **Take a break and carry your laptops to walk y
 
 > Just a sec, I have a delivery!
 
-![Photo of a young child who just opened a delivery box. Deliveries are like presents. We can share the joy of discovering what's in it for us with our remote pair programming buddy.](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/unboxing.jpg)
+![Photo of a young child who just opened a delivery box. Deliveries are like presents. We can share the joy of discovering what's in it for us with our remote pair programming buddy.]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/unboxing.jpg)
 
-We've all heard this sentence a few times during the previous year! First, we can use this interruption to take a short break. Breaks are always welcome ;-). Second, we can have an 'unboxing ceremony' (this is another excellent idea from Rachel Davies.) **Shake your box around and try to have your buddy discover what is in there!**
+We've all heard this sentence a few times during the previous year! First, we can use this interruption to take a short break. Breaks are always welcome 😉. Second, we can have an 'unboxing ceremony' (this is another excellent idea from Rachel Davies.) **Shake your box around and try to have your buddy discover what is in there!**
 
 ## 5. Window Views
 
 I'm lucky enough to have a garden and to a nice home-office window-view. **Sharing what we see helps us to connect to the other's point of view.**
 
-![Photo of an outside view from a window. Sharing what you see from your window is a great way to kick start positive collaboration with your pair programming buddy.](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/window-view.jpg)
+![Photo of an outside view from a window. Sharing what you see from your window is a great way to kick start positive collaboration with your pair programming buddy.]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/window-view.jpg)
 
 This can also serve as a great morning energizer!
 
@@ -102,16 +102,16 @@ Hopefully, your video conferencing system lets you set custom backgrounds. It tu
 *   I once had to go to the company building during the lock-down. I seized the opportunity to take a picture of my real office background. Using it as a videoconference background surprised everyone: "How did you go to the office during the lock-down?"
 *   Finally, you can combine any of the above. For example, **here is a background I prepared on a late Friday afternoon!** It really looks like Darth Vader is looking over my shoulder! This made my colleagues laugh a lot the first time they saw it.
 
-![A made-up video conference background where we can see Darth Vador looking over my office chair. It is written 'I find your lack of unit tests disturbing' in one corner!](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/office-darth-vader.jpg)
+![A made-up video conference background where we can see Darth Vador looking over my office chair. It is written 'I find your lack of unit tests disturbing' in one corner!]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/office-darth-vader.jpg)
 
 
 ## 7. Online Kudos
 
 Sending Kudos is a cheap way to show your coachees how to bring more humane collaboration in the workplace.
 
-[Kudo boxes](https://philippe.bourgau.net/kudo-boxes-for-kids/) are the usual way to send Kudos to your teammates. I remember we used to send Kudos cards to Ahmad by mail. He liked to receive a letter full of kudos. Unfortunately, we did not stick to the practice for very long...
+[Kudo boxes]({{site.url}}/kudo-boxes-for-kids/) are the usual way to send Kudos to your teammates. I remember we used to send Kudos cards to Ahmad by mail. He liked to receive a letter full of kudos. Unfortunately, we did not stick to the practice for very long...
 
-![A screenshot of our Kudos channel. Online kudos is an easy remote work fun collaboration tip to build teamwork up.](../imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/kudos.jpg)
+![A screenshot of our Kudos channel. Online kudos is an easy remote work fun collaboration tip to build teamwork up.]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/kudos.jpg)
 
 A more straightforward way is to use your team chat! For example, Microsoft Teams has a 'praise' plugin that lets you send short kudos. **When you notice your pair is doing something worth a Kudo, send him one through a team channel.** Everyone will see the Kudo, and the habit is more likely to spread.
 
@@ -125,8 +125,14 @@ Next time you remote pair program, try some of these fun collaboration ideas. As
 
 Here is a summary infographic that you can print and stick on your wall to keep these tips in mind!
 
-TODO variation **Here is a summary infographic that you can print and stick on your wall to keep these remote pair programming fun ideas in mind!**
+{% assign figure_path="/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-Ideas-small.jpg" | absolute_url %}
 
-<TODO: add QRCode to it?>
+{% assign figure_alt="An infographics titled '7 ideas 4 remote fun pair programming'. It shows a pair of programmers playing with a ball through their screens and a cloud. It also lists the 7 ideas: Pause & Chat, Snack Together, Home Tour, Unboxing Ceremony, Window Views, Videoconf Backgrounds, Online Kudos" %}
+
+{% capture figure_caption %}
+By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-Ideas.jpg)
+{% endcapture %}
+
+{% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Most of all, I would love to read your own 'humane' hacks to remote pair programming! The comment section is yours.
