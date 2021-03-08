@@ -14,6 +14,16 @@ header:
   og_image: "/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/Remote-Fun-Pair-Programming-og.jpg"
 variations:
 - Here is a summary infographic that you can print and stick on your wall to keep these remote pair programming fun ideas in mind!
+- Here are 7 remote-pairing collaboration ideas to inject fun into the teams we are coaching!
+- The default remote break is to remove your headset and move away from the computer. The default in-person break is to find a buddy, walk to the coffee machine, and have a chat! Let's do something about this!
+- Remote work makes it way too easy to only talk about work with your teammates. We need substitute activities!
+- It is our job to show how to sustain and grow this humane collaboration through remote pair programming.
+- Show how to make remote pair programming more fun by taking a moment to share your afternoon snack together.
+- Remote pair programming fun: take a break and carry your laptops to walk your buddy around your home.
+- Remote pair programming fun: shake your delivery box around and try to have your buddy discover what is in there!
+- Sharing what we see through our windows helps remote pair programming buddies to connect to the other's point of view.
+- Remote pair programming fun: here is a videoconference background I prepared on a late Friday afternoon!
+- When you notice your remote pair programming buddy is doing something worth a Kudo, send him one through a public team-chat channel.
 ---
 _Prolonged remote-only work can be depressing. **Here are 7 remote-pairing collaboration ideas to inject fun into the teams we are coaching!**_
 
@@ -53,7 +63,7 @@ Are you wondering how to get this started? **Here are a few example questions yo
 *   "Have you seen any good movies lately?"
 *   "What is your next holiday plan?"
 
-(If you wonder, I get my incredible inspiration from [The 25 best icebreaker questions for team-building at work](https://knowyourteam.com/blog/2018/01/08/the-25-best-icebreaker-questions-for-team-building-at-work/).)
+(If you wonder, I get my incredible inspiration 😉 from [The 25 best icebreaker questions for team-building at work](https://knowyourteam.com/blog/2018/01/08/the-25-best-icebreaker-questions-for-team-building-at-work/).)
 
 ## 2. Have a snack together 
 
@@ -79,7 +89,7 @@ The practice is straightforward. **Take a break and carry your laptops to walk y
 
 ![Photo of a young child who just opened a delivery box. Deliveries are like presents. We can share the joy of discovering what's in it for us with our remote pair programming buddy.]({{site.url}}/imgs/2021-02-15-7-collaboration-ideas-to-make-remote-pair-programming-more-fun/unboxing.jpg)
 
-We've all heard this sentence a few times during the previous year! First, we can use this interruption to take a short break. Breaks are always welcome 😉. Second, we can have an 'unboxing ceremony' (this is another excellent idea from Rachel Davies.) **Shake your box around and try to have your buddy discover what is in there!**
+We've all heard this sentence a few times during 2020! First, we can use this interruption to take a short break. Breaks are always welcome 😉. Second, we can have an 'unboxing ceremony' (this is another excellent idea from Rachel Davies.) **Shake your box around and try to have your buddy discover what is in there!**
 
 ## 5. Window Views
 
