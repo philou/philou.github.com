@@ -146,3 +146,14 @@ By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 Most of all, I would love to read your own 'humane' hacks to remote pair programming! The comment section is yours.
+
+----
+
+Here are other similar articles that you might find useful
+
+* [5 pair-programming tips and tricks for coaching a remote team]({{site.url}}/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/) will make your life easier if you are coaching a team remotely
+* [How to run a Remote-First Open-Space Technology Un-Conference]({{site.url}}/how-to-run-a-remote-first-open-space-technology-un-conference/) is a step by step guide to organize an effective remote workshop to harness the collective intelligence of the team you are coaching.
+* [7 Remote pair programming best practices Q&A]({{site.url}}/7-remote-pair-programming-best-practices-q-and-a-part-1/) contains tips to help you and your coachees run effective remote pair programming sessions.
+* [Best open source tools for remote pair programming]({{site.url}}/best-open-source-tools-for-remote-pair-programming/) presents different open source tools to setup efficient remote pair programming coaching sessions with your coachees in no time
+* [How to avoid unnecessary meetings (a takeaway from Devoxx France 2018)]({{site.url}}/how-to-avoid-unnecessary-meetings-a-takeaway-from-devoxx-france-2018/) summarizes how open source contributors collaborate effectively to make decisions without meeting!
+* [How to use Mob Programming at the rescue of Pair Programming burnout]({{site.url}}/how-to-use-mob-programming-at-the-rescue-of-pair-programming-burnout/): if your coachees find pair programming exhausting, you can suggest doing all pairing sessions together as a mob!
