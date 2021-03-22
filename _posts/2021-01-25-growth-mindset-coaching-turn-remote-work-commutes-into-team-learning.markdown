@@ -145,6 +145,15 @@ I wish you all a happy learning time! I'd love to read how it went for you. The 
 
 ![Photo of stickies written 'Do It Now' stuck on the screen of a laptop. There is no reason not to start Good Morning Learning like sessions at your job now. It's a great way to coach the growth mindset, and remote work commutes give you the 'budget'.]({{site.url}}/imgs/2021-01-25-growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/do-it-now.jpg)
 
+
+## Addendum: Do You Want Slides?
+
+[Fabien Hiegel](https://twitter.com/fhiegel?lang=en) took the time to create a [nice presentation](https://fhiegel.github.io/learn/presentations/good-morning-learning/slides/en/#/) that wraps up Good Morning Learning. It's perfect to introduce it and convince your team of giving it a try.
+
+<iframe src="https://fhiegel.github.io/learn/presentations/good-morning-learning/slides/en/#/" width="640px" height="480px"></iframe>
+
+By [Fabien Hiegel](https://fhiegel.github.io/), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [sources](https://github.com/fhiegel/fhiegel.github.io/tree/docs/docs/learn/presentations/good-morning-learning/slides)
+ 
 ----
 
 Here are other similar articles that you might find useful
