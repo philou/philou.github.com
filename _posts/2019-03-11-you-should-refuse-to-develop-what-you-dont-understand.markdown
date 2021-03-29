@@ -6,7 +6,7 @@ date: 2019-04-18
 comments: true
 categories:
  - programming
- - BDD
+ - bdd
  - badass-developer
 description: "Understanding is key to building quality software. In this guest post, fluentcpp blogger Jonathan Boccara presents 3 levels of understanding we should go through before we start coding. #1 Why something doesn’t work. #2 Why something works. #3 Why you do this project of feature."
 header:
@@ -66,13 +66,13 @@ Now you move on to use case B. You test to check that you reproduce use case B a
 You weren't expecting it. You designed your fix for use case A, and you're not sure why it worked for use case B too.
 
 {% assign figure_path="/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/cargo-cult.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A photo of people sitting in front of a 'Cargo Cult' wooden plane" %}
-    
+
 {% capture figure_caption %}
 [Wikipedia: A cargo cult](https://en.wikipedia.org/wiki/Cargo_cult) is a belief system among members of a relatively undeveloped society in which adherents practice superstitious rituals hoping to bring modern goods supplied by a more technologically advanced society.
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 At this moment, it is very tempting to consider the job done for both bug reports. This is the natural thing to do: after all, the point was to correct the two use cases, wasn't it?
@@ -100,13 +100,13 @@ Something like this happened to one of the projects I was responsible for. How d
 The same issues can happen with user facing tasks. Sometimes we are asked to code something without being told what’s the user need behind. If we knew the user need, we might be able to come up with better alternatives. We might even find a solution that does not require to code anything!
 
 {% assign figure_path="/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/I_am_Badass.jpg" | absolute_url %}
-    
+
 {% assign figure_alt="A close up on a fist wearing a ring written 'I am Badass'. Badass programmers know when to say 'No'" %}
-    
+
 {% capture figure_caption %}
 By [Brooke Lark](https://unsplash.com/@brookelark) on [Unsplash](https://unsplash.com/photos/jtvGydbUn30)
 {% endcapture %}
-    
+
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
 What I learned in that project is this: **we should refuse to start a development if we don't have a clear understanding of why we are requested to do it**. Plainly refuse it. It is tempting to start a project as soon as possible in order not to waste time. But blocking its start until we understand its implications can save time on another order of magnitude.

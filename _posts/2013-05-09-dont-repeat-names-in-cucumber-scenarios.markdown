@@ -8,7 +8,7 @@ categories:
 - ruby
 - testing
 - cucumber
-- BDD
+- bdd
 ---
 **Update 06/12/2014: I created a [gem](https://github.com/philou/cucumber_tricks) for this and other things**
 
