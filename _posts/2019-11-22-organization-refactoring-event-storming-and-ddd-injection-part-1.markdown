@@ -9,6 +9,7 @@ categories:
  - bdd
  - change management
  - psychology
+ - example mapping
  - event-storming-and-ddd-injection-series
 description: "Injecting DDD or Event Storming in your organization can be tricky. Here are some techniques to onboard your domain experts, one step at a time! 1st: practice on your side. 2nd: build trust with the cheaper example mapping."
 header:

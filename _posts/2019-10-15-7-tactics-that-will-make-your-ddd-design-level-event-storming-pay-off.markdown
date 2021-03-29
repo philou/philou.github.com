@@ -7,6 +7,7 @@ categories:
  - event storming
  - architecture
  - ddd
+ - example mapping
  - how-to-run-a-design-level-event-storming-series
 description: "Running a DDD Design-Level Event Storming is easy. Running a great one is hard! This post is here to help you. It contains facilitation tricks to maximize the return on invested time. It also details workshop-closing activities to decide what to do next."
 header:

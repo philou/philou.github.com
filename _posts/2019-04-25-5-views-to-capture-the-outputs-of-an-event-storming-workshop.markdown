@@ -8,6 +8,7 @@ categories:
  - collaborative work
  - ddd
  - documentation
+ - example mapping
  - event-storming-outputs-series
 description: "Recording the full Event Storming board is a waste of time. Here are 5 examples of quick, focused, and digestible views that capture the board's knowledge. Keep track of next actions and domain definitions, draw a context map, draft user stories, list messages between services."
 header:

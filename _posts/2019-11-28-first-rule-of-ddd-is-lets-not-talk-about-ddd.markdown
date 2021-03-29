@@ -7,6 +7,7 @@ categories:
  - event storming
  - ddd
  - change management
+ - example mapping
  - infographic
 description: "DDD jargon is a domain expert repellent! Let's not talk about DDD, but instead, start engaging domain experts in doing DDD workshops! Here is an infographic that explains why doing DDD works better than arguing for DDD."
 header:

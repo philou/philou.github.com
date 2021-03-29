@@ -9,6 +9,7 @@ categories:
  - collaborative work
  - ddd
  - incremental-software-development
+ - example mapping
 description: "Event Storming is a group design activity that uses *a lot* of post its. Unfortunately, post-its are not for every culture! After going through why post-its work, we'll go over 2 alternatives: homework & feedback and walking skeleton. Could we also use these techniques to complement Event Storming?"
 header:
    teaser: /imgs/2019-04-07-event-storming-lessons-from-post-it-haters/event-storming-no-more-post-its-teaser.jpeg

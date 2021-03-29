@@ -7,6 +7,7 @@ categories:
  - architecture
  - squash-BDUF-with-event-storming-series
  - event storming
+ - example mapping
 description: "DDD Big Picture Event Storming is a prelude and catalyst to other workshops. Use: Design Level Event Storming for a detailed design of a context, Example Mapping for details of a story, Story Mapping for a 2D representation of your backlog & Impact Mapping to help you prioritize better"
 header:
    teaser: /imgs/2019-02-25-how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/event-storming-follow-ups-teaser.jpeg
