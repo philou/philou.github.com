@@ -11,14 +11,14 @@ categories:
 - example mapping
 description: "Getting these crucial chats with product experts is often a brain-teaser! Let's coach developers so they can trigger short, practical, immediate, and online Example-Mapping sessions. These structured conversations yield just-enough details about a user story to write automated acceptance tests."
 header:
-  teaser: "/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/TODO-teaser.jpg"
-  og_image: "/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/TODO-og.jpg"
+  teaser: "/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/Collaboration Injection-teaser.jpg"
+  og_image: "/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/Collaboration Injection-og.jpg"
 variations:
 - TODO
 ---
 _**Getting these crucial chats with product experts is often a brain-teaser!**_ _Let's show devs how to trigger short, practical, immediate Example-Mapping sessions_.
 
-TODO drawing unreachable experts, or injection in a phone call
+![Drawing of the work Collab. The C is a telephone handle, while 'ollab' is written on a syringe, injecting something in the telephone. Example-Mapping is short and lightweight enough to be done through any phone call with the product experts.]({{site.url}}/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/Collaboration Injection.jpg)
 
 > Unfortunately, the tools have taken over the meaning, and I need to chant, "The card is a token for an ongoing conversation" over and over. [George Paci [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)]
 
