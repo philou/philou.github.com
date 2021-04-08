@@ -1,0 +1,106 @@
+---
+layout: single-mailing-list
+title: How to make change stick by training part-time technical agile coaches
+date: 2021-04-15
+comments: true
+categories:
+- coaching
+- change management
+- badass-developer
+description: "Too often, teams revert to their old habits when the technical agile coach leaves. Training part-time coaches is a powerful way to make the change stick. This is the story of how we trained 4 part-time coaches at Murex. As a bonus, you'll find a typical pitch to sell this new role to managers."
+header:
+  teaser: "/imgs/2021-04-08-how-to-make-change-stick-by-training-part-time-technical-agile-coaches/TODO-teaser.jpg"
+  og_image: "/imgs/2021-04-08-how-to-make-change-stick-by-training-part-time-technical-agile-coaches/TODO-og.jpg"
+variations:
+- Too often, teams revert to their old habits when the technical agile coach leaves.
+- Training part-time technical agile coaches is a powerful way to make the change stick.
+- TODO
+---
+_Too often, teams revert to their old habits when the technical agile coach leaves. Training part-time coaches is a powerful way to make the change stick._
+
+Changing the technical practices of the teams is already a considerable challenge. Making the change stick after we leave is even more challenging!
+
+> I needed to go out on medical leave for a while, and when I came back, every single practice I had introduced got rolled back, with expected results. [David Kramer on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)]
+
+> "I was shocked when I heard the devs chose to abandon disciplines that had helped to save the business" [R Dymond [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)]
+
+> The previous team we worked with, which we have now quit, used to mob while we were there, seems not to be mobbing anymore :haussement_d'épaules: [Christophe Cadilhac on [Okiwi](https://okiwi.org/) slack]
+
+I guess we have all faced this situation. Wasted work is never fun. If this repeats too often, it can make us question the usefulness of our jobs. If we are not careful, this can lead to burnout!
+
+My team of technical agile coaches and I have had the luck to stumble upon something that works at Murex. It could work in your organization too! 
+
+## Coaching coaches!
+
+At Murex, we are using an 'internal start-up' model to spread technical agile coaching. About 2 years ago, we were only 2 full-time coaches, and we had worked with 4 teams over the previous year. Murex has more than 60 development teams. Coaching all teams with the same recipe would have required 7 more years!
+
+This was too slow. We went through different options: outsourcing, digitalization, and others. We finally agreed on training developers into part-time technical agile coaches. The official goal was to increase our coaching capacity. We also had the intuition that this would create lasting cultural change.
+
+We started with Patrice, a very experienced developer from one of the first teams we had coached. After some negotiation with his managers and a few other parties, he joined us for 20% of his time. We would not have been able to negotiate a company-wide part-time coach role. **Negotiating on a case-by-case basis proved to be way simpler!**
+
+We started to spend our Thursdays together, working the ins and outs of our material. At the time, this meant going through katas. We also used these Thursdays to write down the critical learnings of every exercise.
+
+After a few months, Patrice felt confident enough to run the katas with a group of newcomers.
+
+Since then, Patrice has been coaching other teams and groups. Yet, the primary outcome has not been our coaching capacity increase! **Patrice has been coaching his team full-time for more than a year!**
+
+For the past years, his team has been improving all business KPIs. Better still, his teammates have attested that work is both calmer and happier!
+
+Since then, we have been working with 3 other part-time coaches: Antoine, Mirna, and Myriam. We are starting to observe positive impacts in their teams too!
+
+We are now using our Thursdays as a kind of coach the coach dojo. **Experienced and junior coaches mob through various katas and learn from each other.** We have seen yet another benefit of working with part-time coaches! They are pushing us to make our activities more adapted to Murex developers.
+
+## How to do it?
+
+Here are the steps we took to make this happen:
+
+1.  **When coaching, look for enthusiastic people who** _**get it**_**.**
+2.  Ask them if they would like to become part-time technical agile coaches.
+3.  Together, pitch this career evolution to their managers.
+4.  Use this negotiated time to rehearse your main coaching activities with them.
+5.  When they feel ready, embark them as pair coaches on new coaching missions.
+6.  When they feel ready, let them run their own coaching missions.
+7.  As a by-product, they will now be coaching their teams full-time!
+
+Give it a try yourself!
+
+The tricky steps are 2 and 3. No other step ever failed.
+
+### Step 2: Expect many NOs.
+
+In our experience, the second step was the most critical. Many people declined for lack of time. **We had to approach 11 people to get 4 OKs.** People are busy! Don't abandon at the first refusal. **I would ask at least 10 candidates before declaring: "This does not work here!"**
+
+### Step 3: Organization Aïkido
+
+Step 3 was rocky, especially the first time. We managed through by playing by the organization's rule:
+
+*   We knew many would meet this unusual request with skepticism. **We started by turning a few critical people into allies to help us get an OK from others.**
+*   **We met these key people one by one and prepared specific pitches to 'sell' our proposal.** If you lack inspiration, here is a an FAQ with the typical questions we were asked.
+
+TODO Maybe it's not a pitch that is needed, but an FAQ. The pitch is highly audience dependent...
+
+*   Murex has a strong delivery culture. **We knew this role had to be official, or developer BAU would eat the 20% up.** We formalized a part-time technical agile coach role to follow company standards. This ensured part-time coaching was taken into account during plannings and end-of-year reviews.
+
+TODO picture: culture eats process for breakfast
+
+**Knowing the organization was a clear unfair advantage.** You, too, will have to understand your organization's implicit rules to make your case.
+
+## Give it a try now
+
+Organizations are complex beasts. There is no silver bullet for refactorging (Changing organization)! **From experience, though, growing part-time coaches have good chances to make change stick.** Fortunately, it's also straightforward to try:
+
+*   Whenever you encounter coachees that are enthusiastic, and that _gets it_
+*   Ask them if he would like to become a part-time technical agile coach
+*   Follow the steps above
+
+I'll continue to blog about our technical agile coaching adventure, so stay tuned. I'd also love to read about your own tips and tricks to make change stick. The comment section is yours!
+
+----
+
+If you liked this post, you might also learn more about how to make the change stick in the following posts.
+
+*   Are you interested in the big-picture of our technical agile coaching at Murex? Read: [The story about how we do Agile Technical Coaching](https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/) 
+*   Are you an internal or guerilla coach? Learn [How the Samman Method helps to sell technical coaching internally?](https://philippe.bourgau.net/how-the-samman-method-helps-to-sell-technical-coaching-internally/) 
+*   Are you wondering what where the activities we practiced with part-time technical coaches? Read: [A coding dojo exercises plan towards refactoring legacy code](https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
+*   Coding Standards are another way to make change stick. Here are [3 Good and Bad Ways to Write Team Coding Standards and Conventions](https://philippe.bourgau.net/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/)
+*   With time, expertise in agile development practices makes part-time technical agile coaches 'badass'. Learn more in [Why we need Badass developers to perform large scale refactorings](https://philippe.bourgau.net/why-we-need-badass-developers-to-perform-large-scale-refactorings/)
