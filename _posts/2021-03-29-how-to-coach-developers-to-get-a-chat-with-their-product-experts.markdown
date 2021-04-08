@@ -27,8 +27,9 @@ variations:
 - Someone in the #ExampleMapping session is the notetaker. This person keeps track of the conversation by writing and arranging cards on the table. #BDD #DDD #ProductOwner
 - How to practice #ExampleMapping with your team: 1. Find a user story that one of your coachees knows well. 2. Take 30 minutes. 3. Try #ExampleMapping. #BDD #DDD #ProductOwner #deliberatePractice
 - Traditional #ExampleMapping needs everyone to be in the same room! This is yet another barrier to reach the product expert. Did you know #remote #ExampleMapping is easy? #BDD #DDD #ProductOwner
-- It's effortless to run a #remote #ExampleMapping session [this online collaborative spreadsheet]({{site.url}}/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/ExampleMappingTemplate.ods) template. #BDD #DDD #ProductOwner
+- It's effortless to run a #remote #ExampleMapping session by collaborating on this spreadsheet template (https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/ExampleMappingTemplate.ods). #BDD #DDD #ProductOwner
 - Next time you hear someone having troubles understanding what they are supposed to do: get them into trying #ExampleMapping with the product expert. #BDD #DDD #ProductOwner
+- Use this presentation (by @mattrussa) to quickly introduce #ExampleMapping to your product experts and developers (https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/BDD and Example Mapping.pdf)
 ---
 _**Getting these crucial chats with product experts is often a brain-teaser!**_ _Let's show devs how to trigger short, practical, immediate Example-Mapping sessions_.
 
