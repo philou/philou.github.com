@@ -12,9 +12,20 @@ header:
   teaser: "/imgs/2021-04-08-how-to-make-change-stick-by-training-part-time-technical-agile-coaches/change-glue-teaser.jpg"
   og_image: "/imgs/2021-04-08-how-to-make-change-stick-by-training-part-time-technical-agile-coaches/change-glue-og.jpg"
 variations:
-- Too often, teams revert to their old habits when the technical agile coach leaves.
-- Training part-time technical agile coaches is a powerful way to make the change stick.
-- TODO
+- Too often, teams revert to their old habits when the technical #agile coach leaves. #technicalCoach
+- Training part-time technical #agile coaches is a powerful way to make the change stick in the team.  #technicalCoach
+- Negotiating for each part-time technical #agile coach on a case-by-case basis proved to be the way to go! #technicalCoach
+- Patrice, the first part-time technical #agile coach we trained, has been coaching his team full-time for more than a year! #technicalCoach
+- Thursday PMs are coach-the-coach afternoons: experienced and junior technical #Agile coaches mob through various katas and learn from each other. #technicalCoach
+- When coaching: look for enthusiastic people who get it and ask them if they would love to become part-time technical #agile coaches. #technicalCoach
+- We had to ask 11 people to get 4 willing to become part-time technical #agile coaches. #technicalCoach
+- I would ask at least 10 candidates if they would like to become part-time technical #agile coaches before declaring: "This does not work here!" #technicalCoach
+- To pitch the part-time technical #agile coach role in the organization, we started by turning a few critical people into allies to help us get an OK from others. #technicalCoach
+- We key people one by one and prepared specific pitches to 'sell' our proposal for part-time technical #agile coaches. #technicalCoach
+- We knew the part-time technical #agile coach role had to be official, or developer BAU would eat the 20% up! #technicalCoach
+- Knowing the organization was a clear unfair advantage when pitching the part-time technical #agile coach role. #technicalCoach
+- From experience, growing part-time technical #agile coaches has good chances to make change stick. #technicalCoach
+
 ---
 _Too often, teams revert to their old habits when the technical agile coach leaves. Training part-time coaches is a powerful way to make the change stick._
 
@@ -26,7 +37,7 @@ Changing the technical practices of the teams is already a considerable challeng
 
 > "I was shocked when I heard the devs chose to abandon disciplines that had helped to save the business" [[Robin Dymond](https://twitter.com/robindymond) [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0)]
 
-> The previous team we worked with, which we have now quit, used to mob while we were there, seems not to be mobbing anymore :haussement_d'épaules: [Someone on [Okiwi](https://okiwi.org/) slack]
+> The previous team we worked with, which we have now quit, used to mob while we were there, seems not to be mobbing anymore 🤷🏽 [Someone on [Okiwi](https://okiwi.org/) slack]
 
 I guess we have all faced this situation. Wasted work is never fun. If this repeats too often, it can make us question the usefulness of our jobs. If we are not careful, this can lead to burnout!
 
@@ -42,7 +53,7 @@ This was too slow. We went through different options: outsourcing, digitalizatio
 
 We started with [Patrice](https://twitter.com/pdalesme), a very experienced developer from one of the first teams we had coached. After some negotiation with his managers and a few other parties, he joined us for 20% of his time. We would not have been able to negotiate a company-wide part-time coach role. **Negotiating on a case-by-case basis proved to be way simpler!**
 
-We started to spend our Thursdays together, working the ins and outs of our material. At the time, this meant going through [code katas]({{site.url}}/categories/#coding-dojo). We also used these Thursdays to write down the critical learnings of every exercise.
+We started to spend our Thursdays together, working the ins and outs of our material. At the time, this meant going through [code katas]({{site.url}}/categories/#coding-dojo). We also used these Thursdays to write down the critical learnings of every exercise. (Note: Tell me if you would like me to write in more details about the different plans of katas we are using with teams.)
 
 After a few months, Patrice felt confident enough to run the katas with a group of newcomers.
 
@@ -83,14 +94,14 @@ In our experience, the second step was the most critical. Many people declined f
 Step 3 was rocky, especially the first time. We managed through by playing by the organization's rule:
 
 *   We knew many would meet this unusual request with skepticism. **We started by turning a few critical people into allies to help us get an OK from others.**
-*   **We met these key people one by one and prepared specific pitches to 'sell' our proposal.** Here is [a list of the typical questions we were asked]({{site.url}}/imgs/2021-04-08-how-to-make-change-stick-by-training-part-time-technical-agile-coaches/Part-time-tech-coach-FAQ.pdf). I did not provide the answers because they are highly organization-dependent. Answering the questions for your organization is a great way to prepare for the pitch.
+*   **We met these key people one by one and prepared specific pitches to 'sell' our proposal.** Here is [a list of the typical questions we were asked]({{site.url}}/imgs/2021-04-08-how-to-make-change-stick-by-training-part-time-technical-agile-coaches/Part-time-tech-coach-FAQ.pdf). I did not provide the answers because they are highly organization-dependent. Answering the questions for your organization is a great way to prepare for the pitch. (Note: My colleague [Matthieu Tournemire](https://twitter.com/mattrussa) created a wonderful template to create strong pitches. Don't hesitate to ask if you would like to learn more about writing compelling pitches.)
 *   Murex has a strong delivery culture. **We knew this role had to be official, or developer BAU would eat the 20% up.** We formalized a part-time technical agile coach role to follow company standards. This ensured part-time coaching was taken into account during plannings and end-of-year reviews.
 
 **Knowing the organization was a clear unfair advantage.** You, too, will have to understand your organization's implicit rules to make your case.
 
 ## Give it a try now
 
-Organizations are complex beasts. There is no silver bullet for refactorging (Changing organization)! **From experience, though, growing part-time coaches have good chances to make change stick.** Fortunately, it's also straightforward to try:
+Organizations are complex beasts. There is no silver bullet for refactorging (Changing organization)! **From experience, though, growing part-time coaches has good chances to make change stick.** Fortunately, it's also straightforward to try:
 
 *   Whenever you encounter coachees that are enthusiastic, and that _gets it_
 *   Ask them if he would like to become a part-time technical agile coach
