@@ -17,11 +17,12 @@ header:
 variations:
 - Once exposed to bad TDD, teams are a challenge for any technical agile coach
 - Don't sell TDD, XP, or whatever, fix pains!
+- Give this code kata coaching plan a try next time your team is struggling with Legacy Code (https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/sample-legacy-code-coaching-plan.pdf)
 - TODO
 ---
 _Once exposed to bad [TDD](https://en.wikipedia.org/wiki/Test-driven_development), teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains!_
 
-![Drawing of the text 'Forget TDD, Fix Pains!' with a bulldozer pushing TDD away and a first-aid-kit to fix pains. Focusing on pains is a good way to coach a team that has been exposed to bad TDD in the past.](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains.jpg)
+![Drawing of the text 'Forget TDD, Fix Pains!' with a bulldozer pushing TDD away and a first-aid-kit to fix pains. Focusing on pains is a good way to coach a team that has been exposed to bad TDD in the past.]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains.jpg)
 
 TDD is a cornerstone of what we coach. Unfortunately, there is a lot of misunderstanding about TDD. [Search the web for 'bad TDD'](https://www.google.com/search?q=bad+tdd&safe=active) to get an idea. Unfortunately, **after a team has been exposed to bad TDD, it won't try it again!** How can we get around this extra hurdle and do constructive technical agile coaching?
 
@@ -41,16 +42,16 @@ My suggestion is pretty simple:
 
 [Murex](https://www.murex.com), the company I work for, used to have TDD training in its catalog. Murex is pretty generous with training, and it's pretty straightforward to attend one. As a result, many developers had learned TDD this way. Unfortunately, the training was not good.
 
-![Photo of a hand with 2 small pieces of paper written "Bad" and "Good". TDD can be done good or bad. As technical agile coaches, we must learn how to coach teams that have been exposed to bad TDD.](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/good-bad.jpg)
+![Photo of a hand with 2 small pieces of paper written "Bad" and "Good". TDD can be done good or bad. As technical agile coaches, we must learn how to coach teams that have been exposed to bad TDD.]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/good-bad.jpg)
 
 **Many developers had concluded that TDD was expensive and useless**. Some even took bad habits after attending it. For example:
 
 *   Writing all the tests before writing all the code.
 *   Testing every function independently. This leads to heavy mocking and makes the code harder to refactor.
 
-After my first success with the [Deadpool team](/the-story-about-how-we-do-agile-technical-coaching/), **I started a weekly TDD [Coding Dojo](https://philippe.bourgau.net/categories/#coding-dojo) to find new teams to work with. Very few people came 😞.** I had to find another way.
+After my first success with the [Deadpool team]({{site.url}}/the-story-about-how-we-do-agile-technical-coaching/), **I started a weekly TDD [Coding Dojo]({{site.url}}/categories/#coding-dojo) to find new teams to work with. Very few people came 😞.** I had to find another way.
 
-![Drawing of a martial art dojo with the floor being a keyboard and the back wall being the screen of a laptop where we can read TDD Coding Dojo. This is the poster I setup to get people to attend a coding dojo where they could learn TDD.](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/coding-dojo.jpg)
+![Drawing of a martial art dojo with the floor being a keyboard and the back wall being the screen of a laptop where we can read TDD Coding Dojo. This is the poster I setup to get people to attend a coding dojo where they could learn TDD.]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/coding-dojo.jpg)
 
 ## Forget TDD as a goal
 
@@ -70,7 +71,7 @@ As you might already know, if you are a regular reader, I only work with volunte
 *   You can also have one-to-one interviews with team members. This is useful if you suspect that not everyone will speak up in front of the group
 *   Otherwise, you can Gemba-pair: spend a few hours to pair with everyone in the team
 
-![Photo of a burnt out man with hands over his head. Understanding the pains of a team is the first step to coach without selling TDD as a goal by itself.](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/understand-pains.jpg)
+![Photo of a burnt out man with hands over his head. Understanding the pains of a team is the first step to coach without selling TDD as a goal by itself.]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/understand-pains.jpg)
 
 What is essential at this step is to avoid selling them anything. Just observe, be helpful when you can, but really, observe.
 
@@ -86,7 +87,7 @@ In our case, the Kirby team members were having a hard time maintaining legacy c
 
 **Once you understand their day-to-day issues, it's time to come up with a fix!**
 
-[Maintaining legacy code is a widespread pain for software teams](https://philippe.bourgau.net/categories/#refactoring). I could leverage what I had done with Deadpool to propose something to the Kirby team.
+[Maintaining legacy code is a widespread pain for software teams]({{site.url}}/categories/#refactoring). I could leverage what I had done with Deadpool to propose something to the Kirby team.
 
 In other cases, **you might be able to fix their pains without programming**. If you can, then do it! You will save everybody's time, and the team will be more likely to come back for more.
 
@@ -94,9 +95,9 @@ For example, we have designed a test strategy workshop. It helps team members to
 
 Other times, though, **fixing the pain will involve installing new programming habits.**
 
-[![A Hulk-inspired drawing of a plan of kata exercises to grow your skills around refactoring legacy code. When wondering how to coach a team, proposing a coaching plan that fixes the team's real pains is a great way to get started on constructive ground.](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/Coding-Dojo-Hulk-small.jpg)](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/Coding-Dojo-Hulk.jpg)
+[![A Hulk-inspired drawing of a plan of kata exercises to grow your skills around refactoring legacy code. When wondering how to coach a team, proposing a coaching plan that fixes the team's real pains is a great way to get started on constructive ground.]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/Coding-Dojo-Hulk-small.jpg)]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/Coding-Dojo-Hulk.jpg)
 
-In this case, avoid general agile development practices coaching. Instead, come up with [a coaching plan that is fixing their specific pains](https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/). For example, we used the following coaching plan to help the Kirby team deal with their legacy code.
+In this case, avoid general agile development practices coaching. Instead, come up with [a coaching plan that is fixing their specific pains]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/). For example, we used the following coaching plan to help the Kirby team deal with their legacy code.
 
 | Exercise | How | Learn about... |
 |------|-----|---------------|
@@ -113,7 +114,7 @@ In this case, avoid general agile development practices coaching. Instead, come 
 | [Trivia kata](https://github.com/jbrains/trivia) then production code | Mob | Mikado Method |
 | Trivia kata then production code | Mob | ACL and Bubble Context |
 
-*[Printable version](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/sample-legacy-code-coaching-plan.pdf)*
+*[Printable version]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/sample-legacy-code-coaching-plan.pdf)*
 
 It relies on a mix of code-katas and mob sessions. This is one way of doing it. The [Samman Technical Coaching](https://www.sammancoaching.org/) method uses a blend of learning hours and mob sessions. On our side, we have settled on the following recipe for most of our coaching plans:
 
@@ -132,12 +133,12 @@ As a matter of fact, we have noticed that part 2 does not work unless the team h
 
 With a clear pain and a coaching proposal, it's time to pitch it to the team. Here is how to present part 1.
 
-![Black and White photo from behind of someone who's holding a weight bar on his shoulders. Instead of wondering 'How to coach a team to TDD, simply using TDD as a workout exercise helps everyone to get over any prior misunderstanding about TDD.](../imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/crossfit.jpg)
+![Black and White photo from behind of someone who's holding a weight bar on his shoulders. Instead of wondering 'How to coach a team to TDD, simply using TDD as a workout exercise helps everyone to get over any prior misunderstanding about TDD.]({{site.url}}/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/crossfit.jpg)
 
 We have different arguments to sell the TDD part to the teams:
 
 1.  From experience, **the coaching does not work well if we skip part 1**
-2.  **Part 1 will train you to new team collaboration practices** like [pair and mob programming](https://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/)
+2.  **Part 1 will train you to new team collaboration practices** like [pair and mob programming]({{site.url}}/why-you-should-start-a-team-coding-dojo-randori-right-now/)
 3.  **TDD speeds up learning by creating the [deliberate practice](https://medium.com/the-crossover-cast/get-better-at-anything-6-steps-of-deliberate-practice-19830bfc9460) fast feedback loop**
 
 Here is the script I use to explain what deliberate practice is and why it matters:
@@ -188,8 +189,8 @@ This should get you past any prior misunderstanding about TDD.
 
 If you liked this post, you might also learn more about how to get over bad TDD exposition in these articles:
 
-*   Wondering what a custom coaching plan might look like? Read: [A coding dojo exercises plan towards refactoring legacy code](https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
-*   Want to learn more other problems you might face when starting coaching a team? Check [7 tricks to influence a team resisting to change its technical habits](https://philippe.bourgau.net/7-tricks-to-influence-a-team-resisting-to-change/)
-*   Interested about how a series of code katas can also help people learn a new language? Read: [How to learn a programming language in just 20 hours](https://philippe.bourgau.net/how-to-learn-a-programming-language-in-just-20-hours/)
-*   Want to get the full story of how we approached teams at Murex? Read [The story about how we do Agile Technical Coaching](https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/)
+*   Wondering what a custom coaching plan might look like? Read: [A coding dojo exercises plan towards refactoring legacy code]({{site.url}}/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/)
+*   Want to learn more other problems you might face when starting coaching a team? Check [7 tricks to influence a team resisting to change its technical habits]({{site.url}}/7-tricks-to-influence-a-team-resisting-to-change/)
+*   Interested about how a series of code katas can also help people learn a new language? Read: [How to learn a programming language in just 20 hours]({{site.url}}/how-to-learn-a-programming-language-in-just-20-hours/)
+*   Want to get the full story of how we approached teams at Murex? Read [The story about how we do Agile Technical Coaching]({{site.url}}/the-story-about-how-we-do-agile-technical-coaching/)
 *   Interested in live katas I gave? Watch [Live Legacy Code Refactoring with the Golden Master](https://youtu.be/9HmVrfkzm9I) at [Legacy of Socrates](https://www.youtube.com/channel/UC0M37QolwmwobAY4Bt8Tszg)
