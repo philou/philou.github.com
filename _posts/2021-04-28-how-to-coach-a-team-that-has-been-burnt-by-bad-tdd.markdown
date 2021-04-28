@@ -15,10 +15,28 @@ header:
   teaser: "/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains-teaser.jpg"
   og_image: "/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains-og.jpg"
 variations:
-- Once exposed to bad TDD, teams are a challenge for any technical agile coach
-- Don't sell TDD, XP, or whatever, fix pains!
-- Give this code kata coaching plan a try next time your team is struggling with Legacy Code (https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/sample-legacy-code-coaching-plan.pdf)
-- TODO
+- Once exposed to bad #TDD, teams are a challenge for any #agile #technicalCoach
+- Don't sell #TDD, #XP, or whatever, fix pains! #agile #technicalCoach
+- Give this #codeKata coaching plan a try next time your team is struggling with #LegacyCode (https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/sample-legacy-code-coaching-plan.pdf) #agile #technicalCoach
+- Once a team has been exposed to bad #TDD, it won't try it again! #agile #technicalCoach
+- Don't talk about #TDD! Instead, use TDD to fix the team's pains! #agile #technicalCoach
+- Many developers had concluded that TDD was expensive and useless, read what you can do as an #agile #technicalCoach
+- I started a weekly #TDD #CodingDojo to find new teams to work with. Very few people came 😞. TDD is no longer the 'killer feature' that sells #agile #technicalCoaching to teams. (+ image coding dojo)
+- Bad #TDD is dogmatic, overpromises, and under-delivers. Here is what you can do instead #agile #technicalCoach
+- The first thing to do is to understand the team members' pains #agile #technicalCoach
+- Once you understand team members's day-to-day pains, it's time to come up with a fix! #agile #technicalCoach
+- Sometimes you will be able to fix the team's pains without programming #agile #technicalCoach
+- Sometimes, fixing the team's pain will involve installing new programming habits #agile #technicalCoach
+- Mix katas and mob sessions around pain-fixing techniques to get over a team's misunderstanding about #TDD #agile #technicalCoach
+- As coaches, we know #TDD is essential. The key is to avoid selling it directly #agile #technicalCoach
+- Use #TDD as a workout exercise #agile #technicalCoach
+- Use #CodeKatas to train a team to new team collaboration practices #agile #technicalCoach #pairProgramming #mobProgramming
+- #TDD speeds up learning by creating the #deliberatePractice fast feedback loop #agile #technicalCoach
+- #deliberatePractice is the technique used by athletes to achieve world-class performance. We can use it for #agile #technicalCoaching
+- No one learns to swim in the deep end of the pool. Don't try to learn #TDD on your production #LegacyCode!#agile #technicalCoach
+- After practicing enough #CodeKata, the team will be able to apply the techniques to their production code #agile #technicalCoach
+- Developers are tired of being asked to be more productive. #TDD is a way to avoid being woken up by bugs in the middle of the night. #agile #technicalCoach
+- How to coach team that misunderstood #TDD: Understand their pains, Fixes their most important pains, Use TDD as a learning tool. #agile #technicalCoach
 ---
 _Once exposed to bad [TDD](https://en.wikipedia.org/wiki/Test-driven_development), teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains!_
 
