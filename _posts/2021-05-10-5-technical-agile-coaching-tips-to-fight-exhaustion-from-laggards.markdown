@@ -12,8 +12,24 @@ header:
   teaser: "/imgs/2021-05-10-5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/laggard-exhaustion-teaser.jpg"
   og_image: "/imgs/2021-05-10-5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/laggard-exhaustion-og.jpg"
 variations:
-- Here are 5 tips to deal with laggards, sustain you, and make you spend your energy where it matters.
-- TODO
+- Here are 5 tips to deal with 'laggards' (as in Innovation Diffusion), sustain you, and make you spend your energy where it matters. #technical #AgileCoaching #sustainablePace
+- Any activity that involves working with others and bringing change is exhausting. #technical #AgileCoaching is no different. #sustainablePace
+- There will always be 'laggards' (as in Innovation Diffusion) in the teams we coach. Yet, we don't want them to burn us out! #technical #AgileCoaching #sustainablePace
+- Make everything you can to work with a volunteer team. #technical #AgileCoaching #sustainablePace
+- Every time a team refuses coaching, you avoid a difficult mission! #technical #AgileCoaching #sustainablePace
+- Sticking to volunteer teams decreases the risks that you will have to deal with 'laggards' (as in Innovation Diffusion). #technical #AgileCoaching #sustainablePace
+- Avoid coaching teams with more than 1 'laggard' (as in Innovation Diffusion), and spend your time with those who want. #technical #AgileCoaching #sustainablePace
+- Set up an environment where the team members can resolve their disagreements together. #technical #AgileCoaching #sustainablePace
+- Refuse to enter any personal argument within the teams you coach. #technical #AgileCoaching #sustainablePace
+- Own the coaching sessions invitations and schedule regular breaks. #technical #AgileCoaching #sustainablePace
+- If your coaching work is still exhausting you, it might be time to consider leaving. #sustainablePace
+- Sometimes, we have to let go of some teams to focus on others where you will be more helpful. #technical #AgileCoaching #sustainablePace
+- If your latest #technical #AgileCoaching mission did not end as well as you had wished, take some time to reflect and see what you will do differently next time. #sustainablePace
+- If your current #technical #AgileCoaching mission remains non-sustainable for you, leave! #sustainablePace
+- We are only humans, and there are limits to what we can handle. #technical #AgileCoaching #sustainablePace
+- Keep #technical #agileCoaching sustainable and show a better version of yourself to all your coachees. #sustainablePace
+- Make sure to keep #technical #agileCoaching work more energizing, constructive, and sustainable. #sustainablePace
+- These tips to keep #technical #agileCoaching work more sustainable might also make you happier! #sustainablePace
 ---
 _Trying to coach laggards will exhaust you. Here are 5 tips to deal with them, sustain you, and make you spend your energy where it matters._
 
