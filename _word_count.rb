@@ -1,4 +1,4 @@
-#!/bin/ruby
+#!/usr/bin/env ruby
 
 require 'yaml'
 require 'open3'
