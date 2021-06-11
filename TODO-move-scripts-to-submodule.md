@@ -4,13 +4,12 @@
 - [X] check that _check_fixmes.sh is working
 - [X] check that _check_links.sh is working
 - [X] check that _grep_tweets.sh is working
-- [ ] check that _local_preview.sh is working
+- [X] check that _local_preview.sh is working
 - [X] check that _new_post.sh is working
-- [ ] check that _preview.sh is working
-- [ ] check that _preview.sh.template is working
-- [ ] check that _serve.sh is working
-- [ ] check that _update_Gemfile.local.sh is working
-- [ ] check that _update_version.sh is working
-- [ ] check that _word_count.rb is working
+- [X] check that _preview.sh is working
+- [X] check that _serve.sh is working
+- [X] check that _update_Gemfile.local.sh is working
+- [X] check that _update_version.sh is working
+- [X] check that _word_count.rb is working
 - [ ] create a submodule
 - [ ] publish to github
