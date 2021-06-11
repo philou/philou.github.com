@@ -11,5 +11,6 @@
 - [X] check that _update_Gemfile.local.sh is working
 - [X] check that _update_version.sh is working
 - [X] check that _word_count.rb is working
+- [X] Split README.md in 2
 - [ ] create a submodule
 - [ ] publish to github
