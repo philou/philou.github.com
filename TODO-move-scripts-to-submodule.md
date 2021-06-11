@@ -1,4 +1,5 @@
-- [ ] Regenerate _preview.sh
+- [X] Regenerate _preview.sh
+- [X] Copy gitignore
 - [ ] check that _absolutify_links.sh is working
 - [ ] check that _check_fixmes.sh is working
 #!/bin/sh
