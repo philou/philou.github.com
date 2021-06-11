@@ -1,6 +1,6 @@
 # Philou's Blog
 
-Tips and scripts can be found in [_scripts/README.md](_scripts/README.md)
+Tips and scripts can be found in [Jekyll and Minimal Mistakes Goodies](https://github.com/philou/jekyll-minimal-mistakes-goodies) repo.
 
 ## Hacks made to Minimal Mistakes
 
