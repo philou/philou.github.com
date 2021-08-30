@@ -13,7 +13,13 @@ header:
   teaser: "/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus-teaser.jpg"
   og_image: "/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus-og.jpg"
 variations:
-- TODO
+- Change management is challenging to measure! #technical #AgileCoaching #complexity
+- Coaching without knowing if you are effective can become depressing.  #technical #AgileCoaching #sustainablePace #complexity
+- We don't know how long it will take to coach a team into empowerment. Yet our customers evaluate us on the speed to 'transform' teams! #technical #AgileCoaching #complexity #sustainablePace
+- Higher productivity is only one possible outcome of team empowerment. Still, our customers are evaluating us only on productivity improvement! #technical #AgileCoaching #complexity #sustainablePace
+- Using hypothesis driven development and your circle of control to define your objectives will make you safer! #technical #AgileCoaching #sustainablePace #complexity
+- Using hypothesis driven development and your circle of control to define your objectives will make your experimental learning explicit! #technical #AgileCoaching #complexity #experimentation
+- Using hypothesis driven development and your circle of control to define your objectives will spread the practice! #technical #AgileCoaching #complexity #changeManagement
 ---
 _Technical agile coaching is complex. Many organizations would track our work with inadequate measures. Here is how hypothesis-driven goals can keep us safe._
 
@@ -88,7 +94,7 @@ Here is a template I use whenever I have to provide measurable goals.
 
 Let's see where this comes from:
 
-### **Hypothesis-driven Development**
+### Hypothesis-driven Development
 
 Fortunately, we are not alone. Product managers need complex compliant measurable goals too! The Lean Management community came up with the [Hypothesis-Driven Development Story Template](https://www.thoughtworks.com/insights/articles/how-implement-hypothesis-driven-development).
 
@@ -102,7 +108,7 @@ By [ThoughtWorks](https://www.thoughtworks.com/), original in [How to Implement 
 
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
 
-### **Your Circle of Control**
+### Your Circle of Control
 
 The idea behind the template is to frame each team coaching as an experiment. To measure one's contribution to this experiment, I added the last line to the template:
 
@@ -120,7 +126,7 @@ By [discoveryinaction.com.au](https://discoveryinaction.com.au), originally publ
 
 In the [7 Habits of Highly Effective People](https://www.goodreads.com/book/show/36072.The_7_Habits_of_Highly_Effective_People), Stephen Covey presents the Circle of Influence. The Circle of Control is an extension to this model. If you want to learn more about the Circle of Control, check Cam's post [How To Stop Worrying – The Circle of Control](http://customizinglife.com/stop-worrying/)
 
-### **An example**
+### An example
 
 Here is an example we could write when coaching a team that is struggling with legacy code:
 
