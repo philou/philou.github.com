@@ -19,7 +19,7 @@ _Technical agile coaching is complex. Many organizations would track our work wi
 
 ## Coaching is challenging to measure, and it can be demotivating.
 
-![Drawing of Sisyphus pushing a giant watermelon up a steep slope written 'Bad Measure'. Like watermelons, bad measures look green on the outside, but red when you look inside! Badly measuring our technical agile coaching work can be demotivating.](../imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus.jpg)
+![Drawing of Sisyphus pushing a giant watermelon up a steep slope written 'Bad Measure'. Like watermelons, bad measures look green on the outside, but red when you look inside! Badly measuring our technical agile coaching work can be demotivating.]({{site.url}}/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus.jpg)
 
 > Measuring performance in software is very tricky […] the coach position is uneasy, maybe even dangerous and counterproductive! And depends a lot on the surrounding culture ([Okiwi](https://okiwi.org/) Slack)
 
@@ -147,7 +147,7 @@ I've observed 3 consequences of using this template:
 2.  **You will make your experimental learning explicit!** These objectives are no longer useless bureaucratic things. You can actually use them to iterate and improve the following experiment.
 3.  **You will spread the practice!** Chances are that others are struggling with their objectives too. As you share it with them, you might make them aware of the uncertain nature of their environment. Who knows, maybe they'll start to use this template as well!
 
-![A long chain of lab experimental equipment that ends with a brain. Using hypothesis driven development when defining our goals lets us experiment and learn consciously](../imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/experiment.jpg)
+![A long chain of lab experimental equipment that ends with a brain. Using hypothesis driven development when defining our goals lets us experiment and learn consciously]({{site.url}}/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/experiment.jpg)
 
 ## Give it a try!
 
@@ -167,14 +167,14 @@ If you currently need to track and report your progress, here is what you can do
 >
 > **To run this experiment, I will** \<Measurable actions or habits I can commit to\>
 
-In the next post, I'll present the tips I use to dump measures completely and go #NoGoal whenever I can! [Stay tuned](https://philippe.bourgau.net/feed.xml)
+In the next post, I'll present the tips I use to dump measures completely and go #NoGoal whenever I can! [Stay tuned]({{site.url}}/feed.xml)
 
 In the meantime, I'd love to read about your own objective-writing tips. The comment section is yours!
 
 ----
 Tech coaching can be exhausting at times. Here are other interesting posts that might interest you:
 
-*   [5 technical agile coaching tips to fight exhaustion from laggards](https://philippe.bourgau.net/5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/)
-*   [7 tricks to influence a team resisting to change its technical habits](https://philippe.bourgau.net/7-tricks-to-influence-a-team-resisting-to-change/)
-*   [How to coach a team that has been burnt by bad TDD](https://philippe.bourgau.net/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/)
-*   [How to kill Scrum Zombies?](https://philippe.bourgau.net/how-to-kill-scrum-zombies/)
+*   [5 technical agile coaching tips to fight exhaustion from laggards]({{site.url}}/5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/)
+*   [7 tricks to influence a team resisting to change its technical habits]({{site.url}}/7-tricks-to-influence-a-team-resisting-to-change/)
+*   [How to coach a team that has been burnt by bad TDD]({{site.url}}/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/)
+*   [How to kill Scrum Zombies?]({{site.url}}/how-to-kill-scrum-zombies/)

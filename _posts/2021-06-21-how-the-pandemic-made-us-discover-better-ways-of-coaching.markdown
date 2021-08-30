@@ -20,7 +20,7 @@ variations:
 - Our coaching techniques are now more remote-friendly, asynchronous, inclusive, open, and self-service! #agile #technicalCoaching #remote
 - Like many, we are suffering from COVID anxiety and Zoom fatigue. Yet, some aspects of our work are now both more sustainable and effective. #agile #technicalCoaching #sustainablePace #resilience
 - We are experimenting a hybrid git handover + #TCR script #agile #technicalCoaching #mobProgramming #pairProgramming #remote
-- If you struggle with remote pairing or mobbing, give 'watch.sh' ({{site.url}}/best-open-source-tools-for-remote-pair-programming/#open-source-alternative-2-git-pull-push-loop) or the mob tool (https://github.com/remotemobprogramming/mob) a try! #agile #technicalCoaching #mobProgramming #pairProgramming #remote
+- If you struggle with remote pairing or mobbing, give 'watch.sh' (https://philippe.bourgau.net/best-open-source-tools-for-remote-pair-programming/#open-source-alternative-2-git-pull-push-loop) or the mob tool (https://github.com/remotemobprogramming/mob) a try! #agile #technicalCoaching #mobProgramming #pairProgramming #remote
 - Online workshop board templates let us reuse and improve activities every time we went through it. #agile #technicalCoaching #growthMindset #resilience #remote
 - As we adapted to remote work, we replaced long workshops by successions of shorter and sustainable sessions. #agile #technicalCoaching #growthMindset #resilience #sustainablePace #remote
 - #Remote workshops become a total waste of time when they last longer than 1h30! #agile #technicalCoaching #sustainablePace
