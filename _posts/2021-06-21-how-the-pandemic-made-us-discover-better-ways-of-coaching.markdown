@@ -16,21 +16,21 @@ header:
   teaser: "/imgs/2021-06-21-how-the-pandemic-made-us-discover-better-ways-of-coaching/better-ways-teaser.jpg"
   og_image: "/imgs/2021-06-21-how-the-pandemic-made-us-discover-better-ways-of-coaching/better-ways-og.jpg"
 variations:
-- Wouldn't it be great if challenges always resulted in better ways of working? #agile #technicalCoaching #growthMindset #resilience
-- Our coaching techniques are now more remote-friendly, asynchronous, inclusive, open, and self-service! #agile #technicalCoaching #remote
-- Like many, we are suffering from COVID anxiety and Zoom fatigue. Yet, some aspects of our work are now both more sustainable and effective. #agile #technicalCoaching #sustainablePace #resilience
-- We are experimenting a hybrid git handover + #TCR script #agile #technicalCoaching #mobProgramming #pairProgramming #remote
-- If you struggle with remote pairing or mobbing, give 'watch.sh' (https://philippe.bourgau.net/best-open-source-tools-for-remote-pair-programming/#open-source-alternative-2-git-pull-push-loop) or the mob tool (https://github.com/remotemobprogramming/mob) a try! #agile #technicalCoaching #mobProgramming #pairProgramming #remote
-- Online workshop board templates let us reuse and improve activities every time we went through it. #agile #technicalCoaching #growthMindset #resilience #remote
-- As we adapted to remote work, we replaced long workshops by successions of shorter and sustainable sessions. #agile #technicalCoaching #growthMindset #resilience #sustainablePace #remote
-- #Remote workshops become a total waste of time when they last longer than 1h30! #agile #technicalCoaching #sustainablePace
-- We only work with volunteer people and teams. We adapted to the remote workplace with inbound marketing. More inbound demand means more freedom! #agile #technicalCoaching #changeManagement #resilience #remote
-- Some teams don't want coaches to interfere but prefer to practice by themselves. That's when remote self-service and asynchronous workshops shine! #agile #technicalCoaching #changeManagement #resilience #remote
-- Making all communication online bridges the gap between offices. In the end, it also makes work more #inclusive. #agile #technicalCoaching #remote
-- Lately, we've even started to use #TCR in katas with teams, and it's been working surprisingly well! #codingDojo #agile #technicalCoaching #gamification
-- #CodingDojo with #TCR are fun, and have a poker-like flavor! #agile #technicalCoaching #gamification
-- Having a script revert our failing changes is OK. Having an annoying coach repeating to take small steps all the time is just painful. #agile #technicalCoaching #gamification #TCR #changeManagement
-- There are always better ways to work! #agile #technicalCoaching #growthMindset #resilience
+- Wouldn't it be great if challenges always resulted in better ways of working? #technical #agileCoaching #growthMindset #resilience
+- Our coaching techniques are now more remote-friendly, asynchronous, inclusive, open, and self-service! #technical #agileCoaching #remote
+- Like many, we are suffering from COVID anxiety and Zoom fatigue. Yet, some aspects of our work are now both more sustainable and effective. #technical #agileCoaching #sustainablePace #resilience
+- We are experimenting a hybrid git handover + #TCR script #technical #agileCoaching #mobProgramming #pairProgramming #remote
+- If you struggle with remote pairing or mobbing, give 'watch.sh' (https://philippe.bourgau.net/best-open-source-tools-for-remote-pair-programming/#open-source-alternative-2-git-pull-push-loop) or the mob tool (https://github.com/remotemobprogramming/mob) a try! #technical #agileCoaching #mobProgramming #pairProgramming #remote
+- Online workshop board templates let us reuse and improve activities every time we went through it. #technical #agileCoaching #growthMindset #resilience #remote
+- As we adapted to remote work, we replaced long workshops by successions of shorter and sustainable sessions. #technical #agileCoaching #growthMindset #resilience #sustainablePace #remote
+- #Remote workshops become a total waste of time when they last longer than 1h30! #technical #agileCoaching #sustainablePace
+- We only work with volunteer people and teams. We adapted to the remote workplace with inbound marketing. More inbound demand means more freedom! #technical #agileCoaching #changeManagement #resilience #remote
+- Some teams don't want coaches to interfere but prefer to practice by themselves. That's when remote self-service and asynchronous workshops shine! #technical #agileCoaching #changeManagement #resilience #remote
+- Making all communication online bridges the gap between offices. In the end, it also makes work more #inclusive. #technical #agileCoaching #remote
+- Lately, we've even started to use #TCR in katas with teams, and it's been working surprisingly well! #codingDojo #technical #agileCoaching #gamification
+- #CodingDojo with #TCR are fun, and have a poker-like flavor! #technical #agileCoaching #gamification
+- Having a script revert our failing changes is OK. Having an annoying coach repeating to take small steps all the time is just painful. #technical #agileCoaching #gamification #TCR #changeManagement
+- There are always better ways to work! #technical #agileCoaching #growthMindset #resilience
 ---
 _This pandemic year has transformed the way we do technical agile coaching. It's now more asynchronous, self-service, gamified, open, and inclusive!_
 
