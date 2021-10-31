@@ -13,7 +13,20 @@ header:
   teaser: "/imgs/2021-09-20-3-tips-to-drop-technical-agile-coaching-result-measures-and-relax/goals-or-no-goal-teaser.jpg"
   og_image: "/imgs/2021-09-20-3-tips-to-drop-technical-agile-coaching-result-measures-and-relax/goals-or-no-goal-og.jpg"
 variations:
-- TODO
+- However hard we try, the impacts of #technical #agileCoaching are impossible to measure. #sustainablePace
+- The timeless questions of #technical #agileCoaching: Is my work helpful? Am I making any progress? #sustainablePace
+- Wouldn't it be great if you could use the non-measurable nature of #technical #AgileCoaching to fuel your enthusiasm? #sustainablePace
+- Forcing a measure on something that is not measurable only makes things worse! #technical #AgileCoaching #sustainablePace
+- So, instead of measuring our progress over a plan, we have to ensure we are making great choices NOW! #technical #AgileCoaching #sustainablePace
+- Take 10 minutes to assess the differences between the situation now and one month ago. #technical #agileCoaching #sustainablePace
+- Instead of a goal, you can use a clear WHY! #technical #agileCoaching #sustainablePace
+- A clear WHY will make you more authentic to others and at peace with your actions #technical #agileCoaching #sustainablePace
+- Is it time to have an essential retrospective with the right people? #technical #agileCoaching #sustainablePace
+- These 3 questions will reduce goal-generated stress. #technical #agileCoaching #sustainablePace
+- These 3 questions will make you more enthusiastic as you'll work towards your WHY! #technical #agileCoaching #sustainablePace
+- Letting go of the 'target' will help you to make better decisions when setbacks happen. #technical #agileCoaching #sustainablePace
+- We should also be agile in the way we do #technical #agileCoaching! #sustainablePace
+- Discover your WHY and start doing #technical #agileCoaching with authenticity and enthusiasm as soon as you can. #sustainablePace
 ---
 _Let's give up trying to measure technical agile coaching! Instead, use these 3 liberating questions to self-assess how well you are doing at any moment._
 
@@ -134,7 +147,7 @@ You have just discovered that something fundamental is not working. So it looks 
 
 Let's summarize:
 
-1.  **These tips will reduce goal-generated stress.**
+1.  **These questions will reduce goal-generated stress.**
 2.  **They will make you more enthusiastic as you'll work towards your WHY!**
 3.  Guess what? They will make you more effective! **Letting go of the 'target' will help you to make better decisions when setbacks happen.**
 
