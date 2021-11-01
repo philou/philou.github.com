@@ -29,6 +29,7 @@ variations:
 - The Test-Strategy workshop is an instance of Toyota's #improvementKata in disguise: it's a long-term quest! #technical #agileCoaching #bdd #productManagement #continuousImprovement
 - A #solutionFocused activity is a nice way for the full team to agree on a small #refactoring increment. #technical #agileCoaching #bdd #productManagement #continuousImprovement
 - As you run more of these activities, the developers' role in the #sprintPlanning should grow. #technical #agileCoaching #bdd #productManagement
+- What are your tricks to increase the developers' role at the #sprintPlanning? #technical #agileCoaching #bdd #productManagement
 ---
 _Run these activities with the whole team to increase not only the developers' role in sprint plannings, but also collaboration, engagement, and value creation!_
 
@@ -172,6 +173,8 @@ I have not yet tried this workshop with teams. Yet, Jürgen obviously did, and i
 Are you coaching a team in which developers are the mere executors of the business people's plans? In this case, give these workshops a try!
 
 The first one might not create a revolution, but it will start to move the needle. **As you run more of these activities, the developers' role in the sprint planning should grow.**
+
+What about you? Please share your tricks to increase the developers' role at Sprint Plannings?
 
 ## Other articles that might interest you
 
