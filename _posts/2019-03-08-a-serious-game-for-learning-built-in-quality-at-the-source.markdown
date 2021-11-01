@@ -56,7 +56,7 @@ In summary, without built-in quality at the source, people get stressed, which m
 {% assign figure_alt="Close up of the table while a team is playing the serious game for learning built-in quality at the source" %}
     
 {% capture figure_caption %}
-From [the Built-in Quality Game](https://philou.github.com/built-in-quality-game/) under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
+From [the Built-in Quality Game](https://philou.github.io/built-in-quality-game/) under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 {% endcapture %}
     
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
@@ -93,7 +93,7 @@ They were about 40 people attending the training. We had 6 teams of about 7 peop
 {% assign figure_alt="A close-up photo of a team playing the serious game for learning built-in quality at the source" %}
     
 {% capture figure_caption %}
-From [the Built-in Quality Game](https://philou.github.com/built-in-quality-game/) under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
+From [the Built-in Quality Game](https://philou.github.io/built-in-quality-game/) under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 {% endcapture %}
     
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
@@ -102,7 +102,7 @@ As part of a day-long training, we had agenda constraints for our game. We decid
 
 Even with this small glitch, the feedback and engagement were great. For example, teams understood that continuous delivery is better than big batch deployment.
 
-The coaches gave great feedback too. They said they would love to use this serious-game for teaching "Built-in Quality at the source". That's why I decided to [open source it](https://philou.github.com/built-in-quality-game/). 
+The coaches gave great feedback too. They said they would love to use this serious-game for teaching "Built-in Quality at the source". That's why I decided to [open source it](https://philou.github.io/built-in-quality-game/). 
 
 ## Try it yourself!
 
@@ -112,9 +112,9 @@ If you are a team-member, try it with your team. Next time you do an end-of-spri
 
 If you are a coach, the game is a good substitute for a training. People are usually happy to play instead of attending a classroom training.
 
-[![Github page for this serious game for learning built-in quality at the source]({{site.url}}/imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/github-page-screenshot.jpg)](https://philou.github.com/built-in-quality-game)
+[![Github page for this serious game for learning built-in quality at the source]({{site.url}}/imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/github-page-screenshot.jpg)](https://philou.github.io/built-in-quality-game)
 
-All material is available through [Github](https://philou.github.com/built-in-quality-game): [the boards, the cards](https://github.com/philou/built-in-quality-game/tree/master/material), [the rules](https://philou.github.com/built-in-quality-game/Rules.html) and [an animation guide](https://philou.github.com/built-in-quality-game/AnimationGuide.html).
+All material is available through [Github](https://philou.github.io/built-in-quality-game): [the boards, the cards](https://github.com/philou/built-in-quality-game/tree/master/material), [the rules](https://philou.github.io/built-in-quality-game/Rules.html) and [an animation guide](https://philou.github.io/built-in-quality-game/AnimationGuide.html).
 
 
 {% assign figure_path="/imgs/2019-03-08-a-serious-game-for-learning-built-in-quality-at-the-source/board-small.jpg" | absolute_url %}
@@ -122,7 +122,7 @@ All material is available through [Github](https://philou.github.com/built-in-qu
 {% assign figure_alt="The board of this serious game for learning built-in quality at the source. It's a Kanban board with instruction as how to move items from one column to the next" %}
     
 {% capture figure_caption %}
-[Main board](https://github.com/philou/built-in-quality-game/blob/master/material/board.jpg) from the [the Built-in Quality Game](https://philou.github.com/built-in-quality-game/) under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
+[Main board](https://github.com/philou/built-in-quality-game/blob/master/material/board.jpg) from the [the Built-in Quality Game](https://philou.github.io/built-in-quality-game/) under [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 {% endcapture %}
     
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
