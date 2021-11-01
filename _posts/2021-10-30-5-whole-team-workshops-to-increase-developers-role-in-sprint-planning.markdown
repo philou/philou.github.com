@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: "5 whole-team workshops to increase developers' role in sprint planning"
+title: "5 Whole-Team Workshops To Increase Developers' Role In Sprint Planning"
 date: 2021-11-04
 comments: true
 categories:
@@ -12,14 +12,25 @@ categories:
 - event storming
 - technical debt
 - gamification
-description: "Unfortunately, developers are often lacking influence over product and planning decisions 😞. Here are five activities to run with the whole team to increase the developers' role in sprint plannings, collaboration, engagement, and value creation!"
+description: "Unfortunately, developers are often lacking influence over product and planning decisions 😞. Here are five activities to run with the whole team to increase not only the developers' role in sprint plannings, but also collaboration, engagement, and value creation!"
 header:
   teaser: "/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/5-activities-for-developer-voice-teaser.jpg"
   og_image: "/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/5-activities-for-developer-voice-og.jpg"
 variations:
-- TODO
+- Here are 5 whole-team activities to increase not only the developers' role in #sprintPlannings, but also collaboration, engagement, and value creation! #technical #agileCoaching #bdd #productManagement
+- Wouldn't it be great if we knew ways to make all stakeholders -- product experts, developers, and quality people -- collaborate to plan what goes into the sprint? #technical #agileCoaching #bdd #productManagement #sprintPlanning
+- Each of these activities should increase the developers' role in #sprintPlanning. #technical #agileCoaching #bdd #productManagement
+- Did you try to run a #codeKata to learn #exampleMapping? Any kata with enough 'domain' will do. For example, the Mars Rover Kata (https://kata-log.rocks/mars-rover-kata) is a great fit. #technical #agileCoaching #bdd #productManagement
+- During an #EventStorming, participants will map out all domain events on the design board. This makes negotiating the scope of the next milestone straightforward. It's a perfect occasion for developers to have a massive influence on planning. #technical #agileCoaching #bdd #productManagement #sprintPlanning
+- The Built-In Quality Game (https://philou.github.io/built-in-quality-game/) lets everyone experience how investing in engineering practices speeds up feature delivery. #technical #agileCoaching #bdd #productManagement #gamification
+- Discover a few serious, whole-team games that should make business people care more about sound engineering. #technical #agileCoaching #bdd #productManagement #gamification
+- Without enough collaboration, product, development, and quality experts can only optimize locally. Here are a few tricks to make them coordinate to tackle the problem as a whole. #technical #agileCoaching #bdd #productManagement #continuousImprovement
+- If product and quality people take part in defining the next improvement action, they are more likely to sponsor it during sprint plannings! #technical #agileCoaching #bdd #productManagement #continuousImprovement
+- The Test-Strategy workshop is an instance of Toyota's #improvementKata in disguise: it's a long-term quest! #technical #agileCoaching #bdd #productManagement #continuousImprovement
+- A #solutionFocused activity is a nice way for the full team to agree on a small #refactoring increment. #technical #agileCoaching #bdd #productManagement #continuousImprovement
+- As you run more of these activities, the developers' role in the #sprintPlanning should grow. #technical #agileCoaching #bdd #productManagement
 ---
-_Run these activities with the whole team to increase the developers' role in sprint plannings, collaboration, engagement, and value creation!_
+_Run these activities with the whole team to increase not only the developers' role in sprint plannings, but also collaboration, engagement, and value creation!_
 
 ![Drawing of a hand representing 5 activities, and a developer with a growing voice under the caption @ Sprint Planning. Here are 5 activities to increase developers' role in sprint plannings.]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/5-activities-for-developer-voice.jpg)
 
@@ -84,7 +95,7 @@ _If you don't know the Example Mapping workshop yet, you can learn more about it
 A new target is a perfect occasion to run a [Big-Picture Event Storming]({{site.url}}/how-to-prepare-a-ddd-big-picture-event-storming-workshop/). Propose one next time the team starts a new product, a new important feature, or some rearchitecting. There are at least three collaboration benefits:
 
 1.  Participants will collaborate closely during the workshop. As a consequence, all stakeholders will know and trust each other more. Trust is the foundation for more collaboration on planning.
-2.  Often, developers accumulate a huge domain-knowledge debt. Big-Picture Event Storming is an accelerated way to pay it back. With more domain knowledge, developers' role in the spring planning will increase.
+2.  Often, developers accumulate a huge domain-knowledge debt. Big-Picture Event Storming is an accelerated way to pay it back. With more domain knowledge, developers' role in the sprint planning will increase.
 3.  **Participants will map out all domain events on the design board. This makes negotiating the scope of the next milestone straightforward. It's a perfect occasion for developers to have a massive influence on planning.** Here is a post explaining how to use Big Picture Event Storming to agree on a target scope in more detail.
 
 _I've [written a lot about Event Storming]({{site.url}}/categories/#event-storming) in the past. [Misadventures with Big Design Up-Front]({{site.url}}/misadventures-with-big-design-up-front/) is a good starting point. (Note: My colleague [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire) and I are preparing more content about Event Storming. [Stay tuned](http://eepurl.com/dxKE95) 😉)_
@@ -160,7 +171,7 @@ I have not yet tried this workshop with teams. Yet, Jürgen obviously did, and i
 
 Are you coaching a team in which developers are the mere executors of the business people's plans? In this case, give these workshops a try!
 
-The first one might not create a revolution, but it will start to move the needle. **As you run more of these activities, the developers' role in the spring planning should grow.**
+The first one might not create a revolution, but it will start to move the needle. **As you run more of these activities, the developers' role in the sprint planning should grow.**
 
 ## Other articles that might interest you
 
