@@ -132,7 +132,7 @@ _The [Built-In Quality Game](https://philou.github.io/built-in-quality-game/) is
 
 At work, many teams have the long-term goal of 'inverting the [test pyramid](https://martinfowler.com/bliki/TestPyramid.html).' Although a worthy goal, teams don't necessarily know how to get there by themselves. **Without enough collaboration, product, development, and quality experts were only optimizing locally. They need more coordination to tackle the problem as a whole.**
 
-[![The template Miro board for the Test Strategy Workshop we use at work. The workshop ends we drafting test-improvement initiatives to be prioritized in the sprint planning]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/Test Strategy Workshop Template-small.jpg)]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/Test Strategy Workshop Template.jpg)
+[![The template Miro board for the Test Strategy Workshop we use at work. The workshop ends we drafting test-improvement initiatives to be prioritized in the sprint planning]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/test-strategy-workshop-template-small.jpg)]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/test-strategy-workshop-template.jpg)
 
 We created and have now run the 'Test Strategy Workshop' with a few teams. The goal is for them to embark on a test improvement journey together. It's a multi-stage workshop that spans many short sessions. Here is how the workshop goes:
 
