@@ -20,7 +20,7 @@ Sounds familiar ?
 
 ## What's going on exactly ?
 
-When dev teams want to get more (agile|lean|reactive|.*) they often resort to hiring a full time coach. At first, a coach can have a great impact on the team. He will unblock change, show different ways of getting things done and train the team to new practices. Once all this is done, the coach becomes like any team member, or sometimes just leaves. That's the point when the team, as a whole, has to take on responsibility for continuous improvement.
+When dev teams want to get more (agile, lean, reactive, or whatever) they often resort to hiring a full time coach. At first, a coach can have a great impact on the team. He will unblock change, show different ways of getting things done and train the team to new practices. Once all this is done, the coach becomes like any team member, or sometimes just leaves. That's the point when the team, as a whole, has to take on responsibility for continuous improvement.
 
 ## What's needed then ?
 
