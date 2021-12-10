@@ -15,7 +15,22 @@ header:
   teaser: "/imgs/2021-12-06-leverage-scrum-to-workaround-feature-factory-sprint-planning/sprint-planning-teaser.jpg"
   og_image: "/imgs/2021-12-06-leverage-scrum-to-workaround-feature-factory-sprint-planning/sprint-planning-og.jpg"
 variations:
-- TODO
+- Non-developers are usually not aware of the importance of technical practices #technicalAgile #agile #scrum #agileCoaching
+- Surprisingly, even teams officially using Scrum overlook technical work! #technicalAgile #agile #scrum #agileCoaching
+- Discuss the Definition of Done outside the context of the current stories and urgencies in order to make time for technical work #technicalAgile #agile #scrum #agileCoaching
+- Scrum changed its wording from "commitment" to "forecast." Use this to find time for technical work. #technicalAgile #agile #scrum #agileCoaching
+- Stay on your guards towards the end of sprints! This is when it's all too easy for humans to default to ship-at-all-cost mode! #technicalAgile #agile #scrum #agileCoaching
+- One benefit of story points is that it makes micromanaging man-days more difficult! #technicalAgile #agile #scrum #agileCoaching
+- Used well, story points estimates increase the team's control over its time. #technicalAgile #agile #scrum #agileCoaching
+- With story points, time for recurring unplanned work is automatically reserved #technicalAgile #agile #scrum #agileCoaching
+- When the team finishes its sprint stories, it should work on improvements, not on new stories! #technicalAgile #agile #scrum #agileCoaching
+- Here are Scrum-Aïkido techniques that should get us a long way into finding time for technical work. #technicalAgile #agile #scrum #agileCoaching
+- Unfortunately, there will be times when we will unearth large technical tasks... #technicalAgile #agile #scrum #agileCoaching
+- Regular technical work is the developers' responsibility. It should not be subject to negotiation at the sprint planning! #technicalAgile #agile #scrum #agileCoaching
+- Use these 3 "Scrum-Aikido" techniques! #technicalAgile #agile #scrum #agileCoaching
+- Agree on a definition of done with high quality. #technicalAgile #agile #scrum #agileCoaching
+- Stress the difference between forecasts and commitments in Scrum #technicalAgile #agile #scrum #agileCoaching
+- Use story points and planning poker to carve out some time for technical work #technicalAgile #agile #scrum #agileCoaching
 ---
 _Is "Business Value" the only thing that matters for sprint plannings? Here are 3 Scrum practices that will buy developers some time for technical work!._
 
