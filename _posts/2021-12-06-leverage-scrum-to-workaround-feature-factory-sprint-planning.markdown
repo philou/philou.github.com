@@ -52,7 +52,7 @@ It's a challenge to make business people care about technical excellence! As a r
 
 > Wouldn't it be great if the team could manage most of the technical work outside the sprint planning?
 
-Here are five Scrum-Aïkido moves that you can do with an official Scrum team. In the long term, they should let the team reach a calmer and yet more effective pace:
+Here are three Scrum-Aïkido moves that you can do with an official Scrum team. In the long term, they should let the team reach a calmer and yet more effective pace:
 
 1. [Agree on quality in a Definition of Done](#agree-on-quality-in-a-definition-of-done)
 2. [Forecast instead of commit to user stories](#forecast-instead-of-commit-to-user-stories)
