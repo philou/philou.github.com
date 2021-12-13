@@ -115,7 +115,7 @@ From [the Built-in Quality Game](https://philou.github.io/built-in-quality-game/
 
 Often, developers are absent from planning by sheer ignorance. Many business stakeholders ignore the impact of omitting some technical practices.
 
-[Nobody Ever Gets Credit For Fixing Problems That Never Happened](https://web.mit.edu/nelsonr/www/Repenning=Sterman_CMR_su01_.pdf) explains this situation. It concludes that serious games are a way to get everyone more aligned. The [Built-In Quality Gam]({{site.url}}/a-serious-game-for-learning-built-in-quality-at-the-source/)e could be such a game. We invented it as a fun alternative to formal training. **It lets everyone experience how investing in engineering practices speeds up feature delivery.**
+[Nobody Ever Gets Credit For Fixing Problems That Never Happened](https://web.mit.edu/nelsonr/www/Repenning=Sterman_CMR_su01_.pdf) explains this situation. It concludes that serious games are a way to get everyone more aligned. The [Built-In Quality Game]({{site.url}}/a-serious-game-for-learning-built-in-quality-at-the-source/) could be such a game. We invented it as a fun alternative to formal training. **It lets everyone experience how investing in engineering practices speeds up feature delivery.**
 
 Here are two other games to raise awareness about technical debt:
 
