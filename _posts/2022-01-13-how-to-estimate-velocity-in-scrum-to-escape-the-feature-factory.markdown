@@ -15,9 +15,15 @@ header:
   teaser: "/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/escape-from-the-feature-factory-teaser.jpg"
   og_image: "/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/escape-from-the-feature-factory-og.jpg"
 variations:
-- Poker Planning is a collaborative game... that developers often lose! Here are the original fair rules that will provide developers time for technical work.
-- TODO the vicious circle image
-- TODO
+- Poker Planning is a collaborative game... that developers often lose! Here are the original fair rules that will provide developers time for technical work. #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- Averaging the Scrum velocity starts a vicious circle that increases variability! TODO image #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- The wide-spread recommendation about estimating velocity in Scrum is terrible for developers! #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- Let's see how to leverage Scrum Velocity to reach a sustainable and effective pace. #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- Averaging the Scrum velocity makes the team in a never-ending state of catch up. #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- The only, conscious or unconscious, reason to average the velocity is to game the metrics! #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- In the long term, sticking to last sprint velocity is a better strategy than averaging velocity in all aspects. Not only for developers but for business stakeholders too! #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- Sticking to last sprint velocity emphasizes the product owner's duty of excluding what not to do! #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
+- Are developers losing the planning poker game in the team you are working with? It might be time to change the rules of planning poker! #scrum #technical #agileCoaching #sustainablePace #planningPoker #scrumVelocity
 ---
 _Poker Planning is a collaborative game... that developers often lose! Here are the original **fair** rules that will provide developers time for technical work._
 
