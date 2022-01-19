@@ -100,10 +100,11 @@ In the end, **the team is in a constant state of catching up.** This constant st
 {% assign figure_alt="A hand-drawn schema of the vicious circle of averaging velocity. Here is how it goes: Average velocity -> Catch up on 'good' sprints -> No slack time for improvement -> long term situation gets worse -> more variability -> Average velocity..." %}
 
 {% capture figure_caption %}
-By [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/average-velocity-vicious-circle.jpg)
+[Retweet this image](https://twitter.com/intent/retweet?tweet_id=1483673599110221824) by [Philippe Bourgau]({{site.url}}), under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), [high resolution image]({{site.url}}/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/average-velocity-vicious-circle.jpg)
 {% endcapture %}
 
 {% include figure image_path=figure_path alt=figure_alt caption=figure_caption %}
+
 
 In fact, averaging velocity does not change anything to the previous situation! On the contrary, it degrades trust, generates stress, and pill-up technical debt.
 
