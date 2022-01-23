@@ -3,11 +3,13 @@ source "https://rubygems.org"
 gem "jekyll"
 gem "minimal-mistakes-jekyll"
 gem "jekyll-redirect-from"
+gem "kramdown-parser-gfm"
+
 
 group :jekyll_plugins do
+  gem 'jekyll-archives'
   gem "jekyll-compose"
   gem "jekyll-feed"
-  gem "github-pages"
   gem "jemoji"
 end
 
