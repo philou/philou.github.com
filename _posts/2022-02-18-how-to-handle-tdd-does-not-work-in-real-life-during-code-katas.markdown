@@ -14,9 +14,20 @@ header:
   teaser: "/imgs/2022-02-18-how-to-handle-tdd-does-not-work-in-real-life-during-code-katas/kata-real-life-teaser.jpg"
   og_image: "/imgs/2022-02-18-how-to-handle-tdd-does-not-work-in-real-life-during-code-katas/kata-real-life-og.jpg"
 variations:
-- Doing code katas to learn real-life TDD can at first look like a scam to many developers. So here are three techniques to maintain a constructive mood.
-- Listening, explaining, and mobbing are 3 techniques against "#xp does not work in real life" complaints
-- TODO
+- Doing code katas to learn real-life #tdd can at first look like a scam to many developers. So here are three techniques to maintain a constructive mood. #codeKata #agile #technicalCoach
+- Listening, explaining, and mobbing are 3 techniques against "#xp does not work in real life" complaints #codeKata #agile #technicalCoach
+- Instead of arguing during the coding dojo, it's a more effective strategy to listen and get everything out #codeKata #agile #technicalCoach
+- Sometimes, a compassionate ear is all people need to remain constructive in the dojo #codeKata #agile #technicalCoach
+- We want participants to be in a 'learning mindset' during the coding dojo #codeKata #agile #technicalCoach
+- In the coding dojo, failing at the exercise does not hurt and is of no consequence! #codeKata #agile #technicalCoach
+- In the coding dojo, remind that the goal is not to "fix" the problem but to practice #codeKata #agile #technicalCoach
+- There is a spark of genius in the coding dojo format. It squeezes many aspects of day-to-day programming in 2 hours! #codeKata #agile #technicalCoach
+- The coding dojo is an accelerated way to grow #refactoring muscles #codeKata #agile #technicalCoach
+- "Learning #tdd is like swimming front crawl when you only know how to swim breaststroke. It's slower at first, but it eventually becomes faster and less tiring." (a coach on Okiwi) #codeKata #agile #technicalCoach
+- Alternating between code katas and mob sessions helps coachees to bridge the gap. #codeKata #agile #technicalCoach #mobProgramming
+- Ask the team members for a piece of code to apply the refactoring technique they practiced #codeKata #agile #technicalCoach #mobProgramming
+- Running mob sessions is a perfect answer to comments like "TDD does not work in real life" during code katas #codeKata #agile #technicalCoach #mobProgramming
+- It's no surprise that a topic called eXtreme Programming generates strong reactions! #codeKata #agile #technicalCoach #xp
 ---
 _Doing code katas to learn real-life TDD can at first look like a scam to many developers. So here are three techniques to maintain a constructive mood._
 
