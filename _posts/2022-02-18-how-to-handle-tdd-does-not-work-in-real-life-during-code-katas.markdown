@@ -1,7 +1,7 @@
 ---
 layout: single-mailing-list
 title: How to handle "TDD does not work in real life!" during code katas
-date: 2022-03-04
+date: 2022-03-03
 comments: true
 categories:
 - tdd
