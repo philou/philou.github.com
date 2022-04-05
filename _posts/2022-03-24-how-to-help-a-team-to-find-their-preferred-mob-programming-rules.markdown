@@ -14,7 +14,16 @@ header:
   teaser: "/imgs/2022-03-24-how-to-help-a-team-to-find-their-preferred-mob-programming-rules/mob-programming-under-scrutiny-teaser.jpg"
   og_image: "/imgs/2022-03-24-how-to-help-a-team-to-find-their-preferred-mob-programming-rules/mob-programming-under-scrutiny-og.jpg"
 variations:
-- TODO
+- Running a code retreat around mob programming helps members of a team to both: kick-off their mob programming habit, and discover how they want to mob. #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- Ask participants to imagine experiments of mob-programming rules, flavors, or styles to find what works best for them. #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- It's incredible how actually trying something stops dead-ends discussions between team members. #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- Go through a kata using more and more elaborate mobbing styles #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- Surprisingly, many teams prefer a single to many navigators in the mob! It looks like it makes space for thinking, and it leaves introverts a chance to speak up. #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- Experiment these different ways to share feedback in the mob: the feedback-sandwich technique, Facts-Feeling-Needs-Proposition... #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- If performance is crucial, experiment with a dedicated performance role in the mob. #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- We can a code retreat experimentation workshop for other aspects of collaboration. Ex: pair programming or reviews code retreats. #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
+- Nothing beats experimentation when trying to find good ways to work together.
+- Are you facing collaboration glitches when coaching with mob programming? Try a code retreat of mob programming experiments #mobProgramming #codeRetreat #codeKata #agile #technicalCoaching
 ---
 _A dysfunctional mob makes coaching impossible! So here is a workshop for team members to try and find the mob programming rules that work for them._
 
