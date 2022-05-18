@@ -1,15 +1,15 @@
 ---
 layout: single-mailing-list
 title: 3 Things You Need to Master to Get Your Team Ready to Work With Serverless
-date: "2022-05-26"
+date: "2022-05-19"
 author: "Marco Troisi"
 comments: true
 categories:
 - architecture
 description: "This guest post by serverless expert Marco Troisi highlights 3 key skills for serverless development: Infrastructure-as-code, Event-Driven Architecture, and Solution Architecture Diagram. You will also learn what team-activities you can run with coachees to help them to master these 3 skills."
 header:
-  teaser: "/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/TODO-teaser.jpg"
-  og_image: "/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/TODO-og.jpg"
+  teaser: "/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/serverless-skills-teaser.jpg"
+  og_image: "/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/serverless-skills-og.jpg"
 variations:
 - Infrastructure-as-code ensures consistency across environments. #infrastructureascode #serverless #architecture #technical #agileCoaching
 - Infrastructure-as-code makes infrastructure reviewable by developers #infrastructureascode #serverless #architecture #technical #agileCoaching
@@ -20,7 +20,7 @@ variations:
 - Infrastructure-as-Code enables you to increase the rate at which you develop your products and ship them to market. #infrastructureascode #serverless #architecture #technical #agileCoaching
 - With Infrastructure-as-Code you remove a major dependency, namely the infrastructure “experts” #infrastructureascode #serverless #architecture #technical #agileCoaching
 - Group activities such as a “lunch & learn” session can be very helpful to get your team up to speed with #infrastructureascode. Simply watch a video together and pause at various points to discuss. #serverless #architecture #technical #agileCoaching
-- [This video](https://www.youtube.com/watch?v=LaxH8GS8l3Q) is a great one to watch as a group to get into #infrastructureascode, and could easily stimulate a follow-up team exercise. #serverless #architecture #technical #agileCoaching
+- This video (https://www.youtube.com/watch?v=LaxH8GS8l3Q) is a great one to watch as a group to get into #infrastructureascode, and could easily stimulate a follow-up team exercise. #serverless #architecture #technical #agileCoaching
 - A Solution Architecture diagram is a fantastically powerful way to bring about clarity and keep stakeholders aligned. #serverless #architecture #technical #agileCoaching
 - Unless your job title is a Solution Architect, your diagram doesn’t need to be perfect or even pretty to look at #serverless #architecture #technical #agileCoaching
 - The best way to learn how to draw Solution Architecture diagrams is to get your hands dirty. #serverless #architecture #technical #agileCoaching
@@ -30,6 +30,8 @@ variations:
 - TODO
 ---
 _In this guest post, serverless expert Marco Troisi highlights 3 key skills to go serverless, and how, as coaches, we can help a team to learn them._ 
+
+![Paper drawing of the work SKILLS with the S reusing the styles from the serverless icon, and the L being the lambda symbol. This post goes over some skills that are key to serverless development.]({{site.url}}/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/serverless-skills.jpg)
 
 There are [many reasons](https://www.forbes.com/sites/forbestechcouncil/2021/11/04/four-reasons-you-should-consider-going-serverless/?sh=6e66de9e69cf) for wanting to adopt serverless technologies as part of your development lifecycle. From reduced costs to automated scalability to improved developer experience. 
 
@@ -53,7 +55,7 @@ Infrastructure-as-Code (IaC) allows you to manage infrastructure (networks, virt
 
 By allowing developers to write, run, and maintain their infrastructure, you set yourself up for success as your team embarks on the serverless adoption journey.
 
-![Picture made up of some code samples over a data-center. Infrastructure-as-code has become ubiquitous in our industry, and is actually a must-have for serverless development.](../imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/infra-as-code.jpg)
+![Picture made up of some code samples over a data-center. Infrastructure-as-code has become ubiquitous in our industry, and is actually a must-have for serverless development.]({{site.url}}/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/infra-as-code.jpg)
 
 Here are 3 benefits of embracing Infrastructure-as-Code in your team:
 
@@ -111,7 +113,7 @@ If your team is on AWS, I highly recommend reading the [CDK Book](https://thecdk
 
 ## #2 Understand Event-Driven Architecture
 
-[![High level architecture diagram of an event-driven system on AWS. We can see how the Event Router is central to a serverless systems.](../imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/SEO-Diagram_Event-Driven-Architecture_Diagram.jpg)](https://d1.awsstatic.com/product-marketing/EventBridge/1-SEO-Diagram_Event-Driven-Architecture_Diagram.b3fbc18f8cd65e3af3ccb4845dce735b0b9e2c54.png)
+[![High level architecture diagram of an event-driven system on AWS. We can see how the Event Router is central to a serverless systems.]({{site.url}}/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/SEO-Diagram_Event-Driven-Architecture_Diagram.jpg)](https://d1.awsstatic.com/product-marketing/EventBridge/1-SEO-Diagram_Event-Driven-Architecture_Diagram.b3fbc18f8cd65e3af3ccb4845dce735b0b9e2c54.png)
 
 _Source: [AWS](https://d1.awsstatic.com/product-marketing/EventBridge/1-SEO-Diagram_Event-Driven-Architecture_Diagram.b3fbc18f8cd65e3af3ccb4845dce735b0b9e2c54.png)_
 
@@ -136,7 +138,7 @@ Event-Driven systems don't need to be too complex, to begin with. For example, A
 
 In my experience, **a Solution Architecture diagram is a fantastically powerful way to bring about clarity and keep stakeholders aligned**. 
 
-![[AWS Reference Solution Architecture](https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/high-performance-computing-on-aws-ra.pdf?did=wp_card&trk=wp_card) for High-Performance Computing](../imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/high-performance-computing-aws.jpg)
+![[AWS Reference Solution Architecture](https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/high-performance-computing-on-aws-ra.pdf?did=wp_card&trk=wp_card) for High-Performance Computing]({{site.url}}/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/high-performance-computing-aws.jpg)
 
 _Source: [AWS Reference Solution Architecture](https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/high-performance-computing-on-aws-ra.pdf?did=wp_card&trk=wp_card) for High-Performance Computing_
 
@@ -164,7 +166,7 @@ Lastly, **show the diagram to someone who is only marginally familiar with the s
 
 According to the [2021 Global Knowledge survey](https://www.globalknowledge.com/us-en/content/salary-report/it-skills-and-salary-report/), 80% of interviewed IT professionals have seen an increase in their job effectiveness, including improved quality of work, increased engagement, and faster job performance, as a result of obtaining an IT certification.
 
-![Picture made up of small stones with graduation hats. AWS certifications can be a good learning path to get a team up to speed with serverless.](../imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/graduation.jpg)
+![Picture made up of small stones with graduation hats. AWS certifications can be a good learning path to get a team up to speed with serverless.]({{site.url}}/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/graduation.jpg)
 
 IT certifications are not a guarantee of competence if taken in isolation, but they can be a cheap and effective way for companies to ensure a knowledge baseline among teams.
 
