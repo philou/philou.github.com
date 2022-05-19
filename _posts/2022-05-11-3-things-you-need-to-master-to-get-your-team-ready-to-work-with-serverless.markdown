@@ -27,7 +27,6 @@ variations:
 - Get your team started with Solution Architecture Diagrams by finding a simple component that everyone is familiar with (e.g. the signup process), and start drawing a it out by highlighting the 3 areas mentioned above. #serverless #architecture #technical #agileCoaching
 - Show your Solution Architecture Diagram to someone who is only marginally familiar with the system to get useful review.  #serverless #architecture #technical #agileCoaching
 - Gradually introduce these 3 practices to a team that is starting with serverless: #infrastructureAsCode, #eventDriven architecture, Solution Architecture Diagrams. #serverless #architecture #technical #agileCoaching
-- TODO
 ---
 _In this guest post, serverless expert Marco Troisi highlights 3 key skills to go serverless, and how, as coaches, we can help a team to learn them._ 
 
