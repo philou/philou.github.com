@@ -15,8 +15,15 @@ header:
   teaser: "/imgs/2022-06-03-how-to-make-a-team-facilitate-agile-architecture-workshops/Facilitation-Keys-teaser.jpg"
   og_image: "/imgs/2022-06-03-how-to-make-a-team-facilitate-agile-architecture-workshops/Facilitation-Keys-og.jpg"
 variations:
-- Wouldn't it be great if you knew how to coach teams to do transparent and collective architecture?
-- TODO
+- Wouldn't it be great if you knew how to coach teams to do transparent and collective architecture? #agile #softwareArchitecture #technicalCoaching #facilitation
+- Let's unlock a middle way that is calmer, more collaborative, and more effective! It's #agile #softwareArchitecture! #technicalCoaching #facilitation
+- Our job is to make agile architecture workshops a habit in the teams! #agile #softwareArchitecture #technicalCoaching #facilitation
+- The 3 learning steps to be able to teach #EventStorming to a team: 1)  Facilitating, 2) Injecting, 3) Installing. #agile #softwareArchitecture #technicalCoaching #facilitation #ddd
+- As often as you can, remind the team that they should regularly re-run agile architecture workshops themselves. #agile #softwareArchitecture #technicalCoaching #facilitation
+- Take the habit of suggesting short #EventStorming workshops like design level updates or team flow. #agile #softwareArchitecture #technicalCoaching #facilitation #ddd
+- Take 2 hours with your apprentice facilitators to rehearse a simple scenario. #agile #softwareArchitecture #technicalCoaching #facilitation
+- Remember the 3 steps to make #agile #softwareArchitecture workshops a team habit: 1) Start with immersion, 2) Spot early adopters and potential facilitators, 3) Involve them more and more in regular sessions. #technicalCoaching #facilitation
+
 ---
 
 _In [The Serverless Mindset, I blogged](https://marcotroisi.substack.com/p/3-wonderful-workshops-that-will-make) about Event Storming and Example Mapping for agile architecture. How do you coach teams to adopt these workshops?_
