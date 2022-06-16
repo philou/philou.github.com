@@ -194,3 +194,6 @@ As you think about the next feature that you or your team are going to tackle:
 - Finally, look at [pre-made templates](https://aws.amazon.com/cloudformation/resources/templates/) so that all of your infrastructure is clearly defined (and reviewed) as code.
 
 ***Have you or your team recently adopted serverless technologies? What have you found useful and what challenges have you faced?***
+
+---
+*[Marco Troisi](https://www.linkedin.com/in/marcotroisi/) is a cloud architect and serverless expert. We have been following each other's blogs for a long time. He now blogs on [The Serverless Mindset](https://marcotroisi.substack.com/).*
