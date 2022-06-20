@@ -11,9 +11,9 @@ description: "We did the 1st phase of DDD Big Picture Event Storming. Let's buil
 header:
    teaser: /imgs/2019-01-22-drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/functional-areas-teaser.jpeg
    og_image: /imgs/2019-01-22-drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/functional-areas-og.jpeg
-canonical_url: https://murex.github.io/EventStormingJournal/big%20picture/improve-collaboration-with-a-functional-architecture-vision-draft/
+canonical_url: https://www.eventstormingjournal.com/big%20picture/improve-collaboration-with-a-functional-architecture-vision-draft/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://murex.github.io/EventStormingJournal/big%20picture/improve-collaboration-with-a-functional-architecture-vision-draft/) has been published on the Event Storming Journal blog**_
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/improve-collaboration-with-a-functional-architecture-vision-draft/) has been published on the Event Storming Journal blog**_
 
 _We did the 1st phase of [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://en.wikipedia.org/wiki/Event_storming). It’s time to build on the shared knowledge to draft a functional architecture vision. All in just a few days._
 

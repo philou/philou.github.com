@@ -99,7 +99,7 @@ A new target is a perfect occasion to run a [Big-Picture Event Storming]({{site.
 2.  Often, developers accumulate a huge domain-knowledge debt. Big-Picture Event Storming is an accelerated way to pay it back. With more domain knowledge, developers' role in the sprint planning will increase.
 3.  **Participants will map out all domain events on the design board. This makes negotiating the scope of the next milestone straightforward. It's a perfect occasion for developers to have a massive influence on planning.** Here is a post explaining how to use Big Picture Event Storming to agree on a target scope in more detail.
 
-_I've [written a lot about Event Storming]({{site.url}}/categories/#event-storming) in the past. [Misadventures with Big Design Up-Front]({{site.url}}/misadventures-with-big-design-up-front/) is a good starting point. (Note: My colleague [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire) and I have created the [Event Storming Journal](https://murex.github.io/EventStormingJournal), a blog dedicated to demystifying Event Storming)_
+_I've [written a lot about Event Storming]({{site.url}}/categories/#event-storming) in the past. [Misadventures with Big Design Up-Front]({{site.url}}/misadventures-with-big-design-up-front/) is a good starting point. (Note: My colleague [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire) and I have created the [Event Storming Journal](https://www.eventstormingjournal.com), a blog dedicated to demystifying Event Storming)_
 
 ## 3. Play the built-in quality game
 

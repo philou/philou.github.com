@@ -11,9 +11,9 @@ description: "Kick starting a project with a DDD Big Picture Event Storming can 
 header:
    teaser: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning-teaser.jpeg
    og_image: /imgs/2018-12-08-detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/event-storming-beginning-og.jpeg
-canonical_url: https://murex.github.io/EventStormingJournal/big%20picture/what-to-say-at-the-beginning-of-a-big-picture-event-storming-workshop/
+canonical_url: https://www.eventstormingjournal.com/big%20picture/what-to-say-at-the-beginning-of-a-big-picture-event-storming-workshop/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://murex.github.io/EventStormingJournal/big%20picture/what-to-say-at-the-beginning-of-a-big-picture-event-storming-workshop/) has been published on the Event Storming Journal blog**_
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/what-to-say-at-the-beginning-of-a-big-picture-event-storming-workshop/) has been published on the Event Storming Journal blog**_
 
 _Kick starting a project with a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) can be chaotic. Here is a detailed agenda and a sample briefing to set it on the right track._
 

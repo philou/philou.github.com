@@ -151,6 +151,6 @@ Other articles that might interest you:
 *   [# How to coach developers to get a chat with their product experts]({{site.url}}/how-to-coach-developers-to-get-a-chat-with-their-product-experts/)
 *   A detailed facilitation guide about Big Picture Event Storming that start with [Misadventures with Big Design Up Front]({{site.url}}/misadventures-with-big-design-up-front/)
 *   [Why should we use Design Level Event Storming for DDD?]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/) A detailed facilitation guide about Design-Level Event Storming
-*   Preview of [The 1-hour Event Storming book](https://murex.github.io/EventStormingJournal/1h-event-storming-book/) [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire/) and I are currently writing
+*   Preview of [The 1-hour Event Storming book](https://www.eventstormingjournal.com/1h-event-storming-book/) [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire/) and I are currently writing
 *   If you are interested in more workshops, here are [5 Whole-Team Workshops To Increase Developers’ Role In Sprint Planning]({{site.url}}/5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/)
 *   If you are starting on a serverless team, read [3 Things You Need to Master to Get Your Team Ready to Work With Serverless]({{site.url}}/3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/)

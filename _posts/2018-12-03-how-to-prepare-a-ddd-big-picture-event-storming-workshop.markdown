@@ -11,9 +11,9 @@ description: "Big Picture Event Storming unlocks DDD through massive domain know
 header:
    teaser: /imgs/2018-12-03-how-to-prepare-a-ddd-big-picture-event-storming-workshop/ddd-on-event-storming-teaser.jpeg
    og_image: /imgs/2018-12-03-how-to-prepare-a-ddd-big-picture-event-storming-workshop/ddd-on-event-storming-og.jpeg
-canonical_url: https://murex.github.io/EventStormingJournal/foundations/how-to-prepare-a-ddd-big-picture-event-storming-workshop/
+canonical_url: https://www.eventstormingjournal.com/foundations/how-to-prepare-a-ddd-big-picture-event-storming-workshop/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://murex.github.io/EventStormingJournal/foundations/how-to-prepare-a-ddd-big-picture-event-storming-workshop/) has been published on the Event Storming Journal blog**_
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/foundations/how-to-prepare-a-ddd-big-picture-event-storming-workshop/) has been published on the Event Storming Journal blog**_
 
 _The massive domain knowledge sharing of a Big Picture_ [_Event Storming_](https://www.eventstorming.com/) _unlocks_ [_DDD_](https://en.wikipedia.org/wiki/Domain-driven_design)_. Good preparation makes running one easy. Here's the 1st of a 4 posts step by step guide._
 
