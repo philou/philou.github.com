@@ -15,7 +15,20 @@ header:
   teaser: "/imgs/2022-07-05-a-surprising-way-how-to-teach-evolutionary-design/tcr-gardening-teaser.jpg"
   og_image: "/imgs/2022-07-05-a-surprising-way-how-to-teach-evolutionary-design/tcr-gardening-og.jpg"
 variations:
-- TODO
+- #EvolutionaryDesign makes the lives of developers better! #tcr #technical #agileCoaching
+- Baby-steps programming is the fundamental skill for #EvolutionaryDesign.  #tcr #technical #agileCoaching
+- In a #TCR #codingDojo, if we are too bold or ambitious (or pretentious) with a code change, the tests fail, and the change gets reverted. #technical #agileCoaching #evolutionaryDesign
+- Having participants stick to baby steps during a code kata has always been an issue. #tcr #technical #agileCoaching #evolutionaryDesign #codingDojo
+- #TCR is a bit like a workout machine for #TDD practice sessions. #technical #agileCoaching #evolutionaryDesign #codingDojo
+- #TDD rookies tend not to run the tests often enough and spend too much time out of green-state. #tcr #technical #agileCoaching #evolutionaryDesign #codingDojo
+- As tech coaches, we have to remind participants to stick to baby steps. Yet, 1) It's exhausting to be the killjoy all the time; 2) We cannot keep an eye on everyone at the same time. #tcr #technical #agileCoaching #evolutionaryDesign #codingDojo
+- #TCR keeps the code in a green state. It "forces" #codingDojo participants to stick to baby steps. #technical #agileCoaching #evolutionaryDesign
+- With #TCR, we can facilitate larger #codingDojo sessions than with 'stock' #TDD. #technical #agileCoaching #evolutionaryDesign
+- With #TCR, participants experience going through a programming task with baby steps. #technical #agileCoaching #evolutionaryDesign #codingDojo
+- With #TCR, we can even check the git-log to see the detailed steps we used. #technical #agileCoaching #evolutionaryDesign
+- I have seen #TDD veterans get reverted on their first #TCR kata and learn from it. #technical #agileCoaching #evolutionaryDesign #codingDojo
+- My colleagues and I have been working on a #TCR tool. You can find it at https://github.com/murex/TCR #technical #agileCoaching #evolutionaryDesign
+- Give #TCR a try and share your experience! #technical #agileCoaching #evolutionaryDesign
 ---
 _Evolutionary Design might be the most valuable yet impenetrable XP practice. Use TCR to practice baby-steps coding, the cornerstone of Evolutionary Design._
 
