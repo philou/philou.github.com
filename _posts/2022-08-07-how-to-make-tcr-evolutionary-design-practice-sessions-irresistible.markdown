@@ -13,10 +13,20 @@ header:
   teaser: "/imgs/2022-08-07-how-to-make-tcr-evolutionary-design-practice-sessions-irresistible/tcr-donkey-teaser.jpg"
   og_image: "/imgs/2022-08-07-how-to-make-tcr-evolutionary-design-practice-sessions-irresistible/tcr-donkey-og.jpg"
 variations:
-- TDD code katas can be fun, but TCR code kata exercises are even more fun!
-- With TCR, the best practice is to let participants take long steps!
-- Getting participants in a TCR code kata exercise seems complicated! Yet, given what TCR is, these sessions can radiate genuine fun and direct applicability!
-- TODO
+- TDD code katas can be fun, but #TCR code kata exercises are even more fun! #tdd #codingDojo #technical #agileCoaching
+- With #TCR, the best practice is to let participants take long steps! #tdd #codingDojo #technical #agileCoaching
+- Getting participants in a #TCR code kata exercise seems complicated! Yet, given what TCR is, these sessions can radiate genuine fun and direct applicability! #tdd #codingDojo #technical #agileCoaching
+- Have you suggested #TCR sessions to the teams you are coaching? Unfortunately, you might have discovered that "Selling" TCR is not easy. #tdd #codingDojo #technical #agileCoaching
+- #TCR code kata exercises don't appeal to developers who believe in "perfect code first." #tdd #codingDojo #technical #agileCoaching
+- Actually, katas with #TCR sell better than those with #TDD! #codingDojo #technical #agileCoaching
+- Leverage your pedagogy-expert posture when facilitating #TCR coding dojos. #tdd #codingDojo #technical #agileCoaching
+- #TCR sounds like a 'drill': they are different from real-life work, yet, drills positively impact real-life work. #tdd #codingDojo #technical #agileCoaching
+- It's almost impossible for participants to envision using #TCR in their day-to-day work. As a result, they come to TCR code katas with a constructive practice mindset! #tdd #codingDojo #technical #agileCoaching
+- #TCR gives its critical lesson when it reverts our code! #tdd #codingDojo #technical #agileCoaching
+- Participants might want to 'cheat' during #TCR code kata! That's when you should put your "sports coach" cap on and remind them that this is the critical learning moment. #tdd #codingDojo #technical #agileCoaching
+- Developers, used to picky compilers, will get far less annoyed by the #TCR reverts than by a human coach. #tdd #codingDojo #technical #agileCoaching
+- #TCR is a cruel teacher: whenever we try to make a change that outgrows our abilities, TCR reverts it. #tdd #codingDojo #technical #agileCoaching
+- #TCR learnings are surprisingly production-ready! #tdd #codingDojo #technical #agileCoaching
 ---
 *Getting participants in a TCR code kata exercise seems complicated! Yet, given what TCR is, these sessions can radiate genuine fun and direct applicability!*
 
