@@ -83,7 +83,7 @@ One of the main observations we made about TCR katas is that they are fun! They 
 
 Always repeat that this is practice. At first, participants might be unable to use TCR or TDD in their day-to-day work. Remind them that a code kata is a unique occasion to practice by the book in a safe context.
 
-> I stopped and reminded them that they were here to learn how to build things incrementally, that they should continue to work through the exercises with that in mind ([Jeff Langr](https://groups.io/g/extremeprogramming/topic/75090300?p=,,,40,0,0,0))
+> I stopped and reminded them that they were here to learn how to build things incrementally, that they should continue to work through the exercises with that in mind ([Jeff langr](https://twitter.com/jlangr) on [extremeprogramming@groups.io](https://groups.io/g/extremeprogramming/topic/75090300?p=,,,40,0,0,0))
 
 This should help them to stay engaged at times when they are doubting.
 
