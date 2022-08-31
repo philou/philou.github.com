@@ -31,7 +31,7 @@ Finally, I love doing side projects, from wannabe businesses to open source.
 
 Here are the main side projects I've been working on throughout the years
 
-* [Philou's Planning Poker](http://philous-planning-poker.herokuapp.com): Better poker estimates for remote teams!
+* [Philou's Planning Poker](https://philou.github.io/planning-poker/): Better poker estimates for remote teams!
 * [Storexplore](http://philou.github.io/storexplore): Transform online stores into APIs!
 * [RSpecProxies](http://philou.github.io/rspecproxies): Simplify RSpec mocking with test proxies!
 * [ComplexityAssert](https://philou.github.io/complexity-assert/): Assert your algorithm time complexity in RSpec (experimental)!
