@@ -13,9 +13,9 @@ header:
    og_image: /imgs/2018-12-26-detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/event-storming-finish-line-og.jpeg
 canonical_url: https://www.eventstormingjournal.com/big%20picture/step-by-step-guide-to-run-your-big-picture-event-storming/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/step-by-step-guide-to-run-your-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
-
 _Thanks to massive knowledge sharing, a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) is the 1st step to collaboratively draft a Rough Design Up Front. Here are its last steps._
+
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/step-by-step-guide-to-run-your-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
 
 This is the 7th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). If you want to learn how I got into Event Storming, I recommend you to start reading from [the beginning](/misadventures-with-big-design-up-front/).
 

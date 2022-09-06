@@ -13,9 +13,9 @@ header:
    og_image: /imgs/2018-12-07-how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/event-storming-box-og.jpeg
 canonical_url: https://www.eventstormingjournal.com/foundations/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/foundations/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
-
 _Running a_ [_DDD_](https://en.wikipedia.org/wiki/Domain-driven_design) _Big Picture_ [_Event Storming_](https://www.eventstorming.com/) _is a great way to kick start a project. Fortunately, it only requires common supplies. Here is a detailed checklist._
+
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/foundations/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
 
 This is the 4th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). If you want to learn how I got into Event Storming, I recommend you to start reading from [the beginning](/misadventures-with-big-design-up-front/).
 

@@ -12,9 +12,9 @@ header:
    og_image: /imgs/2018-11-19-misadventures-with-big-design-up-front/jenga-tower-og.jpeg
 canonical_url: https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
-
 _Although a nice idea in theory, [Big Design Up Front](https://en.wikipedia.org/wiki/Big_Design_Up_Front) has many problems that I learned the hard way. We should avoid BDUF most of the time._
+
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
 
 At school, I was taught  that Big Design Up Front is the only way to go. We even used to write all pseudo code on paper before touching a computer at all!
 

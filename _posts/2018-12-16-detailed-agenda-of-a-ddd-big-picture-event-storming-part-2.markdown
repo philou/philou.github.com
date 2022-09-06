@@ -13,9 +13,9 @@ header:
    og_image: /imgs/2018-12-16-detailed-agenda-of-a-ddd-big-picture-event-storming-part-2/event-storming-3-phases-game-og.jpeg
 canonical_url: https://www.eventstormingjournal.com/big%20picture/step-by-step-guide-to-run-your-big-picture-event-storming/
 ---
-ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/step-by-step-guide-to-run-your-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
-
 _The_ [_DDD_](https://en.wikipedia.org/wiki/Domain-driven_design) _Big Picture_ [_Event Storming_](https://www.eventstorming.com/) is a _creative game. It sticks to [the classic open-explore-close flow](https://gamestorming.com/). Here is the second part of its detailed agenda._
+
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/step-by-step-guide-to-run-your-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
 
 This is the 6th post in a [series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). If you want to learn how I got into Event Storming, I recommend you to start reading from [the beginning](/misadventures-with-big-design-up-front/).
 
