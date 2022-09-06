@@ -11,7 +11,10 @@ description: "Here is the continued story of how I dropped Big Design Up Front f
 header:
    teaser: /imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming-teaser.jpeg
    og_image: /imgs/2018-11-21-how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/event-storming-og.jpeg
+canonical_url: https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/
 ---
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
+
 _The combination of_ [_Incremental Design_](https://www.jamesshore.com/Agile-Book/incremental_design.html) _and_ [_Event Storming_](https://www.eventstorming.com/) _is a better alternative to_ [_Big Design Up Front_](https://en.wikipedia.org/wiki/Big_Design_Up_Front)_. It's faster, safer and creates natural buy-in._
 
 In my [previous post](/misadventures-with-big-design-up-front/), I explained how I tried to apply Big Design Up Front at my first job. Long story short, I did not manage very well...
