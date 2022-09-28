@@ -1,7 +1,7 @@
 ---
 layout: single-mailing-list
 title: A complete workshop for your team to see what's a good test strategy
-date: "2022-10-03"
+date: "2022-09-29"
 comments: true
 categories:
 - testing
