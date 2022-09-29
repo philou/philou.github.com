@@ -134,7 +134,7 @@ At work, many teams have the long-term goal of 'inverting the [test pyramid](htt
 
 [![The template Miro board for the Test Strategy Workshop we use at work. The workshop ends we drafting test-improvement initiatives to be prioritized in the sprint planning]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/test-strategy-workshop-template-small.jpg)]({{site.url}}/imgs/2021-10-30-5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/test-strategy-workshop-template.jpg)
 
-We created and have now run the 'Test Strategy Workshop' with a few teams. The goal is for them to embark on a test improvement journey together. It's a multi-stage workshop that spans many short sessions. Here is how the workshop goes:
+We created and have now run the [Test Strategy Workshop]({{site.url}}/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/) with a few teams. The goal is for them to embark on a test improvement journey together. It's a multi-stage workshop that spans many short sessions. Here is how the workshop goes:
 
 1.  Introduction to the topic.
 2.  Homework and presentation of the different kinds of tests in the industry.
@@ -185,3 +185,4 @@ Here are other related articles that you read to dig further:
 *   If you want to read how we invented the Built-in Quality Game at work, read [A serious game for learning ‘built-in quality at the source’]({{site.url}}/a-serious-game-for-learning-built-in-quality-at-the-source/)
 *   My complete guide about how to run your first Big Picture Event Storming starts with [Misadventures with Big Design Up Front]({{site.url}}/misadventures-with-big-design-up-front/)
 *   [How to run your first improvement kata]({{site.url}}/how-to-run-your-first-improvement-kata/)
+*   [A complete workshop for your team to see what’s a good test strategy]({{site.url}}/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/)

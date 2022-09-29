@@ -109,7 +109,7 @@ In our case, the Kirby team members were having a hard time maintaining legacy c
 
 In other cases, **you might be able to fix their pains without programming**. If you can, then do it! You will save everybody's time, and the team will be more likely to come back for more.
 
-For example, we have designed a test strategy workshop. It helps team members to agree on how to test the different aspects of their system.
+For example, we have designed a [test strategy workshop]({{site.url}}/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/). It helps team members to agree on how to test the different aspects of their system.
 
 Other times, though, **fixing the pain will involve installing new programming habits.**
 
@@ -212,3 +212,4 @@ If you liked this post, you might also learn more about how to get over bad TDD 
 *   Interested about how a series of code katas can also help people learn a new language? Read: [How to learn a programming language in just 20 hours]({{site.url}}/how-to-learn-a-programming-language-in-just-20-hours/)
 *   Want to get the full story of how we approached teams at Murex? Read [The story about how we do Agile Technical Coaching]({{site.url}}/the-story-about-how-we-do-agile-technical-coaching/)
 *   Interested in live katas I gave? Watch [Live Legacy Code Refactoring with the Golden Master](https://youtu.be/9HmVrfkzm9I) at [Legacy of Socrates](https://www.youtube.com/channel/UC0M37QolwmwobAY4Bt8Tszg)
+*   [A complete workshop for your team to see what’s a good test strategy]({{site.url}}/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/)

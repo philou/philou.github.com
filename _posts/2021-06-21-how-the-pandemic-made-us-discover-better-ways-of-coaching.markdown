@@ -85,7 +85,7 @@ Before the pandemic, we used to rely on everyone being present during workshops.
 
 Everything changed when the lockdown hit us. The company was already using [Miro](https://miro.com/); it felt natural to port our workshops there. It was awkward at first: small screen, clumsy manipulation... After a while, though, we started to notice some benefits:
 
-*   We were able **to reuse and improve activities every time we went through a similar workshop**. For example, we have built a Test Strategy workshop board that is being reused a lot at Murex.
+*   We were able **to reuse and improve activities every time we went through a similar workshop**. For example, we have built a [Test Strategy workshop]({{site.url}}/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/) board that is being reused a lot at Murex.
 *   **We replaced long workshops by successions of shorter and sustainable sessions.** We discovered that **remote workshops become a total waste of time when they last longer than 1h30**. Inspired by [Training from the Back of the Room](https://www.goodreads.com/book/show/8141935-training-from-the-back-of-the-room), we now ask participants for some asynchronous homework between sessions. Many actually do them!
 *   With all this experience under our belt, we ran a successful [remote code-retreat at DDD Europe](https://dddeurope.com/2021/program/2021/program/24)!
 
@@ -160,3 +160,4 @@ Here are a few other posts that might interest you:
 *   Here is [How to deliver a remote training with code-katas and randori in pairs]({{site.url}}/how-to-deliver-a-remote-training-with-code-katas-and-randori-in-pairs/). 
 *   [5 Years of Blogging About Software]({{site.url}}/5-years-of-blogging-about-software/) is an old post where I explained how I started blogging. 
 *   Wondering why we only work with volunteers? Check [5 technical agile coaching tips to fight exhaustion from laggards]({{site.url}}/5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/)
+*   [A complete workshop for your team to see what’s a good test strategy]({{site.url}}/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/)
