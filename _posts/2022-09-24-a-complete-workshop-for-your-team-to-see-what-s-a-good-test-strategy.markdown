@@ -9,20 +9,35 @@ categories:
 - team building
 - collaborative work
 - improvement kata
-description: "Software teams often disagree about what is a good test strategy! So here is an whole-team workshop to agree on names for the different kinds of software tests and capture current practices. After filling a test strategy canvas, the workshop ends by defining and planning testing improvements."
+description: "Software teams often disagree about what is a good test strategy! So here is a whole-team workshop to agree on names for the different kinds of software tests and capture current practices. After filling a test strategy canvas, the workshop ends by defining and planning testing improvements."
 header:
   teaser: "/imgs/2022-09-24-a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/different-test-vocabulary-teaser.jpg"
   og_image: "/imgs/2022-09-24-a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/different-test-vocabulary-og.jpg"
 variations:
-- A lack of testing strategy leads to many problems like holes in the test harness, which lead to bugs and rework
-- A lack of testing strategy leads to many problems like a slow testing feedback loop
-- A lack of testing strategy leads to many problems like an increased test maintenance burden
-- Wouldn't it be great if engineers regularly aligned on testing terms?
-- During a test strategy workshop, team members learn the industry's testing best practices and compare their own practices
-- During a test strategy workshop, team members agree and capture testing terms
-- During a test strategy workshop, team members agree about who, how, and when they should test the different aspects of their system
-- During a test strategy workshop, team members, as a whole team, define and plan an improvement to their testing strategy
-- TODO
+- A lack of testing strategy leads to many problems like holes in the test harness, which lead to bugs and rework #technical #agileCoaching #teamwork #softwareTesting
+- A lack of testing strategy leads to many problems like a slow testing feedback loop #technical #agileCoaching #teamwork #softwareTesting
+- A lack of testing strategy leads to many problems like an increased test maintenance burden #technical #agileCoaching #teamwork #softwareTesting
+- Wouldn't it be great if engineers regularly aligned on testing terms? #technical #agileCoaching #teamwork #softwareTesting
+- During a test strategy workshop, team members learn the industry's testing best practices and compare their own practices #technical #agileCoaching #teamwork #softwareTesting
+- During a test strategy workshop, team members agree and capture testing terms #technical #agileCoaching #teamwork #softwareTesting
+- During a test strategy workshop, team members agree about who, how, and when they should test the different aspects of their system #technical #agileCoaching #teamwork #softwareTesting
+- During a test strategy workshop, team members, as a whole team, define and plan an improvement to their testing strategy #technical #agileCoaching #teamwork #softwareTesting
+- Teams often disagree about what is a good test strategy! #technical #agileCoaching #teamwork #softwareTesting
+- The team had to overcome a new threshold to further improve their testing. That's why we tried the test strategy workshop. #technical #agileCoaching #teamwork #softwareTesting
+- DIY vocabulary for the different kinds of software tests is an hint to run a test strategy workshop #technical #agileCoaching #teamwork #softwareTesting
+- Blurry testing terms are a common symptom of not thinking about "What is a good test strategy for our team?" #technical #agileCoaching #teamwork #softwareTesting
+- 🎁 With better testing comes more sustainable and calmer work! #technical #agileCoaching #teamwork #softwareTesting
+- During the test strategy workshop, we asked each team member to present a kind of test. #technical #agileCoaching #teamwork #softwareTesting
+- After digging through their test metrics, the team could draw its own test pyramid. #technical #agileCoaching #teamwork #softwareTesting
+- The Test Strategy canvas is a one-page template that summarizes how a team tests its software. #technical #agileCoaching #teamwork #softwareTesting
+- One of the goals of the test strategy workshop is to agree on names for the different kinds of software tests. #technical #agileCoaching #teamwork #softwareTesting
+- Re-running the test strategy workshop is also a good onboarding activity for new joiners. #technical #agileCoaching #teamwork #softwareTesting
+- Finishing the test strategy workshop with a solution-focus activituy constrains the size of improvements to something small and manageable. #technical #agileCoaching #teamwork #softwareTesting
+- A key benefit of coming up with this improvements with the whole team is that they are already prioritized! #technical #agileCoaching #teamwork #softwareTesting
+- A nice side effect is that putting tests in place often involves paying back technical debt! #technical #agileCoaching #teamwork #softwareTesting
+- The test strategy workshop uses the way of communication, collaboration, and collective decision-making. #technical #agileCoaching #teamwork #softwareTesting
+- Do team members disagree about testing terms, how to test, or how to improve testing? Try the test strategy workshop!  #technical #agileCoaching #teamwork #softwareTesting
+- Do the different profiles in the team disagree about the priority to give to testing? Try the test strategy workshop! #technical #agileCoaching #teamwork #softwareTesting
 ---
 _**Teams often disagree about what is a good test strategy!** So here is an all-in workshop to capture practices, define testing terms and agree on improvements._
 
