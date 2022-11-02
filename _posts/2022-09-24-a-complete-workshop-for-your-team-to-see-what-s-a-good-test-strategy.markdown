@@ -24,16 +24,16 @@ variations:
 - During a test strategy workshop, team members, as a whole team, define and plan an improvement to their testing strategy #technical #agileCoaching #teamwork #softwareTesting
 - Teams often disagree about what is a good test strategy! #technical #agileCoaching #teamwork #softwareTesting
 - The team had to overcome a new threshold to further improve their testing. That's why we tried the test strategy workshop. #technical #agileCoaching #teamwork #softwareTesting
-- DIY vocabulary for the different kinds of software tests is an hint to run a test strategy workshop #technical #agileCoaching #teamwork #softwareTesting
+- DIY vocabulary for the different kinds of software tests is a hint to run a test strategy workshop #technical #agileCoaching #teamwork #softwareTesting
 - Blurry testing terms are a common symptom of not thinking about "What is a good test strategy for our team?" #technical #agileCoaching #teamwork #softwareTesting
 - 🎁 With better testing comes more sustainable and calmer work! #technical #agileCoaching #teamwork #softwareTesting
-- During the test strategy workshop, we asked each team member to present a kind of test. #technical #agileCoaching #teamwork #softwareTesting
+- During the test strategy workshop, we asked each team member to present a kind of software test. #technical #agileCoaching #teamwork #softwareTesting
 - After digging through their test metrics, the team could draw its own test pyramid. #technical #agileCoaching #teamwork #softwareTesting
 - The Test Strategy canvas is a one-page template that summarizes how a team tests its software. #technical #agileCoaching #teamwork #softwareTesting
 - One of the goals of the test strategy workshop is to agree on names for the different kinds of software tests. #technical #agileCoaching #teamwork #softwareTesting
 - Re-running the test strategy workshop is also a good onboarding activity for new joiners. #technical #agileCoaching #teamwork #softwareTesting
-- Finishing the test strategy workshop with a solution-focus activituy constrains the size of improvements to something small and manageable. #technical #agileCoaching #teamwork #softwareTesting
-- A key benefit of coming up with this improvements with the whole team is that they are already prioritized! #technical #agileCoaching #teamwork #softwareTesting
+- Finishing the test strategy workshop with a solution-focus activity constrains the size of improvements to something small and manageable. #technical #agileCoaching #teamwork #softwareTesting
+- A key benefit of coming up with testing improvements with the whole team is that they are already prioritized! #technical #agileCoaching #teamwork #softwareTesting
 - A nice side effect is that putting tests in place often involves paying back technical debt! #technical #agileCoaching #teamwork #softwareTesting
 - The test strategy workshop uses the way of communication, collaboration, and collective decision-making. #technical #agileCoaching #teamwork #softwareTesting
 - Do team members disagree about testing terms, how to test, or how to improve testing? Try the test strategy workshop!  #technical #agileCoaching #teamwork #softwareTesting
