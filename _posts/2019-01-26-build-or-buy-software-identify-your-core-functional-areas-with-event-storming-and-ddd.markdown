@@ -11,8 +11,11 @@ description: "Event Storming and DDD are great at identifying bounded contexts. 
 header:
    teaser: /imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain-teaser.jpeg
    og_image: /imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain-og.jpeg
+canonical_url: https://www.eventstormingjournal.com/big%20picture/decide-to-build-or-buy-with-big-picture-event-storming/
 ---
 _[Event Storming](https://en.wikipedia.org/wiki/Event_storming) and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) are great at identifying [bounded contexts](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/). It's even more valuable to identify the core contexts to focus on, and the generic ones to buy._
+
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/big%20picture/decide-to-build-or-buy-with-big-picture-event-storming/) has been published on the Event Storming Journal blog**_
 
 In [the previous post](/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/), I explained how to draw the boundaries of bounded contexts. Not all bounded contexts are equal though. Some have tremendous value for you, whereas others just need to exist. [Pareto's Principle](https://en.wikipedia.org/wiki/Pareto_principle), also known as 80/20 rule goes like that:
 
