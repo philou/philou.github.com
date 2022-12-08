@@ -12,8 +12,11 @@ description: "Design-Level Event Storming is a collaborative design workshop. We
 header:
    teaser: /imgs/2019-10-06-why-should-we-use-design-level-event-storming-for-ddd/design-level-event-storming-zoom-teaser.jpeg
    og_image: /imgs/2019-10-06-why-should-we-use-design-level-event-storming-for-ddd/design-level-event-storming-zoom-og.jpeg
+canonical_url: https://www.eventstormingjournal.com/software%20design/why-should-you-run-a-design-level-event-storming/
 ---
 _Design Level Event Storming is a collaborative design workshop. Use it to build and share the design of critical parts of systems using Event Sourcing and [DDD](https://en.wikipedia.org/wiki/Domain-driven_design)._
+
+ℹ️ _**NOTE: An [updated version of this post](https://www.eventstormingjournal.com/software%20design/why-should-you-run-a-design-level-event-storming/) has been published on the Event Storming Journal blog**_
 
 ![Drawing of a DDD Event Storming board with a loop on one Bounded Context. Design Level Event Storming is about diving in the details of a core Bounded Context]({{site.url}}/imgs/2019-10-06-why-should-we-use-design-level-event-storming-for-ddd/design-level-event-storming-zoom.jpeg)
 
