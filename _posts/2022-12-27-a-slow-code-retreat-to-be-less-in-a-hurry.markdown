@@ -19,33 +19,7 @@ header:
   teaser: "/imgs/2022-12-27-a-slow-code-retreat-to-be-less-in-a-hurry/developers-life-race-teaser.jpg"
   og_image: "/imgs/2022-12-27-a-slow-code-retreat-to-be-less-in-a-hurry/developers-life-race-og.jpg"
 variations:
-- Developers always have something more urgent than learning or improving to do! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Senior developers are often too busy to onboard Juniors! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- There will always be urgent and valuable projects to deliver! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- We always have the choice to step back and take it easy or not! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Slow programming is about injecting some 'sustainable' seconds into work. #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Slow programming is about our state of mind #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Using "Slow TODO Lists" while programming removes all the mental load involved with keeping track of work. #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- A "Slow TODO Lists" while programming is also a communication tool #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Using "Slow TODO Lists" while programming helps us to chose what not to do! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Striving to "Slow Steps" while programming teaches us how much you can do without mistakes #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Striving to "Slow Steps" while programming teaches us to do extra small steps #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Striving to "Slow Steps" while programming helps us to detect when to call it a day and leave #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Striving to "Slow Steps" while programming helps us to detect when we start writing low-quality code #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Using "Slow Self-Retro" while programming helps us spot our non-constructive emotional reactions #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Using "Slow Self-Retro" while programming increases our knowledge of inner feelings and needs #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Using "Slow Self-Retro" while programming generates interesting data for continuous improvement #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Code Reviews" prevent conflicts #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Code Reviews" improve teamwork, psychological safety, but also the efficiency of reviews #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Code Reviews" results in more creative solutions #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Code Reviews" is a way to practice Non-Violent Communication #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Give a try to "Slow Driving" in the mob to make mob programming more sustainable #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Driving" while mob programming lets our creative mind work in the background #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Driving" while mob programming lets us get back to navigator role with a new perspective #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Navigation" while mob programming improves decision-making and team performance #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- Try "Slow Self-Retro" on a simple kata to discover the emotional roller coaster programming gets us through! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Driving" and "Slow TODO List" make work more sustainable *and* productive from day 1! #sustainablePace #slowWork #workshop #agile #technicalCoaching
-- "Slow Programming" is an interesting way to explore an ignored facet of software development #sustainablePace #slowWork #workshop #agile #technicalCoaching
+- TODO
 ---
 _"Developers will always have more work than time" We can race our TODO lists or accept and slow down NOW. The "Slow Code Retreat" helps us do that!_
 
