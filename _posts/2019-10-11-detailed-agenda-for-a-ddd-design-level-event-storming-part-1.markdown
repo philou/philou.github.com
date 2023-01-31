@@ -15,6 +15,8 @@ header:
 ---
 _Running a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Design-Level Event Storming is not rocket science! It's still crucial to start the right way: with domain events and the Picture that explains Everything!_
 
+ℹ️ _**NOTE: Part of this post has been [republished and updated](https://www.eventstormingjournal.com/software%20design/how-to-explain-design-level-event-storming-to-your-mother/) on the Event Storming Journal blog**_
+
 ![Drawing of a can of 'Good Start' about Design-Level Event Storming]({{site.url}}/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-good-start.jpeg)
 
 This post is the second in [a series about how to build event-based systems with Design-Level Event Storming and DDD]({{site.url}}/categories/#how-to-run-a-design-level-event-storming-series). If you haven't yet, start by [the beginning]({{site.url}}/why-should-we-use-design-level-event-storming-for-ddd/).
