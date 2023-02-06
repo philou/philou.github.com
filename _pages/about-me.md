@@ -7,7 +7,7 @@ author_profile: true
 ---
 Philippe Bourgau, XP Coach and Sustainable Pace Hacktivist
 
-*Let's not waste our lives on loosy work! I help software engineers to reach an effective and sustainable pace through continuous refactoring of their code and organizations.*
+_Let's not waste our lives on loosy work! I help software engineers to reach an effective and sustainable pace through continuous refactoring of their code and organizations._
 
 I blog about:
 
@@ -21,7 +21,7 @@ I have worked on all aspects of software : technical, product, people, process, 
 
 Mainstream agile methods like Scrum or Kanban might get teams to collaborate better. It’s only through XP’s high technical standards and focus on merciless refactoring that a team can reap the business benefits of Continuous Delivery.
 
-I have successfully used merciless refactoring, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and sustainable pace by adapting these practices to their special context.
+I have successfully used merciless evolutionary design, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and sustainable pace by adapting these practices to their special context.
 
 I’m currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0). My style of coaching is about empowering anyone inject some change to the organization around them.
 
