@@ -14,7 +14,27 @@ header:
   teaser: "/imgs/2023-02-22-how-to-avoid-the-large-scale-impact-pitfall/change-dominos-teaser.jpg"
   og_image: "/imgs/2023-02-22-how-to-avoid-the-large-scale-impact-pitfall/change-dominos-og.jpg"
 variations:
-- TODO
+- Applying willpower to have a "wider than team" impact on an organization is a recipe for burnout! #agile #technicalCoaching #changeManagement
+- Wouldn't it be great if you had the formula to refill your energy for sharing with people? Whatever is the organization evolving into? #agile #technicalCoaching #changeManagement
+- Focusing on wide-scale organizational transformation is no guarantee for results. In fact, this behavior can lead to exhaustion! #agile #technicalCoaching #changeManagement
+- Change only happens one person at a time, as they switch to a different point of view. Change happens locally, by nature! #agile #technicalCoaching #changeManagement
+- Technical Agile Coaching is about working with team members and making their lives better. #agile #technicalCoaching #changeManagement
+- As a Technical Agile Coaches, I strive to spend as much time as possible working with or for teams. #agile #technicalCoaching #changeManagement
+- As a Technical Agile Coaches, I am very careful to limit the energy I burn for "large-scale agile transformation." #agile #technicalCoaching #changeManagement
+- Not only does the "Local actions, Global change" strategy works, but it will also make your life lighter! #agile #technicalCoaching #changeManagement
+- Stop worrying about the unachievable goal of "large-scale transformation." Instead, enthusiastically work with people and consider broad change a bonus. #agile #technicalCoaching #changeManagement
+- You don't have to ask for permission to bring change! Just make things better for you and the people around you. #agile #technicalCoaching #changeManagement
+- As a Technical Agile Coach, local actions are where you should invest your time and energy! #agile #technicalCoaching #changeManagement
+- Embody XP's calm and steady rhythm! This behavior has a lot more impact than we usually think! #agile #technicalCoaching #changeManagement
+- The obvious benefit of local actions is that they can directly improve people's lives! #agile #technicalCoaching #changeManagement
+- Many developers told me that XP practices changed their work life! #agile #technicalCoaching #changeManagement
+- "Technical Agile Coaching tip: people will listen to you if you remain optimistic!" #agile #technicalCoaching #changeManagement
+- The local action strategy is perfect if you are an embedded coach or a developer! #agile #technicalCoaching #changeManagement
+- Local efforts maximize our long-term chances of inspiring others and triggering more change! #agile #technicalCoaching #changeManagement
+- Less stress at work also means a happier family at home! Who knows? You may contribute to saving couples and healthier kids through #agile #technicalCoaching! #changeManagement
+- When the people you coach move to a new team or company, they will also impact those around them! #agile #technicalCoaching #changeManagement
+- All large-scale changes that result of your local actions are bonuses! Don't expect them. #agile #technicalCoaching #changeManagement
+- Every work day, just before you leave, write down three local actions you did as a Technical Agile Coach. #agile #technicalCoaching #changeManagement
 ---
 _Applying willpower to have a "wider than team" impact on an organization is a recipe for burnout! Check the "Local Actions, Global Impact" strategy instead._
 
@@ -28,7 +48,7 @@ _Applying willpower to have a "wider than team" impact on an organization is a r
 
 As change agents, it's natural to wonder how we could have a broader impact on the organization where we work. Isn't our goal to transform how people work?
 
-Unfortunately, you are among many parameters that influence an organization's evolution. Focusing too much on wide-scale organizational transformation is no guarantee for results. This situation can lead to exhaustion!
+Unfortunately, you are among many parameters that influence an organization's evolution. **Focusing on wide-scale organizational transformation is no guarantee for results. In fact, this behavior can lead to exhaustion!**
 
 > Wouldn't it be great if you had the formula to refill your energy for sharing with people? Whatever is the organization evolving into?
 
@@ -46,16 +66,16 @@ I borrowed this motto from environmental protection movements. I recently read [
 
 Let's copy these hardcore change agents!
 
-Change only happens one person at a time, as they switch to a different point of view. Change happens locally, by nature! Simon Sinek supports this idea in [How to Make a Cultural Transformation](https://www.youtube.com/watch?v=N9d0NqSztWA). He explains that the only sure way he knows to make cultural change is to win over 15% of people. You do this by **meeting them and making their lives better**.
+**Change only happens one person at a time, as they switch to a different point of view. Change happens locally, by nature!** Simon Sinek supports this idea in [How to Make a Cultural Transformation](https://www.youtube.com/watch?v=N9d0NqSztWA). He explains that the only sure way he knows to make cultural change is to win over 15% of people. You do this by **meeting them and making their lives better**.
 
 ![Photo of a statue of Millicent Fawcett holding a banner 'Courage calls to courage everywhere']({{site.url}}/imgs/2023-02-22-how-to-avoid-the-large-scale-impact-pitfall/millicent-fawcett-statue.jpg)
 
-It means spending as much time as possible working with or for teams. It also means limiting the energy we burn for "large-scale agile transformation." It's too easy to get caught up in this topic. I try to remember to reassess my priorities regularly. I adapt whenever I see that I am disconnecting from teams and talking about change that I cannot control!
+It means **spending as much time as possible working with or for teams.** It also means **limiting the energy we burn for "large-scale agile transformation."** It's too easy to get caught up in this topic. I try to remember to reassess my priorities regularly. I adapt whenever I see that I am disconnecting from teams and talking about change that I cannot control!
 
-Not only does the "Local actions, Global change" strategy works, but it will also make your life lighter!
+**Not only does the "Local actions, Global change" strategy works, but it will also make your life lighter!**
 
-1. First, you will stop worrying about the unachievable goal of "large-scale transformation." Instead, enthusiastically work with people and consider broad change a bonus.
-2. Second, you don't have to ask for permission to bring change! Just make things better for you and the people around you.
+1. First, you will **stop worrying about the unachievable goal of "large-scale transformation." Instead, enthusiastically work with people and consider broad change a bonus.**
+2. Second, you **don't have to ask for permission to bring change! Just make things better for you and the people around you.**
 
 ## Local Actions
 
@@ -76,19 +96,19 @@ Preparing for any of the above also counts as local action. Be careful to get re
 
 Local action is not limited to teams! Sessions with managers or product managers can be local too. However, keep the focus on their behavior and not that of others!
 
-Another local action is to be present and embody XP's calm and steady rhythm! This behavior has a lot more impact than we usually think!
+Another local action is to be present and **embody XP's calm and steady rhythm! This behavior has a lot more impact than we usually think!**
 
 You can also host 'open sessions,' which anyone from the organization can join! These sessions can be code katas or educational workshops. It's an excellent way to generate awareness, connect, and provide help.
 
 ### The direct benefits of local actions
 
-The main obvious benefit of local actions is that we can directly improve some people's lives! Many developers told me how learning XP practices changed their work life. Their days had become more effective, engaging, and, most of all, calmer.
+**The main obvious benefit of local actions is that we can directly improve some people's lives!** Many developers told me how learning **XP practices changed their work life**. Their days had become more effective, engaging, and, most of all, calmer.
 
-Keep in mind that XP improves people's lives. Focus on local actions. Your energy will follow! Plus, people will listen to you if you remain optimistic!
+So, keep in mind that XP improves people's lives. Focus on local actions. Your energy will follow! Plus, **people will listen to you if you remain optimistic!**
 
 From another perspective, every local action is a potential conference talk or workshop. Sending proposals or attending meetups is another chance to improve developers' lives.
 
-Finally, the local action strategy is perfect if you are an embedded coach or a developer! All local actions can be part of your day-to-day job. Make sure to 'sell' it the right way:
+Finally, **the local action strategy is perfect if you are an embedded coach or a developer!** All local actions can be part of your day-to-day job. Make sure to 'sell' it the right way:
 
 - Organize problem-solving workshops to make your team more effective.
 - Run mob or kata programming sessions to increase the skills of newcomers (and others).
@@ -98,19 +118,19 @@ Finally, the local action strategy is perfect if you are an embedded coach or a 
 
 ![Illustration of an Anonymous Mask holding shining and twirling shapes in their hands. It looks as if they are blowing to create change.]({{site.url}}/imgs/2023-02-22-how-to-avoid-the-large-scale-impact-pitfall/anonymous-change.jpg)
 
-Focusing on local actions keeps us energetic and optimistic. Moreover, local efforts maximize our long-term chances of inspiring others and triggering more change! Here are examples of broad changes that local actions can trigger.
+Focusing on local actions keeps us energetic and optimistic. Moreover, **local efforts maximize our long-term chances of inspiring others and triggering more change!** Here are examples of broad changes that local actions can trigger.
 
-I've said above that XP practices equip developers with a calmer and more productive work life. Less stress at work also means a happier family at home! Who knows? You may contribute to saving couples and healthier kids through technical coaching!
+I've said above that XP practices equip developers with a calmer and more productive work life. **Less stress at work also means a happier family at home! Who knows? You may contribute to saving couples and healthier kids through technical coaching!**
 
 You might inspire others to start local actions too! Don't forget that any movement begins with a first follower.
 
 {% include video id="8p9GZfhvrys" provider="youtube" %}
 
-When the people you coach move to a new team or company, they will also impact those around them! Maybe they will, in turn, trigger large-scale changes later.
+**When the people you coach move to a new team or company, they will also impact those around them!** Maybe they will, in turn, trigger large-scale changes later.
 
 Finally, it is possible that your coaching leads to organization-scale change. It's a long shot: a lot is outside your control, especially in large organizations. So, please don't count on it! Yet, if the organization is supportive and you get enough "followers," you have a chance! Be patient.
 
-Again, all these are bonuses! Don't expect them. You can expect a local impact if you stay focused on local actions and maintain your enthusiasm. Any local result already has enormous value! And wider change will happen from time to time. So celebrate your local acts, and share stories when a broader impact happens.
+Again, **all these are bonuses! Don't expect them.** You can expect a local impact if you stay focused on local actions and maintain your enthusiasm. Any local result already has enormous value! And **wider change will happen from time to time**. So celebrate your local acts, and share stories when a broader impact happens.
 
 ## Make it a habit
 
