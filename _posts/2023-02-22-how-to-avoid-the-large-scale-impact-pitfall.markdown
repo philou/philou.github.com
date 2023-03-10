@@ -28,7 +28,7 @@ variations:
 - Embody XP's calm and steady rhythm! This behavior has a lot more impact than we usually think! #agile #technicalCoaching #changeManagement
 - The obvious benefit of local actions is that they can directly improve people's lives! #agile #technicalCoaching #changeManagement
 - Many developers told me that XP practices changed their work life! #agile #technicalCoaching #changeManagement
-- "Technical Agile Coaching tip: people will listen to you if you remain optimistic!" #agile #technicalCoaching #changeManagement
+- "Technical Agile Coaching tip: people will listen to you if you remain optimistic! #agile #technicalCoaching #changeManagement"
 - The local action strategy is perfect if you are an embedded coach or a developer! #agile #technicalCoaching #changeManagement
 - Local efforts maximize our long-term chances of inspiring others and triggering more change! #agile #technicalCoaching #changeManagement
 - Less stress at work also means a happier family at home! Who knows? You may contribute to saving couples and healthier kids through #agile #technicalCoaching! #changeManagement
