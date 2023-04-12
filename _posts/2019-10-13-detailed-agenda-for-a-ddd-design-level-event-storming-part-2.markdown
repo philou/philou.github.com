@@ -12,8 +12,11 @@ description: "The most valuable activities in a DDD Design-Level Event Storming 
 header:
    teaser: /imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/design-level-event-storming-last-piece-teaser.jpeg
    og_image: /imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/design-level-event-storming-last-piece-og.jpeg
+canonical_url: https://www.eventstormingjournal.com/software%20design/the-best-agenda-for-design-level-event-storming/
 ---
 _The most valuable activities in a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Design-Level Event Storming are UX and [Aggregates](https://martinfowler.com/bliki/DDD_Aggregate.html) explorations. Here is a step by step agenda that will lead us there._
+
+ℹ️ _**NOTE: Part of this post has been [republished and updated](https://www.eventstormingjournal.com/software%20design/the-best-agenda-for-design-level-event-storming/) on the Event Storming Journal blog**_
 
 ![Drawing of an event storming board jigsaw with one piece left to place. This represents the final step to finishing a Design-Level Event Storming]({{site.url}}/imgs/2019-10-13-detailed-agenda-for-a-ddd-design-level-event-storming-part-2/design-level-event-storming-last-piece.jpeg)
 

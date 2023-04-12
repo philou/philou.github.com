@@ -12,6 +12,7 @@ description: "Running a DDD Design-Level Event Storming is not rocket science! I
 header:
    teaser: /imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-good-start-teaser.jpeg
    og_image: /imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-good-start-og.jpeg
+canonical_url: https://www.eventstormingjournal.com/software%20design/how-to-explain-design-level-event-storming-to-your-mother/
 ---
 _Running a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Design-Level Event Storming is not rocket science! It's still crucial to start the right way: with domain events and the Picture that explains Everything!_
 
