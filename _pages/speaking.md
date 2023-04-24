@@ -9,6 +9,8 @@ I am an experienced speaker and have spoken at many international conferences: [
 
 My talks are always very interactive, almost workshops, and often contain live coding. I make a point of honor that the audience gets out with practical learning that they can apply immediately.
 
+I can present in English or French, remotely or in person.
+
 If you would like me to talk at your organization, get in touch.
 
 
