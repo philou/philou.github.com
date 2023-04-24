@@ -5,25 +5,40 @@ permalink: /about-me/
 comments: false
 author_profile: true
 ---
-Philippe Bourgau, XP Coach and Sustainable Pace Hacktivist
+Philippe Bourgau, Agile and Craft Coach, solving technical challenges with people collaboration.
 
-_Let's not waste our lives on loosy work! I help software engineers to reach an effective and sustainable pace through continuous refactoring of their code and organizations._
+_I help teams and organizations make complex, long-term impact decisions (from working agreements to product strategy, passing through design, architecture, and cultural transformation) by setting up outstanding, humane, practical, and productive collaboration. In the process, I’ll leave teams ready for continued success by helping them up-skill._
 
-I blog about:
+## I value:
 
-* How to work, think, and coach the XP way
-* How to deal with Legacy Code
-* How to change organizations for a more sustainable pace, even when we are at the bottom of the hierarchy
+- Peace rather than emulation
+- Freedom rather than safety
+- Disruption rather than tradition
+- Deliberate Growth rather than comfort
+- Learn while doing and making mistakes!
 
-An early adopter of eXtreme Programming, I have been practicing since 2003 and mentoring teams since 2006. Thanks to XP and refactoring, I have delivered high quality, fit to purpose and future proof software with less stress and overtime.
+## I blog about:
 
-I have worked on all aspects of software : technical, product, people, process, quality. I contributed to 2 persons as well as multi-teams projects. I designed greenfield systems but also refactored legacy code bases.
+- How to work, think, and coach the eXtreme Programming way
+- How to run practical sessions, like workshops and courses, to trigger productive collaboration and grow people
+- How to change organizations for a more sustainable pace, even when we are at the bottom of the hierarchy
 
-Mainstream agile methods like Scrum or Kanban might get teams to collaborate better. It’s only through XP’s high technical standards and focus on merciless refactoring that a team can reap the business benefits of Continuous Delivery.
+## Bio
 
-I have successfully used merciless evolutionary design, continuous improvement and other XP practices in unforeseen contexts like remote work, R&D projects, and large teams. Today, I help teams to reach an effective and sustainable pace by adapting these practices to their special context.
+An early adopter of eXtreme Programming, I have been practicing since 2003 and mentoring teams since 2006. Thanks to XP and refactoring, I have delivered high-quality, fit-to-purpose, and future-proof software with less stress and overtime.
 
-I’m currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0). My style of coaching is about empowering anyone inject some change to the organization around them.
+I have worked on many aspects of software: technical, product, people, process, and quality. I contributed to 2 persons as well as multi-team projects. I designed greenfield systems but also refactored legacy code bases.
+
+I believe the two most essential skills for anyone working in the industry are:
+
+- **Working in baby steps.** It's always possible to split the work into smaller pieces! Craftsmanship, Lean Product Development, and Continuous Delivery fall into this category.
+- **People collaboration.** G. Weinberg said: "No matter what the problem is, it's always a people problem." Pair and Mob Programming, Liberating Structures, Event Storming, Verbal Aikido, and Non-Violent Communication all fall into this category.
+
+These two skills make work safer, more sustainable, productive, and valuable! Combined, they transform work.
+
+Today, I help teams to reach these benefits by adapting these skills to their unique context.
+
+I'm currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0). My coaching style is about empowering anyone to inject some change into the organization around them.
 
 Finally, I love doing side projects, from wannabe businesses to open source.
 
@@ -31,8 +46,11 @@ Finally, I love doing side projects, from wannabe businesses to open source.
 
 Here are the main side projects I've been working on throughout the years
 
+* [Event Storming Journal](https://eventstormingjournal.com): My friend and colleague [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire/) and I are currently "blogging" [The 1 hour Event Storming Book](https://www.eventstormingjournal.com/1h-event-storming-book/), chapter by chapter.
+* [Built In Quality Game](https://philou.github.io/built-in-quality-game/): A table-top game that teaches teams why built-in quality will make them more productive
 * [Philou's Planning Poker](https://philou.github.io/planning-poker/): Better poker estimates for remote teams!
+* [ComplexityAssert](https://philou.github.io/complexity-assert/): Assert your algorithm time complexity in RSpec (experimental)!
 * [Storexplore](http://philou.github.io/storexplore): Transform online stores into APIs!
 * [RSpecProxies](http://philou.github.io/rspecproxies): Simplify RSpec mocking with test proxies!
-* [ComplexityAssert](https://philou.github.io/complexity-assert/): Assert your algorithm time complexity in RSpec (experimental)!
-* [Built In Quality Game](https://philou.github.io/built-in-quality-game/): A table-top game that teaches teams why built-in quality will make them more productive
+* AgileAvatars.com: An abandonned side-business about creating custom magnets for agile boards
+* [mes-courses.com](https://github.com/philou/mes-courses): An abandonned side project for an online grocery front-end do food shopping for quickly
