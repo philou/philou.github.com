@@ -40,17 +40,20 @@ Today, I help teams to reach these benefits by adapting these skills to their un
 
 I'm currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0). My coaching style is about empowering anyone to inject some change into the organization around them.
 
+I can help you with [speaking]({{site.baseurl}}/speaking/), [training, or running strategic workshops]({{site.baseurl}}/services/) in your organization.
+
 Finally, I love doing side projects, from wannabe businesses to open source.
 
 ## Side projects
 
 Here are the main side projects I've been working on throughout the years
 
+* [TCR](https://github.com/murex/TCR): A Golang (Test && Commit \|\| Revert) utility that my [Murex](https://www.murex.com) colleagues and I are building.
 * [Event Storming Journal](https://eventstormingjournal.com): My friend and colleague [Matthieu Tournemire](https://www.linkedin.com/in/matthieu-tournemire/) and I are currently "blogging" [The 1 hour Event Storming Book](https://www.eventstormingjournal.com/1h-event-storming-book/), chapter by chapter.
-* [Built In Quality Game](https://philou.github.io/built-in-quality-game/): A table-top game that teaches teams why built-in quality will make them more productive
+* [Built In Quality Game](https://philou.github.io/built-in-quality-game/): A table-top game that teaches teams why built-in quality will make them more productive.
 * [Philou's Planning Poker](https://philou.github.io/planning-poker/): Better poker estimates for remote teams!
 * [ComplexityAssert](https://philou.github.io/complexity-assert/): Assert your algorithm time complexity in RSpec (experimental)!
 * [Storexplore](http://philou.github.io/storexplore): Transform online stores into APIs!
 * [RSpecProxies](http://philou.github.io/rspecproxies): Simplify RSpec mocking with test proxies!
-* AgileAvatars.com: An abandonned side-business about creating custom magnets for agile boards
-* [mes-courses.com](https://github.com/philou/mes-courses): An abandonned side project for an online grocery front-end do food shopping for quickly
+* AgileAvatars.com: An abandonned side-business about creating custom magnets for agile boards.
+* [mes-courses.com](https://github.com/philou/mes-courses): An abandonned side project for an online grocery front-end do food shopping for quickly.
