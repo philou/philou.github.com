@@ -7,7 +7,9 @@ author_profile: true
 ---
 Philippe Bourgau, Agile and Craft Coach, solving technical challenges with people collaboration.
 
-_I help teams and organizations develop innovative, creative, and long-term solutions to complex or recurring problems (from working agreements to product strategy, passing through design, architecture, and cultural transformation) by setting up outstanding, humane, practical, and productive collaboration. In the process, I'll leave teams ready for continued success by helping them up-skill._
+_I want to innovate a more sustainable software industry!_
+
+_Join me on the path to higher consciousness so we all become change agents!_
 
 ## I value:
 
