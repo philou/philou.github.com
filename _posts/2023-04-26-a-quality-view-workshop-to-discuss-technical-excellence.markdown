@@ -1,11 +1,19 @@
 ---
 layout: single-mailing-list
 title: A quality view workshop to discuss technical excellence
-date: "2023-05-04"
+date: "2023-05-11"
 comments: true
 categories:
-- TODO
-description: TODO
+- agile
+- quality
+- continuous improvement
+- workshop
+- architecture
+- coaching
+- refactoring
+- team building
+- collaborative work
+description: "Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders, foster a culture of quality and collaboration, and empower your team to deliver high-quality software."
 header:
   teaser: "/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/TODO-teaser.jpg"
   og_image: "/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/TODO-og.jpg"
