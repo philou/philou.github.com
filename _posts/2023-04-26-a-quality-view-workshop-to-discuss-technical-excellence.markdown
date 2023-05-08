@@ -31,11 +31,11 @@ _Here is a step-by-step workshop to guide a team to drawing a [Quality View](htt
 
 > The devs had no say in what stories went into the sprint.
 
-Developers are often stuck in their development roles. They are rarely involved in product management decisions. Non-technical people are usually not aware of the importance of technical practices.
+Developers are often stuck in their development roles. They are rarely involved in product management decisions. **Non-technical people are usually not aware of the importance of technical practices.**
 
 Without the required technical work, code degrades, and maintenance increases. Eventually, work becomes less sustainable.
 
-As coaches, we see teams and developers suffering from this situation. From experience, we understand where this is coming from. Yet, we are often at a loss about how to make the business care about agile technical excellence! Without enough attention, trying too hard will make us disillusioned and rebellious!
+As coaches, we see teams and developers suffering from this situation. From experience, we understand where this is coming from. Yet, **we are often at a loss about how to make the business care about agile technical excellence!** Without enough attention, trying too hard will make us disillusioned and rebellious!
 
 > Wouldn't it be great if you had a trick to make people collaborate? So that they found solutions to deliver features with technical excellence in engineering?
 
@@ -47,7 +47,7 @@ Quality Views could be this trick! Let's see:
 
 ## Quality Views as a trigger for discussions
 
-The company I work at, Murex, has been and is still hiring a lot. Therefore, onboarding of new developers is a critical topic. New joiners have a lot to learn:
+The company I work at, Murex, has been and is still hiring a lot. Therefore, **onboarding of new developers is a critical topic**. New joiners have a lot to learn:
 
 *   Technical skills
 *   The financial domain
@@ -55,11 +55,11 @@ The company I work at, Murex, has been and is still hiring a lot. Therefore, onb
 
 ![A photo of 2 feet on a capret writing "Welcome on board". We started using quality views at Murex to speed up onboarding.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/welcome-on-board.jpg)
 
-Some teams asked if my team and I could help them to onboard new team members. We had heard how [Colin Breck used Quality Views to tackle technical debt](https://www.infoq.com/presentations/quality-views-technical-debt/). We had the idea to use Quality Views in a workshop to get the whole team to discuss how to speed up onboarding.
+Some teams asked if my team and I could help them to onboard new team members. We had heard how [Colin Breck used Quality Views to tackle technical debt](https://www.infoq.com/presentations/quality-views-technical-debt/). **We had the idea to use Quality Views in a workshop to get the whole team to discuss how to speed up onboarding**.
 
 > I think the most valuable aspects of employing quality views are in the discussions that take place in forming the quality dimensions, evaluating the various components, and prioritizing the work. (Colin Breck - [Reflections on Using Quality Views](https://blog.colinbreck.com/reflections-on-using-quality-views/))
 
-Our goal was to trigger onboarding discussions between developers and non-technical stakeholders. It should lead to knowledge-sharing or onboarding-time-reduction actions being prioritized.
+**Our goal was to trigger onboarding discussions between developers and non-technical stakeholders.** It should lead to knowledge-sharing or onboarding-time-reduction actions being prioritized.
 
 To learn more about Quality Views, I highly recommend you to read these two posts from Colin Breck:
 
@@ -94,7 +94,7 @@ Different teams did the workshop. Here is the feedback we collected a few months
 
 > Following the workshop, we did some actions regarding documentation and API simplification. (A Tech Lead)
 
-Building a quality view as a team is an occasion to discuss crucial yet overlooked topics.
+**Building a quality view as a team is an occasion to discuss crucial yet overlooked topics.**
 
 Technical excellence in engineering falls in this class of topics! In our case, the starting point was onboarding, but people talked about:
 
@@ -108,7 +108,7 @@ Tech-Leads have a pretty good knowledge of their codebase. So they could draw an
 
 > People and collaboration over processes and tools (Agile Manifesto)
 
-That's why it's better to build the Quality View together. Below are detailed steps to collaboratively draw a Quality View.
+That's why **it's better to build the Quality View together**. Below are detailed steps to collaboratively draw a Quality View.
 
 I usually run workshops in a series of 90 minutes sessions:
 
@@ -133,17 +133,17 @@ Here are the characteristics we used for a team working within a legacy monolith
 
 ### 2\. Homework
 
-Still, before the workshop, ask people to collect data on the quality characteristics.
+**Before the workshop, ask people to collect data on the quality characteristics**.
 
 If you have read Colin Breck's posts, you might be thinking: "Wait! That's not what Colin said!":
 
 > Objective measures are no panacea. It is not hard to envision a component with exhaustive unit-test coverage, that is difficult to evolve and deploy, and fails to meet business requirements in terms of performance, high-availability, or security. This is why quality needs to be represented more comprehensively, often with qualitative measures. (Colin Breck - [Reflections on using Quality Views](https://blog.colinbreck.com/reflections-on-using-quality-views/))
 
-Metrics are great conversation triggers. Ask different people to collect different metrics. This way, data will serve as a basis for discussion but will only weigh a little. As you'll see later, visualization will remain very qualitative.
+Metrics are great conversation triggers. Ask different people to collect different metrics. This way, **data will serve as a basis for discussion but will only weigh a little**. As you'll see later, visualization will remain very qualitative.
 
 ### 3\. Prepare a formalism
 
-To collaboratively design a Quality View of a codebase, people need to agree on how to represent it. Of course, you can do this alone as a workshop designer, but I encourage you to get as much feedback from the team as you do.
+**To collaboratively design a Quality View of a codebase, people need to agree on how to represent it.** Of course, you can do this alone as a workshop designer, but I encourage you to get as much feedback from the team as you do.
 
 > This visual representation can become even richer, however, with the addition of information related to software quality and how the system is evolving. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
@@ -168,7 +168,7 @@ The goal is not to have a formal design document. But you must have something vi
 
 > I wanted to experiment with extending it to combine 1) our architecture diagram with 2) Tufte's dense visual presentation of information and 3) my colleague's stacked bar-graph approach, to show both the quality of the components and the evolution of our system. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
-Let's start the workshop finally! The first step is to draft the system, using only boxes for modules and lines for dependencies. So use plenty of stickies or an online whiteboard (Miro, Mural, Powerpoint online, or Google Slides...).
+Let's start the workshop finally! **The first step is to draft the system, using only boxes for modules and lines for dependencies.** So use plenty of stickies or an online whiteboard (Miro, Mural, Powerpoint online, or Google Slides...).
 
 Lines don't need to be oriented. Rough dependency visualization is good enough to have a conversation.
 
@@ -187,7 +187,7 @@ Note: if you are running the workshop remotely, [use 1-3-all instead of 1-2-4-al
 
 ![Screenshot of the Quality View where everyone's draft has been merged, and the module boxes have been resized according to the size of their code]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-with-sized-boxes.jpeg)
 
-You now have an agreement on the high-level design. So, do another round of 1-2-4-all to resize the boxes according to the size of the modules. This step is faster than the previous one, so shorten the timings for the 1-2-4-all steps.
+You now have an agreement on the high-level design. So, **do another round of 1-2-4-all to resize the boxes according to the size of the modules**. This step is faster than the previous one, so shorten the timings for the 1-2-4-all steps.
 
 In remote, it's easy to clone the model from the previous step so that everyone can have their own.
 
@@ -221,7 +221,7 @@ Again, do the same thing for testing. Decorate the modules of the central model 
 
 > Does the component carry significant business risk? This might include code that was developed by an individual that has departed the company that no one else is familiar with; code that is not in one of the primary programming languages used by the development team; (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
-In our story above, the workshop's goal was to tackle onboarding and knowledge sharing. It's associated with the "Bus Factor" risk. Here is an example of how you can track this risk.
+In our story above, **the workshop's goal was to tackle onboarding and knowledge sharing. It's associated with the "Bus Factor" risk**. Here is an example of how you can track this risk.
 
 Everyone annotates each module with their confidence to add a feature there.
 
@@ -238,7 +238,7 @@ Before session homework! Everyone was to watch this short video of Situational L
 
 We then asked participants to place a small colored box with their names on the module. We used red for D1, orange for D2, yellow for D3, and green for D4. We reorganized these icons as histograms. These histograms represent the Bus Factor risk profile of every module.
 
-This was just one example of our situation. For each relevant business risk, take the time to prepare a specific activity.
+This was just one example of our situation. **For each relevant business risk, take the time to prepare a specific activity.**
 
 ### 9\. Bugs
 
@@ -246,7 +246,7 @@ This was just one example of our situation. For each relevant business risk, tak
 
 This is when the Quality View starts to receive delivery data. At the beginning of the workshop, we gave homework to track lines of code affected by bug fixes in the past six months.
 
-Have the people who collected the bugs info place one 🐞 icon on a module every time it was modified in a bug fix. In the end, you should get a good idea of which modules are sources of bugs.
+Have the people who collected the bugs info **place one 🐞 icon on a module every time it was modified in a bug fix**. In the end, you should get a good idea of which modules are sources of bugs.
 
 This is also an excellent occasion to take a step back and discuss this view with everyone.
 
@@ -254,9 +254,9 @@ This is also an excellent occasion to take a step back and discuss this view wit
 
 > Since becoming a [team lead](https://blog.colinbreck.com/on-being-a-team-lead-welcome-to-our-team/), I have been looking for ways to communicate two things regarding the software our team is responsible for. The first is the current state of the software. I want to communicate the quality of the system in terms of business risks—the reliability, scalability, and security of the system, as well as how receptive the software is to change, in order to meet future business needs. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
-This is the moment to get product stakeholders in. Before anything, please take a moment to present the Quality View and answer their questions. They will love it! It's often the first time they can understand what "Under the Hood" is.
+**This is the moment to get product stakeholders in.** Before anything, please take a moment to present the Quality View and answer their questions. They will love it! It's often the first time they can understand what "Under the Hood" is.
 
-Ask them to list the upcoming features they are thinking of. Target something like 3 to 6 months, depending on the rhythm of your business.
+Ask them to **list the upcoming features they are thinking of.** Target something like 3 to 6 months, depending on the rhythm of your business.
 
 Also, ask them to sort these features into three value buckets:
 
@@ -274,7 +274,7 @@ Wait to try to map these features to the Quality View. The team will do that jus
 
 > I want to communicate the quality of the system in terms of business risks [...] A legacy component that lacks test coverage, or developer expertise, could be extremely difficult, risky, and costly to change, whereas a well-designed, well-factored application, with good test coverage and developers familiar with the code, might be evolved reliably and efficiently. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
-Developers will try to predict what modules will be changed soon. Ask them to list, for each feature, the affected modules. Use rounds of 1-2-4-all (see Steps 4 and 5) to aggregate predictions.
+Developers will try to predict what modules will be changed soon. Ask them to **list, for each feature, the affected modules.** Use rounds of 1-2-4-all (see Steps 4 and 5) to aggregate predictions.
 
 Finally, for each feature, add diamonds to every impacted module:
 
@@ -294,7 +294,7 @@ At this point, all participants should have a 360º of the situation.
 
 Unfortunately, you won't be able to fix everything. Yet participants have all the information they need to make wise investments.
 
-Give each participant 3 "dots" that they can place on the module (or dependency) they want to focus on. For example, in our workshops, we use flame icons (🔥).
+**Give each participant 3 "dots" that they can place on the module (or dependency) they want to focus on.** For example, in our workshops, we use flame icons (🔥).
 
 The modules with the most dots are your "Hotspots." Hotspots are areas of the code that are at risk of slowing down delivery.
 
@@ -304,7 +304,7 @@ The modules with the most dots are your "Hotspots." Hotspots are areas of the co
 
 The Quality View is complete, and everyone understands it. So it's an excellent time to have the extensive all-in discussion you wanted to trigger.
 
-Bring the prioritization topic forward. Stakeholders will be more conscious of technical tradeoffs now. As a result, the team should be able to build a more realistic and long-term plan. Decisions should take both features and agile technical excellence into account.
+Bring the prioritization topic forward. **Stakeholders will be more conscious of technical tradeoffs now. As a result, the team should be able to build a more realistic and long-term plan.** Decisions should take both features and agile technical excellence into account.
 
 ## After the workshop
 
@@ -335,17 +335,15 @@ Participants liked that these actions were concrete and laser-focused. Compare t
 
 ![A photo of a path enclosed in vegetation. As coaches we can build on this first workshop to make sure change happens.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/continue-tunnel.jpg)
 
-As coaches, your main work after the workshop is to make sure these actions are prioritized and done. Insist that the team adds them to its backlog. Don't hesitate to gently provoke team members if you see that nothing happens.
+As coaches, your main work after the workshop is to make sure these actions are prioritized and done. Insist that the team adds them to its backlog. Don't hesitate to **gently provoke team members if you see that nothing happens**.
 
-Finally, nudge the team to re-run the workshop regularly. Updating a quality view is much faster than creating it for the first time. Please don't make it too short, though: new joiners should try to sketch a quality view by themselves. It's an excellent chance to discover the system one is part of.
+Finally, **nudge the team to re-run the workshop regularly**. Updating a quality view is much faster than creating it for the first time. Please don't make it too short, though: **new joiners should try to sketch a quality view by themselves**. It's an excellent chance to discover the system one is part of.
 
 ## Here is what you can do now
 
-Next time you work with a team that has no time for 'back-office' technical work, give this workshop a try! It's bound to trigger interesting discussions with all stakeholders.
+**Next time you work with a team that has no time for 'back-office' technical work, give this workshop a try!** It's bound to trigger interesting discussions with all stakeholders.
 
 On top of that, drawing a quality view collaboratively is a great way to share knowledge within the team.
-
-If you have experience with quality views or have tried this workshop, I would love to read from you in a comment! I would also love to read about your tricks to increase collaboration between product people and developers.
 
 ## Other posts that might interest you
 
