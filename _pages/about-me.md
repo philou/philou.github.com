@@ -40,7 +40,7 @@ These two skills make work safer, more sustainable, productive, and valuable! Co
 
 Today, I help teams to reach these benefits by adapting these skills to their unique context.
 
-I'm currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/1eyqcqmnp4y8oh8/cv%20philippe%20bourgau.pdf?dl=0). My coaching style is about empowering anyone to inject some change into the organization around them.
+I'm currently coaching at [Murex](http://www.murex.com) and [here's my resume](https://www.dropbox.com/s/ifymw8vg7bditrz/CV%20Philippe%202022-Public.pdf?dl=0). My coaching style is about empowering anyone to inject some change into the organization around them.
 
 I can help you with [speaking]({{site.baseurl}}/speaking/), [training, or running strategic workshops]({{site.baseurl}}/services/) in your organization.
 
