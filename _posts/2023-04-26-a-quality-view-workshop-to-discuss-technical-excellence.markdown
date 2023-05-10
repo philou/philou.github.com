@@ -1,6 +1,6 @@
 ---
 layout: single-mailing-list
-title: A quality view workshop to discuss technical excellence
+title: A Quality View Workshop to Discuss Technical Excellence
 date: "2023-05-11"
 comments: true
 categories:
@@ -23,7 +23,7 @@ variations:
 _Here is a step-by-step workshop to guide a team to drawing a [Quality View](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/). Use it to discuss investment in agile technical excellence with stakeholders._
 
 
-![Drawing of a stick character having trouble seeing through his glasses. The text "Missing a quality view?" is also written next to him. A Quality View workshop is a wonderful occasion for the whole team to share knowledge about the technical aspects of a codebase, and to trigger discussions about prioritization of technical work.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view.jpg)
+![Drawing of a stick character having trouble seeing through his glasses. The text "Missing a Quality View?" is also written next to him. A Quality View workshop is a wonderful occasion for the whole team to share knowledge about the technical aspects of a codebase, and to trigger discussions about prioritization of technical work.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view.jpg)
 
 > The main problem is not agreeing that technical excellence is essential for the success of the delivery. Corporate culture is 100% focused on feature factory, delivering features at the expense of technical excellence.
 
@@ -41,8 +41,8 @@ As coaches, we see teams and developers suffering from this situation. From expe
 
 Quality Views could be this trick! Let's see:
 
-1.  How I began to work with quality views
-2.  A workshop guide to collaboratively build a quality view
+1.  How I began to work with Quality Views
+2.  A workshop guide to collaboratively build a Quality View
 3.  What to do after the workshop
 
 ## Quality Views as a trigger for discussions
@@ -53,11 +53,11 @@ The company I work at, Murex, has been and is still hiring a lot. Therefore, **o
 *   The financial domain
 *   And a few inevitable obscure pieces of code.
 
-![A photo of 2 feet on a capret writing "Welcome on board". We started using quality views at Murex to speed up onboarding.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/welcome-on-board.jpg)
+![A photo of 2 feet on a capret writing "Welcome on board". We started using Quality Views at Murex to speed up onboarding.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/welcome-on-board.jpg)
 
 Some teams asked if my team and I could help them to onboard new team members. We had heard how [Colin Breck used Quality Views to tackle technical debt](https://www.infoq.com/presentations/quality-views-technical-debt/). **We had the idea to use Quality Views in a workshop to get the whole team to discuss how to speed up onboarding**.
 
-> I think the most valuable aspects of employing quality views are in the discussions that take place in forming the quality dimensions, evaluating the various components, and prioritizing the work. (Colin Breck - [Reflections on Using Quality Views](https://blog.colinbreck.com/reflections-on-using-quality-views/))
+> I think the most valuable aspects of employing Quality Views are in the discussions that take place in forming the quality dimensions, evaluating the various components, and prioritizing the work. (Colin Breck - [Reflections on Using Quality Views](https://blog.colinbreck.com/reflections-on-using-quality-views/))
 
 **Our goal was to trigger onboarding discussions between developers and non-technical stakeholders.** It should lead to knowledge-sharing or onboarding-time-reduction actions being prioritized.
 
@@ -78,7 +78,7 @@ We came up with a workshop involving the whole team, including Product Owner. He
 
 {% assign figure_path="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/final-quality-view.jpeg" | absolute_url %}
 
-{% assign figure_alt="Screenshot of the final quality view, with hotspots and all visual information. Note the addition of flames on hotspots modules." %}
+{% assign figure_alt="Screenshot of the final Quality View, with hotspots and all visual information. Note the addition of flames on hotspots modules." %}
 
 {% capture figure_caption %}
 Here is an example of what the Quality View looked like when we ran it on the [TCR tool](https://github.com/murex/TCR) my team at Murex is building. I'll be using this as example throughout the blog post to illustrate the steps.
@@ -94,7 +94,7 @@ Different teams did the workshop. Here is the feedback we collected a few months
 
 > Following the workshop, we did some actions regarding documentation and API simplification. (A Tech Lead)
 
-**Building a quality view as a team is an occasion to discuss crucial yet overlooked topics.**
+**Building a Quality View as a team is an occasion to discuss crucial yet overlooked topics.**
 
 Technical excellence in engineering falls in this class of topics! In our case, the starting point was onboarding, but people talked about:
 
@@ -149,7 +149,7 @@ Metrics are great conversation triggers. Ask different people to collect differe
 
 Here is what we used in our example:
 
-![Screenshot of the template we have been using to draw modules in quality views]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-module-template.jpeg)
+![Screenshot of the template we have been using to draw modules in Quality Views]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-module-template.jpeg)
 
 *   **Boxes** for code modules
 *   **Size of the box** for the size of the module
@@ -164,7 +164,7 @@ The goal is not to have a formal design document. But you must have something vi
 
 ### 4\. Overall view
 
-![Screenshot of my first tentative at drawing the quality view for the TCR repo we are working on. I had not yet coded a lot in there, so it was very rough.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-with-boxes.jpeg)
+![Screenshot of my first tentative at drawing the Quality View for the TCR repo we are working on. I had not yet coded a lot in there, so it was very rough.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-with-boxes.jpeg)
 
 > I wanted to experiment with extending it to combine 1) our architecture diagram with 2) Tufte's dense visual presentation of information and 3) my colleague's stacked bar-graph approach, to show both the quality of the components and the evolution of our system. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
@@ -217,7 +217,7 @@ Again, do the same thing for testing. Decorate the modules of the central model 
 
 ### 8\. Capability
 
-![Screenshot of the quality views decorated with capability icons. We see here that there is basically one expert and one or two newbies on the codebase.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-with-capabilities.jpeg)
+![Screenshot of the Quality Views decorated with capability icons. We see here that there is basically one expert and one or two newbies on the codebase.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/quality-view-with-capabilities.jpeg)
 
 > Does the component carry significant business risk? This might include code that was developed by an individual that has departed the company that no one else is familiar with; code that is not in one of the primary programming languages used by the development team; (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
@@ -286,7 +286,7 @@ Some modules might get plenty of diamonds!
 
 ### 12\. Hotspots
 
-![Screenshot of the final quality view, with hotspots and all visual information. Note the addition of flames on hotspots modules.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/final-quality-view.jpeg)
+![Screenshot of the final Quality View, with hotspots and all visual information. Note the addition of flames on hotspots modules.]({{site.url}}/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/final-quality-view.jpeg)
 
 > Quality views are not about features _versus_ quality. They arise from the understanding that in order to deliver high-quality systems, business objectives and customer requirements must be met, or exceeded. It is fine to keep focusing on features, but if customers cannot realize those features reliably, then nothing else matters. (Colin Breck - [Reflections on using Quality Views](https://blog.colinbreck.com/reflections-on-using-quality-views/))
 
@@ -300,7 +300,7 @@ The modules with the most dots are your "Hotspots." Hotspots are areas of the co
 
 ### 13\. Discuss and Decide what to do
 
-> The quality view invites a holistic view of the system. When I presented a similar scenario at a quarterly-planning meeting, our Director of Product Development remarked: _"How come those two components are still so red!?"_. A constructive discussion followed, where we all came to the agreement that investing in these components would not be cost effective. We were comfortable accepting the short-term risks. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
+> The Quality View invites a holistic view of the system. When I presented a similar scenario at a quarterly-planning meeting, our Director of Product Development remarked: _"How come those two components are still so red!?"_. A constructive discussion followed, where we all came to the agreement that investing in these components would not be cost effective. We were comfortable accepting the short-term risks. (Colin Breck - [Using Quality Views to Communicate Software Quality and Evolution](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/))
 
 The Quality View is complete, and everyone understands it. So it's an excellent time to have the extensive all-in discussion you wanted to trigger.
 
@@ -337,13 +337,13 @@ Participants liked that these actions were concrete and laser-focused. Compare t
 
 As coaches, your main work after the workshop is to make sure these actions are prioritized and done. Insist that the team adds them to its backlog. Don't hesitate to **gently provoke team members if you see that nothing happens**.
 
-Finally, **nudge the team to re-run the workshop regularly**. Updating a quality view is much faster than creating it for the first time. Please don't make it too short, though: **new joiners should try to sketch a quality view by themselves**. It's an excellent chance to discover the system one is part of.
+Finally, **nudge the team to re-run the workshop regularly**. Updating a Quality View is much faster than creating it for the first time. Please don't make it too short, though: **new joiners should try to sketch a Quality View by themselves**. It's an excellent chance to discover the system one is part of.
 
 ## Here is what you can do now
 
 **Next time you work with a team that has no time for 'back-office' technical work, give this workshop a try!** It's bound to trigger interesting discussions with all stakeholders.
 
-On top of that, drawing a quality view collaboratively is a great way to share knowledge within the team.
+On top of that, drawing a Quality View collaboratively is a great way to share knowledge within the team.
 
 ## Other posts that might interest you
 
