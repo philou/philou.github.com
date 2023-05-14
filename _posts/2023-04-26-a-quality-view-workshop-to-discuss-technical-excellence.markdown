@@ -126,7 +126,7 @@ Technical excellence in engineering falls in this class of topics! In our case, 
 *   Technical debt management
 *   Workload, stress, and sustainable pace.
 
-## A whole-in workshop to create a Quality View
+## A whole-team workshop to create a Quality View
 
 Tech-Leads have a pretty good knowledge of their codebase. So they could draw an accurate Quality View by themselves. Through our coach's goggles, though, this is a missed opportunity for collaboration!
 
