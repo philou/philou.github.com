@@ -346,7 +346,7 @@ Feel free to run a follow-up workshop focusing on different aspects. For example
 
 Remember how this post started. We ran these workshops to speed up onboarding and increase knowledge sharing. So in our case, we ran two extra activities after the Quality View:
 
-*   A give-and-take matrix (link) to collect everyone's needs and potential help.
+*   A [give-and-take matrix](https://gamestorming.com/give-and-take-matrix/) to collect everyone's needs and potential help.
 *   An activity to refine help suggestions into [SMART](https://en.wikipedia.org/wiki/SMART_criteria) and collective actions.
 
 Teams ended up with very focused and high-impact actions like:
