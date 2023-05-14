@@ -18,7 +18,31 @@ header:
   teaser: "/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg"
   og_image: "/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-og.jpg"
 variations:
-- TODO
+- Non-technical people are usually not aware of the importance of technical practices The Quality View workshop will show them! #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- Are you at a loss about how to make the business care about agile technical excellence? The Quality View workshop will show them! #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- Is onboarding of new developers a critical topic for you? Check how to create and use a Quality View to speed up onboarding. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- We had the idea to use Quality Views in a workshop to get the whole team to discuss how to speed up onboarding. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- We ran a Quality View workshop with the goal to trigger onboarding discussions between developers and non-technical stakeholders. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- Building a Quality View as a team is an occasion to discuss crucial yet overlooked topics like how to manage legacy components or knowledge sharing. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- Quality Views are great to make non-technical people care about technical excellence. Building the Quality View all together is even better! #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- "Pre-requisite to a #QualityView #workshop: give a few people homework to gather data about #quality. It will serve as a conversation starter #technical #agileCoaching #architecture #productManagement #technicalExcellence"
+- "Pre-requisite to a Quality View workshop: agree on a formalism to represent the view. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- To collaboratively design a Quality View of a codebase, people need to agree on how to represent it. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- "Step#1 in a Quality View workshop: draft the system, using only boxes for modules and lines for dependencies. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- "Step#2 in a Quality View workshop: resize the boxes according to the size of the modules #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- A Quality View workshop is a great way to deal with overlooked Business Risks. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- The "Bus Factor" risk is a classic Business Risk that a #QualityView #workshop will deal with. We used it at Murex to define onboarding and knowledge-sharing actions. #technical #agileCoaching #architecture #productManagement #technicalExcellence
+- "Step#3 in a Quality View workshop: for each relevant business risk, run a specific activity. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- "Step#4 in a Quality View workshop: highlight modules that are sources of bugs by placing 🐞 icons on a module every time it was modified in a bug fix #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- Once your quality view has all the technical decoration, get product stakeholders in! #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- "Step#5 in a Quality View workshop: ask product stakeholders to list the upcoming features they are thinking of. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- "Step#6 in a Quality View workshop: for each upcoming feature, flag the foreseen affected modules. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- "Step#7 in a Quality View workshop: participant 'dot-vote' on the areas where they think we should focus #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence"
+- After a Quality View workshop, product stakeholders will be more conscious of technical tradeoffs. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- As a result of a Quality View workshop, the team should be able to build a more realistic and long-term plan. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- If no action gets done after a Quality View workshop, gently question the team members! #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- Don't hesitate to nudge the team to re-run the workshop regularly #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
+- New joiners should always try to sketch a Quality View by themselves. #technical #agileCoaching #qualityView #architecture #workshop #productManagement #technicalExcellence
 ---
 _Here is a step-by-step workshop to guide a team to drawing a [Quality View](https://blog.colinbreck.com/using-quality-views-to-communicate-software-quality-and-evolution/). Use it to discuss investment in agile technical excellence with stakeholders._
 
