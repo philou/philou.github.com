@@ -15,7 +15,14 @@ header:
   teaser: "/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg"
   og_image: "/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-og.jpg"
 variations:
-- TODO
+- As a technical Agile coach, working with a team that bad Scrum or Agile have hurt can be challenging! #technical #agileCoaching #evolutionaryDesign #changeManagement
+- XP or TDD might be associated with traditional Agile and Scrum, which often leave a sour taste for the team. #technical #agileCoaching #evolutionaryDesign #changeManagement
+- By focusing on Baby Steps, you can introduce technical practices from a neutral point of view. #technical #agileCoaching #evolutionaryDesign #changeManagement
+- "Practical benefit of Baby Steps programming for teams 1: steadily build new features. #technical #agileCoaching #evolutionaryDesign #changeManagement"
+- "Practical benefit of Baby Steps programming for teams 2: make decisions reversible. #technical #agileCoaching #evolutionaryDesign #changeManagement"
+- "Practical benefit of Baby Steps programming for teams 3: control and autonomy. #technical #agileCoaching #evolutionaryDesign #changeManagement"
+- "Practical benefit of Baby Steps programming for teams 4: learn to transpose outside the codebase. #technical #agileCoaching #evolutionaryDesign #changeManagement"
+- Try to talk and exchange about Baby Steps instead of trying to persuade them about Agile or Scrum. #technical #agileCoaching #evolutionaryDesign #changeManagement
 ---
 _How to fix bad agile by starting neutral discussions about [baby-steps]({{site.url}}/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps) programming. Baby steps are a sustainable and productive approach to writing code._
 
