@@ -1,7 +1,7 @@
 ---
 layout: single-mailing-list
 title: 'Liberating Structures: the Slow Code Retreat''s little facilitation secret'
-date: "2023-08-04"
+date: "2023-08-03"
 comments: true
 categories:
 - coaching
