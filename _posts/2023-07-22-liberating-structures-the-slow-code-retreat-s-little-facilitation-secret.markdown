@@ -66,8 +66,8 @@ The feedback from workshop participants has been consistently positive. Many exp
 
 ### You can do it: the slow-code-retreat is reusable by design.
 
-TODO
-![Photo of the Liberating Structures design cards that represent the sequence of the Slow Code Retreat.]({{site.url}}/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/slow-code-retreat-liberating-structure-string-cards.jpg)
+[comment]: # (TODO)
+[comment]: #(![Photo of the Liberating Structures design cards that represent the sequence of the Slow Code Retreat.]({{site.url}}/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/slow-code-retreat-liberating-structure-string-cards.jpg))
 
 **The workshop is a string of Liberating Structures:**
 
