@@ -15,8 +15,19 @@ header:
   teaser: "/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg"
   og_image: "/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-og.jpg"
 variations:
-- Run the Slow Code Retreat and get a taste of the surprising power of Liberating Structures!
-- TODO
+- Run the Slow Code Retreat and get a taste of the surprising power of Liberating Structures! #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- Equiped with the slides, Matthieu Cans ran the Slow Code Retreat both at Alpes Craft and at his company with his co-workers #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- The presenter notes of the Slow Code Retreat include step-by-step facilitation instructions. The slides are under Creative Commons. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- This Slow Code Retreat workshop is particularly well-received by experienced developers. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- The Slow Code Retreat workshop is a string of 6 to 7 Liberating Structures. A great way to get started with Liberating Structures. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- The idiomatic Liberating Structures training is a 2 or 3 days Immersion Workshop. The Slow Code Retreat can act as a mini immersion workshop. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- "Liberating Structures are a disruptive language for collaboration, unlike in traditional meetings and most workshops, they encourage everyone to contribute #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation"
+- "Liberating Structures are a disruptive language for collaboration, unlike in traditional meetings and most workshops, they thrive in complex and diverse environments. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation"
+- "Liberating Structures are a disruptive language for collaboration, unlike in traditional meetings and most workshops, they have a viral aspect, and they propagate and spread by design. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation"
+- "Liberating Structures are a disruptive language for collaboration, unlike in traditional meetings and most workshops, they can scale to accommodate groups of 100 or more. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation"
+- If you run the Slow Code Retreat, you are likely to see some of the participants reuse 1-2-4-all in a later meeting! #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- Run the Slow Code Retreat workshop, and spread slow coding while becoming a better facilitator! #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
+- Impromptu Networking and 1-2-4-all are excellent starting points to enhance your facilitation skills. #liberatingStructures #sustainablePace #slowWork #workshop #agile #technicalCoaching #facilitation
 ---
 _You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you'll also learn 6 Liberating Structures for your future workshops._
 
