@@ -26,7 +26,7 @@ variations:
 - Programmers need to communicate _a lot_! And the primary way programmers communicate is through code! #technical #agileCoaching #communication #teamwork
 - Visual Management can reduce the painful boss-subordinate relationship. #technical #agileCoaching #communication #teamwork #visualManagement #management
 - My pair programming years made my listening, negotiation, and self-awareness skills soar. #technical #agileCoaching #communication #teamwork #pairProgramming
-- "The facilitation posture: a communication catalyst with a touch of mediation" #technical #agileCoaching #communication #teamwork #facilitation
+- "The facilitation posture: a communication catalyst with a touch of mediation #technical #agileCoaching #communication #teamwork #facilitation"
 - Writing is an overlooked skill for developers. #technical #agileCoaching #communication #teamwork #writing
 - Writing skills yield more readable code, helpful documentation, and fewer email back-and-forths. #technical #agileCoaching #communication #teamwork #writing
 - Used well, Fit, Cucumber, or literate programming can transform collaboration with stakeholders. #technical #agileCoaching #communication #teamwork #bdd #cucumber #literateProgramming
@@ -34,9 +34,9 @@ variations:
 - Remote pairing makes us aware of how we communicate and allows us to improve on our flaws. #technical #agileCoaching #communication #teamwork #remoteWork #pairProgramming
 - #nonViolentCommunication is a straightforward idea that takes years to master. Yet, the sooner you start this path, the better. #technical #agileCoaching #communication #teamwork
 - Collaborative design is a way to do just enough design up-front in a few days. #technical #agileCoaching #communication #teamwork #facilitation #softwareDesign #eventStorming
-- "You can also start sketch-noting right now: you only need a pad and a pencil" #technical #agileCoaching #communication #teamwork #noteTaking #sketchNoting
+- "You can also start sketch-noting right now: you only need a pad and a pencil #technical #agileCoaching #communication #teamwork #noteTaking #sketchNoting"
 - As a coach, mobbing has proven much more time-effective than pairing. #technical #agileCoaching #communication #teamwork #mobProgramming
-- "Mobbing will test many of your communication and collaboration skills: listening, facilitation, self-awareness, negotiation, collaborative design..." #technical #agileCoaching #communication #teamwork #mobProgramming
+- "Mobbing will test many of your communication and collaboration skills: listening, facilitation, self-awareness, negotiation, collaborative design... #technical #agileCoaching #communication #teamwork #mobProgramming"
 - Public speaking is also an occasion to get out of our comfort zones and master stress. #technical #agileCoaching #communication #teamwork #publicSpeaking
 - Conflicts tend to shut our neocortex off and trigger our reptilian brain to freeze, fight, or flee. Regular real-world conflict practice taught me to deal with difficult situations more peacefully. #technical #agileCoaching #communication #teamwork #verbalAikido #conflictResolution
 - How can we give valuable reviews while keeping the author's intrinsic motivation? #technical #agileCoaching #communication #teamwork #codeReviews
