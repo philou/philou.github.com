@@ -1,0 +1,1024 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to coach a team that has been burnt by bad TDD | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Once exposed to bad TDD, teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains! Prepare a custom coaching plan and use TDD as a learning tool. Bonus in this post: a sample coaching plan around legacy code refactoring techniques.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to coach a team that has been burnt by bad TDD">
+<meta property="og:url" content="https://philippe.bourgau.net/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/">
+
+
+  <meta property="og:description" content="Once exposed to bad TDD, teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains! Prepare a custom coaching plan and use TDD as a learning tool. Bonus in this post: a sample coaching plan around legacy code refactoring techniques.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to coach a team that has been burnt by bad TDD">
+  <meta name="twitter:description" content="Once exposed to bad TDD, teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains! Prepare a custom coaching plan and use TDD as a learning tool. Bonus in this post: a sample coaching plan around legacy code refactoring techniques.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-04-29T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to coach a team that has been burnt by bad TDD">
+    <meta itemprop="description" content="Once exposed to bad TDD, teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains!">
+    <meta itemprop="datePublished" content="2021-04-29T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to coach a team that has been burnt by bad TDD
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Once exposed to bad <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a>, teams are a challenge for any technical agile coach. Instead of trying to sell them TDD, XP, or whatever, fix their pains!</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/forget-tdd-fix-pains.jpg" alt="Drawing of the text 'Forget TDD, Fix Pains!' with a bulldozer pushing TDD away and a first-aid-kit to fix pains. Focusing on pains is a good way to coach a team that has been exposed to bad TDD in the past." /></p>
+
+<p>TDD is a cornerstone of what we coach. Unfortunately, there is a lot of misunderstanding about TDD. <a href="https://www.google.com/search?q=bad+tdd&amp;safe=active">Search the web for ‘bad TDD’</a> to get an idea. Unfortunately, <strong>after a team has been exposed to bad TDD, it won’t try it again!</strong> How can we get around this extra hurdle and do constructive technical agile coaching?</p>
+
+<blockquote>
+  <p>I’ve wasted way too much time learning from those who took it upon themselves to teach something they barely understand themselves. [<a href="https://www.linkedin.com/in/john-welty-9355b522/">John Welty</a> on <a href="https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>I am least successful when people, for whatever reason, are unable to hear my ideas. It may be that they were mandated to attend a training or receive coaching, or it may be that they feel none of the changes I am bringing are in their best interests. [<a href="https://twitter.com/robindymond">Robin Dymond</a> on <a href="https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>We’ve already gone through a TDD training before. We found it very dogmatic and difficult to apply. We prefer to sticking to what we are used to rather than to spending more time on TDD. [A developer who attended a previous TDD coaching]</p>
+</blockquote>
+
+<p>My suggestion is pretty simple:</p>
+
+<p><strong>Don’t talk about TDD! Instead, use TDD to fix their pains!</strong></p>
+
+<h2 id="the-infamous-tdd-training">The infamous TDD training</h2>
+
+<p><a href="https://www.murex.com">Murex</a>, the company I work for, used to have TDD training in its catalog. Murex is pretty generous with training, and it’s pretty straightforward to attend one. As a result, many developers had learned TDD this way. Unfortunately, the training was not good.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/good-bad.jpg" alt="Photo of a hand with 2 small pieces of paper written &quot;Bad&quot; and &quot;Good&quot;. TDD can be done good or bad. As technical agile coaches, we must learn how to coach teams that have been exposed to bad TDD." /></p>
+
+<p><strong>Many developers had concluded that TDD was expensive and useless</strong>. Some even took bad habits after attending it. For example:</p>
+
+<ul>
+  <li>Writing all the tests before writing all the code.</li>
+  <li>Testing every function independently. This leads to heavy mocking and makes the code harder to refactor.</li>
+</ul>
+
+<p>After my first success with the <a href="https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/">Deadpool team</a>, <strong>I started a weekly TDD <a href="https://philippe.bourgau.net/categories/#coding-dojo">Coding Dojo</a> to find new teams to work with. Very few people came 😞.</strong> I had to find another way.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/coding-dojo.jpg" alt="Drawing of a martial art dojo with the floor being a keyboard and the back wall being the screen of a laptop where we can read TDD Coding Dojo. This is the poster I setup to get people to attend a coding dojo where they could learn TDD." /></p>
+
+<h2 id="forget-tdd-as-a-goal">Forget TDD as a goal</h2>
+
+<p><strong>TDD is no longer the ‘killer feature’ that sells agile technical coaching to teams.</strong></p>
+
+<p>In my case, the manager of the Deadpool team found another team for me! He suggested that I check if there was an opportunity with the Kirby team.</p>
+
+<p>As you might already know, if you are a regular reader, I only work with volunteer teams. If I wanted to work with Kirby developers, I needed to find a way to make them want!</p>
+
+<p><strong>Bad TDD is dogmatic, overpromises, and under-delivers.</strong> Unfortunately, some Kirby team members had attended the infamous TDD training. I knew that <strong>mentioning TDD would play against me</strong>.</p>
+
+<h2 id="understand-their-pains">Understand their pains</h2>
+
+<p><strong>The first thing to do is to understand the team members’ pains</strong>. There are many ways to identify these pains:</p>
+
+<ul>
+  <li>You can meet with all the team to have a group chat or to run a pain gathering workshop</li>
+  <li>You can also have one-to-one interviews with team members. This is useful if you suspect that not everyone will speak up in front of the group</li>
+  <li>Otherwise, you can Gemba-pair: spend a few hours to pair with everyone in the team</li>
+</ul>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/understand-pains.jpg" alt="Photo of a burnt out man with hands over his head. Understanding the pains of a team is the first step to coach without selling TDD as a goal by itself." /></p>
+
+<p>What is essential at this step is to avoid selling them anything. Just observe, be helpful when you can, but really, observe.</p>
+
+<p>In our case, the Kirby team members were having a hard time maintaining legacy code. Here are examples of pains we have seen in other teams:</p>
+
+<blockquote>
+  <ul>
+    <li>We have good test coverage and a lot of tests, but everything turns red when we make the smallest change!</li>
+    <li>We don’t know what kind of tests to use to test the different parts of our system!</li>
+    <li>The business is pushing is so hard that we are taking technical debt all the time. How do we find the time to refactor!</li>
+    <li>The team just faced important turnover. How can we rebuild the team dynamics without losing 1 year?</li>
+    <li>…</li>
+  </ul>
+</blockquote>
+
+<h2 id="design-a-custom-coaching-plan">Design a custom coaching plan</h2>
+
+<p><strong>Once you understand their day-to-day issues, it’s time to come up with a fix!</strong></p>
+
+<p><a href="https://philippe.bourgau.net/categories/#refactoring">Maintaining legacy code is a widespread pain for software teams</a>. I could leverage what I had done with Deadpool to propose something to the Kirby team.</p>
+
+<p>In other cases, <strong>you might be able to fix their pains without programming</strong>. If you can, then do it! You will save everybody’s time, and the team will be more likely to come back for more.</p>
+
+<p>For example, we have designed a <a href="https://philippe.bourgau.net/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/">test strategy workshop</a>. It helps team members to agree on how to test the different aspects of their system.</p>
+
+<p>Other times, though, <strong>fixing the pain will involve installing new programming habits.</strong></p>
+
+<p><a href="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/Coding-Dojo-Hulk.jpg"><img src="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/Coding-Dojo-Hulk-small.jpg" alt="A Hulk-inspired drawing of a plan of kata exercises to grow your skills around refactoring legacy code. When wondering how to coach a team, proposing a coaching plan that fixes the team's real pains is a great way to get started on constructive ground." /></a></p>
+
+<p>In this case, avoid general agile development practices coaching. Instead, come up with <a href="https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">a coaching plan that is fixing their specific pains</a>. For example, we used the following coaching plan to help the Kirby team deal with their legacy code.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Exercise</th>
+      <th>How</th>
+      <th>Learn about…</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="https://codingdojo.org/kata/Bowling/">Bowling Game kata</a></td>
+      <td><a href="https://codingdojo.org/PreparedKata/">Prepared kata</a> Demo</td>
+      <td>Good TDD</td>
+    </tr>
+    <tr>
+      <td><a href="https://codingdojo.org/kata/RomanNumerals/">Roman Numerals kata</a></td>
+      <td>Randori in Pairs</td>
+      <td>Emergent solution</td>
+    </tr>
+    <tr>
+      <td><a href="https://kata-log.rocks/mars-rover-kata">Mars Rover kata</a></td>
+      <td>Randori in Pairs</td>
+      <td>Emergent design</td>
+    </tr>
+    <tr>
+      <td><a href="https://codingdojo.org/kata/GameOfLife/">Game of Life kata</a></td>
+      <td>Randori in Pairs</td>
+      <td>Bottom-Up (= inside-out) TDD</td>
+    </tr>
+    <tr>
+      <td><a href="https://codingdojo.org/kata/NumberToLCD/">LCD kata</a></td>
+      <td>Randori in Pairs</td>
+      <td>Top-Down (= outside-in) TDD</td>
+    </tr>
+    <tr>
+      <td><a href="https://codingdojo.org/kata/GameOfLife/">Game of Life kata</a></td>
+      <td>Randori in Pairs</td>
+      <td>Mix Bottom-Up and Top-Down</td>
+    </tr>
+    <tr>
+      <td>Median of list of lists kata</td>
+      <td><a href="https://codingdojo.org/RandoriKata/">Randori</a></td>
+      <td>TDD on algorithms</td>
+    </tr>
+    <tr>
+      <td><a href="https://codingdojo.org/kata/RomanCalculator/">Roman additions kata</a></td>
+      <td>Mob</td>
+      <td>Mobbing</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/emilybache/GildedRose-Refactoring-Kata">Gilded Rose kata</a> then production code</td>
+      <td>Mob</td>
+      <td>Approval Testing and refactoring</td>
+    </tr>
+    <tr>
+      <td>Gilded Rose kata then production code</td>
+      <td>Mob</td>
+      <td>Strangler application</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/jbrains/trivia">Trivia kata</a> then production code</td>
+      <td>Mob</td>
+      <td>Mikado Method</td>
+    </tr>
+    <tr>
+      <td>Trivia kata then production code</td>
+      <td>Mob</td>
+      <td>ACL and Bubble Context</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em><a href="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/sample-legacy-code-coaching-plan.pdf">Printable version</a></em></p>
+
+<p>It relies on a mix of code-katas and mob sessions. This is one way of doing it. The <a href="https://www.sammancoaching.org/">Samman Technical Coaching</a> method uses a blend of learning hours and mob sessions. On our side, we have settled on the following recipe for most of our coaching plans:</p>
+
+<ol>
+  <li><strong>Start with a series of katas around TDD</strong>.</li>
+  <li>Continue by mixing
+    <ul>
+      <li><strong>katas targetting pain-fixing techniques</strong></li>
+      <li><strong>mob-sessions to apply these techniques on their production code</strong></li>
+    </ul>
+  </li>
+</ol>
+
+<p>I hear you:</p>
+
+<blockquote>
+  <p>But you just said to forget TDD and to focus on the pain! And now you start with katas on TDD!</p>
+</blockquote>
+
+<p>As a matter of fact, we have noticed that part 2 does not work unless the team has gone through part 1! <strong>As coaches, we know TDD is essential. The key is to avoid selling it directly</strong>.</p>
+
+<h2 id="tdd-as-a-workout-exercise"><strong>TDD as a workout exercise</strong></h2>
+
+<p>With a clear pain and a coaching proposal, it’s time to pitch it to the team. Here is how to present part 1.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-04-28-how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/crossfit.jpg" alt="Black and White photo from behind of someone who's holding a weight bar on his shoulders. Instead of wondering 'How to coach a team to TDD, simply using TDD as a workout exercise helps everyone to get over any prior misunderstanding about TDD." /></p>
+
+<p>We have different arguments to sell the TDD part to the teams:</p>
+
+<ol>
+  <li>From experience, <strong>the coaching does not work well if we skip part 1</strong></li>
+  <li><strong>Part 1 will train you to new team collaboration practices</strong> like <a href="https://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">pair and mob programming</a></li>
+  <li><strong>TDD speeds up learning by creating the <a href="https://medium.com/the-crossover-cast/get-better-at-anything-6-steps-of-deliberate-practice-19830bfc9460">deliberate practice</a> fast feedback loop</strong></li>
+</ol>
+
+<p>Here is the script I use to explain what deliberate practice is and why it matters:</p>
+
+<blockquote>
+  <p><strong>Deliberate practice is the technique used by athletes to achieve world-class performance</strong>. Suppose you are a swimmer and you are not very good at turning at the end of the lane. What will have the most impact on your performance? Swimming 2000 meters? Or focusing 30 minutes on turning only?</p>
+</blockquote>
+
+<blockquote>
+  <p>It’s the same for us. By setting up a fast feedback loop, TDD lets us learn faster through deliberate practice.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Also, no one learns to swim in the deep end of the pool.</strong> We all started at the shallow end. That’s why we will begin with simple exercises. We will increase the difficulty as we go. <strong>At some point, you will be able to apply the techniques to your production code</strong>.</p>
+</blockquote>
+
+<p>(Side Note: lately, we have been experimenting with <a href="https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864">TCR</a> as a new way to do deliberate practice. It looks promising. Tell me if you would like to read more about it!)</p>
+
+<p>With these 3 arguments under your belt, you should be ready to pitch your proposal to the entire team. A good pitch starts with their pain, presents a fix, and continues with extra benefits.</p>
+
+<p>Sometimes the pitch gets them all on board. Sometimes, though, the team needs a bit more time to decide. In this case, I suggest a first test session to help the decision.</p>
+
+<h2 id="deliver-a-well-prepared-kata-demo">Deliver a well-prepared kata demo</h2>
+
+<p>We start the TDD part of our coaching sessions with a prepared kata demo. We usually go with the <a href="https://codingdojo.org/kata/Bowling/">bowling game score kata</a>. It’s a great occasion to show what TDD looks like when it’s well done.</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+
+<div class="responsive-video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/OPGTPQ4kURU" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  </div>
+
+<p>We must, in fact, remain very careful! Most <strong>developers are tired of being asked to be more productive</strong>. That’s why I don’t mention TDD as a way to be more <em>whatever</em>. Instead, I present it as <strong>a way to avoid being woken up by bugs in the middle of the night</strong>.</p>
+
+<p>Attendees are usually enthusiastic about the demo. Here are examples of feedback I received:</p>
+
+<blockquote>
+  <p>I’m surprised about how nice and simple the resulting code is!</p>
+</blockquote>
+
+<blockquote>
+  <p>I already learned more in 2 hours than in the full TDD training I attended!</p>
+</blockquote>
+
+<p>We’ve never had a team stop after the demo!</p>
+
+<h2 id="dont-sell-fix-pains">Don’t sell… Fix pains!</h2>
+
+<p>It ends as it started:</p>
+
+<blockquote>
+  <p>Don’t sell TDD, XP, or whatever… Fix real pains!</p>
+</blockquote>
+
+<p>Next time you start coaching a team</p>
+
+<ol>
+  <li>Take the time to <strong>understand their pains</strong></li>
+  <li>Present them a custom coaching plan that <strong>fixes their most important pains</strong></li>
+  <li>Present <strong>TDD as a learning tool</strong> rather than a goal by itself</li>
+</ol>
+
+<p>This should get you past any prior misunderstanding about TDD.</p>
+
+<hr />
+
+<p>If you liked this post, you might also learn more about how to get over bad TDD exposition in these articles:</p>
+
+<ul>
+  <li>Wondering what a custom coaching plan might look like? Read: <a href="https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">A coding dojo exercises plan towards refactoring legacy code</a></li>
+  <li>Want to learn more other problems you might face when starting coaching a team? Check <a href="https://philippe.bourgau.net/7-tricks-to-influence-a-team-resisting-to-change/">7 tricks to influence a team resisting to change its technical habits</a></li>
+  <li>Interested about how a series of code katas can also help people learn a new language? Read: <a href="https://philippe.bourgau.net/how-to-learn-a-programming-language-in-just-20-hours/">How to learn a programming language in just 20 hours</a></li>
+  <li>Want to get the full story of how we approached teams at Murex? Read <a href="https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/">The story about how we do Agile Technical Coaching</a></li>
+  <li>Interested in live katas I gave? Watch <a href="https://youtu.be/9HmVrfkzm9I">Live Legacy Code Refactoring with the Golden Master</a> at <a href="https://www.youtube.com/channel/UC0M37QolwmwobAY4Bt8Tszg">Legacy of Socrates</a></li>
+  <li><a href="https://philippe.bourgau.net/a-complete-workshop-for-your-team-to-see-what-s-a-good-test-strategy/">A complete workshop for your team to see what’s a good test strategy</a></li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#change-management" class="page__taxonomy-item" rel="tag">change management</a><span class="sep">, </span>
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#coding-dojo" class="page__taxonomy-item" rel="tag">coding dojo</a><span class="sep">, </span>
+    
+      <a href="/categories/#learning" class="page__taxonomy-item" rel="tag">learning</a><span class="sep">, </span>
+    
+      <a href="/categories/#mob-programming" class="page__taxonomy-item" rel="tag">mob programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#tdd" class="page__taxonomy-item" rel="tag">tdd</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-04-29T00:00:00+00:00">April 29, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+coach+a+team+that+has+been+burnt+by+bad+TDD%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-a-team-that-has-been-burnt-by-bad-tdd%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-a-team-that-has-been-burnt-by-bad-tdd%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-a-team-that-has-been-burnt-by-bad-tdd%2F&title=How+to+coach+a+team+that+has+been+burnt+by+bad+TDD" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-a-team-that-has-been-burnt-by-bad-tdd%2F&t=How to coach a team that has been burnt by bad TDD" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-to-make-change-stick-by-training-part-time-technical-agile-coaches/" class="pagination--pager" title="How to make change stick by training part-time technical agile coaches
+">Previous</a>
+    
+    
+      <a href="/5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/" class="pagination--pager" title="5 technical agile coaching tips to fight exhaustion from laggards
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

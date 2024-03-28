@@ -1,0 +1,789 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>You don’t have to ask your boss for a fast build (Lean Software Development part 6) | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="By doing really basic maths, a software team can create decision rules to decide how much work to do to speed up their build">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="You don’t have to ask your boss for a fast build (Lean Software Development part 6)">
+<meta property="og:url" content="https://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">
+
+
+  <meta property="og:description" content="By doing really basic maths, a software team can create decision rules to decide how much work to do to speed up their build">
+
+
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="You don’t have to ask your boss for a fast build (Lean Software Development part 6)">
+  <meta name="twitter:description" content="By doing really basic maths, a software team can create decision rules to decide how much work to do to speed up their build">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2015-06-03T04:43:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="You don’t have to ask your boss for a fast build (Lean Software Development part 6)">
+    <meta itemprop="description" content="A slow build costs money. I mean it costs a whole lot of money all the time !">
+    <meta itemprop="datePublished" content="2015-06-03T04:43:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">You don’t have to ask your boss for a fast build (Lean Software Development part 6)
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>A slow build costs money. I mean it costs <em>a whole lot of money all the time !</em></p>
+
+<p>Spending some time to speed up the build is like an investment, you’ll pay some money now, but then it’s only a matter of time until you get a return on investment. Here is the trick, if you manage to get it quickly, no one will even notice that you spent some time making the build faster !</p>
+
+<p>With a bit of maths, you can even get what <a href="http://www.amazon.com/Principles-Product-Development-Flow-Generation/dp/1935401009/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&amp;qid=1432909293&amp;sr=8-1&amp;keywords=reinertsen+flow">Reinertsen</a> calls a “Decentralized Decision Rule”, making it possible for anyone in the organization to figure out if he should spend some time on the build or not; without the need to ask the permission to anyone.</p>
+
+<p><a href="http://fr.wikipedia.org/wiki/Balance_%28instrument%29"><img src="https://philippe.bourgau.net/imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Balance_ordinaire.jpg" alt="A 2-pan balance (From Wikipedia)" /></a></p>
+
+<h2 id="our-example">Our example</h2>
+
+<p>Our team is constituted of 5 pairs, each running the build at least 10 times per day. Let’s figure out the value of 1 minute build time speed-up</p>
+
+<ul>
+  <li>The whole team would save : 1m x 5 pairs x 10 builds = 50 minutes per day</li>
+  <li>In a 2 weeks sprint, this would amount to around 1 day of work</li>
+</ul>
+
+<p>This means that if a pair spends half a day to get a 1 minute build speed-up, it would not change the output of the sprint, and it would in fact increase the throughput of the team for further sprints.</p>
+
+<p>Anyone in our team that spots a potential 1 minute build time speed-up that would take less that 1 man.day to implement should do it right away, without asking the permission to anyone</p>
+
+<h2 id="other-benefits">Other Benefits</h2>
+
+<p>A direct benefit is that the issue will not have to be re-discussed every time someone spots a build time improvement. This will save some management time, and more build speed-up actions will eventually be undertaken.</p>
+
+<p>The astute lean reader will have noticed that I completely ignored the second effect of fast feedback :</p>
+
+<ul>
+  <li>if the build is faster</li>
+  <li>we will run it more often</li>
+  <li>we’ll spot errors earlier</li>
+  <li>less errors will be submitted</li>
+  <li>the overall throughput will be increased even more</li>
+</ul>
+
+<p>Another hidden benefit concerns the <a href="http://en.wikipedia.org/wiki/Cost_of_delay">Cost of Delay</a> (the cost of not selling the product NOW). As Cost of Delay typically trumps the work costs, this means that any improvement to the build time will bring even greater ROI in the long term.</p>
+
+<h2 id="variations">Variations</h2>
+
+<p><a href="http://en.wikipedia.org/wiki/Boeing_777"><img src="https://philippe.bourgau.net/imgs/2015-06-03-you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/Boeing_777.jpg" alt="A Boeing 777 in flight over the mountains (From Wikipedia)" /></a></p>
+
+<p>If your sponsor agrees, you can negotiate a longer return on investment period for your decision rule. For example, if he agreed to increase the horizon to 2 sprints, we could undertake more build time speed-up tasks. You might also prefer only to discuss really long ROI investments with him.</p>
+
+<p>While designing the 777 Boeing used a similar decision rule to meet the required weight of the plan : any engineer could increase the production cost of 300$ provided it saved a pound of weight on the plane. This fixed issues they previously had with department weight budgets and escalation.</p>
+
+<p>Finally, it would be great if we had the same rule for technical debt ! Imagine that you knew both the costs of fixing and not fixing your technical debt, you could then decided whether it makes sense to work on the debt right now or not. But that’s for a later experiment.</p>
+
+<p>This was part 6 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 5 was <a href="/what-optimization-should-we-work-on-lean-software-development-part-5/">What optimization should we work on ?</a>, Part 7 will be <a href="/a-plan-for-technical-debt-lean-software-development-part-7/">A Plan for Technical Debt</a>.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#agile" class="page__taxonomy-item" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/categories/#lean" class="page__taxonomy-item" rel="tag">lean</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-06-03T04:43:00+00:00">June 3, 2015</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=You+don%27t+have+to+ask+your+boss+for+a+fast+build+%28Lean+Software+Development+part+6%29%20https%3A%2F%2Fphilippe.bourgau.net%2Fyou-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fyou-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fyou-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6%2F&title=You+don%27t+have+to+ask+your+boss+for+a+fast+build+%28Lean+Software+Development+part+6%29" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fyou-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6%2F&t=You don't have to ask your boss for a fast build (Lean Software Development part 6)" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/the-agile-change-management-viral-hack/" class="pagination--pager" title="The Agile Change Management Viral Hack
+">Previous</a>
+    
+    
+      <a href="/actors-and-green-threads-in-java-demystified/" class="pagination--pager" title="Actors and Green Threads in Java Demystified
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

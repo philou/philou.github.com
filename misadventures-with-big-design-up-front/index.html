@@ -1,0 +1,828 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Misadventures with Big Design Up Front | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Here is the story of my own love and disillusionment for Big Design Up Front. BDUF has many problems that I learned the hard way. We should avoid BDUF most of the time. This is the first post in a series explaining how Event Storming and incremental design form a better alternative to BDUF.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Misadventures with Big Design Up Front">
+<meta property="og:url" content="https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/">
+
+
+  <meta property="og:description" content="Here is the story of my own love and disillusionment for Big Design Up Front. BDUF has many problems that I learned the hard way. We should avoid BDUF most of the time. This is the first post in a series explaining how Event Storming and incremental design form a better alternative to BDUF.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2018-11-19-misadventures-with-big-design-up-front/jenga-tower-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Misadventures with Big Design Up Front">
+  <meta name="twitter:description" content="Here is the story of my own love and disillusionment for Big Design Up Front. BDUF has many problems that I learned the hard way. We should avoid BDUF most of the time. This is the first post in a series explaining how Event Storming and incremental design form a better alternative to BDUF.">
+  <meta name="twitter:url" content="https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2018-11-19-misadventures-with-big-design-up-front/jenga-tower-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-11-22T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Misadventures with Big Design Up Front">
+    <meta itemprop="description" content="Although a nice idea in theory, Big Design Up Front has many problems that I learned the hard way. We should avoid BDUF most of the time.">
+    <meta itemprop="datePublished" content="2018-11-22T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Misadventures with Big Design Up Front
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Although a nice idea in theory, <a href="https://en.wikipedia.org/wiki/Big_Design_Up_Front">Big Design Up Front</a> has many problems that I learned the hard way. We should avoid BDUF most of the time.</em></p>
+
+<p>ℹ️ <em><strong>NOTE: An <a href="https://www.eventstormingjournal.com/big%20picture/why-would-you-want-to-run-a-big-picture-event-storming/">updated version of this post</a> has been published on the Event Storming Journal blog</strong></em></p>
+
+<p>At school, I was taught  that Big Design Up Front is the only way to go. We even used to write all pseudo code on paper before touching a computer at all!</p>
+
+<blockquote>
+  <p>💡 At school, we were taught to write all pseudo code on paper before touching the keyboard at all!</p>
+</blockquote>
+
+<h2 id="old-style-cowboy-design">Old style cowboy design</h2>
+
+<p>I entered my first job with a heavy bias towards doing design first. Real-life work surprised me a lot! My colleagues would design on the fly, at the same time they implemented features. Our best design diagrams were rough design sketch on paper napkins. This was almost 20 years ago and the tooling was not that of today. We were learning <a href="https://en.wikipedia.org/wiki/Version_control">Version Control</a>, we would not <a href="https://en.wikipedia.org/wiki/Unit_testing">unit test</a>, and a <a href="https://en.wikipedia.org/wiki/Daily_build">nightly build</a> remained a dream! As a consequence, late design changes were a mess and resulted in an awful lot of regressions.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-11-19-misadventures-with-big-design-up-front/jenga-tower.jpeg" alt="Drawing of a Jenga tower about to fall. Without Big Design Up Front nor incremental design techniques, software is a catastrophe waiting to happen" /></p>
+
+<p>The general advice around the place was:</p>
+
+<blockquote>
+  <p><a href="https://idioms.thefreedictionary.com/if+it%27s+not+broke%2C+don%27t+fix+it">If it ain’t broken, don’t fix it!</a></p>
+</blockquote>
+
+<p>I was far from pleased with this technique, and I decided to try something against it. I naively thought that applying what I learned in school would fix the problem. I started to spend more time designing what I wanted to do before “touching the computer”. For more or less a year, I tried. It seemed to work fine at first. Unfortunately, troubles came when I was to add a new feature on top of this initial design. I’d built some flexibility in, but no matter what, never where later needed. I was spending more time to design up front, and still had to hack last minute changes to meet deadlines… This was definitely not a <a href="https://www.agilealliance.org/glossary/sustainable/#q=~(infinite~false~filters~(postType~(~'page~'post~'aa_book~'aa_event_session~'aa_experience_report~'aa_glossary~'aa_research_paper~'aa_video)~tags~(~'sustainable*20pace))~searchTerm~'~sort~false~sortDirection~'asc~page~1)">sustainable pace</a>!</p>
+
+<p>In fact, I’d spent a year re-discovering the cons of Big Design Up Front.</p>
+
+<h2 id="problems-of-big-design-up-front">Problems of Big Design Up Front</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-11-19-misadventures-with-big-design-up-front/architecture-plans.jpg" alt="Photos of a desk littered with detailed architecture plans. Big Design Up Front is a lot of speculative work" /></p>
+
+<p>These problems have not disappeared with time. A few months ago, some colleagues asked me to animate architecture meetings. I discovered the same issues again, only worse. This time, it’s not me alone who needs to come with a design, but a group of people who need to agree on architecture. It’s no surprises the project has been struggling to get started.</p>
+
+<p>Here are the typical problems of Big Design Up Front</p>
+
+<ul>
+  <li>Usually involves painful meetings and plenty of document reading</li>
+  <li>It can be a long process, especially if many people contribute</li>
+  <li>It can lead to a bad <a href="https://en.wikipedia.org/wiki/Design_by_committee">design by committee</a>. People end up capitulating to a proposition to stop this painful process</li>
+  <li>It always misses things. It’s almost impossible to think of everything on paper. Remember, Powerpoints don’t crash!</li>
+  <li>It creates over-engineering. We tend to add future-proof flexibility in the design. We discover that it’s never used when it’s been in the code for years.</li>
+  <li>To make things worse, it sometimes takes so much time that it’s deprecated from the beginning.</li>
+  <li>Finally, it’s very difficult to get a collective buy-in for it. It’s impossible to get everyone in these BDUF meetings if we want to agree on anything. As a result, the only solution is to mandate the architecture in a top-down manner</li>
+</ul>
+
+<p>You’ve guessed I’m not a big fan of Big Design Up Front…</p>
+
+<blockquote>
+  <p>💡 People capitulate to a design to end this painful BDUF process.</p>
+</blockquote>
+
+<h2 id="alternatives-to-big-design-up-front">Alternatives to Big Design Up Front</h2>
+
+<p>In <a href="/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/">next post</a>, I’ll continue my story and explain how I switched to <a href="https://www.jamesshore.com/Agile-Book/incremental_design.html">incremental design</a>. I’ll detail how it fixes almost all of the issues of Big Design Up Front.</p>
+
+<p>Unfortunately, there is <a href="https://en.wikipedia.org/wiki/No_Silver_Bullet">no silver bullet</a>, and incremental design has its own weak points. The lack of a shared vision is the main one. Finally I’ll retrace how I discovered <a href="https://www.eventstorming.com/">Event Storming</a>, and how it can be used to draft a shared design vision in just a few days.</p>
+
+<h2 id="to-be-continued">To be continued</h2>
+
+<p>This was the first post of a <a href="/categories/#squash-bduf-with-event-storming-series">series about how to use Event Storming to kick start architecture on good tracks</a>. Here are the topics I intend to go through in this series:</p>
+
+<ol>
+  <li><a href="/misadventures-with-big-design-up-front/">Misadventures with Big Design Up Front</a></li>
+  <li><a href="/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/">How I learned to do Big Design Up Front in 2 days of Event Storming</a></li>
+  <li><a href="/how-to-prepare-a-ddd-big-picture-event-storming-workshop/">How to prepare a DDD Big Picture Event Storming workshop</a></li>
+  <li><a href="/how-to-prepare-the-room-for-a-ddd-big-picture-event-storming/">How to prepare the room for a DDD Big Picture Event Storming</a></li>
+  <li><a href="/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/">Detailed Agenda of a DDD Big Picture Event Storming - Part 1</a></li>
+  <li><a href="/detailed-agenda-of-a-ddd-big-picture-event-storming-part-2/">Detailed Agenda of a DDD Big Picture Event Storming - Part 2</a></li>
+  <li><a href="/detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/">Detailed Agenda of a DDD Big Picture Event Storming - Part 3</a></li>
+  <li><a href="/4-tips-that-will-make-your-ddd-big-picture-event-storming-successful/">4 tips that will make your DDD Big Picture Event Storming successful</a></li>
+  <li><a href="/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/">Drafting a Functional Architecture Vision with Event Storming and DDD</a></li>
+  <li><a href="/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/">Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD</a></li>
+  <li><a href="/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/">Ensure core contexts have the upper hand with Event Storming and DDD</a></li>
+  <li><a href="/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/">Focus on the Core with Event Storming and DDD Domain Relationships - 1</a></li>
+  <li><a href="/focus-on-core-domain-with-relationships-from-ddd-and-event-storming-part-2/">Focus on the Core with Event Storming and DDD Domain Relationships - 2</a></li>
+  <li><a href="/how-to-use-event-storming-and-ddd-for-evolutionary-architecture/">How to use Event Storming and DDD for Evolutionary Architecture</a></li>
+  <li><a href="/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-1/">Using Event Storming and DDD to prototype (micro)services and NFRs - 1</a></li>
+  <li><a href="/using-event-storming-and-ddd-to-prototype-microservices-and-nfrs-2/">Using Event Storming and DDD to prototype (micro)services and NFRs - 2</a></li>
+  <li><a href="/rewrite-vs-refactor-get-insights-from-event-storming-and-ddd/">Rewrite vs Refactor? Get Insights from Event Storming and DDD</a></li>
+  <li><a href="/feature-teams-vs-component-teams-decide-with-event-storming-and-ddd/">Feature Teams vs Component Teams? Decide with Event Storming and DDD</a></li>
+  <li><a href="/how-to-max-out-ddd-big-picture-event-storming-with-other-workshops/">How to max out DDD Big Picture Event Storming with other Workshops</a></li>
+</ol>
+
+<p><a href="/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/">Continue Reading…</a></p>
+
+<p><em>Thanks to <a href="https://twitter.com/tpierrain?lang=en">Thomas</a> and <a href="https://twitter.com/xcorail?lang=en">Xavier</a> for reviewing this post</em></p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/categories/#squash-bduf-with-event-storming-series" class="page__taxonomy-item" rel="tag">squash-BDUF-with-event-storming-series</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-11-22T00:00:00+00:00">November 22, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Misadventures+with+Big+Design+Up+Front%20https%3A%2F%2Fphilippe.bourgau.net%2Fmisadventures-with-big-design-up-front%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fmisadventures-with-big-design-up-front%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fmisadventures-with-big-design-up-front%2F&title=Misadventures+with+Big+Design+Up+Front" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fmisadventures-with-big-design-up-front%2F&t=Misadventures with Big Design Up Front" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/vertical-kanban-board-setup/" class="pagination--pager" title="Vertical Kanban Board Setups
+">Previous</a>
+    
+    
+      <a href="/how-to-squash-big-design-up-front-in-a-few-days-with-event-storming/" class="pagination--pager" title="How I learned to do Big Design Up Front in 2 days of Event Storming
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/misadventures-with-big-design-up-front/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/misadventures-with-big-design-up-front"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
