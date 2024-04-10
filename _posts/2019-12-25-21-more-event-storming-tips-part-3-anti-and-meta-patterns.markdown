@@ -16,6 +16,8 @@ header:
 ---
 _Even more [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 3 will help you to avoid the mistakes we did. The last 2 are the recipe to learn more tips by yourself!_
 
+ℹ️ _**NOTE: Part of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com)**_
+
 ![Drawing of a mistake and a T-shirt pattern with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns.jpg)
 
 This was the last of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). [The previous post]({{site.url}}/21-more-event-storming-tips-part-2-facilitation-and-existing-code/) contained tips about facilitation and dealing with existing code. If you haven't you might also start by [the beginning]({{site.url}}/21-more-event-storming-tips-part-1-understanding-and-rhythm/)!

@@ -16,7 +16,7 @@ header:
 ---
 _What should we do after a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Design-Level Event Storming? How do we capture shared knowledge? How do we make the workshop more effective? Find answers here!_
 
-ℹ️ _**NOTE: Part of this post has been [republished and updated](https://www.eventstormingjournal.com/software%20design/design-level-event-storming-in-3-minutes/) on the Event Storming Journal blog**_
+ℹ️ _**NOTE: Part of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com)**_
 
 ![Drawing of a stack of 7 cards written Event Storming on the back.]({{site.url}}/imgs/2019-10-15-7-tactics-that-will-make-your-ddd-design-level-event-storming-pay-off/7-design-level-event-storming-tactics.jpeg)
 
