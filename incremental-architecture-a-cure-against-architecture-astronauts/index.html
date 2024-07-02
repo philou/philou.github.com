@@ -1,0 +1,857 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Incremental architecture, a cure against architecture astronauts | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="The story of how I started to do incremental design and architecture, and how to do it">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Incremental architecture, a cure against architecture astronauts">
+<meta property="og:url" content="https://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/">
+
+
+  <meta property="og:description" content="The story of how I started to do incremental design and architecture, and how to do it">
+
+
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Incremental architecture, a cure against architecture astronauts">
+  <meta name="twitter:description" content="The story of how I started to do incremental design and architecture, and how to do it">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2017-04-24T06:52:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Incremental architecture, a cure against architecture astronauts">
+    <meta itemprop="description" content="Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of cowboy coding. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding …">
+    <meta itemprop="datePublished" content="2017-04-24T06:52:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Incremental architecture, a cure against architecture astronauts
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>Back in 2001, when I started to code for a living, fresh out of school, I was mainly doing a form of <a href="https://en.wikipedia.org/wiki/Cowboy_coding">cowboy coding</a>. After a few months of maintaining my own mess, I started to recall my university lessons : we should be doing design before coding …</p>
+
+<p>When I was asked to re-engineer the ‘wizards UI’, I paused my coding to design something clean from scratch. It worked quite well at first : the overall code was a lot simpler and contained a lot less duplication than before. Seeing this new shiny UI, product people asked for new features. Unfortunately, I hadn’t thought of them when designing this little framework. I was almost back at my initial situation.</p>
+
+<p>That’s how I started to look for another way to design software. At about the same time the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming">eXtreme Programming book</a> fell into my hands. That’s where I discovered the idea of incremental design and architecture.</p>
+
+<p><a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0201616416/ref=sr_1_3?tag=pbourgau-20&amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-3&amp;keywords=extreme+programming"><img src="https://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/xp-1ed.jpg" alt="Front cover of the first edition of the XP book" /></a></p>
+
+<h2 id="what-is-incremental-archi">What is Incremental Archi</h2>
+
+<p>Let’s start with the antithesis of incremental architecture :</p>
+
+<h3 id="astronaut-architecture">Astronaut Architecture</h3>
+
+<p>The term “Architecture Astronaut” was coined by <a href="https://www.joelonsoftware.com">Joel Spolsky</a> back in 2001. If you haven’t read this <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">classic post</a> yet, I strongly encourage you to do so. Basically, he explains that we should not be impressed by architects going over their heads talking about too abstract stuff.</p>
+
+<p>Incremental is the exact opposite of astronaut architecture</p>
+
+<h3 id="two-schools-to-software-architecture">Two Schools to Software Architecture</h3>
+
+<p>Traditional architecture is about taking up-front choices that will be difficult to change. Incremental architecture is about preparing for non-stop change and taking decisions as late as possible.</p>
+
+<p>The idea in incremental architecture is really simple : keep your code simple, clean and automatically tested in order to be able to simply adapt your code and architecture when definitely needed.</p>
+
+<h3 id="pros-and-cons-of-incremental-architecture">Pros and Cons of incremental architecture</h3>
+
+<p>The first reaction of most software engineers (me included, remember how my story started) is that it can only work on trivial stuff. After practicing it for about a decade, I am now convinced it works most of the time. I’m not alone, <a href="http://www.jamesshore.com/Agile-Book/incremental_design.html">James Shore</a> (who wrote the more on the subject) also shares my view:</p>
+
+<blockquote>
+  <p>Common thought is that distributed processing, persistence, internationalization, security, and transaction structure are so complex that you must consider them from the start of your project. I disagree; I’ve dealt with all of them incrementally.</p>
+</blockquote>
+
+<blockquote>
+  <p>Two issues that remain difficult to change are choice of programming language and platform. I wouldn’t want to make those decisions incrementally!</p>
+</blockquote>
+
+<p>I would add published APIs to this list.</p>
+
+<p>Granted, there are situations that incremental architecture alone cannot handle, what about its good points then ?</p>
+
+<p>In all the other cases (and that means most of the time), here is what you get :</p>
+
+<ul>
+  <li>As you won’t need to deal with future use cases, you’ll do less work</li>
+  <li>That in turn, will keep your code simpler, decreasing time to release new features</li>
+  <li>As change is built-in, you’ll be able to improve your architecture in ways you could not have imagined from the start !</li>
+</ul>
+
+<p><a href="https://www.amazon.com/Art-Agile-Development-Pragmatic-Software/dp/0596527675/ref=sr_1_1?tag=pbourgau-20&amp;s=books&amp;ie=UTF8&amp;qid=1493096137&amp;sr=1-1&amp;keywords=the+art+of+agile+development"><img src="https://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/art-of-agile.jpg" alt="Front cover of the Art of Agile Software Development book" /></a></p>
+
+<p>If you cannot see how this could possibly work ? Read on !</p>
+
+<h2 id="how-to-do-it">How to do it</h2>
+
+<h3 id="extreme-programming">eXtreme Programming</h3>
+
+<p>As I said earlier, incremental architecture emerged from eXtreme Programming. It won’t come as a surprise that in order to work well incremental architecture requires the XP practices to be in place. In particular, the code base should be automatically tested, the continuous integration cycle should take less than 10 minutes, the design should be simple. The team should be good at doing refactoring.</p>
+
+<p>Don’t expect to be able to do incremental architecture without these practices in place. But this alone might be enough already !</p>
+
+<p><a href="https://www.amazon.com/Refactoring-Improving-Design-Existing-Code/dp/0201485672/ref=sr_1_1?tag=pbourgau-20&amp;s=books&amp;ie=UTF8&amp;qid=1493096197&amp;sr=1-1&amp;keywords=fowler+refactoring"><img src="https://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/refactoring.jpg" alt="Front cover of the Martin Fowler's refactoring book" /></a></p>
+
+<h3 id="architecture-vision">Architecture Vision</h3>
+
+<p>At work, where our team consists of 9 developers, it’s not always that simple to coordinate and all pull in the same direction. That’s why we find it useful to share a very long term architecture vision (<a href="https://www.thoughtworks.com/insights/blog/enabling-incremental-design-and-evolutionary-architecture">Enabling Incremental Design and Evolutionary Architecture</a>). This will help people to make coherent decisions when hesitating between 2 alternate designs.</p>
+
+<p>The vision can be the result of the work of a pair, or a mob brainstorming or whatever. Building this vision is typically an activity where experienced programmers can contribute a lot of value.</p>
+
+<p>Once this vision is shared and understood by the team, every time a pair has to work on a story, they can orient the design towards it. But always as little as possible to finish the work at hand, remember the XP motos <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS (Keep It Simple &amp; Stupid)</a> &amp; <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI (You Ain’t Gonna Need It</a>.</p>
+
+<p>One final word … a vision is just that : a vision ! It might turn out true, or false, be ready to change it as circumstances change.</p>
+
+<h3 id="spikes">Spikes</h3>
+
+<p>At times, even with a story in your hands and a long term architecture sketch on the whiteboard, you might have difficulties to know how to change your design to fulfill both.</p>
+
+<p>As always in XP, in case of uncertainty, use <a href="http://agiledictionary.com/209/spike/">Spikes</a> ! Spikes are short time-boxed experiments of throwaway code, which goal is to answer a specific design question.</p>
+
+<h3 id="how-to-mitigate-the-risks">How to mitigate the risks</h3>
+
+<p>What about these topics that don’t yield to incremental architecture ? What if you discover late that you need to change your platform ? Or your API ?</p>
+
+<p>Obviously, you should think about these questions up-front. Hopefully, there are usually not that difficult to answer. But, over time, Non-Functional-Requirements and technologies change. Large and long living systems are particularly likely to need to change to a new platform someday.</p>
+
+<p><a href="https://en.wikipedia.org/wiki/Unix_philosophy">Unix had the answer</a> : build your system out of small tools, that do only one thing well, and that communicate through a standard protocol. Systems built that way can be re-written one piece at a time.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2017-04-24-incremental-architecture-a-cure-against-architecture-astronauts/Ken_n_dennis.jpg" alt="Ken Thompson and Dennis Ritchie, the creators of Unix" /><figcaption>
+      
+Ken Thompson and Dennis Ritchie, the creators of Unix. Photo from <a href="https://commons.wikimedia.org/wiki/File:Ken_n_dennis.jpg">WikiMedia</a>
+
+    </figcaption></figure>
+
+<p>The modern version of this is the micro-services architecture. Incremental architecture allows you to start with a monolith, split it when you need to, and replace micro-services as needed.   With the safety of simple code and a great automated test harness. Interestingly, successful software systems that were architectured up-front also take this road … without the safety !</p>
+
+<h3 id="the-architect">The Architect</h3>
+
+<p>Good news : no more PowerPoints and a lot more coding with the team ! Here is what’s expected from an incremental architect :</p>
+
+<ul>
+  <li>To code with the team. As Bertrand Meyer once said “<a href="http://stal.blogspot.fr/2008/08/architect-always-implements.html">Bubbles (aka. diagrams) don’t crash</a>”, it’s plain too easy, and wrong, to mandate architecture without living with the consequences</li>
+  <li>To come up with more ideas when drafting the long term vision</li>
+  <li>To keep an eye on the ‘long term’ while being the navigator in pair programming</li>
+  <li>In the second edition of the <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658/ref=sr_1_1?tag=pbourgau-20&amp;ie=UTF8&amp;qid=1493096057&amp;sr=8-1&amp;keywords=extreme+programming">XP book</a> Kent Beck suggests that the architect should write large scale tests to stress the system and demonstrate architecture issues to the team</li>
+  <li>To delegate as much as possible to the team. However smart the architect, the team as a whole is smarter ! Delegating architecture increases motivation and the quality of the outcome.</li>
+</ul>
+
+<h2 id="end-of-the-story">End of the story</h2>
+
+<p>I’ve been practicing incremental architecture and design for a long time now. It made my life a lot simpler ! Most architecture questions become backlog items to prioritize.</p>
+
+<p>One last advice : be prepared to re-read <a href="https://www.joelonsoftware.com/2001/04/21/dont-let-architecture-astronauts-scare-you/">Joel Spolsky’s article</a> whenever you get caught up in architecture meetings …</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#agile" class="page__taxonomy-item" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/categories/#extreme-programming" class="page__taxonomy-item" rel="tag">extreme programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#software" class="page__taxonomy-item" rel="tag">software</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2017-04-24T06:52:00+00:00">April 24, 2017</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Incremental+architecture%2C+a+cure+against+architecture+astronauts%20https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-architecture-a-cure-against-architecture-astronauts%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-architecture-a-cure-against-architecture-astronauts%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-architecture-a-cure-against-architecture-astronauts%2F&title=Incremental+architecture%2C+a+cure+against+architecture+astronauts" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-architecture-a-cure-against-architecture-astronauts%2F&t=Incremental architecture, a cure against architecture astronauts" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-to-get-your-team-to-do-code-reviews/" class="pagination--pager" title="How to get your team to do code reviews
+">Previous</a>
+    
+    
+      <a href="/a-straightforward-way-to-scale-to-more-than-1-scrum-team/" class="pagination--pager" title="A Straightforward Way to Scale to More Than 1 Scrum Team
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/incremental-architecture-a-cure-against-architecture-astronauts/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/incremental-architecture-a-cure-against-architecture-astronauts"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

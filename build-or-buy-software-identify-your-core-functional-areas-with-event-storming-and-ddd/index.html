@@ -1,0 +1,840 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Event Storming and DDD are great at identifying bounded contexts. It’s even more valuable to identify the core contexts to focus on, and the generic ones to buy. This activity will help your team to prioritize more valuable work, and to reduce maintenance by choosing the good software to build or buy.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD">
+<meta property="og:url" content="https://www.eventstormingjournal.com/big%20picture/decide-to-build-or-buy-with-big-picture-event-storming/">
+
+
+  <meta property="og:description" content="Event Storming and DDD are great at identifying bounded contexts. It’s even more valuable to identify the core contexts to focus on, and the generic ones to buy. This activity will help your team to prioritize more valuable work, and to reduce maintenance by choosing the good software to build or buy.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD">
+  <meta name="twitter:description" content="Event Storming and DDD are great at identifying bounded contexts. It’s even more valuable to identify the core contexts to focus on, and the generic ones to buy. This activity will help your team to prioritize more valuable work, and to reduce maintenance by choosing the good software to build or buy.">
+  <meta name="twitter:url" content="https://www.eventstormingjournal.com/big%20picture/decide-to-build-or-buy-with-big-picture-event-storming/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-01-31T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://www.eventstormingjournal.com/big%20picture/decide-to-build-or-buy-with-big-picture-event-storming/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD">
+    <meta itemprop="description" content="Event Storming and DDD are great at identifying bounded contexts. It’s even more valuable to identify the core contexts to focus on, and the generic ones to buy.">
+    <meta itemprop="datePublished" content="2019-01-31T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em><a href="https://en.wikipedia.org/wiki/Event_storming">Event Storming</a> and <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> are great at identifying <a href="/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/">bounded contexts</a>. It’s even more valuable to identify the core contexts to focus on, and the generic ones to buy.</em></p>
+
+<p>ℹ️ <em><strong>NOTE: An <a href="https://www.eventstormingjournal.com/big%20picture/decide-to-build-or-buy-with-big-picture-event-storming/">updated version of this post</a> has been published on the Event Storming Journal blog</strong></em></p>
+
+<p>In <a href="/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/">the previous post</a>, I explained how to draw the boundaries of bounded contexts. Not all bounded contexts are equal though. Some have tremendous value for you, whereas others just need to exist. <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto’s Principle</a>, also known as 80/20 rule goes like that:</p>
+
+<blockquote>
+  <p>Roughly 80% of the effects come from 20% of the causes. <a href="https://en.wikipedia.org/wiki/Pareto_principle">Wikipedia</a></p>
+</blockquote>
+
+<p>The same goes with bounded contexts. A small part of your code base will generate much of its value. <strong>Event Storming and DDD (Domain Driven Design) can help us to identify where to focus, and what software to buy or build.</strong></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/gold-nugget-domain.jpeg" alt="Drawing of a hammer next to a gold nugget between rocks. Using Event Storming and DDD is a good way to extract and highlight your core bounded contexts within your system" /></p>
+
+<p>This is the 10th post in <a href="/categories/#squash-bduf-with-event-storming-series">a series about how to use Event Storming to kick start architecture on good tracks</a>. It might be a good idea to start reading from <a href="/misadventures-with-big-design-up-front/">the beginning</a>.</p>
+
+<h2 id="bounded-contexts">Bounded Contexts</h2>
+
+<p><a href="https://en.wikipedia.org/wiki/Domain-driven_design#Strategic_domain-driven_design">Strategic DDD</a> distinguishes 3 types of bounded contexts. Categorizing a bounded context is key to answering “Buy or Build Software” question.</p>
+
+<h3 id="core-contexts">Core contexts</h3>
+
+<p>Core contexts are your most important assets. These are the bounded contexts that make your competitive advantage. They are so specific and important to your business that you must build these yourself. You should strive to focus as much as you can on them. Focus goes through doing as little as possible of the rest…</p>
+
+<h3 id="generic-contexts">Generic contexts</h3>
+
+<p>These are bounded contexts that have no specificities with your business. They are reusable across many industries. It’s not a good time investment to build your own version. You should rather re-use or buy an existing third party to provide this in your system.</p>
+
+<h3 id="supportive-contexts">Supportive contexts</h3>
+
+<p>Supportive contexts are the rest. Too specific to buy, but not differentiating enough to build serious competitive advantage. Here are typical supportive bounded contexts:</p>
+
+<ul>
+  <li>Custom libraries reused across many core domains. Technical in-house frameworks are a good example.</li>
+  <li>Features that are so basic in your industry that everyone takes them for granted. Configuration or administration often fall here.</li>
+</ul>
+
+<p>You cannot reuse existing code for your supportive contexts. You don’t want to focus on them either! Here are some strategies experts recommend about supportive contexts:</p>
+
+<ul>
+  <li>outsource them</li>
+  <li>leave them to less experienced programmers</li>
+  <li>or apply looser quality rules in this code</li>
+</ul>
+
+<p>Here is <a href="https://blog.jonathanoliver.com/ddd-strategic-design-core-supporting-and-generic-subdomains/">a post by Jonathan Olivier</a> if you want to learn more about these 3 kinds of bounded contexts.</p>
+
+<h2 id="how-to-classify-your-bounded-contexts">How to classify your bounded contexts</h2>
+
+<p>This activity goes after all the DDD Event Storming steps I presented in <a href="/categories/#squash-bduf-with-event-storming-series">the previous posts</a>. The design board should now look something like that:</p>
+
+<p><a href="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/event-storming-board-with-functional-areas.jpg"><img src="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/event-storming-board-with-functional-areas-small.jpg" alt="The Event Storming board after identifying the bounded contexts. Boundaries are the small red strings" /></a></p>
+
+<p>Here is how to do this in group during the workshop.</p>
+
+<ul>
+  <li>Give a quick introduction to the 3 kinds of bounded contexts. It’s rather simple, and people usually get this quick.</li>
+</ul>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/core-generic-supportive.jpg" alt="A poster that explains to the Event Storming attendees the DDD concepts of Core, Supportive and Generic bounded contexts" /></p>
+
+<ul>
+  <li>Draw a few hearts ❤️, 🅖 and 🅢 post-its.</li>
+  <li>Pick one context, and ask how they would classify it. Discussion and, hopefully, agreement should follow. If you cannot reach a consensus, use a pink problem post-it and continue. You might also have a look at <a href="https://buildplease.com/pages/fpc-7/">Nick Chamberlain’s technique of using both complexity and competitive advantage</a>.</li>
+  <li>Hand the rest of the post-its to the audience, and ask them to classify the other contexts</li>
+  <li>It should not be very long for them to have classified all the contexts</li>
+  <li>The core should be as small as possible. So let’s try to highlight the core even further. For identified core contexts, ask the audience if they could extract non-core parts out. If yes, draw new supportive or generic bounded contexts.</li>
+  <li>Ask them if there is anything that they would like to comment</li>
+</ul>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-01-26-build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/a-core-functional-area.jpg" alt="Zoom on a part of the Event Storming board where we can see a bounded context classified as core with a ❤️ post-it" /></p>
+
+<h2 id="outcomes">Outcomes</h2>
+
+<p>This small and simple activity can have paramount consequences. Especially for big topics like prioritization or buy vs build software decisions.</p>
+
+<p>Here is an illustration. I gave this workshop to a team in Dublin a few month ago. They later told me they had unscheduled a large refactoring that was not tackling their core. By itself, this kind of decision pays back the whole workshop many times.</p>
+
+<p>Another team I’ve worked with decided to replace a feature they had built in-house with a 3rd party. They had discovered it was ‘Generic’. This would allow them to re-focus on other core bounded contexts of their system.</p>
+
+<blockquote>
+  <p>💡 Use Event Storming and DDD to identify generic parts of your system. Then save time and maintenance by replacing them with third parties.</p>
+</blockquote>
+
+<p>A less tangible outcome is that it focuses discussions and efforts on core contexts. At the end, there will be less work on non-core contexts, and more on core contexts. Work on core bounded contexts is also more valuable. All in all, it means less but more valuable work. This means a more profitable and <a href="http://www.sustainablepace.net/what-is-sustainable-pace">sustainable pace</a>.</p>
+
+<p>The more we dive in Event Storming, and the more actionable the outcomes get!</p>
+
+<h2 id="to-be-continued">To be continued</h2>
+
+<p>In <a href="/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/">the next post</a>, I’ll go over decision power between bounded contexts. Now that we know our core bounded contexts, we want to make sure they have this power!</p>
+
+<p>This was the 10th post in <a href="/categories/#squash-bduf-with-event-storming-series">a series about how to use Event Storming to kick start architecture on good tracks</a>.</p>
+
+<p><a href="/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/">Continue Reading…</a>.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/categories/#event-storming" class="page__taxonomy-item" rel="tag">event storming</a><span class="sep">, </span>
+    
+      <a href="/categories/#squash-bduf-with-event-storming-series" class="page__taxonomy-item" rel="tag">squash-BDUF-with-event-storming-series</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-01-31T00:00:00+00:00">January 31, 2019</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Build+or+Buy+Software%3F+Identify+your+core+bounded+contexts+with+Event+Storming+and+DDD%20https%3A%2F%2Fphilippe.bourgau.net%2Fbuild-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fbuild-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fbuild-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd%2F&title=Build+or+Buy+Software%3F+Identify+your+core+bounded+contexts+with+Event+Storming+and+DDD" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fbuild-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd%2F&t=Build or Buy Software? Identify your core bounded contexts with Event Storming and DDD" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/drafting-a-functional-architecture-vision-with-ddd-event-storming-part-1/" class="pagination--pager" title="Drafting a Functional Architecture Vision with Event Storming and DDD
+">Previous</a>
+    
+    
+      <a href="/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/" class="pagination--pager" title="Ensure core contexts have the upper hand with Event Storming and DDD
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
