@@ -14,6 +14,8 @@ header:
 ---
 _You've just invited 10 people to join your 8h [Event Storming](https://en.wikipedia.org/wiki/Event_storming). Here are 9 Event Storming tips to maximize knowledge sharing and the use of everyone's time._
 
+ℹ️ _**NOTE: Parts of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com/1h-event-storming-book/#7-general-tips)**_
+
 ![Drawing of shared-understanding and a metronome with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-21-21-more-event-storming-tips-part-1-understanding-and-rhythm/more-event-storming-tips-understanding-rhythm.jpg)
 
 When we ran the first Event Storming workshop at [Murex](https://www.murex.com/), it was an all-new practice. Fast forward a few years, it has become a standard. As the method is spreading, we are also discovering new best practices.

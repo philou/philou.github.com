@@ -16,7 +16,7 @@ header:
 ---
 _Even more [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 3 will help you to avoid the mistakes we did. The last 2 are the recipe to learn more tips by yourself!_
 
-ℹ️ _**NOTE: Part of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com)**_
+ℹ️ _**NOTE: Parts of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com/1h-event-storming-book/#7-general-tips)**_
 
 ![Drawing of a mistake and a T-shirt pattern with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-25-21-more-event-storming-tips-part-3-anti-and-meta-patterns/more-event-storming-tips-anti-and-meta-patterns.jpg)
 

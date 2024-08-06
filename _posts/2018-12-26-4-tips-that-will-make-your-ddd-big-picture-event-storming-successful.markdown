@@ -14,6 +14,8 @@ header:
 ---
 _Although not rocket science, running a [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) Big Picture [Event Storming](https://www.eventstorming.com/) can be tricky. Here are 4 hard won tips that will make your first workshop successful._
 
+ℹ️ _**NOTE: Parts of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com/1h-event-storming-book/#7-general-tips)**_
+
 This is the 8th post in [a series about how to use Event Storming to kick start architecture on good tracks](/categories/#squash-bduf-with-event-storming-series). Previous posts
 
 *   explain why Domain Driven Design (DDD) Big Picture Event Storming matters

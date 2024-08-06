@@ -15,6 +15,8 @@ header:
 ---
 _More [Event Storming](https://en.wikipedia.org/wiki/Event_storming) tips! 4 tips to delight attendees with fantastic facilitation. 3 tips about animating an Event Storming when there is existing code._
 
+ℹ️ _**NOTE: Parts of this post has been republished and updated on the [Event Storming Journal blog](https://www.eventstormingjournal.com/1h-event-storming-book/#7-general-tips)**_
+
 ![Drawing of Event Storming Facilitation and Mr Legacy (Code) with the writing 'More Event Storming Tips' above]({{site.url}}/imgs/2019-12-24-21-more-event-storming-tips-part-2-facilitation-and-existing-code/more-event-storming-tips-facilitation-and-existing-code.jpg)
 
 This was the second of a [3 posts series compiling Event Storming best practices]({{site.url}}/categories#more-event-storming-tips-series). The previous post contained tips about understanding and rhythm. If you haven't you might start by [the beginning]({{site.url}}/21-more-event-storming-tips-part-1-understanding-and-rhythm/)!
