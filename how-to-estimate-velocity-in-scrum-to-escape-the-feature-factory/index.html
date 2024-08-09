@@ -1,0 +1,963 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to estimate velocity in Scrum to escape the feature factory | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Poker Planning is a collaborative game… that developers often lose! The typical way to estimate how much work to plan in a sprint is flawed. Here are some references to the original planning poker rules. These rules are fair to developers and will buy them slack time for technical improvement.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to estimate velocity in Scrum to escape the feature factory">
+<meta property="og:url" content="https://philippe.bourgau.net/how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/">
+
+
+  <meta property="og:description" content="Poker Planning is a collaborative game… that developers often lose! The typical way to estimate how much work to plan in a sprint is flawed. Here are some references to the original planning poker rules. These rules are fair to developers and will buy them slack time for technical improvement.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/escape-from-the-feature-factory-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to estimate velocity in Scrum to escape the feature factory">
+  <meta name="twitter:description" content="Poker Planning is a collaborative game… that developers often lose! The typical way to estimate how much work to plan in a sprint is flawed. Here are some references to the original planning poker rules. These rules are fair to developers and will buy them slack time for technical improvement.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/escape-from-the-feature-factory-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-01-20T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to estimate velocity in Scrum to escape the feature factory">
+    <meta itemprop="description" content="Poker Planning is a collaborative game… that developers often lose! Here are the original fair rules that will provide developers time for technical work.">
+    <meta itemprop="datePublished" content="2022-01-20T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to estimate velocity in Scrum to escape the feature factory
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Poker Planning is a collaborative game… that developers often lose! Here are the original <strong>fair</strong> rules that will provide developers time for technical work.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/escape-from-the-feature-factory.jpg" alt="Drawing of a game box 'escape the feature factory extension for planing poker' with people running away from a 'feature factory.' Here is yet some more Scrum-Aïkido to use the original rules of the planning poker game to give more time to developers for technical excellence." /></p>
+<blockquote>
+  <p>Some teams are somewhat experienced in Agile &amp; DevOps (but mostly from the cadence &amp; ceremonies perspective)</p>
+</blockquote>
+
+<blockquote>
+  <p>The team uses sprint planning and velocity by the book, yet they never have time to work on technical excellence!</p>
+</blockquote>
+
+<blockquote>
+  <p>Technical excellence, the practice of improving the structure of the code by doing continuous refactoring is completely foreign to most developers, who are being told that if they are good at what they are doing, they should be able to do it correctly on the first try.</p>
+</blockquote>
+
+<p>We get messier code, more complicated maintenance, and an unsustainable rhythm without enough technical work. But, unfortunately, non-technical people are usually not aware of the importance of technical practices.</p>
+
+<p>I said in the <a href="https://philippe.bourgau.net/leverage-scrum-to-workaround-feature-factory-sprint-planning/">previous post</a> that running planning poker sessions can help us here. The idea is to plan as many story points for the next sprint as delivered during the previous one. This will accommodate variability and create time to catch up on technical debt.</p>
+
+<p>The number of story points delivered per sprint is the <a href="https://en.wikipedia.org/wiki/Velocity_(software_development)">Velocity</a>. Unfortunately, <strong>the general recommendation about estimating velocity in Scrum is terrible!</strong> As a result, many Scrum teams over-commit and skip important long-term technical work. That’s how <a href="https://cutle.fish/blog/12-signs-youre-working-in-a-feature-factory">agile feature factories</a> are born!</p>
+
+<blockquote>
+  <p>Did you know that developers would get time for technical excellence by forecasting just as many story points as delivered during ONLY the previous sprint?</p>
+</blockquote>
+
+<p><strong>Let’s see how to leverage Scrum Velocity to reach a sustainable and effective pace.</strong></p>
+
+<ol>
+  <li><a href="#the-typical-but-flawed-way-to-estimate-the-velocity">The typical (but flawed) way to estimate the velocity</a></li>
+  <li><a href="#whats-the-problem-with-averaging-velocity">What’s the problem with averaging velocity?</a></li>
+  <li><a href="#just-use-the-previous-sprint-to-estimate-velocity">Just use the previous sprint to estimate velocity!</a></li>
+  <li><a href="#its-not-that-easy-though">It’s not that easy, though!</a></li>
+</ol>
+
+<h2 id="the-typical-but-flawed-way-to-estimate-the-velocity">The typical (but flawed) way to estimate the velocity</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/google-search-how-to-compute-velocity-scrum.jpg" alt="A screenshot from a Google search for &quot;How to compute velocity scrum.&quot; The highlighted answer is &quot;Add up the total of story points completed from each sprint, then divide by the number of sprints.&quot; Other links on the first result page offer similar advice." /></p>
+
+<blockquote>
+  <p>Add up the total of story points completed from each sprint, then divide by the number of sprints. (<a href="https://www.google.com/search?q=how+to+compute+velocity+scrum">Google answer’s to “How to compute velocity scrum”</a>)</p>
+</blockquote>
+
+<h2 id="whats-the-problem-with-averaging-velocity">What’s the problem with averaging velocity?</h2>
+
+<h3 id="a-classic-situation">A classic situation</h3>
+
+<p>A few years ago, I worked with a team facing delivery difficulties. Here is what I noted about its sprints and velocity:</p>
+
+<ul>
+  <li>The amount of story points the team delivered (its velocity) varied a lot from sprint to sprint.</li>
+  <li>Yet, the team members were doing anything they could to deliver what they had planned:
+    <ul>
+      <li>They were working full-throttle on stories right till the end of the sprint.</li>
+      <li>Things turned out well from time to time, and they would manage to finish before the end of the sprint. They would then catch up on what they had not delivered on previous sprints.</li>
+    </ul>
+  </li>
+  <li>As a result of all these efforts, the team members were exhausted.</li>
+  <li>They were also aware that they were pilling up technical debt.</li>
+  <li>Unfortunately, the situation looked to be getting worse!</li>
+</ul>
+
+<p>I guess you can relate to this story: most of the teams I have worked with have been in this situation!</p>
+
+<h3 id="the-vicious-circle-of-averaging-velocity">The vicious circle of averaging velocity</h3>
+
+<p>Let’s see what happens when we use the average velocity in the previous situation.</p>
+
+<p>Here is a sample velocity history:</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/velocity-history.jpg" alt="A velocity history graph, showing an average velocity line of 42, but with delivered story points per sprints going from 30 to 55." /></p>
+
+<p>The average velocity over the 4 previous sprints is 42. Let’s assume that the team now plans to deliver this average: 42 story points. During these 4 previous sprints, the team produced:</p>
+
+<ul>
+  <li>more than 42 story points twice</li>
+  <li>less than 42 story points twice</li>
+</ul>
+
+<p>If the team does not change anything else in its way of working, history will repeat itself! So here is what we can expect over the following sprints:</p>
+
+<ol>
+  <li>The team will not deliver what they planned on half of the sprints. This will generate stress for everyone and degrade trust with business stakeholders.</li>
+  <li>On the other half of the sprints, the team will manage to deliver what they said. But team members are likely to start catching up on what they did not tackle in previous sprints! Unfortunately, from the eyes of business stakeholders, it’s only late payback!</li>
+</ol>
+
+<p>In the end, <strong>the team is in a constant state of catching up.</strong> This constant struggle to meet the plan makes:</p>
+
+<ul>
+  <li>The team look unreliable and non-trustworthy in the eyes of business stakeholders</li>
+  <li>The team members cut corners and take technical debt</li>
+  <li>The team members work under permanent stress</li>
+</ul>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/average-velocity-vicious-circle-small.jpg" alt="A hand-drawn schema of the vicious circle of averaging velocity. Here is how it goes: Average velocity -&gt; Catch up on 'good' sprints -&gt; No slack time for improvement -&gt; long term situation gets worse -&gt; more variability -&gt; Average velocity..." /><figcaption>
+      
+<a href="https://twitter.com/intent/retweet?tweet_id=1483673599110221824">Retweet this image</a> by <a href="https://philippe.bourgau.net">Philippe Bourgau</a>, under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/average-velocity-vicious-circle.jpg">high resolution image</a>
+
+    </figcaption></figure>
+
+<p>In fact, averaging velocity does not change anything to the previous situation! On the contrary, it degrades trust, generates stress, and pill-up technical debt.</p>
+
+<h3 id="why-are-people-averaging-velocity">Why are people averaging velocity?</h3>
+
+<p><strong>The only, conscious or unconscious, reason to average the velocity is to game the metrics!</strong> The team can show a ‘predictable’ face by communicating about the average.</p>
+
+<p>Unfortunately, this strategy does not address the root causes of the variability. Instead, it only makes things worse.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/watermelon.jpg" alt="Averaging the sprint velocities is a great example of a &quot;Watermelon KPI&quot;. It looks perfect from the outside, but it's all red in the inside! Here the team looks very predictable on the outside, but it's actually chaos in the inside." /></p>
+
+<blockquote>
+  <p>Averaging the velocity makes everything looks ‘green’ from the outside, while the situation is still ‘red’ inside, like a watermelon.</p>
+</blockquote>
+
+<h2 id="just-use-the-previous-sprint-to-estimate-velocity">Just use the previous sprint to estimate velocity!</h2>
+
+<p>Let’s resume the story about the team I mentioned <a href="#a-classic-situation">above</a>. The team needed to plan less per sprint. Fortunately, the organization had a goal to increase “predictability.” The team could leverage this to reduce what it planned every sprint. This picture shows how we cut the planned velocity:</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-12-06-leverage-scrum-to-workaround-feature-factory-sprint-planning/slack-line.jpg" alt="A Story Point delivery history that highlights the variability and the 'realistic' commitment to do to keep time for technical work" /></p>
+
+<p>This was a hard cut to swallow, but the team soon had time for new activities:</p>
+
+<ul>
+  <li><a href="https://philippe.bourgau.net/10-pair-programming-questions-answers/">pair</a> and <a href="https://philippe.bourgau.net/3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/">mob</a> programming</li>
+  <li>pairing between the different profiles in the team to increase generalist skills</li>
+  <li>investing in a test framework to increase coverage of legacy code</li>
+  <li>taking more time to write clean code</li>
+  <li>investing in documenting some critical but forgotten parts of the codebase</li>
+</ul>
+
+<p>After a few sprints, stakeholders noticed that the team was getting in control. In addition, limiting the planned work had kicked off a continuous improvement mindset in the team. As a result, the team member’s mood improved significantly in a handful of weeks!</p>
+
+<h3 id="how-to-calculate-velocity-and-capacity-in-scrum">How to calculate velocity and capacity in Scrum</h3>
+
+<p>Here is how the literature tells us to calculate velocity and capacity in Scrum:</p>
+
+<blockquote>
+  <p>To predict your next iteration’s velocity, add the estimates of the stories that were “done done” in the previous iteration. (<a href="http://www.jamesshore.com/">James Shore</a> in <a href="http://www.jamesshore.com/v2/books/aoad1/estimating">The Art of Agile Development, 1st Edition’s</a>)</p>
+</blockquote>
+
+<p>It’s that simple! Over a few sprints, the team will reach a velocity close to the minimum in their sprint history. If the team already has its history, it could start with this minimum. Here is what happens with this strategy:</p>
+
+<ul>
+  <li>The team will deliver what it planned in 95% of the sprints. This builds trust with business stakeholders and reduces stress.</li>
+  <li>The product owner will be able to predict what the team can deliver.</li>
+  <li>Sometimes, the team will finish its stories before the end of the sprint. The team members will have some time to refactor, test, or tackle other significant improvements. This addresses the root causes of variability. It makes work more sustainable and less stressful for everyone in the long term.</li>
+  <li>As continuous improvement compounds, the productivity of the team will also increase. The team will increase what it can deliver every sprint in the long run. Again, this will build trust with business stakeholders.</li>
+</ul>
+
+<p><strong>In the long term, this strategy beats averaging velocity in all aspects. Not only for developers but for business stakeholders too!</strong></p>
+
+<h2 id="its-not-that-easy-though">It’s not that easy, though!</h2>
+
+<p>Even if we know things will be better in the long term, getting there, though, is tricky. At first, it will deliver less than the ‘Run As Fast As You Can’ strategy.</p>
+
+<p>Here are the main challenges the team will have to overcome.</p>
+
+<h3 id="negotiating-the-change-with-the-product-owner">Negotiating the change with the Product Owner</h3>
+
+<p>This “long-term” strategy stresses <strong>the product owner’s duty of excluding what not to do</strong>!</p>
+
+<blockquote>
+  <p>Simplicity–the art of maximizing the amount of work not done–is essential. (<a href="https://agilemanifesto.org/principles.html">The Agile Manifesto Principles</a>)</p>
+</blockquote>
+
+<p>Some product owners will push back! As coaches, we can help by training and preparing the team to negotiate. We can also facilitate the discussion to turn it into constructive brainstorming.</p>
+
+<h3 id="parkinsons-law">Parkinson’s Law</h3>
+
+<blockquote>
+  <p>Work expands so as to fill the time available for its completion. (<a href="https://en.wikipedia.org/wiki/Parkinson%27s_law">Wikipedia</a>)</p>
+</blockquote>
+
+<p>Unfortunately, Parkingson’s Law is real! As coaches, we can help by adding visibility. For example, we can show the Scrum Master how to track the day of the sprint when all the stories are closed.</p>
+
+<h3 id="scope-creep">Scope Creep</h3>
+
+<p>Developers will start new user stories when everything planned for the sprint is done!</p>
+
+<p>This one might sound a bit crazy! But, indeed, I’ve observed this behavior in the large majority of teams I’ve worked with! User stories are great, but we want time for technical improvement! Here is a remedy that <a href="https://michaelfeathers.silvrback.com/">Michael Feathers</a> shared during a training:</p>
+
+<blockquote>
+  <p>Always have a small backlog of small and precise refactoring tasks ready to be worked on.</p>
+</blockquote>
+
+<p>We can work with the Scrum master to organize the grooming of a refactoring backlog. It needs to be small and visible!</p>
+
+<h2 id="time-for-a-change">Time for a change!</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-01-13-how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/winning-hand.jpg" alt="Picture of a four aces poker hand that only the owner knows. There is no point playing against this hand. Sometimes developers feel that planning poker is a game they always lose!" /></p>
+
+<p><strong>Are developers losing the planning poker game in the team you are working with?</strong> Here is what you can do:</p>
+
+<ol>
+  <li>Present the average and previous sprint velocity strategies to the Scrum Master. Take the time to discuss the matter in-depth, and share the references from this article.</li>
+  <li>Together, present to the team and discuss how to move to the previous sprint velocity strategy.</li>
+  <li>Help the team to negotiate with the Product Owner. Suggest ways to ease the change. For example, the team might run an experiment over a few sprints. It could also gradually reduce the duration over which the velocity is averaged.</li>
+  <li>Don’t forget to watch out for Parkinson’s law and scope creep!</li>
+</ol>
+
+<p>I would love to read about your own developer tricks to pitfalls around Scrum Velocity! The comment section is yours.</p>
+
+<hr />
+<p>Here are other posts about how developers can get more time for technical work:</p>
+
+<ul>
+  <li><a href="https://philippe.bourgau.net/leverage-scrum-to-workaround-feature-factory-sprint-planning/">Leverage Scrum to workaround feature-factory sprint planning</a> presents other Scrum-Aïkido techniques to take more time on technical excellence</li>
+  <li><a href="https://philippe.bourgau.net/5-whole-team-workshops-to-increase-developers-role-in-sprint-planning/">5 Whole-Team Workshops To Increase Developers’ Role In Sprint Planning</a></li>
+  <li><a href="https://philippe.bourgau.net/how-to-coach-developers-to-get-a-chat-with-their-product-experts/">How to coach developers to get a chat with their product experts</a></li>
+  <li><a href="https://philippe.bourgau.net/make-testing-legacy-code-viral-mikado-method-and-test-data-builders/">Make Testing Legacy Code Viral: Mikado Method and Test Data Builders</a> presents a low investment, long-term, but viral way to inject testing in a legacy codebase</li>
+  <li><a href="https://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">How to convince your business of sponsoring a large scale refactoring</a></li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#agile" class="page__taxonomy-item" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#planning" class="page__taxonomy-item" rel="tag">planning</a><span class="sep">, </span>
+    
+      <a href="/categories/#refactoring" class="page__taxonomy-item" rel="tag">refactoring</a><span class="sep">, </span>
+    
+      <a href="/categories/#scrum" class="page__taxonomy-item" rel="tag">scrum</a><span class="sep">, </span>
+    
+      <a href="/categories/#technical-debt" class="page__taxonomy-item" rel="tag">technical debt</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-01-20T00:00:00+00:00">January 20, 2022</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+estimate+velocity+in+Scrum+to+escape+the+feature+factory%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-estimate-velocity-in-scrum-to-escape-the-feature-factory%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-estimate-velocity-in-scrum-to-escape-the-feature-factory%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-estimate-velocity-in-scrum-to-escape-the-feature-factory%2F&title=How+to+estimate+velocity+in+Scrum+to+escape+the+feature+factory" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-estimate-velocity-in-scrum-to-escape-the-feature-factory%2F&t=How to estimate velocity in Scrum to escape the feature factory" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/leverage-scrum-to-workaround-feature-factory-sprint-planning/" class="pagination--pager" title="Leverage Scrum to workaround feature-factory sprint planning
+">Previous</a>
+    
+    
+      <a href="/how-to-handle-tdd-does-not-work-in-real-life-during-code-katas/" class="pagination--pager" title="How to handle “TDD does not work in real life!” during code katas
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-estimate-velocity-in-scrum-to-escape-the-feature-factory"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

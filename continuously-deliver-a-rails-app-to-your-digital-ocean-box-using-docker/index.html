@@ -1,0 +1,829 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Continuously Deliver a Rails App to your DigitalOcean Box using Docker | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="My workaround to manage to continuously deploy my Rails app to a DigitalOcean server using docker and CircleCI">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Continuously Deliver a Rails App to your DigitalOcean Box using Docker">
+<meta property="og:url" content="https://philippe.bourgau.net/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">
+
+
+  <meta property="og:description" content="My workaround to manage to continuously deploy my Rails app to a DigitalOcean server using docker and CircleCI">
+
+
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Continuously Deliver a Rails App to your DigitalOcean Box using Docker">
+  <meta name="twitter:description" content="My workaround to manage to continuously deploy my Rails app to a DigitalOcean server using docker and CircleCI">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2016-10-25T20:39:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Continuously Deliver a Rails App to your DigitalOcean Box using Docker">
+    <meta itemprop="description" content="I decided to use my latest side project as an occasion to learn Docker. I first used Heroku as a platform for deployment (see previous post). It works fine but I discovered the following shortcomings :">
+    <meta itemprop="datePublished" content="2016-10-25T20:39:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Continuously Deliver a Rails App to your DigitalOcean Box using Docker
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I decided to use <a href="https://github.com/philou/planning-poker">my latest side project</a> as an occasion to learn <a href="https://www.docker.com/">Docker</a>. I first used <a href="https://www.heroku.com/">Heroku</a> as a platform for deployment (see <a href="/how-to-boot-a-new-rails-project-with-docker-and-heroku/">previous post</a>). It works fine but I discovered the following shortcomings :</p>
+
+<ul>
+  <li>Heroku does not deploy with Docker, which means that I’d get quite different configurations between dev and prod, which is one of the promises of Docker :(</li>
+  <li>The dockerfile provided by docker runs bundle install in a directory outside of the docker main shared volume, this forces to do bundle update twice (once to update Gemfile.lock and a second time to update the actual gems …)</li>
+</ul>
+
+<p>None of these issues could be fixed without moving away from Heroku.</p>
+
+<h2 id="a-great-tutorial--guide">A great Tutorial / Guide</h2>
+
+<p>I followed <a href="http://chrisstump.online/">Chris Stump</a>’s great tutorials to <a href="http://chrisstump.online/2016/02/20/docker-existing-rails-application/">setup Docker for my app</a>, to <a href="http://chrisstump.online/2016/03/03/continuous-integration-docker-rails/">continuously integrate</a> on <a href="https://circleci.com/">CircleCI</a> and to <a href="http://chrisstump.online/2016/03/17/continuous-deployment-docker-rails/">continuously deploy</a> on a private virtual server on <a href="https://www.digitalocean.com/">DigitalOcean</a>.</p>
+
+<p>The first 2 steps (Docker &amp; CI) worked really out of the box after following the tutorial. Dealing with step 3 (CD) was a bit more complicated, because of :</p>
+
+<ol>
+  <li>the specificities of DigitalOcean</li>
+  <li>the fact that I’m a no deployment expert …</li>
+</ol>
+
+<p><img src="https://philippe.bourgau.net/imgs/2016-10-25-continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/docker-circleci-digitalocean.jpg" alt="The logos of Docker, CircleCI and DigitalOcean" /></p>
+
+<h2 id="what-did-i-need-to-do-to-make-it-work">What did I need to do to make it work</h2>
+
+<h3 id="setup-ssh-on-the-digitalocean-box">Setup SSH on the DigitalOcean box</h3>
+
+<p>I started by creating a <a href="https://cloud.digitalocean.com/droplets/new?size=2gb&amp;region=nyc3&amp;appId=20423249&amp;type=applications">one-click DigitalOcean box</a> with Docker pre-installed. That’s the moment where I had to setup SSH in order to make CircleCI deploy to my box. DigitalOcean has a <a href="https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets">guide for this</a>, but here is how I did it :</p>
+
+<ol>
+  <li>Create a special user on my dev machine <code class="language-plaintext highlighter-rouge">adduser digitaloceanssh</code></li>
+  <li>Log as this user <code class="language-plaintext highlighter-rouge">su digitaloceanssh</code>, and generated ssh keys for it <code class="language-plaintext highlighter-rouge">ssh-keygen</code></li>
+  <li>Print the public key <code class="language-plaintext highlighter-rouge">cat ~/.ssh/id_rsa.pub</code> and copy paste it in your DigitalOcean box setup</li>
+  <li>Print the private key <code class="language-plaintext highlighter-rouge">cat ~/.ssh/id_rsa</code> and copy past it in your circle-ci job ssh keys</li>
+</ol>
+
+<p>The benefit of this is that you should now be able to ssh in your DigitalOcean box from your digitaloceanssh user <code class="language-plaintext highlighter-rouge">ssh root@&lt;ip.to.digital.ocean&gt;</code></p>
+
+<h3 id="optional--update-the-box">Optional : update the box</h3>
+
+<p>The first time I logged into my box, I noted that packages were out of date. If you need it, updating the packages is a simple matter of <code class="language-plaintext highlighter-rouge">apt-get update &amp;&amp; apt-get upgrade</code></p>
+
+<h3 id="fix-deployment-directory">Fix deployment directory</h3>
+
+<p>By default, the home dir of the root user on the DigitalOcean box is <code class="language-plaintext highlighter-rouge">/root/</code>. Unfortunately, Chris Stump’s tutorial assumes it to be <code class="language-plaintext highlighter-rouge">/home/root/</code>. In order to fix that, I ssh-ed in the box and created a symbolic link : <code class="language-plaintext highlighter-rouge">ln -s /root /home/root</code>.</p>
+
+<h3 id="install-docker-compose-on-the-box">Install docker-compose on the box</h3>
+
+<p>Chris Stump’s tutorial expects docker-compose on the deployment box, but DigitalOcean only installs Docker on its boxes … Install instructions for docker-compose can be found <a href="https://docs.docker.com/compose/install/">here</a>. Don’t use the container option, it does not inherit environment variables, and will fail the deployment, just use the first curl based alternative.</p>
+
+<h3 id="warning--replace-all-dockerexample">Warning : replace ALL dockerexample</h3>
+
+<p>This comes as an evidence, but be sure to replace all the references to ‘dockerexample’ to your own app name in all of Chris Stump’s templates (I forgot some and lost a few rebuilds for that)</p>
+
+<h3 id="create-the-production-db">Create the production DB</h3>
+
+<p>Chris Stump’s deployment script works with an existing production DB. The first migration will fail. To fix this, just do the following :</p>
+
+<ol>
+  <li>ssh into the DigitalOcean server</li>
+  <li>run <code class="language-plaintext highlighter-rouge">DEPLOY_TAG=&lt;latest_deploy_tag&gt; RAILS_ENV=production docker-compose -f docker-compose.production.yml run app bundle exec rake db:create</code></li>
+</ol>
+
+<p>You can find the latest DEPLOY_TAG from the CircleCi step <code class="language-plaintext highlighter-rouge">bundle exec rake docker:deploy</code></p>
+
+<h3 id="how-to-access-the-logs">How to access the logs</h3>
+
+<p>It might come handy to check the logs of your production server ! Here is how to do this :</p>
+
+<ol>
+  <li>ssh in your production server</li>
+  <li>run the following to tail on the logs <code class="language-plaintext highlighter-rouge">DEPLOY_TAG=`cat deploy.tag` RAILS_ENV=production docker-compose -f docker-compose.production.yml run app tail -f log/production.log</code></li>
+</ol>
+
+<p>Obviously, tail is just an example, use anything else at your convenience.</p>
+
+<h3 id="generate-a-secret-token">Generate a secret token</h3>
+
+<p>Eventually, the build and deployment job succeeded … I had still one last error when I tried to access the web site : <code class="language-plaintext highlighter-rouge">An unhandled lowlevel error occurred. The application logs may have details.</code>. After some googling, I understood that this error occurs when you did not set a secret key base for your rails app (<a href="http://stackoverflow.com/questions/37112804/an-unhandled-lowlevel-error-occurred-the-application-logs-may-have-details">details</a>). There is a <a href="http://www.jamesbadger.ca/2012/12/18/generate-new-secret-token/">rails task to generate a token</a>, all that was needed was to create a .env file on the server with the following :</p>
+
+<p><code class="language-plaintext highlighter-rouge">SECRET_KEY_BASE=&lt;GENERATED_SECRET...&gt;</code></p>
+
+<h2 id="whats-next-">What’s next ?</h2>
+
+<p>Obviously, I learned quite a lot with this Docker exploration. I am still in the discovery phase, but my planning poker side project is now continuously built on <a href="https://circleci.com/gh/philou/planning-poker">circleci</a>, and deployed to a <a href="http://104.131.47.10/">DigitalOcean box</a>.</p>
+
+<p>The next steps (first, find a better subdomain, second, speed up the build job) will tell me if this kind of deployment is what I need for my pet projects. If it turns out too complicated or too difficult to maintain, <a href="http://dokku.viewdocs.io/dokku/">Dokku</a> is on my radar.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#continuous-integration" class="page__taxonomy-item" rel="tag">continuous-integration</a><span class="sep">, </span>
+    
+      <a href="/categories/#docker" class="page__taxonomy-item" rel="tag">docker</a><span class="sep">, </span>
+    
+      <a href="/categories/#rails" class="page__taxonomy-item" rel="tag">rails</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2016-10-25T20:39:00+00:00">October 25, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Continuously+Deliver+a+Rails+App+to+your+DigitalOcean+Box+using+Docker%20https%3A%2F%2Fphilippe.bourgau.net%2Fcontinuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fcontinuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fcontinuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker%2F&title=Continuously+Deliver+a+Rails+App+to+your+DigitalOcean+Box+using+Docker" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fcontinuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker%2F&t=Continuously Deliver a Rails App to your DigitalOcean Box using Docker" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/rexp-remote-extreme-programming/" class="pagination--pager" title="ReXP : Remote eXtreme Programming
+">Previous</a>
+    
+    
+      <a href="/how-to-kill-scrum-zombies/" class="pagination--pager" title="How to kill Scrum Zombies ?
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/continuously-deliver-a-rails-app-to-your-digital-ocean-box-using-docker"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
