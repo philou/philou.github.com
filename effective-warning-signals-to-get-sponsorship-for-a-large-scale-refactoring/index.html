@@ -1,0 +1,815 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>5 Effective warning signals that will get you sponsorship for a large scale refactoring | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Highlighting possible dangers is a very effective way to persuade people to act in a certain way. Learn how to use pranks, serious games, metaphors and horror stories to raise your business people’s concerns about legacy code and get you sponsorship for your large scale refactoring.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="5 Effective warning signals that will get you sponsorship for a large scale refactoring">
+<meta property="og:url" content="https://philippe.bourgau.net/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/">
+
+
+  <meta property="og:description" content="Highlighting possible dangers is a very effective way to persuade people to act in a certain way. Learn how to use pranks, serious games, metaphors and horror stories to raise your business people’s concerns about legacy code and get you sponsorship for your large scale refactoring.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/legacy-monster-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="5 Effective warning signals that will get you sponsorship for a large scale refactoring">
+  <meta name="twitter:description" content="Highlighting possible dangers is a very effective way to persuade people to act in a certain way. Learn how to use pranks, serious games, metaphors and horror stories to raise your business people’s concerns about legacy code and get you sponsorship for your large scale refactoring.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/legacy-monster-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-09-13T13:01:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="5 Effective warning signals that will get you sponsorship for a large scale refactoring">
+    <meta itemprop="description" content="In 2005, professors Bizer and Petty showed something interesting about human behavior. People make more efforts to avoid what they don’t want, than to get what they would like. The study itself is interesting, you can have a look at it here. For example, it explains why political campaigns are getting more and more nasty. There’s also a lesson for us, mere developers. We’ll get more sponsorship for our refactorings if we highlight the dangers of not doing them !">
+    <meta itemprop="datePublished" content="2018-09-13T13:01:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">5 Effective warning signals that will get you sponsorship for a large scale refactoring
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>In 2005, professors Bizer and Petty showed something interesting about human behavior. People make more efforts to avoid what they don’t want, than to get what they would like. The study itself is interesting, you can have a look at it <a href="https://www.jstor.org/stable/41057679?seq=1#page_scan_tab_contents">here</a>. For example, it explains why political campaigns are getting more and more nasty. There’s also a lesson for us, mere developers. We’ll get more sponsorship for our refactorings if we highlight the dangers of not doing them !</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/legacy-monster.jpg" alt="Drawing of a warning panel with legacy code written below an awful monster. Sending effective warning signals is a good way to get sponsorship for large scale refactorings" /></p>
+
+<p>This is the 11th post of a <a href="/categories/#large-scale-refactoring-sponsorship-series">series about how to get sponsorship for large scale refactoring</a>. If you haven’t already, start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<p>From the inside, many systems are in such a messy state that seem like a catastrophe waiting to happen. Unfortunately, this mess is completely invisible to non-developers ! Here are a few techniques to show how close we are from a total breakdown !</p>
+
+<h2 id="effective-warning-signal-1-pranks">Effective Warning Signal #1 Pranks</h2>
+
+<p>If you have the guts and your company is fun enough, you can try one of <a href="/the-size-of-code/">these pranks</a>.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/paper-on-desk.jpg" alt="A photo of a desk littered under paper. As if we had printed the whole source code and dumped in on a non-developer desk. Pranks are a good way to get sponsorship for large scale refactorings" /><figcaption>
+      
+What if we printed the whole source code and dumped it on non-developers desks ? By <a href="https://www.flickr.com/photos/kk/">Kris Krüg</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>, <a href="https://www.flickr.com/photos/kk/18768224">Link</a>
+
+    </figcaption></figure>
+
+<p>They’re bound to have a big impact … but they might also get you fired ! We should be creative and find both effective and acceptable pranks. Pranks are a lot more effective than we first think. <a href="https://en.wikipedia.org/wiki/Nonviolent_revolution">Non-Violent Revolution</a> activists have actually used <a href="http://laughtivismgroup5.blogspot.com/2016/04/laughtivism.html">Laughitism</a> to take dictators down ! For a good (and unexpectedly fun) read on the topic, have a look a <a href="https://www.amazon.com/Blueprint-Revolution-Nonviolent-Techniques-Communities/dp/0812995309">Blueprint for a Revolution</a>. It was written by Serb non violent activist <a href="https://en.wikipedia.org/wiki/Sr%C4%91a_Popovi%C4%87_(activist)">Srdja Popovic</a> member of <a href="https://en.wikipedia.org/wiki/Otpor!">OTPOR!,</a> who brought <a href="https://en.wikipedia.org/wiki/Slobodan_Milo%C5%A1evi%C4%87">Millosevic</a> down .</p>
+
+<p><a href="https://www.amazon.com/Blueprint-Revolution-Nonviolent-Techniques-Communities/dp/0812995309"><img src="https://philippe.bourgau.net/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/blueprint-revolution.jpg" alt="Cover of the book Blueprint for Revolution. Laughitism is a non violent technique that we can use against Legacy Code to get sponsorship for large scale refactorings" /></a></p>
+
+<p>Promised, as soon as I manage to use such a prank without getting fired at work, I’ll blog about it !</p>
+
+<h2 id="effective-warning-signal-2-dice-of-debt-game">Effective Warning Signal #2 Dice of Debt Game</h2>
+
+<p>While doing my researches for this article, I found the <a href="https://www.agilealliance.org/dice-of-debt-game/">Dice of Debt</a> game. It’s aimed at making business people experience the long term legacy code drag. It has good reviews, have a try at it with your business people and post back your feedback ! I’ll do so as soon as I have a chance to test it myself.</p>
+
+<h2 id="effective-warning-signal-3-higher-authority">Effective Warning Signal #3 Higher authority</h2>
+
+<p>Appealing to a higher authority works as long as people recognize this authority as so. Knowing the people in front of us, it’s our job to bring up the reference in an effective way. Here are</p>
+
+<p>In <a href="https://www.youtube.com/watch?v=xEqRtIeD51k">this talk</a>, <a href="http://docondev.com/">Doc Norton</a>, a recognized technical debt expert, shows the link between technical debt and productivity.</p>
+
+<p><a href="https://www.youtube.com/watch?v=xEqRtIeD51k"><img src="https://philippe.bourgau.net/imgs/2018-08-27-effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/technical-debt-trap.jpg" alt="Slide from Doc Norton's Technical Debt Trap talk. It shows how technical debt impacts the cost of change and can be an effective warning signal for a large scale refactoring" /></a></p>
+
+<p>Showing similarities between our own code metrics and this graph might ring the alarm bell in business people.</p>
+
+<p>Another interesting model out there is <a href="https://www.agilealliance.org/the-agile-alliance-debt-analysis-model/">A2DAM</a>. It was built through the <a href="https://www.agilealliance.org/">Agile Alliance</a>. It can be used to estimate the value of a codebase when buying a company. Maybe business people will listen if we tell them that their software would be worth 0 on the market ?</p>
+
+<h2 id="effective-warning-signal-4-metaphor">Effective Warning Signal #4 Metaphor</h2>
+
+<p>I was recently working with a team that is preparing a pitch to get sponsorship for a refactoring. They want to rework multithreaded code that uses locks and other low level synchronization. The hand written synchronization is becoming difficult to maintain. They would like to refactor it with the <a href="https://en.wikipedia.org/wiki/Actor_model">actor model</a>. Business people will likely argue that this module is now stable enough and should stay as is. We all know that this is not the case with bogus multithreaded code : the more you use it, the more bugs you find ! They had the idea to use the email vs phone metaphor. No one in the room could have handled all his daily emails with a phone only ! Everyone understood why it was necessary to switch to actors.</p>
+
+<p>In <a href="https://engineering.riotgames.com/news/taxonomy-tech-debt">A Taxonomy of Technical Debt</a>, <a href="https://www.linkedin.com/in/bill-clark-37444a133/">Bill Clark</a> adds another dimension to technical debt. On top of the classic principal and interests he adds contagion. In fact, it’s a bit as if he’s ditching the <a href="https://martinfowler.com/bliki/TechnicalDebt.html">technical debt metaphor</a> for the disease metaphor ! Disease have a cost to live with, a cost to heal from and a contagion rate. People at the agile alliance also noted this <a href="https://www.agilealliance.org/technical-debt-systemic-problem/">self reinforcing behavior</a>. This metaphor might be better for “<a href="https://en.wikipedia.org/wiki/Cruft">cruft</a>”. <a href="https://twitter.com/wardcunningham?lang=fr">Ward Cunningham</a>’s original metaphor of technical debt only applied to tested code.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pqeJFYwnkjE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+
+<blockquote>
+  <p>💡 A disease might be a better metaphor than debt for code cruft.</p>
+</blockquote>
+
+<h2 id="effective-warning-signal-5-a-horror-story">Effective Warning Signal #5 A horror story</h2>
+
+<p>We said that a successful refactoring story will be useful to frame ours as an opportunity. We can have more impact with the opposite ! We should relate a large software failure, that had impact on the business to bad code. The bigger the impact on the business, the better it is. If you (unluckily) have something like that at your company, it should be a very powerful argument. If you don’t, try to find a public story on the internet, or a public conference. For example here is one from <a href="https://www.makeuseof.com/tag/worst-programming-mistakes-in-history/">The 10 Worst Programming Mistakes in History.</a> </p>
+
+<blockquote>
+  <p>💡 The <a href="https://en.wikipedia.org/wiki/Therac-25">Therac-25</a> (a radiation therapy machine) killed 6 people because it was difficult to perform automated tests !</p>
+</blockquote>
+
+<p>We can draw parallels and forecasts, to highlight the high risk of failure.</p>
+
+<h2 id="almost-there">Almost there</h2>
+
+<p>This was the 11th post in a <a href="/categories/#large-scale-refactoring-sponsorship-series">series about how to get sponsorship for large scale refactoring</a>. Unfortunately, presenting refactoring in a good way only brings us so far. If we want to be really convincing, we need to use quantitative data. That’s going to be the topic of my <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/">next post</a>.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#joke" class="page__taxonomy-item" rel="tag">joke</a><span class="sep">, </span>
+    
+      <a href="/categories/#large-scale-refactoring-sponsorship-series" class="page__taxonomy-item" rel="tag">large-scale-refactoring-sponsorship-series</a><span class="sep">, </span>
+    
+      <a href="/categories/#psychology" class="page__taxonomy-item" rel="tag">psychology</a><span class="sep">, </span>
+    
+      <a href="/categories/#refactoring" class="page__taxonomy-item" rel="tag">refactoring</a><span class="sep">, </span>
+    
+      <a href="/categories/#technical-debt" class="page__taxonomy-item" rel="tag">technical debt</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-09-13T13:01:00+00:00">September 13, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=5+Effective+warning+signals+that+will+get+you+sponsorship+for+a+large+scale+refactoring%20https%3A%2F%2Fphilippe.bourgau.net%2Feffective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Feffective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Feffective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring%2F&title=5+Effective+warning+signals+that+will+get+you+sponsorship+for+a+large+scale+refactoring" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Feffective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring%2F&t=5 Effective warning signals that will get you sponsorship for a large scale refactoring" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/presenting-a-large-scale-refactoring-as-a-business-opportunity/" class="pagination--pager" title="Presenting a large scale refactoring as a business opportunity
+">Previous</a>
+    
+    
+      <a href="/making-the-business-case-for-a-large-scale-refactoring-part-1/" class="pagination--pager" title="Making the business case for a large-scale refactoring - Part 1
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/effective-warning-signals-to-get-sponsorship-for-a-large-scale-refactoring"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,1013 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>3 Good and Bad Ways to Write Team Coding Standards and Conventions | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Writing team coding standards and conventions is hard but critical. Throughout the years, I’ve tried different techniques. Let’s see: why brainstorming doesn’t work; how to use asynchronous decision making for remote teams; and how injecting mob programming in a team cuts through the problem!">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="3 Good and Bad Ways to Write Team Coding Standards and Conventions">
+<meta property="og:url" content="https://philippe.bourgau.net/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/">
+
+
+  <meta property="og:description" content="Writing team coding standards and conventions is hard but critical. Throughout the years, I’ve tried different techniques. Let’s see: why brainstorming doesn’t work; how to use asynchronous decision making for remote teams; and how injecting mob programming in a team cuts through the problem!">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="3 Good and Bad Ways to Write Team Coding Standards and Conventions">
+  <meta name="twitter:description" content="Writing team coding standards and conventions is hard but critical. Throughout the years, I’ve tried different techniques. Let’s see: why brainstorming doesn’t work; how to use asynchronous decision making for remote teams; and how injecting mob programming in a team cuts through the problem!">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-03-19T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="3 Good and Bad Ways to Write Team Coding Standards and Conventions">
+    <meta itemprop="description" content="Writing team coding standards and conventions is hard but critical. Brainstorming doesn’t work, so let’s use asynchronous decision making or mob programming!">
+    <meta itemprop="datePublished" content="2020-03-19T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">3 Good and Bad Ways to Write Team Coding Standards and Conventions
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Writing <a href="https://en.wikipedia.org/wiki/Coding_conventions">team coding standards and conventions</a> is hard but critical. Brainstorming doesn’t work, so let’s use asynchronous decision making or mob programming!</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/3-good-bad-ways-to-write-coding-standards-and-conventions.jpg" alt="Drawing of 3 different strategies to build coding conventions. Brainstorming does not work very well, collaborating over the wiki works, and coding dojos and mob programming rocks!" /></p>
+
+<p>Let’s start with a story about coding standards and conventions. About 10 years ago, I was working in an XP team at a bank. The team was working quite well: </p>
+
+<ul>
+  <li>We were pushing a new version every week</li>
+  <li>We were sitting 10 meters away from our users</li>
+  <li>They were happy 😀</li>
+  <li>We were doing <a href="https://philippe.bourgau.net/from-apprentice-to-master-how-to-learn-tdd-test-driven-development/">TDD</a> and <a href="https://philippe.bourgau.net/from-zero-to-pair-programming-hero/">pair programming</a> almost 100% of the time</li>
+</ul>
+
+<p>We were also trying to do <a href="https://martinfowler.com/bliki/CodeOwnership.html">collective code ownership</a>. Unfortunately, the programmers were using different coding styles, and it caused friction.</p>
+
+<p>At some point, we decided we needed to agree on coding standards for the team. I was playing the ScrumMaster role at the time. I set up a meeting for the whole team to write down coding standards.</p>
+
+<p>This meeting was a failure. In 1 hour, we more or less agreed on Microsoft’s recommendations on writing C#. The topic was too broad. Without some code to make the debate more concrete, we ended up in abstract discussions.</p>
+
+<p>My conclusion is that brainstormings are not the way to write coding standards.</p>
+
+<blockquote>
+  <p>#1. Team Coding Standards Anti-Pattern: Brainstorming</p>
+</blockquote>
+
+<p>A few years later, after I came back to work at <a href="https://www.murex.com">Murex</a>, my new team was facing similar issues. I knew a meeting would not help us to write coding standards. Instead, I set up a wiki page for suggesting, discussing, and voting on conventions. We used code snippets to start the discussion. It had the advantage of documenting new agreements by design. It worked surprisingly well!</p>
+
+<blockquote>
+  <p>#2. Team Coding Standards Best Practice: Asynchronous decision making</p>
+</blockquote>
+
+<p>The flip side is that it was slow. We would only agree on 1 or 2 conventions per month.</p>
+
+<p>Fortunately, the team was also doing coding dojos. At some point, <a href="https://www.linkedin.com/in/tpeyrard/">Thomas</a> suggested doing a <a href="https://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">randori</a> on a piece of code he wanted to refactor. In 2 hours, the whole team had discussed and agreed on 3 rules! That’s how we discovered the use of <a href="https://en.wikipedia.org/wiki/Mob_programming">mobbing</a> to write coding standards and conventions!</p>
+
+<blockquote>
+  <p>#3. Team Coding Standards Best Practice: Mob sessions</p>
+</blockquote>
+
+<p>Before I dive into these techniques, let’s see what’s at stake.</p>
+
+<h2 id="the-challenges-of-team-coding-conventions">The challenges of team coding conventions</h2>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/bad-communication-small.jpg" alt="Drawing of the double vicious circle of bad communication and no coding standards or conventions. No Coding conventions -&gt; Conflicts -&gt; No speak -&gt; No Coding Conventions... Conflicts -&gt; No Speak -&gt; Bad Reviews -&gt; Duplicated Code -&gt; More Bugs -&gt; Less Features -&gt; More Stress -&gt; Conflicts ..." /><figcaption>
+      
+By <a href="https://philippe.bourgau.net">Philippe Bourgau</a>, under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/bad-communication.jpg">high resolution image</a>
+
+    </figcaption></figure>
+
+<p>They have many names: working agreements, coding standards, or coding conventions. Whatever we call them, they have a massive impact on a team’s work. Here’s a non-exhaustive list of the problems that occur when they are lacking:</p>
+
+<ul>
+  <li>Recurring topics will pollute collaboration around code. For example, imagine your team does not agree about ‘How to do proper dependency injection.’ It will trigger many long discussions during code reviews, pair, or mob sessions.</li>
+  <li>There will be an inconsistent style throughout the code, depending on who wrote it. This adds a bit of mental load when reading the code, as we’ll have to adapt to different styles. In the end, it makes us less productive, especially since <a href="https://blog.codinghorror.com/when-understanding-means-rewriting/">reading is where we spend most of our time</a>!</li>
+  <li>It also increases the cost of collective code ownership. In extreme cases, it can make pieces of the code the exclusive property of a single developer. That’s not good for the <a href="https://en.wikipedia.org/wiki/Bus_factor">Bus Factor</a>!</li>
+  <li>Inconsistent and undocumented styles make open and/or inner source more difficult. It will be more difficult for people to <a href="https://dev.to/janessatran/a-beginner-s-guide-to-contributing-to-open-source-4fen">contribute valuable pull requests</a>.</li>
+</ul>
+
+<p>The lack of coding standards and conventions impacts teamwork, productivity, and quality. If you are a regular reader, you know how much I care for a sustainable pace. It turns out the lack of coding standards also makes work non-sustainable:</p>
+
+<ul>
+  <li>It wastes some time</li>
+  <li>It makes collaboration more difficult</li>
+  <li>It harms the quality of the code</li>
+  <li>It makes work less fun for everyone</li>
+</ul>
+
+<p>If team coding standards and conventions are so critical, why do we so often lack some? The truth is that they are not easy to agree on!</p>
+
+<ol>
+  <li>Opening the topic of coding standards can start an endless ping-pong discussion. Coding standards remain a never-ending work in progress until everyone gives up.</li>
+  <li>Even getting a coding-standard initiative to its conclusion is not enough! It often turns into documents that everyone forgets when facing day to day urgencies.</li>
+  <li>Some opinionated people won’t change their habits for the sake of the team.</li>
+  <li>I’ve seen team members agree on the conventions in public, but continue to use their own style. This generates passive-aggressive fights, where the most stubborn wins, but the team loses.</li>
+</ol>
+
+<p>Let’s see go over different strategies to write team coding standards and conventions.</p>
+
+<h2 id="why-brainstorming-team-coding-standards-does-not-work">Why brainstorming team coding standards does not work?</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/brainstorming.jpg" alt="Photo of a team engaged in a brainstorming discussion. Brainstorming is not a very effective way to write team coding conventions" /></p>
+
+<p>The first time I tried to write team coding standards, I tried the classic brainstorming. It did not work. I now understand why:</p>
+
+<ol>
+  <li>In recent years, <a href="https://www.inc.com/jessica-stillman/brainstorming-is-bad-science.html">neurosciences have explained why brainstormings are not very useful</a>. “It turns out that the brain needs time away for background processing to have insights”. Brainstorming might be great to generate initial seeds of ideas. But we cannot expect smart ideas at the end of a 1-hour brainstorming. </li>
+  <li>This effect is even worse for introverts, who make up for about half of the population. Meetings burn their energy.</li>
+  <li>Finally, time pressure and the brainstorming format generates abstract discussions. The goal of brainstorming is Quantity-over-Quality. This means that we throw many ideas in, but never analyze them according to a real situation.</li>
+</ol>
+
+<p>Ok, we now know why we should not try to brainstorm team coding standards and conventions. Let’s see what works!</p>
+
+<h2 id="how-to-write-coding-standards-in-a-team-working-asynchronously">How to write coding standards in a team working asynchronously</h2>
+
+<p>When I went back to Murex, we managed to write team coding standards through the wiki. As I said, it was slow but effective.</p>
+
+<p>A few years ago, I attended a talk by <a href="https://twitter.com/bdelacretaz">Bertrand Delacretaz</a> at <a href="https://www.youtube.com/watch?v=xkC4zjtAyRc">Devoxx FR</a>. He presented a structure for asynchronous decision making used in open source projects.</p>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/LVwAFQ19wxE36f?startSlide=6" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/bdelacretaz/asynchronous-decision-making-foss-backstage-2017" title="Asynchronous Decision Making - FOSS Backstage 2017" target="_blank">Asynchronous Decision Making - FOSS Backstage 2017</a> </strong> de <strong><a href="//www.slideshare.net/bdelacretaz" target="_blank">Bertrand Delacretaz</a></strong> </div>
+
+<p>It turns out we had been re-discovering a well-known collaboration technique. Here is how we could map its steps to writing team coding standards:</p>
+
+<ul>
+  <li><strong>0. Emergence:</strong> During a code review, for example, you notice a pattern that could be worth a coding standard.</li>
+  <li><strong>1. Brainstorm:</strong> Through the team’s chat (or wiki), start a discussion on a specific rule. The goal at this point is to get as many points of view as possible and trigger conversations.</li>
+  <li><strong>2. Options:</strong> Continue the discussions until a consensus starts to emerge. As Bertrand explains, a consensus is not unanimity.</li>
+  <li><strong>3. Consensus:</strong> Once a large enough consensus is reached, propose a coding-standard rule. Bertrand explains that we need a tool with reliable traceability here. For coding standards, our VCS seems to be the obvious choice.
+    <ul>
+      <li>Create a markdown file inside your codebase with all the details of the coding-standard rule.</li>
+      <li>Explain the coding-standard meaning, pros, and cons.</li>
+      <li>Add a few code samples and a link to the chat (or wiki) discussion that led to this proposal.</li>
+      <li>Create a pull request and link it from your chat discussion.</li>
+      <li>Update the pull request based on feedback.</li>
+      <li>Or cancel it and move back to the previous step if needed.</li>
+    </ul>
+  </li>
+  <li><strong>4. Decision:</strong> Once the team approves the pull request, merge it!</li>
+</ul>
+
+<p>As Bertrand explains in his talk, this is not a linear process, you might get back to previous steps if needed.</p>
+
+<blockquote>
+  <p>💡 Asynchronous Decision Making has Living Documentation built-in!</p>
+</blockquote>
+
+<p><a href="https://www.amazon.com/Living-Documentation-Continuous-Knowledge-Sharing-ebook/dp/B07S7671FW"><img src="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/living-documentation.jpg" alt="Cover of the Living Documentation book. Using Asynchronous Decision Making to write coding standards and conventions makes them documented by design." /></a></p>
+
+<p>There are many advantages to this technique:</p>
+
+<ul>
+  <li>It’s documented by design. This will be useful for future team members and contributors.</li>
+  <li>Similarly to <a href="https://adr.github.io/">Architecture Decision Record</a>, the coding-standard decision is traceable. In the future, the team will be able to review how and why it agreed to this coding-standard. This will help future team members to review, update, or delete this rule.</li>
+  <li>As it is meeting-free, it’s an introvert-friendly technique! Did you know that <a href="https://www.nytimes.com/2018/09/01/opinion/sunday/how-make-big-decision.html">inclusive teams make better decisions</a>?</li>
+  <li>Finally, it’s the only option for teams that span many time zones</li>
+</ul>
+
+<p>The main drawback, as we experienced and as Bertrand confirmed:</p>
+
+<blockquote>
+  <p>Asynchronous decision making takes more time… but also yields to better decisions!</p>
+</blockquote>
+
+<h2 id="how-to-write-coding-standards-in-a-team-working-synchronously">How to write coding standards in a team working synchronously</h2>
+
+<p>I currently do a lot of mob sessions with the teams I coach. I knew that team coding-dojos are great to discuss coding standards. Mob sessions are even better!</p>
+
+<h3 id="team-coding-standards-emerge-during-mob-programming">Team coding standards emerge during mob-programming</h3>
+
+<!-- Courtesy of embedresponsively.com //-->
+
+<div class="responsive-video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/CDvZSk0dXbg" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  </div>
+
+<p>Here is how:</p>
+
+<ol>
+  <li><strong>Real situation.</strong> What happens in a mob session is like <a href="https://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">what happens in a coding dojo randori</a>. As everyone sees the code, people will ask why it is being written this way. The advantage is that the team can discuss real production code, not only <a href="http://codingdojo.org/kata/">kata</a> examples. This ensures that the coding standards remain grounded in the actual team context.</li>
+  <li><strong>Start small and improve.</strong> Discussions happen when the problem is fresh in everyone’s mind. The standard does not have to deal with every possible case. It’s more effective to stick to the current problem’s specificities. It will grow and generalize the next time the mob faces a related design question.</li>
+  <li><strong>Fast.</strong> A side effect of not trying to deal with every case is that it can be quick. The team can agree in a few minutes, not weeks!</li>
+  <li><strong>Understood by design.</strong> As everybody is there to discuss the standard, everybody has a chance to question it. This ensures that all the team will understand the rationale, the pros, and the cons.</li>
+</ol>
+
+<p>Here is an example. A few weeks ago, we started to coach a team that wanted to improve its testing practices. As we always do, we started the coaching with an intensive week of TDD coding dojos. After this initial phase, the team wanted to test this new way of writing code by re-doing a small feature. This was the first mob topic we did with the team. One of their classes was challenging to test because it had too many constructor arguments. The mob decided to start using <a href="https://en.wikipedia.org/wiki/Observer_pattern">observers</a> for dependencies that only receive notifications.</p>
+
+<p>That’s the typical ‘lightweight’ coding-standard a mob will add to the team’s <a href="https://en.wikipedia.org/wiki/Oral_tradition">oral tradition</a>.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/Mobbing_Campfire_Building.jpg" alt="Picture of a camper tending the campfire. Doing regular mob session keeps coding standards and conventions in everyone's mind, a bit like stories around the campfire has been used to keep oral tradition alive for thousands of years" /><figcaption>
+      
+From New Relic’s blog post <a href="https://blog.newrelic.com/engineering/mob-programming-campfire/">Taming the Mob, Part 2: Mob Programming Is Like Tending a Campfire</a>
+
+    </figcaption></figure>
+
+<h3 id="what-makes-it-work-so-well">What makes it work so well?</h3>
+
+<ol>
+  <li><strong>No Need for documents.</strong> As this example shows, there is no need to document. When a team regularly works as a mob, it will grow a body of oral tradition. Do not doubt the effectiveness of oral tradition! We have shared knowledge this way for most of our history! <a href="https://en.wikipedia.org/wiki/Homer">Homer</a>’s <a href="https://en.wikipedia.org/wiki/Iliad">Iliad</a> and <a href="https://en.wikipedia.org/wiki/Odyssey">Odyssey</a> came to us through Oral Tradition. In comparison, the <a href="https://www.history.com/topics/inventions/printing-press">oldest known printed book</a> is only about 1200 years old!</li>
+  <li><strong>Resilient.</strong> A single team member is enough to remind the mob about a coding standard and to make it stick! It can be a different person for every coding convention! This is the critical point that makes it work so well. When solo programming, everyone needs to remember and be disciplined. With pairing or code reviews, we need roughly half the team. With mobbing, 1 person is enough!</li>
+  <li><strong>Mini-retrospectives.</strong> Mobbing makes it possible to do frequent quick-retrospectives. Many successful mobs do them:
+    <ul>
+      <li>Woody mentioned them <a href="https://www.agilealliance.org/wp-content/uploads/2015/12/ExperienceReport.2014.Zuill_.pdf">when he presented Mob Programming</a>.</li>
+      <li>Here is the format we borrowed from the <a href="https://www.infoq.com/presentations/distributed-teams-remote-collaboration/">Cucumber Pro team</a>:</li>
+    </ul>
+  </li>
+</ol>
+
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/GJdwpZCjlxL879?startSlide=15" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen=""> </iframe>
+<div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/InfoQ/far-from-the-mobbing-crowd" title="Far from the Mobbing Crowd" target="_blank">Far from the Mobbing Crowd</a> </strong> de <strong><a href="//www.slideshare.net/InfoQ" target="_blank">C4Media</a></strong> </div>
+
+<p>Quick-retrospectives are a way to think again about coding standards and conventions. The “decide” question, in particular, is when the team commits to a new agreement.</p>
+
+<blockquote>
+  <p>💡 As long as at least 1 person remembers the coding standard, it will stick in the mob!</p>
+</blockquote>
+
+<p>If you are still with me, you must be interested in trying Mob programming for coding standards. Unfortunately, mob programming can look daunting! So let’s see how to start.</p>
+
+<h3 id="how-to-inject-mob-in-your-team">How to inject mob in your team</h3>
+
+<p>Maybe you tried to jump in mob programming without any preparation. Or perhaps the first sessions were a bit rough! Here is what often happens:</p>
+
+<ul>
+  <li>It feels unnatural because it’s different</li>
+  <li>It’s slow because people don’t know what they should do.</li>
+  <li>On top of that, all kinds of debt become obvious and painful!</li>
+  <li>Lousy code and technical debt are suddenly discussed</li>
+  <li>Conversation debt kicks in. People have the essential conversations they never had. For example: about coding standards and conventions.</li>
+  <li>Tooling debt, like slow builds, embarrasses everyone. The team might have been waiting for a slow build for years, individually. It’s only when everyone is waiting together that it becomes unbearable!</li>
+</ul>
+
+<p>If your first try looked like that, you might have been afraid to continue. Don’t panic, you might just have gone too fast.</p>
+
+<p>Starting mob programming is not as difficult as it seems. People need a bit of support, though. It’s like <a href="https://en.wikipedia.org/wiki/Boiling_frog">boiling frogs</a>:</p>
+
+<ol>
+  <li><a href="https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/">Start a regular team coding dojo</a> (weekly or every sprint). Sell dojos as a way to learn together.</li>
+  <li>Once you are used to randoris, try a few with <a href="http://llewellynfalco.blogspot.com/2014/06/llewellyns-strong-style-pairing.html">strong-style pairing</a> mode. This is already mob programming, albeit on a kata. This is how you’ll learn the discipline to make mobs work.</li>
+  <li>Then wait for the next time you face a challenging task. For example: a design decision, some tricky legacy refactoring, or a nasty bug. Then ask the team to help you in a randori-like session.</li>
+  <li>Repeat this a few times. End every session with a quick-retrospective. Chances are mobs will become part of your regular practices.</li>
+</ol>
+
+<p>Let the team master mob programming at its own pace. Persevere as the benefits of mob programming become more and more evident.</p>
+
+<p>If you are still struggling, find a technical agile coach to help you!</p>
+
+<h3 id="how-can-a-technical-agile-coach-help">How can a technical agile coach help?</h3>
+
+<p>I mob with teams as a way to apply what we practice in katas. A coach will help you to do effective mob programming. He will also use mobbing to help you build coding conventions:</p>
+
+<ul>
+  <li>By asking the right questions. The team will come up with good answers.</li>
+  <li>By reminding the team with “Is this a convention?”</li>
+  <li>By suggesting to dig further. Sometimes, the team will have more questions than answers. A coach will make the team aware of its indecision. He can then either
+    <ul>
+      <li>provide guidance</li>
+      <li>suggest digging into this before next session</li>
+      <li>or prepare a kata</li>
+    </ul>
+  </li>
+</ul>
+
+<p>And guess what? Someone from the team can play this role too!</p>
+
+<h1 id="start-to-write-team-coding-standards-and-conventions-today">Start to write team coding standards and conventions today!</h1>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-03-16-3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/we-can-do-it.jpg" alt="World War II poster of a women factory worker, titled &quot;We can do it!&quot;. Whenever we stand in the organization, we can have an impact and change it for the better! We can start to write team coding standards and conventions for example." /></p>
+
+<p>If you don’t have coding standards or conventions, you can start to write one today!</p>
+
+<p>If you do more asynchronous work, start a chat discussion about a particular point.</p>
+
+<p>Otherwise, start a coding dojo randori. You might wonder about the cost of mob programming, though. In <a href="https://philippe.bourgau.net/3-long-term-benefits-of-mob-programming-that-make-it-cost-effective/">3 long-term benefits of mob programming that make it cost-effective</a>, I have my take at why mobbing is cost-effective in the long run!</p>
+
+<p>Here are my last bits of advice, for you, self-declared change-agent.</p>
+
+<ul>
+  <li>Keep your goal in mind and lead by example.</li>
+  <li>Celebrate when you and your team have agreed on your first coding standard.</li>
+  <li>Motivate your teammates to start similar discussions.</li>
+  <li>As you agree on more and more conventions, the team will become more and more effective!</li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#coding-dojo" class="page__taxonomy-item" rel="tag">coding-dojo</a><span class="sep">, </span>
+    
+      <a href="/categories/#mob-programming" class="page__taxonomy-item" rel="tag">mob programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#remote" class="page__taxonomy-item" rel="tag">remote</a><span class="sep">, </span>
+    
+      <a href="/categories/#team-building" class="page__taxonomy-item" rel="tag">team building</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-03-19T00:00:00+00:00">March 19, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=3+Good+and+Bad+Ways+to+Write+Team+Coding+Standards+and+Conventions%20https%3A%2F%2Fphilippe.bourgau.net%2F3-good-and-bad-ways-to-write-team-coding-standards-and-conventions%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2F3-good-and-bad-ways-to-write-team-coding-standards-and-conventions%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2F3-good-and-bad-ways-to-write-team-coding-standards-and-conventions%2F&title=3+Good+and+Bad+Ways+to+Write+Team+Coding+Standards+and+Conventions" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2F3-good-and-bad-ways-to-write-team-coding-standards-and-conventions%2F&t=3 Good and Bad Ways to Write Team Coding Standards and Conventions" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/the-story-about-how-we-do-agile-technical-coaching/" class="pagination--pager" title="The story about how we do Agile Technical Coaching
+">Previous</a>
+    
+    
+      <a href="/best-open-source-tools-for-remote-pair-programming/" class="pagination--pager" title="Best open source tools for remote pair programming
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
