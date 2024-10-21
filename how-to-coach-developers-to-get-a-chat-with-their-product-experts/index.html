@@ -1,0 +1,985 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to coach developers to get a chat with their product experts | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Getting these crucial chats with product experts is often a brain-teaser! Let’s coach developers so they can trigger short, practical, immediate, and online Example-Mapping sessions. These structured conversations yield just-enough details about a user story to write automated acceptance tests.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to coach developers to get a chat with their product experts">
+<meta property="og:url" content="https://philippe.bourgau.net/how-to-coach-developers-to-get-a-chat-with-their-product-experts/">
+
+
+  <meta property="og:description" content="Getting these crucial chats with product experts is often a brain-teaser! Let’s coach developers so they can trigger short, practical, immediate, and online Example-Mapping sessions. These structured conversations yield just-enough details about a user story to write automated acceptance tests.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/Collaboration%20Injection-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to coach developers to get a chat with their product experts">
+  <meta name="twitter:description" content="Getting these crucial chats with product experts is often a brain-teaser! Let’s coach developers so they can trigger short, practical, immediate, and online Example-Mapping sessions. These structured conversations yield just-enough details about a user story to write automated acceptance tests.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-to-coach-developers-to-get-a-chat-with-their-product-experts/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/Collaboration%20Injection-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-04-01T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-to-coach-developers-to-get-a-chat-with-their-product-experts/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to coach developers to get a chat with their product experts">
+    <meta itemprop="description" content="Getting these crucial chats with product experts is often a brain-teaser! Let’s show devs how to trigger short, practical, immediate Example-Mapping sessions.">
+    <meta itemprop="datePublished" content="2021-04-01T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to coach developers to get a chat with their product experts
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em><strong>Getting these crucial chats with product experts is often a brain-teaser!</strong></em> <em>Let’s show devs how to trigger short, practical, immediate Example-Mapping sessions</em>.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/Collaboration Injection.jpg" alt="Drawing of the work Collab. The C is a telephone handle, while 'ollab' is written on a syringe, injecting something in the telephone. Example-Mapping is short and lightweight enough to be done through any phone call with the product experts." /></p>
+
+<blockquote>
+  <p>Unfortunately, the tools have taken over the meaning, and I need to chant, “The card is a token for an ongoing conversation” over and over. [George Paci <a href="https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>Engineers no longer can talk to users. [Slava Imeshev <a href="https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>What we did was wrong. - [Note: and so we had to] Rip out the wrong code and tests and start over with the right functional test. [Steve Gordon <a href="https://groups.io/g/extremeprogramming/topic/what_has_changed_for_you_over/39418691?p=Created,,,200,1,0,0">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<h2 id="product-experts-are-crucial-yet-unreachable">Product experts are crucial… Yet unreachable!</h2>
+
+<p>Developers won’t do an excellent job without first-hand domain knowledge. It is no coincidence if XP recommends an <a href="http://www.extremeprogramming.org/rules/customer.html">onsite customer</a> or Scrum a dedicated <a href="https://www.scrum.org/resources/what-is-a-product-owner">Product Owner</a>.</p>
+
+<p>When developers and product experts don’t collaborate enough:</p>
+
+<ul>
+  <li>The team risks building the wrong stuff. As a result, devs will need to throw away a large chunk of work and rebuild it.</li>
+  <li>The team creates more bugs. In the end, everyone spends more time bug fixing and less time building new features.</li>
+</ul>
+
+<p>In the long term, these problems erode trust and leave no time for more valuable topics.</p>
+
+<p>Unfortunately, it’s often tough to get the needed information from product experts!</p>
+
+<ul>
+  <li>First, <strong>product experts are already busy on the other side of the product definition work.</strong> Spending time with developers often takes a back seat.</li>
+  <li>Second, <a href="https://medium.com/@cscalfani/why-experts-make-bad-teachers-ccaed2df029b">being experts</a>, <strong>they forgot what it means to be new on their topic</strong>. They tend to omit many details, thinking these are obvious or that ‘everybody knows this’. Unfortunately, developers, who are not product experts, need these details!</li>
+  <li>On top of that, they have no idea what programming is about. <strong>Product experts tend to underestimate the details that writing working software requires.</strong></li>
+</ul>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/knowledge.jpg" alt="Picture of a yellow and a blue question marks in heap of grey question marks. Programming is full of details and questions, and product experts or rarely aware of the amount of details needed to write working software" /></p>
+
+<ul>
+  <li>Finally, <strong>the ‘specification’ handover mindset is still pretty alive in the workplace</strong>. Many product experts’ job is to write detailed specifications for developers to execute.</li>
+</ul>
+
+<h2 id="example-mapping-injection">Example-Mapping injection!</h2>
+
+<p>Here is a recipe to get product experts involved in a conversation about a story.</p>
+
+<p>Are you noticing collaboration issues between your coachees and the product experts? Here is what you can do:</p>
+
+<ol>
+  <li>Find 1 or 2 team members who are suffering from a lack of collaboration with product experts.</li>
+  <li>Make sure they are willing to experiment with you.</li>
+  <li>Present and practice Example-Mapping with them</li>
+  <li>Ask them to be on the lookout about situations that would need a product expert. Tell them to call your little group when they spot such a problem.</li>
+  <li>As soon as this happens:
+    <ol>
+      <li>Call the domain expert as a group.</li>
+      <li>Tell him you are blocked.</li>
+      <li>Ask for an on-the-spot 15 minutes remote chat.</li>
+    </ol>
+  </li>
+  <li>If he cannot right now, schedule something with him as soon as possible.</li>
+  <li>Use these 15 minutes to run an Example-Mapping session.</li>
+  <li>Help to convert the notes from Example-Mapping to automated acceptance tests.</li>
+  <li>Repeat until Example-Mapping becomes a habit</li>
+</ol>
+
+<p>It’s as simple as that! <strong>Direct phone calls are still the fastest way to get in touch with someone</strong>. It’s like if bureaucracy makes us forget that! Fortunately, technical agile coaches are here to challenge the status quo 😉</p>
+
+<h2 id="an-example-mapping-success-story">An Example-Mapping success story</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/storytelling.jpg" alt="Picture of an opened book with drawings of a pirate and a ship getting out of the book. Here is a one of my success story with Example-Mapping." /></p>
+
+<p>A few weeks ago, I worked with a team that wanted to collaborate more with the product experts. They had tried a different approach, but with mitigated results up to now.</p>
+
+<p>For Example, I had helped them to run a <a href="https://philippe.bourgau.net/misadventures-with-big-design-up-front/">Big Picture Event Storming</a> a few months ago. The feedback from the different audiences showed the communication gap:</p>
+
+<ul>
+  <li>Developers had enjoyed the Event Storming. They said it had helped them to understand the domain a lot better</li>
+  <li>Product experts, though, estimated that they had not shared that much information!</li>
+</ul>
+
+<p>This time, I paired with a developer to experiment around <a href="https://en.wikipedia.org/wiki/Behavior-driven_development">Behavior Driven Development</a>. We started the day by calling a product expert, and we ran a 30 minutes Example-Mapping session.</p>
+
+<p>At the end of this experiment, they decided not to take 100% of BDD but to stick to Example-Mapping sessions! Here is the kind of feedback that we got from product people:</p>
+
+<blockquote>
+  <p>I really liked behind included in the work, engineer and designer working together is still a pleasure.</p>
+</blockquote>
+
+<blockquote>
+  <p>I already started to look at the domain from an engineering point of view in order to improve my design thinking.</p>
+</blockquote>
+
+<p><strong>Example-Mapping is excellent at hacking more collaboration between developers and product experts.</strong></p>
+
+<h2 id="what-is-example-mapping">What is Example-Mapping?</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/workshop.jpg" alt="Picture of a man writing 'workshop' on a whiteboard on the wall. Example-Mapping is a very lightweight conversation format to capture the details of a user story." /></p>
+
+<p>At this point, you must be wondering what Example-Mapping is? It’s a structured conversation format that was invented by the <a href="https://cucumber.io/blog/bdd/example-mapping-introduction/">Cucumber team</a>. It’s a way to capture the business rules and associated examples out of a story. </p>
+
+<blockquote>
+  <p><strong>It captures just-enough details for devs to build the right thing.</strong></p>
+</blockquote>
+
+<p>It’s then straightforward to convert Example-Mapping notes into automated acceptance tests. No more throwaway and rewrite, way less bug fixing… Example-Mapping is one step more towards calmer work!</p>
+
+<p>In our situation, it also has many extra advantages:</p>
+
+<ul>
+  <li><strong>Sessions are quick.</strong> There is no need to schedule a formal meeting.</li>
+  <li><strong>The format is simple.</strong> We won’t frighten the product expert.</li>
+  <li><strong>It’s easy to learn.</strong> We can master it in 1 or 2 hours max; we don’t need to organize a long training.</li>
+  <li><strong>It’s remote-friendly.</strong> This makes <strong>Example-Mapping perfect for injecting in a telephone call.</strong></li>
+</ul>
+
+<h3 id="what-does-example-mapping-look-like">What does Example-Mapping look like</h3>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/example-mapping-cards.jpg" alt="Illustrative Example-Mapping cards in their typical layout. Example-Mapping is a format for quick and cheap, domain-heavy conversation. It's lightweight and informal enough to get the product expert in without having to organize a formal meeting." /><figcaption>
+      
+Sample Example-Mapping cards on the introductory <a href="https://cucumber.io/blog/2015/12/08/example-mapping-introduction">post about Example-Mapping</a>, by <a href="https://twitter.com/mattwynne?lang=fr">Matt Wynne</a>
+
+    </figcaption></figure>
+
+<p>Example-Mapping uses colored cards to capture the details about user stories:</p>
+
+<ul>
+  <li>A yellow card for the title of the story</li>
+  <li>Blue cards for business rules</li>
+  <li>Green cards for example-scenarios associated with each business rule</li>
+  <li>Red cards for problems or unanswered questions</li>
+</ul>
+
+<p>With this in mind, the group simply discusses the story and tries to find the rules and examples. Everyone should bring their unique point of view to make the exchange more valuable. <strong>Someone in the group is the notetaker. This person keeps track of the conversation by writing and arranging cards on the table.</strong></p>
+
+<p>That’s almost all there is to know!</p>
+
+<h2 id="how-to-coach-example-mapping">How to coach Example-Mapping</h2>
+
+<p>Example-Mapping is straightforward, but it still needs a bit of practice to get used to. On top of that, you want the product expert to have an excellent first experience with it.</p>
+
+<h3 id="first-learn-how-experts-are-doing">First, learn how experts are doing.</h3>
+
+<p>There is a lot of existing material to learn Example-Mapping on the web. The Cucumber team created a webinar to teach Example-Mapping. The simplest thing to do is to watch it with your coachees and have a quick follow-up discussion.</p>
+
+<p>You might also have a look at these other references, depending on your styles of learning:</p>
+
+<ul>
+  <li><a href="https://cucumber.io/blog/bdd/example-mapping-introduction/">Cucumber’s introductory blog post about Example-Mapping</a></li>
+  <li><a href="https://cucumber.io/blog/bdd/your-first-example-mapping-session/">Another blog post</a> from them</li>
+  <li>If you prefer to go in-depth, you might have a read at <a href="https://leanpub.com/bddbooks-discovery">BDD Books: Discovery</a></li>
+  <li>There is even <a href="https://www.pluralsight.com/courses/codemash-session-24">a free course on Pluralsight</a>, but I did not went through it</li>
+</ul>
+
+<p>Would you instead give a short crash-course yourself? <a href="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/BDD and Example Mapping.pdf">Here is a presentation</a> made up by my colleague <a href="https://www.linkedin.com/in/matthieu-tournemire/">Matthieu Tournemire</a>. We’ve been using it successfully at Murex for a few years now.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/BDD%20and%20Example%20Mapping.jpeg" alt="The title slide of a presentation support for a crash course about Example-Mapping. You should be able to get through it with your coachees in less than 30 minutes." /><figcaption>
+      
+By <a href="https://www.linkedin.com/in/matthieu-tournemire/">Matthieu Tournemire</a> and <a href="https://philippe.bourgau.net">Philippe Bourgau</a>, under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/BDD and Example Mapping.pdf">Full Presentation</a>
+
+    </figcaption></figure>
+
+<h3 id="second-practice">Second, practice!</h3>
+
+<p>Your coachees should now have a clear idea about how an Example-Mapping session should go. Let’s get them to practice a bit! <strong>Find a user story that one of your coachees knows well and that the others don’t. Take 30 minutes to try Example-Mapping on this story.</strong> Park any question or blocking point on red cards.</p>
+
+<p>Run as many sessions as needed for your coachees to feel really at ease with Example-Mapping. It won’t take you more than 2 hours in total.</p>
+
+<h2 id="tools">Tools</h2>
+
+<p>Example-Mapping was first thought of as a co-localized activity. If you are all in the same room, all the material you need is a set of colored cards and a few sharpies.</p>
+
+<p>Co-localized Example-Mapping is simple, but…</p>
+
+<ul>
+  <li>Sometimes, co-localization is not an option!</li>
+  <li>Even if you are all in the same building, <strong>Example-Mapping needs everyone to be in the same room! This is yet another barrier to reach the product expert.</strong></li>
+</ul>
+
+<p><strong>It’s effortless to run an Example-Mapping remotely!</strong> I don’t know of a dedicated Example-Mapping online tool, but here workarounds:</p>
+
+<ul>
+  <li><strong><a href="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/ExampleMappingTemplate.ods">An online collaborative spreadsheet</a> might be all that you are looking for. Here is a template you can reuse.</strong> Fill any cell, and it will color according to the row’s nature.</li>
+</ul>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/ExampleMappingTemplate.jpg" alt="Screenshot of a spreadsheet that we can use as a simple Example-Mapping Online Tool. Simple tools have the advantages of being usable by everyone" /><figcaption>
+      
+By <a href="https://philippe.bourgau.net">Philippe Bourgau</a>, under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://philippe.bourgau.net/imgs/2021-03-29-how-to-coach-developers-to-get-a-chat-with-their-product-experts/ExampleMappingTemplate.ods">full spreadsheet template</a>
+
+    </figcaption></figure>
+
+<ul>
+  <li>An online whiteboard, like <a href="https://miro.com/">Miro</a>, works wonders to simulate cards.</li>
+  <li>Last, one of the significant advantages of using real cards and pen is that you can draw! A picture is worth a thousand words. It’s not a surprise that drawings are great for capturing scenarios. If you have a device that lets you draw well enough, then, by all means, use it!</li>
+</ul>
+
+<p>Don’t forget to share the screen so that the product expert can see what is being captured. The above tools also enable collaborative editing. Once everyone is used to the format, it’s better to share the link instead of the screen!</p>
+
+<h2 id="give-it-a-try">Give it a try!</h2>
+
+<p>Keep your ears open when you are with your coachees. <strong>Next time you hear someone having troubles understanding what they are supposed to do:</strong></p>
+
+<ul>
+  <li>“I don’t understand the specs!”</li>
+  <li>“I have no specs!”</li>
+  <li>“I don’t know how to test this story!”</li>
+  <li>“Jim (the product guy) is never available!”</li>
+</ul>
+
+<p><strong>Try to get them into trying Example-Mapping with the product expert.</strong></p>
+
+<p>There is more to Example-Mapping than what I quickly presented. For Example, you can also use it to…</p>
+
+<ul>
+  <li>Detect stories that are not ready.</li>
+  <li>Detect stories that are too big and split them.</li>
+  <li>Write and automate <a href="https://cucumber.io/docs/gherkin/">Gherkin</a> scenarios.</li>
+  <li>…</li>
+</ul>
+
+<p>If you have questions about Example-Mapping, don’t hesitate to ask! I’d also love to read how your own experience went: the comment section is yours.</p>
+
+<hr />
+
+<p>Here are other posts that might interest you:</p>
+
+<ul>
+  <li><a href="https://philippe.bourgau.net/organization-refactoring-event-storming-and-ddd-injection-part-1/">Organization refactoring: Event Storming and DDD injection</a>. It presents a ‘refactorging’ technique to introduce Event-Storming after Example-Mapping</li>
+  <li><a href="https://philippe.bourgau.net/5-views-to-capture-the-outputs-of-an-event-storming-workshop/">5 Views to Capture the Outputs of an Event-Storming workshop</a>. It explains how to use Example-Mapping to capture the outputs of an Event-Storming workshop</li>
+  <li><a href="https://philippe.bourgau.net/first-rule-of-ddd-is-lets-not-talk-about-ddd/">First rule of DDD is: let’s not talk about DDD</a>. Fun infographics explaining that it’s better to <em>do</em> DDD instead of frightening people with it</li>
+  <li><a href="https://philippe.bourgau.net/event-storming-lessons-from-post-it-haters/">Event Storming lessons from Post-It haters</a>. A reflection about why stickies are so effective for group collaboration</li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#bdd" class="page__taxonomy-item" rel="tag">bdd</a><span class="sep">, </span>
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#ddd" class="page__taxonomy-item" rel="tag">ddd</a><span class="sep">, </span>
+    
+      <a href="/categories/#example-mapping" class="page__taxonomy-item" rel="tag">example mapping</a><span class="sep">, </span>
+    
+      <a href="/categories/#refactorging" class="page__taxonomy-item" rel="tag">refactorging</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-04-01T00:00:00+00:00">April 1, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+coach+developers+to+get+a+chat+with+their+product+experts%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-developers-to-get-a-chat-with-their-product-experts%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-developers-to-get-a-chat-with-their-product-experts%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-developers-to-get-a-chat-with-their-product-experts%2F&title=How+to+coach+developers+to+get+a+chat+with+their+product+experts" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-coach-developers-to-get-a-chat-with-their-product-experts%2F&t=How to coach developers to get a chat with their product experts" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/7-collaboration-ideas-to-make-remote-pair-programming-more-fun/" class="pagination--pager" title="7 collaboration ideas to make remote pair programming more fun
+">Previous</a>
+    
+    
+      <a href="/how-to-make-change-stick-by-training-part-time-technical-agile-coaches/" class="pagination--pager" title="How to make change stick by training part-time technical agile coaches
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-to-coach-developers-to-get-a-chat-with-their-product-experts/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-coach-developers-to-get-a-chat-with-their-product-experts"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

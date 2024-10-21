@@ -1,0 +1,837 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Detailed agenda for a DDD Design-Level Event Storming - part 1 | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Running a DDD Design-Level Event Storming is not rocket science! It remains crucial to start the right way. First, generate domain events either from a Big Picture Event Storming or from your current system design. Second, present the Picture that explains Everything! Third, off you go!">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Detailed agenda for a DDD Design-Level Event Storming - part 1">
+<meta property="og:url" content="https://www.eventstormingjournal.com/software%20design/how-to-explain-design-level-event-storming-to-your-mother/">
+
+
+  <meta property="og:description" content="Running a DDD Design-Level Event Storming is not rocket science! It remains crucial to start the right way. First, generate domain events either from a Big Picture Event Storming or from your current system design. Second, present the Picture that explains Everything! Third, off you go!">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-good-start-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Detailed agenda for a DDD Design-Level Event Storming - part 1">
+  <meta name="twitter:description" content="Running a DDD Design-Level Event Storming is not rocket science! It remains crucial to start the right way. First, generate domain events either from a Big Picture Event Storming or from your current system design. Second, present the Picture that explains Everything! Third, off you go!">
+  <meta name="twitter:url" content="https://www.eventstormingjournal.com/software%20design/how-to-explain-design-level-event-storming-to-your-mother/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-good-start-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-10-24T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://www.eventstormingjournal.com/software%20design/how-to-explain-design-level-event-storming-to-your-mother/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Detailed agenda for a DDD Design-Level Event Storming - part 1">
+    <meta itemprop="description" content="Running a DDD Design-Level Event Storming is not rocket science! It’s still crucial to start the right way: with domain events and the Picture that explains Everything!">
+    <meta itemprop="datePublished" content="2019-10-24T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Detailed agenda for a DDD Design-Level Event Storming - part 1
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Running a <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> Design-Level Event Storming is not rocket science! It’s still crucial to start the right way: with domain events and the Picture that explains Everything!</em></p>
+
+<p>ℹ️ <em><strong>NOTE: Part of this post has been <a href="https://www.eventstormingjournal.com/software%20design/how-to-explain-design-level-event-storming-to-your-mother/">republished and updated</a> on the Event Storming Journal blog</strong></em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-good-start.jpeg" alt="Drawing of a can of 'Good Start' about Design-Level Event Storming" /></p>
+
+<p>This post is the second in <a href="https://philippe.bourgau.net/categories/#how-to-run-a-design-level-event-storming-series">a series about how to build event-based systems with Design-Level Event Storming and DDD</a>. If you haven’t yet, start by <a href="https://philippe.bourgau.net/why-should-we-use-design-level-event-storming-for-ddd/">the beginning</a>.</p>
+
+<h2 id="pre-requisite">Pre-requisite</h2>
+
+<p>Are you eager to start? Not so fast! There are a few things to take care of first.</p>
+
+<p>Design-Level Event Storming is about focused design on a subpart of the system. This not possible without enough shared context among participants.</p>
+
+<p>That’s why <strong>it’s very natural to do a Design-Level Event Storming after a <a href="https://philippe.bourgau.net/categories/#squash-bduf-with-event-storming-series">Big Picture Event Storming</a></strong>. It’s a way to dive into the core subdomains that are complex enough to deserve Domain-Driven Design.</p>
+
+<p><strong>Design-Level Event Storming can also be a recurring workshop on a <a href="http://www.hans-eric.com/2007/08/13/is-your-team-jelled/">jelled</a> <a href="https://svpg.com/product-vs-feature-teams/">product team</a>.</strong> Such teams share enough context to be able to dive into the design very fast. Whenever the team members feel that their design vision is out of date, they can run one. With a bit of luck, they might find their next <a href="https://herbertograca.com/2015/10/19/ddd-8-refactoring-toward-deeper-insight-breakthrough/">refactoring breakthrough</a>!</p>
+
+<p><strong>Design-Level Event Storming is also a good fit for a team that is already building a DDD and event-based system</strong>. It’s easy to map their current events on the design board and improve from there.</p>
+
+<h2 id="a-guided-agenda">A guided agenda</h2>
+
+<p><a href="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-agenda.jpg"><img src="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/design-level-event-storming-agenda-small.jpg" alt="Poster presenting the agenda of a Design-Level Event Storming. The phases are: 1 Bring in Domain Events, 2 Present the picture that explains everything, 3 Add commands, 4 Actors and policies, 5 blank Read Models and Mock Ups, 6 Fill these, 7 Add External Systems, 8 Add blank business rules, 9 fill these, 10 Merge and name Aggregates" /></a></p>
+
+<p>By its nature, Design-Level Event Storming is a lot less chaotic than its Big Picture cousin. Big Picture Event Storming is about exploring. Design-Level Event Storming is about designing and building.</p>
+
+<p>As a consequence, some steps in the agenda are pretty straightforward, almost mechanic.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/etop-games.jpg" alt="A poster presenting 'eTop-Games', a self-publishing table-top games startup idea. Business model: free, pay for custom services (design, rules hardcoding...), can sell physical printouts of games. Strategy: attract players with classics, attract designers with freemium and beta players, use content marketing, start with a simple game editor (1 board, pieces, a rulebook, a video chat, social rules enforcement)" /><figcaption>
+      
+I’ll illustrate the agenda with elements from my training on Event Storming facilitation. Let’s imagine we are running a Design-Level Event Storming on the ‘live game’ subdomain.
+
+    </figcaption></figure>
+
+<h3 id="1-domain-events">1. Domain Events</h3>
+
+<p>Before you run the Design-Level Event Storming, you’ll need <a href="https://martinfowler.com/eaaDev/DomainEvent.html">domain events</a>!</p>
+
+<p>You might be focusing on a core bounded context after a Big Picture Event Storming. In this case, copy these events to another blank design board.</p>
+
+<p><a href="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/live-game-domain-events.jpg"><img src="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/live-game-domain-events-small.jpg" alt="Photo of &quot;live game&quot; sub domain events. We can see events 'Game started', 'Piece moved', 'Invalid move detected', 'Ambiguous rule detected', 'Feedback on rule sent', 'Game ended'" /></a></p>
+
+<p>You’ll have to find another way if you are starting from scratch. You can run the first steps of the Big Picture Event Storming on this bounded context alone. I would do at least:</p>
+
+<ol>
+  <li>Events Generation</li>
+  <li>Events Sorting</li>
+  <li>Actors and External Systems</li>
+  <li>Storytelling</li>
+</ol>
+
+<p>You might check my post <a href="https://philippe.bourgau.net/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/">A detailed agenda of Event Storming</a> to learn how to run these steps in detail.</p>
+
+<h3 id="2-the-picture-that-explains-everything">2. The Picture that explains everything</h3>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2019-10-11-detailed-agenda-for-a-ddd-design-level-event-storming-part-1/picture-that-explains-everything.jpg" alt="The picture that explains everything: how post-its chain together on a Design-Level Event Storming board" /><figcaption>
+      
+The picture that explains everything by <a href="https://twitter.com/ziobrando">Alberto Brandolini</a> from his <a href="https://leanpub.com/introducing_eventstorming">Introducing Event Storming</a> book
+
+    </figcaption></figure>
+
+<p>Now is the moment to show and explain this picture. Display the picture on the wall, and ask people what they understand about it. Usually, the audience gets it pretty well. You can then fill in the missing part.</p>
+
+<p>Here is what I would say about it:</p>
+
+<blockquote>
+  <p><a href="https://twitter.com/ziobrando">Alberto Brandolini</a> calls this “The picture that explains everything”. It shows how DDD event-based systems work.</p>
+
+  <p>The goal of this Event Storming is to design our system with this pattern.</p>
+
+  <p>This pattern explains how Domain Events cascade during the life of the system.</p>
+
+  <p>From the left, we see that we can send commands either to external systems or to our aggregates. Either of these then raises a domain Event. <a href="https://martinfowler.com/bliki/DDD_Aggregate.html">Aggregates</a> are ours to code; it’s where the business logic of our system is.</p>
+
+  <p>Some events will “automatically” trigger another command. We materialize this link through policies ‘Whenever event then raises command”. We use lilac post-its for policies, like the one at the bottom right.</p>
+
+  <p>Other events notify users. Users should be able to react to events by sending new commands. To be able to do so, they’ll need to see the correct information. That’s the green read-model post-it. We’ll also have to display this information in a good UX. We can mock-up this UX in the white.</p>
+
+  <p>By the end of the workshop, the board should contain patterns like that.</p>
+
+  <p>From now on, we should make everything explicit. Everything we say should appear on the board.</p>
+</blockquote>
+
+<h2 id="continues">Continues</h2>
+
+<p>This post was the second in <a href="https://philippe.bourgau.net/categories/#how-to-run-a-design-level-event-storming-series">a series about how to build event-based systems with Design-Level Event Storming and DDD</a>. The <a href="https://philippe.bourgau.net/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/">next post</a> will detail the remaining steps of the Design-Level Event Storming.</p>
+
+<p><a href="https://philippe.bourgau.net/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/">Continue Reading…</a></p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/categories/#ddd" class="page__taxonomy-item" rel="tag">ddd</a><span class="sep">, </span>
+    
+      <a href="/categories/#event-storming" class="page__taxonomy-item" rel="tag">event storming</a><span class="sep">, </span>
+    
+      <a href="/categories/#how-to-run-a-design-level-event-storming-series" class="page__taxonomy-item" rel="tag">how-to-run-a-design-level-event-storming-series</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-10-24T00:00:00+00:00">October 24, 2019</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Detailed+agenda+for+a+DDD+Design-Level+Event+Storming+-+part+1%20https%3A%2F%2Fphilippe.bourgau.net%2Fdetailed-agenda-for-a-ddd-design-level-event-storming-part-1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fdetailed-agenda-for-a-ddd-design-level-event-storming-part-1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fdetailed-agenda-for-a-ddd-design-level-event-storming-part-1%2F&title=Detailed+agenda+for+a+DDD+Design-Level+Event+Storming+-+part+1" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fdetailed-agenda-for-a-ddd-design-level-event-storming-part-1%2F&t=Detailed agenda for a DDD Design-Level Event Storming - part 1" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/why-should-we-use-design-level-event-storming-for-ddd/" class="pagination--pager" title="Why should we use Design Level Event Storming for DDD?
+">Previous</a>
+    
+    
+      <a href="/detailed-agenda-for-a-ddd-design-level-event-storming-part-2/" class="pagination--pager" title="Detailed agenda for a DDD Design-Level Event Storming - part 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/detailed-agenda-for-a-ddd-design-level-event-storming-part-1/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/detailed-agenda-for-a-ddd-design-level-event-storming-part-1"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

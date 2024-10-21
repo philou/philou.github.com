@@ -1,0 +1,860 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize ! | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Here are a few best practices for a team to self-organize while performing incremental software development of a large scale refactoring. Maintaining collaboration and focus on only the most important initiatives is key to make constant merciless refactoring efficient.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize !">
+<meta property="og:url" content="https://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">
+
+
+  <meta property="og:description" content="Here are a few best practices for a team to self-organize while performing incremental software development of a large scale refactoring. Maintaining collaboration and focus on only the most important initiatives is key to make constant merciless refactoring efficient.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/refactoring-self-org-wall-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize !">
+  <meta name="twitter:description" content="Here are a few best practices for a team to self-organize while performing incremental software development of a large scale refactoring. Maintaining collaboration and focus on only the most important initiatives is key to make constant merciless refactoring efficient.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/refactoring-self-org-wall-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-08-23T06:53:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize !">
+    <meta itemprop="description" content="Refactoring step by step generate a ton of small tasks here and there. Here are some organization best practices to keep track of them.">
+    <meta itemprop="datePublished" content="2018-08-23T06:53:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize !
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">My previous posts</a> where about how to find and use small time slots for large scale refactorings. <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">Refactoring step by step</a> is a series of slack slots, sub tasks of features and boy scout rule increments. Unfortunately, keeping track of all these is a challenge of its own. Here are some self-organization best practices for that.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/refactoring-self-org-wall.jpeg" alt="Drawing of a wall with some refactoring self-organization posters. Collaboration and organization are key to succeed to use incremental software development for large scale refactorings." /></p>
+
+<p>Here is a little story of what can go bad. I used to work in a team which <a href="/refactoring-trick-to-insert-a-wrapper/">had a high ‘refactoring culture’.</a> Everyone in the team wanted to apply the kind of practices I mentioned in my previous posts. To make things more tricky, we were <a href="/from-zero-to-pair-programming-hero/">working from 2 cities</a>. We had introduced slack time and developers would tackle refactoring at the end of every iteration.</p>
+
+<p>Unfortunately, we did not particularly organize or collaborate on slack time. As a result, we soon ran into conflicts. People wanted to refactor the same code, but in different ways! After a while we also had too many <em>large-scale</em> refactorings going on at the same time. This slowed down progress, increased the <a href="https://en.wikipedia.org/wiki/Bus_factor">bus factor</a> and the failure rate. Worst of all, it made it difficult to refocus on a newly discovered but urgent refactoring.</p>
+
+<p>With a bit of self-organization though, we got things to work. Let’s see how we managed it.</p>
+
+<p>This is the eighth post in a <a href="/categories/#large-scale-refactoring-sponsorship-series">series about how to get sponsorship for large scale refactoring</a>. If you haven’t, I encourage you to start from <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a>.</p>
+
+<h2 id="self-organize-with-a-design-vision">Self organize with a Design Vision</h2>
+
+<p>To succeed at anything, we need to know where we are going. It’s the same for large scale refactorings. We don’t need to have all the details of what we want to build. We do need a good enough draft to avoid going in the wrong direction though. That’s even more true when we work as a team. Without a shared design vision, people will refactor in conflicting directions.</p>
+
+<p>It’s very important to share the vision with all the team. We can stick high level UML sketches on the walls for example. As <a href="https://twitter.com/kentbeck">Kent Beck</a> suggests, we can also use <a href="http://www.extremeprogramming.org/rules/metaphor.html">metaphores</a> to communicate the design. In <a href="https://vimeo.com/275530146">this talk</a>, <a href="http://www.natpryce.com/">Nat Pryce</a> explains that it’s a great way start, but that we will have to drop the metaphore later.</p>
+
+<figure>
+  <iframe src="https://player.vimeo.com/video/275530146?title=0&amp;byline=0&amp;portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  <figcaption>
+  By <a href="https://vimeo.com/275530146">Nat Pryce - What we talk about when we talk about software</a> from <a href="https://vimeo.com/newcrafts">NEWCRAFTS Conferences</a> on <a href="https://vimeo.com">Vimeo</a>
+  </figcaption>
+</figure>
+
+<p>The idea is not to waste time in a <a href="https://en.wikipedia.org/wiki/Big_Design_Up_Front">Big Design Up Front</a>. We just want to draft a vision :</p>
+
+<ul>
+  <li>We can run a Design level Event Storming. (Update: I wrote <a href="/misadventures-with-big-design-up-front/">a full series about how to run your own</a>)</li>
+  <li>We can grab a copy of <a href="https://www.amazon.com/Gamestorming-Playbook-Innovators-Rulebreakers-Changemakers/dp/0596804172/ref=sr_1_1?ie=UTF8&amp;qid=1534409953&amp;sr=8-1&amp;keywords=gamestorming">Gamestorming</a> and run any another kind of collaborative design game</li>
+  <li>Or a few team members could work on something the way they prefer</li>
+</ul>
+
+<p>Whatever the technique we start with, we’ll be able to refine and evolve the vision down the road.</p>
+
+<h2 id="self-organize-with-mikado-graphs">Self organize with Mikado Graphs</h2>
+
+<p>Remember the ‘<a href="http://mikadomethod.info/">Mikado Method</a>’ from <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">my previous post</a> ? It’s a technique to code and deploy large scale refactorings in baby steps. If you had a look at the reference links, you might have seen mentions of a ‘Mikado Graph’. Here is what it looks like :</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/mikado-graph.png" alt="Sample Mikado Graph. The Mikado graph is a great tool to manage and collaborate on incremental software development of large scale refactoring." /><figcaption>
+      
+Sample mikado graph from <a href="http://mikadomethod.info/">http://mikadomethod.info/</a>
+
+    </figcaption></figure>
+
+<p>As the number of refactoring steps grows, it becomes tricky to keep track of them all. A simple way is to draw them as nodes in a graph, and tackle the work from the leaves. If you are interested, check <a href="/categories/#mikado-method">these posts about the Mikado Method</a>. In my previous team, we became fans of the Mikado Method. We even built a tool to generate mikado graph from <a href="https://www.atlassian.com/software/jira">JIRA</a> (our ticket management system) dependencies! Using colors, we could track where we stood in the refactoring.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/generated-mikado-graph.jpg" alt="Sample Mikado Graph generated by our tool. Automating around Mikado graphs is of great help for large scale refactoring." /></p>
+
+<p>A key benefit of mikado graphs is that we can stick them on the wall. This shows to all the team where we stand in a refactoring. This way, team members can collaborate during their slack. It can also make <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/#">the boy scout rule</a> more effective. When a developer touches a file that appears in the graph, he or she can move it further in the good direction.</p>
+
+<blockquote>
+  <p>💡 A key benefit of mikado graphs is that we can stick them on the wall for everyone to know where we stand in a refactoring.</p>
+</blockquote>
+
+<h2 id="self-organize-with-metrics">Self organize with Metrics</h2>
+
+<p>I mentioned coding conventions and a clear <a href="https://www.agilealliance.org/glossary/definition-of-done/">Definition of Done</a> in <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-1-constant-merciless-refactoring/">a previous post</a>.  Having code quality constraints is the compass of constant merciless refactoring. To make this actionable and real, we should take the time to setup an automatic metrics system. For example :</p>
+
+<p><a href="https://youtu.be/Env47tQewIA?t=2685"><img src="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/tech-debt-trap.jpg" alt="Doc Norton's talk about &quot;The Technical Debt trap&quot;. His metrics are very useful to manage large scale refactoring." /></a></p>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=Env47tQewIA">Doc Norton suggests</a> to track maintainability, coverage, complexity and coupling over time.</li>
+  <li>The <a href="https://www.agilealliance.org/the-agile-alliance-debt-analysis-model/">A2DAM model</a> suggests using specific rules to create Definition of Done constraints</li>
+</ul>
+
+<p>Putting this in place will help everyone in the team to know if she or he should do more or less refactoring. The first benefit is that it prevents under and over engineering on new code. The second benefit is progress validation through metrics changes as we refactor.</p>
+
+<p><a href="https://codeclimate.com/github/philou/planning-poker"><img src="https://philippe.bourgau.net/imgs/2018-08-08-incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/code-climate-dashboard.jpg" alt="Sample metrics dashboard. Out of the box, Code Climate supports 3 out of the 4 metrics suggested by Doc Norton. This can be really helpful to manage incremental software development." /></a></p>
+
+<h2 id="self-organize-with-a-bit-of-planning">Self organize with a bit of Planning</h2>
+
+<p>Granted, planning is not the most fun part of our job. It can save us a ton of work though. <a href="https://code.joejag.com/2018/lego-workstream-visualisation.html">Joe Wright explains</a> how they doubled their productivity by spending more time planning. If we want to make a good job of incremental refactoring, we’ll need to spend enough time preparing it. Important questions are :</p>
+
+<ul>
+  <li>What are the most important refactorings to work on ?</li>
+  <li>How many refactorings should we tackle at the same time ?</li>
+  <li>Are we making good progress on our refactorings ?</li>
+  <li>Why is this refactoring not yielding any visible results through our metrics system ?</li>
+  <li>Are there any news that should change our plans ?</li>
+  <li>Are we doing enough refactoring to keep things under control ?</li>
+  <li>What are the next steps in these refactorings ?</li>
+  <li>etc</li>
+</ul>
+
+<p>I’m not talking about a big 6 month planning but rather regular short planning sessions. In <a href="https://www.scrum.org/">Scrum</a> this kind of planning happens every sprint. To make plannings more visual, engaging and fun, we might us something like <a href="https://jpattonassociates.com/user-story-mapping/">Story Mapping</a>. (I guess I should blog about this someday.)</p>
+
+<blockquote>
+  <p>💡 Keeping a Work In Progress limit on refactorings is essential.</p>
+</blockquote>
+
+<h2 id="self-organize-through-time-boxing">Self organize through Time-Boxing</h2>
+
+<p>One last advice before I’m done. We must be very careful to time-box our work on refactoring increments. It’s all too easy, to get caught up in a refactoring during the slack at the end of the iteration. If we let the refactoring spill on features we risk loosing the business people’s trust.</p>
+
+<p>Here again, using extra small baby steps helps to pause the refactoring. Another way is to do <a href="https://en.wikipedia.org/wiki/Kanban_(development)">Kanban</a> style slack. Replace end of sprint slack by a fixed number of people slacking all the time. But I’ll come back to this in more details in a future post.</p>
+
+<h2 id="next-post">Next post</h2>
+
+<p>Using this set of practices my team was able to deliver large scale refactorings in small steps.</p>
+
+<p>That said, some refactorings remain very difficult to technically deliver incrementally. Fortunately, people have come up with patterns like the Strangler and the Bubble Context to cope with this. That’s what I’ll go over in the <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/">next post</a>.</p>
+
+<p>This was the eighth post in <a href="/categories/#large-scale-refactoring-sponsorship-series">a series about how to get sponsorship for large scale refactoring</a>.</p>
+
+<p>In the previous post, I’ve been through why it’s so difficult to get sponsorship for a refactoring. Why a badass developer attitude is important? How to deliver refactorings steps by steps?</p>
+
+<p>If you haven’t start by <a href="/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">the beginning</a> !</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#code-analysis" class="page__taxonomy-item" rel="tag">code-analysis</a><span class="sep">, </span>
+    
+      <a href="/categories/#incremental-software-development" class="page__taxonomy-item" rel="tag">incremental-software-development</a><span class="sep">, </span>
+    
+      <a href="/categories/#large-scale-refactoring-sponsorship-series" class="page__taxonomy-item" rel="tag">large-scale-refactoring-sponsorship-series</a><span class="sep">, </span>
+    
+      <a href="/categories/#mikado-method" class="page__taxonomy-item" rel="tag">mikado-method</a><span class="sep">, </span>
+    
+      <a href="/categories/#refactoring" class="page__taxonomy-item" rel="tag">refactoring</a><span class="sep">, </span>
+    
+      <a href="/categories/#selforganizing" class="page__taxonomy-item" rel="tag">selforganizing</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-08-23T06:53:00+00:00">August 23, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Incremental+Software+Development+Strategies+for+Large+Scale+Refactoring+%233+%3A+Self-Organize+%21%20https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it%2F&title=Incremental+Software+Development+Strategies+for+Large+Scale+Refactoring+%233+%3A+Self-Organize+%21" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fincremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it%2F&t=Incremental Software Development Strategies for Large Scale Refactoring #3 : Self-Organize !" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/" class="pagination--pager" title="Incremental Software Development Strategies for Large Scale Refactoring #2 : Baby Steps
+">Previous</a>
+    
+    
+      <a href="/incremental-software-development-strategies-for-large-scale-refactoring-number-4-a-pattern-language/" class="pagination--pager" title="Incremental Software Development Strategies for Large Scale Refactoring #4 : a Pattern Language
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/incremental-software-development-strategies-for-large-scale-refactoring-number-3-manage-it"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
