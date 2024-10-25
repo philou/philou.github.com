@@ -1,0 +1,903 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>3 Things You Need to Master to Get Your Team Ready to Work With Serverless | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="This guest post by serverless expert Marco Troisi highlights 3 key skills for serverless development: Infrastructure-as-code, Event-Driven Architecture, and Solution Architecture Diagram. You will also learn what team-activities you can run with coachees to help them to master these 3 skills.">
+
+
+  <meta name="author" content="Marco Troisi">
+  
+  <meta property="article:author" content="Marco Troisi">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="3 Things You Need to Master to Get Your Team Ready to Work With Serverless">
+<meta property="og:url" content="https://philippe.bourgau.net/3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/">
+
+
+  <meta property="og:description" content="This guest post by serverless expert Marco Troisi highlights 3 key skills for serverless development: Infrastructure-as-code, Event-Driven Architecture, and Solution Architecture Diagram. You will also learn what team-activities you can run with coachees to help them to master these 3 skills.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/serverless-skills-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="3 Things You Need to Master to Get Your Team Ready to Work With Serverless">
+  <meta name="twitter:description" content="This guest post by serverless expert Marco Troisi highlights 3 key skills for serverless development: Infrastructure-as-code, Event-Driven Architecture, and Solution Architecture Diagram. You will also learn what team-activities you can run with coachees to help them to master these 3 skills.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/serverless-skills-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2022-05-19T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <a href="https://marcotroisi.substack.com/">
+          <img src="https://substackcdn.com/image/fetch/w_256,h_256,c_fill,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fbf23bb40-ce37-42d6-a71f-388d9f033528_480x480.jpeg" alt="Marco Troisi" itemprop="image">
+        </a>
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <a href="https://marcotroisi.substack.com/"><h3 class="author__name" itemprop="name">Marco Troisi</h3></a>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Writer at The Serverless Mindset • Engineer at Trilo 🚀 • AWS S.A. Pro • Dad, Husband, Christian.</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="https://marcotroisi.substack.com/" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-rss" aria-hidden="true"></i><span class="label">Blog</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/marcotroisi" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/marcotroisi/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">Linkedin</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="3 Things You Need to Master to Get Your Team Ready to Work With Serverless">
+    <meta itemprop="description" content="In this guest post, serverless expert Marco Troisi highlights 3 key skills to go serverless, and how, as coaches, we can help a team to learn them.">
+    <meta itemprop="datePublished" content="2022-05-19T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">3 Things You Need to Master to Get Your Team Ready to Work With Serverless
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>In this guest post, serverless expert Marco Troisi highlights 3 key skills to go serverless, and how, as coaches, we can help a team to learn them.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/serverless-skills.jpg" alt="Paper drawing of the work SKILLS with the S reusing the styles from the serverless icon, and the L being the lambda symbol. This post goes over some skills that are key to serverless development." /></p>
+
+<p>There are <a href="https://www.forbes.com/sites/forbestechcouncil/2021/11/04/four-reasons-you-should-consider-going-serverless/?sh=6e66de9e69cf">many reasons</a> for wanting to adopt serverless technologies as part of your development lifecycle. From reduced costs to automated scalability to improved developer experience.</p>
+
+<p>Of course, this is not to say that serverless is a good fit for every use case. Your team or organisation may well have very good reasons for not adopting serverless. Increasingly, though, such organisations are the ones that are going to need to justify their decision, not the other way around.</p>
+
+<p>Once you have established that serverless technologies would give your team an advantage as well as deliver a better product for your customers, you are now looking at a transition.</p>
+
+<p><strong>How can you coach a team used to work with more traditional technologies and patterns towards full productivity and enjoyment of serverless development?</strong></p>
+
+<p>A few years ago, my team made the transition from a gigantic monolith to a 100% serverless architecture. During that process, I learned and observed <strong>what skills are required for a team to succeed with serverless</strong>.</p>
+
+<p>The following 3 key steps will accelerate your transition to serverless technologies:</p>
+
+<ol>
+  <li><a href="#1-learn-infrastructure-as-code">Infrastructure-As-Code</a></li>
+  <li><a href="#2-understand-event-driven-architecture">Event-Driven Architecture</a></li>
+  <li><a href="#3-appreciate-the-value-of-solution-architecture-diagrams">Solution Architecture Diagrams</a></li>
+</ol>
+
+<h2 id="1-learn-infrastructure-as-code">#1 Learn Infrastructure-As-Code</h2>
+
+<p>Infrastructure-as-Code (IaC) allows you to manage infrastructure (networks, virtual machines, databases, etc) through code rather than via manual processes.</p>
+
+<p>By allowing developers to write, run, and maintain their infrastructure, you set yourself up for success as your team embarks on the serverless adoption journey.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/infra-as-code.jpg" alt="Picture made up of some code samples over a data-center. Infrastructure-as-code has become ubiquitous in our industry, and is actually a must-have for serverless development." /></p>
+
+<p>Here are 3 benefits of embracing Infrastructure-as-Code in your team:</p>
+
+<h3 id="1-it-ensures-consistency-across-environments">#1 It ensures consistency across environments</h3>
+
+<p>In an <a href="https://techbeacon.com/enterprise-it/infrastructure-code-engine-heart-devops">interview</a>, Boyd Hemphill, former director of evangelism at <a href="https://www.oracle.com/corporate/acquisitions/stackengine/">StackEngine</a>, describes Infrastructure-as-Code as follows:</p>
+
+<blockquote>
+  <p>code should be written to describe the desired state of the new machine. That code should run on the machine to converge it to the desired state. The code should execute on a cadence to ensure the desired state of the machine over time, always bringing it back to convergence.</p>
+</blockquote>
+
+<p>A solid Infrastructure-as-Code setup should reduce the unfortunate instances where code appears to work on a developer’s machine but everything breaks down as that code is pushed to production.</p>
+
+<p>With Infrastructure-as-Code, the system and configuration required to run your application are clearly visible to everyone; everything is perfectly replicable across any number of environments, whether the developer’s machine, staging or production.</p>
+
+<p>Of course, there may be slight differences in place. For example, the machines running your production workload may be more powerful than the ones used for local testing. Similarly, network conditions may vary and affect the outcomes. These are all real factors that need to be kept in mind, but they are also minor in the grand scheme of things. And they can be mitigated greatly by adopting serverless and cloud-based development (that is, developing and running your applications directly in the cloud rather than on a local machine).</p>
+
+<h3 id="2-it-makes-infrastructure-reviewable-by-developers">#2 It makes infrastructure reviewable by developers</h3>
+
+<p>Once infrastructure becomes part of the team’s development lifecycle, any code necessary to alter that infrastructure will need to be reviewed. The benefits of reviewing each other’s code are well known, so we don’t need to discuss them here. I do want to touch on a particular benefit of code reviews though: <strong>learning</strong>.</p>
+
+<p>Regardless of the framework that you choose to handle your Infrastructure-as-Code, there is going to be a bit of a learning curve. But <strong>you can make this curve less steep and accelerate the process with code reviews</strong>. All it takes is a team member who (more or less) knows what she’s doing. As other people get involved with the reviewing process, they will soon start to get a sense of what things look like.</p>
+
+<p>For example, let’s imagine that your team uses <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a> as a framework; a team member creates a little PR that introduces a new Lambda. The title of the PR is <em>Lambda for processing payments</em>. The code introduced in the PR looks something like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">Resources</span><span class="pi">:</span>
+  <span class="na">paymentLambda</span><span class="pi">:</span>
+    <span class="na">Type</span><span class="pi">:</span> <span class="s">AWS::Lambda::Function</span>
+    <span class="na">Properties</span><span class="pi">:</span>
+      <span class="na">Runtime</span><span class="pi">:</span> <span class="s">nodejs14.x</span>
+      <span class="na">Handler</span><span class="pi">:</span> <span class="s">src/handlers/payments.handler</span>
+      <span class="na">Code</span><span class="pi">:</span>
+        <span class="na">S3Bucket</span><span class="pi">:</span> <span class="s">payment-lambda-bucket</span>
+        <span class="na">S3Key</span><span class="pi">:</span> <span class="s">function.zip</span>
+      <span class="na">Description</span><span class="pi">:</span> <span class="s">Payment processing Lambda</span>
+</code></pre></div></div>
+
+<p>At this point, you have the context from the title of the PR, so you know at a high level what this code is trying to achieve. And even though you may not be completely sure of how the whole thing hangs together, you can definitely recognise some things in the YAML above. There is a <code class="language-plaintext highlighter-rouge">Type</code>, there is a <code class="language-plaintext highlighter-rouge">Runtime</code>, and there is a <code class="language-plaintext highlighter-rouge">Handler</code> which seems to point to the code that gets executed inside the Lambda.</p>
+
+<p>Next time you’re asked to review someone else’s CloudFormation, you are much more familiar with it. Moreover, when the time comes for you to write some infrastructure code, it won’t be as intimidating. You can refer back to other people’s code and look for the elements and components that you need, with the necessary modifications.</p>
+
+<h3 id="3-it-increases-the-speed-of-development">#3 It increases the speed of development</h3>
+
+<blockquote>
+  <p>In the “cloud age” of IT […] changes can be made in minutes, if not seconds. Change management can exploit this speed, providing better reliability along with faster time to market. ~ <em>Kief Morris (<a href="https://amzn.to/3uVgYUN">Infrastructure as Code</a>)</em></p>
+
+</blockquote>
+
+<p><strong>Infrastructure-as-Code enables you to increase the rate at which you develop your products and ship them to market.</strong> There is both an organisational and a technical reason for this speed uptake.</p>
+
+<p>Organisationally, as engineering teams own the capabilities necessary to make infrastructure changes, you have fewer blockers. Much like with the adoption of a <a href="https://marcotroisi.substack.com/p/how-microservices-can-help-your-team?s=w">microservice architecture</a>, <strong>with Infrastructure-as-Code you remove a major dependency, namely the infrastructure “experts”</strong>. A team can build a new feature or component from the ground up, define its infrastructure, and ensure their work is deployed and available to customers.</p>
+
+<p>Technically, with Infrastructure-as-Code you get far more reliable systems. Since what’s in production is consistent with what’s been tested locally, and given that everything has gone through the standard review process, it is simply less likely for things to go wrong. Coupled with an effective <a href="https://marcotroisi.substack.com/p/set-up-an-automated-pipeline-from?s=w">CICD</a> pipeline, you can ensure that changes are shipped consistently and bugs are caught and resolved quickly.</p>
+
+<h3 id="learning-resources">Learning resources</h3>
+
+<p>If your team is on AWS, I highly recommend reading the <a href="https://thecdkbook.com/">CDK Book</a> and watching <a href="https://m.youtube.com/watch?v=9As_ZIjUGmY">this video</a>. The ever-popular <a href="https://www.terraform.io/">Terraform</a> is a solid alternative that supports other cloud providers too; <a href="https://m.youtube.com/watch?v=YcJ9IeukJL8">this video</a> is a good place to start. <strong>Group activities such as a “lunch &amp; learn” session can be very helpful; the team could simply watch the video together and pause at various points to discuss.</strong></p>
+
+<h2 id="2-understand-event-driven-architecture">#2 Understand Event-Driven Architecture</h2>
+
+<p><a href="https://d1.awsstatic.com/product-marketing/EventBridge/1-SEO-Diagram_Event-Driven-Architecture_Diagram.b3fbc18f8cd65e3af3ccb4845dce735b0b9e2c54.png"><img src="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/SEO-Diagram_Event-Driven-Architecture_Diagram.jpg" alt="High level architecture diagram of an event-driven system on AWS. We can see how the Event Router is central to a serverless systems." /></a></p>
+
+<p><em>Source: <a href="https://d1.awsstatic.com/product-marketing/EventBridge/1-SEO-Diagram_Event-Driven-Architecture_Diagram.b3fbc18f8cd65e3af3ccb4845dce735b0b9e2c54.png">AWS</a></em></p>
+
+<p><a href="https://aws.amazon.com/blogs/compute/getting-started-with-event-driven-architecture/?trk=global_employee_advocacy&amp;sc_channel=sm&amp;advocacy_source=everyonesocial&amp;es_id=70fef3f411&amp;es_id=550ad37344">Event-Driven Architecture</a> is a model for designing your software. An event-driven system is one where events are at the core of the system, as opposed to requests and responses.</p>
+
+<p>Typically, an Event-Driven system consists of <em>event producers</em> that generate a stream of events, and <em>event consumers</em> that are listening to events coming in.</p>
+
+<p>Amongst the <a href="https://aws.amazon.com/blogs/compute/operating-lambda-understanding-event-driven-architecture-part-1/">benefits of an Event-Driven Architecture</a> is that it enables you to build loosely coupled applications that, if well designed, can be very resilient as well as deliver improved performance to the end-user.</p>
+
+<p>Serverless has Event-Driven as part of its DNA. Serverless functions (like AWS Lambda) are on-demand compute services that run custom code in response to events. Events can be generated by your own application, by other cloud services (for example, most AWS services generate events), or by third-party services.</p>
+
+<p>Event-Driven systems don’t need to be too complex, to begin with. For example, AWS offers an extremely powerful, yet easy to use, service called <a href="https://aws.amazon.com/eventbridge/">EventBridge</a>. Many companies are using EventBridge along with Lambda to power Event-Driven applications that are highly performant.</p>
+
+<h3 id="learning-resources-1">Learning resources</h3>
+
+<p><a href="https://m.youtube.com/channel/UCSLIvjWJwLRQze9Pn4cectQ">Marcia Villalba</a> from AWS has made several very useful <a href="https://www.youtube.com/playlist?list=PLGyRwGktEFqc4ujCIzIppLcESeWID8biA">videos</a> about EventBridge. <strong><a href="https://www.youtube.com/watch?v=LaxH8GS8l3Q">This video</a>, in particular, I cannot recommend highly enough. It is also a great one to watch as a group, and could easily stimulate a follow-up team exercise.</strong></p>
+
+<h2 id="3-appreciate-the-value-of-solution-architecture-diagrams">#3 Appreciate the Value of Solution Architecture Diagrams</h2>
+
+<blockquote>
+  <p>a persuasive solution architecture diagram must be able to convey the business values to key stakeholders and the technical details to developers. ~ [<em>Tuan Lee](https://medium.com/@tuanvietle/a-simple-method-to-create-solution-architecture-diagrams-6a127b93a122), solution architect at <a href="https://nashtechglobal.com">NashTech</a></em></p>
+
+</blockquote>
+
+<p>In my experience, <strong>a Solution Architecture diagram is a fantastically powerful way to bring about clarity and keep stakeholders aligned</strong>.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/high-performance-computing-aws.jpg" alt="[AWS Reference Solution Architecture](https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/high-performance-computing-on-aws-ra.pdf?did=wp_card&amp;trk=wp_card) for High-Performance Computing" /></p>
+
+<p><em>Source: <a href="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/high-performance-computing-on-aws-ra.pdf?did=wp_card&amp;trk=wp_card">AWS Reference Solution Architecture</a> for High-Performance Computing</em></p>
+
+<p>Building a Solution Architecture diagram can be intimidating at first. One way to overcome this anxiety is to remember that, <strong>unless your job title is a Solution Architect, your diagram doesn’t need to be perfect or even pretty to look at</strong>. Most engineers will only ever design diagrams for internal use.</p>
+
+<p>There are 3 things that need to be highlighted by any useful Solution Architecture diagram:</p>
+
+<ol>
+  <li>Users</li>
+  <li>Technologies used</li>
+  <li>Flow of information</li>
+</ol>
+
+<p>Start with the user: who is going to use this system/feature/component? Then, line up all the technological components used. Lastly, draw lines between them (and make notes to the side, if necessary) to bring attention to the flow of data and the sequence of actions.</p>
+
+<p>You now have a perfectly useful Solution Architecture diagram that your colleagues can use as a point of reference when reviewing your work.</p>
+
+<h3 id="learning-resources-2">Learning resources</h3>
+
+<p><strong>The best way to learn how to draw Solution Architecture diagrams is to get your hands dirty.</strong></p>
+
+<p>Here’s a good team exercise: pick any diagramming software (draw.io, for example, is free; <a href="https://m.youtube.com/watch?v=Z0D96ZikMkc">this video</a> gives you a quick introduction), <strong>find a simple component that everyone is familiar with (e.g. the signup process), and start drawing it out by highlighting the 3 areas mentioned above.</strong></p>
+
+<p>Lastly, <strong>show the diagram to someone who is only marginally familiar with the system</strong>; is the general idea clear to them? If not, what can the team do to make the diagram clearer? Feedback like this is priceless since the main purpose of a Solution Architecture diagram is to make a solution crystal clear to every stakeholder.</p>
+
+<h2 id="bonus-get-aws-certified">BONUS: Get AWS Certified!</h2>
+
+<p>According to the <a href="https://www.globalknowledge.com/us-en/content/salary-report/it-skills-and-salary-report/">2021 Global Knowledge survey</a>, 80% of interviewed IT professionals have seen an increase in their job effectiveness, including improved quality of work, increased engagement, and faster job performance, as a result of obtaining an IT certification.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2022-05-11-3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/graduation.jpg" alt="Picture made up of small stones with graduation hats. AWS certifications can be a good learning path to get a team up to speed with serverless." /></p>
+
+<p>IT certifications are not a guarantee of competence if taken in isolation, but they can be a cheap and effective way for companies to ensure a knowledge baseline among teams.</p>
+
+<p>I recommend that anyone who is working in the cloud and adopting serverless get an AWS certification (you may want to look at equivalent GCP or Azure certifications if your company has <a href="https://marcotroisi.substack.com/p/why-you-cant-afford-to-be-cloud-agnostic?s=w">reasons</a> not to go with AWS).</p>
+
+<p>A great place to start is the <a href="https://aws.amazon.com/certification/certified-developer-associate/">AWS Developer Associate</a> certification; this certification assumes a couple of years of experience working with AWS, but you can study a little more to make up for the lack of practical experience.</p>
+
+<p>Other certifications exist and can be pursued, depending on the specific role. For example, the <a href="https://aws.amazon.com/certification/certified-machine-learning-specialty/?ch=sec&amp;sec=rmg&amp;d=1">Machine Learning</a>, <a href="https://aws.amazon.com/certification/certified-database-specialty/?ch=sec&amp;sec=rmg&amp;d=1">Database</a>, <a href="https://aws.amazon.com/certification/certified-security-specialty/?ch=sec&amp;sec=rmg&amp;d=1">Security</a>, and other “<em>specialty</em>” certifications are especially focused on those topics.</p>
+
+<p>More advanced certifications such as the <a href="https://aws.amazon.com/certification/certified-solutions-architect-professional/?ch=sec&amp;sec=rmg&amp;d=1">Solutions Architect Professional</a> and the <a href="https://aws.amazon.com/certification/certified-devops-engineer-professional/?ch=sec&amp;sec=rmg&amp;d=1">DevOps Engineer Professional</a> are also available to those who want to go above and beyond. They are more difficult to achieve, but obtaining them guarantees considerable knowledge in how to use and architect cloud applications.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>In this article, we have looked at 3 areas that you should encourage your team to invest in if you’re considering adopting serverless technologies:</p>
+
+<ol>
+  <li>Infrastructure-as-Code</li>
+  <li>Even-Driven Architecture</li>
+  <li>Solution Architecture diagrams</li>
+</ol>
+
+<p>By starting small and avoiding overcomplicating your application, <strong>you can gradually introduce these 3 practices.</strong></p>
+
+<p>As you think about the next feature that you or your team are going to tackle:</p>
+
+<ul>
+  <li>Draw a simple diagram outlining the various components and attach it to the ticket and any Pull Requests, for everyone to see.</li>
+  <li>Think about whether there is a way to delegate actions to asynchronous events rather than leaving your end-user waiting for a response.</li>
+  <li>Finally, look at <a href="https://aws.amazon.com/cloudformation/resources/templates/">pre-made templates</a> so that all of your infrastructure is clearly defined (and reviewed) as code.</li>
+</ul>
+
+<p><strong><em>Have you or your team recently adopted serverless technologies? What have you found useful and what challenges have you faced?</em></strong></p>
+
+<hr />
+<p><em><a href="https://www.linkedin.com/in/marcotroisi/">Marco Troisi</a> is a cloud architect and serverless expert. We have been following each other’s blogs for a long time. He now blogs on <a href="https://marcotroisi.substack.com/">The Serverless Mindset</a>.</em></p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-05-19T00:00:00+00:00">May 19, 2022</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=3+Things+You+Need+to+Master+to+Get+Your+Team+Ready+to+Work+With+Serverless%20https%3A%2F%2Fphilippe.bourgau.net%2F3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2F3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2F3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless%2F&title=3+Things+You+Need+to+Master+to+Get+Your+Team+Ready+to+Work+With+Serverless" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2F3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless%2F&t=3 Things You Need to Master to Get Your Team Ready to Work With Serverless" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-to-help-a-team-to-find-their-preferred-mob-programming-rules/" class="pagination--pager" title="How to help a team to find their preferred mob programming rules?
+">Previous</a>
+    
+    
+      <a href="/how-to-make-a-team-facilitate-agile-architecture-workshops/" class="pagination--pager" title="How to make a team facilitate agile architecture workshops
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/3-things-you-need-to-master-to-get-your-team-ready-to-work-with-serverless"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

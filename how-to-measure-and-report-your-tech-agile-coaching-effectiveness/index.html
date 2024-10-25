@@ -1,0 +1,946 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to measure (and report 😢) your tech agile coaching effectiveness? | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="How can we measure the effectiveness of technical agile coaching? Result-driven measures oriented towards speed and productivity are counter-productive. Let’s leverage hypothesis-driven development and our circle of control, to write safe, sustainable, and measurable goals.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to measure (and report 😢) your tech agile coaching effectiveness?">
+<meta property="og:url" content="https://philippe.bourgau.net/how-to-measure-and-report-your-tech-agile-coaching-effectiveness/">
+
+
+  <meta property="og:description" content="How can we measure the effectiveness of technical agile coaching? Result-driven measures oriented towards speed and productivity are counter-productive. Let’s leverage hypothesis-driven development and our circle of control, to write safe, sustainable, and measurable goals.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to measure (and report 😢) your tech agile coaching effectiveness?">
+  <meta name="twitter:description" content="How can we measure the effectiveness of technical agile coaching? Result-driven measures oriented towards speed and productivity are counter-productive. Let’s leverage hypothesis-driven development and our circle of control, to write safe, sustainable, and measurable goals.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-to-measure-and-report-your-tech-agile-coaching-effectiveness/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-09-02T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-to-measure-and-report-your-tech-agile-coaching-effectiveness/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to measure (and report 😢) your tech agile coaching effectiveness?">
+    <meta itemprop="description" content="Technical agile coaching is complex. Many organizations would track our work with inadequate measures. Here is how hypothesis-driven goals can keep us safe.">
+    <meta itemprop="datePublished" content="2021-09-02T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to measure (and report 😢) your tech agile coaching effectiveness?
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Technical agile coaching is complex. Many organizations would track our work with inadequate measures. Here is how hypothesis-driven goals can keep us safe.</em></p>
+
+<h2 id="coaching-is-challenging-to-measure-and-it-can-be-demotivating">Coaching is challenging to measure, and it can be demotivating.</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/sisyphus.jpg" alt="Drawing of Sisyphus pushing a giant watermelon up a steep slope written 'Bad Measure'. Like watermelons, bad measures look green on the outside, but red when you look inside! Badly measuring our technical agile coaching work can be demotivating." /></p>
+
+<blockquote>
+  <p>Measuring performance in software is very tricky […] the coach position is uneasy, maybe even dangerous and counterproductive! And depends a lot on the surrounding culture (<a href="https://okiwi.org/">Okiwi</a> Slack)</p>
+</blockquote>
+
+<blockquote>
+  <p>I have a hard time making efforts on something that I know is useless… Coaching is not useless, but it’s so slow! And full of disappointments (<a href="https://okiwi.org/">Okiwi</a> Slack)</p>
+</blockquote>
+
+<blockquote>
+  <p>The first disillusion is when you realize that whatever you do, you will change almost nothing! (<a href="https://okiwi.org/">Okiwi</a> Slack)</p>
+</blockquote>
+
+<p>Organizations are complex systems, and teams exist in these systems. Complex systems always react to change in unexpected ways. In fact, the behavior of complex systems only makes sense as a-posteriori. (TODO link) <strong>This means that change management will be challenging to measure.</strong></p>
+
+<!-- Courtesy of embedresponsively.com //-->
+
+<div class="responsive-video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/c1W6U2duXdI" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  </div>
+
+<p><a href="https://twitter.com/henrikkniberg">Henrik Kniberg</a> explains how he does it in his talk <a href="https://youtu.be/c1W6U2duXdI?t=1570">Confessions of a change agent</a>. Eventually, he accepted that we cannot measure the effectiveness of an agile coach. So here is what he does instead:</p>
+
+<blockquote>
+  <p>Are people happy to see me around?</p>
+</blockquote>
+
+<p><strong>Yet, coaching without knowing if you are effective can become depressing.</strong> Unfortunately, things get even worse in command and control organizations!</p>
+
+<h2 id="the-extra-challenges-with-command-and-control-organizations">The extra challenges with Command and Control organizations</h2>
+
+<blockquote>
+  <p>Being a coach, mandated from above and who’s job is to tell you the right way to work” (<a href="https://okiwi.org/">Okiwi</a> Slack)</p>
+</blockquote>
+
+<blockquote>
+  <p>Coaches and devs don’t share the same position, goals, interlocutors, etc. Indeed, this creates an unbalanced situation between coaches and devs” (<a href="https://okiwi.org/">Okiwi</a> Slack)</p>
+</blockquote>
+
+<p>In these organizations, coaches are often mandated to ‘transform’ teams. The underlying goal is to improve productivity. This means that at the question:</p>
+
+<blockquote>
+  <p><strong>How to measure a tech agile coach’s effectiveness?</strong></p>
+</blockquote>
+
+<p>These organizations will ask:</p>
+
+<ul>
+  <li>How fast teams are being transformed?</li>
+  <li>How much more features can the team deliver after it has been <del>coached</del> transformed?</li>
+</ul>
+
+<p>This mission is problematic in 2 ways:</p>
+
+<ul>
+  <li><strong>First, we don’t know how long it will take to coach a team into empowerment. Yet our customers evaluate us on the speed to ‘transform’ teams!</strong></li>
+  <li><strong>Second, higher productivity is only one possible outcome of team empowerment. Still, our customers are evaluating us only on productivity improvement!</strong></li>
+</ul>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/watermelon-accident.jpg" alt="Photo of a watermelon, shattered after it fell on the floor" /><figcaption>
+      
+Watermelon metrics are green from the outside, but red in the inside! It’s all too easy to game measures when they are linked to inadequate objectives.
+
+    </figcaption></figure>
+
+<p>As a consequence, here is what often happens when coaching becomes difficult:</p>
+
+<ul>
+  <li>A. The coach games the measures. Ex: Spend the least time possible with each team. Then find an accommodating measure for productivity, whatever the actual outcome.</li>
+  <li>B. The coach gets screwed because things did not work according to the plan. Ex: The team decides that it will take some time to pay back some of its technical debt. As a result, productivity decreases in the short term.</li>
+</ul>
+
+<p>This can make you doubt your whole coach career!</p>
+
+<h2 id="actionnable-short-term-goals">Actionnable, short-term goals</h2>
+
+<p>Here is a template I use whenever I have to provide measurable goals.</p>
+
+<blockquote>
+  <p><strong>We believe that</strong> &lt;Intention&gt;</p>
+
+  <p><strong>Will result in</strong> &lt;Outcome hypothesis&gt;</p>
+
+  <p><strong>We will know we have succeeded when</strong> &lt;Outcome signal measure&gt;</p>
+
+  <p><strong>To run this experiment, I will</strong> &lt;Measurable actions or habits I can commit to&gt;</p>
+</blockquote>
+
+<p>Let’s see where this comes from:</p>
+
+<h3 id="hypothesis-driven-development">Hypothesis-driven Development</h3>
+
+<p>Fortunately, we are not alone. Product managers need complex compliant measurable goals too! The Lean Management community came up with the <a href="https://www.thoughtworks.com/insights/articles/how-implement-hypothesis-driven-development">Hypothesis-Driven Development Story Template</a>.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/implement-hypothesis-driven-development.jpeg" alt="Template card titled Hypothesis Driven Development, with the text: We believe that &lt;this capability&gt; Will result in &lt;this outcome&gt; We will know we have succeeded when &lt;we see a measurable signal&gt;" /><figcaption>
+      
+By <a href="https://www.thoughtworks.com/">ThoughtWorks</a>, original in <a href="https://www.thoughtworks.com/insights/articles/how-implement-hypothesis-driven-development">How to Implement Hypothesis-Driven Development</a>
+
+    </figcaption></figure>
+
+<h3 id="your-circle-of-control">Your Circle of Control</h3>
+
+<p>The idea behind the template is to frame each team coaching as an experiment. To measure one’s contribution to this experiment, I added the last line to the template:</p>
+
+<blockquote>
+  <p><strong>To run this experiment, I will</strong> &lt;Measurable actions or habits I can commit to&gt;</p>
+</blockquote>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/circle-of-control.jpg" alt="Sketchnote drawing illustrating the different circles: control inside influence, inside concern." /><figcaption>
+      
+By <a href="https://discoveryinaction.com.au">discoveryinaction.com.au</a>, originally published in <a href="https://discoveryinaction.com.au/circle-of-concern-v-circle-of-control/">Circle of Concern vs Circle of Control</a>
+
+    </figcaption></figure>
+
+<p>In the <a href="https://www.goodreads.com/book/show/36072.The_7_Habits_of_Highly_Effective_People">7 Habits of Highly Effective People</a>, Stephen Covey presents the Circle of Influence. The Circle of Control is an extension to this model. If you want to learn more about the Circle of Control, check Cam’s post <a href="http://customizinglife.com/stop-worrying/">How To Stop Worrying – The Circle of Control</a></p>
+
+<h3 id="an-example">An example</h3>
+
+<p>Here is an example we could write when coaching a team that is struggling with legacy code:</p>
+
+<blockquote>
+  <p><em><strong>We believe that</strong> coaching team X to refactoring techniques.</em></p>
+
+  <p><em><strong>Will result in</strong> a reduction of their technical debt.</em></p>
+
+  <p><em><strong>We will know we have succeeded when:</strong></em></p>
+
+  <ul>
+    <li><em>They spend less time bug fixing on library X</em></li>
+    <li><em>They manage to reduce cycle time on refactoring tasks on library X</em></li>
+  </ul>
+
+  <p><em><strong>To run this experiment, I will:</strong></em></p>
+
+  <ul>
+    <li><em>Spend 2 hours per week going through refactoring katas with the team</em></li>
+    <li><em>Mob with them for 2 hours on refactoring their production code, twice a week</em></li>
+    <li><em>Collect their feedback after every session and use it to improve the next session</em></li>
+  </ul>
+</blockquote>
+
+<h3 id="outcomes">Outcomes</h3>
+
+<p>I’ve observed 3 consequences of using this template:</p>
+
+<ol>
+  <li><strong>You will be safer!</strong> As long as you are stick to your actions, you are achieving your goal. You have a lot less risk of being blamed for something that is outside of your control. This makes work a lot more sustainable and transparent for everyone.</li>
+  <li><strong>You will make your experimental learning explicit!</strong> These objectives are no longer useless bureaucratic things. You can actually use them to iterate and improve the following experiment.</li>
+  <li><strong>You will spread the practice!</strong> Chances are that others are struggling with their objectives too. As you share it with them, you might make them aware of the uncertain nature of their environment. Who knows, maybe they’ll start to use this template as well!</li>
+</ol>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-08-09-how-to-measure-and-report-your-tech-agile-coaching-effectiveness/experiment.jpg" alt="A long chain of lab experimental equipment that ends with a brain. Using hypothesis driven development when defining our goals lets us experiment and learn consciously" /></p>
+
+<h2 id="give-it-a-try">Give it a try!</h2>
+
+<p>If you currently need to track and report your progress, here is what you can do now:</p>
+
+<ol>
+  <li>Write objectives for your current work as you usually do.</li>
+  <li>Repeat asking yourself the two following questions:
+    <ol>
+      <li>How can I easily measure this experiment?</li>
+      <li>Is this entirely under my control?</li>
+    </ol>
+  </li>
+  <li>Use the answers to guide you as you try to fill the template:</li>
+</ol>
+
+<blockquote>
+  <p><strong>We believe that</strong> &lt;Intention&gt;</p>
+
+  <p><strong>Will result in</strong> &lt;Outcome hypothesis&gt;</p>
+
+  <p><strong>We will know we have succeeded when</strong> &lt;Outcome signal measure&gt;</p>
+
+  <p><strong>To run this experiment, I will</strong> &lt;Measurable actions or habits I can commit to&gt;</p>
+</blockquote>
+
+<p>In the next post, I’ll present the tips I use to dump measures completely and go #NoGoal whenever I can! <a href="https://philippe.bourgau.net/feed.xml">Stay tuned</a></p>
+
+<p>In the meantime, I’d love to read about your own objective-writing tips. The comment section is yours!</p>
+
+<hr />
+<p>Tech coaching can be exhausting at times. Here are other interesting posts that might interest you:</p>
+
+<ul>
+  <li><a href="https://philippe.bourgau.net/5-technical-agile-coaching-tips-to-fight-exhaustion-from-laggards/">5 technical agile coaching tips to fight exhaustion from laggards</a></li>
+  <li><a href="https://philippe.bourgau.net/7-tricks-to-influence-a-team-resisting-to-change/">7 tricks to influence a team resisting to change its technical habits</a></li>
+  <li><a href="https://philippe.bourgau.net/how-to-coach-a-team-that-has-been-burnt-by-bad-tdd/">How to coach a team that has been burnt by bad TDD</a></li>
+  <li><a href="https://philippe.bourgau.net/how-to-kill-scrum-zombies/">How to kill Scrum Zombies?</a></li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#customer-relationship" class="page__taxonomy-item" rel="tag">customer relationship</a><span class="sep">, </span>
+    
+      <a href="/categories/#goal-setting" class="page__taxonomy-item" rel="tag">goal setting</a><span class="sep">, </span>
+    
+      <a href="/categories/#personal-productivity" class="page__taxonomy-item" rel="tag">personal-productivity</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-09-02T00:00:00+00:00">September 2, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+measure+%28and+report+%F0%9F%98%A2%29+your+tech+agile+coaching+effectiveness%3F%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-measure-and-report-your-tech-agile-coaching-effectiveness%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-measure-and-report-your-tech-agile-coaching-effectiveness%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-measure-and-report-your-tech-agile-coaching-effectiveness%2F&title=How+to+measure+%28and+report+%F0%9F%98%A2%29+your+tech+agile+coaching+effectiveness%3F" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-measure-and-report-your-tech-agile-coaching-effectiveness%2F&t=How to measure (and report 😢) your tech agile coaching effectiveness?" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-the-pandemic-made-us-discover-better-ways-of-coaching/" class="pagination--pager" title="How the pandemic made us discover better ways of coaching
+">Previous</a>
+    
+    
+      <a href="/3-tips-to-drop-technical-agile-coaching-result-measures-and-relax/" class="pagination--pager" title="3 Questions To Let-Go Technical Agile Coaching Measures
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-to-measure-and-report-your-tech-agile-coaching-effectiveness/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-measure-and-report-your-tech-agile-coaching-effectiveness"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

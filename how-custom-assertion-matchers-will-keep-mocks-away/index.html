@@ -1,0 +1,919 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How Custom Assertion Matchers will keep mocks away | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How Custom Assertion Matchers will keep mocks away">
+<meta property="og:url" content="https://philippe.bourgau.net/how-custom-assertion-matchers-will-keep-mocks-away/">
+
+
+  <meta property="og:description" content="An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How Custom Assertion Matchers will keep mocks away">
+  <meta name="twitter:description" content="An explanation of how Custom Assertion Matchers prevent excessive mocking. Code examples in Ruby are presented to illustrate the point.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-custom-assertion-matchers-will-keep-mocks-away/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-05-17T06:47:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-custom-assertion-matchers-will-keep-mocks-away/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How Custom Assertion Matchers will keep mocks away">
+    <meta itemprop="description" content="Custom assertions are a handy compromise alternative to mocks when we don’t have the time to refactor to a functional style.">
+    <meta itemprop="datePublished" content="2018-05-17T06:47:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How Custom Assertion Matchers will keep mocks away
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Custom assertions are a handy compromise alternative to mocks when we don’t have the time to refactor to a functional style.</em></p>
+
+<p>With the <a href="https://www.youtube.com/watch?v=YGhS8VQpS6s">3X model</a>, <a href="https://www.kentbeck.com/">Kent Beck</a> almost explicity tells us that we should take technical debt at the beginning of a feature or project. Using no-brainer <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> frameworks, like <a href="https://rubyonrails.org/">Rails</a>, is very effective to get the first version of a new product out. When the project hopefully becomes a success, many things happen. Tests become important, but also messy and slow. Unfortunately, in this fast expansion phase, we’re lacking time for refactoring. Even if moving to a more functional style would be the test thing to clean up our tests, we often end up adding mocks.</p>
+
+<blockquote>
+  <p>💡 When we are in a hurry, we get lured into mocking to workaround complicated tests</p>
+</blockquote>
+
+<p>Custom assertions are a handy compromise. They avoid most of the downsides of mocks, while preparing for a potential refactoring. If you don’t know what custom assertions are, here is pseudo code that uses a custom assertion :</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>assert.that(actual, VerifiesMyCustomAssertion(withCustomProperties))
+</code></pre></div></div>
+
+<p>For more details, have a look at these examples for your preferred language : <a href="http://joel-costigliola.github.io/assertj/assertj-core-custom-assertions.html">Java</a>, <a href="https://relishapp.com/rspec/rspec-expectations/docs/custom-matchers">Ruby</a> or <a href="http://tonylukasavage.com/blog/2014/05/29/custom-assertions-in-should-dot-js/">Javascript</a>.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-05-15-how-custom-assertion-matchers-will-keep-mocks-away/matchers.jpg" alt="A drawing of a box of matches, branded 'Matchers' on top" /></p>
+
+<p>I already blogged about <a href="https://philippe.bourgau.net/speed-up-the-tdd-feedback-loop-with-better-assertion-messages/">the benefits of Custom Assertion Matchers</a>. Here I’m going to dive in their advantages against mocking.</p>
+
+<p>This is the fifth post in a <a href="https://philippe.bourgau.net/categories/#how-to-avoid-mocks-series">series about how to avoid mocks</a>. If you haven’t yet, I recommend you to start from <a href="https://philippe.bourgau.net/careless-mocking-considered-harmful/">the beginning</a>.</p>
+
+<h2 id="why-would-we-end-up-with-mocks-when-we-dont-have-matchers-">Why would we end up with mocks when we don’t have matchers ?</h2>
+
+<p>Let’s walkthrough a small story. Suppose we are building an e-commerce website. When someone passes an order, we want to notify the analytics service. Here is some very simple code for that.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">AnalyticsService</span>
+
+<span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span>
+<span class="err">   </span><span class="vi">@items</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="err"> </span><span class="k">end</span>
+
+<span class="err"> </span><span class="nb">attr_reader</span> <span class="ss">:items</span>
+
+<span class="err"> </span><span class="k">def</span> <span class="nf">order_passed</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
+<span class="err">   </span><span class="n">cart</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+<span class="err">     </span><span class="vi">@items</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="ss">customer: </span><span class="n">customer</span><span class="p">,</span> <span class="ss">item: </span><span class="n">item</span><span class="p">)</span>
+<span class="err">   </span><span class="k">end</span>
+<span class="err"> </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">class</span> <span class="nc">Order</span>
+<span class="err"> </span><span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+<span class="err">   </span><span class="vi">@customer</span> <span class="o">=</span> <span class="n">customer</span>
+<span class="err">   </span><span class="vi">@cart</span> <span class="o">=</span> <span class="n">cart</span>
+<span class="err">   </span><span class="vi">@analytics</span> <span class="o">=</span> <span class="n">analytics</span>
+<span class="err"> </span><span class="k">end</span>
+
+<span class="err"> </span><span class="k">def</span> <span class="nf">pass</span>
+<span class="err">   </span><span class="c1"># launch order processing and expedition</span>
+
+<span class="err">   </span><span class="vi">@analytics</span><span class="p">.</span><span class="nf">order_passed</span><span class="p">(</span><span class="vi">@customer</span><span class="p">,</span> <span class="vi">@cart</span><span class="p">)</span>
+<span class="err"> </span><span class="k">end</span>
+
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="s1">'Order'</span> <span class="k">do</span>
+
+<span class="err"> </span><span class="n">it</span> <span class="s2">"notifies analytics service about passed orders"</span> <span class="k">do</span>
+<span class="err">   </span><span class="n">cart</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Pasta"</span><span class="p">,</span><span class="s2">"Tomatoes"</span><span class="p">]</span>
+<span class="err">   </span><span class="n">analytics</span> <span class="o">=</span> <span class="no">AnalyticsService</span><span class="p">.</span><span class="nf">new</span>
+<span class="err">   </span><span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+
+<span class="err">   </span><span class="n">order</span><span class="p">.</span><span class="nf">pass</span>
+
+<span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="p">.</span><span class="nf">items</span><span class="p">).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span><span class="ss">customer: </span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="ss">item: </span><span class="s2">"Pasta"</span><span class="p">)</span>
+<span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="p">.</span><span class="nf">items</span><span class="p">).</span><span class="nf">to</span> <span class="kp">include</span><span class="p">(</span><span class="ss">customer: </span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="ss">item: </span><span class="s2">"Tomatoes"</span><span class="p">)</span>
+<span class="err"> </span><span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Let’s focus on the tests a bit. We first notice that the verification section is large and difficult to understand.  Looking in more details, it knows too much about the internals of AnalyticsService. We had to make the items accessor public just for the sake of testing. The test even knows how the items are stored in a list of hashes. If we were to refactor this representation, we would have to change the tests as well.</p>
+
+<p>We could argue that responsibility-wise, our test should only focus on Order. It makes sense for the test to use a mock to verify that the Order calls AnalyticsService as expected. Let’s see what this would look like.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">it</span> <span class="s2">"notifies analytics service about passed orders"</span> <span class="k">do</span>
+<span class="err"> </span><span class="n">cart</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Pasta"</span><span class="p">,</span><span class="s2">"Tomatoes"</span><span class="p">]</span>
+<span class="err"> </span><span class="n">analytics</span> <span class="o">=</span> <span class="no">AnalyticsService</span><span class="p">.</span><span class="nf">new</span>
+<span class="err"> </span><span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+
+<span class="err"> </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:order_passed</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
+
+<span class="err"> </span><span class="n">order</span><span class="p">.</span><span class="nf">pass</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Sure, the test code is simpler. It’s also better according to good design principles. The only glitch is that we now have a mock in place with all the problems I described <a href="https://philippe.bourgau.net/careless-mocking-considered-harmful/">before</a>.</p>
+
+<p>This might not (yet) be a problem in our example but, for example, the mock ‘cuts’ the execution of the program. Suppose that someday, the Order starts expecting something from the AnalyticsService. We’d then need to ‘simulate’ the real behavior in our mock. This would make the test very hard to maintain.</p>
+
+<h2 id="matchers-to-the-rescue">Matchers to the rescue</h2>
+
+<p>Let’s see how a matcher could help us here. The idea is to improve on the first ‘state checking’ solution to make it better than the mock one. We’ll extract and isolate all the state checking code in a custom matcher. By factorizing the code in a single matcher, we’ll reduce duplication. The matcher remains too intimate with the object, but as it is now unique and well named, it’s less of a problem. Plus, as always with matchers, we improved readability.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span><span class="p">.</span><span class="nf">define</span> <span class="ss">:have_been_notified_of_order</span> <span class="k">do</span> <span class="o">|</span><span class="n">customer</span><span class="p">,</span> <span class="n">cart</span><span class="o">|</span>
+<span class="err"> </span><span class="n">match</span> <span class="k">do</span> <span class="o">|</span><span class="n">analytics</span><span class="o">|</span>
+<span class="err">   </span><span class="n">cart</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">item</span><span class="o">|</span>
+<span class="err">     </span><span class="k">return</span> <span class="kp">false</span> <span class="k">unless</span> <span class="n">analytics</span><span class="p">.</span><span class="nf">items</span><span class="p">.</span><span class="nf">include?</span><span class="p">(</span><span class="ss">customer: </span><span class="n">customer</span><span class="p">,</span> <span class="ss">item: </span><span class="n">item</span><span class="p">)</span>
+<span class="err">   </span><span class="k">end</span>
+<span class="err">   </span><span class="kp">true</span>
+<span class="err"> </span><span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">describe</span> <span class="s1">'Order'</span> <span class="k">do</span>
+<span class="err"> </span><span class="n">it</span> <span class="s2">"notifies analytics service about passed orders"</span> <span class="k">do</span>
+<span class="err">   </span><span class="n">cart</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Pasta"</span><span class="p">,</span><span class="s2">"Tomatoes"</span><span class="p">]</span>
+<span class="err">   </span><span class="n">analytics</span> <span class="o">=</span> <span class="no">AnalyticsService</span><span class="p">.</span><span class="nf">new</span>
+<span class="err">   </span><span class="n">order</span> <span class="o">=</span> <span class="no">Order</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="n">cart</span><span class="p">,</span> <span class="n">analytics</span><span class="p">)</span>
+
+<span class="err">   </span><span class="n">order</span><span class="p">.</span><span class="nf">pass</span>
+
+<span class="err">   </span><span class="n">expect</span><span class="p">(</span><span class="n">analytics</span><span class="p">).</span><span class="nf">to</span> <span class="n">have_been_notified_of_order</span><span class="p">(</span><span class="s2">"Philippe"</span><span class="p">,</span> <span class="n">cart</span><span class="p">)</span>
+<span class="err"> </span><span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Here is how we could summarize the pros and cons of each approach :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Assert state</th>
+      <th>Mocks</th>
+      <th>Matchers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>👎 duplicated code</td>
+      <td>👎 duplicates the program behavior</td>
+      <td>❤️ customizable error messages</td>
+    </tr>
+    <tr>
+      <td>👎 breaks encapsulation</td>
+      <td> </td>
+      <td>❤️ more readable</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>👎 intimacy with the asserted object</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>❤️ factorizes the assertion code</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="design-improvements">Design improvements</h2>
+
+<p>As I said in the introduction, customer matchers are often an alternative to mocks when we don’t have the time for a better refactoring. Later down the road, you might find the time for this refactoring. Functional style and the “Tell, don’t ask!” principles are often the solution here.</p>
+
+<p>In our example, a publish-subscribe pattern might do. A better design should fix the encapsulation problem of the matcher. Here again, the custom assertion matchers will help. In most cases, it will be enough to change the implementation of the matchers only.</p>
+
+<blockquote>
+  <p>💡 Custom assertion matchers make refactoring easier by factorizing test assertions.</p>
+</blockquote>
+
+<h2 id="summary-of-small-scale-techniques">Summary of small-scale techniques</h2>
+
+<p>I’m done with small scale mock avoiding techniques. To summarize, the first thing to do is to push for more and more <a href="https://philippe.bourgau.net/how-immutable-value-objects-fight-mocks/">immutable value objects</a>. Not only does it help us to avoid mocks, but it will also provides many benefits for production code. Practices like <a href="https://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">Test Data Builders</a> and Custom Assertion Matchers simplify dealing with Immutable Value Objects in tests. They also help to keep tests small and clean, which is also a great thing against mocks.</p>
+
+<h2 id="next-post">Next post</h2>
+
+<p>In the following posts, I’ll look into architecture scale techniques to avoid mocks. I’ll start with <a href="https://philippe.bourgau.net/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/">Hexagonal architecture</a>.</p>
+
+<p><em>Thanks to <a href="http://www.draganstepanovic.com/">Dragan Stepanovic</a> who’s comments brought me to update this post.</em></p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#how-to-avoid-mocks-series" class="page__taxonomy-item" rel="tag">how-to-avoid-mocks-series</a><span class="sep">, </span>
+    
+      <a href="/categories/#mocking" class="page__taxonomy-item" rel="tag">mocking</a><span class="sep">, </span>
+    
+      <a href="/categories/#programming" class="page__taxonomy-item" rel="tag">programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#ruby" class="page__taxonomy-item" rel="tag">ruby</a><span class="sep">, </span>
+    
+      <a href="/categories/#tdd" class="page__taxonomy-item" rel="tag">tdd</a><span class="sep">, </span>
+    
+      <a href="/categories/#testing" class="page__taxonomy-item" rel="tag">testing</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-05-17T06:47:00+00:00">May 17, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+Custom+Assertion+Matchers+will+keep+mocks+away%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-custom-assertion-matchers-will-keep-mocks-away%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-custom-assertion-matchers-will-keep-mocks-away%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-custom-assertion-matchers-will-keep-mocks-away%2F&title=How+Custom+Assertion+Matchers+will+keep+mocks+away" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-custom-assertion-matchers-will-keep-mocks-away%2F&t=How Custom Assertion Matchers will keep mocks away" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/" class="pagination--pager" title="How to use Test Data Builders to avoid mocks and keep your tests clear
+">Previous</a>
+    
+    
+      <a href="/avoid-mocks-and-test-your-core-domain-faster-with-hexagonal-architecture/" class="pagination--pager" title="Avoid mocks and test your core domain faster with Hexagonal Architecture
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-custom-assertion-matchers-will-keep-mocks-away/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-custom-assertion-matchers-will-keep-mocks-away"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

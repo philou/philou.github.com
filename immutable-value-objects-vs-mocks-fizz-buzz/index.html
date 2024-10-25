@@ -1,0 +1,935 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Immutable Value Objects vs Mocks : Fizz Buzz | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="A walk through of the Fizz Buzz kata using immutable value objects to remove mocks.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Immutable Value Objects vs Mocks : Fizz Buzz">
+<meta property="og:url" content="https://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/">
+
+
+  <meta property="og:description" content="A walk through of the Fizz Buzz kata using immutable value objects to remove mocks.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Immutable Value Objects vs Mocks : Fizz Buzz">
+  <meta name="twitter:description" content="A walk through of the Fizz Buzz kata using immutable value objects to remove mocks.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-05-03T19:28:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Immutable Value Objects vs Mocks : Fizz Buzz">
+    <meta itemprop="description" content="In my previous post I explained how Immutable Value Objects help us to avoid mocks. In this post, I’ll illustrate this in practice with real code.">
+    <meta itemprop="datePublished" content="2018-05-03T19:28:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Immutable Value Objects vs Mocks : Fizz Buzz
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>In my <a href="https://philippe.bourgau.net/how-immutable-value-objects-fight-mocks/">previous post</a> I explained how <a href="https://martinfowler.com/bliki/ValueObject.html">Immutable Value Objects</a> help us to avoid mocks. In this post, I’ll illustrate this in practice with real code.</p>
+
+<p>This is the third post on a <a href="https://philippe.bourgau.net/categories/#how-to-avoid-mocks-series">series about how to avoid mocks</a>. If you haven’t, you can start reading the full story <a href="https://philippe.bourgau.net/careless-mocking-considered-harmful/">here</a>.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2018-04-17-immutable-value-objects-vs-mocks-fizz-buzz/immutable-fizz-buzz.jpg" alt="A drawing &quot;FIZZ BUZZ&quot; rock fallen and sealed in the ground" /></p>
+
+<h2 id="fizz-buzz-example">Fizz Buzz Example</h2>
+
+<p>As a simple example, I’ll go through the classic <a href="http://codingdojo.org/kata/FizzBuzz/">Fizz Buzz</a>. I’ve implemented and tested it with and without immutable value objects. Please keep in mind that this is a toy example, where problems are obvious and easily fixed. I try to highlight at small scale the same problems that get hidden by the complexity of a large scale program.</p>
+
+<p>Let’s start with a typical FizzBuzz implementation.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span><span class="p">.</span><span class="nf">upto</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="no">STDOUT</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"FizzBuzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="no">STDOUT</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"Fizz</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="no">STDOUT</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"Buzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="no">STDOUT</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Suppose you need to add some tests around the code. The most straightforward way is to mock <code class="language-plaintext highlighter-rouge">STDOUT</code> :</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rspec'</span>
+
+<span class="k">def</span> <span class="nf">fizzBuzz</span><span class="p">(</span><span class="n">max</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+  <span class="mi">1</span><span class="p">.</span><span class="nf">upto</span><span class="p">(</span><span class="n">max</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">out</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"FizzBuzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">out</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"Fizz</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">out</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"Buzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">else</span>
+      <span class="n">out</span><span class="p">.</span><span class="nf">puts</span><span class="p">(</span><span class="s2">"</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># main</span>
+<span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="no">STDOUT</span><span class="p">)</span>
+
+<span class="n">describe</span> <span class="s1">'Mockist Fizz Buzz'</span> <span class="k">do</span>
+
+  <span class="n">it</span> <span class="s1">'should print numbers, fizz and buzz'</span> <span class="k">do</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="s2">"out"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"1</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"2</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Fizz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"4</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Buzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Fizz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"7</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"8</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Fizz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Buzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"11</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"Fizz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"13</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"14</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">out</span><span class="p">).</span><span class="nf">to</span> <span class="n">receive</span><span class="p">(</span><span class="ss">:puts</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="s2">"FizzBuzz</span><span class="se">\n</span><span class="s2">"</span><span class="p">).</span><span class="nf">ordered</span>
+
+    <span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+
+</code></pre></div></div>
+
+<p>Unfortunately, there are a few problems with this code :</p>
+
+<ul>
+  <li>With nested logic and complicated mock setup, both code and tests aren’t very readable</li>
+  <li>They both seem to violate the single responsibility principle as well</li>
+  <li>It’s depending on a mutable output. Within a larger program, something could be messing around with this output stream. That would break FizzBuzz.</li>
+</ul>
+
+<p>Let’s now try to use as many immutable values objects as possible, and see what happens to the mocks.</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'rspec'</span>
+
+<span class="c1"># We extracted a function to do the fizz buzz on a single number</span>
+<span class="k">def</span> <span class="nf">fizzBuzzN</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="s2">"FizzBuzz"</span>
+  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="s2">"Fizz"</span>
+  <span class="k">elsif</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="s2">"Buzz"</span>
+  <span class="k">else</span>
+    <span class="n">i</span><span class="p">.</span><span class="nf">to_s</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="c1"># We replaced the many calls to STDOUT.puts by building a single</span>
+<span class="c1"># large (and immutable) string</span>
+<span class="k">def</span> <span class="nf">fizzBuzz</span><span class="p">(</span><span class="n">max</span><span class="p">)</span>
+  <span class="p">((</span><span class="mi">1</span><span class="o">..</span><span class="n">max</span><span class="p">).</span><span class="nf">map</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="n">fizzBuzzN</span><span class="p">(</span><span class="n">i</span><span class="p">)}).</span><span class="nf">join</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c1"># main, with a single call to STDOUT.puts</span>
+<span class="no">STDOUT</span><span class="p">.</span><span class="nf">puts</span> <span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">describe</span> <span class="s1">'Statist Fizz Buzz'</span> <span class="k">do</span>
+
+  <span class="n">it</span> <span class="s1">'should print numbers not multiples of 3 or 5'</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">1</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">2</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">4</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"4"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'should print Fizz for multiples of 3'</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">3</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">6</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Fizz"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'should print Buzz for multiples of 5'</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">5</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Buzz"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">10</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"Buzz"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="n">it</span> <span class="s1">'should print FizzBuzz for multiples of 3 and 5'</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">15</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"FizzBuzz"</span><span class="p">)</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzzN</span><span class="p">(</span><span class="mi">30</span><span class="p">)).</span><span class="nf">to</span> <span class="n">eq</span><span class="p">(</span><span class="s2">"FizzBuzz"</span><span class="p">)</span>
+  <span class="k">end</span>
+
+
+  <span class="n">it</span> <span class="s1">'should print numbers, fizz and buzz'</span> <span class="k">do</span>
+    <span class="n">expect</span><span class="p">(</span><span class="n">fizzBuzz</span><span class="p">(</span><span class="mi">15</span><span class="p">)).</span><span class="nf">to</span> <span class="n">start_with</span><span class="p">(</span><span class="s2">"1</span><span class="se">\n</span><span class="s2">2</span><span class="se">\n</span><span class="s2">Fizz"</span><span class="p">).</span><span class="nf">and</span><span class="p">(</span><span class="n">end_with</span><span class="p">(</span><span class="s2">"14</span><span class="se">\n</span><span class="s2">FizzBuzz"</span><span class="p">))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>As we can see, using immutable value objects got us rid of the mocks. Obviously, this new code will not be as efficient as the original version, but most of the time, this does not matter. As a bonus though we get finer grain and more readable tests.</p>
+
+<h3 id="other-testing-advantages">Other testing advantages</h3>
+
+<p>Appart from preventing mocks, Immutable Value Objects have other advantages related to testing.</p>
+
+<ul>
+  <li>We can directly assert their equality, without having to dig into their guts</li>
+  <li>We can call methods as many times as we want, without the risk of changing anything and breaking the tests</li>
+  <li>Immutable Value Objects are a lot less likely to contain invalid state. This removes the need for a whole range of validity tests.</li>
+</ul>
+
+<blockquote>
+  <p>💡 Immutable Value Objects simplify testing in many ways.</p>
+</blockquote>
+
+<h3 id="convincing-your-teammates">Convincing your teammates</h3>
+
+<p>We’ve seen that Immutable Value Objects have a ton of advantages when testing. People have found that they also have many other benefits :</p>
+
+<ul>
+  <li><a href="https://www.linkedin.com/pulse/20140528113353-16837833-6-benefits-of-programming-with-immutable-objects-in-java/">6 Benefits of Programming with Immutable Objects in Java</a></li>
+  <li><a href="https://hackernoon.com/5-benefits-of-immutable-objects-worth-considering-for-your-next-project-f98e7e85b6ac">5 Benefits of Immutable Objects Worth Considering for Your Next Project</a></li>
+</ul>
+
+<p>Surprisingly though, it’s difficult to persuade programmers to use more immutability. It’s tricky to explain why returning a modified copy is simpler than just adding a setter.</p>
+
+<blockquote>
+  <p>💡 Why is it so hard to persuade other developers to use immutable data structures ?</p>
+</blockquote>
+
+<p>I had the most success by far when encountering a bug resulting of share mutable state. When this happens, the long term benefits and safety of the immutable design wins people over. The good thing is that as you convince more people in the team, immutability will spread like a virus !</p>
+
+<p>Outside of this situation, you might try some of the following arguments to move people :</p>
+
+<ul>
+  <li>Immutable values prevent bugs caused by different parts of the system changing the same mutable state</li>
+  <li>They make it easier to deal with the program in smaller parts and to reason about the system in general</li>
+  <li>Immutable values don’t need any synchronization and make multithreaded programming easier</li>
+  <li>When tempted to add a simple setter instead of keeping a class immutable, highlight the stressful debugging time to come</li>
+  <li>If you’re dealing with a Design By Contract adept, explain how <a href="https://philippe.bourgau.net/almost-15-years-of-using-design-by-contract/">immutability has it built-in</a></li>
+  <li>Admit that mainstream languages have bad support for Immutable Value. Point to patterns like <a href="https://dzone.com/articles/immutability-with-builder-design-pattern">Data Builders</a> that work around these limitation</li>
+</ul>
+
+<h2 id="next-post">Next post</h2>
+
+<p>I’m done with immutable value objects. It was a far longer post than I thought, but there was a lot to say. This was the third post in a <a href="https://philippe.bourgau.net/categories/#how-to-avoid-mocks-series">series about avoiding mocks</a>. In <a href="https://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">next post</a>, I’ll dig into another small scale mock fighting pattern : <a href="http://www.natpryce.com/articles/000714.html">Test Data Builders</a>.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#how-to-avoid-mocks-series" class="page__taxonomy-item" rel="tag">how-to-avoid-mocks-series</a><span class="sep">, </span>
+    
+      <a href="/categories/#mocking" class="page__taxonomy-item" rel="tag">mocking</a><span class="sep">, </span>
+    
+      <a href="/categories/#programming" class="page__taxonomy-item" rel="tag">programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#ruby" class="page__taxonomy-item" rel="tag">ruby</a><span class="sep">, </span>
+    
+      <a href="/categories/#tdd" class="page__taxonomy-item" rel="tag">tdd</a><span class="sep">, </span>
+    
+      <a href="/categories/#testing" class="page__taxonomy-item" rel="tag">testing</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-05-03T19:28:00+00:00">May 3, 2018</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Immutable+Value+Objects+vs+Mocks+%3A+Fizz+Buzz%20https%3A%2F%2Fphilippe.bourgau.net%2Fimmutable-value-objects-vs-mocks-fizz-buzz%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fimmutable-value-objects-vs-mocks-fizz-buzz%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fimmutable-value-objects-vs-mocks-fizz-buzz%2F&title=Immutable+Value+Objects+vs+Mocks+%3A+Fizz+Buzz" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fimmutable-value-objects-vs-mocks-fizz-buzz%2F&t=Immutable Value Objects vs Mocks : Fizz Buzz" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-immutable-value-objects-fight-mocks/" class="pagination--pager" title="How Immutable Value Objects fight Mocks
+">Previous</a>
+    
+    
+      <a href="/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/" class="pagination--pager" title="How to use Test Data Builders to avoid mocks and keep your tests clear
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/immutable-value-objects-vs-mocks-fizz-buzz/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/immutable-value-objects-vs-mocks-fizz-buzz"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

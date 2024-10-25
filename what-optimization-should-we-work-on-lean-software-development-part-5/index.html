@@ -1,0 +1,960 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>What Optimization Should We Work On (Lean Software Development Part 5) | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="An example about how to use a downgraded version of cost of delay to choose between different optimization strategies">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="What Optimization Should We Work On (Lean Software Development Part 5)">
+<meta property="og:url" content="https://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/">
+
+
+  <meta property="og:description" content="An example about how to use a downgraded version of cost of delay to choose between different optimization strategies">
+
+
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="What Optimization Should We Work On (Lean Software Development Part 5)">
+  <meta name="twitter:description" content="An example about how to use a downgraded version of cost of delay to choose between different optimization strategies">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2015-03-26T20:30:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="What Optimization Should We Work On (Lean Software Development Part 5)">
+    <meta itemprop="description" content="At work, we are building a risk aggregation system. As it’s dealing with a large bunch of numbers, it’s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.">
+    <meta itemprop="datePublished" content="2015-03-26T20:30:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">What Optimization Should We Work On (Lean Software Development Part 5)
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>At work, we are building a risk aggregation system. As it’s dealing with a large bunch of numbers, it’s a huge heap of optimizations. Once that its most standard features set is supported, our job mostly consists of making it faster.</p>
+
+<p>That’s were we are now doing.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/turtle.jpg" alt="A turtle with a rocket on the back" /></p>
+
+<h1 id="how-do-we-choose-which-optimization-to-work-on-">How do we choose which optimization to work on ?</h1>
+
+<p>The system still being young, we have a wide range of options to optimize it. To name just a few : caches, better algorithms, better low level hardware usage …</p>
+
+<p>It turns out that we can use the speedup factor as a substitute for business value and use known techniques to help us to make the best decisions.</p>
+
+<h2 id="lets-walk-through-an-example">Let’s walk through an example</h2>
+
+<h3 id="i-list-the-optimizations-you-are-thinking-of">I. List the optimizations you are thinking of</h3>
+
+<p>Let’s suppose we are thinking of the following 3 optimizations for our engine</p>
+
+<ul>
+  <li>Create better data structures to speed up the reconciliation algorithm</li>
+  <li>Optimize the reconciliation algorithm itself to reduce CPU cache misses</li>
+  <li>Minimize boxing and unboxing</li>
+</ul>
+
+<h3 id="ii-poker-estimate-the-story-points-and-speedup">II. Poker estimate the story points and speedup</h3>
+
+<p>Armed with these stories, we can poker estimate them, by story points and by expected speedup.
+As a substitute for WSJF, we will then be able to compute the speedup rate per story point.
+We will then just have to work on the stories with the highest speedup rate first.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Story Points</th>
+      <th>/10</th>
+      <th>/2</th>
+      <th>-10%</th>
+      <th>~</th>
+      <th>+10%</th>
+      <th>x2</th>
+      <th>x10</th>
+      <th>Expected Speedup ratio*</th>
+      <th>Speedup rate / story point**</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Data Structures</td>
+      <td>13</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>4 votes</td>
+      <td>5 votes</td>
+      <td> </td>
+      <td>x 1.533</td>
+      <td>x 1.033</td>
+    </tr>
+    <tr>
+      <td>Algorithm</td>
+      <td>13</td>
+      <td> </td>
+      <td>1 vote</td>
+      <td>1 vote</td>
+      <td>2 votes</td>
+      <td>1 vote</td>
+      <td>2 votes</td>
+      <td>2 votes</td>
+      <td>x 1.799</td>
+      <td>x 1.046</td>
+    </tr>
+    <tr>
+      <td>Boxing</td>
+      <td>8</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>9 votes</td>
+      <td> </td>
+      <td> </td>
+      <td>x 1.1</td>
+      <td>x 1.012</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><sup><em>* Expected speedup ratio is the logarithmic average of the voted speedups</em></sup><br />
+<sup><em>** Speedup rate is “speedup<sup>(1/ story points)</sup>“</em></sup></p>
+
+<p>So based on speedup rate, here is the order in which we should perform the stories :</p>
+
+<ol>
+  <li>Algorithm</li>
+  <li>Data Structures</li>
+  <li>Boxing</li>
+</ol>
+
+<h3 id="iii-and-what-about-the-risks-">III. And what about the risks ?</h3>
+
+<p><img src="https://philippe.bourgau.net/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/danger.jpg" alt="A danger zone panel" /></p>
+
+<p>This poker estimation tells us something else …</p>
+
+<blockquote>
+  <p>We don’t have a clue about the speedup we will get by trying to optimize the algorithm !</p>
+</blockquote>
+
+<p>The votes range from /2 to x10 ! This is the perfect situation for an XP spike.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Story points</th>
+      <th>Expected Speedup rate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Algorithm spike : measure out of context CPU cache optimization speedup</td>
+      <td>2</td>
+      <td>?</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In order to compute the expected speedup rate, let’s suppose that they are 2 futures, one where we get a high speedup and another where we get a low one.</p>
+
+<p>They are computed by splitting the votes in 2 :</p>
+
+<ul>
+  <li><em>low_speedup = 0.846</em></li>
+  <li><em>high_speedup = 3.827</em></li>
+</ul>
+
+<h4 id="if-the-spike-succeeds">If the spike succeeds</h4>
+
+<p>We’ll first work on the spike, and then on the algorithm story. In the end, we would get the speedup of the algorithm optimization.</p>
+
+<ul>
+  <li><em>spike_high_speedup = high_speedup = 3.827</em></li>
+</ul>
+
+<h4 id="if-the-spike-fails">If the spike fails</h4>
+
+<p>We’ll also start by working on the spike. Afterwards, instead of the algorithm story, we’ll tackle another optimization stories, yielding our average speedup rate for the duration of the algorithm story. The average speedup rate can be obtained from historical benchmark data, or by averaging the speedup rate of the other stories.</p>
+
+<ul>
+  <li><em>average_speedup_rate = (1.033 * 1.011)<sup>1/2</sup> = 1.022</em></li>
+  <li><em>spike_low_speedup = average_speedup_rate<sup>story_points</sup> = 1.02213 = 1.326</em></li>
+</ul>
+
+<h4 id="spike-speedup-rate">Spike speedup rate</h4>
+
+<p>We can now compute the average expected speedup rate for the full period ‘spike &amp; algorithm’ stories. From this we will be able to get the speedup rate and finally, to prioritize this spike against the other stories in our backlog.</p>
+
+<ul>
+  <li><em>spike_speedup = (spike_low_speedup * spike_high_speedup)<sup>1/2</sup> = 2.253</em></li>
+  <li><em>spike_speedup_rate = spike_speedup<sup>1/(spike_story_points + algorithm_story_points)</sup> = 2.253<sup>1/(2 + 13)</sup> = 1.056</em></li>
+</ul>
+
+<h3 id="iv-putting-it-all-together">IV. Putting it all together</h3>
+
+<p>Here are all the speedup rate for the different stories.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Speedup rate / story point</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Data Structure</td>
+      <td>x 1.033</td>
+    </tr>
+    <tr>
+      <td>Algorithm</td>
+      <td>x 1.046</td>
+    </tr>
+    <tr>
+      <td>Boxing</td>
+      <td>x 1.012</td>
+    </tr>
+    <tr>
+      <td>Algorithm spike</td>
+      <td>x 1.056</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Finally, here is the optimal order through which we should perform the stories :</p>
+
+<ul>
+  <li>Algorithm spike</li>
+  <li>Algorithm (only if the spike proved it would work)</li>
+  <li>Data Structures</li>
+  <li>Boxing</li>
+</ul>
+
+<h2 id="summary">Summary</h2>
+
+<p>The math are not that complex, and a simple formula can be written to compute the spike speedup rate :</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2015-03-26-what-optimization-should-we-work-on-lean-software-development-part-5/poc_speedup_rate.png" alt="Formula for a spike speedup rate" /></p>
+
+<p>I think most experienced engineers would have come to the same conclusion by gut feeling …</p>
+
+<p>Nevertheless I believe that systematically applying the such method when prioritizing optimizations can lead to a greater speedup rate than the competition in the long run. This is a perfect example where taking measured risks can payoff !</p>
+
+<p>This was part 5 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">Lean Software Development Series</a>. Part 4 was <a href="/measure-the-business-value-of-your-spikes-and-take-high-payoff-risks-lean-software-development-part-4/">Measure the business value of your spikes and take high payoff risks</a>, Part 5 will be <a href="/you-dont-have-to-ask-your-boss-for-a-fast-build-lean-software-development-part-6/">You don’t have to ask your boss for a fast build</a>.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#agile" class="page__taxonomy-item" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/categories/#extreme-programming" class="page__taxonomy-item" rel="tag">extreme programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#lean" class="page__taxonomy-item" rel="tag">lean</a><span class="sep">, </span>
+    
+      <a href="/categories/#performance" class="page__taxonomy-item" rel="tag">performance</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2015-03-26T20:30:00+00:00">March 26, 2015</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=What+Optimization+Should+We+Work+On+%28Lean+Software+Development+Part+5%29%20https%3A%2F%2Fphilippe.bourgau.net%2Fwhat-optimization-should-we-work-on-lean-software-development-part-5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fwhat-optimization-should-we-work-on-lean-software-development-part-5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fwhat-optimization-should-we-work-on-lean-software-development-part-5%2F&title=What+Optimization+Should+We+Work+On+%28Lean+Software+Development+Part+5%29" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fwhat-optimization-should-we-work-on-lean-software-development-part-5%2F&t=What Optimization Should We Work On (Lean Software Development Part 5)" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/setting-up-octopress-with-vagrant-and-rbenv/" class="pagination--pager" title="Setting up Octopress with Vagrant and rbenv
+">Previous</a>
+    
+    
+      <a href="/trellospectives-remote-retrospectives-with-trello/" class="pagination--pager" title="Trellospectives : Remote Retrospectives with Trello
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/what-optimization-should-we-work-on-lean-software-development-part-5/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/what-optimization-should-we-work-on-lean-software-development-part-5"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

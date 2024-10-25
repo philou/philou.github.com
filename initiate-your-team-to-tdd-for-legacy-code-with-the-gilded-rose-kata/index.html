@@ -1,0 +1,1189 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to make your team learn TDD for Legacy Code, and love it! | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Legacy code is where TDD is the trickiest. A great technique is to add an extension point in the legacy code to inject new (and tested) features. Start practicing this with the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to make your team learn TDD for Legacy Code, and love it!">
+<meta property="og:url" content="https://philippe.bourgau.net/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/">
+
+
+  <meta property="og:description" content="Legacy code is where TDD is the trickiest. A great technique is to add an extension point in the legacy code to inject new (and tested) features. Start practicing this with the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/tdd-for-legacy-code-mountain-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to make your team learn TDD for Legacy Code, and love it!">
+  <meta name="twitter:description" content="Legacy code is where TDD is the trickiest. A great technique is to add an extension point in the legacy code to inject new (and tested) features. Start practicing this with the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/tdd-for-legacy-code-mountain-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-09-04T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to make your team learn TDD for Legacy Code, and love it!">
+    <meta itemprop="description" content="Legacy code is where TDD is the trickiest. Start practicing the gilded rose kata with your team today! Your teammates will soon feel safe to apply TDD for legacy code.">
+    <meta itemprop="datePublished" content="2020-09-04T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to make your team learn TDD for Legacy Code, and love it!
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em><strong>Legacy code is where <a href="https://en.wikipedia.org/wiki/Test-driven_development">TDD</a> is the trickiest.</strong> Start practicing the <a href="https://github.com/emilybache/GildedRose-Refactoring-Kata/">gilded rose kata</a> with your team today! Your teammates will soon feel safe to apply TDD for legacy code.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/tdd-for-legacy-code-mountain.jpg" alt="Drawing of an alpinist in front of an insurmountable mountain 'Mt Legacy Code' with a flag 'TDD' at the top" /></p>
+
+<p>A few days ago, a former colleague told me his current team was reluctant to give TDD a chance. Here are the typical comments he heard:</p>
+
+<blockquote>
+  <p>“Adding a test in this old code is a three weeks task!”</p>
+
+  <p>“All the tests we wrote in this code are mock-ridden, unmaintainable, and useless!”</p>
+
+  <p>“How can we go tests first, when the code is already written?”</p>
+</blockquote>
+
+<p>If you have worked with teams dealing with legacy code, you must have heard similar complaints.</p>
+
+<h2 id="the-barriers-to-tdd-for-legacy-code">The barriers to TDD for Legacy Code</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/chainlink.jpg" alt="Close up photograph of a chainlink. There are barriers to overcome when starting TDD for Legacy Code" /></p>
+
+<p>All these difficulties boil down to two root causes:</p>
+
+<ol>
+  <li><strong>It’s impossible to write tests before code that was already written.</strong></li>
+  <li><strong>Legacy code makes everything more complicated. In our case, it increases the learning curve of TDD for the team.</strong></li>
+</ol>
+
+<h2 id="the-plan">The plan</h2>
+
+<p>To get a team dealing with legacy code to do TDD, you’ll need to address these two fundamental barriers.</p>
+
+<p>One option could be to put more pressure on the team: “From now on, TDD is mandatory.” This strategy is not going to work for long. We want a sustainable pace, and the only way to get it is through regular learning.</p>
+
+<ol>
+  <li>The first step is to coach the team to one effective technique to apply TDD in the legacy code context.</li>
+  <li>The next step is to leverage this momentum to set up regular practice sessions.</li>
+</ol>
+
+<h2 id="a-straightforward-technique">A straightforward technique</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/railway.jpg" alt="Photo of a straight railway. It's best to start TDD for Legacy Code with one straightforward but effective technique." /></p>
+
+<p>Here is, in my opinion, <strong>the most useful and straightforward TDD for legacy code technique</strong>. Let’s say you need to add a new feature:</p>
+
+<ol>
+  <li>Refactor the existing code to introduce an extension-point to host your new feature</li>
+  <li>Implement your new feature using TDD. Make it compatible to your extension-point</li>
+  <li>Once your new feature is ready, plug it in the legacy code through the extension-point</li>
+  <li>Check that the whole thing is working. Use whatever test you have, either manual or automated</li>
+  <li>If it’s not working as you expect, repeat the whole cycle (adapt extension point, TDD your new feature…)</li>
+</ol>
+
+<p>All this might sound very easy in theory. Unfortunately, it can get pretty complicated in practice! Before trying this in production code, it’s a good idea to practice and learn. Let’s see how to do that!</p>
+
+<h2 id="the-gilded-rose-kata">The Gilded Rose Kata</h2>
+
+<p>The gilded rose is a famous kata to practice refactoring techniques. I am going to use it to illustrate the above plan.</p>
+
+<p>The gilded rose is an inventory management function. The goal of the kata is to manage a new kind of item: conjured items. Conjured items behave like standard items, except that they age twice as fast. You can check <a href="https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/GildedRoseRequirements.txt">the full instructions on Github</a>.</p>
+
+<p>Let’s jump into the code!</p>
+
+<h3 id="refactoring-to-an-extension-point">Refactoring to an extension-point</h3>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/plug.jpg" alt="Photo of a plug on a blueprint. An effective first step to start TDD for Legacy Code is to refactor legacy code to make it easy to inject new features" /></p>
+
+<p>The first step in our plan is to change the existing code before injecting our new feature. This step can be tricky as it touches the legacy code, and we don’t want to break anything. Here are a few principles to cut risks:</p>
+
+<ul>
+  <li>Stick to the smallest possible change</li>
+  <li>Use any validation technique you have at your disposal:
+    <ul>
+      <li>End to end tests</li>
+      <li>Manual tests</li>
+      <li>Integration tests</li>
+      <li>Setting up a <a href="https://en.wikipedia.org/wiki/Characterization_test">Golden Master test</a> for the occasion is also a smart move.</li>
+    </ul>
+  </li>
+  <li>Use many pairs of eyes. <strong>Refactoring in pair or mob will drastically reduce the risk for regression.</strong></li>
+</ul>
+
+<p>Fortunately, the gilded rose kata comes with a golden master test. It’s a test that “snapshots” the behavior of your code to let you refactor it. It’s temporary because a precise snapshot is unmaintainable. You can learn more about the golden master technique through this live refactoring.</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+
+<div class="responsive-video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/9HmVrfkzm9I" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  </div>
+
+<p>The gilded rose kata uses the <a href="https://github.com/approvals/ApprovalTests.cpp">ApprovalTests.cpp</a> library to help us with Golden Master testing. All we need to do is to add a set of test combination to the existing test:</p>
+
+<h4 id="cpptestcpp_googletest_approvaltestgildedrosegoogletestapprovaltestscc"><a href="https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/cpp/test/cpp_googletest_approvaltest/GildedRoseGoogletestApprovalTests.cc">cpp/test/cpp_googletest_approvaltest/GildedRoseGoogletestApprovalTests.cc</a></h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEST</span><span class="p">(</span><span class="n">GildedRoseApprovalTests</span><span class="p">,</span> <span class="n">VerifyCombinations</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">names</span> <span class="p">{</span> <span class="s">"Aged Brie"</span>
+                              <span class="p">,</span> <span class="s">"Backstage passes to a TAFKAL80ETC concert"</span>
+                              <span class="p">,</span> <span class="s">"Sulfuras, Hand of Ragnaros"</span>
+                              <span class="p">,</span> <span class="s">"Leather Boots"</span>
+                              <span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sellIns</span> <span class="p">{</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span> <span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">qualities</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span> <span class="p">};</span>
+
+    <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[](</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sellIn</span><span class="p">,</span> <span class="kt">int</span> <span class="n">quality</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="p">{</span><span class="n">Item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sellIn</span><span class="p">,</span> <span class="n">quality</span><span class="p">)};</span>
+        <span class="n">GildedRose</span> <span class="nf">app</span><span class="p">(</span><span class="n">items</span><span class="p">);</span>
+        <span class="n">app</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">};</span>
+
+    <span class="n">ApprovalTests</span><span class="o">::</span><span class="n">CombinationApprovals</span><span class="o">::</span><span class="n">verifyAllCombinations</span><span class="p">(</span>
+            <span class="n">f</span><span class="p">,</span>
+            <span class="n">names</span><span class="p">,</span> <span class="n">sellIns</span><span class="p">,</span> <span class="n">qualities</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Now that we have a regression test, we are ready to change the existing code, so let’s try to add an extension point. One way to do this is to add an array of ‘item updaters’ that can take care of specific types of items.</p>
+
+<h4 id="cppsrcgildedroseh"><a href="https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/cpp/src/GildedRose.h">cpp/src/GildedRose.h</a></h4>
+
+<p>The first thing we’ll do is to:</p>
+
+<ul>
+  <li>Create an ItemUpdater abstract class</li>
+  <li>Add a list of ItemUpdater objects to the GildedRose constructor</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ItemUpdater</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">ItemUpdater</span><span class="p">();</span>
+
+    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">handles</span><span class="p">(</span><span class="k">const</span> <span class="n">Item</span><span class="o">&amp;</span> <span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">updateQuality</span><span class="p">(</span><span class="n">Item</span><span class="o">&amp;</span> <span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">GildedRose</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">items</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ItemUpdater</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">itemUpdaters</span><span class="p">;</span>
+    <span class="n">GildedRose</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">items</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ItemUpdater</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">itemUpdaters</span><span class="p">);</span>
+    
+    <span class="kt">void</span> <span class="n">updateQuality</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="n">updateQuality</span><span class="p">(</span><span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>We’ll just need to adapt the constructor calls from the tests with an empty array of ItemUpdaters <code class="language-plaintext highlighter-rouge">{}</code>.</p>
+
+<h4 id="cppsrcgildedrosecc"><a href="https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/master/cpp/src/GildedRose.cc">cpp/src/GildedRose.cc</a></h4>
+
+<p>In the implementation, we:</p>
+
+<ul>
+  <li>Store the ItemUpdater objects</li>
+  <li>Extract an <code class="language-plaintext highlighter-rouge">updateQuality(Item&amp;)</code> method to handle a single item</li>
+  <li>Delegate to an ItemUpdater that can handle a particular item</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ItemUpdater</span><span class="o">::~</span><span class="n">ItemUpdater</span><span class="p">()</span> <span class="p">{</span>
+<span class="p">}</span>
+
+
+<span class="n">GildedRose</span><span class="o">::</span><span class="n">GildedRose</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">items</span><span class="p">,</span> <span class="k">const</span> <span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ItemUpdater</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">itemUpdaters</span><span class="p">)</span>
+<span class="o">:</span> <span class="n">items</span><span class="p">(</span><span class="n">items</span><span class="p">),</span> <span class="n">itemUpdaters</span><span class="p">(</span><span class="n">itemUpdaters</span><span class="p">)</span>
+<span class="p">{}</span>
+    
+<span class="kt">void</span> <span class="n">GildedRose</span><span class="o">::</span><span class="n">updateQuality</span><span class="p">()</span> 
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">items</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">updateQuality</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">GildedRose</span><span class="o">::</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">itemUpdaters</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ItemUpdater</span><span class="o">&gt;</span> <span class="n">itemUpdater</span> <span class="o">=</span> <span class="n">itemUpdaters</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">itemUpdater</span><span class="o">-&gt;</span><span class="n">handles</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="n">itemUpdater</span><span class="o">-&gt;</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s">"Aged Brie"</span> <span class="o">&amp;&amp;</span> <span class="n">item</span><span class="p">.</span><span class="n">name</span> <span class="o">!=</span> <span class="s">"Backstage passes to a TAFKAL80ETC concert"</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It is now possible to inject an implementation for conjured items.</p>
+
+<h3 id="code-conjured-items-with-tdd">Code conjured items with TDD</h3>
+
+<p>The implementation of our extension point needs to deal with two aspects:</p>
+
+<ul>
+  <li>declare that it will handle conjured items</li>
+  <li>update quality and sellIn for a conjured item</li>
+</ul>
+
+<p>Here is the implementation I came to using TDD</p>
+
+<h4 id="cpptestgildedroseconjureditemupdatertestscpp">cpp/test/GildedRoseConjuredItemUpdaterTests.cpp</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Include header files for test frameworks</span>
+<span class="cp">#include</span> <span class="cpf">&lt;gtest/gtest.h&gt;</span><span class="cp">
+</span>
+<span class="c1">// Include code to be tested</span>
+<span class="cp">#include</span> <span class="cpf">"ConjuredItemUpdater.h"</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">ConjuredItemUpdaterTests</span> <span class="o">:</span> <span class="k">public</span> <span class="o">::</span><span class="n">testing</span><span class="o">::</span><span class="n">Test</span>
+<span class="p">{</span>
+<span class="nl">protected:</span>
+    <span class="n">ConjuredItemUpdater</span> <span class="n">updater</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ConjuredItemUpdaterTests</span><span class="p">,</span> <span class="n">HandlesConjuredItems</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">EXPECT_TRUE</span><span class="p">(</span><span class="n">updater</span><span class="p">.</span><span class="n">handles</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s">"Conjured Mana Cake"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)));</span>
+    <span class="n">EXPECT_TRUE</span><span class="p">(</span><span class="n">updater</span><span class="p">.</span><span class="n">handles</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s">"Conjured Leather Boots"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)));</span>
+    <span class="n">EXPECT_FALSE</span><span class="p">(</span><span class="n">updater</span><span class="p">.</span><span class="n">handles</span><span class="p">(</span><span class="n">Item</span><span class="p">(</span><span class="s">"Leather Boots"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)));</span>
+<span class="p">}</span>
+
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ConjuredItemUpdaterTests</span><span class="p">,</span> <span class="n">ConjuredItemsGetCloserToSellIn</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Item</span> <span class="n">conjuredItem</span><span class="p">(</span><span class="s">"Conjured Mana Cake"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+
+    <span class="n">updater</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">conjuredItem</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">conjuredItem</span><span class="p">.</span><span class="n">sellIn</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ConjuredItemUpdaterTests</span><span class="p">,</span> <span class="n">ConjuredItemsDegradeBy2PerDay</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Item</span> <span class="n">conjuredItem</span><span class="p">(</span><span class="s">"Conjured Mana Cake"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+
+    <span class="n">updater</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">conjuredItem</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">conjuredItem</span><span class="p">.</span><span class="n">quality</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ConjuredItemUpdaterTests</span><span class="p">,</span> <span class="n">ConjuredItemsCannotGetANegativeQuantity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Item</span> <span class="n">conjuredItem</span><span class="p">(</span><span class="s">"Conjured Mana Cake"</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="n">updater</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">conjuredItem</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">conjuredItem</span><span class="p">.</span><span class="n">quality</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ConjuredItemUpdaterTests</span><span class="p">,</span> <span class="n">ConjuredItemsDegradeBy4PerDayOnSellInDate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Item</span> <span class="n">conjuredItem</span><span class="p">(</span><span class="s">"Conjured Mana Cake"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+    <span class="n">updater</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">conjuredItem</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">conjuredItem</span><span class="p">.</span><span class="n">quality</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">TEST_F</span><span class="p">(</span><span class="n">ConjuredItemUpdaterTests</span><span class="p">,</span> <span class="n">ConjuredItemsDegradeBy4PerDayPastSellInDate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Item</span> <span class="n">conjuredItem</span><span class="p">(</span><span class="s">"Conjured Mana Cake"</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+    <span class="n">updater</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">conjuredItem</span><span class="p">);</span>
+
+    <span class="n">EXPECT_EQ</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">conjuredItem</span><span class="p">.</span><span class="n">quality</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="cppsrcconjureditemupdaterh">cpp/src/ConjuredItemUpdater.h</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#ifndef GILDED_ROSE_REFACTORING_KATA_CPP_CONJUREDITEMUPDATER_H
+#define GILDED_ROSE_REFACTORING_KATA_CPP_CONJUREDITEMUPDATER_H
+</span>
+<span class="cp">#include</span> <span class="cpf">"GildedRose.h"</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">ConjuredItemUpdater</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ItemUpdater</span> <span class="p">{</span>
+<span class="nl">public:</span>
+
+    <span class="kt">bool</span> <span class="n">handles</span><span class="p">(</span><span class="k">const</span> <span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">updateQuality</span><span class="p">(</span><span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cp">#endif //GILDED_ROSE_REFACTORING_KATA_CPP_CONJUREDITEMUPDATER_H
+</span>
+</code></pre></div></div>
+
+<h4 id="cppsrcconjureditemupdatercpp">cpp/src/ConjuredItemUpdater.cpp</h4>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">"ConjuredItemUpdater.h"</span><span class="cp">
+</span>
+<span class="k">namespace</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="k">const</span> <span class="n">CONJURED_ITEM_PREFIX</span> <span class="o">=</span> <span class="s">"Conjured "</span><span class="p">;</span>
+
+    <span class="kt">int</span> <span class="n">degradation</span><span class="p">(</span><span class="k">const</span> <span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">sellIn</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">void</span> <span class="nf">degradeQuality</span><span class="p">(</span><span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">,</span> <span class="kt">int</span> <span class="n">degradation</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">item</span><span class="p">.</span><span class="n">quality</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="n">quality</span> <span class="o">-</span> <span class="n">degradation</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">bool</span> <span class="n">ConjuredItemUpdater</span><span class="o">::</span><span class="n">handles</span><span class="p">(</span><span class="k">const</span> <span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">item</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">CONJURED_ITEM_PREFIX</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="n">ConjuredItemUpdater</span><span class="o">::</span><span class="n">updateQuality</span><span class="p">(</span><span class="n">Item</span> <span class="o">&amp;</span><span class="n">item</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+
+    <span class="n">degradeQuality</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">degradation</span><span class="p">(</span><span class="n">item</span><span class="p">));</span>
+
+    <span class="n">item</span><span class="p">.</span><span class="n">sellIn</span><span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="inject-into-the-existing-code">Inject into the existing code</h3>
+
+<p>This last part is a piece of cake. We only have to provide our implementation to the Item Updated when we instantiate it.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">GildedRose</span> <span class="nf">app</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ConjuredItemUpdater</span><span class="o">&gt;</span><span class="p">()});</span>
+</code></pre></div></div>
+
+<p>In real life, we would use whatever test we have:</p>
+
+<ol>
+  <li>to make sure that we did not break anything</li>
+  <li>and that our new feature is behaving as expected</li>
+</ol>
+
+<p>We would do this using any automated, and maybe slow, tests we have at our disposal. We could also run the system and test it manually.</p>
+
+<p>During our Gilded Rose Kata, there are a few things we can do:</p>
+
+<ul>
+  <li>We can run the golden master to make sure that we did not break anything.</li>
+  <li>We can create a ‘main’ function, add some trace, and make sure that it’s behaving as expected.</li>
+  <li>We can also run the golden master test and update it. Approvals.cpp will open your diff tool and highlight the changes with the snapshot. It’s a very convenient way to check our work:</li>
+</ul>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">TEST</span><span class="p">(</span><span class="n">GildedRoseApprovalTests</span><span class="p">,</span> <span class="n">VerifyCombinations</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">names</span> <span class="p">{</span> <span class="s">"Aged Brie"</span>
+                                <span class="p">,</span> <span class="s">"Backstage passes to a TAFKAL80ETC concert"</span>
+                                <span class="p">,</span> <span class="s">"Sulfuras, Hand of Ragnaros"</span>
+                                <span class="p">,</span> <span class="s">"Leather Boots"</span>
+                                <span class="p">,</span> <span class="s">"Conjured Mana Cake"</span>
+                                <span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">sellIns</span> <span class="p">{</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span> <span class="p">};</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">qualities</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span> <span class="p">};</span>
+
+    <span class="k">auto</span> <span class="n">f</span> <span class="o">=</span> <span class="p">[](</span><span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sellIn</span><span class="p">,</span> <span class="kt">int</span> <span class="n">quality</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">vector</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="p">{</span><span class="n">Item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">sellIn</span><span class="p">,</span> <span class="n">quality</span><span class="p">)};</span>
+        <span class="n">GildedRose</span> <span class="nf">app</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="p">{</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ConjuredItemUpdater</span><span class="o">&gt;</span><span class="p">()});</span>
+        <span class="n">app</span><span class="p">.</span><span class="n">updateQuality</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="p">};</span>
+
+    <span class="n">ApprovalTests</span><span class="o">::</span><span class="n">CombinationApprovals</span><span class="o">::</span><span class="n">verifyAllCombinations</span><span class="p">(</span>
+            <span class="n">f</span><span class="p">,</span>
+            <span class="n">names</span><span class="p">,</span> <span class="n">sellIns</span><span class="p">,</span> <span class="n">qualities</span><span class="p">);</span>
+
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="close-with-a-10-minutes-retrospective">Close with a 10 minutes retrospective</h3>
+
+<p>Don’t forget why you did this code kata! <strong>Participants in a coding dojo often get so caught up in the exercise that they forget it’s only practice</strong>. When coaching, it’s your job to get them back to reality! <strong>The quick retrospective is there to make sure they can apply what they learned in their day to day job.</strong></p>
+
+<p>I got my recipe for the mini-retrospective from the <a href="https://www.infoq.com/presentations/distributed-teams-remote-collaboration/">Cucumber team</a>. It’s only four questions:</p>
+
+<ol>
+  <li>What did you do?</li>
+  <li>What did you learn?</li>
+  <li>What still puzzles you?</li>
+  <li>What do you decide?</li>
+</ol>
+
+<p>I won’t go into the full details of how to animate a quick retrospective. (Note: I might write a post about this one day, so stay tuned). <strong>The main point is to make sure to be listening, and not speaking, 95% of the time.</strong> Here are some meaningful discussions to have about this kata:</p>
+
+<ul>
+  <li>How can you apply these techniques (bottom-up TDD and Golden Master) in real life</li>
+  <li><strong>How can you deal with the lack of end to end tests?</strong> It’s an excellent time to suggest trying another kata around <a href="https://agile2017.sched.com/event/ATWd/scaffolding-a-legacy-app-with-bdd-scenarios-using-specflowcucumber-gaspar-nagy">BDD Scaffolding</a>. (This too could be the subject of a future post)</li>
+  <li><strong>What should you do when you need to change the legacy code at many different places to inject your new feature?</strong> To summarize, this situation demonstrates that the existing code could do with better modularization. This is a good opportunity to mention <a href="https://www.infoq.com/presentations/Strategy-Messy-Legacy-Systems/">the Bubble Context</a> technique:</li>
+  <li>Create a well-design, domain-driven module for your feature</li>
+  <li>Inject it in the legacy at different points with the above technique</li>
+  <li>Very likely using extra adapters</li>
+</ul>
+
+<p>Use your 5% speaking time to hint participants to these discussions if they did not rise by themselves. Suggest running follow-up katas or <a href="https://philippe.bourgau.net/categories/#mob-programming">mob sessions</a> to keep the momentum going. Don’t forget, coaching a team is a long term task.</p>
+
+<blockquote>
+  <h3 id="side-note-many-variants-of-gilded-rose"><em>Side note: Many variants of Gilded Rose</em></h3>
+
+  <p><em><strong>The Gilded Rose kata is particularly interesting to practice different refactoring techniques</strong>:</em></p>
+
+  <ul>
+    <li><em>The <a href="https://domainlanguage.com/wp-content/uploads/2016/04/GettingStartedWithDDDWhenSurroundedByLegacySystemsV1.pdf">Bubble Context</a>, as we did</em></li>
+    <li><em>Setting up a Golden Master Test</em></li>
+    <li><em>Refactor using safe baby steps</em></li>
+    <li><em>The <a href="https://martinfowler.com/bliki/StranglerFigApplication.html">Strangler Application</a></em></li>
+    <li><em>Testing with BDD scaffolding</em></li>
+  </ul>
+</blockquote>
+
+<h2 id="to-summarize-what-should-you-do-now">To summarize, what should you do NOW?</h2>
+
+<p>First of all, keep problems in mind:</p>
+
+<ul>
+  <li>How to write tests before code that already exists?</li>
+  <li><strong>Coach enough TDD for legacy code skills to the team.</strong></li>
+</ul>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-08-24-initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/new-skills.jpg" alt="RoadSign written &quot;New Skills Training&quot;. The main idea behind agile technical coaching is to grow developer leadership by training them to new skills." /></p>
+
+<p><strong>As often, the solution is in the problem</strong>. Next time you hear these problems, suggest trying a refactoring kata. You might have to repeat the suggestion a few times before people accept. As soon as you have an opportunity, run the gilded rose, and coach one TDD for legacy code technique. Make sure to prepare the kata before, though.</p>
+
+<p>Don’t forget the long term plan either:</p>
+
+<ol>
+  <li><strong>Continue to practice TDD Katas</strong> regularly</li>
+  <li>Help the team to bridge the gap with their real code, through mob sessions for example</li>
+</ol>
+
+<p>Use the quick retrospective to get the team to try a second kata or a mob session as soon as possible.</p>
+
+<h2 id="you-can-do-it">You can do it!</h2>
+
+<p><strong>You don’t have to be an official XP Coach to do all this</strong>:</p>
+
+<ul>
+  <li>It’s a great way for tech leads to up-skill their team.</li>
+  <li>Nothing prevents developers from doing ‘guerilla XP coaching.’</li>
+</ul>
+
+<p>Let’s hack organizations for the better!</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#refactoring" class="page__taxonomy-item" rel="tag">refactoring</a><span class="sep">, </span>
+    
+      <a href="/categories/#tdd" class="page__taxonomy-item" rel="tag">tdd</a><span class="sep">, </span>
+    
+      <a href="/categories/#testing" class="page__taxonomy-item" rel="tag">testing</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-09-04T00:00:00+00:00">September 4, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+make+your+team+learn+TDD+for+Legacy+Code%2C+and+love+it%21%20https%3A%2F%2Fphilippe.bourgau.net%2Finitiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Finitiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Finitiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata%2F&title=How+to+make+your+team+learn+TDD+for+Legacy+Code%2C+and+love+it%21" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Finitiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata%2F&t=How to make your team learn TDD for Legacy Code, and love it!" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-to-set-up-pairing-office-hours-to-avoid-teammates-interruptions/" class="pagination--pager" title="How to set up pairing office hours to avoid teammates interruptions
+">Previous</a>
+    
+    
+      <a href="/how-to-deliver-a-remote-training-with-code-katas-and-randori-in-pairs/" class="pagination--pager" title="How to deliver a remote training with code-katas and randori in pairs
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/initiate-your-team-to-tdd-for-legacy-code-with-the-gilded-rose-kata"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,856 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to fight priority paralysis with Event Storming and DDD | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="How to eat the elephant? It’s easy to fall into priority paralysis as you envision an ambitious product. Let’s use Event Storming and DDD to scope your next step! Equipped with post-its and stickers, Event Storming creates the perfect conditions for an effective negotiation between all stakeholders.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to fight priority paralysis with Event Storming and DDD">
+<meta property="og:url" content="https://philippe.bourgau.net/how-to-fight-priority-paralysis-with-event-storming-and-ddd/">
+
+
+  <meta property="og:description" content="How to eat the elephant? It’s easy to fall into priority paralysis as you envision an ambitious product. Let’s use Event Storming and DDD to scope your next step! Equipped with post-its and stickers, Event Storming creates the perfect conditions for an effective negotiation between all stakeholders.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/event-storming-walking-skeleton-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to fight priority paralysis with Event Storming and DDD">
+  <meta name="twitter:description" content="How to eat the elephant? It’s easy to fall into priority paralysis as you envision an ambitious product. Let’s use Event Storming and DDD to scope your next step! Equipped with post-its and stickers, Event Storming creates the perfect conditions for an effective negotiation between all stakeholders.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-to-fight-priority-paralysis-with-event-storming-and-ddd/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/event-storming-walking-skeleton-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-11-21T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-to-fight-priority-paralysis-with-event-storming-and-ddd/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to fight priority paralysis with Event Storming and DDD">
+    <meta itemprop="description" content="Where should we start? It’s easy to fall into priority paralysis as you envision an ambitious product. Let’s use DDD Event Storming to scope your next step!">
+    <meta itemprop="datePublished" content="2019-11-21T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to fight priority paralysis with Event Storming and DDD
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Where should we start? It’s easy to fall into priority paralysis as you envision an ambitious product. Let’s use DDD <a href="https://www.eventstorming.com/">Event Storming</a> to scope your next step!</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/event-storming-walking-skeleton.jpeg" alt="Drawing of a skeleton marking items on an DDD Event Storming design board. Event Storming is great to find the scope of your next target, you Walking Skeleton for example." /></p>
+
+<p><a href="https://philippe.bourgau.net/categories/#event-storming">I’ve said it earlier</a>: Event Storming helps you to make complex decisions in a short time!</p>
+
+<h2 id="story-of-a-new-feature">Story of a new feature</h2>
+
+<p>A few months ago, <a href="https://www.murex.com">at work</a>, I trained some people to run Event Storming workshops. Some of them tried their new knowledge on a significant feature involving many teams.</p>
+
+<p>They had been wondering how to start this topic for weeks when they ran the Event Storming.</p>
+
+<p>Two of the outputs of these 8 hours of Event Storming were:</p>
+
+<ul>
+  <li>They agreed on an end-to-end <a href="https://codeclimate.com/blog/kickstart-your-next-project-with-a-walking-skeleton/">Walking-Skeleton</a> to test and build first</li>
+  <li>They had a first idea of the end to end NFRs (<a href="https://en.wikipedia.org/wiki/Non-functional_requirement#:~:targetText=In%20systems%20engineering%20and%20requirements,define%20specific%20behavior%20or%20functions.">Non-Functional Requirements</a>) that the business needed</li>
+</ul>
+
+<p>Everyone went out very satisfied with these results.</p>
+
+<h2 id="the-problem-whats-the-next-target">The problem: What’s the next target</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/riddle.jpg" alt="Woven wicker ball, that seems impossible to untangle. Finding where to start in a new product is a riddle of its own. Event Storming and DDD get collective intelligence to the rescue." /></p>
+
+<p>When you don’t all agree on the next target, it is very difficult to be effective.</p>
+
+<ul>
+  <li>Prioritization is tricky</li>
+  <li>Progress is slow as there is not enough focus</li>
+  <li>You won’t reach a <a href="https://www.agilealliance.org/glossary/sustainable/">sustainable pace</a>. Running after too many rabbits generates stress.</li>
+</ul>
+
+<p>It gets even worse with different stakeholders who have different topics in mind.</p>
+
+<ul>
+  <li>Domain experts care about features or business risks</li>
+  <li>Technical people have NFR and maintainability risks in mind.</li>
+</ul>
+
+<p>Getting all these people to agree on the next step is a real challenge!</p>
+
+<h2 id="an-easy-es-trick">An easy ES trick!</h2>
+
+<p>Again, the shared understanding generated from Event Storming makes this step simple. Here is what you can do to get people to agree on the next target:</p>
+
+<p><a href="https://www.amazon.com/Round-Coding-Circle-Labels-Colors/dp/B07GZDJG6Z/ref=sr_1_9"><img src="https://philippe.bourgau.net/imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/stickers.jpg" alt="Small dot stickers like you can find everywhere. Use them to negotiate and mark events and items that you want to see in your next target" /></a></p>
+
+<ol>
+  <li>Hand them small dot stickers</li>
+  <li>Ask them to mark what they want in the next target</li>
+  <li>Let them negotiate</li>
+</ol>
+
+<p>The result is a mix of features and de-risking. Stickers work great because they are easy to remove. From my experience, this scoping step takes about 30 minutes.</p>
+
+<p>The key to making this simple activity work is to have enough shared understanding. You’ll build this with the beginning of the <a href="https://philippe.bourgau.net/detailed-agenda-of-a-ddd-big-picture-event-storming-part-1/">Big-Picture Event Storming</a>. Go at least as far as the <a href="https://philippe.bourgau.net/detailed-agenda-of-a-ddd-big-picture-event-storming-part-3/">storytelling</a>. It works even better if you <a href="https://philippe.bourgau.net/build-or-buy-software-identify-your-core-functional-areas-with-event-storming-and-ddd/">identified the contexts and subdomains</a>.</p>
+
+<p>The more shared understanding you built, the easier the negotiation is.</p>
+
+<h2 id="why-does-it-work">Why does it work?</h2>
+
+<p>Shared understanding is the first enabler. Here are other aspects.</p>
+
+<p>By working together in the Event Storming, people get to know and trust each other more. As a result, <strong>it also improves collaboration <em>after</em> the workshop!</strong></p>
+
+<p>Best practices against priority paralysis provide another explanation. DB Hurley presents a 3 steps process in <a href="https://dbhurley.com/first-things-first-how-to-handle-priority-paralysis/">First Things First: How to Handle Priority Paralysis</a>:</p>
+
+<ol>
+  <li>Be specific and gather details. Event Storming should fill this first step.</li>
+  <li>Identify both short term and long term goals. Here is the negotiation part.</li>
+  <li>Start something on the list. As soon as you leave the Event Storming workshop, you should start something.</li>
+</ol>
+
+<p><a href="https://philippe.bourgau.net/sustain-collective-intelligence-with-event-storming/"><img src="https://philippe.bourgau.net/imgs/2019-11-09-how-to-fight-priority-paralysis-with-event-storming-and-ddd/event-storming-iterative-process-small.jpeg" alt="Drawing of an infographics of the Event Storming loop: Devs meet domain experts -&gt; Grow collective intelligence superpowers -&gt; Make complex decisions in a short time -&gt; Try for real -&gt; Learn -&gt; Devs meet domain experts -&gt; ... Getting started is the best cure against analysis paralysis" /></a></p>
+
+<h2 id="wheres-the-catch">Where’s the catch?</h2>
+
+<p>OK… there’s an implicit assumption here. I did not mention system design constraints here.</p>
+
+<blockquote>
+  <p>How can we address critical features and risks first? Without bothering about the code?</p>
+</blockquote>
+
+<p>To do this, you’ll have to code by refactoring and change the code many times. You’ll need to master <a href="https://philippe.bourgau.net/categories/#refactoring">incremental development techniques</a>. Without them, you’d have to build full components in large work batches.</p>
+
+<p>If you want to learn ‘code by refactoring’ techniques, the simplest way is to <a href="https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/">start a coding dojo</a>.</p>
+
+<h2 id="dont-let-priority-paralysis-kill-your-product-before-you-even-start">Don’t let priority paralysis kill your product before you even start!</h2>
+
+<p>Watch out for projects or products that are taking too long to start. If you hear something like:</p>
+
+<blockquote>
+  <p>We just need to figure out how to cut the elephant…</p>
+</blockquote>
+
+<p>Suggest an Event Storming!</p>
+
+<p>In 2 days of effective collaboration, you’ll agree on the next target. As a bonus, you’ll get all <a href="https://philippe.bourgau.net/how-to-capture-the-outputs-of-an-event-storming-workshop/">the other outcomes of ES</a>:</p>
+
+<ul>
+  <li>Shared understanding</li>
+  <li>Growing tech-domain collaboration</li>
+  <li>The beginning of a ubiquitous language</li>
+  <li>High impact quick fixes</li>
+  <li>…</li>
+</ul>
+
+<p>Running and Event Storming is not rocket science. If you are wondering how to start, follow <a href="https://philippe.bourgau.net/misadventures-with-big-design-up-front/">the guide</a>!</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/categories/#ddd" class="page__taxonomy-item" rel="tag">ddd</a><span class="sep">, </span>
+    
+      <a href="/categories/#event-storming" class="page__taxonomy-item" rel="tag">event storming</a><span class="sep">, </span>
+    
+      <a href="/categories/#planning" class="page__taxonomy-item" rel="tag">planning</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-11-21T00:00:00+00:00">November 21, 2019</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+fight+priority+paralysis+with+Event+Storming+and+DDD%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-fight-priority-paralysis-with-event-storming-and-ddd%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-fight-priority-paralysis-with-event-storming-and-ddd%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-fight-priority-paralysis-with-event-storming-and-ddd%2F&title=How+to+fight+priority+paralysis+with+Event+Storming+and+DDD" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-fight-priority-paralysis-with-event-storming-and-ddd%2F&t=How to fight priority paralysis with Event Storming and DDD" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/sustain-collective-intelligence-with-event-storming/" class="pagination--pager" title="Sustain Collective Intelligence with Event Storming
+">Previous</a>
+    
+    
+      <a href="/organization-refactoring-event-storming-and-ddd-injection-part-1/" class="pagination--pager" title="Organization refactoring: Event Storming and DDD injection - part 1
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-to-fight-priority-paralysis-with-event-storming-and-ddd/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-fight-priority-paralysis-with-event-storming-and-ddd"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,2006 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Why eXtreme Programming works ? (Lean Software Development part 2) | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Using the lean principles, let’s analyse the 12 XP core practices and explain why and how they work">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Why eXtreme Programming works ? (Lean Software Development part 2)">
+<meta property="og:url" content="https://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/">
+
+
+  <meta property="og:description" content="Using the lean principles, let’s analyse the 12 XP core practices and explain why and how they work">
+
+
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Why eXtreme Programming works ? (Lean Software Development part 2)">
+  <meta name="twitter:description" content="Using the lean principles, let’s analyse the 12 XP core practices and explain why and how they work">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2014-08-29T07:03:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Why eXtreme Programming works ? (Lean Software Development part 2)">
+    <meta itemprop="description" content="I’ve been programming for quite some time now, in different teams, using various methodologies. I also had the luck to do XP for at least 3 different projects. To me the conclusion is obvious, XP delivers more. Even better, programmers working with XP seem to be happier. The only thing I’ve seen that works better than XP, is fine tunning it once the team has mastered the main principles.">
+    <meta itemprop="datePublished" content="2014-08-29T07:03:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Why eXtreme Programming works ? (Lean Software Development part 2)
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          14 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>I’ve been programming for quite some time now, in different teams, using various methodologies. I also had the luck to do XP for at least 3 different projects. To me the conclusion is obvious, <a href="http://www.extremeprogramming.org/">XP</a> delivers more. Even better, programmers working with XP seem to be happier. The only thing I’ve seen that works better than XP, is fine tunning it once the team has mastered the main principles.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/lean-extreme.jpg" alt="An extreme diet pill bottle" /></p>
+
+<p><a href="http://en.wikipedia.org/wiki/Extreme_programming#History">XP was first put in place</a> at the Chrysler C3 project for SmallTalk performance issues. After being called for performance issues, <a href="http://www.threeriversinstitute.org/">Kent Beck</a> discovered that these were only the tip of the iceberg, everything was going astray. As the expert in the room, people started to ask him how to organize. I remember reading some time ago that without having thought about it before, he gathered all the most efficient programming techniques he knew together into a new process. XP was born.</p>
+
+<p>So the question is : what did Kent Beck put in XP so that it works so well ? Let’s go through the Flow book and its 175 lean product development principles, to see if we get some explanations.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2014-09-11-whats-in-kent-becks-extreme-programming-lean-diet-lean-software-development-part-2/circles.jpg" alt="Concentric circles featuring the 12 core xp practices&quot;" /></p>
+
+<p>Going through <a href="http://c2.com/cgi/wiki?ExtremeProgrammingCorePractices">the 12 core XP practices</a>, the main Scrum ceremonies and a few common additions, I’ll try to explain why they work through the Flow book’s principles.</p>
+
+<h2 id="whole-team">Whole Team</h2>
+
+<p>This is the same thing as Pizza Team, Feature team, Cross Functional Team. It just means put everyone involved in the creation of the product in the same room (On site customer, sales, product people, programmers, quality controllers, operation people …).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B17</td>
+      <td>Proximity</td>
+      <td>Proximity enables small batch sizes</td>
+      <td>129</td>
+    </tr>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>W13</td>
+      <td>Skill overlap</td>
+      <td>Cross-train resources at adjacent processes</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <td>F24</td>
+      <td>Alternate routes</td>
+      <td>Develop and maintain alternate routes around points of congestion</td>
+      <td>201</td>
+    </tr>
+    <tr>
+      <td>F25</td>
+      <td>Flexible resources</td>
+      <td>Use flexible resources to absord variation</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <td>FF14</td>
+      <td>Locality of feedback</td>
+      <td>Whenever possible, make the feedback local</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <td>FF19</td>
+      <td>Colocation</td>
+      <td>Colocation improves almost all aspects of communication</td>
+      <td>230</td>
+    </tr>
+    <tr>
+      <td>FF23</td>
+      <td>Overlapping measurement</td>
+      <td>To align behaviors, reward people for the work of others</td>
+      <td>233</td>
+    </tr>
+    <tr>
+      <td>D7</td>
+      <td>Alignment</td>
+      <td>There is more value created with overall alignment than local execellence</td>
+      <td>252</td>
+    </tr>
+    <tr>
+      <td>D13</td>
+      <td>Peer-level coordination</td>
+      <td>Tactical coordination should be local</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <td>D18</td>
+      <td>Response frequency</td>
+      <td>We can’t respond faster than our (internal) response frequency</td>
+      <td>261</td>
+    </tr>
+    <tr>
+      <td>D22</td>
+      <td>Face-to-face communication</td>
+      <td>Exploit the speed and bandwidth of face-to-face communications</td>
+      <td>263</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="planning-game">Planning Game</h2>
+
+<p>The work is split into user stories. The customer then estimates the business value of each story, before the programmers poker estimate the required work for them. The game is then to maximize the scheduled business value creation for the coming iteration (1 to 3 weeks).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E4</td>
+      <td>Economic value-added</td>
+      <td>The value added by an activity is the change in the economic value of the work product</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <td>E7</td>
+      <td>Imperfection</td>
+      <td>Even imperfect answers improve decision making</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <td>E9</td>
+      <td>Continuous economic tradeoffs</td>
+      <td>Economic choices must be made continuously</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <td>E10</td>
+      <td>Perishability I</td>
+      <td>Many economic choices are more valuable when made quickly</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <td>E14</td>
+      <td>Market I</td>
+      <td>Ensure decision makers feel both cost and benefit</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>E15</td>
+      <td>Optimium decision timing</td>
+      <td>Every decision has its optimum economic timing</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <td>Q10</td>
+      <td>Queueing discipline</td>
+      <td>Queue cost is affected by the sequence in which we handle the jobs in the queue</td>
+      <td>69</td>
+    </tr>
+    <tr>
+      <td>Q13</td>
+      <td>Queue size control I</td>
+      <td>Don’t control capacity utilization, control queue size</td>
+      <td>75</td>
+    </tr>
+    <tr>
+      <td>Q14</td>
+      <td>Queue size control II</td>
+      <td>Don’t control the cycle time, control queue size</td>
+      <td>76</td>
+    </tr>
+    <tr>
+      <td>V5</td>
+      <td>Variability pooling</td>
+      <td>Overall variation decreases when uncorrelated random tasks are combined</td>
+      <td>95</td>
+    </tr>
+    <tr>
+      <td>V6</td>
+      <td>Short-term forcasting</td>
+      <td>Forecasting becomes exponentially easier at short time-horizons</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <td>B18</td>
+      <td>Run length</td>
+      <td>Short run lengths reduce queues</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>B20</td>
+      <td>Batch content</td>
+      <td>Sequence first that which adds value most cheaply</td>
+      <td>131</td>
+    </tr>
+    <tr>
+      <td>W1</td>
+      <td>WIP constraints</td>
+      <td>Constrain WIP to control cycle time and flow</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <td>W3</td>
+      <td>global constraints</td>
+      <td>Use global constraints for predictable and permanent bottlenecks</td>
+      <td>147</td>
+    </tr>
+    <tr>
+      <td>W6</td>
+      <td>Demand blocking</td>
+      <td>Block all demand when WIP reaches its upper limit</td>
+      <td>151</td>
+    </tr>
+    <tr>
+      <td>W8</td>
+      <td>Flexible requirements</td>
+      <td>Control WIP by shedding requirements</td>
+      <td>152</td>
+    </tr>
+    <tr>
+      <td>W19</td>
+      <td>Adaptive WIP constraints</td>
+      <td>Adjust WIP constraints as capacity changes</td>
+      <td>162</td>
+    </tr>
+    <tr>
+      <td>F5</td>
+      <td>Periodic resynchronization</td>
+      <td>Use a regular cadence to limit the accumulation of variance</td>
+      <td>177</td>
+    </tr>
+    <tr>
+      <td>F7</td>
+      <td>The cadence reliability</td>
+      <td>Use cadence to make waiting times predictable</td>
+      <td>179</td>
+    </tr>
+    <tr>
+      <td>F9</td>
+      <td>Cadenced meetings</td>
+      <td>Schedule frequent meetings using a predictable cadence</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <td>F18</td>
+      <td>The local priority</td>
+      <td>Priorities are inherently local</td>
+      <td>196</td>
+    </tr>
+    <tr>
+      <td>FF10</td>
+      <td>Agility I</td>
+      <td>We don’t need long planning horizons when we have a short turning radius</td>
+      <td>222</td>
+    </tr>
+    <tr>
+      <td>FF21</td>
+      <td>Hurry-up-and-wait</td>
+      <td>Large queues make it hard to create urgency</td>
+      <td>232</td>
+    </tr>
+    <tr>
+      <td>D4</td>
+      <td>Opportunity</td>
+      <td>Adjust the plan for unplanned obstacles and opportunities</td>
+      <td>249</td>
+    </tr>
+    <tr>
+      <td>D14</td>
+      <td>Flexible plans</td>
+      <td>Use simple modular plans</td>
+      <td>258</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="small-releases">Small Releases</h2>
+
+<p>Make a lot of small releases.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q2</td>
+      <td>Queueing waste</td>
+      <td>Queues are the root cause of the majority of economic waste in product development</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>V8</td>
+      <td>Repetition</td>
+      <td>Repetition reduces variation</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <td>B1-8</td>
+      <td>Batch size</td>
+      <td>Reducing batch size reduces cycle time, variability in flow, risk, overhead and accelerates feedback, while large batches reduces efficiency, lower motivation and urgency and cause exponential cost and schedule growth</td>
+      <td>112-117</td>
+    </tr>
+    <tr>
+      <td>F8</td>
+      <td>Cadenced batch size enabling</td>
+      <td>Use a regular cadence to enable small batch size</td>
+      <td>179</td>
+    </tr>
+    <tr>
+      <td>FF7</td>
+      <td>Queue reduction by feedback</td>
+      <td>Fast feedback enables smaller queues</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF8</td>
+      <td>Fast-learning</td>
+      <td>Use fast feedback to make learning faster and more efficient</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF11</td>
+      <td>Batch size feedback</td>
+      <td>Small batches yield fast feedback</td>
+      <td>223</td>
+    </tr>
+    <tr>
+      <td>FF20</td>
+      <td>Empowerment by feedback</td>
+      <td>Fast feedback gives a sense of control</td>
+      <td>231</td>
+    </tr>
+    <tr>
+      <td>FF21</td>
+      <td>Hurry-up-and-wait</td>
+      <td>Large queues make it hard to create urgency</td>
+      <td>232</td>
+    </tr>
+    <tr>
+      <td>D23</td>
+      <td>Trust</td>
+      <td>Trust is built through experience</td>
+      <td>264</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="customer-tests">Customer Tests</h2>
+
+<p>The customer assists the programmers into writing automated use case tests.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V16</td>
+      <td>Variability displacements</td>
+      <td>Move variability to the process stage where its cost is lowest</td>
+      <td>107</td>
+    </tr>
+    <tr>
+      <td>B17</td>
+      <td>Proximity</td>
+      <td>Proximity enables small batch sizes</td>
+      <td>129</td>
+    </tr>
+    <tr>
+      <td>F30</td>
+      <td>Flow conditioning</td>
+      <td>Reduce variability before a bottleneck</td>
+      <td>208</td>
+    </tr>
+    <tr>
+      <td>FF7</td>
+      <td>Queue reduction by feedback</td>
+      <td>Fast feedback enables smaller queues</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF8</td>
+      <td>Fast-learning</td>
+      <td>Use fast feedback to make learning faster and more efficient</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF11</td>
+      <td>Batch size feedback</td>
+      <td>Small batches yield fast feedback</td>
+      <td>223</td>
+    </tr>
+    <tr>
+      <td>FF14</td>
+      <td>Locality of feedback</td>
+      <td>Whenever possible, make the feedback local</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <td>FF19</td>
+      <td>Colocation</td>
+      <td>Colocation improves almost all aspects of communication</td>
+      <td>230</td>
+    </tr>
+    <tr>
+      <td>FF20</td>
+      <td>Empowerment by feedback</td>
+      <td>Fast feedback gives a sense of control</td>
+      <td>231</td>
+    </tr>
+    <tr>
+      <td>D8</td>
+      <td>Mission</td>
+      <td>Specify the end state, its purpose and the minimum possible constraints</td>
+      <td>252</td>
+    </tr>
+    <tr>
+      <td>D16</td>
+      <td>Early contact</td>
+      <td>Make early and meaningful contact with the problem</td>
+      <td>259</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="collective-code-ownership">Collective Code Ownership</h2>
+
+<p>Every programmer is responsible to evolve and maintain all the source code, and not just his part.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q7</td>
+      <td>Queuing structure</td>
+      <td>Serve pooled demand with reliable high-capacity servers</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>F25</td>
+      <td>Flexible resources</td>
+      <td>Use flexible resources to absord variation</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <td>FF23</td>
+      <td>Overlapping measurement</td>
+      <td>To align behaviors, reward people for the work of others</td>
+      <td>233</td>
+    </tr>
+    <tr>
+      <td>D1</td>
+      <td>Perishablility II</td>
+      <td>Decentralize control for problems and opportunities that age poorly</td>
+      <td>246</td>
+    </tr>
+    <tr>
+      <td>D4</td>
+      <td>Virtual centralization</td>
+      <td>Be able to quickly reorganize decentralized resources to create centralized power</td>
+      <td>250</td>
+    </tr>
+    <tr>
+      <td>D5</td>
+      <td>Inefficiency</td>
+      <td>The inefficiency of decentralization (as opposed to silos) can cost less than the value of faster reponse time</td>
+      <td>251</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="coding-standards">Coding Standards</h2>
+
+<p>All programmers agree on coding conventions for all the source code they write.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>F25</td>
+      <td>Flexible resources</td>
+      <td>Use flexible resources to absord variation</td>
+      <td>202</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sustainable-pace">Sustainable Pace</h2>
+
+<p>As the value created by a knowledge work does not increase linearly with the time spent, it’s wiser to work a number of hours that both maximizes the work done while allowing the team to keep on going forever if needed.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E5</td>
+      <td>Inactivity</td>
+      <td>Watch the work product, not the worker</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <td>Q3</td>
+      <td>Queueing capacity utilization</td>
+      <td>Capacity utilization increases queues exponentially</td>
+      <td>59</td>
+    </tr>
+    <tr>
+      <td>B9</td>
+      <td>Batch size death spiral</td>
+      <td>Large batches lead to even large batches</td>
+      <td>118</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="metaphor">Metaphor</h2>
+
+<p>Whether an actual metaphor or an ubiquitous language, the idea is to build a shared customer oriented architecture and design of the system.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>F25</td>
+      <td>Flexible resources</td>
+      <td>Use flexible resources to absord variation</td>
+      <td>202</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="continuous-integration">Continuous Integration</h2>
+
+<p>All the code of all the team is merged, tested, packaged and deployed very frequently (many times per day)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q2</td>
+      <td>Queueing waste</td>
+      <td>Queues are the root cause of the majority fo economic waste in product development</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <td>V8</td>
+      <td>Repetition</td>
+      <td>Repetition reduces variation</td>
+      <td>99</td>
+    </tr>
+    <tr>
+      <td>B1-8</td>
+      <td>Batch size</td>
+      <td>Reducing batch size reduces cycle time, variability in flow, risk, overhead and accelerates feedback, while large batches reduces efficiency, lower motivation and urgency and cause exponential cost and schedule growth</td>
+      <td>112-117</td>
+    </tr>
+    <tr>
+      <td>B12</td>
+      <td>Low transaction cost</td>
+      <td>Reducing the transaction cost per batch lowers overall costs</td>
+      <td>123</td>
+    </tr>
+    <tr>
+      <td>B16</td>
+      <td>Transport batches</td>
+      <td>The most important batch is the transport batch</td>
+      <td>128</td>
+    </tr>
+    <tr>
+      <td>B19</td>
+      <td>Infrastructure</td>
+      <td>Good infrastructure enables small batches</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>F29</td>
+      <td>Resource centralization</td>
+      <td>Correctly managed, centralized resources can reduce queues</td>
+      <td>206</td>
+    </tr>
+    <tr>
+      <td>FF7</td>
+      <td>Queue reduction by feedback</td>
+      <td>Fast feedback enables smaller queues</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF11</td>
+      <td>Batch size feedback</td>
+      <td>Small batches yield fast feedback</td>
+      <td>223</td>
+    </tr>
+    <tr>
+      <td>FF16</td>
+      <td>Multiple control loops</td>
+      <td>Embed fast control loops inside slow loops</td>
+      <td>228</td>
+    </tr>
+    <tr>
+      <td>FF21</td>
+      <td>Hurry-up-and-wait</td>
+      <td>Large queues make it hard to create urgency</td>
+      <td>232</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="test-driven-development">Test Driven Development</h2>
+
+<p>Programmers write failing tests (both customer and unit tests) before actual real code</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V15</td>
+      <td>Iteration speed</td>
+      <td>it is usually better to improve iteration speed than defect rate</td>
+      <td>106</td>
+    </tr>
+    <tr>
+      <td>V16</td>
+      <td>Variability displacements</td>
+      <td>move variability to the process stage where its cost is lowest</td>
+      <td>107</td>
+    </tr>
+    <tr>
+      <td>B1-8</td>
+      <td>Batch size</td>
+      <td>Reducing batch size reduces cycle time, variability in flow, risk, overhead and accelerates feedback, while large batches reduces efficiency, lower motivation and urgency and cause exponential cost and schedule growth</td>
+      <td>112-117</td>
+    </tr>
+    <tr>
+      <td>F30</td>
+      <td>Flow conditioning</td>
+      <td>Reduce variability before a bottleneck</td>
+      <td>208</td>
+    </tr>
+    <tr>
+      <td>FF7</td>
+      <td>Queue reduction by feedback</td>
+      <td>Fast feedback enables smaller queues</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF8</td>
+      <td>The fast-learning principle</td>
+      <td>Use fast feedback to make learning faster and more efficient</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF11</td>
+      <td>The batch size principle of feedback</td>
+      <td>Small batches yield fast feedback</td>
+      <td>223</td>
+    </tr>
+    <tr>
+      <td>FF14</td>
+      <td>The locality principle of feedback</td>
+      <td>Whenever possible, make the feedback local</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <td>FF16</td>
+      <td>The principle of multiple control loops</td>
+      <td>Embed fast control loops inside slow loops</td>
+      <td>228</td>
+    </tr>
+    <tr>
+      <td>FF20</td>
+      <td>The empowerment principle of feedback</td>
+      <td>Fast feedback gives a sense of control</td>
+      <td>231</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="refactoring">Refactoring</h2>
+
+<p>Programmers improve the design of the system continuously, meaning in very frequent baby steps. This removes the need for a big design up front.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E13</td>
+      <td>The first decision rule principle</td>
+      <td>Use decision rules to decentralize economic control</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <td>V9</td>
+      <td>The reuse principle</td>
+      <td>Reuse reduces variability</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>B9</td>
+      <td>The batch size death spiral principle</td>
+      <td>Large batches lead to even large batches</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <td>B19</td>
+      <td>The infrastructure principle</td>
+      <td>Good infrastructure enables small batches</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>F28</td>
+      <td>The principle of preplanned flexibility</td>
+      <td>For fast responses, preplan and invest in flexibility</td>
+      <td>205</td>
+    </tr>
+    <tr>
+      <td>D12</td>
+      <td>The second agility principle</td>
+      <td>Develop the ability to quickly shift focus</td>
+      <td>255</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="simple-design">Simple Design</h2>
+
+<p>Do the simplest thing that could possibly work. No need to write things that don’t add business value yet. (Note that simple does not mean easy)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E19</td>
+      <td>Insurance</td>
+      <td>Don’t pay more for insurance than the expected loss</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <td>V12</td>
+      <td>Variability consequences</td>
+      <td>Reducing consequences is usually the best way to reduce the cost of variability</td>
+      <td>103</td>
+    </tr>
+    <tr>
+      <td>B9</td>
+      <td>Batch size death spiral</td>
+      <td>Large batches lead to even large batches</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <td>B15</td>
+      <td>Fluidity</td>
+      <td>Loose coupling between product subsystems enables small batches</td>
+      <td>126</td>
+    </tr>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>F25</td>
+      <td>Flexible resources</td>
+      <td>Use flexible resources to absorb variation</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <td>D12</td>
+      <td>Agility II</td>
+      <td>Develop the ability to quickly shift focus</td>
+      <td>255</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="pair-programming">Pair Programming</h2>
+
+<p>Programmers sit at the same computer in pairs to write code. One write the code, and the other comments. The keyboard changes hands very frequently.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B13</td>
+      <td>Batch size diseconomies</td>
+      <td>Batch size reduction saves much more than you think</td>
+      <td>124</td>
+    </tr>
+    <tr>
+      <td>B21</td>
+      <td>Batch size I</td>
+      <td>Reduce the batch size before you attack bottlenecks</td>
+      <td>133</td>
+    </tr>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>W13</td>
+      <td>Skill overlap</td>
+      <td>Cross-train resources at adjacent processes</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <td>F25</td>
+      <td>Flexible resources</td>
+      <td>Use flexible resources to absord variation</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <td>F30</td>
+      <td>Flow conditioning</td>
+      <td>Reduce variability before a bottleneck</td>
+      <td>208</td>
+    </tr>
+    <tr>
+      <td>FF14</td>
+      <td>Locality of feedback</td>
+      <td>Whenever possible, make the feedback local</td>
+      <td>226</td>
+    </tr>
+    <tr>
+      <td>FF16</td>
+      <td>Multiple control loops</td>
+      <td>Embed fast control loops inside slow loops</td>
+      <td>228</td>
+    </tr>
+    <tr>
+      <td>FF19</td>
+      <td>Colocation</td>
+      <td>Colocation improves almost all aspects of communication</td>
+      <td>230</td>
+    </tr>
+    <tr>
+      <td>FF20</td>
+      <td>Empowerment by feedback</td>
+      <td>Fast feedback gives a sense of control</td>
+      <td>231</td>
+    </tr>
+    <tr>
+      <td>D13</td>
+      <td>Peer-level coordination</td>
+      <td>Tactical coordination should be local</td>
+      <td>257</td>
+    </tr>
+    <tr>
+      <td>D22</td>
+      <td>Face-to-face communication</td>
+      <td>Exploit the speed and bandwidth of face-to-face communications</td>
+      <td>263</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="spikes">Spikes</h2>
+
+<p>Programmers conduct time boxed experiment to gain insights</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V2</td>
+      <td>Asymmetric payoffs</td>
+      <td>Payoff asymmetries enable variability to create economic value</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <td>V7</td>
+      <td>Small experiments</td>
+      <td>Many small experiments produce less variation than one big one</td>
+      <td>98</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="slack-time">Slack Time</h2>
+
+<p>Keep some buffer time at the end of the iteration where team members can either close the remaining stories or work on improvements.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V11</td>
+      <td>Buffer</td>
+      <td>Buffers trade money for variability reduction</td>
+      <td>101</td>
+    </tr>
+    <tr>
+      <td>B9</td>
+      <td>Batch size death spiral</td>
+      <td>Large batches lead to even large batches</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <td>B19</td>
+      <td>Infrastructure</td>
+      <td>Good infrastructure enables small batches</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>F6</td>
+      <td>Ccadence capacity margin</td>
+      <td>Provide sufficient capacity margin to enable cadence</td>
+      <td>178</td>
+    </tr>
+    <tr>
+      <td>D12</td>
+      <td>Agility II</td>
+      <td>Develop the ability to quickly shift focus</td>
+      <td>255</td>
+    </tr>
+    <tr>
+      <td>D15</td>
+      <td>Tactical reserves</td>
+      <td>Decentralize a portion of reserves</td>
+      <td>258</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="daily-stand-up-meeting">Daily Stand Up Meeting</h2>
+
+<p>The whole team starts every working day by a quick synchronization meeting</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B3</td>
+      <td>Batch size feedback</td>
+      <td>Reducing batch size accelerate feedback</td>
+      <td>113</td>
+    </tr>
+    <tr>
+      <td>W12</td>
+      <td>T-Shaped resources</td>
+      <td>Develop people who are deep in one area and broad in many</td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td>W20</td>
+      <td>Expansion control</td>
+      <td>Prevent uncontrolled expansion of work</td>
+      <td>163</td>
+    </tr>
+    <tr>
+      <td>F5</td>
+      <td>Periodic resynchronization</td>
+      <td>Use a regular cadence to limit the accumulation of variance</td>
+      <td>177</td>
+    </tr>
+    <tr>
+      <td>F9</td>
+      <td>Cadenced meetings</td>
+      <td>Schedule frequent meetings using a predictable cadence</td>
+      <td>180</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="retrospective-meeting">Retrospective meeting</h2>
+
+<p>At the end of every iteration, the team meets for a retrospective, discussing what they did in order to improve</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B9</td>
+      <td>Batch size death spiral</td>
+      <td>Large batches lead to even large batches</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <td>B19</td>
+      <td>Infrastructure</td>
+      <td>Good infrastructure enables small batches</td>
+      <td>130</td>
+    </tr>
+    <tr>
+      <td>F9</td>
+      <td>Cadenced meetings</td>
+      <td>Schedule frequent meetings using a predictable cadence</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <td>FF8</td>
+      <td>Fast-learning</td>
+      <td>Use fast feedback to make learning faster and more efficient</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF20</td>
+      <td>Empowerment by feedback</td>
+      <td>Fast feedback gives a sense of control</td>
+      <td>231</td>
+    </tr>
+    <tr>
+      <td>D21</td>
+      <td>Regenerative initiative</td>
+      <td>Cultivating initiative enables us to use initiative</td>
+      <td>263</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="demos">Demos</h2>
+
+<p>At the end of every iteration, the team demonstrates what it did to the customer</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>E14</td>
+      <td>Market I</td>
+      <td>Ensure decision makers feel both cost and benefit</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td>B3</td>
+      <td>Batch size feedback</td>
+      <td>Reducing batch size accelerate feedback</td>
+      <td>113</td>
+    </tr>
+    <tr>
+      <td>B9</td>
+      <td>Batch size death spiral</td>
+      <td>Large batches lead to even large batches</td>
+      <td>118</td>
+    </tr>
+    <tr>
+      <td>F9</td>
+      <td>Cadenced meetings</td>
+      <td>Schedule frequent meetings using a predictable cadence</td>
+      <td>180</td>
+    </tr>
+    <tr>
+      <td>FF7</td>
+      <td>Queue reduction by feedback</td>
+      <td>Fast feedback enables smaller queues</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF8</td>
+      <td>Fast-learning</td>
+      <td>Use fast feedback to make learning faster and more efficient</td>
+      <td>220</td>
+    </tr>
+    <tr>
+      <td>FF20</td>
+      <td>Empowerment by feedback</td>
+      <td>Fast feedback gives a sense of control</td>
+      <td>231</td>
+    </tr>
+    <tr>
+      <td>FF21</td>
+      <td>Hurry-up-and-wait</td>
+      <td>Large queues make it hard to create urgency</td>
+      <td>232</td>
+    </tr>
+    <tr>
+      <td>FF23</td>
+      <td>Overlapping measurement</td>
+      <td>To align behaviors, reward people for the work of others</td>
+      <td>233</td>
+    </tr>
+    <tr>
+      <td>D23</td>
+      <td>Trust</td>
+      <td>Trust is built through experience</td>
+      <td>264</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="visual-whiteboard">Visual Whiteboard</h2>
+
+<p>Display the stories of the current sprint on the wall in a 3 columns whiteboard (TODO, DOING, DONE)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ref</th>
+      <th>The principle of …</th>
+      <th>Summary</th>
+      <th>page</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>W23</td>
+      <td>Visual WIP</td>
+      <td>Make WIP continuously visible</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <td>F27</td>
+      <td>Local transparency</td>
+      <td>Make tasks and resources reciprocally visible at adjacent processes</td>
+      <td>204</td>
+    </tr>
+    <tr>
+      <td>D17</td>
+      <td>Decentralized information</td>
+      <td>For decentralized decisions, disseminate key information widely</td>
+      <td>260</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Whaoo that’s a lot ! I did not expect to find so many principles underlying XP (I even removed principles that were not self explanatory). For the XP practitioner that I am, writing this blog post helped me to deepen understanding of it. As XPers know, XP is quite opiniated, it’s both a strength and a weakness if you try to apply it outside of its zone of comfort. This explains why some lean subjects are simply not addressed by XP.</p>
+
+<p>To summarize, here is where XP hits the ground :</p>
+
+<ul>
+  <li>In spite of its image of ‘a process for nerdy programmers’ XP turns out to be a quite evolved lean method !</li>
+  <li>XP anihilates batch size and feedback time</li>
+  <li>Pair programming is well explained</li>
+</ul>
+
+<p>And here is where to look at when you’ll need to upgrade XP</p>
+
+<ul>
+  <li>Better tradeoffs might be found with a real quantitative economical framework</li>
+  <li>Synchronization principles might help working with other teams</li>
+</ul>
+
+<p>Kent Beck could not have read the Flow book when he invented XP, but it seems he just had a bit of advance on the rest of us …</p>
+
+<p>This was part 2 of my <a href="/the-flow-book-summary-lean-software-development_part_1/">suite of article about Lean Software Development</a>, Part 1 was <a href="/the-flow-book-summary-lean-software-development_part_1/">The Flow book summary</a>, Part 3 will be <a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/">How to measure your speed with your business value ?</a></p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#agile" class="page__taxonomy-item" rel="tag">agile</a><span class="sep">, </span>
+    
+      <a href="/categories/#extreme-programming" class="page__taxonomy-item" rel="tag">extreme programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#lean" class="page__taxonomy-item" rel="tag">lean</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2014-08-29T07:03:00+00:00">August 29, 2014</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Why+eXtreme+Programming+works+%3F+%28Lean+Software+Development+part+2%29%20https%3A%2F%2Fphilippe.bourgau.net%2Fwhy-extreme-programming-works-lean-software-development-part-2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fwhy-extreme-programming-works-lean-software-development-part-2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fwhy-extreme-programming-works-lean-software-development-part-2%2F&title=Why+eXtreme+Programming+works+%3F+%28Lean+Software+Development+part+2%29" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fwhy-extreme-programming-works-lean-software-development-part-2%2F&t=Why eXtreme Programming works ? (Lean Software Development part 2)" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/the-flow-book-summary-lean-software-development_part_1/" class="pagination--pager" title="The Flow book summary (lean software development part 1)
+">Previous</a>
+    
+    
+      <a href="/how-to-measure-your-speed-with-your-business-value-lean-software-development-part-3/" class="pagination--pager" title="How to measure your speed with your business value ? (Lean Software Development Part 3)
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/why-extreme-programming-works-lean-software-development-part-2/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/why-extreme-programming-works-lean-software-development-part-2"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

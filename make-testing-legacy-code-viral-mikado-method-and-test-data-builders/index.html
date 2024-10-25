@@ -1,0 +1,854 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Make Testing Legacy Code Viral: Mikado Method and Test Data Builders | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="When testing legacy code, combine the test data builder pattern with the mikado method. Next time you have to fix a bug, instead of trying to test it directly, start a mikado graph of test data builders to add this test. This will snowball into more and more objects that are easy to set up in tests">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="Make Testing Legacy Code Viral: Mikado Method and Test Data Builders">
+<meta property="og:url" content="https://philippe.bourgau.net/make-testing-legacy-code-viral-mikado-method-and-test-data-builders/">
+
+
+  <meta property="og:description" content="When testing legacy code, combine the test data builder pattern with the mikado method. Next time you have to fix a bug, instead of trying to test it directly, start a mikado graph of test data builders to add this test. This will snowball into more and more objects that are easy to set up in tests">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="Make Testing Legacy Code Viral: Mikado Method and Test Data Builders">
+  <meta name="twitter:description" content="When testing legacy code, combine the test data builder pattern with the mikado method. Next time you have to fix a bug, instead of trying to test it directly, start a mikado graph of test data builders to add this test. This will snowball into more and more objects that are easy to set up in tests">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/make-testing-legacy-code-viral-mikado-method-and-test-data-builders/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-01-30T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/make-testing-legacy-code-viral-mikado-method-and-test-data-builders/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Make Testing Legacy Code Viral: Mikado Method and Test Data Builders">
+    <meta itemprop="description" content="When testing legacy code, combine the test data builder pattern with the mikado method. This snowballs into more and more objects that are easy to set up in tests.">
+    <meta itemprop="datePublished" content="2020-01-30T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Make Testing Legacy Code Viral: Mikado Method and Test Data Builders
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>When testing legacy code, combine the <a href="https://thefriendlytester.co.uk/2015/06/an-introduction-to-data-builder-pattern.html">test data builder pattern</a> with <a href="http://mikadomethod.info/">the mikado method</a>. This snowballs into more and more objects that are easy to set up in tests.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builder-pattern-squid.jpeg" alt="Drawing of a squid holding papers written &quot;Test data builders&quot;. Combining the Mikado Method with the Test Data Builder Pattern makes large cross-concern testing improvement possible." /></p>
+
+<h2 id="your-mission-impossible">Your Mission… Impossible!</h2>
+
+<p>I’m sure you’ve heard of this recommendation:</p>
+
+<blockquote>
+  <p>Whenever you fix a bug, add a test before. [<a href="https://softwareengineering.stackexchange.com/questions/148081/should-we-always-unit-test-bugs-when-correcting-them">stackexchange.com</a>]</p>
+</blockquote>
+
+<p>Unfortunately, when working in legacy code, this is more depressing than empowering. I’ve seen codebases in which adding a unit test can take weeks! <strong>Spending 3 weeks to add a test when fixing the bug will take 1 hour is often unjustifiable.</strong> It’s not easy to swallow for product managers or customers.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/too-much-work.jpg" alt="A lego character at his desk looking stressed out by too much work. Spending many weeks to test a legacy code bug is not justifiable." /></p>
+
+<p>This situation can get pretty stressful. Worst of all, it can only get worse!</p>
+
+<h2 id="the-false-promise-mocks">The False Promise: Mocks</h2>
+
+<p>When testing legacy code, most of the time is usually spent with the data setup. Legacy code is often a tangle of dependent classes. For every object we need to instantiate, we’ll have 5 others to set up before.</p>
+
+<p>The default solution to this problem is to use <a href="https://stackoverflow.com/questions/2665812/what-is-mocking">mocks</a> to shortcut all this data setup.</p>
+
+<h3 id="pros">Pros</h3>
+
+<ul>
+  <li>It gets the test running in a reasonable time</li>
+</ul>
+
+<h3 id="cons">Cons</h3>
+
+<ul>
+  <li>Every test will have its own mocks of specific classes. Unfortunately, legacy code mocks duplicate the behavior of the real system. After a while, this creates rigidity. It will backfire and make refactoring more difficult. The exact opposite of what we wanted! That’s what I call <a href="https://philippe.bourgau.net/careless-mocking-considered-harmful/">Mock Hell</a>.</li>
+  <li>The flip side is that these tests won’t be very robust. When we have to refactor the code, we’ll have to refactor the tests. Worse, if the real code behavior changes, tests will silently continue to pass!</li>
+  <li>Finally, we often need to refactor the code before we add a mock.</li>
+</ul>
+
+<p>Mocks have serious downsides. As I wrote before, <strong><a href="https://philippe.bourgau.net/how-to-use-test-data-builders-to-avoid-mocks-and-keep-your-tests-clear/">using mocks to speed up test data setup is an anti-pattern.</a></strong></p>
+
+<h2 id="mikado-to-the-rescue">Mikado to the rescue</h2>
+
+<p><a href="https://www.goodreads.com/book/show/17974534-the-mikado-method"><img src="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-cover.jpg" alt="The cover of the book The Mikado Method by Ola Ellenstam and Daniel Brolund" /></a></p>
+
+<p>The mikado method is the perfect workaround against long technical endeavors. It lets you split them down in small steps that we can deliver along with other business-as-usual tasks.</p>
+
+<p>Let’s update the initial recommendation:</p>
+
+<blockquote>
+  <p>💡 Whenever you fix a bug, start a mikado graph to add a test around it.</p>
+</blockquote>
+
+<p>You can now write your test at your own sustainable pace. It might take 1 month, but it’s not an issue because you are not blocking features. There is no tunnel effect. You won’t need to use mocks.</p>
+
+<h3 id="what-does-it-mean-to-start-a-mikado-graph">What does it mean to start a mikado graph?</h3>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-graph.jpg" alt="Sample mikado graph showing the steps for an encapsulation goal. The mikado method graph is a powerful communication tool to get everyone to contribute to a refactoring" /><figcaption>
+      
+Sample mikado method graph as we can find on <a href="http://mikadomethod.info">mikadomethod.info/</a> by <a href="https://twitter.com/danielbrolund">Daniel Brolund</a> and Ola Ellnestam
+
+    </figcaption></figure>
+
+<p>You want to make the plan and the progress visible for everyone in the team.</p>
+
+<p>If you are all in the same room, <a href="https://philippe.bourgau.net/to-do-list-or-mind-map-for-programming/">stick it on the wall</a>! If you’re working as a mob, remind it to your buddies.</p>
+
+<p>Otherwise, you’ll need valid working agreements! For example, we used to generate mikado graphs from Jira tickets. Your team will have to find its own ways. <a href="https://philippe.bourgau.net/categories/#retrospectives">Retrospectives</a> help there!</p>
+
+<h2 id="the-test-data-builder-pattern-to-make-it-viral">The Test Data Builder Pattern to make it Viral</h2>
+
+<p>The flip side of using the mikado method out of the box is that many tests will end up setting up similar data. The typical fix to this problem is the test data builder pattern. This is where it becomes magic.</p>
+
+<p>Let’s update the initial recommendation again:</p>
+
+<blockquote>
+  <p>💡 Whenever you fix a bug, start a mikado graph of test data builders to add a test around the bug.</p>
+</blockquote>
+
+<p>Most nodes of the mikado graph will be about writing a test data builder for some data of the system. Every time you finish a step, you’ll have a new reusable test data builder.</p>
+
+<p><a href="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/test-data-builder-pattern-mikado-method-graph.jpg"><img src="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/test-data-builder-pattern-mikado-method-graph-small.jpg" alt="Sample mikado method graph containing a lot of nodes about using the test data builder pattern" /></a></p>
+
+<p>At every step, you increase the testability of the system. As other developers try to test their own code, they are likely to:</p>
+
+<ol>
+  <li>Re-use these new builders to add their tests faster.</li>
+  <li>Improve the builders along the way.</li>
+  <li>Make others even more likely to re-use these builders!</li>
+</ol>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builders-pattern-viral-small.jpeg" alt="Drawing of an infographics of the viral effect of combining the Mikado Method with the Test Data Builder Pattern: Bug -&gt; Mikado of test data builders -&gt; new builders -&gt; new composite builders -&gt; new builders -&gt; easier test data setup -&gt; more tests -&gt; builders are improved -&gt; easier test setup -&gt; ..." /><figcaption>
+      
+By <a href="https://philippe.bourgau.net">Philippe Bourgau</a>, under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://philippe.bourgau.net/imgs/2020-01-12-make-testing-legacy-code-viral-mikado-method-and-test-data-builders/mikado-method-test-data-builders-pattern-viral.jpeg">high resolution image</a>
+
+    </figcaption></figure>
+
+<p>It’s viral!</p>
+
+<h2 id="try-it-yourself">Try it yourself</h2>
+
+<p><a href="https://ahmadatwi.me/">Ahmad</a> and I published a <a href="http://codekata.com/">kata</a> to spread the idea. It’s under MIT license on <a href="https://github.com/murex/mikado-testbuilders-kata">Github</a>. We made it as self-service as we could. Give it a try! We’d love to get your feedback!</p>
+
+<p>It’s between 2 and 4 hours long. For the moment, code is available in Java and C++.</p>
+
+<p>We have also submitted this session at <a href="https://www.devoxx.fr/">Devoxx</a> and <a href="https://ncrafts.io/">NewCrafts</a> conferences in Paris. Fingers crossed!</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#mikado-method" class="page__taxonomy-item" rel="tag">mikado-method</a><span class="sep">, </span>
+    
+      <a href="/categories/#mocking" class="page__taxonomy-item" rel="tag">mocking</a><span class="sep">, </span>
+    
+      <a href="/categories/#refactoring" class="page__taxonomy-item" rel="tag">refactoring</a><span class="sep">, </span>
+    
+      <a href="/categories/#testing" class="page__taxonomy-item" rel="tag">testing</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-30T00:00:00+00:00">January 30, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=Make+Testing+Legacy+Code+Viral%3A+Mikado+Method+and+Test+Data+Builders%20https%3A%2F%2Fphilippe.bourgau.net%2Fmake-testing-legacy-code-viral-mikado-method-and-test-data-builders%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fmake-testing-legacy-code-viral-mikado-method-and-test-data-builders%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fmake-testing-legacy-code-viral-mikado-method-and-test-data-builders%2F&title=Make+Testing+Legacy+Code+Viral%3A+Mikado+Method+and+Test+Data+Builders" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fmake-testing-legacy-code-viral-mikado-method-and-test-data-builders%2F&t=Make Testing Legacy Code Viral: Mikado Method and Test Data Builders" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/21-more-event-storming-tips-part-3-anti-and-meta-patterns/" class="pagination--pager" title="21 More Event Storming Tips - part 3 - Anti and Meta Patterns
+">Previous</a>
+    
+    
+      <a href="/the-story-about-how-we-do-agile-technical-coaching/" class="pagination--pager" title="The story about how we do Agile Technical Coaching
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/make-testing-legacy-code-viral-mikado-method-and-test-data-builders/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/make-testing-legacy-code-viral-mikado-method-and-test-data-builders"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

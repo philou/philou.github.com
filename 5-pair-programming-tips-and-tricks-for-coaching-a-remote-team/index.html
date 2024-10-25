@@ -1,0 +1,954 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>5 pair-programming tips and tricks for coaching a remote team | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Coaching a remote team is an extra challenge for technical agile coaches. Here are 5 remote pair-programming tips and tricks to show a better way of working. Learn how to use webcams, focus, Pomodoro, TODO lists, and the navigator’s machine to nudge your pair buddy to better practices.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="5 pair-programming tips and tricks for coaching a remote team">
+<meta property="og:url" content="https://philippe.bourgau.net/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/">
+
+
+  <meta property="og:description" content="Coaching a remote team is an extra challenge for technical agile coaches. Here are 5 remote pair-programming tips and tricks to show a better way of working. Learn how to use webcams, focus, Pomodoro, TODO lists, and the navigator’s machine to nudge your pair buddy to better practices.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones-og.jpg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="5 pair-programming tips and tricks for coaching a remote team">
+  <meta name="twitter:description" content="Coaching a remote team is an extra challenge for technical agile coaches. Here are 5 remote pair-programming tips and tricks to show a better way of working. Learn how to use webcams, focus, Pomodoro, TODO lists, and the navigator’s machine to nudge your pair buddy to better practices.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones-og.jpg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2021-01-14T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="5 pair-programming tips and tricks for coaching a remote team">
+    <meta itemprop="description" content="Remote work is an extra challenge for technical agile coaching. Here are 5 opportunistic remote pair-programming tips and tricks to show a better way of working.">
+    <meta itemprop="datePublished" content="2021-01-14T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">5 pair-programming tips and tricks for coaching a remote team
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Remote work is an extra challenge for technical agile coaching. Here are 5 opportunistic remote <a href="https://philippe.bourgau.net/categories/#pair-programming">pair-programming</a> tips and tricks to show a better way of working.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/remote-pair-coaching-yaourt-phones.jpg" alt="Drawing of 2 yaourt pots hanging from the clouds, with a sign board directing to 'A Better Way'. As technical agile coaches, we can leverage on the opportunities of remote pair coaching to show a better way to our coachees." /></p>
+
+<blockquote>
+  <p>[…] nothing works better than sitting with them and test-driving some feature or reshaping their existing code–helping them get their work done. [<a href="https://langrsoft.com/">Jeff Langr</a> on <a href="https://groups.io/g/extremeprogramming/topic/75090300?p=,,,20,0,0,0::relevance,,What+does+evolutionary+design+mean+to+you,20,2,0,75090300,d=5,ct=1&amp;d=5&amp;ct=1">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>Collaboration is generally a disappointing afterthought in so many applications [<a href="http://jay.bazuzi.com/">Jay Bazuzi</a> in <a href="https://groups.io/g/extremeprogramming/topic/remote_pair_programming/74329645?p=Created,,,20,1,0,0::recentpostdate%2Fsticky,,,20,2,0,74329645">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>Programming in pairs is only 20 years old - the industry still needs time to catch up to us. [Phlip in <a href="https://groups.io/g/extremeprogramming/topic/remote_pair_programming/74329645?p=Created,,,20,1,0,0::recentpostdate%2Fsticky,,,20,2,0,74329645">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<blockquote>
+  <p>[…] when remote I have a tendency to forget or hesitate to switch driver [<a href="http://agileotter.blogspot.com/">Tim Ottinger</a> in <a href="https://groups.io/g/extremeprogramming/topic/remote_pair_programming/74329645?p=Created,,,20,1,0,0::recentpostdate%2Fsticky,,,20,2,0,74329645">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<p>Whether we wanted it or not, 2020 has thrown us into <a href="https://philippe.bourgau.net/categories/#remote">remote work</a>. This turned out to be a great challenge for many technical agile coaches:</p>
+
+<ul>
+  <li>As firm believers in collaboration, we prefer face to face interaction</li>
+  <li>How can we do our job and influence a team if we are not sitting with people?</li>
+  <li>Pair programming tools are not yet up to our standards.</li>
+</ul>
+
+<p>Even though I had regularly been working remotely for a few years, 2020 gave me a hard time to adapt:</p>
+
+<ul>
+  <li>COVID lock-downs made my schedule chaotic </li>
+  <li>Remote coaching made communication low-fidelity</li>
+</ul>
+
+<p>2020 also forced me into re-discovering new ways of coaching.</p>
+
+<p><strong>Here are 5 pair-programming tips and tricks that will increase your influence when coaching a remote team.</strong> Some are simple must-haves to compensate for not being together. Others are new possibilities unlocked by remote pair programming! All are opportunities to show the way of working that is more effective and sustainable.</p>
+
+<h2 id="1-turn-cameras-on">#1 Turn Cameras On</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/camera.jpg" alt="Photo of a retro camera. Turning your camera on when remote pair coaching is a good way to show that you face-to-face communication is still of great importance, even in remote work" /></p>
+
+<p>I remember my first remote talk very well. I had absolutely no clue about how the audience was reacting. Midway through the presentation, I had to pause and ask, “Is anyone here?” to make sure that at least 1 person was listening.</p>
+
+<p>The same thing can happen when you remote pair program. <strong>Without the cameras on, we wreck what’s left of non-verbal communication.</strong> It becomes too easy to lose attention and to let the driver drive alone.</p>
+
+<p>We should start every pair-programming session by asking our buddy to turn his camera on. The answers can be surprising! Someone once said:</p>
+
+<blockquote>
+  <p>I cannot. I’m still in pyjamas!</p>
+</blockquote>
+
+<p>The quick-fix was a sweat-shirt :-)</p>
+
+<p>Asking coachees to start their cameras highlights the value of face-to-face communication.</p>
+
+<blockquote>
+  <p><strong>Lesson#1: Teamwork and collaboration remain crucial for remote work</strong></p>
+</blockquote>
+
+<p>(As a bonus, we also help each other to <a href="https://theoatmeal.com/comics/working_home">keep their social skills sharp</a>)</p>
+
+<h2 id="2-dont-get-disturbed">#2 Don’t Get Disturbed</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/earmuffs.jpg" alt="Photo of noise-canceling earmuffs. Having a quiet place to work is super important. If your office is too noisy, investing in a noise canceling headset is the cheapest solution. This will show to your remote pair coachee that you take your work environment seriously." /></p>
+
+<p>Would you ever start browsing your phone while pair programming with a coachee? I’m sure you would not! It remains valid when coaching a remote team. <strong>The lack of social pressure makes the browser a real trap when coaching remotely.</strong></p>
+
+<p>Here are a few tricks in case mere willpower is not enough to keep you away from emails:</p>
+
+<ul>
+  <li>Disable all notifications on your laptop and your phone.</li>
+  <li>Close all the apps you don’t need right now.</li>
+  <li>You might also configure a different browser for pair programming only. Don’t set up your social media accounts or email on this browser.</li>
+  <li>I’ve even read of people creating dedicated accounts exclusive to pair programming.</li>
+  <li>At some point, I used a premium version of <a href="https://www.rescuetime.com/">RescueTime</a> to see how much time I was losing with emails. This motivated me to batch all communication work at the end of the day.</li>
+</ul>
+
+<p>Being at home also comes with its set of distractions. If you don’t have a calm desk, a good pair of headsets is a must-have. I use a <a href="https://www.jabra.com/business/office-headsets/jabra-evolve/jabra-evolve-75">Jabra Evolve 75</a>. It does not feature the best noise cancelation out there. Yet my pair buddies thank me for its microphone that filters out surrounding sounds!</p>
+
+<p>Intense pair coaching sessions are a demonstration of the power of <a href="https://www.jamesshore.com/v2/books/aoad1/energized_work">energized work</a>.</p>
+
+<blockquote>
+  <p><strong>Lesson#2: Energized teamwork is the most effective way to create value. We must protect this time at all costs.</strong></p>
+</blockquote>
+
+<h2 id="3-stay-focused">#3 Stay Focused</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/focus.jpg" alt="Photo of a lens in front of a landscape. Being able to focus, even in remote work, is key to energized and sustainable work. When coaching a remote team with pair programming, we must show the example and make sure to stay super-focused." /></p>
+
+<p>The next step after avoiding distraction is remaining focused!</p>
+
+<p><strong>Staying focused for hours of remote pair programming is not a willpower achievement. It’s impossible!</strong> If pair programming is already tiring, remote pairing is even more. We need to learn to recognize when we need a break.</p>
+
+<p>As a coach, even if you are paid by the hour, it’s OK to ask for a break. If you don’t, you will not deliver your best.</p>
+
+<p>A good trick is to use a <a href="https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-1/#pomodoro-technique">Pomodoro timer</a> to take a break every 25 minutes. As a bonus, you can take this break to switch drivers. There are many online Pomodoro timers available. I remember using <a href="https://www.marinaratimer.com/">marinaratimer.com</a> with a previous team. If you are using <a href="https://trello.com/">Trello</a>, you can also give <a href="https://pomelloapp.com/">Pomello</a> a try. You’ll get a log of the time you spend on each task for free.</p>
+
+<p>Taking breaks with your coachee is a way to prove that we stick to a sustainable pace. A pause is also the occasion to discuss non-work-related topics and build relationships.</p>
+
+<blockquote>
+  <p><strong>Lesson#3: A sustainable pace is what makes us effective</strong></p>
+</blockquote>
+
+<h2 id="4-keep-track-of-the-plan">#4 Keep Track of the Plan</h2>
+
+<p>Here is the <a href="https://en.wikipedia.org/wiki/Ninety-ninety_rule#:~:text=In%20computer%20programming%20and%20software,percent%20of%20the%20development%20time.&amp;text=In%20short%2C%20it%20often%20takes,expected%20to%20complete%20a%20project.">Ninety-ninety rule</a>:</p>
+
+<blockquote>
+  <p>The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time. [<a href="https://en.wikipedia.org/w/index.php?title=Tom_Cargill&amp;action=edit&amp;redlink=1">Tom Cargill</a>, <a href="https://en.wikipedia.org/wiki/Bell_Labs">Bell Labs</a>]</p>
+</blockquote>
+
+<p>My “Aha! Moment” with XP was when I understood how it fixes the Ninety-ninety rule. With the right practices in place, when we reach the end of our TODO list, we are done!</p>
+
+<p><strong>Sharing a <a href="https://philippe.bourgau.net/to-do-list-or-mind-map-for-programming/">TODO list</a> is a powerful way to show the power of XP when pair coaching.</strong></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/plan.jpg" alt="Photo of a man taking notes on a paper notebook next to his computer. Taking digital notes when remote pair coaching is even better than traditional paper notes in co-localized pairing. We can use this to walk coachees through a more organized, predictable, productive, and sustainable way of programming." /></p>
+
+<p>Online shared tools give us persisted and historized TODOs for free! I bought a <a href="https://coggle.it/">Coggle</a> license to draw a mind map, but free tools like Google docs or <a href="https://www.mindmup.com/">MindMup</a> would do the trick.</p>
+
+<blockquote>
+  <p>My whole coaching […] comes down to showing people tiny steps they can take that make them feel better about what they do, over a good long while. [<a href="https://www.geepawhill.org/">GeePaw</a> (Mike Hill) on <a href="https://groups.io/g/extremeprogramming/topic/75090300?p=,,,20,0,0,0::relevance,,What+does+evolutionary+design+mean+to+you,20,2,0,75090300,d=5,ct=1&amp;d=5&amp;ct=1">extremeprogramming@groups.io</a>]</p>
+</blockquote>
+
+<p>As coaches, keeping a TODO list is an opportunity to show how:</p>
+
+<ul>
+  <li>to remain organized</li>
+  <li>that XP lets you go through a task with predictability, without an indefinite amount of ‘fix time’ at the end</li>
+  <li>to do a bit of refactoring at each step</li>
+  <li>to apply <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> by putting items in a ‘<a href="https://www.lucidmeetings.com/glossary/parking-lot#:~:text=A%20meeting%20parking%20lot%20helps,to%20the%20group's%20parking%20lot.">Parking lot</a>’</li>
+</ul>
+
+<blockquote>
+  <p><strong>Lesson#4: Good practices make programming more organized, predictable, productive, and sustainable.</strong></p>
+</blockquote>
+
+<h2 id="5-use-your-machine-wisely">#5 Use your machine wisely</h2>
+
+<p><strong>Here is another opportunity from remote pair coaching: the navigator has a computer!</strong></p>
+
+<p>There are many ways to become a better navigator when remote pairing:</p>
+
+<ul>
+  <li>Run mini spikes, using an online interpreter, like <a href="https://www.onlinegdb.com">OnlineGDB</a></li>
+  <li>Research APIs on the internet</li>
+  <li>Investigate what people think about a design question</li>
+</ul>
+
+<p>There is a risk of getting out of touch with the driver, though! So:</p>
+
+<ol>
+  <li>Keep it short!</li>
+  <li>Have a dual-screen to keep the driver in sight</li>
+  <li>Don’t drift to the internet (cf #2)</li>
+</ol>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/xp-embrace-change.jpg" alt="Cover of Kent Beck's book 'eXtreme Programming eXplained: Embrace Change. When coaching a remote team, using the goods of remote work is a great way to show XP's philosophy of embracing change" /></p>
+
+<p>As an XP coach, this is a perfect opportunity to show what embracing change means in practice.</p>
+
+<blockquote>
+  <p><strong>Lesson#5: One way to embrace change is to use your context to run experiments and discover better ways to work.</strong></p>
+</blockquote>
+
+<h2 id="bonus-explain-why-and-how-so-it-snowballs">Bonus: explain ‘Why’ and ‘How’ so it snowballs</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/ripple.jpg" alt="Photo of ripples on a still lake. Without some form of snowball effect, coaching is useless. We want changes to last after we have left the place. This still holds true, if not more, when coaching a remote team. Whenever we are pair remote coaching, we should explain the 'Why' and 'How' behind any of the previous practices to maximize their chances of being copied by other pairs." /></p>
+
+<p>As change agents, we want best practices to spread and stick. Except if we sold mob-programming to the team, we cannot be pairing with everyone all the time! <strong>When pair-coaching a remote team, we want team members to stick to best practices without us.</strong></p>
+
+<p>Fortunately, these pair programming tips and tricks are easy to copy. Just spend a bit of time to explain:</p>
+
+<ul>
+  <li>Why we use these practices, so coachees will want to apply them</li>
+  <li>How to use these practices, so they will know how to apply them</li>
+</ul>
+
+<blockquote>
+  <p><strong>Lesson#6: Anyone can nudge others to try better ways of working.</strong></p>
+</blockquote>
+
+<h2 id="summary-what-to-do-next-time-you-do-remote-pair-coaching">Summary: What to do next time you do remote pair coaching?</h2>
+
+<p>As a coach, your goal is to show a better, more effective, and more sustainable way of working to developers. <strong>You can show this better way of working when remote pair coaching by doing the following:</strong></p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/checklist-small.jpg" alt="A drawing with the 5 steps to show a better way when remote pair coaching: 1. Cameras on; 2. Disable all notifications; 3. Pomodoro for breaks and switch; 4. Share a TODO list; 5. Navigate with your machine; Remember: explain the Why &amp; How for good practices to spread" /><figcaption>
+      
+By <a href="https://philippe.bourgau.net">Philippe Bourgau</a>, under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://philippe.bourgau.net/imgs/2021-01-04-5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/checklist.jpg">high resolution image</a>
+
+    </figcaption></figure>
+
+<p>Feel free to print this card and stick it on your screen. Give it a try for a while and share your feedback. If you know other remote pair programming tips and tricks, I’d love to read about them too!</p>
+
+<hr />
+
+<p>If you want to learn more about remote pairing, these posts might interest you:</p>
+
+<ul>
+  <li><a href="https://philippe.bourgau.net/how-to-deliver-a-remote-training-with-code-katas-and-randori-in-pairs/">How to deliver remote training with code-katas and randori in pairs</a></li>
+  <li><a href="https://philippe.bourgau.net/5-xp-practices-that-will-make-your-remote-team-more-effective/">5 XP practices that will make your remote team more effective</a></li>
+  <li><a href="https://philippe.bourgau.net/best-open-source-tools-for-remote-pair-programming/">Best open source tools for remote pair programming</a></li>
+  <li><a href="https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-1/">7 Remote pair programming best practices Q&amp;A - Part 1</a></li>
+  <li><a href="https://philippe.bourgau.net/7-remote-pair-programming-best-practices-q-and-a-part-2/">7 Remote pair programming best practices Q&amp;A - Part 2</a></li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#change-management" class="page__taxonomy-item" rel="tag">change management</a><span class="sep">, </span>
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#pair-programming" class="page__taxonomy-item" rel="tag">pair programming</a><span class="sep">, </span>
+    
+      <a href="/categories/#remote" class="page__taxonomy-item" rel="tag">remote</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-14T00:00:00+00:00">January 14, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=5+pair-programming+tips+and+tricks+for+coaching+a+remote+team%20https%3A%2F%2Fphilippe.bourgau.net%2F5-pair-programming-tips-and-tricks-for-coaching-a-remote-team%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2F5-pair-programming-tips-and-tricks-for-coaching-a-remote-team%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2F5-pair-programming-tips-and-tricks-for-coaching-a-remote-team%2F&title=5+pair-programming+tips+and+tricks+for+coaching+a+remote+team" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2F5-pair-programming-tips-and-tricks-for-coaching-a-remote-team%2F&t=5 pair-programming tips and tricks for coaching a remote team" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/how-the-samman-method-helps-to-sell-technical-coaching-internally/" class="pagination--pager" title="How the Samman Method helps to sell technical coaching internally?
+">Previous</a>
+    
+    
+      <a href="/growth-mindset-coaching-turn-remote-work-commutes-into-team-learning/" class="pagination--pager" title="Introduce Team G Morning Learning Sessions to Coach the Growth Mindset
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/5-pair-programming-tips-and-tricks-for-coaching-a-remote-team"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

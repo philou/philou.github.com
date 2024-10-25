@@ -1,0 +1,862 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How to use Event Storming to introduce Domain Driven Design | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Although incredibly effective, DDD is overlooked by developers because of its abstractness. Here is a set of hacks to introduce DDD during an Event Storming workshop. Ex: Alternatives to convoluted DDD names, Group activities to pass a concept through, Presentation material for tricky notions">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="How to use Event Storming to introduce Domain Driven Design">
+<meta property="og:url" content="https://philippe.bourgau.net/how-to-use-event-storming-to-introduce-domain-driven-design/">
+
+
+  <meta property="og:description" content="Although incredibly effective, DDD is overlooked by developers because of its abstractness. Here is a set of hacks to introduce DDD during an Event Storming workshop. Ex: Alternatives to convoluted DDD names, Group activities to pass a concept through, Presentation material for tricky notions">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="How to use Event Storming to introduce Domain Driven Design">
+  <meta name="twitter:description" content="Although incredibly effective, DDD is overlooked by developers because of its abstractness. Here is a set of hacks to introduce DDD during an Event Storming workshop. Ex: Alternatives to convoluted DDD names, Group activities to pass a concept through, Presentation material for tricky notions">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/how-to-use-event-storming-to-introduce-domain-driven-design/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-05-09T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/how-to-use-event-storming-to-introduce-domain-driven-design/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How to use Event Storming to introduce Domain Driven Design">
+    <meta itemprop="description" content="Although incredibly effective, DDD is overlooked by developers because of its abstractness. Event Storming is a great way to introduce DDD without naming it!">
+    <meta itemprop="datePublished" content="2019-05-09T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">How to use Event Storming to introduce Domain Driven Design
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Although incredibly effective, <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> is overlooked by developers because of its abstractness. <a href="https://en.wikipedia.org/wiki/Event_storming">Event Storming</a> is a great way to introduce DDD without naming it!</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/event-storming-to-ddd.jpeg" alt="Drawing of an event storming board with post-its forming DDD. Event Storming is a great way to introduce Domain Driven Design without naming it." /></p>
+
+<h2 id="state-of-ddd">State of DDD</h2>
+
+<p>I first read about <a href="https://en.wikipedia.org/wiki/Domain-driven_design">Domain Driven Design</a> about 15 years ago. It’s after reading the <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215/ref=sr_1_1?keywords=domain+driven+design&amp;qid=1553847240&amp;s=gateway&amp;sr=8-1">blue book</a> that I decided to move to the rich domain of Corporate Finance… for the better and the worse!</p>
+
+<p>I still remember the first project where we tried to follow the DDD principles. We were working in a bank, and writing a connector to an electronic broker. For 2 days following the deployment of the first version of our system, we heard nothing about it. This was quite unusual. The broker finally called us to say there was a bug in the way we were handling one message. We did not open the debugger. We only checked our logs. This was enough to explain which business rules where used, and that we thought we were right. 2 more days later, they admitted the bug was on their side.</p>
+
+<p>Granted, this success might also have resulted from all our other <a href="https://en.wikipedia.org/wiki/Extreme_programming">eXtreme Programming</a> practices. Still, putting the business logic before technology proved both very effective and sustainable.</p>
+
+<p>15 years later, we’re only starting to hear a bit more about DDD. With the <a href="https://en.wikipedia.org/wiki/Microservices">microservices</a> trend, people are wondering “What boundaries should our services have?” DDD’s <a href="https://www.infoq.com/articles/ddd-contextmapping">Context Map</a> is one of the few serious answers available.</p>
+
+<p>Why isn’t an effective concept like DDD more widely adopted?</p>
+
+<h2 id="the-barriers-to-ddd">The barriers to DDD</h2>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/locked-fence.jpg" alt="A picture of a locked door. Domain Driven Design can remain shut to people because of its awkward vocabulary. Many people will judge it too abstract and only work astronaut architecture." /></p>
+
+<p>There are many reasons why DDD is not ubiquitous 😉. First of all, the complexity it brings is not justified for every project. Second, it explicitly builds on top of XP. It almost states <a href="/categories/#refactoring">merciless refactoring</a>, unit testing and ‘whole team’ as pre-requisites. XP’s adoption is already small, which does not help DDD’s adoption either!</p>
+
+<blockquote>
+  <p>💡 Its awkward vocabulary is one of the reasons why DDD is not more widely adapted.</p>
+</blockquote>
+
+<p>There’s a third reason why DDD still does not have the place it deserves: its awkward vocabulary! Here are a few examples:</p>
+
+<ul>
+  <li><a href="https://martinfowler.com/bliki/UbiquitousLanguage.html">Ubiquitous language</a></li>
+  <li><a href="https://martinfowler.com/bliki/BoundedContext.html">Bounded contexts</a></li>
+  <li><a href="/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/">Upstream / Downstream</a></li>
+  <li><a href="https://martinfowler.com/bliki/DDD_Aggregate.html">Aggregates</a></li>
+  <li><a href="/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/">Relationships patterns</a> (Shared Kernel, Conformist, Open Host API, Published Language …)</li>
+  <li><a href="http://wiki.c2.com/?PortsAndAdaptersArchitecture">Hexagonal architecture</a> (Even if not directly DDD)</li>
+  <li>…</li>
+</ul>
+
+<p>All these contribute to make DDD look very abstract, and not practical. This is where Event Storming can help. Let’s see how.</p>
+
+<h2 id="event-storming-in-a-nutshell">Event Storming in a nutshell</h2>
+
+<p>Event Storming is a collaborative design workshop. Using a big wall and post-its, a group of people can draft a software system design in a few hours.</p>
+
+<p><a href="https://twitter.com/ziobrando">Alberto Brandolini</a> invented it as a way to design <a href="https://martinfowler.com/eaaDev/EventSourcing.html">Event Sourced</a> systems. The workshop itself is pretty intuitive. The rules are straightforward and rely on <a href="https://vimeo.com/275530146">natural human metaphors</a>. After 1 hour in, people feel at home with Event Storming.</p>
+
+<p>If you want to learn more about Event Storming, check my <a href="/misadventures-with-big-design-up-front/#">series of post on the topic</a>.</p>
+
+<h2 id="how-to-use-event-storming-to-get-people-to-do-ddd-without-knowing">How to use Event Storming to get people to do DDD without knowing?</h2>
+
+<blockquote>
+  <p>💡 <a href="https://philippe.bourgau.net/first-rule-of-ddd-is-lets-not-talk-about-ddd/">1st rule of DDD, don’t talk about DDD</a></p>
+</blockquote>
+
+<p>Alberto was an early member of the DDD community. Event Storming has huge bias towards analyzing the system from the point of view of the domain. During the Event Storming workshop, many DDD concepts will emerge. For example: Business Events, Bounded Contexts, Actors, Aggregates…</p>
+
+<p>This natural emergence of concepts is a great opportunity to explain to people what they are. Here are a few Event Storming tricks I use to make DDD more accessible.</p>
+
+<h3 id="functional-area">Functional Area</h3>
+
+<p>Although nobody understands Bounded Context from the start, everyone gets ‘Functional Area’. Granted, Bounded Context is a more precise name. It’s also a lot easier to forget it and only mention ‘Functional Areas’ during the Event Storming. People will understand it straightaway.</p>
+
+<blockquote>
+  <p>💡 Talk about Functional Area instead of Bounded Context.</p>
+</blockquote>
+
+<h3 id="vocabulary">Vocabulary</h3>
+
+<p>Ubiquitous Language is a great name… once you get it! It’s easier not to scare everyone out by using ‘shared vocabulary’ instead.</p>
+
+<blockquote>
+  <p>💡 Talk about Shared Vocabulary instead of Ubiquitous Language.</p>
+</blockquote>
+
+<h3 id="having-the-upper-hand">Having the upper hand</h3>
+
+<p>The blue book introduces the notion of upstream/downstream relationship between bounded contexts. This concept is very valuable in practice. Unfortunately, it’s not so easy to explain during a workshop. The best introduction I found is “Who has the upper hand in the relationship?”</p>
+
+<p>I also use a special activity to explain it further. I ask people to place a few typical situations upstream or downstream. If you want more details, I wrote <a href="/check-that-core-areas-have-the-upper-hand-with-event-storming-and-ddd/">a whole post</a> about this activity.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/upstream-downstream-activity.jpg" alt="A poster of an activity to teach what is downstream / upstream. It's the drawing of a river, with upstream pollution. People have to place things like 'domain code' and 'legacy code' where it should be, and think of where it usually is" /></p>
+
+<h3 id="relationship-patterns">Relationship patterns</h3>
+
+<p>The blue book also contains a full pattern language about bounded context relationships. This is of tremendous value to build a conscious functional architecture. Unfortunately, this part of the book is also pretty abstract and difficult to read.</p>
+
+<p>Hopefully for us, Event Storming can help here too. After a while in the workshop, the system should feel more concrete. That allows to introduce the patterns in a less abstract way.</p>
+
+<blockquote>
+  <p>💡 Use radars and storytelling to introduce Bounded Context relationship patterns.</p>
+</blockquote>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/tale-of-2-startups.jpg" alt="A poster of an activity to present relationship patterns. By illustrating the bounded context relationships in stories, it's a lot easier for attendees to understand what they are about." /></p>
+
+<p>I use <a href="/focus-on-core-domain-with-relationships-from-ddd-and-event-storming/">a special activity for that</a>. It relies on storytelling and visual radars to compare the patterns. With this, I have had success to introduce the patterns smoothly to attendees.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/radar.png" alt="A sample radar detailing the characteristic of the 'Big Ball of Mud' bounded context relationship pattern. This visual comparison makes it a lot easier for attendees to compare relationships" /></p>
+
+<h3 id="blank-aggregates">Blank Aggregates</h3>
+
+<p>Aggregate is another concept introduced in the blue book that is not easy to grasp. Explanations involving invariant and consistency don’t make it easier to understand.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-28-how-to-use-event-storming-to-introduce-domain-driven-design/blank-aggregates.jpeg" alt="Drawing of an empty yellow post-it between a command and a business event. Asking people to write down business rules instead of naming Aggregates is a lot easier. Grouping business rules into Aggregates later on makes a lot more sense" /></p>
+
+<p>Alberto Brandolini himself suggests using <a href="https://leanpub.com/introducing_eventstorming">a technique he calls ‘Blank aggregates’</a>. At the design level phase, don’t ask people to come up with Aggregates. Instead, put empty post-its and ask people to write business rules. Don’t mention aggregates yet.</p>
+
+<p>Only later ask them to group the business rules ‘as-they-would-with-code’. Developers usually get this well. They’ll naturally find good names for these Aggregates (of business rules).</p>
+
+<h2 id="start-now">Start now!</h2>
+
+<p>Don’t be a <a href="http://wiki.c2.com/?SmugLispWeenie">Smug DDD Weenie</a>. You’ll have difficulties to persuade people to jump into DDD. It’s a lot easier to setup a workshop, and get started. For your next feature, product or refactoring effort, start with Event Storming!</p>
+
+<p>For more details about how to run an Event Storming workshop, <a href="/misadventures-with-big-design-up-front/">here is a full walkthrough</a>.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#architecture" class="page__taxonomy-item" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/categories/#change-management" class="page__taxonomy-item" rel="tag">change management</a><span class="sep">, </span>
+    
+      <a href="/categories/#collaborative-work" class="page__taxonomy-item" rel="tag">collaborative work</a><span class="sep">, </span>
+    
+      <a href="/categories/#ddd" class="page__taxonomy-item" rel="tag">ddd</a><span class="sep">, </span>
+    
+      <a href="/categories/#event-storming" class="page__taxonomy-item" rel="tag">event storming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-05-09T00:00:00+00:00">May 9, 2019</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=How+to+use+Event+Storming+to+introduce+Domain+Driven+Design%20https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-use-event-storming-to-introduce-domain-driven-design%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-use-event-storming-to-introduce-domain-driven-design%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-use-event-storming-to-introduce-domain-driven-design%2F&title=How+to+use+Event+Storming+to+introduce+Domain+Driven+Design" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fhow-to-use-event-storming-to-introduce-domain-driven-design%2F&t=How to use Event Storming to introduce Domain Driven Design" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/10-pair-programming-questions-answers/" class="pagination--pager" title="10 Pair Programming Best Practices Questions &amp; Answers
+">Previous</a>
+    
+    
+      <a href="/event-storming-lessons-from-post-it-haters/" class="pagination--pager" title="Event Storming lessons from Post-It haters
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/how-to-use-event-storming-to-introduce-domain-driven-design/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/how-to-use-event-storming-to-introduce-domain-driven-design"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

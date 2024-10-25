@@ -1,0 +1,1112 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>The story about how we do Agile Technical Coaching | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it with mob programming and coding dojos at Murex. You’ll preview our project of growing technical leaders with team agile technical coaching.">
+
+
+  <meta name="author" content="Philippe Bourgau">
+  
+  <meta property="article:author" content="Philippe Bourgau">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="The story about how we do Agile Technical Coaching">
+<meta property="og:url" content="https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/">
+
+
+  <meta property="og:description" content="You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it with mob programming and coding dojos at Murex. You’ll preview our project of growing technical leaders with team agile technical coaching.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching-recipe-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="The story about how we do Agile Technical Coaching">
+  <meta name="twitter:description" content="You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it with mob programming and coding dojos at Murex. You’ll preview our project of growing technical leaders with team agile technical coaching.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching-recipe-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2020-02-06T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="http://www.gravatar.com/avatar/686399bd630ecc9381e4dfec8720816e?s=260" alt="Philippe Bourgau" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Philippe Bourgau</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Software Development Coach</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Paris, France</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="/about-me" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i><span class="label">Website</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-youtube" aria-hidden="true"></i><span class="label">YouTube</span></a></li>
+          
+        
+          
+            <li><a href="https://www.eventstormingjournal.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-sticky-note" aria-hidden="true"></i><span class="label">Event Storming Journal</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="The story about how we do Agile Technical Coaching">
+    <meta itemprop="description" content="You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it at Murex.">
+    <meta itemprop="datePublished" content="2020-02-06T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">The story about how we do Agile Technical Coaching
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          11 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>You will not find an Agile Technical Coach Job Description. This job is more invented than found. Here is the story of how we came to practice it at <a href="https://www.murex.com/">Murex</a>.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching-recipe.jpeg" alt="Drawing of a recipe of Technical Agile Coaching: Katas + Mobs + Growing Leaders" /></p>
+
+<p>People often wonder what Agile Technical Coaching is about. Unfortunately, you’ll have a hard time finding an Agile Technical Coach Job Description. In the days of Scrum and SAFe, this way of coaching teams has become pretty rare. Instead of a formal description, here is our story. The story of how we grew a team of Agile Technical Coaches at Murex.</p>
+
+<h2 id="it-started-with-deadpool">It started with Deadpool</h2>
+
+<p>Somewhere in 2017, Murex undertook an agile transformation. Agile coaches where helping teams to get used to this new way of working. Being the only former agile developer, I was trying to find my place among the other coaches.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/deadpool-coaching.jpg" alt="A drawing of Deadpool sitting on big letters 'Coaching'. My first mission as an Agile Technical Coaching was with a team called Deadpool" /></p>
+
+<p>One day, another agile coach asked me to help the Deadpool team. The team was going through a lot of difficulties, and stress was increasing for everyone. The team had inherited a lot of problems:</p>
+
+<ul>
+  <li>High turnover</li>
+  <li>Experts working in silos</li>
+  <li>A lot of poorly designed legacy code</li>
+  <li>Slow end-to-end tests</li>
+</ul>
+
+<p>As if all this was not enough, the team:</p>
+
+<ul>
+  <li>had a lot of maintenance work to do</li>
+  <li>and was under a lot of pressure to deliver new features</li>
+</ul>
+
+<p>Unsurprisingly, this mix was resulting in growing tensions among the team members.</p>
+
+<h3 id="what-could-i-do">What could I do?</h3>
+
+<p>All coaching I had done before consisted of embedding full time within a team. I would:</p>
+
+<ul>
+  <li>spend a lot of time pairing, with everyone</li>
+  <li>facilitate weekly <a href="https://philippe.bourgau.net/why-you-should-start-a-team-coding-dojo-randori-right-now/">coding dojos</a> to share development practices and learnings</li>
+  <li><a href="https://philippe.bourgau.net/how-we-introduced-efficient-agile-retrospectives/">facilitate retrospectives</a> and put real continuous improvement in place</li>
+</ul>
+
+<p>I knew this worked great.</p>
+
+<blockquote>
+  <p>💡 Full time pairing within a team is slow but effective agile technical coaching</p>
+</blockquote>
+
+<p>Unfortunately, it also takes a lot of time. It requires a few months to get real momentum, and a few more to see concrete outcomes. It also compounds, and once the wheel starts spinning, results pile up.</p>
+
+<p><a href="https://www.goodreads.com/book/show/9420697-the-compound-effect"><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/the-compound-effect.jpg" alt="Cover of the book &quot;The compound effect&quot;" /></a></p>
+
+<p>I was the only technical coach in the place. There are more than 60 development teams in Murex. If I was to replicate this method with only half of them, this would still take ages!</p>
+
+<h3 id="v01-part-time-embedding">v0.1, part-time embedding</h3>
+
+<p>My first try was a light version of the full-time embedding. I would</p>
+
+<ul>
+  <li>pair for 2 days per week</li>
+  <li>facilitate coding dojo per sprint</li>
+  <li>help the Scrum master with the Scrum events</li>
+</ul>
+
+<p>Scrum events got better, and I could sometimes spot useful things during pairing sessions. Unfortunately, people did not yet see the benefits of katas, and I could only pair with 1 person at a time. As a result, the progress remained very slow, and the team’s feedback was average.</p>
+
+<p>I had to find another way.</p>
+
+<h3 id="v02-katas-and-mobs">v0.2, katas and mobs</h3>
+
+<p>I decided to spend less time on Scrum events and to trade pairing for mobbing. We were doing 2 sessions of 2 hours of mob per week.</p>
+
+<blockquote>
+  <p>💡 Katas + Mobs is a time efficient agile technical coaching scheme</p>
+</blockquote>
+
+<p>I continued to do one 2-hour kata per sprint. As the team was struggling with legacy code, we focused on <a href="https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">refactoring katas</a>.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/deadpool-extract-member.jpg" alt="A drawing of Deadpool performing an extract-member refactoring on a legacy code character. We used Agile Technical Coaching as a way to practice refactoring techniques." /></p>
+
+<p>At some point, another team member left. He was the only expert on an essential area of the code. I had been highlighting the importance of reducing the WIP and increasing the bus factor. This new event convinced the team. Facing this new challenge, the team jelled. They met their management as a single unit, and <a href="https://philippe.bourgau.net/how-to-convince-your-business-to-sponsor-a-large-scale-refactoring/">insisted on taking the time to work differently</a>:</p>
+
+<ul>
+  <li>documenting critical knowledge</li>
+  <li>refactoring code areas that were too tricky to work with</li>
+</ul>
+
+<p>Managers had no choice but to accept. That’s how Deadpool resurrected.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/deadpool-mob.jpg" alt="A drawing of a mob of Deadpool characters protesting for refactoring." /></p>
+
+<h3 id="epilogue">Epilogue</h3>
+
+<p>2 years down the road, the team’s day to day life has dramatically improved:</p>
+
+<ul>
+  <li>A lot less stress</li>
+  <li>30-40% test coverage and increasing. This is a great achievement given the state of the initial legacy code.</li>
+  <li>The team is taking <a href="https://philippe.bourgau.net/become-a-business-partner-and-stop-begging-for-refactoring/">time for refactoring and testing at every sprint</a></li>
+  <li>The team now follows a sustainable pace</li>
+  <li>There is a friendly atmosphere in the team</li>
+</ul>
+
+<p>The situation, especially turnover, pushed the team into trying something new. The final jelling unlocked all the rest.</p>
+
+<p>To which extend did my coaching contribute to these changes? Most of these results come from the team’s work. To know better, I had a chat with the team members. Here is what they say:</p>
+
+<ul>
+  <li>Seemingly simplistic katas made them understand <a href="https://philippe.bourgau.net/incremental-software-development-strategies-for-large-scale-refactoring-number-2-baby-steps/">the value of baby steps</a>. They discovered that it unlocks better design and smoother deliveries</li>
+  <li>Mentioning WIP reduction made them envision ‘another way’ when the experts left</li>
+  <li><strong><a href="https://philippe.bourgau.net/how-to-get-the-max-out-of-your-team-coding-dojo/">Randoris and mobs taught them better collaboration</a></strong></li>
+  <li>They now see <a href="https://philippe.bourgau.net/a-serious-game-for-learning-built-in-quality-at-the-source/">the speed-up effect of tests</a>, even though they did not understand the point at the beginning</li>
+</ul>
+
+<p>It looks like this coaching nudged the team to change how they work.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/deadpool-heart.jpg" alt="A drawing of Deadpool making a heart with his hands. Tensions in the Deadpool team went away. How much can this success be credited to Agile Technical Coaching is a tricky question!" /></p>
+
+<p>But could we repeat this?</p>
+
+<h2 id="scaling-to-other-teams">Scaling to other teams</h2>
+
+<p>A new technical agile coach joined me at that point. We were now a team of 2.</p>
+
+<h3 id="v10-stable">v1.0, <code class="language-plaintext highlighter-rouge">stable</code></h3>
+
+<p>We extracted the strong points into a recipe we could re-use. Here are the key elements:</p>
+
+<ul>
+  <li>Focus on technical agile coaching only. There were enough process/people coaches in the company. We decided to let them do this part of the work! <strong>Anyway, once developers get TDD and pairing, they get the agile mindset.</strong> (Note: This might make a good post, so <a href="http://eepurl.com/dxKE95">stay tuned!</a>)</li>
+  <li>We would use a <a href="https://philippe.bourgau.net/a-coding-dojo-exercises-plan-towards-refactoring-legacy-code/">kata plan</a></li>
+  <li>We would <a href="https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/">start with TDD katas</a></li>
+  <li>And continue with refactoring katas. (I’ll write a more detailed post about the katas we are using, stay tuned!)</li>
+  <li>We would mob with the teams on selected stories</li>
+  <li>We would stick with the teams for a few months</li>
+</ul>
+
+<p>I’ve since discovered that other agile technical coaches are using similar techniques. <a href="http://coding-is-like-cooking.info/">Emily Bache</a> gave a talk at <a href="https://ncrafts.io/">NewCrafts</a>, where she described something pretty similar.</p>
+
+<!-- Courtesy of embedresponsively.com //-->
+
+<div class="responsive-video-container">
+    <iframe src="https://player.vimeo.com/video/339930423?dnt=true" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+  </div>
+
+<p>She is now writing a book <a href="https://leanpub.com/techagilecoach">Technical Agile Coaching</a> about it.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/technical-agile-coaching.jpg" alt="[Technical Agile Coaching](https://leanpub.com/techagilecoach)" /></p>
+
+<p>A tiny glitch remained: we now needed to find teams to coach!</p>
+
+<h3 id="marketing-and-sales">Marketing and sales…</h3>
+
+<p>There are 2 ways to coach teams.</p>
+
+<ul>
+  <li>Push-coaching: management sends the team to coaches</li>
+  <li>Pull-coaching: the team gets coaching when it asks for it</li>
+</ul>
+
+<p>From the beginning, we decided to avoid the former at all costs, for 2 reasons</p>
+
+<ul>
+  <li>It does not work very well, as people resist to ‘being changed’</li>
+  <li>In the end, it’s painful for everyone, the team and the coaches</li>
+</ul>
+
+<p>I have a friend who says that:</p>
+
+<blockquote>
+  <p>💡 Push-coaching is like inflicting help.</p>
+</blockquote>
+
+<p>The problem was that we now had to attract teams to work with us! We were now equipped with excellent feedback from Deadpool and a recipe. We started to meet teams and test our proposal. Every time we discussed it with a new team, the pitch got better. Here are the final selling points of our coaching:</p>
+
+<ul>
+  <li>Use refactoring and legacy as the base motivation. We highlight that they will learn <a href="https://philippe.bourgau.net/10-things-to-know-that-will-make-you-great-at-refactoring-legacy-code/">useful refactoring techniques</a>.</li>
+  <li><strong>We don’t try to sell TDD.</strong> We tell them it remains their choice to use it or not in their daily work.</li>
+  <li><strong>We explain we’ll enforce TDD during the coaching. It provides the <a href="https://philippe.bourgau.net/why-20-hours-of-code-kata-are-so-effective-for-learning-new-languages/">fast feedback loop required for deliberate practice</a>.</strong></li>
+  <li>We illustrate the power of deliberate practice with how athletes use it.</li>
+  <li>We present mobbing, pairing, and remote collaboration techniques as bonus learning.</li>
+  <li>We adapt to the team’s schedule as best as we can.</li>
+</ul>
+
+<p>Word of mouth and this improved pitch did the trick! We soon had new teams to coach.</p>
+
+<h3 id="intrapreneurship">Intrapreneurship</h3>
+
+<p>It turns out there is a third and even more important reason to stick to pull-coaching. If your product is not good enough, you won’t find teams to work with… In the end, it’s a guarantee to have a valuable offer.</p>
+
+<p>Actually, it’s like a startup!</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/create-startup.jpg" alt="Photograph of a keyboard with the 'SHIFT' key replaced by a 'CREATE' key. Growing an Agile Technical Coaching offer is a creative endeavor, like an internal startup" /></p>
+
+<h2 id="where-do-we-stand-now">Where do we stand now?</h2>
+
+<h3 id="successes">Successes</h3>
+
+<p>We have now coached 6 teams. Their feedback has been great. Depending on their situation, they highlight different aspects of coaching:</p>
+
+<ul>
+  <li>Collaboration</li>
+  <li>Testing</li>
+  <li>Refactoring</li>
+  <li>…</li>
+</ul>
+
+<p>We are now 2 full time agile technical coaches. We’re also onboarding <a href="https://ahmadatwi.me/">Ahmad</a>, and <a href="https://twitter.com/pdalesme">Patrice</a>, a developer from Deadpool, also joined us as a part-time coach!</p>
+
+<p>We also compiled our katas into a kata repository, with coaching instructions. Some teams managed to learn refactoring techniques with them, without requiring our presence. We’re hoping to take the time to open source this repo at some point.</p>
+
+<h3 id="our-challenges">Our challenges</h3>
+
+<p>There are still a lot of things in our way, though.</p>
+
+<h4 id="asking-for-coaching-is-shameful">Asking for coaching is shameful</h4>
+
+<p>Many teams still see coaching as ‘shameful’. <strong>Asking for help is often seen as a weakness in our ego-driven industry…</strong> We’ll have to work on our marketing to overcome this.</p>
+
+<h4 id="sustainable-communities">Sustainable communities</h4>
+
+<p>We are struggling to build communities of practice around refactoring and Continuous Integration. Unfortunately, these communities are far from being autonomous at the moment. They still require a lot of effort from our side… </p>
+
+<p>Again, we’ll have to find the recipe to install communities in the company culture.</p>
+
+<h4 id="finding-the-time-for-self-development">Finding the time for self-development</h4>
+
+<p>We’re having a hard time to continue to learn, explore, and experiment with new techniques. This is super important for agile technical coaches, and again, we’ll need to make more time for that!</p>
+
+<h4 id="startup-metrics">Startup metrics</h4>
+
+<p>I said we’re thinking of us as an internal startup. Startups use metrics to know they are on the right track. This looked especially important to us. As we started the activity by ourselves, we feared we had to ‘prove’ that we were productive.</p>
+
+<p>We tried standard startup metrics, like metrics of the pirate, and others for a while. Unfortunately, it did not work great for us because:</p>
+
+<ul>
+  <li>Without any tooling or available figures, it generated some manual work overhead</li>
+  <li>With 500 developers in the organization, our sample size is small</li>
+</ul>
+
+<p>We also realized that fear is not a good motivation. We decided to stop tracking these metrics systematically. We are now experimenting ‘just-in-time metrics’. Whenever we do something, we put metrics in place to make sure it’s doing what we expected… If not, we review and adapt.</p>
+
+<p>It’s now close to a lean way of working. We are currently using the <a href="https://medium.com/product-punk/lean-user-story-template-d3fdafe094df">lean story template</a>.</p>
+
+<h4 id="crossing-the-chasm">Crossing the chasm?</h4>
+
+<p>Lately, the demand for new coaching has been slowing down. If we’re growing like a startup, could it be that we are <a href="https://www.goodreads.com/book/show/61329.Crossing_the_Chasm">crossing the chasm</a>? Did we only tackle the innovators and early adopters?</p>
+
+<p><a href="https://www.goodreads.com/book/show/61329.Crossing_the_Chasm"><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/crossing-the-chasm.jpg" alt="The cover of the book &quot;Crossing the Chasm&quot;. Technical agile coaching involves some marketing!" /></a></p>
+
+<p>If this is the case, it means we need to put all we can in the next <a href="https://www.investopedia.com/terms/e/early-majority.asp">early-majority</a> team we get the chance to work with!</p>
+
+<h2 id="v20-leadership">v2.0, leadership</h2>
+
+<h3 id="new-topics">New topics</h3>
+
+<p>Up to now, we’ve helped teams on refactoring. Lately, a team asked for help around agile testing. We are trying to adapt our recipe to testing instead of refactoring.</p>
+
+<p>The plan was to:</p>
+
+<ol>
+  <li>Start with TDD katas</li>
+  <li>Start mobbing on their stories</li>
+  <li>Continue with new testing katas</li>
+</ol>
+
+<p>This would work, but </p>
+
+<ul>
+  <li>We would need to work hard to prepare all these new testing katas</li>
+  <li>These katas might even not be well adapted to the team’s need!</li>
+</ul>
+
+<p>We decided to go one step further.</p>
+
+<h3 id="growing-leaders">Growing leaders</h3>
+
+<p>We are not going to run test-related katas directly with the team! Instead, we’ll first work with 1 or 2 wanna-be-experts from the team:</p>
+
+<ul>
+  <li>We’ll share references to let them think what’s best for their team</li>
+  <li>We’ll present some kata ‘base’.</li>
+  <li>We’ll fine-tune the katas for the team</li>
+  <li>We’ll run the kata with the whole team</li>
+</ul>
+
+<p>The idea is to</p>
+
+<ul>
+  <li>build something even more practical and tuned to the team</li>
+  <li>but also grow subject-matter experts</li>
+  <li>increase buy-in from the rest of the team</li>
+</ul>
+
+<p>We also have other long term hopes about this approach:</p>
+
+<ul>
+  <li>Have subject matter experts that the company can rely on</li>
+  <li>Have these experts share what they did with other teams</li>
+  <li>Make these experts a bit more <a href="https://philippe.bourgau.net/why-we-need-badass-developers-to-perform-large-scale-refactorings/">‘badass’</a>. This will increase the devs negotiation power with product people</li>
+  <li>If they feel like it, share their experience at conferences!</li>
+</ul>
+
+<blockquote>
+  <p>💡 Let’s grow leadership among developers by involving experts in kata preparation.</p>
+</blockquote>
+
+<h2 id="advice-to-technical-agile-coaches">Advice to Technical Agile Coaches</h2>
+
+<h3 id="try-katas--mobs">Try katas + mobs</h3>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/coding-dojo.jpg" alt="Drawing of a martial arts dojo built around a giant laptop! Starting a coding dojo is the first step in Agile Technical Coaching" /></p>
+
+<p>If you are an agile technical coach, I recommend giving this kata and mob format a try. So far, it’s the most effective recipe I’ve tried or heard about!</p>
+
+<p>Not only does it train teams to software craftsmanship techniques. It also makes them more agile. TDD, pairing and mobbing are agile “in practice”. In the end, this can have profound consequences on all their work.</p>
+
+<p><a href="https://twitter.com/schmonz">Amitai Schleier</a> gave a podcast about <a href="https://schmonz.com/talk/20200122-mob-mentality/">the synergy of mobbing and coaching</a>.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/mob.jpg" alt="Drawing of a team mobbing" /></p>
+
+<h3 id="build-your-own-job-description">Build your own job description</h3>
+
+<p>Let’s look back at this story. </p>
+
+<ol>
+  <li>Someone asked me for help in the first place</li>
+  <li>A change in management left me to do what I wanted for a while. I took the opportunity to offer this coaching.</li>
+  <li>By the time my new manager asked what I was doing, I could show results. We were working with teams and had great feedback.</li>
+  <li>He saw the value of it and let me continue.</li>
+</ol>
+
+<p>You will not find a clear agile-technical-coach job description. All organizations are different, and the role is pretty new. The best way to become one is to start and invent your own job!</p>
+
+<h2 id="become-a-leader-badass">Become <del>a leader</del> badass!</h2>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2020-01-31-the-story-about-how-we-do-agile-technical-coaching/I_am_Badass.jpg" alt="A close up on a fist wearing a ring written 'I am Badass'. As a team member, starting to act as an Agile Technical Coach will grow your leadership, and make you more 'badass'" /><figcaption>
+      
+By <a href="https://unsplash.com/@brookelark">Brooke Lark</a> on <a href="https://unsplash.com/photos/jtvGydbUn30">Unsplash</a>
+
+    </figcaption></figure>
+
+<p>These pieces of advice apply even more if you are not a coach. If you are a team member, starting to act as an agile technical coach will help you to:</p>
+
+<ul>
+  <li>become a leader</li>
+  <li>make your team great</li>
+</ul>
+
+<p>All this is not rocket science!</p>
+
+<ol>
+  <li><a href="https://philippe.bourgau.net/how-to-start-a-team-coding-dojo-randori-today/">Start a coding dojo</a></li>
+  <li>Then try a few randoris in <a href="http://llewellynfalco.blogspot.com/2014/06/llewellyns-strong-style-pairing.html">Strong-Style Pairing</a></li>
+  <li>You’ll be ready to start mobbing for a few hours a week</li>
+</ol>
+
+<p>Sticking to this for a few months will transform you and your team. On top of building a great team, it will grow your natural leadership.</p>
+
+<p>What’s the point of becoming a leader? Here are some benefits of growing your developer leadership:</p>
+
+<ul>
+  <li>You will make a better product thanks to more negotiation power with product people</li>
+  <li>All the team will enjoy less stress and smarter work, as you negotiate a more sustainable pace</li>
+  <li>Eventually, you’ll have a better career, as you will feel safer in your professional life. Acting as a leader builds what I call “intrinsic <a href="https://en.wikipedia.org/wiki/Psychological_safety">psychological safety</a>”.</li>
+</ul>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#badass-developer" class="page__taxonomy-item" rel="tag">badass-developer</a><span class="sep">, </span>
+    
+      <a href="/categories/#coaching" class="page__taxonomy-item" rel="tag">coaching</a><span class="sep">, </span>
+    
+      <a href="/categories/#coding-dojo" class="page__taxonomy-item" rel="tag">coding dojo</a><span class="sep">, </span>
+    
+      <a href="/categories/#mob-programming" class="page__taxonomy-item" rel="tag">mob programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-02-06T00:00:00+00:00">February 6, 2020</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=The+story+about+how+we+do+Agile+Technical+Coaching%20https%3A%2F%2Fphilippe.bourgau.net%2Fthe-story-about-how-we-do-agile-technical-coaching%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fthe-story-about-how-we-do-agile-technical-coaching%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fthe-story-about-how-we-do-agile-technical-coaching%2F&title=The+story+about+how+we+do+Agile+Technical+Coaching" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fthe-story-about-how-we-do-agile-technical-coaching%2F&t=The story about how we do Agile Technical Coaching" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/make-testing-legacy-code-viral-mikado-method-and-test-data-builders/" class="pagination--pager" title="Make Testing Legacy Code Viral: Mikado Method and Test Data Builders
+">Previous</a>
+    
+    
+      <a href="/3-good-and-bad-ways-to-write-team-coding-standards-and-conventions/" class="pagination--pager" title="3 Good and Bad Ways to Write Team Coding Standards and Conventions
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/the-story-about-how-we-do-agile-technical-coaching/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/the-story-about-how-we-do-agile-technical-coaching"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

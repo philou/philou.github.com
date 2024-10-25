@@ -1,0 +1,837 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>You should refuse to develop what you don’t understand | Philippe Bourgau’s XP Coaching Blog</title>
+<meta name="description" content="Understanding is key to building quality software. In this guest post, fluentcpp blogger Jonathan Boccara presents 3 levels of understanding we should go through before we start coding. #1 Why something doesn’t work. #2 Why something works. #3 Why you do this project of feature.">
+
+
+  <meta name="author" content="Jonathan Boccara">
+  
+  <meta property="article:author" content="Jonathan Boccara">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Philippe Bourgau's XP Coaching Blog">
+<meta property="og:title" content="You should refuse to develop what you don’t understand">
+<meta property="og:url" content="https://philippe.bourgau.net/you-should-refuse-to-develop-what-you-dont-understand/">
+
+
+  <meta property="og:description" content="Understanding is key to building quality software. In this guest post, fluentcpp blogger Jonathan Boccara presents 3 levels of understanding we should go through before we start coding. #1 Why something doesn’t work. #2 Why something works. #3 Why you do this project of feature.">
+
+
+
+  <meta property="og:image" content="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/why-why-why-og.jpeg">
+
+
+
+  <meta name="twitter:site" content="@pbourgau">
+  <meta name="twitter:title" content="You should refuse to develop what you don’t understand">
+  <meta name="twitter:description" content="Understanding is key to building quality software. In this guest post, fluentcpp blogger Jonathan Boccara presents 3 levels of understanding we should go through before we start coding. #1 Why something doesn’t work. #2 Why something works. #3 Why you do this project of feature.">
+  <meta name="twitter:url" content="https://philippe.bourgau.net/you-should-refuse-to-develop-what-you-dont-understand/">
+
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/why-why-why-og.jpeg">
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-04-18T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://philippe.bourgau.net/you-should-refuse-to-develop-what-you-dont-understand/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Philippe Bourgau",
+      "url": "https://philippe.bourgau.net/",
+      "sameAs": ["https://twitter.com/pbourgau","https://www.linkedin.com/in/philippe-bourgau-607a928/","https://github.com/philou","https://www.youtube.com/channel/UCq6uOPvSmpQeVrLRCQOQ8KQ"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Philippe Bourgau's XP Coaching Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single-mailing-list">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Philippe Bourgau's XP Coaching Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about-me/">About Me</a>
+            </li><li class="masthead__menu-item">
+              <a href="/services/">Services</a>
+            </li><li class="masthead__menu-item">
+              <a href="/speaking/">Speaking</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories/">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/archives/">Archives</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <a href="http://www.fluentcpp.com/about-me/">
+          <img src="https://pbs.twimg.com/profile_images/798648536812371968/6PDLB1hL_400x400.jpg" alt="Jonathan Boccara" itemprop="image">
+        </a>
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <a href="http://www.fluentcpp.com/about-me/"><h3 class="author__name" itemprop="name">Jonathan Boccara</h3></a>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>Passionate C++ developer focusing on code expressiveness</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+
+      
+        
+          
+            <li><a href="mailto:jonathan@fluentcpp.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://fluentcpp.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-rss" aria-hidden="true"></i><span class="label">Blog</span></a></li>
+          
+        
+          
+            <li><a href="https://twitter.com/JoBoccara" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i><span class="label">Twitter</span></a></li>
+          
+        
+          
+            <li><a href="http://patreon.com/fluentcpp" rel="nofollow noopener noreferrer"><i class="far fa-fw fa-handshake" aria-hidden="true"></i><span class="label">Patreon</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="You should refuse to develop what you don’t understand">
+    <meta itemprop="description" content="Understanding is key to building quality software. Here are 3 levels of understanding we should go through before we start coding.">
+    <meta itemprop="datePublished" content="2019-04-18T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">You should refuse to develop what you don’t understand
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><em>Understanding is key to building quality software. Here are 3 levels of understanding we should go through before we start coding.</em></p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/why-why-why.jpeg" alt="Drawing of someone wondering 'why' 3 times. Understanding the why of features is key to being an effective programmer" /></p>
+
+<p>Since the beginning of the year, I’ve had the position of a team lead/manager/dev lead, call this what you want, but I’m essentially in charge of a module as well as the team of developers that work on it.</p>
+
+<p>This position is giving me a new point of view on software development projects as I’m involved in more projects and take more part to the decision processes. Recently a new insight has clicked in my mind thanks to this, about how much <strong>understanding</strong> shapes the code and the application.</p>
+
+<p>My point is that the quality of the code (and of the software) is closely related to how much the people that write and design it understand what they’re doing.</p>
+
+<p>Okay, you may think: “Duh! Of course we’d better understand the code we’re writing, otherwise we might as well <a href="https://en.wikipedia.org/wiki/Infinite_monkey_theorem">hire monkeys</a> to type away some random code and be done with it!”.</p>
+
+<p><img src="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/monkey.jpg" alt="Photo of a monkey typing at a laptop" /></p>
+
+<p>And you’d be right. Therefore, I’ll assume that you already realize that understanding what you’re doing is important. This is like Understanding level #0, and we won’t dig into that. What we’ll get into is <em>what</em> is necessary to understand, and how this affects the <em>decisions</em> you take on a daily basis. Knowing this beforehand would have saved me a huge amount of time and dubious code.</p>
+
+<p>Even if we won’t see one line of code today, I consider what follows to have a big impact of the quality of the code and on how expressive it is.</p>
+
+<h2 id="understanding-level-1-understand-why-something-doesnt-work"><strong>Understanding level #1: Understand why something doesn’t work</strong></h2>
+
+<p>This first level of understanding comes fairly early in a developer’s career, sometimes even without being taught (or at least that’s what I’ve observed around me).</p>
+
+<p>Imagine you receive a bug report: a feature is broken in the application, and you need to fix it. How do you go about it?</p>
+
+<p>The classical pattern is:</p>
+
+<p>1) you locate the guilty code (how you do <em>that</em> is a separate topic which I talk about in my book about legacy code),</p>
+
+<p>2) you make a change in that code,</p>
+
+<p>3) you check that the bug is fixed and that you didn’t cause regressions in other use cases.</p>
+
+<p>Let’s focus on part 2): “you make a change in that code”. There are two approaches to do this: the first one is to understand exactly what is going on with the current code, locate the error and correct it.  The second one is to grope around: maybe add a +1 to the stopping condition of a for loop, relaunch the use case to see if it worked, if not try something else, and so on.</p>
+
+<p>The right approach is the first one. As Steve McConnell explains in its fundamental book <a href="https://www.amazon.com/gp/product/0735619670/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0735619670&amp;linkCode=as2&amp;tag=fluentcpp-20&amp;linkId=d5740a1b637d19f7324be8302bc12b6b">Code Complete</a> (highly recommended reading!), whenever you change the code, you must be able to predict with confidence the effect of your change on the application. If a fix doesn’t affect the application the way you thought, this must be a troubling feeling for you, that almost requires you to put yourself in question (my rewording, can’t put my finger on the quote in the book)<em>.</em></p>
+
+<p><a href="https://www.amazon.com/gp/product/0735619670/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=0735619670&amp;linkCode=as2&amp;tag=fluentcpp-20&amp;linkId=d5740a1b637d19f7324be8302bc12b6b"><img src="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/code-complete.jpg" alt="Cover of Steve McConnell's classic book Code Complete" /></a></p>
+
+<p>In short, to produce a robust fix that won’t damage the quality of the code, you must be sure to have a good understanding of the code and the source of the problem.</p>
+
+<h2 id="understanding-level-2-understand-why-something-works"><strong>Understanding level #2: Understand why something works</strong></h2>
+
+<p>The second level of understanding is less intuitive that the previous one. My manager had to teach it to me back when I started as a professional developer, and I’ve had to teach it to younger developers over the years.</p>
+
+<p>This time, say that you receive <strong>two</strong> bug reports at the same time: the first one describes use case A, and the second one describes use case B. Both don’t behave the way they should.</p>
+
+<p>So you go on to fix the first the bug in the first use case. Using understanding level #1, you take the time to get a detailed understanding of the involved code, realize why that code makes use case A behave the way it does, and make a sane fix that corrects use case A exactly the way you predicted. All good.</p>
+
+<p>Now you move on to use case B. You test to check that you reproduce use case B and, surprise, use case B now works correctly! To make sure, you revert the fix you’ve made for use case A, and the bug for B reappears. Your fix has corrected both issues. Lucky you!</p>
+
+<p>You weren’t expecting it. You designed your fix for use case A, and you’re not sure why it worked for use case B too.</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/cargo-cult.jpg" alt="A photo of people sitting in front of a 'Cargo Cult' wooden plane" /><figcaption>
+      
+<a href="https://en.wikipedia.org/wiki/Cargo_cult">Wikipedia: A cargo cult</a> is a belief system among members of a relatively undeveloped society in which adherents practice superstitious rituals hoping to bring modern goods supplied by a more technologically advanced society.
+
+    </figcaption></figure>
+
+<p>At this moment, it is very tempting to consider the job done for both bug reports. This is the natural thing to do: after all, the point was to correct the two use cases, wasn’t it?</p>
+
+<p>But the work is not finished: you still need to understand why your fix corrected use case B. Why? Because it may have corrected it for a <strong>bad reason</strong>, and you do need to make another fix. Bad reasons include:</p>
+
+<ul>
+  <li>
+    <p>by not making the right fix for use case B, you could have broken use case C without realizing it,</p>
+  </li>
+  <li>
+    <p>maybe there is <em>another</em> bug related to the feature, and your fix somehow corrects B by relying on it. Use case B looks good now, but the day that other bug gets fixed, that will break use case B again and perhaps more.</p>
+  </li>
+</ul>
+
+<p>All those reasons make the code inconsistent, and this will come back to bite you later on, probably when it’s not a good time. It takes some will to keep spending time understanding why everything seems to work correctly, but that understanding pays off.</p>
+
+<h2 id="understanding-level-3-understanding-why-you-make-a-development-project"><strong>Understanding level #3: Understanding why you make a development project</strong></h2>
+
+<p>This is the understanding level that clicked for me recently, and probably the one that could have had the more impact if I had fully realized it earlier.</p>
+
+<p>To illustrate this, consider the following example: your module needs to be compatible with feature X. You don’t know much about feature X, but you’re told that to be compatible with feature X, you must implement the framework F. Other modules compatible with feature X also implement framework F.</p>
+
+<p>Your code has lived all its life away from framework F, and implementing framework F is not an easy thing to do. It has profound implications on some of the features of your module. But you dive into the development regardless, spend weeks developing, testing, demoing, getting feedback, correcting regressions, discovering unpredicted issues, going over the initial estimates, developing some more, testing, getting feedback, correcting regressions, all this striving to implement framework F.</p>
+
+<p>And at some point, you realize, or someone tells you, that maybe implementing framework F wouldn’t make your module compatible with feature X after all. Maybe all that time, sweat and code weren’t done the right direction.</p>
+
+<p>Something like this happened to one of the projects I was responsible for. How did that happen? Because I wasn’t familiar with feature X and with its link to framework F. What should I have done? Understand the exact reason to implement framework F. Ask whoever was requesting the development the exact link between the project and the desired outcome, and not do it just because other modules do, or trust someone that it would make feature X work.</p>
+
+<p>The same issues can happen with user facing tasks. Sometimes we are asked to code something without being told what’s the user need behind. If we knew the user need, we might be able to come up with better alternatives. We might even find a solution that does not require to code anything!</p>
+
+<figure class="">
+  <img src="https://philippe.bourgau.net/imgs/2019-03-11-you-should-refuse-to-develop-what-you-dont-understand/I_am_Badass.jpg" alt="A close up on a fist wearing a ring written 'I am Badass'. Badass programmers know when to say 'No'" /><figcaption>
+      
+By <a href="https://unsplash.com/@brookelark">Brooke Lark</a> on <a href="https://unsplash.com/photos/jtvGydbUn30">Unsplash</a>
+
+    </figcaption></figure>
+
+<p>What I learned in that project is this: <strong>we should refuse to start a development if we don’t have a clear understanding of why we are requested to do it</strong>. Plainly refuse it. It is tempting to start a project as soon as possible in order not to waste time. But blocking its start until we understand its implications can save time on another order of magnitude.</p>
+
+<p>Even if someone pressures you to start a development and you don’t understand the detailed rationale, resist. Understand why they want you to do it first, and then decide if this is the right development to do.</p>
+
+<p>I’ve learned it the hard way, I hope reading this can benefit you too.</p>
+
+<h2 id="understanding-level-4-"><strong>Understanding level #4: ?</strong></h2>
+
+<p>There is a lot to learn in software engineering, and surely I’m not so far past scratching the surface on the topic of understanding.</p>
+
+<p>What other levels of understanding have you come to realize along your years of experience? What decisions had a positive result on the quality of your codebase and your application? What decisions had a negative impact and were useful to learn from?</p>
+
+<p>Share your experience in the comment sections below.</p>
+
+
+<!-- Begin Mailchimp Signup Form -->
+<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+<div id="mc_embed_signup">
+  <form action="https://bourgau.us18.list-manage.com/subscribe/post?u=b46bc99339f9c9f337232c617&amp;id=ed63184b0e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+        <label for="mce-EMAIL">Stay up to date with content and upcoming products</label>
+        <p>I usually write about 15 minutes worth of reading per month. I won't transfer your email. No Spam, unsubscribe whenever you want.</p>
+        <p><em>As a gift for subscribing, you'll receive an illustrated mini-ebook <strong>"How to start a team coding dojo"</strong>!</em></p>
+        <p><img src="/imgs/thumbnails/how-to-start-your-team-coding-dojo-cover.jpg"/></p>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b46bc99339f9c9f337232c617_ed63184b0e" tabindex="-1" value=""></div>
+        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+  </form>
+</div>
+
+<!--End mc_embed_signup-->
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#badass-developer" class="page__taxonomy-item" rel="tag">badass-developer</a><span class="sep">, </span>
+    
+      <a href="/categories/#bdd" class="page__taxonomy-item" rel="tag">bdd</a><span class="sep">, </span>
+    
+      <a href="/categories/#programming" class="page__taxonomy-item" rel="tag">programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-04-18T00:00:00+00:00">April 18, 2019</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=pbourgau&text=You+should+refuse+to+develop+what+you+don%27t+understand%20https%3A%2F%2Fphilippe.bourgau.net%2Fyou-should-refuse-to-develop-what-you-dont-understand%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fphilippe.bourgau.net%2Fyou-should-refuse-to-develop-what-you-dont-understand%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fphilippe.bourgau.net%2Fyou-should-refuse-to-develop-what-you-dont-understand%2F&title=You+should+refuse+to+develop+what+you+don%27t+understand" class="btn" style="background-color: #ff4500; color: white" title="Share on Reddit"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i><span> Reddit</span></a>
+
+  <a href="http://news.ycombinator.com/submitlink?u=https%3A%2F%2Fphilippe.bourgau.net%2Fyou-should-refuse-to-develop-what-you-dont-understand%2F&t=You should refuse to develop what you don't understand" class="btn" style="background-color: #ff6600; color: white"  title="Share on Hackernews"><i class="fab fa-fw fa-hacker-news" aria-hidden="true"></i><span> Hacker News</span></a>
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/a-serious-game-for-learning-built-in-quality-at-the-source/" class="pagination--pager" title="A serious game for learning ‘built-in quality at the source’
+">Previous</a>
+    
+    
+      <a href="/10-pair-programming-questions-answers/" class="pagination--pager" title="10 Pair Programming Best Practices Questions &amp; Answers
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Leave a comment</h4>
+      <section id="disqus_thread"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-11-07-the-secrets-of-tech-coaching-better-communication-skill/human-human-stack-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/the-secrets-of-tech-coaching-better-communication-skill/" rel="permalink">The Secrets Of Tech Coaching: Better Communication Skill
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Running code katas or mobs with groups that lack teamwork is almost impossible! Here are 20 communication and collaboration techniques to coach by example.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-07-22-liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/snail-carrying-liberating-structures-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/liberating-structures-the-slow-code-retreat-s-little-facilitation-secret/" rel="permalink">Liberating Structures: the Slow Code Retreat’s little facilitation secret
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">You can now run the Slow Code Retreat by following the facilitation guide. By doing so, you’ll also learn 6 Liberating Structures for your future workshops.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-06-04-how-to-fix-bad-agile-by-discussing-baby-steps/baby-steps-aha-moment-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/how-to-fix-bad-agile-by-discussing-baby-steps/" rel="permalink">How To Fix Bad Agile By Discussing Baby Steps
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to fix bad agile by starting neutral discussions about baby-steps programming. Baby steps are a sustainable and productive approach to writing code.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <div class="archive__item-teaser">
+        <img src="/imgs/2023-04-26-a-quality-view-workshop-to-discuss-technical-excellence/missing-a-quality-view-teaser.jpg" alt="">
+      </div>
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/a-quality-view-workshop-to-discuss-technical-excellence/" rel="permalink">A Quality View Workshop to Discuss Technical Excellence
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Here is a step-by-step workshop to guide a team to drawing a Quality View. Use it to discuss investment in agile technical excellence with stakeholders.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/pbourgau" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/philou" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/philippe-bourgau-607a928" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="http://eepurl.com/dxKE95" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> Mail Feed</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 Philippe Bourgau. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0XLKP12EJF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0XLKP12EJF', { 'anonymize_ip': true});
+</script>
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://philippe.bourgau.net/you-should-refuse-to-develop-what-you-dont-understand/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/you-should-refuse-to-develop-what-you-dont-understand"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://philippe-bourgau.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>
