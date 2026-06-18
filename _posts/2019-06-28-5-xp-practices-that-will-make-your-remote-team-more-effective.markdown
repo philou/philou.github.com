@@ -23,6 +23,6 @@ A while ago, [Ahmad](https://ahmadatwi.me/about/) and [I](/about-me) worked in a
 
 We've already [wrote](/categories/#remote) and [talked](https://www.youtube.com/watch?v=jLjhCTvWLPk) about the tools and processes we used to be an effective remote team. It turns out remote programming teamwork is also about the way we write code...
 
-[Continue reading...](https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-effective/) 
+[Continue reading...](https://web.archive.org/web/20210926005955/https://ahmadatwi.me/2019/07/03/5-xp-practices-that-will-make-your-remote-team-more-ef) 
 
 _A few weeks ago, I wrote a guest post for my friend [Ahmad](https://ahmadatwi.me/). Here was the beginning._
